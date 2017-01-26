@@ -294,12 +294,11 @@ class sources:
 
         content = 'movie' if tvshowtitle == None else 'episode'
 
-        if content == 'movie':
-            sourceDict = [i for i in sourceDict if i.endswith(('_mv', '_mv_tv'))]
-        else:
-            sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
 
-        try: sourceDict = [(i, control.setting('provider.' + re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
+        sourceDict = [i for i in sourceDict ]
+
+
+        try: sourceDict = [(i, control.setting('provider.' + i)) for i in sourceDict]
         except: sourceDict = [(i, 'true') for i in sourceDict]
 
         sourceDict = [i[0] for i in sourceDict if not i[1] == 'false']
@@ -313,10 +312,10 @@ class sources:
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, source, __import__(source, globals(), locals(), [], -1).source()))
         else:
             tvshowtitle = cleantitle.normalize(tvshowtitle)
-            for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, source, __import__(source, globals(), locals(), [], -1).source()))
 
 
         try: timeout = int(control.setting('scrapers.timeout.1'))
@@ -324,8 +323,8 @@ class sources:
 
         [i.start() for i in threads]
 
-        sourceLabel = [re.sub('_mv_tv$|_mv$|_tv$', '', i) for i in sourceDict]
-        sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
+        sourceLabel = [i for i in sourceDict]
+        # sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
 
         progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
         progressDialog.create(control.addonInfo('name'), '')
@@ -334,7 +333,8 @@ class sources:
         string1 = control.lang(32404).encode('utf-8')
         string2 = control.lang(32405).encode('utf-8')
         string3 = control.lang(32406).encode('utf-8')
-
+		
+				
         for i in range(0, timeout * 2):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
@@ -348,12 +348,12 @@ class sources:
                     string4 = string1 % str(int(i * 0.5))
                     if len(info) > 5: string5 = string3 % str(len(info))
                     else: string5 = string3 % str(info).translate(None, "[]'")
-                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4) + "   Total Links: " + str(len(self.sources)), str(string5))
                 except:
                     string4 = string2 % str(int(i * 0.5))
                     if len(info) > 5: string5 = string3 % str(len(info))
                     else: string5 = str(info).translate(None, "[]'")
-                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4) + "   Total Links: " + str(len(self.sources)), str(string5))
 
 
                 is_alive = [x.is_alive() for x in threads]
@@ -559,12 +559,13 @@ class sources:
         if provider == 'true':
             self.sources = sorted(self.sources, key=lambda k: k['provider'])
 
-        local = [i for i in self.sources if 'local' in i and i['local'] == True]
-        self.sources = [i for i in self.sources if not i in local]
+        # local = [i for i in self.sources if 'local' in i and i['local'] == True]
+        # self.sources = [i for i in self.sources if not i in local]
 
         filter = []
+       
         filter += [i for i in self.sources if i['direct'] == True]
-        filter += [i for i in self.sources if i['direct'] == False]
+        filter += [i for i in self.sources if i['direct'] == False]      
         self.sources = filter
 
         filter = []
@@ -572,14 +573,16 @@ class sources:
         self.sources = filter
 
         filter = []
-        filter += local
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and 'memberonly' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and 'memberonly' in i]
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and not 'memberonly' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and not 'memberonly' in i]
-        filter += [i for i in self.sources if i['quality'] == 'SD']
+        # filter += local
+        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and i['debridonly'] == True] 
+        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p'  and i['debridonly'] == False]
+
+        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == True] 
+        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == False]
+
+        filter += [i for i in self.sources if i['quality'] == 'SD' and i['debridonly'] == True]
+        filter += [i for i in self.sources if i['quality'] == 'SD' and i['debridonly'] == False]
+		
         if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'SCR']
         if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
         self.sources = filter
@@ -636,10 +639,10 @@ class sources:
 
             provider = item['provider'].lower()
 
-            if not provider.endswith(('_mv', '_tv', '_mv_tv')):
-                sourceDict = []
-                for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
-                provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
+            # if not provider.endswith(('_mv', '_tv', '_mv_tv')):
+                # sourceDict = []
+                # for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
+                # provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
 
             source = __import__(provider, globals(), locals(), [], -1).source()
             u = url = source.resolve(url)

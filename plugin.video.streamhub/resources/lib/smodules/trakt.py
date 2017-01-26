@@ -31,7 +31,7 @@ def getTrakt(url, post=None):
     try:
         url = urlparse.urljoin('http://api-v2launch.trakt.tv', url)
 
-        headers = {'Content-Type': 'application/json', 'trakt-api-key': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'trakt-api-version': '2'}
+        headers = {'Content-Type': 'application/json', 'trakt-api-key': '6df58f8e51beea5f79b129e8c498c52429732365eadfe1bf50dec7557f87abab', 'trakt-api-version': '2'}
 
         if not post == None: post = json.dumps(post)
 
@@ -48,7 +48,7 @@ def getTrakt(url, post=None):
 
 
         oauth = 'http://api-v2launch.trakt.tv/oauth/token'
-        opost = {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'client_secret': '90a1840447a1e39d350023263902fe7010338d19789e6260f18df56a8b07a68a', 'redirect_uri': 'urn:ietf:wg:oauth:2.0:oob', 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
+        opost = {'client_id': '6df58f8e51beea5f79b129e8c498c52429732365eadfe1bf50dec7557f87abab', 'client_secret': 'ac7129104289756dd7ffadefdcc3004f20adf63ec6acc65ce1b7e06643624873', 'redirect_uri': 'urn:ietf:wg:oauth:2.0:oob', 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
 
         result = client.request(oauth, post=json.dumps(opost), headers=headers)
         result = json.loads(result)
@@ -75,7 +75,7 @@ def authTrakt():
                 control.setSetting(id='trakt.refresh', value='')
             raise Exception()
 
-        result = getTrakt('/oauth/device/code', {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa'})
+        result = getTrakt('/oauth/device/code', {'client_id': '6df58f8e51beea5f79b129e8c498c52429732365eadfe1bf50dec7557f87abab'})
         result = json.loads(result)
         verification_url = (control.lang(32513) % result['verification_url']).encode('utf-8')
         user_code = (control.lang(32514) % result['user_code']).encode('utf-8')
@@ -91,7 +91,7 @@ def authTrakt():
                 if progressDialog.iscanceled(): break
                 time.sleep(1)
                 if not float(i) % interval == 0: raise Exception()
-                r = getTrakt('/oauth/device/token', {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'client_secret': '90a1840447a1e39d350023263902fe7010338d19789e6260f18df56a8b07a68a', 'code': device_code})
+                r = getTrakt('/oauth/device/token', {'client_id': '6df58f8e51beea5f79b129e8c498c52429732365eadfe1bf50dec7557f87abab', 'client_secret': 'ac7129104289756dd7ffadefdcc3004f20adf63ec6acc65ce1b7e06643624873', 'code': device_code})
                 r = json.loads(r)
                 if 'access_token' in r: break
             except:
@@ -102,7 +102,7 @@ def authTrakt():
 
         token, refresh = r['access_token'], r['refresh_token']
 
-        headers = {'Content-Type': 'application/json', 'trakt-api-key': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'trakt-api-version': '2', 'Authorization': 'Bearer %s' % token}
+        headers = {'Content-Type': 'application/json', 'trakt-api-key': '6df58f8e51beea5f79b129e8c498c52429732365eadfe1bf50dec7557f87abab', 'trakt-api-version': '2', 'Authorization': 'Bearer %s' % token}
 
         result = client.request('http://api-v2launch.trakt.tv/users/me', headers=headers)
         result = json.loads(result)

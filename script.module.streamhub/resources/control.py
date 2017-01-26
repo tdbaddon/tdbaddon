@@ -36,6 +36,8 @@ setSetting = xbmcaddon.Addon().setSetting
 
 addon = xbmcaddon.Addon
 
+join = os.path.join
+
 addItem = xbmcplugin.addDirectoryItem
 
 item = xbmcgui.ListItem

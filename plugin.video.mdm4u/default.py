@@ -1,2501 +1,375 @@
 # -*- coding: utf-8 -*-
 
-import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
-import os,re,shutil,sys,urllib
 
-from addon.common.addon import Addon
-from metahandler import metahandlers
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin
 from bs4 import BeautifulSoup as bs
 from md_request import open_url
+from md_view import setView
+from common import Addon
+from md_tools import md
+import re,sys,urllib
 
 
 #M4U Add-on Created By Mucky Duck (3/2016)
 
 
-User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
-addon_id='plugin.video.mdm4u'
-selfAddon = xbmcaddon.Addon(id=addon_id)
-addon_name = selfAddon.getAddonInfo('name')
+addon_id = xbmcaddon.Addon().getAddonInfo('id')
 addon = Addon(addon_id, sys.argv)
-art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
-icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-metaset = selfAddon.getSetting('enable_meta')
-metaget = metahandlers.MetaData()
-baseurl = 'http://m4ufree.info'
+addon_name = addon.get_name()
+addon_path = addon.get_path()
+md = md(addon_id, sys.argv)
+
+metaset = addon.get_setting('enable_meta')
+show_tv = addon.get_setting('enable_shows')
+show_mov = addon.get_setting('enable_movies')
+show_fav = addon.get_setting('enable_favs')
+show_add_set = addon.get_setting('add_set')
+
+art = md.get_art()
+icon = addon.get_icon()
+fanart = addon.get_fanart()
+
+
+baseurl = addon.get_setting('base_url')
+
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 
 
-def CAT():
+def MAIN():
 
-        reload(sys)
-        sys.setdefaultencoding("utf-8")
+        if show_tv == 'true':
+                md.addDir({'mode': '2', 'name':'[COLOR white][B]TV[/B][/COLOR]', 'url':'url'})
+        if show_mov == 'true':
+                md.addDir({'mode': '1', 'name':'[COLOR white][B]MOVIES[/B][/COLOR]', 'url':'url'})
+        if show_fav == 'true':
+                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+        if metaset == 'true':
+                md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+        if show_add_set == 'true':
+                md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+        
 
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/newadd',1,icon,fanart,'')
-        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view',1,icon,fanart,'')
-        addDir('[B][COLOR white]HOT MOVIES[/COLOR][/B]',baseurl,1,icon,fanart,'')
-        addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',4,icon,fanart,'')
-        addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,5,icon,fanart,'')
-        addDir('[B][COLOR white]YEAR[/COLOR][/B]',baseurl,6,icon,fanart,'')
-        addDir('[B][COLOR white]TV[/COLOR][/B]','url',8,icon,fanart,'')
+        setView(addon_id, 'files', 'menu-view')
+        addon.end_of_directory()
+
+
+
+
+def MOVIES():
+
+        if show_fav == 'true':
+                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/newadd', 'content':'movies'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view', 'content':'movies'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]HOT MOVIES[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+        md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':'url', 'content':'movies'})
+        md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+        md.addDir({'mode': '6', 'name':'[COLOR white][B]YEAR[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+        
+        setView(addon_id, 'files', 'menu-view')
+        addon.end_of_directory()
 
 
 
 
 def TV():
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/latest-tvshow',11,icon,fanart,'')
-        #addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/tvs-newupdate',11,icon,fanart,'')
-        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view-tvshow',11,icon,fanart,'')
-        addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',10,icon,fanart,'')
-        addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,9,icon,fanart,'')
-        addDir('[B][COLOR white]ALL[/COLOR][/B]',baseurl+'/tvshow',11,icon,fanart,'')
+
+        if show_fav == 'true':
+                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/latest-tvshow', 'content':'tvshows'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view-tvshow', 'content':'tvshows'})
+        md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':baseurl, 'content':'tvshows'})
+        md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
+        md.addDir({'mode': '3', 'name':'[COLOR white][B]ALL[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
+
+        setView(addon_id, 'files', 'menu-view')
+        addon.end_of_directory()
 
 
 
 
-def INDEX(url):
+def INDEX(url,content):
+
         link = open_url(url).text
-        all_videos = regex_get_all(link, '"item"', 'clear:both')
+        all_videos = md.regex_get_all(link, '"item"', 'clear:both')
         items = len(all_videos)
+
         for a in all_videos:
-                name = regex_from_to(a, 'cite>', '<')
+                
+                if content == 'movies':
+                        name = md.regex_from_to(a, 'cite>', '<')
+
+                elif content == 'tvshows':
+                        name = md.regex_from_to(a, 'href=.*?>', '<')
+                        
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
-                qual = regex_from_to(a, 'class="h3-quality".*?>', '<')#.replace('- Quality:','[COLOR gold]- Quality:[/COLOR]')
-                url = regex_from_to(a, 'href="', '"')
-                thumb = regex_from_to(a, 'src=', 'alt=').replace(' ','')
-                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')#.replace('Latest episode:','[COLOR gold]Latest episode:[/COLOR]')
-                if metaset=='true':
-                        if '-tvshow-' in url:
-                                addDir3('[B][COLOR white]%s[/COLOR][/B] [I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,items,'',name)
-                        else:
-                                addDir2('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,items)
+                qual = md.regex_from_to(a, 'class="h3-quality".*?>', '<')
+                url = md.regex_from_to(a, 'href="', '"')
+                thumb = md.regex_from_to(a, 'src=', 'alt=').replace(' ','')
+                epi = md.regex_from_to(a, '"h4-cat".*?>', '<')
+                fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
+                if '-tvshow-' in url:
+                        md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
+                                   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name} ,fan_art, item_count=items)
                 else:
-                        if '-tvshow-' in url:
-                                addDir('[B][COLOR white]%s[/COLOR][/B][I][B] [COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,fanart,'')
-                        else:
-                                addDir('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,fanart,'')
+                        md.addDir({'mode': '8', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
+                                   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name} ,fan_art, is_folder=False, item_count=items)
+
+        np_fan_art = {'icon':art+'next.png', 'fanart':art+'m4u.jpg'}
         try:
+                fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
                 np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
-                addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
+                md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',
+                           'url':np, 'content':content}, fan_art=np_fan_art)
         except:pass
+
         try:
+
                 np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
                 for url, name in np:
-                        addDir('[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,url,1,icon,fanart,'')
+                        md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,
+                                   'url':url, 'content':content}, np_fan_art)
         except:pass
-        setView('movies', 'movie-view')
+
+        if content == 'movies':
+                setView(addon_id, 'movies', 'movie-view')
+        elif content == 'tvshows':
+                setView(addon_id, 'tvshows', 'show-view')
+        addon.end_of_directory()
 
 
 
 
-def INDEX2(url):
-        link = open_url(url).text
-        all_videos = regex_get_all(link, '"item"', 'clear:both')
-        items = len(all_videos)
-        for a in all_videos:
-                name = regex_from_to(a, 'href=.*?>', '<')
-                name = addon.unescape(name)
-                name = name.encode('ascii', 'ignore').decode('ascii')
-                qual = regex_from_to(a, 'class="h3-quality".*?>', '<')#.replace('- Quality:','[COLOR gold]- Quality:[/COLOR]')
-                url = regex_from_to(a, 'href="', '"')
-                thumb = regex_from_to(a, 'src=', 'alt=').replace(' ','')
-                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')#.replace('Latest episode:','[COLOR gold]Latest episode:[/COLOR]')
-                if metaset=='true':
-                        if '-tvshow-' in url:
-                                addDir3('[B][COLOR white]%s[/COLOR][/B] [I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,items,'',name)
-                        else:
-                                addDir2('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,items)
-                else:
-                        if '-tvshow-' in url:
-                                addDir('[B][COLOR white]%s[/COLOR][/B][I][B] [COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,fanart,'')
-                        else:
-                                addDir('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,fanart,'')
-        try:
-                np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
-                addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
-        except:pass
-        try:
-                np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
-                for url, name in np:
-                        addDir('[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,url,1,icon,fanart,'')
-        except:pass
-        setView('tvshows', 'show-view')
+def EPIS(title,url,iconimage,content):
+        addon.log('##########################title= '+str(title))
 
-
-
-
-def EPIS(name,url,iconimage):
         if iconimage == None:
                 iconimage = icon
+
         link = open_url(url).text
+
         match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
         items = len(match)
-        for url,name2 in match:
-                if metaset=='true':
-                        addDir3('[I][B][COLOR white]%s[/COLOR][/B][/I]' %name2,url,3,iconimage,items,'',name)
+
+        for url,name in match:
+
+                data = name.split('-')
+                season = data[0].replace('S','').replace('s','')
+                episode = data[1].replace('E','').replace('e','')
+                
+                try:
+                        episode = episode.split(',')[0]
+                except:
+                        pass
+
+                fan_art = {'icon':iconimage, 'fanart':art+'m4u.jpg'}
+
+                md.addDir({'mode': '8', 'name':'[I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %name,
+                           'url':url, 'iconimage':iconimage, 'content':'episodes'},
+                          {'sorttitle':title, 'season':season, 'episode':episode},
+                          fan_art, is_folder=False, item_count=items)
+
+        setView(addon_id,'episodes', 'epi-view')
+        addon.end_of_directory()
+
+
+
+
+def SEARCH(content, query):
+	try:
+                if query:
+                        search = query.replace(' ','-')
                 else:
-                        addDir('[I][B][COLOR white]%s[/COLOR][/B][/I]' %name2,url,3,iconimage,fanart,'')
-        setView('tvshows', 'show-view')
+                        search = md.search(blank='-')
+                        if search == '':
+                                md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+                                return
+                        else:
+                                pass
+
+                if content == 'movies':
+                        url = baseurl+'/tag/'+search
+                elif content == 'tvshows':
+                        url = baseurl+'/tagtvs/'+search
+                INDEX(url,content)
+
+        except:
+                md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
 
 
 
 
-def LINK(name,url,iconimage):
+def GENRE(url,content):
+
+        link = open_url(url).text
+        if content == 'movies':
+                match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+                for url,name in match:
+                        if '/movie-' in url:
+                                md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+                                           'content':'movies'})
+                                
+
+        elif content == 'tvshows':
+                match=re.compile('<li> <a href="(.*?)" title="All TVshow.*?">(.*?)</a></li>').findall(link)
+                for url,name in match:
+                        if '/tvshow-' in url:
+                                md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+                                           'content':'tvshows'})
+
+        setView(addon_id, 'files', 'menu-view')
+        addon.end_of_directory()
+
+
+
+
+def YEAR(url,content):
+
+        link = open_url(url).text
+        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+
+        for url,name in match:
+                if '/year-' in url:
+                        md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+                                           'content':'movies'})
+
+        setView(addon_id, 'files', 'menu-view')
+        addon.end_of_directory()
+
+
+
+
+def RESOLVE(url,iconimage,content,infolabels):
+
         link = open_url(url).content
         
         '''try:
                 request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
                 link = OPEN_URL(request_url)
         except: pass'''
+
         try:
                 soup = bs(link, "html.parser")
                 a = soup.find('h3',class_='h3-detail')
                 b = a.find('a', href=True)
                 request_url = str(b["href"])
                 link = open_url(request_url).content
-        except: pass
+        except:
+                pass
+
+        final_url = ''
+        
         try:
                 try:
                         final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[0]
                 except:
                         pass
-                final_url = final_url.replace('../view.php?','view.php?')
-                final_url = final_url.replace('./view.php?','view.php?')
+
                 if final_url == '':
+
                         try:
                                 final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[1]
                         except:
                                 pass
+
                 if 'google' in final_url:
                         final_url = final_url
                 else:
                         if baseurl not in final_url:
                                 final_url = baseurl + '/' + final_url
-                '''url = re.findall(r'type="application/x-shockwave-flash" src="(.*?)"', str(link), re.I|re.DOTALL)[0]
-                vid_id = re.split(r'=', url, re.I)[1]
-                vid_id = re.split(r'&amp', vid_id, re.I)[0]
-                url = 'https://docs.google.com/get_video_info?docid=' + vid_id +'&authuser='
-                link = open_url(url).text
-                link = urllib.unquote(link)
-                link = link.encode('ascii', 'ignore').decode('ascii')
-                url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
-                if '720' not in url:
-                        try:
-                                url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[-1]
-                        except:
-                                url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]'''
+                
         except:
                 
                 final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
-                
-                final_url = final_url.replace('../view.php?','view.php?')
-                final_url = final_url.replace('./view.php?','view.php?')
+
                 if final_url == '':
+
                         try:
                                 final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
                         except:
                                 pass
+
                 if 'google' in final_url:
                         final_url = final_url
                 else:
                         if baseurl not in final_url:
                                 final_url = baseurl + '/' + final_url
+
+        final_url = final_url.replace('../view.php?','view.php?')
+        final_url = final_url.replace('./view.php?','view.php?')
                 
-        liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
+        liz = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
+        liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": infolabels})
         liz.setProperty("IsPlayable","true")
         liz.setPath(final_url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
+        addon.end_of_directory()
 
 
 
-def SEARCHM():
-        keyb = xbmc.Keyboard('', 'Search')
-        keyb.doModal()
-        if (keyb.isConfirmed()):
-                search = keyb.getText().replace(' ','-')
-                url = baseurl+'/tag/'+search
-                INDEX(url)
 
+mode = md.args['mode']
+url = md.args.get('url', None)
+name = md.args.get('name', None)
+query = md.args.get('query', None)
+title = md.args.get('title', None)
+season = md.args.get('season', None)
+episode = md.args.get('episode' ,None)
+infolabels = md.args.get('infolabel', None)
+content = md.args.get('content', None)
+mode_id = md.args.get('mode_id', None)
+iconimage = md.args.get('iconimage', None)
+fan_art = md.args.get('fan_art', None)
+is_folder = md.args.get('is_folder', True)
 
 
 
-def SEARCHT():
-        keyb = xbmc.Keyboard('', 'Search')
-        keyb.doModal()
-        if (keyb.isConfirmed()):
-                search = keyb.getText().replace(' ','-')
-                url = baseurl+'/tagtvs/'+search
-                INDEX2(url)
 
+if mode is None or url is None or len(url)<1:
+        MAIN()
 
+elif mode is '1':
+        MOVIES()
 
-
-def GENRE(url):
-        link = open_url(url).text
-        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
-        for url,name in match:
-                if '/movie-' in url:
-                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,1,icon,fanart,'')
-
-
-
-
-def YEAR(url):
-        link = open_url(url).text
-        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
-        for url,name in match:
-                if '/year-' in url:
-                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,1,icon,fanart,'')
-
-
-
-
-def TVGENRE(url):
-        link = open_url(url).text
-        match=re.compile('<li> <a href="(.*?)" title="All TVshow.*?">(.*?)</a></li>').findall(link) 
-        for url,name in match:
-                if '/tvshow-' in url:
-                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,11,icon,fanart,'')
-
-
-
-
-def regex_from_to(text, from_string, to_string, excluding=True):
-        if excluding:
-                try: r = re.search("(?i)" + from_string + "([\S\s]+?)" + to_string, text).group(1)
-                except: r = ''
-        else:
-                try: r = re.search("(?i)(" + from_string + "[\S\s]+?" + to_string + ")", text).group(1)
-                except: r = ''
-        return r
-
-
-
-
-def regex_get_all(text, start_with, end_with):
-        r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
-        return r
-
-
-
-
-def get_params():
-        param=[]
-        paramstring=sys.argv[2]
-        if len(paramstring)>=2:
-                params=sys.argv[2]
-                cleanedparams=params.replace('?','')
-                if (params[len(params)-1]=='/'):
-                        params=params[0:len(params)-2]
-                pairsofparams=cleanedparams.split('&')
-                param={}
-                for i in range(len(pairsofparams)):
-                        splitparams={}
-                        splitparams=pairsofparams[i].split('=')
-                        if (len(splitparams))==2:
-                                param[splitparams[0]]=splitparams[1]
-                                
-        return param
-
-
-
-
-def addDir(name,url,mode,iconimage,fanart,description):
-        name = name.replace('()','')
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
-        liz.setProperty('fanart_image', fanart)
-        if mode==3:
-            liz.setProperty("IsPlayable","true")
-            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-        else:
-            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
-        return ok
-
-
-
-
-def PT(url):
-        addon.log('Play Trailer %s' % url)
-        notification( addon.get_name(), 'fetching trailer', addon.get_icon())
-        xbmc.executebuiltin("PlayMedia(%s)"%url)
-
-
-
-
-def notification(title, message, icon):
-        addon.show_small_popup( addon.get_name(), message.title(), 5000, icon)
-        return
-
-
-
-
-def addDir2(name,url,mode,iconimage,itemcount):
-        name = name.replace('[B][COLOR white]','').replace('[/COLOR][/B]','')
-        splitName=name.partition('(')
-        simplename=""
-        simpleyear=""
-        if len(splitName)>0:
-            simplename=splitName[0]
-            simpleyear=splitName[2].partition(')')
-        if len(simpleyear)>0:
-            simpleyear=simpleyear[0]
-        if '[I]' in simplename:
-                simplename = re.split(r'[I]', simplename, re.I)[0]
-                simplename = simplename[:-6]
-        meta = metaget.get_meta('movie',simplename,simpleyear)
-        if meta['cover_url']=='':
-            try:
-                meta['cover_url']=iconimage
-            except:
-                meta['cover_url']=icon
-        name = '[B][COLOR white]' + name + '[/COLOR][/B]'
-        meta['title'] = name
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
-        liz.setInfo( type="Video", infoLabels= meta )
-        contextMenuItems = []
-        contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
-        if meta['trailer']:
-                contextMenuItems.append(('Play Trailer', 'XBMC.RunPlugin(%s)' % addon.build_plugin_url({'mode': 7, 'url':meta['trailer']})))
-        liz.addContextMenuItems(contextMenuItems, replaceItems=False)
-        if not meta['backdrop_url'] == '':
-                liz.setProperty('fanart_image', meta['backdrop_url'])
-        else: liz.setProperty('fanart_image', art+'m4u.jpg')
-        if mode==3:
-            liz.setProperty("IsPlayable","true")
-            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=itemcount)
-        else:
-             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True,totalItems=itemcount)
-        return ok
-
-
-
-
-def addDir3(name,url,mode,iconimage,itemcount,description,show_title):
-        show_title = show_title.replace('[B][COLOR white]','').replace('[/COLOR][/B]','')
-        try:
-                show_title = re.split(r"\(", str(show_title), re.I)[0]
-        except: pass
-        try:
-                show_title = re.split(r" Season ", str(show_title), re.I)[0]
-        except: pass
-        try:
-                show_title = re.split(r"[I]", str(show_title), re.I)[0]
-        except: pass
-        meta = metaget.get_meta('tvshow',show_title)
-        if meta['cover_url']=='':
-            try:
-                meta['cover_url']=iconimage
-            except:
-                meta['cover_url']=icon
-        meta['title'] = name
-        contextMenuItems = []
-        contextMenuItems.append(('Show Info', 'XBMC.Action(Info)'))
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&show_title="+urllib.quote_plus(show_title)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
-        liz.setInfo( type="Video", infoLabels= meta )
-        liz.addContextMenuItems(contextMenuItems, replaceItems=False)
-        if not meta['backdrop_url'] == '':
-                liz.setProperty('fanart_image', meta['backdrop_url'])
-        else:
-                liz.setProperty('fanart_image', art+'m4u.jpg')
-        if mode==3:
-                liz.setProperty("IsPlayable","true")
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=itemcount)
-        else:
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True,totalItems=itemcount)
-        return ok
-        
-
-
-
-def addLink(name,url,mode,iconimage,fanart,description=''):
-        #u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
-        #ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
-        liz.setProperty('fanart_image', fanart)
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
-        return ok
-
-
-
-def setView(content, viewType):
-    ''' Why recode whats allready written and works well,
-    Thanks go to Eldrado for it '''
-    if content:
-        xbmcplugin.setContent(int(sys.argv[1]), content)
-    if addon.get_setting('auto-view') == 'true':
-
-        print addon.get_setting(viewType)
-        if addon.get_setting(viewType) == 'Info':
-            VT = '504'
-        elif addon.get_setting(viewType) == 'Info2':
-            VT = '503'
-        elif addon.get_setting(viewType) == 'Info3':
-            VT = '515'
-        elif addon.get_setting(viewType) == 'Fanart':
-            VT = '508'
-        elif addon.get_setting(viewType) == 'Poster Wrap':
-            VT = '501'
-        elif addon.get_setting(viewType) == 'Big List':
-            VT = '51'
-        elif addon.get_setting(viewType) == 'Low List':
-            VT = '724'
-        elif addon.get_setting(viewType) == 'Default View':
-            VT = addon.get_setting('default-view')
-
-        print viewType
-        print VT
-        
-        xbmc.executebuiltin("Container.SetViewMode(%s)" % ( int(VT) ) )
-
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_PROGRAM_COUNT )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RUNTIME )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_MPAA_RATING )
-
-
-
-
-params=get_params()
-url=None
-name=None
-mode=None
-iconimage=None
-description=None
-site=None
-
-
-
-
-try:
-        url=urllib.unquote_plus(params["url"])
-except:
-        pass
-try:
-        name=urllib.unquote_plus(params["name"])
-except:
-        pass
-try:
-        iconimage=urllib.unquote_plus(params["iconimage"])
-except:
-        pass
-try:        
-        mode=int(params["mode"])
-except:
-        pass
-try:
-        description=urllib.unquote_plus(params["description"])
-except:
-        pass
-
-
-
-
-if mode==None or url==None or len(url)<1:
-        CAT()
-
-elif mode==1:
-        INDEX(url)
-
-elif mode==2:
-        EPIS(name,url,iconimage)
-
-elif mode==3:
-        LINK(name,url,iconimage)
-
-elif mode==4:
-        SEARCHM()
-
-elif mode==5:
-        GENRE(url)
-
-elif mode==6:
-        YEAR(url)
-
-elif mode==7:
-        PT(url)
-
-elif mode==8:
+elif mode is '2':
         TV()
 
-elif mode==9:
-        TVGENRE(url)
+elif mode is '3':
+        INDEX(url,content)
 
-elif mode==10:
-        SEARCHT()
+elif mode is '4':
+        SEARCH(content,query)
 
-elif mode==11:
-        INDEX2(url)
+elif mode is '5':
+        GENRE(url,content)
 
+elif mode is '6':
+        YEAR(url,content)
+
+elif mode is '7':
+        EPIS(title,url,iconimage,content)
+
+elif mode is '8':
+        RESOLVE(url,iconimage,content,infolabels)
+
+elif mode == 'add_remove_fav':
+        md.add_remove_fav(name, url, infolabels, fan_art,
+                          content, mode_id, is_folder)
+elif mode == 'fetch_favs':
+        md.fetch_favs()
+
+elif mode == 'addon_settings':
+        addon.show_settings()
+
+elif mode == 'meta_settings':
+        import metahandler
+        metahandler.display_settings()
+
+md.check_source()
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if xbmcvfs.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
-        with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:
-                my_file = f.read()
-                if re.search(r'http://muckys.mediaportal4kodi.ml', my_file):
-                        addon.log('Muckys Source Found in sources.xml, Not Deleting.')
-                else:
-                        line1 = "you have Installed The MDrepo From An"
-                        line2 = "Unofficial Source And Will Now Delete Please"
-                        line3 = "Install From [COLOR red]http://muckys.mediaportal4kodi.ml[/COLOR]"
-                        line4 = "Removed Repo And Addon"
-                        line5 = "successfully"
-                        xbmcgui.Dialog().ok(addon_name, line1, line2, line3)
-                        delete_addon = xbmc.translatePath('special://home/addons/'+addon_id)
-                        delete_repo = xbmc.translatePath('special://home/addons/repository.mdrepo')
-                        shutil.rmtree(delete_addon, ignore_errors=True)
-                        shutil.rmtree(delete_repo, ignore_errors=True)
-                        dialog = xbmcgui.Dialog()
-                        addon.log('===DELETING===ADDON+===REPO===')
-                        xbmcgui.Dialog().ok(addon_name, line4, line5)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

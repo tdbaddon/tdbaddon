@@ -462,11 +462,11 @@ def AddSports(url):
     addDir('Pi sports' ,'sss',71,os.path.join(home,'icons','Pi Sports.png'))
     addDir('Mona' ,'sss',68,os.path.join(home,'icons','Mona.png'))
     addDir('Sport365.live' ,'sss',56,'http://s1.medianetworkinternational.com/images/icons/256x256px.png')
-    addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'http://cdn.smartcric.com/images/logo.png')
+    addDir('SmartCric.com (Live matches only)' ,'Live' ,14,os.path.join(home,'icons','SmartCric.png'))
     addDir('UKTVNow [Limited Channels]','sss' ,57,'http://www.uktvnow.net/images/uktvnow_logo.png')
     
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
-    addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'http://aimages.willow.tv/WillowLogoYT.png')
+    addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,os.path.join(home,'icons','willowtv.png'))
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('My Sports' ,'sss',82,os.path.join(home,'icons','Sports.png'))
     addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
@@ -474,9 +474,9 @@ def AddSports(url):
     addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
     addDir('Slow TV' ,'sss',96,os.path.join(home,'icons','slowtv.png'))
     #addDir('Safe' ,'sss',72,'')
-    addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
-    addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
-    addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')
+    addDir('TVPlayer [UK Geo Restricted]','sss',74,os.path.join(home,'icons','tvplayer.png'))
+    addDir('StreamHD','sss',75,os.path.join(home,'icons','streamhd.png'))
+    addDir('Mama HD','http://mamahd.com/',79,os.path.join(home,'icons','mamahd.png'))
     addDir('HDfree','sss',77,os.path.join(home,'icons','HDFree.png'))
     addDir('inFinite Streams','sss',78,os.path.join(home,'icons','Infinite Streams.png'))
     addDir('Euro Streams','sss',81,os.path.join(home,'icons','Euro Streams.png'))
@@ -1067,10 +1067,11 @@ def getFastCats():
 def getFastUA():
     import random,string
     s=eval(base64.b64decode("Wyc0LjQnLCc0LjQuNCcsJzUuMCcsJzUuMS4xJywnNi4wJywnNi4wLjEnLCc3LjAnLCc3LjEuMSdd"))
+    s2=eval(base64.b64decode("WydTb255IEV4cGVyaWEnLCdUb3VjaHBhZCBUYWJsZXQnLCdOZXh1cyA0JywnTmV4dXMgNicsJ1NvbnkgWHBlcmlhIFRhYmxldCdd"))
 
     #usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlcy4lcy4lczsgJXMgQnVpbGQvJXMp')%(str(random.choice(range(3,6))),str(random.choice(range(3,6))),str(random.choice(range(3,6))),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(8)),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(6)) )
     #keep following me :p
-    usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgJXMp')%(random.choice(s),''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(int(random.random()*10))),''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(int(random.random()*15))) )
+    usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgQnVpbGQvJXMp')%(random.choice(s),random.choice(s2),''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(int(random.random()*15))) )
     #usagents=base64.b64decode('Mozilla/5.0 (Linux; U; Android 4.%s.%s; Galaxy Nexus Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
     return usagents
 
@@ -1080,6 +1081,7 @@ def getFastData():
     try:
         jsondata=getCacheData(fname,2*60*60)
         if not jsondata==None:
+            print jsondata
             return json.loads(base64.b64decode(jsondata))
     except:
         print 'file getting error'
@@ -1094,7 +1096,9 @@ def getFastData():
     
     jsondata=None
     try:
-        jsondata=json.loads(link.replace('\x0a',''))
+        print 'link',link
+        link=link.replace('\x0a','').replace('\t','')
+        jsondata=json.loads(link)
         storeCacheData(base64.b64encode(link),fname)
     except:
         print 'getFastData file saving error'
@@ -3566,13 +3570,13 @@ def NetworkTVCatIDByName(catname, findin=False):
             return p["cat_id"]
     return retId
 
-def getNetworkTVChannels2(cat=None,sports=False, liveflag="1", streamtype="live"):
+def getNetworkTVChannels2(cat=None,sports=False, liveflag="1", streamtype="live", removeprefix=None):
     ret=[]
     try:
         xmldata=getNetworkTVPage2()
    
             
-        print 'got getNetworkTVPage2',cat,xmldata
+        #print 'got getNetworkTVPage2',cat,xmldata
         for source in xmldata["available_channels"]:
             #print 'ss',source
             source=xmldata["available_channels"][source]
@@ -3581,6 +3585,7 @@ def getNetworkTVChannels2(cat=None,sports=False, liveflag="1", streamtype="live"
                 if source["live"]==liveflag and streamtype==source["stream_type"]:
                     ss=source
                     cname=ss["name"]
+                    #print cname
                     if 1==2:# 'ebound.tv' in ss["streamurl"]:
                         #print ss["channelLink"]
                         curl='ebound2:'+ss["streamurl"].replace(':1935','')
@@ -3589,14 +3594,19 @@ def getNetworkTVChannels2(cat=None,sports=False, liveflag="1", streamtype="live"
                         curl='networktv2:'+str(ss["stream_id"])
                     cimage=ss["stream_icon"]
                     
+                    if removeprefix and removeprefix in cname:
+                        cname=':'.join(cname.split(removeprefix)[1:]).strip()
+                    cname=cname.capitalize()
+                    #print cname
+                    cname=cname + (' SlowTV' if not sports else '') 
                     if 1==1:#len([i for i, x in enumerate(ret) if x[0] ==cname + (' SlowTV' if not sports else '') ])==0:                    
-                        ret.append((cname + (' SlowTV' if not sports else ''),'manual', curl ,cimage))   
+                        ret.append((cname,'manual', curl ,cimage))
         
         if len(ret)>0:
             ret=sorted(ret,key=lambda s: s[0].lower()   )
     except:
         traceback.print_exc(file=sys.stdout)
-    print ret
+    #print ret
     return ret
     
 def getNetworkTVChannels(cat=None,sports=False, country=None):
@@ -4384,7 +4394,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     isdittoOff=selfAddon.getSetting( "isdittoOff" )
     isCFOff=selfAddon.getSetting( "isCFOff" )  
     isIpBoxff=selfAddon.getSetting( "isIpBoxff" )
-    #isIpBoxff="true"
+    isIpBoxff="true"#turn off
     isYPgenOff= selfAddon.getSetting( "isYPOff" )
     isYPgenOff="true"
     isUKTVOff=selfAddon.getSetting( "isUKTVOff" )
@@ -4393,6 +4403,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     
     isFastOff=selfAddon.getSetting( "isFastOff" )
     isNetworkTVOff=selfAddon.getSetting( "isNetworkTVOff" )
+    isSlowTVOff=selfAddon.getSetting( "isSlowTVOff" )
     
     main_ch='(<section_name>Pakistani<\/section_name>.*?<\/section>)'
 #    v4link='aHR0cDovL3N0YWdpbmcuamVtdHYuY29tL3FhLnBocC8yXzIvZ3htbC9jaGFubmVsX2xpc3QvMQ=='
@@ -4565,6 +4576,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     Zengagen=None
     fastgen=None
     nettvgen=None
+    slowtvgen=None
     if cctype==1:
         pg='pakistan'
         iptvgen="pakistani"
@@ -4577,6 +4589,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         UKTVGenCat,UKTVGenCH=['religious','news','food'], ['masala tv', 'ary digital', 'ary zindagi','hum tv','drama','express ent.']
         fastgen=['PAKISTANI TV','ISLAMIC TV']
         nettvgen=["Pakistani"]
+        slowtvgen=["Pakistani Live"]
+        slowtvprefix="PK:"
     elif cctype==2:
         pg='indian'
         iptvgen="indian"
@@ -4590,12 +4604,15 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         Zengagen='ch'
         fastgen=['INDIAN TV','SOUTH INDIAN']
         nettvgen=["Indian"]
+        slowtvgen=["Indian Live"]
+        slowtvprefix="IN:"
     else:
         pg='punjabi'
         CFgen="1314"
         fastgen=['PUNJABI TV']
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3B1bmphYmktdHYuaHRtbA==")
-        
+        slowtvgen=["Punjabi Live"]
+        slowtvprefix="PB:"
     
     if isv3Off=='true': pg=None
     if isv5Off=='true': iptvgen=None
@@ -4605,6 +4622,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isv9Off=='true': wtvgen=None
     if isFastOff=='true': fastgen=None
     if isNetworkTVOff=='true': nettvgen=None
+    if isSlowTVOff=='true': slowtvgen=None
+    
     
     
     if isdittoOff=='true': dittogen=None
@@ -4758,9 +4777,20 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
             if len(rematch)>0:
                 match+=rematch
         except:
+            traceback.print_exc(file=sys.stdout)   
+            
+    if slowtvgen:
+        try:
+            progress.update( 87, "", "Loading SlowTV Channels", "" )
+            rematch=getNetworkTVChannels2(cat=[NetworkTVCatIDByName2(slowtvgen[0], findin=True)],sports=False,removeprefix=slowtvprefix)
+            if len(rematch)>0:
+                match+=rematch
+        except:
             traceback.print_exc(file=sys.stdout)    
-            
-            
+                        
+
+
+
     if tvplayerChannels:
         try:
             
@@ -6096,6 +6126,8 @@ def PlayNetworkTVLink2(url,progress=None):
     ua=netData["UserAgent"]
     
     urlnew=finalurl+"|User-Agent="+ua
+    return playipbox(urlnew)
+    
     print urlnew
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     PlayGen(base64.b64encode(urlnew))
@@ -7166,35 +7198,35 @@ def playzenga(url,progress):
     playurl=''
     try:
         progress.update( 30, "", "getting links", "" )
-        headers=[('Referer','http://ada.zengatv.com/'),('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)')]
+        headers=[('Referer','http://www.zengatv.com/'),('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)')]
         
         jsfile=getUrl(base64.b64decode('aHR0cDovL2FkYS56ZW5nYXR2LmNvbS9jb250cm9sbGVycy9MaXZlUGxheWVyQ29udHJvbGxlci5qcw=='),headers=headers)
         reg= "var dvrid.*?\s.*?\"(http.*)\"\s"
         
         churl=re.findall(reg,jsfile)[0]
         churl=churl.replace('" + dvrid + "',url)
-        headers=[('Referer','http://ada.zengatv.com/'),('Origin','http://ada.zengatv.com/'),('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)')]
+        headers=[('Referer','http://www.zengatv.com/'),('Origin','www.zengatv.com/'),('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)')]
         xmlfile=getUrl(churl,headers=headers)
         reg= "(http.*?)\]?\]?>"
         m3uurl=re.findall(reg,xmlfile)[0]
         
-        playurl=m3uurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/'
+        playurl=m3uurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://www.zengatv.com/'
         try:
             import urlparse
             m3u8res=getUrl(playurl)
             m38uurl=re.findall('#EXT-X-STREAM-INF.*\n(.*)',m3u8res)[-1]
             suburl=urlparse.urljoin(m3uurl,m38uurl)
             progress.update( 40, "", "skipping Ads", "" )
-            subdata=getUrl(suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/')
-            playurl=suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/'
+            subdata=getUrl(suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://www.zengatv.com/')
+            playurl=suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://www.zengatv.com/'
             print subdata
             lnum=0
-            if 1==1:
+            if 1==2:
                 for tsurl in re.findall('#EXTINF.*\n(.*)',subdata):
                     subtsurl=urlparse.urljoin(suburl,tsurl)
                     lnum+=1
                     progress.update( 40+(10*lnum), "", "skipping Ads", "" )
-                    getUrl(subtsurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/')
+                    getUrl(subtsurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://www.zengatv.com/')
             progress.update( 95, "", "alomost finished", "" )    
         except:
             print 'error avoiding ad'

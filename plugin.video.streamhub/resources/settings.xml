@@ -19,8 +19,8 @@
 		<setting id="streamlive_pass" type="text" visible="true" option="hidden" label="30730" default=""/>
 	</category>
 	<category label="32310">
-		<setting id="appearance.alt" type="action" label="32311" default="-" option="close" action="RunPlugin(plugin://plugin.video.exodus/?action=artwork)" visible="!System.HasAddon(script.exodus.artwork)" />
-		<setting id="appearance.1" type="select" label="32311" values="-|default" default="default" visible="System.HasAddon(script.exodus.artwork)" />
+		<setting id="appearance.alt" type="action" label="32311" default="-" option="close" action="RunPlugin(plugin://plugin.video.streamhub/?action=artwork)" visible="!System.HasAddon(script.streamhub.artwork)" />
+		<setting id="appearance.1" type="select" label="32311" values="-|default" default="default" visible="System.HasAddon(script.streamhub.artwork)" />
 		<setting id="scrapers.timeout.1" type="slider" label="32312" default="30" range="10,60" option="int" />
 		<setting id="trakt.user" type="text" default="" visible="false" />
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
@@ -134,7 +134,7 @@
 		<setting id="tm.user" type="text" option="hidden" label="32309" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="Trakt" />
-		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.exodus/?action=authTrakt)" />
+		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.streamhub/?action=authTrakt)" />
 		<setting id="trakt.token" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="trakt.refresh" type="text" option="hidden" visible="false" label="" default="" />
 		<setting type="sep" />
@@ -142,7 +142,7 @@
 		<setting id="imdb.user" type="text" label="32303" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="RealDebrid" />
-		<setting id="realdebrid.auth" type="action" option="close" label="32306" action="RunPlugin(plugin://plugin.video.exodus/?action=rdAuthorize)" />
+		<setting id="realdebrid.auth" type="action" option="close" label="32306" action="RunPlugin(plugin://plugin.video.streamhub/?action=rdAuthorize)" />
 		<setting id="realdebrid.id" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.secret" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.token" type="text" option="hidden" visible="false" label="" default="" />

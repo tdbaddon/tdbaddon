@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.thespecialist" name="The specialist repository" version="1.1" provider-name="James Hagans">
+<addon id="repository.thespecialist" name="The specialist repository" version="1.2" provider-name="James Hagans">
 	<extension point="xbmc.addon.repository" name="The specialist repository">
-		<info compressed="false">http://thespecialist.xyz/repo/files/addons.xml</info>
-		<checksum>http://thespecialist.xyz/repo/files/addons.xml.md5</checksum>
-		<datadir zip="true">http://thespecialist.xyz/repo/files/</datadir>
+		<info compressed="false">http://kodirestore.co/specialist/repo/files/addons.xml</info>
+		<checksum>http://kodirestore.co/specialist/repo/files/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodirestore.co/specialist/repo/files/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary></summary>

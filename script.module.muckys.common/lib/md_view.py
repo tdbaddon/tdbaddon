@@ -30,7 +30,7 @@ def setView(addon_id, content, viewType):
 
         if addon.get_setting('auto-view') == 'true':
 
-                print addon.get_setting(viewType)
+                addon.log(addon.get_setting(viewType))
 
                 if addon.get_setting(viewType) == 'Info':
                         VT = '504'
@@ -77,8 +77,8 @@ def setView(addon_id, content, viewType):
                 elif addon.get_setting(viewType) == 'Default Anime View':
                         VT = addon.get_setting('default-view7')
 
-                print viewType
-                print VT
+                addon.log(viewType)
+                addon.log(VT)
 
                 xbmc.executebuiltin("Container.SetViewMode(%s)" % ( int(VT) ) )
 

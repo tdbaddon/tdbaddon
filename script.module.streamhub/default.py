@@ -1,4 +1,4 @@
-import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib,urllib2,json,urlresolver
+import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib,urllib2,json,urlresolver,ssl
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
 from addon.common.addon import Addon
 from addon.common.net import Net
@@ -9,6 +9,8 @@ selfAddon  = xbmcaddon.Addon(id=addon_id)
 addon      = Addon(addon_id, sys.argv)
 addon_name = selfAddon.getAddonInfo('name')
 art        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
+sslf       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/'))
+ssl        = control.join(sslf,'test.ca-bundle')
 icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 User_Agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
@@ -21,7 +23,9 @@ xxxurl     ='http://www.xvideos.com'
 kidsurl    = base64.b64decode ('aHR0cDovL21rb2RpLmNvLnVrL21lZGlhaHViL2xpc3RzL0tpZHMva2lkc2Nvcm5lci54bWw=')
 docurl     = 'http://documentaryheaven.com'
 mov2       = 'http://zmovies.to'
-
+wwe        = 'http://watchwrestling.in'
+tv         = base64.b64decode ('aHR0cDovL21rb2RpLmNvLnVrL3N0cmVhbWh1Yi9saXN0cy8yNDcvMjQ3dHYueG1s')
+proxy      = 'http://www.justproxy.co.uk/index.php?q='
 
 def CAT():
 	addDir('MOVIES','url',100,icon,fanart,'')
@@ -29,6 +33,7 @@ def CAT():
 	addDir('KIDS SECTION',kidsurl,16,icon,fanart,'')
 	addDir('XXX SECTION','URL',31,icon,fanart,'')
 	addDir('DOCS',docurl+'/watch-online/',35,icon,fanart,'')
+	addDir('24/7 TV',tv,48,icon,fanart,'')
 	
 def MovieCAT():
 	addDir('RECENT MOVIES',afdah+'/recent_movies',19,icon,fanart,'')
@@ -100,20 +105,39 @@ def addDir(name,url,mode,iconimage,fanart,description):
 		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
 	return ok
 	xbmcplugin.endOfDirectory
+	
+def addDirPlay(name,url,mode,iconimage,fanart,description):
+	u=sys.argv[0]+"?url="+url+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
+	ok=True
+	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	if mode==44:
+		liz.setProperty("IsPlayable","true")
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+	else:
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+	return ok
+	xbmcplugin.endOfDirectory
 
 def OPEN_URL(url):
 	headers = {}
 	headers['User-Agent'] = User_Agent
-	link = s.get(url, headers=headers).text
+	link = s.get(url, headers=headers, verify=False).text
 	link = link.encode('ascii', 'ignore')
 	return link
-	xbmcplugin.endOfDirectory
+	
+def tvlist(url):
+    thumb = ''
+    art   = ''
+    OPEN = Open_Url(url)
+    Regex = re.compile('<title>(.+?)</title>.+?url>(.+?)</url>.+?thumb>(.+?)</thumb>',re.DOTALL).findall(OPEN)
+    for name,url,icon in Regex:
+		addDir(name,url,46,icon,fanart,'') 
 
 def toonlist(url):
     OPEN = Open_Url(url)
     Regex = re.compile('<title>(.+?)</title>.+?url>(.+?)</url>.+?thumb>(.+?)</thumb>.+?art>(.+?)</art>',re.DOTALL).findall(OPEN)
     for name,url,icon,fanart in Regex:
-		addDir(name,url,18,icon,fanart,'') 
+		addDir(name,url,18,icon,fanart,'')
 	
 def toon_get(url):
     OPEN = Open_Url(url)
@@ -197,6 +221,7 @@ def afdahread(url):
         setView('movies', 'movie-view')
 		
 def afdahplay(url):
+    try:
         url = re.split(r'#', url, re.I)[0]
         request_url = afdah+'/video_info/iframe'
         link = OPEN_URLafdah(url)
@@ -214,6 +239,7 @@ def afdahplay(url):
         liz.setProperty("IsPlayable","true")
         liz.setPath(str(url))
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+    except:pass
 		
 def xxx(url):
         link = OPEN_URL(url)
@@ -420,17 +446,7 @@ def playmov2(url):
 		url2 =  'http://zmovies.to/wp-content/themes/magxp/phim/getlink.php?poster=&link='+vid
 		page = OPEN_URL(url2)
 		xbmc.log(str(page))
-		if 'openload' in page:
-			url = regex_from_to(page,'<iframe src="','"')
-			play=urlresolver.HostedMediaFile(url).resolve()
-			liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
-			liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': description})
-			liz.setProperty('IsPlayable','true')
-			liz.setPath(str(play))
-			xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-			xbmcplugin.endOfDirectory(int(sys.argv[1]))
 		if '720p' in page:
-			try:
 				play = re.compile(',{"file":"(.*?)","type":"mp4","label":"720p"').findall(page)[0]
 				pla2 = str(play).replace('\/','/').replace("[",'').replace(':"','').replace("'","").replace(']','').replace('":','')
 				play3 = str(pla2).replace('\\','').replace('//','/').replace('https:/','https://')
@@ -441,20 +457,70 @@ def playmov2(url):
 				liz.setPath(str(play4))
 				xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 				xbmcplugin.endOfDirectory(int(sys.argv[1]))
-			except:pass
-			try:
-				all_links = regex_get_all(page,'"file"','}')
-				url = regex_from_to(a,':"','"')
-				url = str(url).replace('\/','/').replace("[",'').replace(':"','').replace("'","").replace(']','').replace('":','')
-				url = str(url).replace('\\','').replace('//','/').replace('https:/','https://')
-				xbmc.log('******************')
-				xbmc.log(str(url))
-				qual = regex_from_to(a,'"label":"','"')
-				addDir(qual,url,39,icon,fanart,'')
-			except:pass
-			
+				
+		if 'openload' in page:
+			url = regex_from_to(page,'<iframe src="','"')
+			play=urlresolver.HostedMediaFile(url).resolve()
+			liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
+			liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': description})
+			liz.setProperty('IsPlayable','true')
+			liz.setPath(str(play))
+			xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+			xbmcplugin.endOfDirectory(int(sys.argv[1]))
+		else:
+			all_links = regex_get_all(page,'"file"','}')
+			url = regex_from_to(page,':"','"')
+			url = str(url).replace('\/','/').replace("[",'').replace(':"','').replace("'","").replace(']','').replace('":','')
+			url = str(url).replace('\\','').replace('//','/').replace('https:/','https://')
+			xbmc.log('******************')
+			xbmc.log(str(url))
+			qual = regex_from_to(page,'"label":"','"')
+			addDir(qual,url,39,icon,fanart,'')
+
+	
+def opentwentyfourseven(url):
+	page = proxy+url
+	m3ubase= 'plugin://plugin.video.f4mTester/?streamtype=HLS&amp;url='
+	m3ubase2= '&amp;name='
+	all_vids=re.compile('<li id="menu-item-(.*?)</div> </div></div>').findall(page)
+	xbmc.log(str(all_vids))
+	for a in all_vids:
+		url = regex_from_to(a,'<a href="','"')
+		name = regex_from_to(a,'<span class="link_text">\n','\n')
+		xbmc.log(str(url))
+		xbmc.log(str(name))
+		
+		
 
 
+	#url = re.compile('<source.*?src="(.*?)"',re.DOTALL).findall(open)[0]
+	#xbmc.log('*******'+str(url))
+	#liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
+	#liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': description})
+	#liz.setProperty('IsPlayable','true')
+	#liz.setPath(str(url))
+	#xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+	
+#test='https://www.arconaitv.me/amerro/'
+#resolvetwentyfourseven(test)
+def resolvetwentyfourseven(url,icon):
+	m3ubase= 'plugin://plugin.video.f4mTester/?streamtype=HLS&amp;url='
+	name='24/7'
+	m3ubase2= '&amp;icon='+icon+'&amp;name='+name
+	xbmc.log(str(proxy)+str(url))
+	open = OPEN_URL(proxy+url)
+	m3u  = re.compile('<source.*?src="(.*?)"',re.DOTALL).findall(open)[0]
+	play = m3ubase+m3u+m3ubase2
+	liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
+	xbmc.Player().play(play,liz)
+	tvlist(tv)
+	#liz.setProperty('IsPlayable','true')
+	#liz.setPath(str(m3u))
+	#xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+	
+def home():
+	home = xbmc.executebuiltin('XBMC.RunAddon(plugin://plugin.video.streamhub/?action=)')
+	return home
 	
 
 def setView(content, viewType):
@@ -643,11 +709,32 @@ elif mode==40:
 elif mode==41:
 	GENREmov2(url)
 	
+elif mode==43:
+	wweopen(url)
+	
+elif mode==44:
+	playwwe(url,description)
+	
+elif mode==45:
+	wwepages(url)
+	
+elif mode==46:
+	resolvetwentyfourseven(url,icon)
+	
+elif mode==47:
+	opentwentyfourseven(url)
+
+elif mode==48:
+	tvlist(url)
+	
 elif mode==98:
 	xxxstars(url)
 	
 elif mode==100:
 	MovieCAT()
+	
+elif mode==999:
+	home()
 
 
 

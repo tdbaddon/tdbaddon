@@ -74,9 +74,9 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
 			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
-			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us','hehestreams.xyz/nba/games','likhadito.com',
+			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us','hehestreams.xyz/nba/games',
 			'bubbysports.ml', 'streamhdeu.net','sportz-hd.com','immortal-tv.net','besasport.top', 'nbalivestreams.net','genti.stream', 'yaboy.xyz',
-			'eplstreams.club']
+			'eplstreams.club', 'gentistream.com','streamtoday.us','yoursportsinhd.com','nbastream.pw', 'apkadsense.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -88,7 +88,7 @@ def utc_to_local(utc_dt):
 UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'
 
 def GetURL(url, referer=None, output=None, timeout=None, headers=None):
-	if 'streamm.eu' in url or 'sawlive' in url:
+	if 'streamm.eu' in url:
 		import cfscrape
 		scraper = cfscrape.create_scraper()
 		if headers:
@@ -504,7 +504,6 @@ def DisplayLinks(links, orig_title):
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 	
 def ParseLink(el, orig_title):
-	#el = 'http'+el.split('http')[-1]
 	el = el.replace('www.www','www')
 	if 'caststreams' in el:
 		url = Caststreams(orig_title)
@@ -800,6 +799,8 @@ def Blabseal(url):
 			url = url+'/'
 		html = GetURL(url, referer=url)
 		link = common.parseDOM(html, "iframe", ret="src")[0]
+		if 'philpastrami.tk' in link:
+			return 'http://philpastrami.tk/serve/hd.m3u8'
 		link = url+link
 		html = GetURL(link, referer=link)
 		if 'Clappr.Player' in html and 'm3u8' in html:
@@ -1128,7 +1129,7 @@ def Universal(url):
 	if 'lshstream' in url:
 		link = lshstream(url)
 		return link
-	if 'player.twitch.tv/?channel=' in url:
+	if 'player.twitch.tv' in url:
 		videoId = url.split('=')[-1]
 		link = 'plugin://plugin.video.twitch/playLive/'+videoId+'/'
 		return link
@@ -1155,9 +1156,8 @@ def Universal(url):
 		id = id.split("';")[0]
 		link = weplayer(id)
 		return link
-	if html and 'player.twitch.tv/?channel=' in html:
-		print html
-		videoId = re.findall('player.twitch.tv/\?channel=(.*?)[\"\']', html)[0]
+	if html and 'player.twitch.tv' in html:
+		videoId = re.findall('channel=(.*?)[\"\']', html)[0]
 		link = 'plugin://plugin.video.twitch/playLive/'+videoId+'/'
 		return link
 	elif html and 'castalba.tv' in html:
@@ -1230,11 +1230,11 @@ def Universal(url):
 		link = 'http://wizhdsports.be/live/'+ fid +'.php'
 		link = Universal(link)
 		return link
-	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
+	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html or 'chrome-extension' in html or 'contentgate' in html):
 		html = urllib.unquote_plus(html)
 		links = re.findall("[file|source|hls|src|stream1|videoLink]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
 		for link in links:
-			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link:
+			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link or 'chrome-extension' in link or 'contentgate' in link:
 				link = link.replace('src=','')
 				link = link.replace('amp;','')	
 				if 'chrome-extension' in link:
@@ -1245,6 +1245,8 @@ def Universal(url):
 				if 'livesport.pw' in link:
 					cookie = GetURL(url, output='cookie')
 					link = link+'|Referer='+url+'&Cookie='+cookie.split(';')[0]+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
+				if 'eplstreams' in link or 'nbastreams.pw' in link:
+					link = link +'|Cookie=access=true'
 				return link
 	else:
 		domain = urlparse.urlparse(url).netloc

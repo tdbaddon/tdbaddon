@@ -91,8 +91,8 @@ def addDownload(name, url, image, provider=None):
     if name in result:
         return control.infoDialog('Item Already In Your Queue', name)
 
-    from resources.lib.indexers import phstreams
-    url = phstreams.resolver().link(url)
+    from resources.lib.indexers import specialists
+    url = specialists.resolver().link(url)
     if url == None: return
 
     try:

@@ -38,23 +38,14 @@ class source:
         self.sitemap = '/sitemap.xml'
 
         self.social_lock = '0A6ru35yevokjaqbb8'
-        self.search_link = '/api/v1/cautare/'+ self.social_lock
+        #http://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
+        #http://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
+        self.search_link = 'http://api.flixanity.watch/api/v1/'+ self.social_lock
 
 
 
     def get_movie(self, imdb, title, year):
         try:
-            """
-            r = '/movie/%s' % (cleantitle.query10(title))
-            control.log('>>>>>>   %s' % r)
-            result = client.request(urlparse.urljoin(self.base_link, r))
-            result = client.parseDOM(result,'span', attrs={'class':'dat'})[0]
-            if year == str(result.strip()):
-                url = r.encode('utf-8')
-                control.log('>>>>>>  Putlocker URL  %s' % url)
-                return url
-            return
-            """
             tk = cache.get(self.putlocker_token, 8)
             set = self.putlocker_set()
             rt = self.putlocker_rt(tk + set)
@@ -62,7 +53,7 @@ class source:
             tm = int(time.time() * 1000)
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            url = self.search_link
 
             post = {'q': title.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             print("POST",post)
@@ -107,7 +98,7 @@ class source:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            url = self.search_link
 
             post = {'q': tvshowtitle.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             post = urllib.urlencode(post)

@@ -84,7 +84,7 @@ def info():
     return [
         {'class': 'desiflicks', 'host': ['desiflicks.com']}
         , {'class': 'playwire', 'host': ['playwire.com']}
-        , {'class': 'vidshare', 'host': ['vidshare.us', 'idowatch.us', 'watchvideo4.us','watchvideo2.us','watchvideo.us', 'tvlogy.to',  'speedplay.pw']}
+        , {'class': 'vidshare', 'host': ['vidshare.us', 'idowatch.us', 'tvlogy.to',  'speedplay.pw']}
         , {'class': 'xpressvids', 'host': ['xpressvids']}
         , {'class': 'playu', 'host': ['playu.net']}
         , {'class': 'apnasave', 'host': ['apnasave.in']}

@@ -33,10 +33,12 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://cartoonhd.online'
-        #self.social_lock = 'evokjaqbb8'
+        #http://api.cartoonh0A6ru35yevokjaqbb8
         self.social_lock = '0A6ru35yevokjaqbb8'
         #http://cartoonhd.online/api/v2/0A6ru35yevokjaqbb8
-        self.search_link = '/api/v2/cautare/' + self.social_lock
+        #http://cartoonhd.online/api/v1/0A6ru35yevokjaqbb8|503
+        #http://api.cartoonhd.online/api/v1/0A6ru35yevokjaqbb8
+        self.search_link = 'http://api.cartoonhd.online/api/v1/' + self.social_lock
 
 
     def get_movie(self, imdb, title, year):
@@ -49,7 +51,8 @@ class source:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            #url = urlparse.urljoin(self.base_link, self.search_link)
+            url = self.search_link
 
             post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             post = urllib.urlencode(post)
@@ -84,7 +87,7 @@ class source:
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            url =  self.search_link
 
             post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             post = urllib.urlencode(post)

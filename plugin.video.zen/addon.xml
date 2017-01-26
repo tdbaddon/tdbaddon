@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.zen" version="1.6.5" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.7.1" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -7,6 +7,7 @@
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.beautifulsoup" />
+		<import addon="script.module.schism.common" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="zen.py">
 		<provides>video</provides>
@@ -17,7 +18,7 @@
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update and Fix Major Providers</news>
+		<news>Improved overall speed, update providers, fixed bugs - Update and Fix Major Providers - Implemented various modules for cloudflare and better scraping</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>

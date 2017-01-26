@@ -584,7 +584,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.4" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.5" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -765,7 +765,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.colombiatv"
        name="ColombiaTV"
-       version="1.3.6"
+       version="1.3.7"
        provider-name="Wiiego">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -785,8 +785,8 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary lang="en">ColombiaTV</summary>
-    <description lang="en">ColombiaTV is the best addon to watch the main TV Channels from Colombia</description>
-    <description lang="es">ColombiaTV es el mejor addon para ver los principales canales de Televisión de Colombia</description>
+    <description lang="en">ColombiaTV is the best addon to watch the main TV Channels and shows from Colombia</description>
+    <description lang="es">ColombiaTV es el mejor addon para ver los principales canales y programas de Televisión de Colombia</description>
   </extension>
 </addon>
 
@@ -1527,10 +1527,9 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.9" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.0.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
 	<import addon="script.module.muckys.common"/>
 	<import addon="repository.mdrepo" />
@@ -1645,7 +1644,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mic"
        name="Made In Canada IPTV"
-       version="2.0"
+       version="2.1"
        provider-name="TheKrazy0ne">
    <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1850,7 +1849,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.82" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.83" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1949,7 +1948,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specialistss" version="1.4" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
+<addon id="plugin.video.specialistss" version="1.6" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -1971,7 +1970,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.20.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.20.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2044,7 +2043,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.2" provider-name="sClarke">
+<addon id="plugin.video.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.3" provider-name="sClarke">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2478,7 +2477,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.21" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.23" provider-name="MetalKettle">
 
   <requires>
 
@@ -2634,7 +2633,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.2.4"
+       version="6.2.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2665,7 +2664,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.6.5" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.7.1" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2673,6 +2672,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.beautifulsoup" />
+		<import addon="script.module.schism.common" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="zen.py">
 		<provides>video</provides>
@@ -2683,7 +2683,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update and Fix Major Providers</news>
+		<news>Improved overall speed, update providers, fixed bugs - Update and Fix Major Providers - Implemented various modules for cloudflare and better scraping</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3204,16 +3204,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.3.0" provider-name="SchisM">
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.4.0" provider-name="SchisM">
     <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
         <dir>
-            <info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
-			<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
-			<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
-        </dir>
         <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
         <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
         <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
+        </dir>
+            <info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
+			<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
+			<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>SchisM TV official repo</summary>
@@ -3403,11 +3403,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.thespecialist" name="The specialist repository" version="1.1" provider-name="James Hagans">
+<addon id="repository.thespecialist" name="The specialist repository" version="1.2" provider-name="James Hagans">
 	<extension point="xbmc.addon.repository" name="The specialist repository">
-		<info compressed="false">http://thespecialist.xyz/repo/files/addons.xml</info>
-		<checksum>http://thespecialist.xyz/repo/files/addons.xml.md5</checksum>
-		<datadir zip="true">http://thespecialist.xyz/repo/files/</datadir>
+		<info compressed="false">http://kodirestore.co/specialist/repo/files/addons.xml</info>
+		<checksum>http://kodirestore.co/specialist/repo/files/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodirestore.co/specialist/repo/files/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary></summary>
@@ -3867,7 +3867,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.0" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.5" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3913,12 +3913,41 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     </extension>
 </addon>
 
-<addon id="script.module.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.2" provider-name="sClarke">
+<addon id="script.module.schism.common" name="SchisM Common Libraries" version="1.4" provider-name="SchisM">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.requests" />
+		<import addon="script.module.six" />
+		<import addon="script.module.metahandler" />
+		<import addon="script.module.beautifulsoup" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Collection of modules used by SchisM Addons</summary>
+		<description lang="en">Collection of modules used by SchisM Addons
+beautifulsoup3 v3.2.1 from https://www.crummy.com/software/BeautifulSoup :
+beautifulsoup4 v4.5.1 from https://www.crummy.com/software/BeautifulSoup :
+cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape :
+incapsula-cracker v0.1.3 from https://github.com/ziplokk1/incapsula-cracker :
+Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
+jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
+jsunpack from urlresolver :
+requests v2.12.4 from https://github.com/kennethreitz/requests :
+six v1.10.0 from https://pypi.python.org/pypi/six :
+unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
+		</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+	</extension>
+</addon>
+
+<addon id="script.module.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.4" provider-name="sClarke">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
 	<import addon="script.module.requests" />
 	<import addon="script.module.urlresolver" />
+	<import addon="script.module.liveresolver" version="0.1.24"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>all</provides>
@@ -3942,7 +3971,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.01.18.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.01.20.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -4054,7 +4083,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.zen.artwork" version="1.3.0" name="Zen Artwork" provider-name="Zen">
+<addon id="script.zen.artwork" version="1.4.0" name="Zen Artwork" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -4225,7 +4254,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
                 </extension>
                 </addon>
 
-<addon id="weather.yahoo" name="Yahoo! Weather" version="3.3.2" provider-name="ronie">
+<addon id="weather.yahoo" name="Yahoo! Weather" version="3.3.3" provider-name="ronie">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>

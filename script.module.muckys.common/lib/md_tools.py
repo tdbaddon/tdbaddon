@@ -18,9 +18,10 @@
 
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
-import os,re,shutil,sys,urllib,urlparse
+import ast,os,re,shutil,sys,urllib,urlparse
 
 from metahandler import metahandlers
+from md_view import setView
 from common import Addon
 
 metaget = metahandlers.MetaData()
@@ -33,6 +34,10 @@ class md:
 	def __init__(self, addon_id, argv=None):
 
 		self.addon = Addon(addon_id, sys.argv)
+		self.addon_name = '[COLOR white][B]%s[/B][/COLOR]' %self.addon.get_name()
+		self.addon_id = self.addon.get_id()
+		self.icon = self.addon.get_icon()
+		
 		if argv[0]:
 			self.url = sys.argv[0]
 			self.handle = int(sys.argv[1])
@@ -53,7 +58,7 @@ class md:
 	def get_media(self):
 		'''Returns the full path to the addon's media directory.
 		must be a folder named media in resources within the addon
-		 ``resources/art'''
+		 ``resources/media'''
 		return os.path.join(self.addon.get_path(), 'resources', 'media', '')
 
 
@@ -79,45 +84,254 @@ class md:
 
 
 	def PT(self, url):
-		#currently not workng
 		self.addon.log('Play Trailer %s' % url)
-		notification(self.addon.get_name(), 'fetching trailer', self.addon.get_icon())
+		notification('fetching trailer', self.icon)
 		xbmc.executebuiltin("PlayMedia(%s)"%url)
 
 
 
 
-	def notification(self, title, message, icon):
-		self.addon.show_small_popup(self.addon.get_name(), message.title(), 5000, self.addon.get_icon)
+	def dialog_select(self,header,choice):
+                dialog = xbmcgui.Dialog()
+                return dialog.select(header,choice)
+
+
+
+
+        def numeric_select(self,header,default_no):
+                dialog = xbmcgui.Dialog()
+                return dialog.numeric(0, header, default_no)
+
+
+
+
+	def notification(self, message, icon):
+		self.addon.show_small_popup(self.addon_name, message, 5000, icon)
 		return
 
 
 
 
-	def add_fav(self, name, url, iconimage='', fanart=''):
-
-	    favs = self.addon.get_setting('favs').split(",")
-
-	    if title in favs:
-		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s already in favorites." %title, image=img)
-	    else:
-		    favs.append(title)
-		    selfAddon.setSetting('favs', ",".join(favs))
-		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s added to favorites." %title, image=img)
-	    xbmc.executebuiltin('Container.Refresh')
+	'''def notification(self, title, message, icon):
+		self.addon.show_small_popup(self.addon.get_name(), message.title(), 5000, icon)
+		return'''
 
 
 
 
-	def remove_fav(self, name, url, iconimage='', fanart=''):
-	    favs = selfAddon.getSetting('favs').split(",")
-	    if title not in favs:
-		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s not in favorites." %title, image=img)
-	    else:
-		    favs.remove(title)
-		    selfAddon.setSetting('favs', ",".join(favs))
-		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s removed from favorites." %title, image=img)
-	    xbmc.executebuiltin('Container.Refresh')
+	def search(self, blank='+'):
+                keyb = xbmc.Keyboard('', 'Search')
+                keyb.doModal()
+                if (keyb.isConfirmed()):
+                        search = keyb.getText().replace(' ',blank)
+                return search
+
+
+
+
+	def remove_from_file(self,name,path,dummy):
+		with open(path,'r') as oldfile:
+                        with open(dummy, 'w') as newfile:
+                                for line in oldfile:
+                                        if name not in line:
+                                                newfile.write(line)
+		os.remove(path)
+		os.rename(dummy,path)
+		if os.stat(path).st_size == 0:
+			os.remove(path)
+		try:
+			if os.stat(dummy).st_size == 0:
+				os.remove(dummy)
+		except:
+			pass
+		return
+
+
+
+
+	def append_file(self,path,data):
+		with open(path, 'a') as f:
+			f.write('%s\n' %data)
+		return
+
+
+
+
+	def get_fav_folder(self):
+                path = os.path.join(self.addon.get_profile(), 'favs', '')
+                if not os.path.exists(path):
+			try:
+				os.makedirs(path)
+			except OSError as exc: # Guard against race condition
+				if exc.errno != errno.EEXIST:
+					raise
+		return path
+
+
+
+
+	def get_fav_path(self,content):
+                self.get_fav_folder()
+		filename = os.path.join(self.addon.get_profile(), 'favs', '%s.txt' %content)
+		if not os.path.exists(filename):
+			with open(filename, 'w'):
+				pass
+
+		return filename
+
+
+
+
+	def fetch_favs(self):
+
+                path = self.get_fav_folder()
+		from os.path import isfile, join
+		onlyfiles = [f for f in os.listdir(path) if isfile(join(path, f))]
+		dialog = xbmcgui.Dialog()
+
+		fav_menu = []
+		fav_path = []
+		
+		if not len(onlyfiles):
+			self.notification('You have no favourites.', self.icon)
+		else:
+			for content in onlyfiles:
+				if 'dummy' not in content:
+					content = content.replace('.txt','')
+
+					fav = '[B][I][COLOR gold]%s[/COLOR][/I][/B]' %content.upper()
+					fav_menu.append(fav)
+					fav_path.append(self.get_fav_path(content))
+					
+
+			if len(onlyfiles) >1:
+				ret = dialog.select('Select Section',fav_menu)
+				if ret == -1:
+					return
+				elif ret > -1:
+					path_to_favs = fav_path[ret]
+			else:
+					path_to_favs = fav_path[0]
+
+			with open(path_to_favs, 'r') as f:
+				data = f.readlines()
+				#for i, l in enumerate(f):
+					#pass
+				#items = i + 1
+    
+
+				for a in data:
+					b = ast.literal_eval(a)
+
+					if 'url' in b:
+						url = b['url']
+					else:
+						url = 'url'
+					if 'fan_art' in b:
+						fanart = ast.literal_eval(b['fan_art'])
+					else:
+						fanart = {}
+					if 'infolabels' in b:
+						infolabels = ast.literal_eval(b['infolabels'])
+					else:
+						infolabels = {}
+
+					if 'title' in b:
+						title = b['title']
+					else:
+						try:
+							title = infolabels['TVShowTitle']
+						except:
+							title = ''
+					if 'is_folder' in b:
+						is_folder = ast.literal_eval(b['is_folder'])
+					else:
+						is_folder = True
+
+					mode = b['mode']
+					name = b['name']
+					content = b['content']
+
+					if 'contextmenu_items' not in b:
+						contextmenu_items = []
+					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
+
+					self.addDir({'mode':mode, 'name':name, 'url':url, 'content':content, 'title':title},
+						    infolabels=infolabels, fan_art=fanart, is_folder=is_folder, contextmenu_items=contextmenu_items)
+                        if content == 'movies':
+                                setView(self.addon_id, 'movies', 'movie-view')
+                        elif content == 'tvshows':
+                                setView(self.addon_id, 'tvshows', 'show-view')
+                        elif content == 'seasons':
+                                setView(self.addon_id, 'files', 'sea-view')
+                        elif content == 'episodes':
+                                setView(self.addon_id,'episodes', 'epi-view')
+                        else:
+                                setView(self.addon_id, 'files', 'menu-view')
+
+                        self.addon.end_of_directory()
+		
+
+
+
+
+	def add_remove_fav(self, name, url, infolabel, fan_art,
+			   content, mode_id, is_folder):
+		
+		if content == '' or content == None:
+			content = 'others'
+
+		data = self.parse_query('mode=%s' %mode_id)
+		dummy = self.get_fav_path('dummy')
+		path = self.get_fav_path(content)
+		
+		if name in open(path).read():
+			self.remove_from_file(name,path,dummy)
+			self.notification('%s Removed from favourites.' %name, self.icon)
+		else:
+			self.append_file(path,data)
+			self.notification('%s Added to favourites.' %name, self.icon)
+			
+		xbmc.executebuiltin('Container.Refresh')
+
+
+
+
+	def add2fav(self, name, url, infolabel, fan_art,
+		    content, mode_id, is_folder):
+
+		if content == '' or content == None:
+			content = 'others'
+
+		data = self.parse_query('mode=%s' %mode_id)        
+		path = self.get_fav_path(content)
+		
+		if name in open(path).read():
+			self.notification('%s Already in favourites.' %name, self.icon)
+		else:
+			self.append_file(path,data)
+			self.notification('%s Added to favourites.' %name, self.icon)
+
+		xbmc.executebuiltin('Container.Refresh')
+
+
+
+
+	def remove_fav(self, name, content):
+
+		if content == '' or content == None:
+			content = 'others'
+
+		path = self.get_fav_path(content)
+		dummy = self.get_fav_path('dummy')
+		
+		if name not in open(path).read():
+			self.notification('%s not in favourites.' %name, self.icon)
+		else:
+			self.remove_from_file(name,path,dummy)
+			self.notification('%s Removed from favourites.' %name, self.icon)
+
+		xbmc.executebuiltin('Container.Refresh')
 
 
 
@@ -269,30 +483,32 @@ class md:
 
 	def fetch_meta(self, content, infolabels, fan_art={}):
 
-                if 'year' in infolabels:
-                        year = infolabels['year']
-                else:
-                        year = ''
-                if 'code' in infolabels:
-                        code = infolabels['code']
-                else:
-                        code = ''
-                if 'season' in infolabels:
-                        season = infolabels['season']
-                else:
-                        season = ''
-                if 'episode' in infolabels:
-                        episode = infolabels['episode']
-                else:
-                        episode = ''
+                meta = {}
 
-                if season.startswith('0'):
-                        season = season[1:].strip()
+		if 'year' in infolabels:
+			year = infolabels['year']
+		else:
+			year = ''
+		if 'code' in infolabels:
+			code = infolabels['code']
+		else:
+			code = ''
+		if 'season' in infolabels:
+			season = infolabels['season']
+		else:
+			season = ''
+		if 'episode' in infolabels:
+			episode = infolabels['episode']
+		else:
+			episode = ''
 
-                if episode.startswith('0'):
-                        episode = episode[1:].strip()
+		if season.startswith('0'):
+			season = season[1:].strip()
 
-                splitName = infolabels['sorttitle'].partition('(')
+		if episode.startswith('0'):
+			episode = episode[1:].strip()
+
+		splitName = infolabels['sorttitle'].partition('(')
 		simplename = ''
 		simpleyear = ''
 
@@ -300,41 +516,49 @@ class md:
 			simplename=splitName[0]
 			simpleyear=splitName[2].partition(')')
 		else:
-                        simplename = infolabels['sorttitle']
+			simplename = infolabels['sorttitle']
 
 		if len(simpleyear)>0:
 			simpleyear=simpleyear[0]
 
 		if simpleyear == '':
-                        simpleyear = year
+			simpleyear = year
 
-                simpleyear = re.sub('\D', '', simpleyear) 
+		simpleyear = re.sub('\D', '', simpleyear) 
 		
 		if content == 'movies':
 
-			meta = metaget.get_meta('movie', simplename, year=simpleyear, imdb_id=code)
+                        if self.addon.get_setting('movie_meta') == 'true':
+                                meta = metaget.get_meta('movie', simplename, year=simpleyear, imdb_id=code)
+                        else:
+                                pass
 
 		elif content == 'tvshows':
 
-                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        if self.addon.get_setting('tv_show_meta') == 'true':
+                                meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        else:
+                                pass
 
-                elif content == 'seasons':
+		elif content == 'seasons':
 
-			if season:
-				
-				meta.get_seasons(simplename,code,season)
-
-			else:
-				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        if self.addon.get_setting('season_meta') == 'true':
+                                if season:
+                                        meta.get_seasons(simplename,code,season)
+                                else:
+                                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        else:
+                                pass
 
 		elif content == 'episodes':
 
-			if episode:
-
-				meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
-
-			else:
-				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        if self.addon.get_setting('episode_meta') == 'true':
+                                if episode:
+                                        meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
+                                else:
+                                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+                        else:
+                                pass
 
 		if not meta['cover_url']:
 			meta['cover_url'] = fan_art['icon']
@@ -348,23 +572,24 @@ class md:
 
 
 	def addDir(self, queries, infolabels={}, fan_art={}, properties=None, contextmenu_items='',
-                   context_replace=False, playlist=False, item_type='video', stream_info='',
-                   is_folder=True, is_playable=True, item_count=0):
+		   context_replace=False, playlist=False, item_type='video', stream_info='',
+		   is_folder=True, is_playable=True, item_count=0, add_fav=True):
 
-                play = self.addon.build_plugin_url(queries)
-                infolabels = self.addon.unescape_dict(infolabels)
+		infolabels = self.addon.unescape_dict(infolabels)
 		name = queries['name'].replace('()','')
 
 		if 'content' in queries:
-                        content = queries['content']
+			content = queries['content']
+		else:
+			content = ''
 
-                if 'icon' not in fan_art:
-			fan_art['icon'] = self.addon.get_icon()
+		if 'icon' not in fan_art:
+			fan_art['icon'] = self.icon
 
 		if 'fanart' not in fan_art:
 			fan_art['fanart'] = self.addon.get_fanart()
 
-                try:
+		try:
 			metaset = self.addon.get_setting('enable_meta')
 		
 
@@ -377,8 +602,7 @@ class md:
 					infolabels = self.fetch_meta(content, infolabels, fan_art)
 					if not contextmenu_items:
 						contextmenu_items = []
-						contextmenu_items.append(('[COLOR gold]Plot Information[/COLOR]', 'XBMC.Action(Info)'))
-
+					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
 					infolabels['title'] = name
 					fan_art['fanart'] = infolabels['backdrop_url']
 					fan_art['poster'] = infolabels['cover_url']
@@ -398,35 +622,47 @@ class md:
 		except:
 			pass
 
+		queries['infolabels'] = infolabels
+		s_args = self.addon.build_plugin_url(queries)
 		listitem=xbmcgui.ListItem(name, iconImage=fan_art['icon'], thumbnailImage=fan_art['icon']) #listItem iconimage and thumbnail no longer needed after kodi 15. setArt does it for you.
 		listitem.setInfo(item_type, infoLabels=infolabels)
 		listitem.setArt(fan_art)
 
 		if not is_folder:
-                        if is_playable and item_type=='video':
-                                listitem.setProperty("IsPlayable","true")
-                                listitem.addStreamInfo(item_type, stream_info)
+			if is_playable and item_type=='video':
+				listitem.setProperty("IsPlayable","true")
+				listitem.addStreamInfo(item_type, stream_info)
 
-                if properties:
+		if properties:
 			for prop in properties.items():
 				listitem.setProperty(prop[0], prop[1])
 
+		if add_fav:
+			if not contextmenu_items:
+				contextmenu_items = []
+
+			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
+						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
+									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,
+									       'mode_id':queries['mode'], 'is_folder':is_folder})))
+
 		if contextmenu_items:
+			#contextmenu_items.append(['[B][COLOR gold]Search[/COLOR][/B]', 'XBMC.RunPlugin(%s)' % self.addon.build_plugin_url({'mode': '2', 'name':'[B][COLOR white]SEARCH[/COLOR][/B]', 'url':'url', 'content':content})])
 			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
 
 		if playlist is not False:
 			self.addon.log_debug('adding item: %s - %s to playlist' % \
-				       (name, play))
-			playlist.add(play, listitem)
+				       (name, s_args))
+			ok=playlist.add(s_args, listitem)
 		else:
-			self.addon.log_debug('adding item: %s - %s' % (name, play))
-			xbmcplugin.addDirectoryItem(self.handle, play, listitem,
-						    isFolder=is_folder, totalItems=item_count)
+			self.addon.log_debug('adding item: %s - %s' % (name, s_args))
+			ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=s_args,listitem=listitem,isFolder=is_folder,totalItems=int(item_count))
+                return ok
 
 
 
 
-	def check_source(self):
+        def check_source(self):
 		if xbmcvfs.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
 			with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:
 				my_file = f.read()
