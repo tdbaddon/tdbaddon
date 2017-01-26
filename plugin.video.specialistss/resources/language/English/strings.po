@@ -1,9 +1,9 @@
-# Addon Name: Phoenix
-# Addon id: plugin.video.phstreams
-# Addon Provider: Phoenix
+# Addon Name: The specialist
+# Addon id: plugin.video.specialistss
+# Addon Provider: James hagans
 msgid ""
 msgstr ""
-"Project-Id-Version: Phoenix\n"
+"Project-Id-Version: The specialist"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: English\n"
@@ -103,7 +103,7 @@ msgid "Add-on settings"
 msgstr ""
 
 msgctxt "#30726"
-msgid "Opening stream"
+msgid "[COLOR ghostwhite][B]Please Sit Back And Relax. Searching For Your Stream Now.....[/B][/COLOR]"
 msgstr ""
 
 msgctxt "#30727"
@@ -123,7 +123,7 @@ msgid "Password"
 msgstr ""
 
 msgctxt "#30731"
-msgid "Please wait..."
+msgid "[COLOR orange][B]Stream Can Take Up To About 30 Seconds To Load[/B][/COLOR]"
 msgstr ""
 
 msgctxt "#30401"

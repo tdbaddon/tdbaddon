@@ -4589,7 +4589,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         UKTVGenCat,UKTVGenCH=['religious','news','food'], ['masala tv', 'ary digital', 'ary zindagi','hum tv','drama','express ent.']
         fastgen=['PAKISTANI TV','ISLAMIC TV']
         nettvgen=["Pakistani"]
-        slowtvgen=["Pakistani Live"]
+        slowtvgen=["Pakistani"]
         slowtvprefix="PK:"
     elif cctype==2:
         pg='indian'
@@ -4604,12 +4604,12 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         Zengagen='ch'
         fastgen=['INDIAN TV','SOUTH INDIAN']
         nettvgen=["Indian"]
-        slowtvgen=["Indian Live"]
+        slowtvgen=["Hindi"]
         slowtvprefix="IN:"
     else:
         pg='punjabi'
         CFgen="1314"
-        fastgen=['PUNJABI TV']
+        fastgen=['PUNJABI']
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3B1bmphYmktdHYuaHRtbA==")
         slowtvgen=["Punjabi Live"]
         slowtvprefix="PB:"
