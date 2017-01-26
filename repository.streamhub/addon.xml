@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.0" provider-name="sClarke">
-	<extension point="xbmc.addon.repository" name="StreamHub Repository">
-	<dir>
-		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	</dir>
-		<info compressed="false">http://mkodi.co.uk/streamhub/repofiles/addons.xml</info>
-		<checksum>http://mkodi.co.uk/streamhub/repofiles/addons.xml.md5</checksum>
-		<datadir zip="true">http://mkodi.co.uk/streamhub/repofiles/Zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>MediaHub Repo</summary>
-		<description>Bringing you the MediaHub Addons.</description>
-		<platform>all</platform>
-	</extension>
+<addon id="script.module.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.2" provider-name="sClarke">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="script.module.urlresolver" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dependency Addon for StreamHub</summary>
+    <description lang="en">Dependency Addon for StreamHub</description>
+	<disclaimer lang="en">Dependency Addon for StreamHub</disclaimer>
+    <platform>all</platform>
+  </extension>
 </addon>
-
