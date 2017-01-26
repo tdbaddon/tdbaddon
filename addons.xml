@@ -2906,9 +2906,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="repository.goodfellas" name="GoodFellas" version="1.5" provider-name="GoodFellas">
 	<extension point="xbmc.addon.repository" name="Good Fellas">
+	<dir>
 		<info compressed="false">http://www.goodfellasteam.com/Plugins/addons.xml</info>
 		<checksum>http://www.goodfellasteam.com/Plugins/addons.xml.md5</checksum>
 		<datadir zip="true">http://www.goodfellasteam.com/Plugins/</datadir>
+		<dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Welcome to the GoodFellas Repository where you will find all the Live Tv, Movies, and Documentaries</summary>
