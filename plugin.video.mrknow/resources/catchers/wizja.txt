@@ -1,0 +1,12 @@
+item_info_name=title
+item_info_from=@PARAM1@
+item_info_build=Wizja.tv - %s
+
+item_info_name=myid
+item_info_from=@PARAM1@
+item_info_build=%s
+
+
+item_info_name=url
+item_info_from='rtmp://' + myip + '/' + part1 +'/' +part2 + '?'+ part3 + ' app=' + part1 + '?' +part3 +' swfVfy=1 flashver=WIN\2020,0,0,306 timeout=25 swfUrl=http://wizja.tv/player/StrobeMediaPlayback.swf live=true pageUrl='+pageUrl
+item_info_build=%s

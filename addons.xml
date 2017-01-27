@@ -1048,7 +1048,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.11" provider-name="Team Evolve">
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.12" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="0.0.1"/>
@@ -1135,6 +1135,35 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <description></description>
         <platform>all</platform>
     </extension>
+</addon>
+
+<addon id="plugin.video.fanfilm" name="FanFilm - MrKnow"  version="2017.01.26.4" provider-name="mrknow" >
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.requests"/>
+		<import addon="script.module.metahandler" />
+		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="script.mrknow.urlresolver" />
+		<import addon="script.specto.media" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">FanFilm Alpha version</summary>
+		<description lang="en">FanFilm </description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.
+		</disclaimer>
+		<summary lang="pl">FanFilm wersja Alfa</summary>
+		<description lang="pl">FanFilm wersja Alfa - 50% nie działa.</description>
+		<disclaimer lang="pl">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.
+		</disclaimer>
+		<forum>https://github.com/mrknow/filmkodi/issues</forum>
+		<source>http://filmkodi.com/repository/</source>
+		<website>http://filmkodi.com/</website>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="plugin.video.footballreplays" name="Football Replays" version="1.2.9" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
@@ -1694,6 +1723,31 @@ For DMCA Reports, please send message to our FB page.
     <summary lang="en">Play Karaoke Videos</summary>
     <description lang="en">Search Karaoke Songs.....Official Support....XUNITYTALK.COM</description>
     <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.mrknow"
+       name="Filmy Online - mrknow.pl"
+       version="2017.01.22.3"
+       provider-name="mrknow">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson"/>
+    <import addon="script.module.requests" />
+    <import addon="script.mrknow.urlresolver" />
+	<import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.common.plugin.cache"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Wtyczka MRKNOW</summary>
+    <description>Plugin pozwala nam ogladac filmy, telewizje, sport z polskich stron internetowych. Ikony do wtyczki dostarczył Michał Morawski email: mickpl[malpa]wp.pl. Więcej informacji na stronie http;//filmkodi.com </description>
+    <platform>all</platform>
+    <forum>https://github.com/mrknow/filmkodi/issues</forum>
+	<source>http://filmkodi.com/repository/</source>
+    <website>http://filmkodi.com/pl/wtyczka-filmy-online-mrknow/</website>
   </extension>
 </addon>
 
@@ -3206,16 +3260,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.4.0" provider-name="SchisM">
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.5.0" provider-name="SchisM">
     <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
         <dir>
-        <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
-        <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
-        <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
-        </dir>
             <info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
 			<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
 			<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
+        </dir>
+        <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
+        <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
+        <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>SchisM TV official repo</summary>
