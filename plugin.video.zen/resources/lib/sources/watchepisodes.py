@@ -11,7 +11,9 @@ from resources.lib.modules import cleantitle
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.watchepisodes3.com'
+	
+        self.base_link = control.setting('watchepisodes_base')
+        if self.base_link == '' or self.base_link == None:self.base_link = 'http://www.watchepisodes4.com'
         self.search_link = '/search/ajax_search?q=%s'
 
 

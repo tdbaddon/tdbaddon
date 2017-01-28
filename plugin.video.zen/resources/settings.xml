@@ -90,6 +90,8 @@
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
+		<setting id="watchepisodes_base"  type="text" label=" - Base Url" default="http://www.watchepisodes4.com" visible="!eq(-1,false)" />
+				
 		<setting id="provider.watchfilm" type="bool" label="Watchfilm" default="true" />
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />
 

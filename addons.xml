@@ -2719,7 +2719,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.7.1" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.7.2" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -3261,13 +3261,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.5.0" provider-name="SchisM">
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.5.1" provider-name="SchisM">
     <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
-        <dir>
-            <info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
-			<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
-			<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
-        </dir>
         <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
         <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
         <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
