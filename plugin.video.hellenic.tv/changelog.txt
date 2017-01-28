@@ -1,0 +1,749 @@
+------------------------
+Hellenic TV v3.5.5 (28-May-15)
+------------------------
+
+- Updated Live TV channels.
+- Updated resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.5.4 (26-May-15)
+------------------------
+
+- Updated resolvers.
+- Fixed cartoon favourites.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.5.2 (23-May-15)
+------------------------
+
+- Updated resolvers.
+- Tweaked youtube playback.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.5.1 (19-May-15)
+------------------------
+
+- Updated Live TV channels.
+- Fixed TV show listings.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.5.0 (17-May-15)
+------------------------
+
+- Updated Live TV channels.
+- Re-work of Live TV section.
+- Re-work of Cartoons section.
+- Fixed novasports.gr listings. 
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.4.2 (15-May-15)
+------------------------
+
+- Updated Live TV channels.
+- Tweaked unix systems (Python 2.7.9).
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.4.1 (13-May-15)
+------------------------
+
+- Fixed issue on unix systems (Python 2.7.9).
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.4.0 (9-May-15)
+------------------------
+
+- Updated MEGA CYPRUS and SUPER B.
+- Added PLUS TV, EXTRA TV, RIK 1 and RIK 2.
+- Fixed issues with various listings.
+- Fixed issues with cartoons section.
+- Fixed issues with music section.
+- Tweaked available resolvers.
+- Tweaked ustream streams.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.6 (24-Apr-15)
+------------------------
+
+- Updated SIGMA, ACTION 24, RIK SAT and TV 100.
+- Added SBC, SMILE, WZRA KIDS, LAMPSI TV, ART TV, GREEK VOICE TV and LYXNOS TV.
+- Removed ACHAIA CHANNEL.
+- Fixed music charts.
+- Fixed new.livestream resolver.
+- Fixed streamago resolver.
+- Re-work of resolvers.
+- Tweaked loading of resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.5 (16-Apr-15)
+------------------------
+
+- Added GREEK CINEMA.
+- Updated ART CHANNEL, ANT1 CYPRUS, SIGMA, CAPITAL and TV 100.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.4 (4-Apr-15)
+------------------------
+
+- Fixed live stream of SKAI.
+- Fixed live stream of MAD TV.
+- Fixed live stream of TELE EPILOGES.
+- Fixed novasports.gr listings.
+- Tweaked all listings.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.3 (26-Mar-15)
+------------------------
+
+- Tweaked live stream of SKAI.
+- Tweaked live stream of MAD TV.
+- Tweaked live stream of EURONEWS GR.
+- Updated E TV, KONTRA CHANNEL, EXTRA CHANNEL and ENA CHANNEL.
+- Tweaked stream selection of movies and TV shows.
+- Added Hellenic TV1 network.
+- Added videopublishing resolver.
+- Tweaked available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.2 (11-Mar-15)
+------------------------
+
+- NOTE: Anniversary update!
+- NOTE: Hellenic TV is now 3 years old:)
+- Updated live TV channels.
+- Added virtual movie channels.
+- Added secondary streams for MEGA and STAR.
+- Fixed issues with movie search.
+- Tweaked available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.1 (7-Mar-15)
+------------------------
+
+- Re-work of live TV section.
+- Updated live TV channels.
+- Fixed issues with EPG Source.
+- Fixed issues with ALPHA resolver.
+- Tweaked available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.3.0 (2-Mar-15)
+------------------------
+
+- Unblock live stream of SKAI (Germany).
+- Unblock live stream of MAD TV (Germany).
+- Unblock live stream of EURONEWS GR (America/Australia).
+- Unblock on-demand videos of ANT1 (worldwide).
+- Unblock Superleague highlights (worldwide).
+- Added pagination in Novasports sections.
+- Tweaked available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.2.2 (3-Feb-15)
+------------------------
+
+- Updated live tv channels.
+- Fixed issues with available resolvers.
+- Tweaked available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.2.1 (24-Jan-15)
+------------------------
+
+- Updated live tv channels.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.2.0 (18-Jan-15)
+------------------------
+
+- Updated live tv channels.
+- Tweaked KONTRA network.
+- Removed NERIT network.
+- Added various cartoons section.
+- Fixed issues with available resolvers.
+- Added EURONEWS GR resolver.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.1.0 (19-Dec-14)
+------------------------
+
+- Added Radio section.
+- Added REAL FM and SKAI 100,3 podcasts.
+- Added Hellenic TV in music add-ons (Radios).
+- Tweaked all available resolvers.
+- Tweaked live tv listings.
+- Updated live tv channels.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.0.2 (8-Dec-14)
+------------------------
+
+- Fixed issues with movies.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.0.1 (4-Dec-14)
+------------------------
+
+- Updated live tv channels.
+- Fixed issues with tv show listings.
+- Tweaked all available resolvers.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v3.0.0 (24-Nov-14)
+------------------------
+
+- Complete re-work of the addon.
+
+
+------------------------
+Hellenic TV v2.6.9 (4-Sep-14)
+------------------------
+
+- Updated MEGA, STAR, GREEK CINEMA, START TV, KYDON TV and DIKTYO TV.
+- Added secondary streams for MEGA and STAR.
+- Added ACTION 24.
+- Removed STAR KENTRIKIS ELLADOS, TRT, SUPER B, TOP CHANNEL and TVS.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.8 (26-Jun-14)
+------------------------
+
+- Updated NERIT, NERIT SPORTS, MAD TV and TV 100.
+- Fixed ustream resolver.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.7 (12-Jun-14)
+------------------------
+
+- Added NERIT SPORTS and MAD TV CYPRUS.
+- Updated MEGA, STAR, NERIT, MAD TV and ART CHANNEL.
+- Removed MUSIC TV, LAMPSI TV, CY SPORTS and ACTION 24.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.6 (23-May-14)
+------------------------
+
+- Updated SKAI, ANT1 CYPRUS, SIGMA and CAPITAL.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.5 (9-May-14)
+------------------------
+
+- Updated SKAI, MAD TV and LAMPSI TV.
+- Tweaked loading of channels.
+- Added livestream_new resolver.
+- Tweaked madtv resolver.
+- Tweaked skai resolver.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.4 (7-May-14)
+------------------------
+
+- Added NERIT, LAMPSI TV, ALPHA GATV, DR TV, SUPER 28, TVS and KANALI 6.
+- Updated STAR, RIK SAT, GREEK CINEMA and DIRAS TV.
+- Removed EDT.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.3 (2-May-14)
+------------------------
+
+- Updated STAR, ET3, ACTION 24, START TV and ACHAIA CHANNEL.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.2 (1-Apr-14)
+------------------------
+
+- Updated MEGA CYPRUS.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.1 (28-Mar-14)
+------------------------
+
+- Updated SKAI, ANT1 CYPRUS, SIGMA, CAPITAL, RIK SAT and ART CHANNEL.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.6.0 (9-Mar-14)
+------------------------
+
+- Re-work of addon.
+- Fixed TVControl EPG Source.
+- Fixed EPG for E TV, ACTION 24, MEGA CYPRUS, ANT1 CYPRUS, SIGMA and CAPITAL.
+- Added  EPG for RIK SAT.
+- Updated MEGA CYPRUS.
+- Added MUSIC TV.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.5.7 (5-Mar-14)
+------------------------
+
+- Added ACTION 24.
+- Added livestream_new resolver.
+- Updated SKAI, EDT, MEGA CYPRUS, ANT1 CYPRUS, SIGMA, CAPITAL and CY SPORTS.
+
+
+------------------------
+Hellenic TV v2.5.6 (18-Feb-14)
+------------------------
+
+- Updated ANT1 and ART CHANNEL.
+
+
+------------------------
+Hellenic TV v2.5.5 (9-Feb-14)
+------------------------
+
+- Updated STAR, SKAI, EURONEWS, MAD TV, GREEK CINEMA, ZOUGLA TV, ASTRA TV and ACHAIA CHANNEL.
+- NOTE: SKAI and MAD TV require Gotham builds!
+- Added ART CHANNEL and VIMA TV.
+- Removed ACTION 24 and HRT.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.5.4 (8-Jan-14)
+------------------------
+
+- Updated ANT1.
+
+
+------------------------
+Hellenic TV v2.5.3 (6-Jan-14)
+------------------------
+
+- Updated ANT1.
+- Notifications are now silent in Gotham or later.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.5.2 (25-Dec-13)
+------------------------
+
+- Updated STAR.
+
+
+------------------------
+Hellenic TV v2.5.1 (17-Dec-13)
+------------------------
+
+- Added resolver for ANT1.
+- Fixed justin.tv resolver.
+- Removed ART CHANNEL.
+
+
+------------------------
+Hellenic TV v2.5.0 (12-Dec-13)
+------------------------
+
+- Added TVControl EPG Source.
+- Removed Cyta EPG Source.
+- Added EPG for E TV, ACTION 24, CORFU CHANNEL, BEST TV and TV AIGAIO.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.4.3 (10-Dec-13)
+------------------------
+
+- Updated ANT1.
+
+
+------------------------
+Hellenic TV v2.4.2 (2-Dec-13)
+------------------------
+
+- Added E TV.
+- Updated SKAI, EDT, SYROS TV1 and TELE EPILOGES.
+- Removed NET, MUSIC TV and ZOOM.
+
+
+------------------------
+Hellenic TV v2.4.1 (18-Nov-13)
+------------------------
+
+- Updated ANT1 CYPRUS, SIGMA and CAPITAL.
+- Added new art.
+- Tweaked videoplayer labels.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.4.0 (11-Nov-13)
+------------------------
+
+- Added ZOUGLA TV.
+- Updated MEGA, ANT1 CYPRUS, SIGMA, CAPITAL, KYDON TV and TELE EPILOGES.
+- Removed GR TV.
+- Tweaked videoplayer labels.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.3.2 (3-Oct-13)
+------------------------
+
+- Added ZOOM.
+- Updated MEGA, STAR, ANT1 CYPRUS, SIGMA, CAPITAL and BLUE SKY.
+- Removed NICKELODEON, NICKELODEON+, ATTICA TV, HIGH TV and GNOMI TV.
+
+
+------------------------
+Hellenic TV v2.3.1 (19-Sep-13)
+------------------------
+
+- Tweaked http resolver.
+- Updated KRITI TV.
+
+
+------------------------
+Hellenic TV v2.3.0 (10-Sep-13)
+------------------------
+
+- Complete re-work of EPG grabber (from OTE TV and Cytavision).
+- Added fallback stream for EDT.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.2.0 (6-Sep-13)
+------------------------
+
+- Updated existing channels.
+- Added more channels (EDT, Nickelodeon etc).
+- Added fallback streams for all major channels.
+- Added new resolvers.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Hellenic TV v2.1.2 (22-Aug-13)
+------------------------
+
+- Fixed dailymotion resolver.
+- Updated NET, ET3, BOYLH TV and ART CHANNEL.
+
+
+------------------------
+Hellenic TV v2.1.1 (19-Jul-13)
+------------------------
+
+- Added CAPITAL and CY SPORTS.
+- Added XMLTV support for CAPITAL.
+- Updated NET and ET3.
+
+
+------------------------
+Hellenic TV v2.1.0 (05-Jul-13)
+------------------------
+
+- Added XMLTV support (from OTE TV and Cytavision).
+- Added EPG Info in context menu.
+- Added Refresh Info in context menu.
+- Fixed dailymotion resolver.
+- Updated NET and WEST CHANNEL.
+- Re-work of the plugin.
+
+
+------------------------
+Hellenic TV v2.0.7 (21-Jun-13)
+------------------------
+
+- Updated NET.
+
+
+------------------------
+Hellenic TV v2.0.6 (19-Jun-13)
+------------------------
+
+- Added TELE EPILOGES and OMEGA TV.
+- Updated RIK SAT.
+
+
+------------------------
+Hellenic TV v2.0.5 (15-Jun-13)
+------------------------
+
+- Added ET3.
+
+
+------------------------
+Hellenic TV v2.0.4 (13-Jun-13)
+------------------------
+
+- Updated SKAI and RIK SAT.
+- Added ITV.
+- Removed all ERT channels except NET.
+
+
+------------------------
+Hellenic TV v2.0.3 (03-Jun-13)
+------------------------
+
+- Updated SIGMA, GR TV , ODIE TV and KRITI TV.
+
+
+------------------------
+Hellenic TV v2.0.2 (01-Jun-13)
+------------------------
+
+- Updated ALPHA.
+- Added DIRAS TV.
+
+
+------------------------
+Hellenic TV v2.0.1 (29-May-13)
+------------------------
+
+- Added EPG support (disabled by default).
+- Updated ET3, MEGA CYPRUS and SIGMA.
+
+
+------------------------
+Hellenic TV v2.0.0 (23-May-13)
+------------------------
+
+- Complete re-work of the plugin.
+- Updated all channels.
+- Channels are stored in a seperate xml file.
+- Channels can be saved in favourites and added to tv guide script.
+- Disabled EPG data for now.
+- Enabled context menus.
+
+
+------------------------
+Hellenic TV v1.2.4 (13-Mar-13)
+------------------------
+
+- Updated STAR, ALPHA and SKAI.
+- Added MUSIC TV.
+
+
+------------------------
+Hellenic TV v1.2.3 (2-Mar-13)
+------------------------
+
+- Added zcast resolver (for TV PLUS).
+- Added bambuser resolver (for ART CHANNEL).
+- Updated Euronews Greek (HQ stream).
+
+
+------------------------
+Hellenic TV v1.2.2 (16-Feb-13)
+------------------------
+
+- Added option to disable Youtube stream for SKAI.
+- Updated TV PLUS and HIGH TV.
+
+
+------------------------
+Hellenic TV v1.2.1 (10-Feb-13)
+------------------------
+
+- Updated ANT1 (geo unblocked stream).
+
+
+------------------------
+Hellenic TV v1.2.0 (3-Feb-13)
+------------------------
+
+- Updated SIGMA (now using link from sigmatv.com).
+
+
+------------------------
+Hellenic TV v1.1.9 (1-Feb-13)
+------------------------
+
+- Updated SIGMA.
+- Added TV PLUS.
+
+
+------------------------
+Hellenic TV v1.1.8 (19-Jan-13)
+------------------------
+
+- Updated STAR and MAD (new resolvers added).
+- Updated LEPANTO, KYDON TV and DION TV.
+- Updated ACTION 24 logo.
+- Code changes.
+
+
+------------------------
+Hellenic TV v1.1.7 (10-Jan-13)
+------------------------
+
+- Added BEST TV and TV12.
+- Tweaked skai resolver (use iphone link when youtube link is not available).
+- Updated ERT WORLD, MEGA CYPRUS, SIGMA, RIK SAT and ART CHANNEL.
+- Removed TV PLUS, MAD CYPRUS and BODY IN BALANCE.
+
+
+------------------------
+Hellenic TV v1.1.6 (18-Dec-12)
+------------------------
+
+- Added Euronews Greek.
+
+
+------------------------
+Hellenic TV v1.1.5 (14-Dec-12)
+------------------------
+
+- Updated visionip.tv resolver (ERT WORLD, MEGA CYPRUS, SIGMA, TV PLUS etc).
+- Updated ART CHANNEL (switched to ustream).
+- Added ORT.
+
+
+------------------------
+Hellenic TV v1.1.4 (13-Dec-12)
+------------------------
+
+- Added MAD CYPRUS, HIGH TV and SYROS TV1.
+- Removed MTV NRG.
+- Added check if Youtube addon is not installed.
+- Updates in several channels (ANT1, MAD, RIKSAT etc).
+- Updates in several logos.
+- Code changes.
+
+
+------------------------
+Hellenic TV v1.1.3 (9-Nov-12)
+------------------------
+
+- Fixed skai resolver.
+
+
+------------------------
+Hellenic TV v1.1.2 (17-Oct-12)
+------------------------
+
+- Added resolver for skai (youtube link keeps changing).
+- Added CRETA CHANNEL.
+- Added progress in BusyDialog (Frodo).
+- Tweaked webserver check.
+
+
+------------------------
+Hellenic TV v1.1.1 (12-Oct-12)
+------------------------
+
+- Added resolver for viiideo (frequent updates not needed anymore for ACTION 24, ENA TV, ACHELOOS TV, NEA TV).
+- Changes in several channels.
+- Fix Confluence views for Frodo.
+- Code clean-up.
+
+
+------------------------
+Hellenic TV v1.1.0 (01-Oct-12)
+------------------------
+
+- Complete re-work of the plugin (now supports more than 60 greek channels).
+- Added options to enable or disable channels from settings.
+
+
+------------------------
+Hellenic TV v1.0.5 (30-May-12)
+------------------------
+
+- Fixed several channels.
+- Enabled RIK SAT and BLUE SKY.
+
+
+------------------------
+Hellenic TV v1.0.4 (27-Apr-12)
+------------------------
+
+- Fixed MEGA, ALPHA, ET3.
+- Added code for detecting server changes of MEGA, ALPHA, ET3 (frequent updates not needed anymore).
+- Disabled RIK SAT (stream not working properly right now).
+
+
+------------------------
+Hellenic TV v1.0.3 (13-Apr-12)
+------------------------
+
+- Fixed MEGA, ALPHA, ET3, ANT1 CYPRUS.
+
+
+------------------------
+Hellenic TV v1.0.2 (26-Mar-12)
+------------------------
+
+- Fixed crash when skins have extra fanart in episode views enabled.
+- Fixed MEGA, ALPHA, ET3, ANT1 CYPRUS, 4E TV.
+
+
+------------------------
+Hellenic TV v1.0.1 (26-Mar-12)
+------------------------
+
+- Fixed ant1 stream.
+- Added web server check.
+
+
+------------------------
+Hellenic TV v1.0.0 (11-Mar-12)
+------------------------
+
+- Initial version

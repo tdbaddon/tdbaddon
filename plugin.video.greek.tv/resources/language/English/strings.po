@@ -1,0 +1,95 @@
+# Addon Name: LiveLite
+# Addon id: plugin.video.livelite
+# Addon Provider: Twilight0
+msgid ""
+msgstr ""
+"Project-Id-Version: Twilight0\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-10-08 11:29+0000\n"
+"Last-Translator: twilight0\n"
+"Language-Team: English (http://www.domain.com)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "Miscellaneous"
+msgstr "Miscellaneous"
+
+msgctxt "#30002"
+msgid "Last used group"
+msgstr "Last used group"
+
+msgctxt "#30003"
+msgid "Show BUP (backup) streams"
+msgstr "Show BUP (backup) streams"
+
+msgctxt "#30004"
+msgid "Enable Sort"
+msgstr "Enable Sort"
+
+msgctxt "#30005"
+msgid "Group"
+msgstr "Group"
+
+msgctxt "#30006"
+msgid "Title"
+msgstr "Title"
+
+msgctxt "#30007"
+msgid "Sort Method"
+msgstr "Sort Method"
+
+msgctxt "#30008"
+msgid "Use non-https m3u playlist mirror"
+msgstr "Use non-https m3u playlist mirror"
+
+msgctxt "#30009"
+msgid "Use setting below in case addon fails to download playlist"
+msgstr "Use setting below in case addon fails to download playlist"
+
+msgctxt "#30010"
+msgid ""
+msgstr ""
+
+msgctxt "#30011"
+msgid "Settings"
+msgstr "Settings"
+
+msgctxt "#30012"
+msgid "Refresh Playlist"
+msgstr "Refresh Playlist"
+
+msgctxt "#30013"
+msgid "No connection"
+msgstr "No connection"
+
+msgctxt "#30014"
+msgid ""
+msgstr ""
+
+msgctxt "#30015"
+msgid "Group '{0}'"
+msgstr "Group '{0}'"
+
+msgctxt "#30016"
+msgid "ALL"
+msgstr "ALL"
+
+msgctxt "#30017"
+msgid "Select the group of your choice"
+msgstr "Select the group of your choice"
+
+msgctxt "#30018"
+msgid ""
+msgstr ""
+
+msgctxt "#30019"
+msgid "Cancel"
+msgstr "Cancel"
+
+msgctxt "#30020"
+msgid "Group list is loading"
+msgstr "Group list is loading"

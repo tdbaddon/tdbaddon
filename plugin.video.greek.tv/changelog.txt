@@ -1,0 +1,45 @@
+1.0.9 (17-01-2017)
+- Base64-ed the lists
+- Minor fixes
+
+1.0.8 (07-01-2017)
+- Fixed switcher behaviour when cancelling.
+
+1.0.7 (26-12-2016)
+- Code cosmetics
+
+1.0.6 (20-12-2016)
+- Added a non-https mirror option
+  > Hourly updates
+
+1.0.5.2 (02-12-2016)
+- More fixes in addon.xml
+
+1.0.5.1 (29-11-2016)
+- Minor changes in addon.xml
+
+1.0.5 (28-11-2016)
+- Added client module & replaced the simple opener function
+
+1.0.4 (25-11-2016)
+- Implemented two different sort methods for channels, by group & title
+  > By default they are off
+- Added random user agent function
+  > Particularly useful for ANT1 CY resolver
+
+1.0.3 (21-11-2016)
+- Slightly improved the regex pattern for constructor function.
+- Implemented a setting for toggling on/off BUP (backup) streams.
+- Implemented a resolver for ANT1 CY's stream.
+- Encrypted baseurl
+- Made default group localized.
+
+1.0.2 (20-11-2016)
+- Changed cachetodisk parameter to False.
+ > This will work-around a youtube bug which replaces list_item.
+
+1.0.1 (19-11-2016)
+- Various bug fixes for group switcher and url parameters
+
+1.0.0 (19-11-2016)
+- Initial Version

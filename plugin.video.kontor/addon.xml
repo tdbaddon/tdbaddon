@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.kontor"
+	   name="Kontor"
+	   version="1.0.1"
+	   provider-name="pcd@xtrend-alliance">
+  <requires>
+        <import addon="script.module.youtube.dl" version="15.318.0"/>
+  </requires>	   	   
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Videos from Youtube Kontor </summary>
+    <description>Adult(18+) Videos from Youtube Kontor</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+
+
+

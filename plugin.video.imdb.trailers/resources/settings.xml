@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+  <category label="30301">
+    <setting id="video_quality" type="labelenum" label="30001" values="240p|480p|720p" default="480p" />
+  </category>
+  <category label="30304">
+    <setting type="text" label="30025" enable="false"/>
+    <setting id="couchpotato" type="bool" label="30020" default="false" />
+    <setting id="cpIP" type="text" label="30021" visible="eq(-1,true)" enable="!eq(-1,)" default="localhost" />
+    <setting id="cpPort" type="number" label="30022" visible="eq(-2,true)" enable="!eq(-2,)" default="5050" />
+    <setting id="cpUser" type="text"  visible="eq(-3,true)" enable="!eq(-3,)" label="30023" default=""/>
+    <setting id="cpPass" type="text" option="hidden" visible="eq(-4,true)" enable="!eq(-1,)" label="30024" default=""/>        
+  </category>
+</settings>

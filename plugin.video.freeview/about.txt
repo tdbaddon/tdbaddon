@@ -1,0 +1,16 @@
+Freeview by RayW1986
+Version 2.0.0
+In association with TVAddons.ag
+
+Freeview allows the legal streaming of the majority of British Freeview channels via official services. These services include, but are not limited too, the BBC iPlayer, ITV Hub and Freeview streaming partner, SimpleStreams.
+
+Freeview also allows the viewing of various British catch-up TV services, all streamed legally from the official channel websites.
+
+This add-on is intended for use within the United Kingdom, where the content providers are based. You may have issues outside of the United Kingdom when using this add-on.
+
+The author is in no way affiliated with any of the services made available in this add-on.
+
+For more help, information or feedback, please visit the following:
+
+Website: http://www.tvaddons.ag/
+Forum: https://forums.tvaddons.ag/rayw1986-repository/49349-release-freeview.html

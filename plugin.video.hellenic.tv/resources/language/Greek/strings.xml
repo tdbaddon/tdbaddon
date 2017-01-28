@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<!-- Settings -->
+	<string id="30000">Γενικά</string>
+	<string id="30001">Δίκτυα</string>
+	<string id="30002">Προεπιλογή</string>
+	<string id="30003">Εναλλακτικό</string>
+	<string id="30004">Μνήμη</string>
+	<string id="30005">Καθαρισμός μνήμης</string>
+	<!-- Info -->
+	<string id="30301">Η </string>
+	<string id="30302"> είναι πλέον προεπιλεγμένη</string>
+	<string id="30303">Προστέθηκε στα Αγαπημένα</string>
+	<string id="30304">Αφαιρέθηκε από τα Αγαπημένα</string>
+	<string id="30305">Έγινε εκκαθάριση μνήμης</string>
+	<string id="30306">Δεν υπάρχει διαθέσιμη ροή</string>
+	<!-- Progress -->
+	<string id="30341">Άνοιγμα ροής</string>
+	<!-- Misc -->
+	<string id="30361">Αναζήτηση</string>
+	<string id="30362">Επόμενη σελίδα...</string>
+	<!-- ContextMenu -->
+	<string id="30401">Αναπαραγωγή</string>
+	<string id="30402">Τυχαία Αναπαραγωγή</string>
+	<string id="30403">Αντικείμενο σε αναμονή</string>
+	<string id="30404">Τώρα εκτελείται...</string>
+	<string id="30405">Ανανέωση πληροφοριών</string>
+	<string id="30406">Ρυθμίσεις πρόσθετου</string>
+	<string id="30407">Προσθήκη στα αγαπημένα</string>
+	<string id="30408">Αφαίρεση από τα αγαπημένα</string>
+	<string id="30409">Προσθήκη στη "TV μου"</string>
+	<string id="30410">Αφαίρεση από τη "TV μου"</string>
+	<string id="30411">Προσθήκη στους "Σταθμούς μου"</string>
+	<string id="30412">Αφαίρεση από τους "Σταθμούς μου"</string>
+	<string id="30413">Ορισμός θέασης TV</string>
+	<string id="30414">Ορισμός θέασης σταθμών</string>
+	<string id="30415">Ορισμός θέασης ταινιών</string>
+	<string id="30416">Ορισμός θέασης σειρών</string>
+	<string id="30417">Ορισμός θέασης επεισοδίων</string>
+	<string id="30418">Ορισμός θέασης παιδικών</string>
+	<!-- Description -->
+	<string id="30450">Ελληνική τηλεόραση</string>
+	<!-- Labels -->
+	<string id="30501">TV</string>
+	<string id="30502">Ράδιο</string>
+	<string id="30503">Δίκτυα</string>
+	<string id="30504">Σειρές</string>
+	<string id="30505">Ταινίες</string>
+	<string id="30506">Παιδικά</string>
+	<string id="30507">Ντοκιμαντέρ</string>
+	<string id="30508">Αγαπημένα</string>
+	<string id="30509">Ειδήσεις</string>
+	<string id="30510">Αθλητικά</string>
+	<string id="30511">Μουσική</string>
+	<string id="30521">Όλα</string>
+	<string id="30522">Αγαπημένα</string>
+	<string id="30523">Τάσεις</string>
+	<string id="30524">Δημοφιλή</string>
+	<string id="30525">Πρόσφατα</string>
+	<string id="30531">Περισσότερα...</string>
+	<string id="30541">Αναζήτηση</string>
+	<string id="30542">Αγαπημένα</string>
+	<string id="30551">Αναζήτηση</string>
+	<string id="30552">Αγαπημένα</string>
+	<string id="30561">Αγαπημένα</string>
+	<string id="30562">Συλλογή</string>
+	<string id="30563">Μεταγλωτισμένα</string>
+	<string id="30564">Διάφορα</string>
+	<string id="30565">Κλασικά</string>
+	<string id="30566">Τραγούδια</string>
+	<string id="30571">TV</string>
+	<string id="30572">Ράδιο</string>
+	<string id="30573">Σειρές</string>
+	<string id="30574">Ταινίες</string>
+	<string id="30575">Παιδικά</string>
+</strings>

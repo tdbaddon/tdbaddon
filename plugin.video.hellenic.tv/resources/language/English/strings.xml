@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<!-- Settings -->
+	<string id="30000">General</string>
+	<string id="30001">Networks</string>
+	<string id="30002">Default</string>
+	<string id="30003">Alternate</string>
+	<string id="30004">Cache</string>
+	<string id="30005">Clear cache</string>
+	<!-- Info -->
+	<string id="30301"></string>
+	<string id="30302"> is on by default</string>
+	<string id="30303">Added to Favourites</string>
+	<string id="30304">Removed from Favourites</string>
+	<string id="30305">Cache cleared</string>
+	<string id="30306">No stream available</string>
+	<!-- Progress -->
+	<string id="30341">Opening stream</string>
+	<!-- Misc -->
+	<string id="30361">Search</string>
+	<string id="30362">Next Page...</string>
+	<!-- ContextMenu -->
+	<string id="30401">Play</string>
+	<string id="30402">Random Play</string>
+	<string id="30403">Queue item</string>
+	<string id="30404">Now playing...</string>
+	<string id="30405">Refresh info</string>
+	<string id="30406">Add-on settings</string>
+	<string id="30407">Add to favourites</string>
+	<string id="30408">Remove from favourites</string>
+	<string id="30409">Add to "My TV"</string>
+	<string id="30410">Remove from "My TV"</string>
+	<string id="30411">Add to "My Radios"</string>
+	<string id="30412">Remove from "My Radios"</string>
+	<string id="30413">Set TV view</string>
+	<string id="30414">Set Radio view</string>
+	<string id="30415">Set Movies view</string>
+	<string id="30416">Set TV Shows view</string>
+	<string id="30417">Set Episodes view</string>
+	<string id="30418">Set Cartoons view</string>
+	<!-- Description -->
+	<string id="30450">Greek television</string>
+	<!-- Labels -->
+	<string id="30501">TV</string>
+	<string id="30502">Radio</string>
+	<string id="30503">Networks</string>
+	<string id="30504">TV Shows</string>
+	<string id="30505">Movies</string>
+	<string id="30506">Cartoons</string>
+	<string id="30507">Documentaries</string>
+	<string id="30508">Favourites</string>
+	<string id="30509">News</string>
+	<string id="30510">Sports</string>
+	<string id="30511">Music</string>
+	<string id="30521">All</string>
+	<string id="30522">Favourites</string>
+	<string id="30523">Trending</string>
+	<string id="30524">Popular</string>
+	<string id="30525">Latest</string>
+	<string id="30531">More...</string>
+	<string id="30541">Search</string>
+	<string id="30542">Favourites</string>
+	<string id="30551">Search</string>
+	<string id="30552">Favourites</string>
+	<string id="30561">Favourites</string>
+	<string id="30562">Collection</string>
+	<string id="30563">Collection GR</string>
+	<string id="30564">Various</string>
+	<string id="30565">Classics</string>
+	<string id="30566">Songs</string>
+	<string id="30571">TV</string>
+	<string id="30572">Radio</string>
+	<string id="30573">TV Shows</string>
+	<string id="30574">Movies</string>
+	<string id="30575">Cartoons</string>
+</strings>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<strings>
+  <!-- Title -->
+  <string id="30000">IMDb Trailers</string>
+
+  <!-- Settings -->
+  <string id="30001">Video Quality</string>
+  <string id="30020">Enable CouchPotato</string>
+  <string id="30021">CouchPotato IP:</string>
+  <string id="30022">CouchPotato Port:</string>
+  <string id="30023">CouchPotato Username:</string>
+  <string id="30024">CouchPotato Password:</string>
+  <string id="30025">Only CouchPotatoServer (a.k.a V2) supported</string>
+  
+  <!-- Settings Categories-->
+  <string id="30301">General</string>
+  <string id="30304">CouchPotato</string> 
+  
+  <!-- Context Menu & Messages -->
+  <string id="30104">Unauthorized. No permission. Please check your user and pass.</string>
+  <string id="30105">Unknown Error!</string>
+  <string id="30108">Add to CouchPotato</string>
+  <string id="30109">Succesfuly Added to CouchPotato!</string>
+  <string id="30110">Error! while Adding to CouchPotato!</string>
+  
+  <!-- Directory -->
+  <string id="30201">New Trailers</string>
+  <string id="30202">Popular Trailers</string>
+  <string id="30203">Popular Movies</string>
+  <string id="30204">More...</string>
+</strings>
