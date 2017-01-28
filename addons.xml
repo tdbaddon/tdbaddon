@@ -2959,6 +2959,233 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.HalowTV" name="  [COLOR lime][B]HALOW [/COLOR][COLOR white]Repository[/B][/COLOR]" version="3.1.1" provider-name="HalowRepo">
+	<extension point="xbmc.addon.repository" name="  [COLOR lime][B]Halow[/COLOR][COLOR white]Repository[/B][/COLOR]">
+        <info compressed="false">https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install my Addons</summary>
+		<description>Download and install addons from Halow Repo</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.husham.com" name="Husham.com Repo" version="1.1.0004" provider-name="husham.com">
+	<extension point="xbmc.addon.repository" name="Husham.com Repository">
+		<info compressed="false">https://raw.githubusercontent.com/hmemar/husham.com/master/repository/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/hmemar/husham.com/master/repository/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/hmemar/husham.com/master/zip</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Husham.com Repo</summary>
+		<description>Download and install addons from husham.com repo</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.icanuck" name="[COLOR FF005de5]iCanuck's [/COLOR]Kodi Repository" version="3.1.0" provider-name="iCanuck">
+	<extension point="xbmc.addon.repository" name="iCanuck's Kodi Repository">
+       <info>http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/addons.xml</info>
+       <checksum>http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/addons.xml.md5</checksum>
+       <datadir zip="true">http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install iCanuck's Kodi Skins/Addons</summary>
+		<description>Download and install Kodi Skins and Addons by iCanuck and others.</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+	</extension>
+</addon>
+
+	<addon
+        id="repository.imaxpo"
+        name="iMaxpo's Repository"
+        version="1.4.4"
+        provider-name="iMaxpo">
+		<extension point="xbmc.addon.repository" name="iMaxpo's addon repository">
+			<info compressed="false">https://raw.github.com/luftreich/imaxpo.xbmc/master/addons.xml</info>
+			<checksum>https://raw.github.com/luftreich/imaxpo.xbmc/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.github.com/luftreich/imaxpo.xbmc/master/plugin_zips</datadir>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en">iMaxpo's Addon Repository</summary>
+            <description lang="en">[COLOR red]If automatic update failed !!! Please download and install the newest repository ZIP file from https://github.com/luftreich/imaxpo.xbmc/[CR]tree/master/plugin_zips/repository.imaxpo/[/COLOR]</description>
+            <disclaimer lang="en">For bugs, requests or general questions contact iMaxpo on the iMaxpo forum.</disclaimer>
+            <platform>all</platform>
+			<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+            <language>en</language>
+            <forum>http://www.imaxpo.com/forums/</forum>
+            <website>http://www.imaxpo.com/</website>
+            <email></email>
+            <source>https://raw.github.com/luftreich/imaxpo.xbmc/master/repository.imaxpo</source>
+		</extension>
+	</addon>
+
+<addon id="repository.jsergio" name="jsergio repo" version="1.0.2" provider-name="jsergio">
+	<extension point="xbmc.addon.repository" name="jsergio repo">
+        <dir>
+	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	    </dir>
+        <info compressed="false">https://offshoregit.com/jsergio123/addons.xml</info>
+        <checksum>https://offshoregit.com/jsergio123/addons.xml.md5</checksum>
+        <datadir zip="true">https://offshoregit.com/jsergio123/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo for jsergio Add-ons</summary>
+		<description>Repo for jsergio Add-ons</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+    <addon id="repository.kaosbox2" name="KAOSbox Repo" version="3.0.1" provider-name="KAOSbox">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="KAOSbox Repo">
+            <info compressed="false">https://offshoregit.com/kaosbox/addons.xml</info>
+            <checksum>https://offshoregit.com/kaosbox/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/kaosbox/zips/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>Official New Repo for the KAOSbox (www.kaosbox.tv)</summary>
+            <description>Download and install addons for the KAOSbox (www.kaosbox.tv)</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="repository.Kinkin" name="Kinkins REPO" version="1.4" provider-name="Kinkin">
+	<extension point="xbmc.addon.repository" name="Kinkin Addon Repository">
+		<info compressed="false">https://offshoregit.com/kinkin-xbmc-repository/addons.xml</info>
+		<checksum>https://offshoregit.com/kinkin-xbmc-repository/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/kinkin-xbmc-repository/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Kinkins Addons</summary>
+		<description>Install addons by Kinkin</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.0" provider-name="KodiTips.com">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="KodiTips.com Repository">
+            <info compressed="false">https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/koditips/repo/master/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>KodiTips.com Repo</summary>
+            <description>Visit KodiTips.com for the latest Kodi tips, tricks, news and information.</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="repository.livetvSerbia" name="Live TV Serbia Repository" version="1.1" provider-name="livetvSerbia">
+	<extension point="xbmc.addon.repository" name="Live TV Serbia Repository">
+
+
+            <info compressed="false">http://livetvkodiserbia.com/addonxml/addons.xml</info>
+            <checksum>http://livetvkodiserbia.com/addonxml/addons.xml.md5</checksum>
+            <datadir zip="true">http://livetvkodiserbia.com/kodi/zips/</datadir>
+
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Watch IPTV channels from Balkan</summary>
+		<description>Watch IPTV channels from Balkan. For more info visit our FB page @ facebook.com/kodisrbija</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.17" provider-name="Goliath">
+	<extension point="xbmc.addon.repository" name="Goliaths Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from Goliath</summary>
+		<description>Download and install Add-ons from Goliaths repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.2" provider-name="Mucky Duck">
+	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
+		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Mucky Ducks Repo</summary>
+		<description>Download And Install Addons Developed By Mucky Duck And Various Other Developers </description>
+		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.1" provider-name="MetalKettle">
+	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://offshoregit.com/metalkettle/addons.xml</info>
+		<checksum>http://offshoregit.com/metalkettle/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/metalkettle/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install my Addons</summary>
+		<description>Download and install addons from MetalKettle</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.movies" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" version="1.4" provider-name="a">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>repository</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+	<disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.nhlstreams" name="[COLOR red]NHL Streams[/COLOR] Repo" version="1.0.0" provider-name="iCanuck">
+	<extension point="xbmc.addon.repository" name="NHL Streams Repository">
+       <info>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml</info>
+       <checksum>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml.md5</checksum>
+       <datadir zip="true">https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>NHL Streams</summary>
+		<description>NHL Streams</description>
+		<platform>all</platform>
+		<forum>https://forums.tvaddons.ag/live-sports-on-kodi/44271-nhl-streams.html#post349799</forum>
+		<website>https://www.tvaddons.ag/</website>
+	</extension>
+</addon>
+
 <addon id="repository.tdbaddon" name="TDB REPO" version="1000" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
