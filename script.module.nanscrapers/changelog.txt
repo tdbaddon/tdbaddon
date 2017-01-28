@@ -1,0 +1,48 @@
+v0.5.10
+- fix 123movie scraper (thx to md's code for inspiration)
+
+v0.5.9
+- disabled cyberreel and watchseries for now (massive slowdown)
+- disabled yabanci scraper for now (site down)
+- add baseurl settings for some scrapers
+- disabled genvideo scraper (links on site down)
+- fixed scrapers
+- expanded the search capabilities of some scrapers
+
+v0.5.8
+- disabled watch5s for now
+- small bugfix
+
+v0.5.7
+- fixed scrapers
+- added cloudflare module
+- added more scrapers (thanks origin)
+- fixed other small bugs
+
+
+v0.5.6
+added sort function to with_dialog functions
+updated proxy-site list
+
+v0.5.5
+updated cartoon scrapers
+added ability to exlude scrapers
+
+v0.5.4
+added scrapers (thanks origin for some of them)
+added with dialog functions
+changed episode scrape function signature
+
+v0.5.3
+fixed error in title handling
+
+v0.5.2
+fixed scrapers
+added onemusic
+
+v0.5.1
+added watchfree scraper
+small change to primewire scraper
+
+v0.5.0
+beta release, here be dragons
