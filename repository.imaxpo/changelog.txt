@@ -1,2 +1,0 @@
-Version information can be found on:
-https://github.com/luftreich/imaxpo.xbmc.git

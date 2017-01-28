@@ -1,4 +1,0 @@
-v1.0.4 fixed issue with addon not importing jsunpack
-v1.0.0
-Initial Release
-
