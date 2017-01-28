@@ -3186,6 +3186,121 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.shani" name="Shanis Addon Repository" version="2.9" provider-name="Shani">
+	<extension point="xbmc.addon.repository" name="Shanis Addon Repository">
+        <dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+
+    <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
+    <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
+    <datadir zip="true">https://offshoregit.com/Shani-08/main/zips</datadir>
+
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Addons related to XBMC for Zemtv etc</summary>
+		<description>Go though the plugins and see what you like</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.shiny" name="Shiny's Repo" version="1.4" provider-name="ImReallyShiny">
+	<extension point="xbmc.addon.repository" name="Shiny's Repo">
+		<info compressed="false">https://offshoregit.com/Shiny/data.xml</info>
+		<checksum>https://offshoregit.com/Shiny/data.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/Shiny/data/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Shiny's Repo</summary>
+		<description>Install all my Addon's with ease! Keep installed to automatically update installed Add-Ons!</description>
+		<platform>all</platform>
+		<license>GPLv3</license>
+		<website>https://imreallyshiny.github.io/Kodi-Repo</website>
+		<source>http://github.com/ImReallyShiny/Kodi-Repo</source>
+	</extension>
+</addon>
+
+<addon id="repository.simplycaz" name="Simply Caz Repo" version="1.0.1" provider-name="Simply Caz | CazWall.com">
+	<extension point="xbmc.addon.repository" name="Simply Caz Repo">
+		<info compressed="false">http://repo.cazwall.com/repofiles/Plugins/addons.xml</info>
+		<checksum>http://repo.cazwall.com/repofiles/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.cazwall.com/repofiles/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Simply Caz YouTube</summary>
+		<description>
+
+		 CazWall.com | Kodi, Tech and More! Please Subscribe to "Simply Caz" and "Caz Wallace" or follow me on Twitter/IG/Snapchat: @Caz_Wallace Facebook Page: Caz Wallace."Peace in Caribbean, Peace in the Middle East, to God be the Glory!"
+
+		</description>
+
+		<platform>all</platform>
+	</extension>
+</addon>
+
+    <addon id="repository.skymashitv" name="SkymashiTV Repo" version="0.2" provider-name="Skymashi">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="SkymashiTV Repo">
+            <info compressed="false">https://skymashi.eu/_repo/addons.xml</info>
+            <checksum>https://skymashi.eu/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://skymashi.eu/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>SkymashiTV Repository</summary>
+            <description>SkymashiTV Repository for our Addons and Builds</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="repository.StreamArmy" name="Stream Army" version="1.0" provider-name="Nemzzy / MancSteven / DoomsdayPrep / Silent Partner">
+	<extension point="xbmc.addon.repository" name="Stream Army">
+		<info compressed="false">http://www.streamarmy.uk/Plugins/addons.xml</info>
+		<checksum>http://www.streamarmy.uk/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.streamarmy.uk/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Stream Army Repo</summary>
+		<description>Repo For Stream Army, Who Streams Wins bought to you by @Nemzzy668 /  @_MANC_  / @DoomsdayPr3p / Silent Partner</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.0" provider-name="sClarke">
+	<extension point="xbmc.addon.repository" name="StreamHub Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://mkodi.co.uk/streamhub/repofiles/addons.xml</info>
+		<checksum>http://mkodi.co.uk/streamhub/repofiles/addons.xml.md5</checksum>
+		<datadir zip="true">http://mkodi.co.uk/streamhub/repofiles/Zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>MediaHub Repo</summary>
+		<description>Bringing you the MediaHub Addons.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
+<extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
+		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
+		<checksum>http://repo.streamteam.space/plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.streamteam.space/plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Streamteam Repository v1.4</summary>
+		<description>The Streamteam Repository v1.4 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.tdbaddon" name="TDB REPO" version="1000" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
@@ -3220,6 +3335,34 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary></summary>
 		<description>Wisely choose you Must!</description>
 		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.teammaniac" name="   [COLOR yellow][B]Team[/COLOR] [COLOR red]ManiaC[/B] Repository[/COLOR]" version="1.0.2" provider-name="[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR]">
+	<extension point="xbmc.addon.repository" name="Demonstration Add-on Repository">
+		<info compressed="false">http://raw.github.com/AMObox/teammaniac/master/addons.xml</info>
+		<checksum>http://raw.github.com/AMObox/teammaniac/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/AMObox/teammaniac/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Team Maniac Addons</summary>
+		<description>Team Maniac Installer</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.thec0de" name="gr33ksRepo" version="1.0.0" provider-name="Gr33k">
+	<extension point="xbmc.addon.repository" name="c0de Repo">
+       <info>http://kodi.thec0de.com/kodi.git/addons.xml</info>
+       <checksum>http://kodi.thec0de.com/kodi.git/addons.xml.md5</checksum>
+       <datadir zip="true">http://kodi.thec0de.com/kodi.git/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>thec0de Repo</summary>
+		<description>Download and Install The BEST Add-Ons for Kodi out there!</description>
+		<disclaimer>I made none of these - Just repost from Kodi Forums - Use at your own discretion. I am not responsible for what you do with this stuff.</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>

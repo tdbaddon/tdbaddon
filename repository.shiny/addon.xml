@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.shiny" name="Shiny's Repo" version="1.4" provider-name="ImReallyShiny">
+	<extension point="xbmc.addon.repository" name="Shiny's Repo">
+		<info compressed="false">https://offshoregit.com/Shiny/data.xml</info>
+		<checksum>https://offshoregit.com/Shiny/data.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/Shiny/data/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Shiny's Repo</summary>
+		<description>Install all my Addon's with ease! Keep installed to automatically update installed Add-Ons!</description>
+		<platform>all</platform>
+		<license>GPLv3</license>
+		<website>https://imreallyshiny.github.io/Kodi-Repo</website>
+		<source>http://github.com/ImReallyShiny/Kodi-Repo</source>
+	</extension>
+</addon>
