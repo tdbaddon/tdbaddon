@@ -1,0 +1,11 @@
+<settings>
+	<category label="General">
+		<setting type="lsep" label="Adult Section"/>
+		<setting id="enable_adult_section" type="bool" label="Enable Adult Section (by enabling, you confirm you are 18+)" default="false" />
+		<setting type="lsep" label="TVA Log Uploader"/>
+ 		<setting id="upload_log" label="Upload Log File" type="action" action="RunScript(&quot;script.tvaddons.debug.log&quot;)" option="close"/>
+		<setting type="lsep" label="[CR]If you don't already have it, make sure you install the TVA Log Uploader"/>
+		<setting type="lsep" label="[CR]and configure your email address in the settings"/>
+		<setting type="lsep" label=""/>
+	</category>
+</settings>

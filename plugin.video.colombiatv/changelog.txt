@@ -1,0 +1,75 @@
+[B] Version 1.3.7 [/B]
+- Update hqq support
+- Update copyleft notice
+- Add eb.info support
+
+[B] Version 1.3.6 [/B]
+- Added brightcove referal support
+- Add backup URL and gist support
+- Update copyleft notice
+- Update hqq support
+
+[B] Version 1.3.5 [/B]
+- Added random nowlive.xyz support
+- Added Kodi v17 support
+- Gist hosting support
+
+[B] Version 1.3.4 [/B]
+- Update lw.ml support
+- Added random SSH101 support
+
+[B] Version 1.3.3 [/B]
+- Added HQQ support
+- Colombia Play Services
+- Invert changelog for fast tracking
+
+[B] Version 1.3.2 [/B]
+- Added pxstream.tv support
+- Added zony.tv support
+
+[B] Version 1.3.1 [/B]
+- Update caston support
+- Added janjua support
+- Added lw.ml support
+
+[B] Version 1.3.0 [/B]
+- Modify fog support
+
+[B] Version 1.2.0 [/B]
+- Unify mips, streamify and liveflash support
+- Modify fog support
+
+[B] Version 1.1.0 [/B]
+- Added mipsplayer support
+
+[B] Version 1.0.1 [/B]
+- Initial release.
+- You can see all UNE TV channels
+
+[B] Version 1.0.2 [/B]
+- Added more channels
+
+[B] Version 1.0.3 [/B]
+- Added more channels
+- Update channels images
+
+[B] Version 1.0.4 [/B]
+- Added FIFA World Cup 2014 Streaming
+
+[B] Version 1.0.5 [/B]
+- Added links outside tvune.
+- Added Caracol HD, RCN HD and WinSports Online.
+
+[B] Version 1.0.6 [/B]
+- Added Website parsers
+
+[B] Version 1.0.7 [/B]
+- Added fog website parser
+
+[B] Version 1.0.8 [/B]
+- Added p2pcast.tech support
+
+[B] Version 1.0.9 [/B]
+- Added caston.tv support
+
+

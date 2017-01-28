@@ -543,4 +543,561 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <platform>all</platform>
   </extension>
 </addon>
+
+<!--suppress ALL -->
+<addon id="plugin.video.1channel" version="2.5.77" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver" version="3.0"/>
+        <import addon="script.module.addon.common" version="2.0.0" />
+        <import addon="script.module.metahandler" version="2.6.0" />
+        <import addon="script.module.myconnpy" version="1.1.6" />
+        <import addon="script.module.axel.downloader" version="0.2.0" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup">
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Browse 1channel.ch</summary>
+        <description>Play a wide selection of movies and TV shows from PrimeWire.ag.
+***This addon is supported at [COLOR blue]www.tvaddons.ag[/COLOR], [COLOR white][B]NOT[/B][/COLOR] [COLOR red]xbmc.org[/COLOR]. ***
+        </description>
+        <platform>all</platform>
+        <website>http://tvaddons.ag/</website>
+		<forum>http://forums.tvaddons.ag/forums/32-BSTRDSMKR-S-REPOSITORY</forum>
+    </extension>
+</addon>
+
+<addon id="plugin.video.80smusicvideos" name="80s Music Videos" version="1.0.4" provider-name="spoyser">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>80s Music Videos</summary>
+    <description lang="en">Over 1,000 classic music videos from the 1980's and 1990's.</description>
+     <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.5" provider-name="Aftershock">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="repository.aftershock" version="2.0.1"/>
+        <import addon="script.aftershock.artwork" version="1.3.0"/>
+        <import addon="script.module.urlresolver"  version="3.0.21"/>
+		<import addon="script.module.metahandler"  version="1.0.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.aftershocknow.guide" version="1.0.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
+    <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
+    <disclaimer lang="en">The content provided in this application is available free on public domain. We do not host any content. We are just providing the way to stream and all content is the copyright of their owner. The author does not have any affiliation with the content providers.</disclaimer>
+    <platform>all</platform>
+    <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
+	<website>http://www.facebook.com/aftershockpy</website>
+  </extension>
+</addon>
+
+<addon id="plugin.video.BES-IPTV"
+       name="BES-IPTV"
+       version="3.1.8"
+       provider-name="SayDinX.F.BESA">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.module.simple.downloader" version="0.9.4"/>
+        <import addon="script.module.beautifulsoup4" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.httplib2" />
+		<import addon="script.module.liveresolver" optional="true"/>
+        <import addon="script.module.youtube.dl" optional="true"/>
+        <import addon="plugin.video.youtube" />
+        <import addon="script.module.urlresolver" optional="true"/>
+        <import addon="script.module.simplejson" />
+		<import addon="script.module.livestreamer" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary>[COLOR red]BES[/COLOR][COLOR blue] IPTV[/COLOR] -brought to you by: S.X  </summary>
+    <description>
+        1.For questions about BES-IPTV visit us @ FB.com/BESiptv
+        2.Disclaimer: This add-on is made for personal use only. DMCA Reports, Please send to FB.COM/BESiptv.
+    </description>
+    <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="plugin.video.bob" name="Bob" version="1.3.4" provider-name="Team Bob">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.mrknow.urlresolver" version="2016.10.30.2" />
+		<import addon="script.module.liveresolver" version="0.1.47" />
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.requests" version="2.9.1" />
+		<import addon="script.module.nanscrapers" version="0.5.5" />
+		<import addon="script.module.addon.common" version="2.0.0" />
+		<!--<import addon="script.video.F4mProxy" version="2.6.4" />-->
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video audio</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Bob</summary>
+		<description lang="en">Bob - Unrestricted. I Am Not A Dev... I Am Bob</description>
+		<platform>all</platform>
+		<forum>http://noobsandnerds.com/support</forum>
+		<website>www.noobsandnerds.com</website>
+		<news></news>
+		<ref>35c3c72734f09f1136e9493e9d91c57f</ref>
+		<video_guide>y0w8zIH4lOY</video_guide>
+		<video_preview>WdKIzajiBBI</video_preview>
+	</extension>
+</addon>
+
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.24" provider-name="MetalKettle">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.urlresolver"  version="0.0.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.8" provider-name="natko1412">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.requests"  />
+    	<import addon="script.module.addon.common" />
+		<import addon="script.module.urlresolver" />
+		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.livestreamer" />
+
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Just a castaway.</summary>
+		<description lang="en">Visit TVADDONS.ag for support.
+		</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.cbsnews_com" name="CBSnews.com" version="2.1.2" provider-name="AddonScriptorDE">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Various news and shows (60 Minutes, 48 Hours, ...)</summary>
+        <language>en</language>
+        <description lang="en">Various news and shows (60 Minutes, 48 Hours, ...)</description>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <source>https://github.com/AddonScriptorDE/plugin.video.cbsnews_com</source>
+        <forum>http://forum.xbmc.org/showthread.php?tid=136416</forum>
+        <email>AddonScriptorDE at yahoo dot de</email>
+        <website>http://www.cbsnews.com/videos</website>
+    </extension>
+</addon>
+
+<addon id="plugin.video.ccloudtv"
+       name="cCloud TV"
+       version="1.5.1"
+       provider-name="podgod, Coder Alpha">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver"  version="3.0.0" optional="true"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.simplejson" version="2.0.10"/>
+    <import addon="repository.podgod" />
+    <import addon="script.tvaddons.debug.log" optional="true" />
+</requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>All the best from cCloud TV</summary>
+    <description>cCloud is an open source cloud based social IPTV service. It is built by the community for the community, where streaming is just a click away. Just click, play and stream. Yes, it's that simple. Just go to [COLOR blue]http://ccloudtv.org[/COLOR] and enjoy:) Please report any channels that are down here [COLOR blue]http://www.tiny.cc/reportchs[/COLOR] Users can now check servers status which can be found at [COLOR blue]http://ccloudtv.org/status[/COLOR]
+    </description>
+	<license>http://www.gnu.org/licenses/</license>
+    <forum>http://ccloudtv.org/forum</forum>
+    <website>http://ccloudtv.org</website>
+    <website>http://facebook.com/ccloudapp</website>
+    <website>http://twitter.com/ccloudapp</website>
+    <email></email>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.colombiatv"
+       name="ColombiaTV"
+       version="1.3.7"
+       provider-name="Wiiego">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.1" />
+    <import addon="script.module.parsedom" version="2.5.1" />
+    <import addon="script.module.simple.downloader" version="0.9.4" />
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.urlresolver" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">ColombiaTV</summary>
+    <description lang="en">ColombiaTV is the best addon to watch the main TV Channels and shows from Colombia</description>
+    <description lang="es">ColombiaTV es el mejor addon para ver los principales canales y programas de Televisión de Colombia</description>
+  </extension>
+</addon>
+
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.5" provider-name="natko1412">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.youtube.dl" version="15.318.0"/>
+		<import addon="script.module.requests"  />
+    	<import addon="script.module.addon.common" />
+		<import addon="script.module.urlresolver" />
+		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+
+
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Croatia On Demand</summary>
+
+		<description lang="en">Visit TVADDONS.ag for support.
+		</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.cuba-tv"
+       name="CUBA-TV"
+       version="0.0.8"
+       provider-name="Alex Lopez Rodriguez">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="5.2.1"/>
+    <import addon="script.module.urlresolver" version="3.0.23"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>JalexFILMS presenta CUBA-TV Creado por Alex Lopez Rodriguez Espero disfruten el contenido¡¡¡</summary>
+    <description>
+        Este Addon esta creado con el objetivo de llevar contenido a los cubanos que se encuentran fuera de la isla y a todos los latinos "la cultura cubana es de dominio publico no pertenece a ningun gobierno es del pueblo y para el pueblo"Saludos a todos¡¡¡
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.DecadoDocs" name="Decado Documentaries" version="1.0.2" provider-name="MetalKettle">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.disclose_tv" name="Disclose.tv" version="0.1.8" provider-name="Sphere | Spinalcracker">
+  <requires>
+    <import addon="xbmc.python" version="2.24.0"/>
+	<import addon="plugin.video.youtube" version="5.2.1"/>
+    <import addon="script.module.xbmcswift2" version="1.3.0"/>
+    <import addon="script.module.simplejson" version="2.0.10"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <language></language>
+    <platform>all</platform>
+    <website>http://www.disclose.tv/</website>
+    <source>https://github.com/Spinalcracker/repo-plugins/tree/jarvis/plugin.video.disclose_tv</source>
+    <forum>http://forum.xbmc.org/showthread.php?tid=147831</forum>
+    <email>spinal.11@gmail.com</email>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <summary lang="ar">لقد كُشِفَت الحقيقه</summary>
+    <summary lang="be">TRUTH REVEALED</summary>
+    <summary lang="ca">LA VERITAT REVELADA</summary>
+    <summary lang="da">SANDHEDEN AFSLØRET</summary>
+    <summary lang="de">TRUTH REVEALED</summary>
+    <summary lang="el">ΑΠΟΚΑΛΥΨΗ ΤΗΣ ΑΛΗΘΕΙΑΣ</summary>
+    <summary lang="en">TRUTH REVEALED</summary>
+    <summary lang="en_NZ">TRUTH REVEALED</summary>
+    <summary lang="es">LA VERDAD REVELADA</summary>
+    <summary lang="es_AR">REVELACION</summary>
+    <summary lang="fa_IR">حقیقت نشان داده</summary>
+    <summary lang="fr">LA VÉRITÉ REVELÉE</summary>
+    <summary lang="fr_CA">LA VÉRITÉ DÉVOILÉE</summary>
+    <summary lang="gl">A VERDADE REVELADA</summary>
+    <summary lang="he">האמת נחשפה</summary>
+    <summary lang="hi">सच को खोज लिया गया </summary>
+    <summary lang="hr">ISTINA OSLOBAĐA</summary>
+    <summary lang="hu">A FELFEDETT IGAZSÁG</summary>
+    <summary lang="it">Verità Svelata</summary>
+    <summary lang="ko">진실은 밝혀진다</summary>
+    <summary lang="nl">WAARHEID GEOPENBAARD</summary>
+    <summary lang="pl">PRAWDA ZOSTAŁA UJAWNIONA</summary>
+    <summary lang="pt">A VERDADE REVELADA</summary>
+    <summary lang="pt_BR">VERDADE REVELADA</summary>
+    <summary lang="sk">Odhalená pravda</summary>
+    <summary lang="sv">SANNINGEN AVSLÖJAD</summary>
+    <summary lang="zh">真相揭晓</summary>
+    <description lang="ar">اضخم شبكه أخبار بديله عن الاجسام الغريبه، الأسرار القديمه، المؤامرات، أسرار النظام العالمى الجديد الذى يحاولون فرضه علينا. والمزيد !</description>
+    <description lang="be">Largest multimedia hub and alternative news website about UFO Videos, Ancient Mysteries, Conspiracy Theories, Top Secrets, N.W.O. + more!</description>
+    <description lang="ca">El major centre multimèdia i lloc web de notícies alternatives sobre Vídeos d'Ovnis, Misteris Antics, Teories de la Conspiració, Alt Secrets, N.W.O. i Més!</description>
+    <description lang="da">Den største multimediehub og webside med alternative nyheder om UFO-videoer, ældgamle mysterier, konspirationsteorier, tophemmeligt, N.W.O. + mere!</description>
+    <description lang="de">Größte Internet-Nachrichtenseite über UFO Videos, Verschwörungstheorien, Top Secrets, N.W.O. und mehr!</description>
+    <description lang="el">Η μεγαλύτερη πηγή εναλλακτικών πληροφοριών σχετικά με βίντεο ΑΤΙΑ (UFO), Αρχαία Μυστήρια, Θεωρίες Συνωμοσίας, Απόρρητα Μυστικά, Νέα Τάξη Πραγμάτων + πολλά άλλα!</description>
+    <description lang="en">Largest multimedia hub and alternative news website about UFO Videos, Ancient Mysteries, Conspiracy Theories, Top Secrets, N.W.O. + more!</description>
+    <description lang="en_NZ">Largest multimedia hub and alternative news website about UFO Videos, Ancient Mysteries, Conspiracy Theories, Top Secrets, N.W.O. + more!</description>
+    <description lang="es">El mayor centro multimedia y sitio web de noticias alternativas sobre Videos de OVNIs, Misterios Antiguos, Teorías de la Conspiración, Altos Secretos, N.O.M. y más!</description>
+    <description lang="es_AR">El mayor centro multimedia y de noticias alternativas con de videos de OVNIS, misterios antiguos, teorias conspirativas, secretos absolutos, Nuevo Orden Mundial y mas! </description>
+    <description lang="fa_IR">بزرگترین مرکز چند رسانه ای و وب سایت خبری در مورد جایگزین UFO ویدئو ها، اسرار باستانی، تئوری های توطئه، اسرار بالا، NWO + بیشتر!</description>
+    <description lang="fr">Le plus grand hub multimédia et site web alternatif à propos des Vidéos d'OVNIS, de Mystères Anciens, de Théories du Complot, Top Secrets, N.W.O. et plus encore ! </description>
+    <description lang="fr_CA">Le plus grand centre multimédia et site Web de nouvelles alternatives sur les vidéos d'OVNI, les mystères antiques, les théories du complot, les grands secrets, nouvel ordre mondial + plus!</description>
+    <description lang="gl">O maior centro multimedia e sitio web en canto a novas sobre vídeos de OVNIS, Misterios Antigos, Teorías da Conspiración, Top Secrets, Novo Orde Mundial e máis!</description>
+    <description lang="he">פורטל המולטימדיה ואתר חדשות האלטרנטיביות הגדול ביותר בנושא סרטוני עב"מים, תעלומות עתיקות, תיאוריות קונספירציה, מידע מסווג, סדר עולם חדש ועוד!</description>
+    <description lang="hr">Najveće multimedijalno čvorište i stranica sa alternativnim vijestima o UFO video snimkama, drevnim misterijima, teorijama urota, najstrožim tajnama, Novi svjetski poredak i još mnogo toga!</description>
+    <description lang="hu">A legnagyobb multimédia központ és alternatív hírportál UFÓ-videókról, ősi rejtélyekről, összeesküvés-elméletekről, a legsötétebb titkokról, az új világrendről és még sok másról!</description>
+    <description lang="it">Grande hub multimediale e nuovo sito alternativo per Video su UFO, Antichi Misteri, Teorie della Cospirazione, Segreti, N.W.O. e molto di più.</description>
+    <description lang="ko">UFO 비디오, 고대 미스테리, 음모론, 극비, N.W.O 등에 대한 최대의 멀티미디어 허브이며 대안적 뉴스 웹사이트.</description>
+    <description lang="nl">Grootste multimedia hub en alternatieve nieuws website over UFO Video's, Eeuwenoude Mysteries, Complottheorieën, Top geheimen, N.W.O en meer!</description>
+    <description lang="pl">Największy hub z multimediami i alternatywnymi doniesieniami o UFO, starożytnych tajemnicach, teoriach spiskowych, ściśle tajnuch, N.W.O.i więcej!</description>
+    <description lang="pt">O maior depósito de conteúdos multimédia e notícias alternativas sobre vídeos de OVNIS, mistérios da antiguidade, teorias da conspiração, informação confidencial, nova ordem mundial, e ainda mais!</description>
+    <description lang="pt_BR">Maior central multimídia e site de notícias alternativas sobre vídeos de OVNI, Mistérios Ancestrais, Teorias da Conspiração, Ultra-segredos, Nova Ordem Mundial e mais!</description>
+    <description lang="sk">Najväčšie centrum multimédií a alternatívnych správ o UFO videách, starovekých mystériách, konšpiračných teóriách, prísne tajnom, Novom svetovom poriadku a inom!</description>
+    <description lang="sv">Största mediahubben och alternativa nyhetssidan om UFO´n, gamla mysterier, konspirationsteorier, topphemligheter, N.W.O. plus mycket mera! </description>
+    <description lang="zh">最大的多媒体中心和另类新闻网站，包括UFO视频、历史之谜、阴谋论、最高机密、N.W.O. 和更多内容！</description>
+  </extension>
+</addon>
+
+<addon id="plugin.video.einthusan"
+       name="Einthusan"
+       version="1.3.3"
+       provider-name="humla">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.t0mm0.common" version="1.0.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>Watch Hindi, Tamil  movies</summary>
+        <description>This XBMC plugin allows to watch Hindi and Tamil movies from Einthusan.com. Please support them.
+
+        Credits to suriya222 for the thumbnails.</description>
+    </extension>
+</addon>
+
+<addon id="plugin.video.esa" name="ESA Videos" version="1.1.0" provider-name="Jose Antonio Montes (jamontes)">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Watch the ESA videos from the ESA web site.</summary>
+        <description lang="en">The European Space Agency (ESA) is Europe’s gateway to space. Its mission is to shape the development of Europe’s space capability and ensure that investment in space continues to deliver benefits to the citizens of Europe and the world.[CR]This plugin allows to watch directly the ESA videos from your XBMC.[CR]More than 1500 videos are available.</description>
+        <summary lang="cs">ESA videa.</summary>
+        <description lang="cs">Evropská Kosmická Agentura (ESA) je v Evropě brána do vesmíru. Jejím posláním je utvářet vývoj vesmírných schopností Evropy a zajistit, aby investice do vesmíru i nadále přinášet výhody pro občany Evropy a světa.[CR]Tento modul umožňuje sledovat přímo v ESA videa z Vašeho XBMC.[CR]Více než 1500 videa jsou k dispozici.</description>
+        <summary lang="es">Mira los vídeos de la ESA localizados en su página web.</summary>
+        <description lang="es">La Agencia Espacial Europea (ESA) es la puerta de Europa al espacio. Su misión es impulsar el desarrollo espacial en Europa, y asegurar que las inversiones en el espacio continuan produciendo beneficios a los ciudadanos de Europa y el mundo.[CR]Este plugin te permite ver los vídeos de la ESA directamente desde tu XBMC.[CR]Hay más de 1.500 vídeos disponibles.</description>
+        <summary lang="fr">ESA vidéos.</summary>
+        <description lang="fr">L'Agence Spatiale Européenne (ESA) est la porte de l'Europe à l'espace. Sa mission consiste à façonner le développement des capacités spatiales de l'Europe et de s'assurer que les investissements dans l'espace continue d'offrir des avantages aux citoyens de l'Europe et le monde.[CR]Ce plugin permet de regarder directement les vidéos ESA à partir de votre XBMC.[CR]Plus de 1500 vidéos sont disponibles.</description>
+        <summary lang="de">ESA videos.</summary>
+        <description lang="de">Die Europäische Weltraumorganisation (ESA) ist Europas Tor zum Weltraum. Seine Mission ist es, die Entwicklung der europäischen Raum-Fähigkeit zu gestalten und sicherzustellen, dass Investitionen in die Raumfahrt weiterhin Vorteile für die Bürger Europas und der Welt.[CR]Dieses Plugin erlaubt es, direkt beobachten die ESA Videos von Ihrem XBMC.[CR]Mehr liefern als 1500 Videos stehen zur Verfügung.</description>
+        <summary lang="el">ESA βίντεο.</summary>
+        <description lang="el">Ο Ευρωπαϊκός Οργανισμός Διαστήματος (ESA) αποτελεί την πύλη της Ευρώπης στο διάστημα. Η αποστολή του είναι η διαμόρφωση της ανάπτυξης της διαστημικής ικανότητας της Ευρώπης και να εξασφαλίσει ότι οι επενδύσεις στο χώρο συνεχίζει να προσφέρει οφέλη για τους πολίτες της Ευρώπης και του κόσμου.[CR]Αυτό το plugin σας επιτρέπει να παρακολουθήσετε απευθείας τα βίντεο ESA από το XBMC σας.[CR]Περισσότερα από 1500 βίντεο είναι διαθέσιμα.</description>
+        <summary lang="it">ESA video.</summary>
+        <description lang="it">L'Agenzia Spaziale Europea (ESA) è la porta dell'Europa verso lo spazio. La sua missione è quella di plasmare lo sviluppo delle capacità spaziali europee e garantire che gli investimenti nello spazio continua a fornire benefici per i cittadini d'Europa e del mondo.[CR]Questo plugin permette di guardare direttamente i video dell'ESA dal XBMC.[CR]Altri oltre 1500 video sono disponibili.</description>
+        <summary lang="pt">ESA vídeos.</summary>
+        <description lang="pt">A Agência Espacial Europeia (ESA) é a porta de entrada da Europa ao espaço. Sua missão é moldar o desenvolvimento da capacidade espacial da Europa e assegurar que o investimento no espaço continua a trazer benefícios para os cidadãos da Europa e do mundo.[CR]Este plugin permite assistir diretamente os vídeos do ESA a partir do seu XBMC.[CR]Mais de 1500 vídeos estão disponíveis.</description>
+        <language>cs en es fr de el it pt</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+        <forum>http://forum.xbmc.org/showthread.php?tid=170058</forum>
+        <source>https://github.com/jamontes/plugin.video.esa</source>
+        <website>http://www.esa.int/ESA</website>
+    </extension>
+</addon>
+
+<addon id="plugin.video.eso" name="ESO Videos" version="1.0.6" provider-name="Jose Antonio Montes (jamontes)">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Watch the ESO videos from the ESO web site.</summary>
+        <description lang="en">ESO, the European Southern Observatory, is the foremost intergovernmental astronomy organisation in Europe and the world's most productive astronomical observatory.[CR]This plugin allows to watch directly the ESO videos from your XBMC.[CR]More than 2000 videos are available.[CR]Don't forget to choose your preferred subtitle language from System=>Appearance=>International=>Preferred Subtitle language.</description>
+        <summary lang="cs">ESO videa.</summary>
+        <description lang="cs">ESO, Evropská jižní observatoř, je nejvýznamnější mezivládní astronomická organizace v Evropě a nejproduktivnější astronomická observatoř na světě.[CR]Tento modul umožňuje sledovat přímo v ESO videa z Vašeho XBMC.[CR]Více než 2000 videa jsou k dispozici.[CR]Nezapomeňte si vybrat preferovaný jazyk titulků z jazyka systému=>Vzhled=>International=>Preferovaný titulků.</description>
+        <summary lang="es">Mira los vídeos de la ESO localizados en su página web.</summary>
+        <description lang="es">ESO, el Observatorio Europeo Austral, es la principal organización astronómica intergubernamental en Europa y el observatorio astronómico más productivo del mundo.[CR]Este plugin te permite ver los vídeos de la ESO directamente desde tu XBMC.[CR]Hay más de 2.000 vídeos disponibles.[CR]No te olvides de elegir tu idioma preferido para los subtítulos en Sistema=>Apariencia=>Internacional=>Idioma de subtitulos preferido.</description>
+        <summary lang="fr">ESO vidéos.</summary>
+        <description lang="fr">L’ESO – l’Observatoire Européen Austral – est la première organisation intergouvernementale pour l’astronomie en Europe et l’observatoire astronomique le plus productif au monde.[CR]Ce plugin permet de regarder directement les vidéos ESO à partir de votre XBMC.[CR]Plus de 2000 vidéos sont disponibles.[CR]Ne oubliez pas de choisir votre langue préferée pour le sous-titres sur Système=>Apparence=>Région=>Langue préférée pour les sous-titres.</description>
+        <summary lang="de">ESO videos.</summary>
+        <description lang="de">Die Europäische Südsternwarte (engl. European Southern Observatory, kurz ESO) ist die führende europäische Organisation für astronomische Forschung und das wissenschaftlich produktivste Observatorium der Welt.[CR]Dieses Plugin erlaubt es, direkt beobachten die ESO Videos von Ihrem XBMC.[CR]Mehr liefern als 2000 Videos stehen zur Verfügung.[CR]Vergessen Sie nicht, Ihre bevorzugte Untertitelsprache aus System=>Darstellung=>International=>Bevorzugte Untertitelsprache zu wählen.</description>
+        <summary lang="it">ESO video.</summary>
+        <description lang="it">L'ESO (European Southern Observatory) è la principale organizzazione intergovernativa di Astronomia in Europa e l'osservatorio astronomico più produttivo al mondo.[CR]Questo plugin permette di guardare direttamente i video dell'ESO dal XBMC.[CR]Altri oltre 2000 video sono disponibili.[CR]Non dimenticare di scegliere la lingua dei sottotitoli preferita del Sistema=>Aspetto=>Internazionale=>Lingua preferita per i sottotitoli.</description>
+        <summary lang="pt">ESO vídeos.</summary>
+        <description lang="pt">O ESO, o Observatório Europeu do Sul, é a mais importante organização europeia intergovernamental para a investigação/pesquisas em Astronomia e é o observatório astronómico mais produtivo do mundo.[CR]Este plugin permite assistir diretamente os vídeos do ESO a partir do seu XBMC.[CR]Mais de 2000 vídeos estão disponíveis.[CR]Não se esqueça de escolher o idioma de legenda preferido do Sistema=>Aparência=>Internacional=>Seleccionados Legenda.</description>
+        <language>cs en es fr de it pt</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+        <forum>http://forum.xbmc.org/showthread.php?tid=186024</forum>
+        <source>https://github.com/jamontes/plugin.video.eso</source>
+        <website>http://www.eso.org/</website>
+    </extension>
+</addon>
+
+<addon id="plugin.video.euronews.com" version="1.0.0" name="Euronews" provider-name="lambda">
+	<requires>
+		<import addon="xbmc.python" version="2.24.0" />
+		<import addon="script.module.lamlib" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Euronews addon for Kodi</summary>
+		<description lang="en">Euronews, the most watched news channel in Europe, covers international news in various languages.[CR]With 400 journalists from more than 30 nationalities, Euronews offers a unique, independent and totally impartial perspective on world events.[CR]Available languages: English, French, German, Greek, Hungarian, Italian, Portuguese, Russian, Spanish, Turkish and Ukrainian</description>
+		<disclaimer lang="en">This addon is not published nor endorsed by euronews.com</disclaimer>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<source>https://github.com/lambda81/plugin.video.euronews.com</source>
+		<website>http://www.euronews.com/</website>
+		<platform>all</platform>
+		<language></language>
+		<forum></forum>
+		<email></email>
+	</extension>
+</addon>
+
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.12" provider-name="Team Evolve">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="0.0.1"/>
+    <import addon="script.module.urlresolver"  version="0.0.1"/>
+    <import addon="script.module.liveresolver" version="0.0.1"/>
+    <import addon="script.common.plugin.cache" version="0.0.1"/>
+    <import addon="repository.metalkettle" version="0.0.1"/>
+    <import addon="repository.shani" version="0.0.1"/>
+
+    <import addon="script.module.metahandler" version="0.0.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">The Home Of Evolve Add-on Where You Can Discover Great Playlists</summary>
+    <description lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.exodus" version="3.0.0" name="Exodus" provider-name="Exodus">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="repository.exodus" version="1.0.0" />
+		<import addon="script.exodus.artwork" version="1.0.4" />
+		<import addon="script.exodus.metadata" version="1.0.0" />
+		<import addon="script.module.urlresolver" version="3.0.0" />
+		<import addon="script.module.metahandler" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="exodus.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Exodus</summary>
+		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		<platform>all</platform>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+		</assets>
+		<news>- Re-work of provider retrieval[CR]- Re-work of stream directories[CR]- Re-work of stream resolving[CR]- Fixed issues with various modules[CR]- Added option for localized providers[CR]- Added German providers (Viper4k)[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
+	</extension>
+</addon>
 </addons>
