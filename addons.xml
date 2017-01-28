@@ -181,35 +181,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
-	<addon
-        id="plugin.audio.raveplayer"
-        name="Rave player"
-        version="2.0.2"
-        provider-name="@TheYid009">
-		<requires>
-			<import addon="xbmc.python"             	version="2.1.0"/>
-			<import addon="xbmc.addon"              	version="12.1.0"/>
-                     <import addon="script.module.TheYid.common" version="0.1.1"/>
-                     <import addon="script.module.urlresolver"  version="2.0.9"/>
-                     <import addon="script.module.simplejson" version="3.3.0"/>
-		</requires>
-		<extension point="xbmc.python.pluginsource" library="default.py">
-			<provides>audio</provides>
-		</extension>
-		<extension point="xbmc.addon.metadata">
-			<summary lang="en">No1 for oldskool Stream 1000s and 1000s of Dj sets, mixtapes and ravepacks from over 30 sites all in one place so OiOi lets get xbmc raving to the sound of the oldskool</summary>
-			<description lang="en">Stream oldskool rave tape packs, oldskool pirate radio sets, podcasts, mixtapes and live radio audio and video streaming.[CR] Acid house, hardcore, jungle, drum n bass, house n garage, grime and much more from 1988 to present day for your raving needs and now with Rave and pirate radio Documentaries videos.... [CR] This [COLOR lime]SUPER ADDON[/COLOR] is brought to you by [COLOR blue]TheYids REPO[/COLOR][CR] [COLOR gold][B]For more info please read the changelog.txt[/B][/COLOR][CR] for downloading use Dreamcatcher you can get it from The[COLOR tan]Highways[/COLOR] REPO.. [CR][COLOR red] * [/COLOR]= work still to be done. </description>
-			<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
-			<platform>all</platform>
-			<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
-			<language>en</language>
-			<forum>www.xbmchub.com</forum>
-			<website>raveplayer</website>
-			<email>@ThYid009</email>
-			<source>TheYidsREPO</source>
-		</extension>
-	</addon>
-
 <addon id="plugin.audio.shoutcast" name="SHOUTcast 2" version="2.3.0" provider-name="Tristan Fischer (sphere@dersphere.de)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -638,20 +609,18 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.bob" name="Bob" version="1.3.6" provider-name="Team Bob">
+<addon id="plugin.video.bob" name="Bob" version="1.3.4" provider-name="Team Bob">
 	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-        <import addon="plugin.video.youtube" />
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
-	    <import addon="script.module.urlresolver" optional="true"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.mrknow.urlresolver" version="2016.10.30.2" />
+		<import addon="script.module.liveresolver" version="0.1.47" />
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
-		<import addon="script.module.requests" />
+		<import addon="script.module.requests" version="2.9.1" />
 		<import addon="script.module.nanscrapers" version="0.5.5" />
 		<import addon="script.module.addon.common" version="2.0.0" />
-		<import addon="script.module.xmltodict" version="0.9.0"/>
-        <import addon="script.module.m3u8" version="0.2.10"/>
-		<!--<import addon="script.video.F4mProxy" version="2.7.1" />-->
+		<!--<import addon="script.video.F4mProxy" version="2.6.4" />-->
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video audio</provides>
