@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.0" provider-name="sClarke">
+	<extension point="xbmc.addon.repository" name="StreamHub Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://mkodi.co.uk/streamhub/repofiles/addons.xml</info>
+		<checksum>http://mkodi.co.uk/streamhub/repofiles/addons.xml.md5</checksum>
+		<datadir zip="true">http://mkodi.co.uk/streamhub/repofiles/Zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>MediaHub Repo</summary>
+		<description>Bringing you the MediaHub Addons.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

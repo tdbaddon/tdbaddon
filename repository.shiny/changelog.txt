@@ -1,0 +1,14 @@
+[B]Version 1.4[/B]
+- Moved the Repo to OffShoreGit (Fusion/TVAddons.ag)
+
+[B]Version 1.3[/B]
+- Moved the Repo to Github
+
+[B]Version 1.2[/B]
+- Changed the Repo's name to "Shiny's Repo!"
+
+[B]Version 1.1[/B]
+- Changed the GitHub links username to the new Username
+
+[B]Version 1.0[/B]
+- Initial release (As "repository.pragma")
