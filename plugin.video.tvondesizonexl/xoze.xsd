@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="https://code.google.com/p/apple-tv2-xbmc/xoze/"
+	targetNamespace="https://code.google.com/p/apple-tv2-xbmc/xoze/"
+	elementFormDefault="qualified">
+
+
+	<xs:annotation>
+		<xs:documentation>XOZE is brand new well-documented MVC based XBMC
+			add-on framework.
+		</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="action-type">
+		<xs:sequence>
+			<xs:element name="move" type="tns:move-type" minOccurs="1"
+				maxOccurs="unbounded">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="move-type">
+		<xs:attribute name="module" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="function" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="view-id" type="xs:string" use="optional"></xs:attribute>
+		<xs:attribute name="redirect-id" type="xs:string" use="optional"></xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="view-type">
+		<xs:sequence>
+			<xs:element name="event" type="tns:event-type" minOccurs="0"
+				maxOccurs="unbounded">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="module" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="function" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="event-type">
+		<xs:attribute name="intent" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="control-id" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="module" type="xs:string" use="optional"></xs:attribute>
+		<xs:attribute name="function" type="xs:string" use="optional"></xs:attribute>
+		<xs:attribute name="action-id" type="xs:string" use="optional"></xs:attribute>
+	</xs:complexType>
+
+	<xs:element name="actions" type="tns:actions-type"></xs:element>
+
+	<xs:complexType name="actions-type" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="action" type="tns:action-type">
+			</xs:element>
+			<xs:element name="service" type="tns:service-type"></xs:element>
+			<xs:element name="view" type="tns:view-type"></xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="service-type">
+		<xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="action-id" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="module" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="function" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+</xs:schema>

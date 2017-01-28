@@ -1,0 +1,17 @@
+v2.9
+- Sportsdevil Fix
+
+v2.8
+- Bugs and Fixes
+
+v2.7
+- Wall Of Fame Is Now A Pop Up Menu
+
+v2.6
+- Added Whats New
+
+v2.0 
+- Added Search Function
+
+v1.0 
+- Initial Release

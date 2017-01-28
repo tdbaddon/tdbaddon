@@ -1,0 +1,176 @@
+# Addon Name: White Devil Streams
+# Addon id: plugin.video.white.devil
+# Addon Provider: Whit Devil Streams
+msgid ""
+msgstr ""
+"Project-Id-Version: White Devil Streams\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
+
+
+msgctxt "#30701"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#30702"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30703"
+msgid "Clear History"
+msgstr ""
+
+msgctxt "#30704"
+msgid "Link"
+msgstr ""
+
+msgctxt "#30705"
+msgid "Unplayable stream"
+msgstr ""
+
+msgctxt "#30706"
+msgid "Discover Great Streaming Playlists!"
+msgstr ""
+
+msgctxt "#30707"
+msgid "Watch Trailer"
+msgstr ""
+
+msgctxt "#30708"
+msgid "Movie Information"
+msgstr ""
+
+msgctxt "#30709"
+msgid "TV Show Information"
+msgstr ""
+
+msgctxt "#30710"
+msgid "Episode Information"
+msgstr ""
+
+msgctxt "#30711"
+msgid "Set Movies view"
+msgstr ""
+
+msgctxt "#30712"
+msgid "Set TV Shows view"
+msgstr ""
+
+msgctxt "#30713"
+msgid "Set Seasons view"
+msgstr ""
+
+msgctxt "#30714"
+msgid "Set Episodes view"
+msgstr ""
+
+msgctxt "#30715"
+msgid "General"
+msgstr ""
+
+msgctxt "#30716"
+msgid "MetaData"
+msgstr ""
+
+msgctxt "#30717"
+msgid "Enable MetaData"
+msgstr ""
+
+msgctxt "#30718"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#30719"
+msgid "Clear cache..."
+msgstr ""
+
+msgctxt "#30720"
+msgid "Path"
+msgstr ""
+
+msgctxt "#30721"
+msgid "Downloads"
+msgstr ""
+
+msgctxt "#30722"
+msgid "Download item"
+msgstr ""
+
+msgctxt "#30723"
+msgid "NHL"
+msgstr ""
+
+msgctxt "#30724"
+msgid "Tweak for Android"
+msgstr ""
+
+msgctxt "#30725"
+msgid "Add-on settings"
+msgstr ""
+
+msgctxt "#30726"
+msgid "Opening stream"
+msgstr ""
+
+msgctxt "#30727"
+msgid "Accounts"
+msgstr ""
+
+msgctxt "#30728"
+msgid "User"
+msgstr ""
+
+msgctxt "#30729"
+msgid "Email"
+msgstr ""
+
+msgctxt "#30730"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30731"
+msgid "Please wait..."
+msgstr ""
+
+msgctxt "#30751"
+msgid "Scoreboard"
+msgstr ""
+
+msgctxt "#30752"
+msgid "Archived Games"
+msgstr ""
+
+msgctxt "#30753"
+msgid "Live Games , Requires some modifications to get working visit forum."
+msgstr ""
+
+msgctxt "#30754"
+msgid "If list returns BLANK, Feed is not up yet."
+msgstr ""
+
+msgctxt "#30755"
+msgid "Feed not available yet"
+msgstr ""
+
+msgctxt "#30756"
+msgid "Pick A Bandwidth"
+msgstr ""
+
+msgctxt "#30401"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "#30402"
+msgid "Process Complete"
+msgstr ""
+
+msgctxt "#30491"
+msgid "This View is now Default"
+msgstr ""
+

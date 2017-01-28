@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>		
+	<category label="On Demand">
+		<setting id="tvShowsSource" label="Choose TV Shows source" type="enum" default="0" lvalues="30004|30005|30006"/>
+	<!--	<setting label="[B]Desi TV[/B]" type="lsep" />
+		 <setting id="dtfChannelType" label="Select channels category" type="enum" default="0" lvalues="30001|30002|30003"/> 
+		<setting id="dtfForceRefresh" label="Force TV Shows data refresh next time when add-on starts" type="bool" default="false" />-->
+		<setting label="[B]Desi Rulez[/B]" type="lsep" />
+		<setting id="drChannelType" label="Select channels category" type="enum" default="0" lvalues="30001|30002|30003"/>
+		<setting id="drForceRefresh" label="Force TV Shows data refresh next time when add-on starts" type="bool" default="false" />
+		<setting id="drHideFinished" label="Hide finished tv shows" type="bool" default="true" />
+		<setting id="drLazyLoadStream" label="Lazy-loading streaming URL for playlist" type="bool" default="false" />
+		<setting label="[B]Desi TV Box[/B]" type="lsep" />
+		<setting id="dtbForceRefresh" label="Force TV Shows data refresh next time when add-on starts" type="bool" default="false" />
+		<setting id="dtbHideFinished" label="Hide finished tv shows" type="bool" default="true" />
+		<setting id="dtbLazyLoadStream" label="Lazy-loading streaming URL for playlist" type="bool" default="false" />
+	</category>
+<!--	<category label="Live">
+ hide WatchSunTV.com streams until it is not working	
+		<setting label="[B]WatchSunTV.com[/B]" type="lsep" />
+		<setting id="wst_username" label="30010" type="text" default=""/>
+		<setting id="wst_password" label="30011" type="text" option="hidden" default=""/>
+		
+		<setting label="[B]DesiTV[/B]STREAMS.com" type="lsep" />
+		<setting id="dts_username" label="30010" type="text" default=""/>
+		<setting id="dts_password" label="30011" type="text" option="hidden" default=""/>
+		<setting id="dts_server" label="Choose live streaming server" type="enum" default="0" lvalues="30012|30013|30014"/>
+		
+		<setting label="[B]MOVIES[/B]n[B]TV[/B].com" type="lsep" />
+		<setting id="mnt_username" label="30010" type="text" default=""/>
+		<setting id="mnt_password" label="30011" type="text" option="hidden" default=""/>
+		<setting id="mnt_server" label="Choose live streaming server" type="enum" default="0" lvalues="30012|30013|30014"/>
+		
+	</category>
+	 -->
+	<category label="Video">
+		<setting label="[B]Playback[/B]" type="lsep" />
+		<setting id="playbackqual" label="Select preferred playback video quality" type="enum" default="0" lvalues="30021|30022|30023"/>
+		<!-- <setting id="autoplayback" label="Auto playback first video source [Dailymotion]" type="bool" default="true" /> -->
+		<setting id="wishDisplayed" type="text" label="WISH" default="hide" visible="false"/>
+	</category>
+	<category label="View">
+		<setting id="theme" type="enum" label="Theme" default="1" lvalues="30031|30032" />
+		<!-- <setting id="themebg" type="enum" label="Theme background" default="1" lvalues="30101|30102|30103|30104|30105|30106|30107|30108|30109|30110|30111" /> -->
+		<setting label="[B]Controls[/B]" type="lsep" />
+		<setting id="displayBackControl" label="Display BACK button" type="bool" default="false" />
+	</category>
+</settings>

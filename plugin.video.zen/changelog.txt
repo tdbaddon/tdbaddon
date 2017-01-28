@@ -1,0 +1,275 @@
+[B]1.7.0[/B]
+- Improved overall code speed and scraper queries
+- Rewritten obsolete code
+- Fixed a bug that was preventing addon to work on Jarvis 
+- Scraper Fixes
+- Better overall source sorting: Debrid > Gvideo > Others (Debrid results will be always on top priority in the source lists)
+
+[B]1.6.8[/B]
+- Updates , fixes on major providers
+- Implemented various modules for cloudflare and better scraping
+
+[B]1.6.2[/B]
+- Updates , fixes on major providers
+
+[B]1.6.0[/B]
+- Checked, fixed , rewrite, and improvements to all the scrapers and calls
+
+[B]1.5.5[/B]
+- Update/fix providers and broken calls
+
+[B]1.5.4[/B]
+- new Providers
+
+[B]1.5.3[/B]
+Alluc account now uses username and password instead API KEY
+
+[B]1.5.2[/B]
+- New Providers
+
+[B]1.5.1[/B]
+- Update/fix providers
+- Fix Episodes Metadata
+
+[B]1.5.0[/B]
+- Update/fix providers
+
+[B]1.4.32[/B]
+- Hotfix Providers and customize settings
+
+[B]1.4.31[/B]
+- Added Ability to customize base url for major scrapers
+
+[B]1.4.30[/B]
+- Update Providers
+
+[B]1.4.28[/B]
+- Update Providers + Scnsrc
+
+[B]1.4.25[/B]
+- Merry Christmas
+- Providers Update
+
+[B]1.4.23[/B]
+- Updated Providers
+- Better timeout on not responding providers
+
+[B]1.4.22[/B]
+- Updated Debrid Providers
+
+[B]1.4.18[/B]
+- Tweaked movies and tv shows results
+
+[B]1.4.16[/B]
+- Changed Visual for episodes not aired
+- Update Providers
+
+[B]1.4.15[/B]
+- Added Hd Sources
+
+[B]1.4.14[/B]
+- Update API for Missing Seasons,Episodes
+
+[B]1.4.13[/B]
+- Update and NEW Providers
+
+[B]1.4.12[/B]
+- Update Providers
+
+[B]1.4.11[/B]
+- Update sources and custom shorten link resolvers
+
+[B]1.4.10[/B]
+- Added Tv Calendar
+- Fix Broken providers
+
+[B]1.4.9[/B]
+- Added Anime and cartoons scrapers
+- Fix Broken providers
+- Added Free HD Providers
+
+[B]1.4.8[/B]
+- Tweak Providers
+
+[B]1.4.7[/B]
+- Added Tv shows provider, Tweak non debrid players
+
+[B]1.4.6[/B]
+- Refine Alluc Scraper
+
+
+[B]1.4.5[/B]
+- Added Support for Alluc scraper (you will need to setup your alluc api key in the accounts settings)
+
+[B]1.4.4[/B]
+- Added new HD Providers
+
+[B]1.4.3[/B]
+- Update Moviegee
+
+[B]1.4.2[/B]
+- Update/add Providers
+
+[B]1.4.1[/B]
+- Update Providers, Added custom models and nanscrapers
+
+[B]1.4.0[/B]
+- Added Ability to setup up to 10 lists for Tv Shows and Movies
+- Added Setting to use your personal TMDB Api in the addon 
+- My Lists moved to main page
+
+[B]1.3.15[/B]
+- Fix Moviego - Onemovies
+
+[B]1.3.14[/B]
+- Update and added providers
+
+[B]1.3.12[/B]
+- Update and added providers
+
+[B]1.3.11[/B]
+- Removed silly credits to silly people
+- Update Providers
+- New Debrid Provider
+
+[B]1.3.10[/B]
+- TV Shows now using TVDB Api for Seasons and Episodes, this should fix missing episodelist
+
+[B]1.3.9[/B]
+- Fix Putlocker, MoviesHD
+
+[B]1.3.8[/B]
+- Added Debrid providers and hd free providers
+
+[B]1.3.7[/B]
+- Fix Providers - added free provider
+- Added module to retrieve shortened links like adf.ly sh.st etc
+
+[B]1.3.6[/B]
+- Fix Providers
+
+[B]1.3.4[/B]
+- Partial Clean of old providers
+
+[B]1.3.3[/B]
+- Fix Providers
+
+[B]1.3.2[/B]
+- Added Ability to import your Tmdb lists in the addon (you need to setup the list id under the addons Tmbd lists settings)
+- Added some more sections for movies
+
+[B]1.3.1.2[/B]
+- Fixed bug in the cleantitle modules
+
+[B]1.3.1[/B]
+- Added HD Movies/tv providers
+
+[B]1.3.0[/B]
+- Providers Cleanup and results check
+
+[B]1.2.20[/B]
+- Providers Fix/update
+- Deleted obsolete modules
+
+[B]1.2.19[/B]
+- Fix addon not loading at start
+
+[B]1.2.18[/B]
+- Added TV Debrid providers
+- Clean some providers and duplicates
+
+[B]1.2.17[/B]
+- Clean Providers and duplicates
+- Fix code/general tidy
+
+[B]1.2.16[/B]
+- New Providers
+
+[B]1.2.15[/B]
+- Cleanup settings and checks
+- Fixed Autoplay
+
+[B]1.2.14[/B]
+- Added DEB Header for Debrid links
+
+[B]1.2.13[/B]
+- Added free movies HD provider
+- Cleanup and providers tweaks
+
+[B]1.2.12[/B]
+- Cache sources can now be disabled in the settings
+
+[B]1.2.11[/B]
+- HD TVshows providers added
+
+[B]1.2.10[/B]
+- Krypton changes
+- Added Movie Provider
+- Small code cosmetics
+- Added option to disable caching of sources
+
+[B]1.2.9[/B]
+- Add/fix Providers
+
+[B]1.2.8[/B]
+- Tweak Player and providers match
+
+[B]1.2.7[/B]
+- TvShow Provider
+
+[B]1.2.5[/B]
+- Added free provider
+- Improved Watchlist and Backup/restore
+
+[B]1.2.4[/B]
+- More Debrid Providers
+- Quick code cleanups
+
+[B]1.2.3[/B]
+- Cleaned up control moderator
+
+[B]1.2.2[/B]
+- Improved API infos and lists
+- Fixed providers
+
+[B]1.2.1[/B]
+- Improved scrapers checks and cleantitles
+
+[B]1.2.0[/B]
+- Major update: Added Tv Shows, Fixed and cleaned up providers, code, player
+- Added a Back/Restore for the Watchlist in the tools
+- Changed TvShows and Movies API sources
+- Added Free 5.1 Movies Providers
+
+[B]1.1.4[/B]
+- Debrid Providers with 3D links
+-[B]1.1.3[/B]
+- Providers update
+[B]1.1.2[/B]
+- Providers and cleanup code
+[B]1.1.0[/B]
+- Debrid Links will now need to be enabled in the Providers Settings
+- Fixed providers
+[B]1.0.3[/B]
+- More Free Providers
+- Prodivers cleanups
+[B]1.0.0[/B]
+- Stable Release
+- Player and subtitles fix, providers cleanup/fix/add/remove
+
+[B]0.0.8[/B]
+- More Providers Cleanups
+[B]0.0.7[/B]
+- Cleaned up search calls
+[B]0.0.6[/B]
+- Providers cleanup/fix/add/remove
+[B]0.0.5[/B]
+- Added Downloads, cleanup code, spotlight fixes
+[B]0.0.4[/B]
+- Cleanups and scrapers update
+[B]0.0.3[/B]
+- Sections and resolver fixes
+[B]0.0.2[/B]
+- Navigator fixes
+[B]0.0.1[/B]
+- Initial Release

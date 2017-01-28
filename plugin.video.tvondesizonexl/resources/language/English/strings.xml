@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+<!-- Options -->
+	<string id="30001">All</string>
+	<string id="30002">Indian</string>
+	<string id="30003">Pakistani</string>
+	<string id="30004">All</string>
+	<string id="30005">DesiRulez</string>
+	<string id="30006">Desi TV Box</string>
+	<string id="30010">Username:</string>
+	<string id="30011">Password:</string>
+	<string id="30012">Server 1</string>
+	<string id="30013">Server 2</string>
+	<string id="30014">Server 3</string>
+	<string id="30021">1080p</string>
+	<string id="30022">720p</string>
+	<string id="30023">Standard</string>
+	
+	<string id="30031">Blackie</string>
+	<string id="30032">Summer</string>
+	
+	<string id="30101">Aquamarine.jpg</string>
+	<string id="30102">Blue.jpg</string>
+	<string id="30103">DodgerBlue.jpg</string>
+	<string id="30104">Green.jpg</string>
+	<string id="30105">HotPink.jpg</string>
+	<string id="30106">Olive.jpg</string>
+	<string id="30107">Purple.jpg</string>
+	<string id="30108">Red.jpg</string>
+	<string id="30109">SaddleBrown.jpg</string>
+	<string id="30110">Tangerine.jpg</string>
+	<string id="30111">Violet.jpg</string>
+</strings>
