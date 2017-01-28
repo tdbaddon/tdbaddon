@@ -2,8 +2,8 @@ import sys #used to get commandline arguments
 import re #used for regular expressions
 import xbmcgui
 import xbmc
-nhl_hostname = 'mf.svc.nhl.com'
-nhl_ipaddress = '107.6.175.181'
+nhl_host_name = 'mf.svc.nhl.com'
+nhl_ip_address = '104.251.218.27'
 
 
 def host_in_host_file(host_name):
