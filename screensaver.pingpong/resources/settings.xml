@@ -1,0 +1,7 @@
+<settings>
+  <setting id="paddle1"    label="30000" type="enum" lvalues="30003|30004|30005|30006|30007" default="0"/>
+  <setting id="paddle2"    label="30001" type="enum" lvalues="30003|30004|30005|30006|30007" default="0"/>
+  <setting id="ball"       label="30002" type="enum" lvalues="30003|30004|30005|30006|30007" default="0"/>
+  <setting id="ballspeedx" label="30008" type="slider" option="float" range="0.1,0.1,2.0" default="0.5"/>
+  <setting id="ballspeedy" label="30009" type="slider" option="float" range="0.1,0.1,2.0" default="0.5"/>
+</settings>

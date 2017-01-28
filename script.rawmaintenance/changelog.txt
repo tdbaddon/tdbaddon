@@ -1,0 +1,12 @@
+0.1.0
+
+- First Attempt!
+
+0.1.4
+
+- Added Google Analytics
+	Note:
+	No personally identifiable information is sent to google servers.
+	This is simply to give us an idea of which features are used the 
+	most by which platforms so that we can best focus our development 
+	time to bring the community the best possible software.
