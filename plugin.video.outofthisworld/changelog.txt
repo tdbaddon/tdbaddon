@@ -1,0 +1,4 @@
+[B]Version 1.0.0[/B]
+Initialst Release - 25 channels.
+[B]Version 1.1.0[/B]
+10 December 2015 - Replaced channels that have been deleted by YouTube, replaced default icon with channel icons. Replaced fanart and optimized graphics. Added additional channels.

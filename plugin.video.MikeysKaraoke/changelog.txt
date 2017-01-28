@@ -1,0 +1,131 @@
+v4.7.6
+added karaokantalive.com
+
+v4.6.9
+Fixed Mimetype
+
+v4.6.7
+Fixed YouTube Search
+
+v4.6.1
+Fix Youtube Popular
+
+v4.6.0
+Fixed Downloads
+Fixed Genres
+
+v4.4
+Fixed Youtube Listings
+
+v4.3
+Made List Smaller in Kbs
+
+v4.1
+Quick fix
+
+v4.0c
+Added Ls Miserables to Karaoke
+
+v4.0b
+Added Genre To Sunfly
+
+v3.3a
+Fix script Error
+
+v3.3
+Added POP UP
+
+v3.2.4f
+Better Ga
+
+v3.2.4e
+Better GA
+
+v3.2.4a
+Better GA
+
+v3.2.4
+Added More Tracks
+Added GA
+
+v3.2.3
+Fixed Sunfly Adding Of Favorites
+
+v3.2.2
+Moved Images locally repo being pounded
+
+v3.2.1
+Quick Fix
+
+v3.1
+Added Sunfly Favorites
+Added Sunfly Downloads
+Added Update Sunfly Karaoke List (which I maintain and keep updated as and when new discs come out lucky people)
+Added Delete Sunfly Downloads/Favorites
+
+v3.0.1
+Quick Fix
+
+v3.0
+Added 6106 Sunfly Tracks
+
+v2.4.3
+Added Sort method On Downloads
+
+v2.4.2
+Fixed Download Folder Issue 
+Cleaned up Downloaded Names And iconimage
+
+v2.4.1
+Added Option to Delete From Downloads
+
+v2.4
+Added Downloads Folder Enable in addon settings
+
+v2.3
+Quick Name Fix
+
+v2.2
+Added Add To favorites In context menu
+
+v2.1
+Added Next Page On results
+Added Download Option In Context Menu
+
+v2
+Added Most Popular Sunfly
+Added Latest Sunfly
+
+v1.6b 
+Fixed search popup and closing
+
+v1.6a
+changed where icons were removed xbmchub account
+
+1.6
+Moved Repo
+
+v1.5
+Added XBMC Account Login
+
+v1.3
+30/07/2012
+Added Fanart
+Better website Scraping for artist lists nearly all song ever made
+Fixed Genre not showing all Titles
+store saved searches (working on it) they store but dont show up
+
+v1.2
+26/07/2012
+Fixed script error
+
+v1.1
+11/07/2012
+Added Gui
+Artist Order
+Title Order
+Genre Order
+
+v1.0.2
+09/072012
+Initial Realease

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.raspfree" name="Rasp IPTV" version="1.0" provider-name="RaspTV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Visit us at https://www.rasp.tv</summary>
+    <description lang="en">Free IPTV Channel Lists Maintained by https://www.rasp.tv</description>
+    <disclaimer lang="en">We are not responsible for anything that happens.</disclaimer>
+    <language>en</language>
+    <platform>all</platform>
+    <license>MIT</license>
+    <forum></forum>
+    <source></source>
+  </extension>
+</addon>

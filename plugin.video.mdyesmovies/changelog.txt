@@ -1,0 +1,23 @@
+############################################################################################################################
+
+v1.0.1
+
+- changed the color for directory sections, next page and 
+  how many episodes to mediumaquamarine
+
+- fixed bug on movie genre where some tv shows were showing
+
+- added genre section to tv shows
+
+- added country section to tv shows
+
+- added year section to tv shows 
+
+############################################################################################################################
+
+v1.0.0
+
+- special thank you to @McWaine for creating the icon
+
+- Initial Release
+

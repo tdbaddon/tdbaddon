@@ -1,0 +1,39 @@
+<?xml version="2.1" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.mic"
+       name="Made In Canada IPTV"
+       version="2.1"
+       provider-name="TheKrazy0ne">
+   <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />    
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Free Canadian IPTV</summary>
+    <description>
+        Follow @TheKrazy0ne (Note that is a zero) on twitter.
+			**DISCLAIMER**
+        1. MiC DOES NOT HOST ANY OF THE STREAMS FOUND WITHIN THIS ADDON
+        2. ALL STREAMS FOUND WITHING THIS ADDON ARE FOUND FREELY ON THE INTERNET
+        3. WE ACCEPT NO RESPONSIBILITY FOR THE USE OF THIS ADDON
+        4. THIS ADDON IS AND ALWAYS WILL BE FREE!!
+        5. IF YOU PAID FOR THIS ADDON, ASK FOR YOUR MONEY BACK!!!
+        6. ENJOY THE STREAMS WITHIN..... CHEERS!
+    
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>

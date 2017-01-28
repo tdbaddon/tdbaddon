@@ -1,0 +1,17 @@
+Some icons were taken from:
+
+
+	Crystal Project Icons:
+	
+		AUTHOR:	Everaldo Coelho		
+		SITE:	http://www.everaldo.com	
+		CONTACT: everaldo@everaldo.com
+		LICENSE: LGPL
+
+
+new_search and search were taken from:
+
+	AUTHOR: IconEden
+	SITE: http://icons.webtoolhub.com/icon-n58442-detail.aspx?f=145321
+	LICENCE: Free for Commercial Use
+
