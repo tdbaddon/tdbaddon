@@ -1,0 +1,72 @@
+
+V1.2.6
+Bug Fix for some addons not installing properly
+
+V1.2.5
+Fixed Display of International/World Repo sections
+
+V1.2.0 - TheHighway, Eleazar Coding, Blazetamer
+World Section and Adult Section fixes.
+
+V1.1.9 - TheHighway, Eleazar Coding, Showgun, Blazetamer
+...
+HUB Notifications Addon auto-installer upon main menu if not installed.
+Url Launching.
+ContextMenuItems in some place(s).
+Text changes.
+Artwork code adjustments.
+Category changes.
+XBMCHUB to TVAddons move-over.
+Setup for site changes.
+
+V1.1.8 - TheHighway, TKNoris, and crzen
+1Channel / FireDrive fixes.
+
+V1.1.7 
+some Wizard/Firedrive functionality to help with 1channel addon and such.
+
+V1.1.6 
+Code clean-up in settings.xml.
+AutoUpdate added for each Next Page folder.
+Requested Additional graphic(s).
+AutoUpdate setup for Adult Repos.
+AutoUpdate setup for Video/Audio Addons.
+AutoUpdate setup for Program Addons.
+AutoUpdate setup for Featured Repos.
+AutoUpdate setup for Featured Addons.
+Functions for AutoUpdate feature.
+File Open/Save functions.
+Left-side spacing and optional "script.module.addon.common" in addon.xml.
+Added "script.module.addon.common" into the try/except method for addon and net common modules.
+Slight code clean-up.
+
+V1.1.5 
+?
+
+V1.1.4 
+Bug Fix
+
+V1.1.3
+Added Full Gotham Support
+
+V1.1.2
+Added Requirements Fixes
+V1.1.1
+Bug Fix
+
+V1.1.0
+Enabled ability to install required scripts
+
+V1.0.9
+Bug fixes and Name Changed to Addon Installer to better 
+represent the add-ons abilities.
+
+V1.0.8
+Added Gotham Depends
+
+V1.0.5
+Added Descriptions, Author, and Version Information
+Added Restart/Later Dialog Graphics Popup after install
+
+V1.0.0
+Initial Release

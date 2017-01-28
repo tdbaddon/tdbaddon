@@ -345,6 +345,28 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
+    <addon id="plugin.program.addoninstaller" version="1.2.9"
+    	name="Addon Installer" provider-name="tvaddons.ag, Blazetamer">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.addon.common" optional="true" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Addon Browser</summary>
+        <description>Its like an App Store where you'll find Addons for Kodi, and everything is free!</description>
+        <disclaimer>By using this, you take reponsibility for anything that happens.</disclaimer>
+        <language>en</language>
+        <platform>all</platform>
+        <forum>http://forums.tvaddons.ag/forums/156-ADDON-INSTALLER</forum>
+        <website>http://addons.tvaddons.ag/</website>
+        <source></source>
+        <email></email>
+    </extension>
+</addon>
+
 <addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
     <requires>
     </requires>
@@ -512,6 +534,30 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description>HalowTV and iStream Playlister | Kodi Build Maker | Follow Me @TheChief_Kodi | The Rest Is History |</description>
 	<disclaimer lang="en">[B]Free Builds Created By The Chief For The Commnunity. Please Do Not Sell these builds. They Are Given Free To The Community. Do Not Ruin It For Them.[/B]</disclaimer>
     <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.program.xbmchub.notifications" version="1.0.2"
+       name="Notifications" provider-name="tvaddons.ag">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+  	<import addon="script.module.addon.common" optional="true" />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+  	<summary>TVADDONS NEWS</summary>
+  	<description>Receive Important TVADDONS Notifications. Unsubscribe within Add-on Settings.</description>
+  	<disclaimer>We take no responsibility for any problems this plugin might in any way, form, shape or size cause.</disclaimer>
+  	<language>en</language>
+  	<platform>all</platform>
+  	<forum>http://forums.tvaddons.ag/forum.php</forum>
+  	<website>http://www.tvaddons.ag/</website>
+  	<source></source>
+  	<email></email>
   </extension>
 </addon>
 
@@ -1214,6 +1260,25 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	 <website>http://entertainmentrepo.com/</website>
         <disclaimer lang="en">All the movies on this website are hosted on the third party sites and uploaded by other people. We are not responsible for any content that hosted on on the third-party sites. If you have any legal issues please contact appropriate video owners hosters.</disclaimer>
     </extension>
+</addon>
+
+<addon id="plugin.video.gachecker"
+       name="GA Checker"
+       version="1.1.6a"
+       provider-name="Kinkin">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               	library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>See what addons are using Google Analytics</summary>
+        <description>Some addons contain code that automatically tracks your usage and/or displays ads. Use this addon to find them and it's then your choice on what to do.</description>
+    </extension>
+
 </addon>
 
 <addon id="plugin.video.goodfellas"

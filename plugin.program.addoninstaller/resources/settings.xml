@@ -1,0 +1,21 @@
+<settings>
+	<category label="Enable / Disable Sections">
+		<setting visible="false" id="newest" 			type="bool" label="Newest Added" default="true"/>
+		<setting visible="false" id="updated" 		type="bool" label="Recently Updated" default="true"/>
+		<setting visible="false" id="toprepositories" type="bool" label="Top Developers Section" default="true"/>
+		<setting visible="true" id="featured" 		type="bool" label="Featured Section" default="true"/>
+		<setting visible="true" id="video" 				type="bool" label="Video Section" default="true"/>
+		<setting visible="true" id="audio" 				type="bool" label="Audio Section" default="true"/>
+		<setting visible="true" id="program" 			type="bool" label="Programs Section" default="true"/>
+		<setting visible="true" id="services" 		type="bool" label="Services Section" default="true"/>
+		<setting visible="true" id="repositories" type="bool" label="Repositories Section" default="true"/>
+		<setting visible="true" id="world" 				type="bool" label="World Section" default="true"/>
+		<setting visible="true" id="adult" 				type="bool" label="Adult Section" default="false"/>
+	</category>
+	<category label="Auto-View">
+		<setting visible="true" id="auto-view"    type="bool"   label="Enable Auto View" default="true"/>
+		<setting visible="true" id="default-view" type="number" label="Default View"  default="500" enable="!eq(-1,false)"/>
+		<setting visible="true" id="addon-view"   type="number" label="Addon View"    default="500" enable="!eq(-2,false)"/>
+		<setting visible="true" id="list-view"   type="number" label="List View"    default="50" enable="!eq(-3,false)"/>
+	</category>
+</settings>
