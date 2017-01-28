@@ -1,4 +1,4 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cloudflare,net
+import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cloudflare,net,jsunpack
 from t0mm0.common.addon import Addon
 
 net = net.Net()
@@ -94,7 +94,7 @@ def GETGENRES(url,iconimage):
                 if 'genre' in url:
                         url=url+'?page=1'
                         addDir(name,url,7,iconimage,iconimage)
-
+                        
 def GETGENREMOVIES(url):
 	url2=url
         link = open_url(url)        
@@ -136,17 +136,23 @@ def AZ(url,name):
     
 def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
-        if '9cartoon.me' in url:
-                holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)[0]
-                link = open_url(holderpage)
-                stream_url = re.compile('<source src="(.+?)" type="video/mp4">').findall(link)[0]
-        else:
-                holderpage=re.compile('<iframe src="(.+?)" scrolling="no" frameborder="0" width="1008" height="640" allowfullscreen="true"></iframe>').findall(link)[0]
-                link = open_url(holderpage)
-                stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
-        PLAYLINK(name,stream_url,iconimage)
+        referer=url
+        holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)[0]
+        link = open_url(holderpage)
+        #vkpass #url=re.compile('<center><iframe src="(.+?)" scrolling').findall(link)[0]
+                #url = urllib.unquote(url)
+                #headers = {'Content-Type':'application/x-www-form-urlencoded','Referer': referer}
+                #link=cleanHex(net.http_GET(url,headers).content)
+                #js=re.compile('</div></div></div></div><script>(.+?)</script><script>eval').findall(link)[0]
+                #jsdone=jsunpack.unpack(js)
+                #try:url=re.compile('<source src="(.+?)" type="video/mp4"').findall(jsdone)[-2]
+                #except:url=re.compile('<source src="(.+?)" type="video/mp4"').findall(jsdone)[0]
+        urls=re.compile('Right Click and Save Link as(.+?)id="timepause"></div>').findall(link)[0]
+        url=re.compile('<a href="(.+?)" target').findall(link)[-1]
+        PLAYLINK(name,url,iconimage)
 
-def PLAYLINK(name,url,iconimage):
+
+def PLAYLINK(name,url,iconimage):  
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)

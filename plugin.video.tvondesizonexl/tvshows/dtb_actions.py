@@ -47,7 +47,7 @@ DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
  
 LIVE_CHANNELS = {"9XM":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_music.png|Referer=http://www.lyngsat.com/",
                         "channelType": "IND",
-                        "channelUrl": "http://ind28-lh.akamaihd.net/i/ind28_9xm@424619/master.m3u8"},
+                        "channelUrl": "http://ind19-lh.akamaihd.net/i/ind19_9xm@440010/master.m3u8"},
                  "IBN7": {"iconimage":"http://www.lyngsat.com/logo/tv/ii/ibn7.png|Referer=http://www.lyngsat.com/",
                           "channelType": "IND",
                           "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on"},
@@ -763,6 +763,8 @@ def __prepareVideoLink__(video_link):
             new_video_url = 'http://playu.net/embed-' + video_id + '-540x304.html'
         elif re.search('watchvideo.php', video_url, flags=re.I) or re.search('watchvideo', video_source, flags=re.I):
             new_video_url = 'http://watchvideo2.us/embed-' + video_id + '-540x304.html'
+        elif re.search('estream.php', video_url, flags=re.I) or re.search('estream', video_source, flags=re.I):
+            new_video_url = 'https://estream.to/embed-' + video_id + '-540x304.html'
         elif re.search('streamin.php', video_url, flags=re.I) or re.search('streamin', video_source, flags=re.I):
             new_video_url = 'http://streamin.to/embed-' + video_id + '-520x400.html'
         elif re.search('watchers.php', video_url, flags=re.I) or re.search('watchers', video_source, flags=re.I):

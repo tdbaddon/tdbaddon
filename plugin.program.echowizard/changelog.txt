@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.51: 27th January 2017[/COLOR]
+[COLOR white][B]- OTA Update support added for community builds.[/B][/COLOR]
+
+[COLOR yellowgreen]1.50: 27th January 2017[/COLOR]
+[COLOR white][B]- Support added for Addons27.db.[/B][/COLOR]
+
 [COLOR yellowgreen]1.49: 11th January 2017[/COLOR]
 [COLOR white][B]- Fix issues in Addon Installer.[/B][/COLOR]
 

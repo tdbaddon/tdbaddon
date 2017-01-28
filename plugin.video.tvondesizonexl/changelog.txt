@@ -1,3 +1,7 @@
+[B]Version 2.8.21[/B]
+- Fixed Watchvideo
+- Added estream
+
 [B]Version 2.8.20[/B]
 - Fixed finished shows issue
 

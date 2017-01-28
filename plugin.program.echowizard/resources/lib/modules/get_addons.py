@@ -703,11 +703,20 @@ def ADD_DATABASE_ADDON(name,url):
 	installDate = str(datetime.datetime.now())[:-7]
  
 	import sqlite3
-	DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
- 
+
+	i = 50
+	got_db = 0
+	while got_db == 0:
+		DB_File = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
+		if os.path.exists(DB_File):
+			got_db = 1
+		else: i = i-1
+
+	DB_Path = DB_File
+
 	conn = sqlite3.connect(DB_Path)
 	cursor = conn.cursor()
- 
+
 	try:
 		q = """ INSERT INTO installed(addonID,enabled, installDate, origin) VALUES(?, ?, ?, ?) """
 		cursor.execute(q, (str(AddonID), str(Enabled), str(installDate), str(Origen)))
@@ -734,8 +743,17 @@ def ADD_DATABASE_REPO(name):
 		installDate = str(datetime.datetime.now())[:-7]
 	
 		import sqlite3
-		DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
-	 
+
+		i = 50
+		got_db = 0
+		while got_db == 0:
+			DB_File = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
+			if os.path.exists(DB_File):
+				got_db = 1
+			else: i = i-1
+
+		DB_Path = DB_File
+
 		conn = sqlite3.connect(DB_Path)
 		cursor = conn.cursor()
 	 
@@ -750,8 +768,16 @@ def DISABLE_DATABASE_ADDON(name):
 	AddonID = name
 
 	import sqlite3
-	DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
- 
+
+	i = 50
+	got_db = 0
+	while got_db == 0:
+		DB_File = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
+		if os.path.exists(DB_File):
+			got_db = 1
+		else: i = i-1
+
+	DB_Path = DB_File 
 	conn = sqlite3.connect(DB_Path)
 	cursor = conn.cursor()
  

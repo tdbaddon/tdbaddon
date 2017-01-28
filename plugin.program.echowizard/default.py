@@ -72,6 +72,7 @@ DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' 
 ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
 COMMUNITY_BUILD		=  xbmc.translatePath(os.path.join('special://home/userdata/','community_build.txt'))
+COMMUNITY_OTA		=  xbmc.translatePath(os.path.join('special://home/userdata/','echo_community_ota.txt'))
 KEYBOARD_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
 ADVANCED_SET_FILE   =  xbmc.translatePath(os.path.join('special://home/userdata/','advancedsettings.xml'))
 dp                  =  xbmcgui.DialogProgress()
@@ -301,7 +302,9 @@ def INDEX():
 			except:
 				Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 		else:
-			if os.path.isfile(COMMUNITY_BUILD):
+			if os.path.exists(COMMUNITY_OTA):
+				Common.addItem('[COLOR ghostwhite][B]CHECK FOR BUILD UPDATES[/B][/COLOR]',BASEURL,33,UPDATE_ICON,FANART,'')
+			elif os.path.isfile(COMMUNITY_BUILD):
 				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
 	if offline == 0:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
@@ -318,7 +321,7 @@ def INDEX():
 		Common.addDir('[COLOR ghostwhite][B]CUSTOM KEYMAPS[/B][/COLOR]',BASEURL,129,KEYMAPS_ICON,FANART,'')	
 		Common.addDir('[COLOR ghostwhite][B]SPEED TEST[/B][/COLOR]',BASEURL,16,SPEEDTEST_ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ANDROID APKS[/B][/COLOR]',BASEURL,149,TOOLS_ICON,FANART,'')
+		#Common.addDir('[COLOR ghostwhite][B]ANDROID APKS[/B][/COLOR]',BASEURL,149,TOOLS_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]MUST HAVE KODI PROGRAMS & TOOLS[/B][/COLOR]',BASEURL,46,TOOLS_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]LATEST KODI INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]LATEST KODI LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
