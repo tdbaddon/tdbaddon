@@ -1,0 +1,4 @@
+------------------------
+Aftershock v1.3.0 (19-Feb-16)
+------------------------
+- Migrated to offshoreGit

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.cuba-tv" name="Cuba-tv Addon Repository" version="0.0.1" provider-name="Alex Lopez Rodriguez">
+	<extension point="xbmc.addon.repository" name="Cuba-tv Addon Repository">
+            <info compressed="false">http://cuba-tv-kodi.org/repo/file/addons.xml</info>
+            <checksum>http://cuba-tv-kodi.org/repo/file/addons.xml.md5</checksum>
+            <datadir zip="true">http://cuba-tv-kodi.org/repo/file/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo CUBA-TV por JalexFILMS</summary>
+		<description>Instala la repo para mantenerte actualizado gracias por disfrutar el contenido de cuba-tv Alex Lopez Rodriguez y JalexFILMS te dan las gracias...</description>
+		<platform>all</platform>
+	</extension>
+</addon>

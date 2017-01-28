@@ -1,0 +1,14 @@
+[COLOR lime]1.04: 24th December 2016[/COLOR]
+	[COLOR white][B]- Icon updates.[/B][/COLOR]
+
+[COLOR lime]1.03: 25th October 2016[/COLOR]
+	[COLOR white][B]- Move to GitHub.[/B][/COLOR]
+
+[COLOR lime]1.02: 30th September 2016[/COLOR]
+	[COLOR white][B]- Fix.[/B][/COLOR]
+
+[COLOR lime]1.01: 28st September 2016[/COLOR]
+	[COLOR white][B]- Move to dedicated ECHO loctation.[/B][/COLOR]
+
+[COLOR lime]1.00: 21st September 2016[/COLOR]
+	[COLOR white][B]- Initial[/B][/COLOR]

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.riostv" name="Mauricio repository" version="0.0.2" provider-name="Mauricio">
+	<extension point="xbmc.addon.repository" name="Mauricio Add-on Repository">
+		<info compressed="false">http://raw.github.com/xmbcrios/riostv/master/addons.xml</info>
+		<checksum>http://raw.github.com/xmbcrios/riostv/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/xmbcrios/riostv/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Mauricio Addon</summary>
+		<description>Official Repository Riostv</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
