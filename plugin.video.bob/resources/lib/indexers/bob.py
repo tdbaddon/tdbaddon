@@ -281,6 +281,16 @@ class Indexer:
                 pass
 
             try:
+                if not "nhl_home_away(" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                fargs = url.replace("nhl_home_away(", "")[:-1].split(",")
+                xml = sports.get_nhl_home_away(fargs[0], fargs[1], fargs[2], fargs[3])
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
                 if not url.startswith("sport_hockeyrecaps"):
                     raise Exception()
                 from resources.lib.sources import sports
@@ -288,6 +298,60 @@ class Indexer:
                 if page == "":
                     page = "1"
                 xml = sports.get_hockey_recaps(page)
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
+                if not "sport_nfl_games" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                fargs = url.replace("sport_nfl_games(", "")[:-1]
+                if "sport" in fargs:
+                    xml = sports.get_nfl_games()
+                else:
+                    fargs = fargs.split(",")
+                    if len(fargs) == 2:
+                        xml = sports.get_nfl_games(fargs[0], fargs[1])
+                    else:
+                        xml = ""
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
+                if not "sport_nfl_get_game(" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                farg = url.replace("sport_nfl_get_game(", "")[:-1]
+                xml = sports.get_nfl_game(farg)
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
+                if not "sport_condensed_nfl_games" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                fargs = url.replace("sport_condensed_nfl_games(", "")[:-1]
+                if "sport" in fargs:
+                    xml = sports.get_condensed_nfl_games()
+                else:
+                    fargs = fargs.split(",")
+                    if len(fargs) == 2:
+                        xml = sports.get_condensed_nfl_games(fargs[0], fargs[1])
+                    else:
+                        xml = ""
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
+                if not "sport_condensed_nfl_get_game(" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                farg = url.replace("sport_condensed_nfl_get_game(", "")[:-1]
+                xml = sports.get_condensed_nfl_game(farg)
                 return self.getx(xml)
             except:
                 pass
@@ -1780,7 +1844,7 @@ class Player(xbmc.Player):
         episode = Indexer.bob_get_tag_content(self.original_url, 'episode', '0')
         content = Indexer.bob_get_tag_content(self.original_url, 'content', '0')
         if content == "episode":
-            metacache.episodes_set_watched(imdb, tmdb, tvdb, season, episode)
+                metacache.episodes_set_watched(imdb, tmdb, tvdb, season, episode)
         elif content == "movie":
             metacache.movies_set_watched(imdb, tmdb, tvdb)
         control.refresh()

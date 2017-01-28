@@ -11,7 +11,7 @@
 		<!-- other settings -->
 		<setting label="30723"	type="lsep" />
 		<setting label="30724"	type="action"	action="RunPlugin(plugin://plugin.video.bob/credits)" />
-		<setting id="install_hosts" label="Install hosts file" type="action"	action="RunScript(special://home/addons/plugin.video.bob/resources/lib/modules/hosts.py)" />
+		<!--<setting id="install_hosts" label="Install hosts file" type="action"	action="RunScript(special://home/addons/plugin.video.bob/resources/lib/modules/hosts.py)" />-->
 		<setting label="32504"	type="bool"	id="my_bob_name"	default="false" />
 	</category>
 

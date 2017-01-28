@@ -113,7 +113,7 @@ metacacheFile = os.path.join(dataPath, 'meta.db')
 cacheFile = os.path.join(dataPath, 'cache.db')
 
 
-def addonIcon():
+def     addonIcon():
     theme = appearance() ; art = artPath()
     if not (art == None and theme in ['-', '']): return os.path.join(art, 'icon.png')
     return addonInfo('icon')
