@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Show/Hide Content">
+	    <setting id="maintenance" type="bool" label="[B]Update My Add-ons (Force Refresh)[/B]" default="true"/>
+		<setting id="maintenance" type="bool" label="[B]Chiefs Maintenance[/B]" default="true"/>
+		<setting id="mainmenu" type="bool" label="[B]Chiefs Builds[/B]" default="true"/>
+	</category>
+    
+
+</settings>

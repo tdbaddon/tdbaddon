@@ -1,0 +1,5 @@
+.project
+.pydevproject
+.settings
+user_debug.py
+*.pyo

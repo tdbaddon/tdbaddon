@@ -373,4 +373,174 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<source>https://github.com/brianhornsby/plugin.audio.tuneinradio</source>
 	</extension>
 </addon>
+
+<addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>M3U XML Converter</summary>
+        <description>
+Use this add-on to convert M3U to XML Playlist and vice versa.
+It will ignore XML with regex.
+
+Dùng add-on này để chuyển đổi M3U sang XML playlist và ngược lại.
+Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
+		</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>
+		<source></source>
+    </extension>
+</addon>
+
+<addon id="plugin.program.chrome.launcher" name="Chrome Launcher" version="1.1.5" provider-name="alelec (AddonScriptorDE)">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.pydevd" version="2.1.0" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Launch websites via Chrome in Kiosk-mode</summary>
+        <language></language>
+        <description lang="en">Launch websites via Chrome in Kiosk-mode</description>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <source>https://github.com/AddonScriptorDE/plugin.program.chrome.launcher</source>
+        <forum>http://forum.xbmc.org/showthread.php?tid=170965</forum>
+        <email>AddonScriptorDE at yahoo dot de</email>
+        <website></website>
+    </extension>
+</addon>
+
+<addon id="plugin.program.echowizard"
+	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+	     version="1.51"
+	     provider-name="Echo Coder">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.requests" version="2.9.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">[COLOR white]Twitter: @[/COLOR][COLOR yellowgreen]EchoCoder[/COLOR]</summary>
+    <description lang="en">[COLOR white]ECHO Wizard is a swiss army knife tool for Kodi. It gives you conrol over everything you need in one place. For support please contact @[/COLOR][COLOR yellowgreen]echo_coding[/COLOR][COLOR white] on twitter.[/COLOR]</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <website>http://echocoder.com/repo</website>
+    <email>echocoder@protonmail.com</email>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <screenshot>resources/art/screenshots/screenshot-1.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-2.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-3.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-4.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-5.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-6.png</screenshot>
+    </assets>
+  </extension>
+</addon>
+
+<addon id="plugin.program.goodfellasmessages" version="1.1.2"
+       name="GoodFellas Messages" provider-name="The Goodfellas">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+  	<import addon="script.module.addon.common" optional="true" />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+  	<summary>GOODFELLAS NEWS</summary>
+  	<description>Goodfellas Messages</description>
+  	<disclaimer>We do not assume any responsibility for any problems this may cause plugin.</disclaimer>
+  	<language>en</language>
+  	<platform>all</platform>
+  	<website>http://www.teamgoodfellas.com</website>
+  	<source></source>
+  	<email>none</email>
+  </extension>
+</addon>
+
+<addon id="plugin.program.SpeedTester.net" name="SpeedTester.net" version="1.0.2" provider-name="Twilight0">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SpeedTester.net</summary>
+    <description lang="en">SpeedTester.net will give you accurate Internet speed-ping test results.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.program.super.favourites"
+       name="TDB SUPER FAVS"
+       version="3001"
+       provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+	<import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.program.thechief" name="*[COLOR white]The Chief[/COLOR]" version="7.0.0" provider-name="[COLOR white]The Chief[/COLOR]">
+  <requires>
+	<import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.addon.common"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">[COLOR white]The Latest Builds From The Chief[/COLOR]</summary>
+    <description>HalowTV and iStream Playlister | Kodi Build Maker | Follow Me @TheChief_Kodi | The Rest Is History |</description>
+	<disclaimer lang="en">[B]Free Builds Created By The Chief For The Commnunity. Please Do Not Sell these builds. They Are Given Free To The Community. Do Not Ruin It For Them.[/B]</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
 </addons>
