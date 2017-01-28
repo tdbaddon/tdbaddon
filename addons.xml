@@ -4062,6 +4062,20 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
+<addon id="script.specto.media" version="2016.07.07" name="Specto Themepak" provider-name="mrknow" >
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for Specto</summary>
+		<description>Themes for Specto.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="script.streamhub.artwork" version="1.0.0" name="Streamhub Artwork" provider-name="sClarke">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
