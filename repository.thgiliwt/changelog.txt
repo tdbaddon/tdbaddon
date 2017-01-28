@@ -1,8 +1,0 @@
-### [B]1.0.2[/B] - 03-Sep-2016
-- Fix for error in addon.xml
-
-### [B]1.0.1[/B] - 03-Sep-2016
-- Fixed dependency issues
-
-### [B]1.0.0[/B] - 20-Aug-2016
-- Initial Version
