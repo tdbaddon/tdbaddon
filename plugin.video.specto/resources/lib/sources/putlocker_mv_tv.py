@@ -41,7 +41,7 @@ class source:
         #http://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
         #http://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
         self.search_link = 'http://api.flixanity.watch/api/v1/'+ self.social_lock
-
+        #http://flixanity.watch/ajax/jne.php
 
 
     def get_movie(self, imdb, title, year):
@@ -59,7 +59,7 @@ class source:
             print("POST",post)
             post = urllib.urlencode(post)
 
-            r = client.request(url, post=post, headers=headers, output='cookie2')
+            r = client.request(url, post=post, headers=headers, output='')
             print("R",r)
             r = json.loads(r)
 
@@ -182,7 +182,9 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            result, headers, content, cookie = client.request(url, output='extended')
+            r = client.request(url, output='extended')
+            cookie = r[4] ; headers = r[3] ; result = r[0]
+
 
             try:
                 auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
@@ -194,7 +196,8 @@ class source:
             headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Referer'] = url
             headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
-            u = '/ajax/embeds.php'
+            #u = '/ajax/embeds.php'
+            u = '/ajax/jne.php'
             u = urlparse.urljoin(self.base_link, u)
 
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
@@ -208,7 +211,7 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
-            r = client.request(u, post=post, headers=headers, output='cookie2')
+            r = client.request(u, post=post, headers=headers, output='')
             print('PUTLOCKER RESP %s' % r)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
@@ -220,11 +223,11 @@ class source:
                 except: pass
 
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i} for i in r if 'openload.co' in i]
+            links += [{'source': 'vidto.me', 'quality': 'SD', 'url': i} for i in r if 'vidto.me' in i]
+            links += [{'source': 'thevideo.me', 'quality': 'SD', 'url': i} for i in r if 'thevideo.me' in i]
 
-            links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i} for i in r if 'videomega.tv' in i]
-
-
-            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
+            for i in links:
+                sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
 
             return sources
         except Exception as e:
@@ -233,9 +236,7 @@ class source:
 
     def resolve(self, url):
         try:
-            control.log('@#@ PUT %s' % url)
-            if 'openload.co' in url or 'videomega.tv' in url:
-                control.log('@#@ PUT resolving ')
+            if 'openload.co' in url or 'vidto.me' in url or 'thevideo.me' in url :
                 url = resolvers.request(url)
             return url
         except:
