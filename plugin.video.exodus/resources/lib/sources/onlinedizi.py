@@ -35,7 +35,7 @@ class source:
         self.base_link = 'http://onlinedizi.co'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             result = cache.get(self.onlinedizi_tvcache, 120)
 

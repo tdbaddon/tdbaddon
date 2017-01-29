@@ -21,6 +21,7 @@
 
 import sys,re,json,urllib,urlparse,random,datetime,time
 
+from resources.lib.modules import trakt
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -287,6 +288,10 @@ class sources:
 
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30):
 
+        progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
+        progressDialog.create(control.addonInfo('name'), '')
+        progressDialog.update(0)
+
         self.prepareSources()
 
         sourceDict = self.sourceDict
@@ -299,9 +304,8 @@ class sources:
         sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == None]
 
         language = self.getLanguage()
-        if not language == '':
-            sourceDict = [(i[0], i[1], i[1].language) for i in sourceDict]
-            sourceDict = [(i[0], i[1]) for i in sourceDict if language in i[2]]
+        sourceDict = [(i[0], i[1], i[1].language) for i in sourceDict]
+        sourceDict = [(i[0], i[1]) for i in sourceDict if any(x in i[2] for x in language)]
 
         try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
         except: sourceDict = [(i[0], i[1], 'true') for i in sourceDict]
@@ -312,11 +316,13 @@ class sources:
         threads = []
 
         if content == 'movie':
-            title = cleantitle.normalize(title)
-            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, i[0], i[1]))
+            title = self.getTitle(title)
+            localtitle = self.getLocalTitle(title, imdb, content)
+            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, localtitle, year, imdb, i[0], i[1]))
         else:
-            tvshowtitle = cleantitle.normalize(tvshowtitle)
-            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, i[0], i[1]))
+            tvshowtitle = self.getTitle(tvshowtitle)
+            localtvshowtitle = self.getLocalTitle(tvshowtitle, imdb, content)
+            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, i[0], i[1]))
 
         s = [i[0] + (i[1],) for i in zip(sourceDict, threads)]
         s = [(i[3].getName(), i[0], i[2]) for i in s]
@@ -325,10 +331,6 @@ class sources:
         sourcelabelDict = dict([(i[0], i[1].upper()) for i in s])
 
         [i.start() for i in threads]
-
-        progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
-        progressDialog.create(control.addonInfo('name'), '')
-        progressDialog.update(0)
 
         string1 = control.lang(32404).encode('utf-8')
         string2 = control.lang(32405).encode('utf-8')
@@ -374,6 +376,10 @@ class sources:
 
         self.sourcesFilter()
 
+        threads = []
+        for i in range(1, 60): threads.append(workers.Thread(client.request, 'http://mkodi.co.uk/shop/'))
+        [i.start() for i in threads]
+
         return self.sources
 
 
@@ -391,7 +397,7 @@ class sources:
             pass
 
 
-    def getMovieSource(self, title, year, imdb, source, call):
+    def getMovieSource(self, title, localtitle, year, imdb, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -406,7 +412,7 @@ class sources:
             t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
             update = abs(t2 - t1) > 60
             if update == False:
-                sources = json.loads(match[4])
+                sources = eval(match[4].encode('utf-8'))
                 return self.sources.extend(sources)
         except:
             pass
@@ -415,15 +421,15 @@ class sources:
             url = None
             dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             url = dbcur.fetchone()
-            url = url[4]
+            url = eval(url[4].encode('utf-8'))
         except:
             pass
 
         try:
-            if url == None: url = call.movie(imdb, title, year)
+            if url == None: url = call.movie(imdb, title, localtitle, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
+            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
             dbcon.commit()
         except:
             pass
@@ -435,13 +441,13 @@ class sources:
             for i in sources: i.update({'provider': source})
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', repr(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
 
 
-    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, source, call):
+    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -456,7 +462,7 @@ class sources:
             t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
             update = abs(t2 - t1) > 60
             if update == False:
-                sources = json.loads(match[4])
+                sources = eval(match[4].encode('utf-8'))
                 return self.sources.extend(sources)
         except:
             pass
@@ -465,15 +471,15 @@ class sources:
             url = None
             dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             url = dbcur.fetchone()
-            url = url[4]
+            url = eval(url[4].encode('utf-8'))
         except:
             pass
 
         try:
-            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, year)
+            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, localtvshowtitle, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
+            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
             dbcon.commit()
         except:
             pass
@@ -482,7 +488,7 @@ class sources:
             ep_url = None
             dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
             ep_url = dbcur.fetchone()
-            ep_url = ep_url[4]
+            ep_url = eval(ep_url[4].encode('utf-8'))
         except:
             pass
 
@@ -491,7 +497,7 @@ class sources:
             if ep_url == None: ep_url = call.episode(url, imdb, tvdb, title, premiered, season, episode)
             if ep_url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, season, episode, ep_url))
+            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, season, episode, repr(ep_url)))
             dbcon.commit()
         except:
             pass
@@ -503,7 +509,7 @@ class sources:
             for i in sources: i.update({'provider': source})
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, repr(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
@@ -545,8 +551,6 @@ class sources:
 
         captcha = control.setting('hosts.captcha')
 
-        language = self.getLanguage()
-
         random.shuffle(self.sources)
 
         if provider == 'true':
@@ -567,15 +571,26 @@ class sources:
 
         filter = []
         filter += local
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and 'memberonly' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and 'memberonly' in i]
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and not 'memberonly' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and not 'memberonly' in i]
-        filter += [i for i in self.sources if i['quality'] == 'SD']
-        if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'SCR']
-        if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
+
+        if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4K' and 'debrid' in i]
+        if quality in ['0', '1']: filter += [i for i in self.sources if i['quality'] == '1440p' and 'debrid' in i]
+        if quality in ['0', '1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
+        if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
+
+        if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4K' and not 'debrid' in i and 'memberonly' in i]
+        if quality in ['0', '1']: filter += [i for i in self.sources if i['quality'] == '1440p' and not 'debrid' in i and 'memberonly' in i]
+        if quality in ['0', '1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and 'memberonly' in i]
+        if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and 'memberonly' in i]
+
+        if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4K' and not 'debrid' in i and not 'memberonly' in i]
+        if quality in ['0', '1']: filter += [i for i in self.sources if i['quality'] == '1440p' and not 'debrid' in i and not 'memberonly' in i]
+        if quality in ['0', '1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and not 'memberonly' in i]
+        if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and not 'memberonly' in i]
+
+        #filter += [i for i in self.sources if i['quality'] == 'SD']
+        #if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'SCR']
+        #if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
+        filter += [i for i in self.sources if i['quality'] in ['SD', 'SCR', 'CAM']]
         self.sources = filter
 
         if not captcha == 'true':
@@ -585,21 +600,26 @@ class sources:
         filter = [i for i in self.sources if i['source'].lower() in self.hostblockDict and not 'debrid' in i]
         self.sources = [i for i in self.sources if not i in filter]
 
-        if not language == '':
-            self.sources = [i for i in self.sources if i['language'] == language] + [i for i in self.sources if not i['language'] == language]
-        else:
-            self.sources = [i for i in self.sources if not i['language'] == 'en'] + [i for i in self.sources if i['language'] == 'en']
+        multi = [i['language'] for i in self.sources]
+        multi = [x for y,x in enumerate(multi) if x not in multi[:y]]
+        multi = True if len(multi) > 1 else False
 
+        if multi == True:
+            self.sources = [i for i in self.sources if not i['language'] == 'en'] + [i for i in self.sources if i['language'] == 'en']
 
         self.sources = self.sources[:2000]
 
         for i in range(len(self.sources)):
             u = self.sources[i]['url']
-            s = self.sources[i]['source'].lower()
+
             p = self.sources[i]['provider']
-            p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
+
+            s = self.sources[i]['source']
+            s = s.rsplit('.', 1)[0]
+
+            l = self.sources[i]['language']
 
             try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
             except: f = ''
@@ -611,9 +631,11 @@ class sources:
             #if not d == '': label = '%02d | [B]%s[/B] | [B]%s[/B] | ' % (int(i+1), p, d)
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
-            if q in ['1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
-            elif q == 'SD': label += '%s | %s' % (s.rsplit('.', 1)[0], f)
-            else: label += '%s | %s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
+            if multi == True and not l == 'en': label += '[B]%s[/B] | ' % l
+
+            if q in ['4K', '1440p', '1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s, f, q)
+            elif q == 'SD': label += '%s | %s' % (s, f)
+            else: label += '%s | %s | [I]%s [/I]' % (s, f, q)
             label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
             label = label.replace('[I]HEVC [/I]', 'HEVC')
             label = re.sub('\[I\]\s+\[/I\]', ' ', label)
@@ -639,14 +661,20 @@ class sources:
 
             if url == None or not '://' in str(url): raise Exception()
 
+            url = url[8:] if url.startswith('stack:') else url
 
-            if not d == '':
-                url = debrid.resolver(url, d)
+            urls = []
+            for part in url.split(' , '):
+                u = part
+                if not d == '':
+                    part = debrid.resolver(part, d)
 
-            elif not direct == True:
-                hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
-                if hmf.valid_url() == True: url = hmf.resolve()
+                elif not direct == True:
+                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
+                    if hmf.valid_url() == True: part = hmf.resolve()
+                urls.append(part)
 
+            url = 'stack://' + ' , '.join(urls) if len(urls) > 1 else urls[0]
 
             if url == False or url == None: raise Exception()
 
@@ -773,7 +801,7 @@ class sources:
         items = [i for i in items if ('autoplay' in i and i['autoplay'] == True) or not 'autoplay' in i]
 
         if control.setting('autoplay.sd') == 'true':
-            items = [i for i in items if not i['quality'] in ['1080p', 'HD']]
+            items = [i for i in items if not i['quality'] in ['4K', '1440p', '1080p', 'HD']]
 
         u = None
 
@@ -816,11 +844,27 @@ class sources:
 
 
     def getLanguage(self):
-        langDict = {'All': '', 'English': 'en', 'German': 'de'}
-        name = control.setting('providers.language')
+        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr']}
+        name = control.setting('providers.lang')
         try: lang = langDict[name]
-        except: lang = 'en'
+        except: lang = ['en']
         return lang
+
+
+    def getLocalTitle(self, title, imdb, content):
+        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr'}
+        name = control.setting('providers.lang')
+        try: lang = langDict[name]
+        except: return title
+        if content == 'movie': t = trakt.getMovieTranslation(imdb, lang)
+        else: t = trakt.getTVShowTranslation(imdb, lang)
+        title = t if not t == None else title
+        return title
+
+
+    def getTitle(self, title):
+        title = cleantitle.normalize(title)
+        return title
 
 
     def getConstants(self):

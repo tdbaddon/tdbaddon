@@ -34,12 +34,12 @@ class source:
         self.domains = ['rlsbb.com']
         self.base_link = 'http://rlsbb.com'
         self.search_base_link = 'http://search.rlsbb.com'
-        self.search_header_link = {'X-Requested-With': 'XMLHttpRequest', 'Cookie': 'serach_mode=rlsbb'}
+        self.search_cookie = 'serach_mode=rlsbb'
         self.search_link = '/lib/search.php?phrase=%s&pindex=1&content=true'
         self.search_link2 = '/search/%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -48,7 +48,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -97,7 +97,7 @@ class source:
                 url = self.search_link % urllib.quote_plus(query)
                 url = urlparse.urljoin(self.search_base_link, url)
 
-                result = client.request(url, headers=self.search_header_link, referer=referer)
+                result = client.request(url, cookie=self.search_cookie, XHR=True, referer=referer)
                 try: posts += json.loads(re.findall('({.+?})$', result)[0])['results']
                 except: pass
 
@@ -110,7 +110,7 @@ class source:
             url = self.search_link % urllib.quote_plus(query)
             url = urlparse.urljoin(self.search_base_link, url)
 
-            result = client.request(url, headers=self.search_header_link, referer=referer)
+            result = client.request(url, cookie=self.search_cookie, XHR=True, referer=referer)
             try: posts += json.loads(re.findall('({.+?})$', result)[0])['results']
             except: pass
 

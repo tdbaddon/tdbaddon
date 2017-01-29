@@ -42,39 +42,38 @@ class source:
         self.embed_link = '/ajax/load_embed/'
 
 
-    def request(self, url, headers, post):
+    def request(self, url, post=None, headers=None, XHR=False):
         try:
-            r = client.request(url, headers=headers, post=post, output='extended')
+            r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
             if r == None: return r
 
             if 'internetmatters.org' in r:
                 url = re.findall('(?://.+?|)(/.+)', url)[0]
                 url = urlparse.urljoin(self.base_link_2, url)
-                r = client.request(url, headers=headers, post=post, output='extended')
+                r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
 
             return r
         except:
             return
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             t = cleantitle.get(title)
 
             q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
             q = urlparse.urljoin(self.base_link, q)
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
             u = urlparse.urljoin(self.base_link, self.search_link)
             p = urllib.urlencode({'keyword': title})
 
-            r = self.request(u, headers=h, post=p)[0]
+            r = self.request(u, post=p, XHR=True)[0]
 
             try: r = json.loads(r)
             except: r = None
 
             if r == None:
-                r = self.request(q, headers=None, post=None)[0]
+                r = self.request(q)[0]
                 r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
                 r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
@@ -96,7 +95,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -119,17 +118,16 @@ class source:
             q = self.search_link_2 % (urllib.quote_plus('%s - Season %s' % (data['tvshowtitle'], season)))
             q = urlparse.urljoin(self.base_link, q)
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
             u = urlparse.urljoin(self.base_link, self.search_link)
             p = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
 
-            r = self.request(u, headers=h, post=p)[0]
+            r = self.request(u, post=p, XHR=True)[0]
 
             try: r = json.loads(r)
             except: r = None
 
             if r == None:
-                r = self.request(q, headers=None, post=None)[0]
+                r = self.request(q)[0]
                 r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
                 r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
@@ -157,7 +155,7 @@ class source:
     def onemovies_info(self, url):
         try:
             u = urlparse.urljoin(self.base_link, self.info_link)
-            u = self.request(u % url, headers=None, post=None)[0]
+            u = self.request(u % url)[0]
 
             q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
 
@@ -192,11 +190,11 @@ class source:
 
 
             try:
-                headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
+                headers = {'Referer': url}
 
                 u = urlparse.urljoin(self.base_link, self.server_link % vid_id)
 
-                r = self.request(u, headers=headers, post=None)[0]
+                r = self.request(u, headers=headers, XHR=True)[0]
 
                 r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
                 r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
@@ -242,10 +240,10 @@ class source:
 
             vid = link.split('/')[-1]
 
-            r = self.request(headers['Referer'], headers=headers, post=None)[0]
+            r = self.request(headers['Referer'], headers=headers, XHR=True)[0]
 
             r = client.parseDOM(r, 'img', ret='src', attrs = {'class': 'hidden'})
-            if r: cookie = self.request(r[0], headers=headers, post=None)[4]
+            if r: cookie = self.request(r[0], headers=headers, XHR=True)[4]
             else: cookie = ''
 
             key = '87wwxtp3dqii' ; key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
@@ -262,7 +260,7 @@ class source:
             headers['Referer'] = headers['Referer']
             headers['Cookie'] = cookie
 
-            r = self.request(url, headers=headers, post=None)[0]
+            r = self.request(url, headers=headers, XHR=True)[0]
 
 
             url = json.loads(r)['playlist'][0]['sources']
@@ -287,7 +285,7 @@ class source:
         try:
             if not self.embed_link in link: raise Exception()
 
-            result = self.request(link, headers=headers, post=None)[0]
+            result = self.request(link, headers=headers, XHR=True)[0]
 
             url = json.loads(result)['embed_url']
             return url

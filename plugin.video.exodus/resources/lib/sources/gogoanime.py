@@ -38,7 +38,7 @@ class source:
         self.episode_link = '/%s-episode-%s'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             r = 'search/tvdb/%s?type=show&extended=full' % tvdb
             r = json.loads(trakt.getTrakt(r))

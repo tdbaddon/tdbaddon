@@ -34,7 +34,7 @@ class source:
         self.base_link = 'http://flixanity.watch'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -43,7 +43,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -109,14 +109,13 @@ class source:
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
-            headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
             headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
             headers['Cookie'] = cookie
             headers['Referer'] = url
 
 
-            u = '/ajax/embeds.php'
+            u = '/ajax/jne.php'
             u = urlparse.urljoin(self.base_link, u)
 
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
@@ -130,11 +129,11 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
-            c = client.request(u, post=post, headers=headers, output='cookie', error=True)
+            c = client.request(u, post=post, headers=headers, XHR=True, output='cookie', error=True)
 
             headers['Cookie'] = cookie + '; ' + c
 
-            r = client.request(u, post=post, headers=headers)
+            r = client.request(u, post=post, headers=headers, XHR=True)
             r = str(json.loads(r))
             r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
 

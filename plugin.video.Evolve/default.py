@@ -41,7 +41,7 @@ def OOo ( ) :
   for I11 in o00 :
    i1 = I11 . replace ( '/' , '' ) . replace ( '%20' , ' ' ) . split ( '-' ) [ 1 ]
    Oo0o0000o0o0 = 'Evolve ' + i1
-   oOOoo00O0O = baseurl2 + I11
+   oOOoo00O0O = iiIIIII1i1iI + I11
    i1111 = 'http://matsbuilds.uk/pics/evolvecatview/' + i1 . replace ( ' ' , '%20' ) + '.png'
    iiiii = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + OO0o , 'fanart.jpg' ) )
    i11 ( oOo0oooo00o ( Oo0o0000o0o0 ) , oOOoo00O0O , 12 , i1111 , iiiii )

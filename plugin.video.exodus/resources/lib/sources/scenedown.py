@@ -32,10 +32,10 @@ class source:
         self.language = ['en']
         self.domains = ['scenedown.in']
         self.base_link = 'http://scenedown.in'
-        self.search_link = '/?s=%s&submit=Find'
+        self.search_link = '/search/%s/feed/rss2/'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -44,7 +44,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -77,11 +77,7 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            imdb = data['imdb']
-
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-
-            content = 'episode' if 'tvshowtitle' in data else 'movie'
 
             hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
 
@@ -93,51 +89,25 @@ class source:
 
             r = client.request(url)
 
-            posts = client.parseDOM(r, 'div', attrs={'class': 'post'})
+            posts = client.parseDOM(r, 'item')
 
             hostDict = hostprDict + hostDict
 
-            items = [] ; dupes = []
+            items = []
 
             for post in posts:
                 try:
-                    t = client.parseDOM(post, 'a')[0]
+                    t = client.parseDOM(post, 'title')[0]
 
-                    if content == 'movie':
-                        x = re.findall('/(tt\d+)', post)[0]
-                        if not x == imdb: raise Exception()
-                        q = re.findall('<strong>\s*Video\s*:\s*</strong>.+?\s(\d+)', post)[0]
-                        if not int(q) == 1280: raise Exception()
-                        if len(dupes) > 3: raise Exception()
-                        dupes += [x]
-
-                    elif content == 'episode':
-                        x = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', t)
-                        if not cleantitle.get(title) in cleantitle.get(x): raise Exception()
-                        y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', t)[-1].upper()
-                        if not y == hdlr: raise Exception()
-                        if len(dupes) > 0: raise Exception()
-                        dupes += [x]
-
-                    u = client.parseDOM(post, 'a', ret='href')[0]
-                    r = client.request(u).replace('\n', '')
-
-                    u = client.parseDOM(r, 'div', attrs={'class': 'postContent'})[0]
-                    u = re.split('id\s*=\s*"more-\d+"', u)[-1]
-
-                    if content == 'episode':
-                        u = re.compile('(?:<strong>|)(.+?)</strong>(.+?)(?:<strong>|$)', re.MULTILINE|re.DOTALL).findall(u)
-                        u = [(re.sub('<.+?>|</.+?>|>', '', i[0]), i[1]) for i in u]
-                        u = [i for i in u if '720p' in i[0].lower()][0]
-                        u, r, t = u[1], u[1], u[0]
-
-                    u = client.parseDOM(u, 'p')
-                    u = [client.parseDOM(i, 'a', ret='href') for i in u]
-                    u = [i[0] for i in u if len(i) == 1]
+                    u = client.parseDOM(post, 'enclosure', ret='url', attrs={'type': 'video.+?'})
                     if not u: raise Exception()
 
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', r)
+                    c = client.parseDOM(post, 'content.+?')[0]
+
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
                     s = s[0] if s else '0'
+
+                    u = client.parseDOM(c, 'a', ret='href')
 
                     items += [(t, i, s) for i in u]
                 except:
@@ -147,6 +117,14 @@ class source:
                 try:
                     name = item[0]
                     name = client.replaceHTMLCodes(name)
+
+                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
+
+                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
+
+                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
+
+                    if not y == hdlr: raise Exception()
 
                     fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', name.upper())
                     fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)

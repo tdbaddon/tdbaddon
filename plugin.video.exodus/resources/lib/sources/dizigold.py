@@ -36,7 +36,7 @@ class source:
         self.player_link = 'http://player.dizigold.org/?id=%s&s=1&dil=or'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             result = cache.get(self.dizigold_tvcache, 120)
 

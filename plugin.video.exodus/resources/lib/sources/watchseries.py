@@ -63,7 +63,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             query = base64.b64decode(self.search_link) % urllib.quote_plus(cleantitle.query(tvshowtitle))
 

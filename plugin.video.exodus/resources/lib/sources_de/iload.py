@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,22 +33,18 @@ class source:
         self.search_link_mv = '/suche/%s/Filme'
         self.search_link_tv = '/suche/%s/Serien'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(self.search_link_mv, imdb, title)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(self.search_link_mv, imdb, title)
+            if not url: url = self.__search(self.search_link_mv, imdb, localtitle)
             return url
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(self.search_link_tv, imdb, tvshowtitle)
-            if not url:
-                title = cleantitle.local(tvshowtitle, imdb, 'de-DE')
-                url = self.__search(self.search_link_tv, imdb, title)
+            if not url: url = self.__search(self.search_link_tv, imdb, localtvshowtitle)
             return url
         except:
             return
@@ -126,7 +122,7 @@ class source:
                 elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
 
                 info = []
-                if '3d' in fmt: info.append('3D')
+                if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
                 if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
 
                 items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in items]
@@ -136,8 +132,10 @@ class source:
                 items = [(i[0], re.findall('.+/(.+\.\w+)\.\w+', i[1])) for i in items]
                 items = [(i[0], i[1][0]) for i in items if len(i[1]) > 0 and i[1][0].lower() in hostDict]
 
+                info = ' | '.join(info)
+
                 for link, hoster in items:
-                    sources.append({'source': hoster, 'quality': quality, 'provider': 'ILOAD', 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False})
+                    sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False})
 
             return sources
         except:

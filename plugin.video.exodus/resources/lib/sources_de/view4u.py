@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ class source:
         self.domains = ['view4u.cc']
         self.base_link = 'http://view4u.cc'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(imdb)
             if url:
@@ -40,9 +40,9 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            return self.movie(imdb, tvshowtitle, year)
+            return self.movie(imdb, tvshowtitle, localtvshowtitle, year)
         except:
             return
 
@@ -87,7 +87,6 @@ class source:
                 if not host in hostDict: continue
 
                 sources.append({'source': host, 'quality': 'SD',
-                                'provider': 'View4u',
                                 'language': 'de',
                                 'url': url,
                                 'direct': False,

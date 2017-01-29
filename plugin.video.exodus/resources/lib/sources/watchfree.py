@@ -36,13 +36,13 @@ class source:
         self.tvsearch_link = '/?keyword=%s&search_section=2'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(proxy.request(query, 'item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'item'))
+            result = str(proxy.request(query, 'free movies'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'free movies'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
@@ -64,7 +64,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'link_ite')
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'free movies')
                     r = re.findall('(tt\d+)', r)
                     if imdb in r: url = i ; break
                 except:
@@ -78,13 +78,13 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             query = self.tvsearch_link % urllib.quote_plus(cleantitle.query(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(proxy.request(query, 'item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'item'))
+            result = str(proxy.request(query, 'free movies'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'free movies'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
@@ -106,7 +106,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'tv_episode_item')
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'free movies')
                     r = re.findall('(tt\d+)', r)
                     if imdb in r: url = i ; break
                 except:

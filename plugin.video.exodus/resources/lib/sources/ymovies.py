@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,string,time,json,base64
+import re,urllib,urlparse,hashlib,random,string,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -36,12 +36,9 @@ class source:
         self.info_link = '/ajax/movie_info/%s.html'
         self.episode_link = '/ajax/v3_movie_get_episodes/%s/%s/%s/%s.html'
         self.playlist_link = '/ajax/v2_get_sources/%s.html?hash=%s'
-        self.key1 = base64.b64decode('eHdoMzhpZjM5dWN4')
-        self.key2 = base64.b64decode('OHFoZm05b3lxMXV4')
-        self.key = base64.b64decode('Y3RpdzR6bHJuMDl0YXU3a3F2YzE1M3Vv')
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             t = cleantitle.get(title)
 
@@ -69,7 +66,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -174,7 +171,9 @@ class source:
                 r = client.request(ref, referer=url)
                 if not r == None: break
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
+            c = client.parseDOM(r, 'img', ret='src', attrs = {'class': 'hidden'})
+            if c: cookie = client.request(c[0], referer=ref, output='cookie')
+            else: cookie = ''
 
             server = re.findall('server\s*:\s*"(.+?)"', r)[0]
 
@@ -186,7 +185,7 @@ class source:
             u = urlparse.urljoin(self.base_link, r)
 
             for i in range(13):
-                r = client.request(u, headers=h, referer=ref)
+                r = client.request(u, referer=ref)
                 if not r == None: break
 
             r = re.compile('(<li.+?/li>)', re.DOTALL).findall(r)
@@ -201,22 +200,32 @@ class source:
 
             r = [re.findall('(\d+)', i) for i in r]
             r = [i[:2] for i in r if len(i) > 1]
-            r = [i[0] for i in r if i[1] in ['12', '13', '14', '15']]
+            r = [i[0] for i in r if 1 <= int(i[1]) <= 11][:3]
 
             for u in r:
                 try:
-                    p = '/ajax/movie_load_embed/%s.html' % u
-                    p = urlparse.urljoin(self.base_link, p)
+                    key = 'xwh38if39ucx' ; key2 = '8qhfm9oyq1ux' ; key3 = 'ctiw4zlrn09tau7kqvc153uo'
+
+                    k = u + key3
+                    v = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(6))
+
+                    c = key + u + key2 + '=%s' % v
+                    c = '%s; %s' % (cookie, c)
+
+                    url = urllib.quote(uncensored(k, v))
+                    url = '/ajax/v2_get_sources/%s?hash=%s' % (u, url)
+                    url = urlparse.urljoin(self.base_link, url)
 
                     for i in range(3):
-                        u = client.request(p, headers=h, referer=ref, timeout='10')
+                        u = client.request(url, referer=ref, cookie=c, timeout='10')
                         if not u == None: break
 
-                    url = json.loads(u)['embed_url']
+                    u = json.loads(u)['playlist'][0]['sources']
+                    u = [i['file'] for i in u if 'file' in i]
 
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-
-                    sources.append({'source': host, 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
+                    for i in u:
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                        except: pass
                 except:
                     pass
 
@@ -227,5 +236,16 @@ class source:
 
     def resolve(self, url):
         return directstream.googlepass(url)
+
+
+
+def uncensored(a,b):
+    x = '' ; i = 0
+    for i, y in enumerate(a):
+        z = b[i % len(b) - 1]
+        y = int(ord(str(y)[0])) + int(ord(str(z)[0]))
+        x += chr(y)
+    x = base64.b64encode(x)
+    return x
 
 

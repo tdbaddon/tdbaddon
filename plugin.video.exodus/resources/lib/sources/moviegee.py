@@ -35,7 +35,7 @@ class source:
         self.search_link = '/movies/watch-%s-online-free-%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.search_link % (cleantitle.geturl(title), year)
             url = urlparse.urljoin(self.base_link, url)

@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,20 +33,18 @@ class source:
         self.search_link = '/?s=%s'
         self.drop_link = '/drop.php'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(imdb, title, year)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(imdb, title, year)
-            if url:
-                return urllib.urlencode({'url': url})
+            if not url: url = self.__search(imdb, localtitle, year)
+
+            return urllib.urlencode({'url': url}) if url else None
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            return self.movie(imdb, tvshowtitle, year)
+            return self.movie(imdb, tvshowtitle, localtvshowtitle, year)
         except:
             return
 
@@ -105,15 +103,21 @@ class source:
                 if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt):  quality = 'SCR'
                 elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
 
+                info = []
+                if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
+                if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
+
                 links = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in links]
                 links = [(i[0][0], i[1][0].lower().strip()) for i in links if len(i[0]) > 0 and len(i[1]) > 0]
                 links = [(i[0], i[1]) for i in links if i[1] in hostDict]
 
+                info = ' | '.join(info)
+
                 for link, hoster in links:
                     sources.append({'source': hoster, 'quality': quality,
-                                    'provider': '1Kino',
                                     'language': 'de',
                                     'url': link,
+                                    'info': info,
                                     'direct': False,
                                     'debridonly': False})
 

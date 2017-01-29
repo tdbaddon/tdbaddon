@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,13 +31,13 @@ class source:
         self.base_link = 'http://video4k.to'
         self.request_link = '/request'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             return urllib.urlencode({'mID': re.sub('[^0-9]', '', imdb)})
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             return urllib.urlencode({'mID': re.sub('[^0-9]', '', imdb)})
         except:
@@ -76,7 +76,6 @@ class source:
                     try:
                         sources.append(
                             {'source': hoster, 'quality': 'SD',
-                             'provider': 'Video4k',
                              'language': 'de',
                              'url': link['URL'],
                              'direct': False,

@@ -39,12 +39,12 @@ class source:
         self.mv_link = '/v/%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             query = self.search_mv_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            r = client.request(query, headers={'X-Requested-With': 'XMLHttpRequest'})
+            r = client.request(query, XHR=True)
             r = json.loads(r)
 
             t = cleantitle.get(title)
@@ -58,12 +58,12 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             query = self.search_tv_link % (urllib.quote_plus(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            r = client.request(query, headers={'X-Requested-With': 'XMLHttpRequest'})
+            r = client.request(query, XHR=True)
             r = json.loads(r)
 
             t = cleantitle.get(tvshowtitle)

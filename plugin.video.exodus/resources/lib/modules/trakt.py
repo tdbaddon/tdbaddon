@@ -327,6 +327,18 @@ def markEpisodeAsNotWatched(tvdb, season, episode):
     return getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})
 
 
+def getMovieTranslation(id, lang):
+    url = '/movies/%s/translations/%s' % (id, lang)
+    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    except: pass
+
+
+def getTVShowTranslation(id, lang):
+    url = '/shows/%s/translations/%s' % (id, lang)
+    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    except: pass
+
+
 def getMovieSummary(id):
     return getTrakt('/movies/%s' % id)
 

@@ -77,6 +77,12 @@ class trailer:
         try:
             query = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
 
+            apiLang = control.apiLanguage()['youtube']
+
+            if apiLang != 'en':
+                query += ' %s' % control.apiLanguage(True)['youtube']
+                url += "&relevanceLanguage=%s" % apiLang
+
             url = self.search_link % urllib.quote_plus(query) + self.key_link
 
             result = client.request(url)

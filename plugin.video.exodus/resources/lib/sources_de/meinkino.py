@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,19 +34,17 @@ class source:
         self.search_link = '/filter?type=%s&veroeffentlichung[]=%s&suche=%s'
         self.get_link = '/geturl/%s'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(title, 'filme', year)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(title, 'filme', year)
+            if not url: url = self.__search(localtitle, 'filme', year)
             return url
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
             return urllib.urlencode(url)
         except:
             return
@@ -58,9 +56,10 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-            return self.__search(cleantitle.local(title, imdb, 'de-DE'), 'tv', data['year'], season, episode)
+            url = self.__search(data['tvshowtitle'], 'tv', data['year'], season, episode)
+            if not url: url = self.__search(data['localtvshowtitle'], 'tv', data['year'], season, episode)
+            return url
         except:
             return
 
@@ -82,28 +81,21 @@ class source:
             for i in r:
                 if isinstance(i, list):
                     for urlData in i:
-                        sources.append(
-                            {'source': 'gvideo', 'quality': directstream.googletag(urlData['link_mp4'])[0]['quality'],
-                             'provider': 'MeinKino',
-                             'language': 'de',
-                             'url': urlData['link_mp4'], 'direct': True,
-                             'debridonly': False})
+                        try: sources.append( {'source': 'gvideo', 'quality': directstream.googletag(urlData['link_mp4'])[0]['quality'], 'language': 'de', 'url': urlData['link_mp4'], 'direct': True, 'debridonly': False})
+                        except: pass
                 elif isinstance(i, dict):
                     for key, value in i.iteritems():
                         host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(value.strip().lower()).netloc)[0]
                         if not host in hostDict: continue
 
-                        sources.append({'source': host, 'quality': 'SD',
-                                        'provider': 'MeinKino',
-                                        'language': 'de',
-                                        'url': value, 'direct': False,
-                                        'debridonly': False})
+                        sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': value, 'direct': False, 'debridonly': False})
 
             return sources
         except:
             return sources
 
     def resolve(self, url):
+        if directstream.googletag(url): url = directstream.googlepass(url)
         return url
 
     def __search(self, title, type, year, season=0, episode=False):

@@ -19,8 +19,14 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,os,urllib,urlparse,json,zipfile,StringIO,datetime
 
+try:
+    from sqlite3 import dbapi2 as database
+except:
+    from pysqlite2 import dbapi2 as database
+
+from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import proxy
@@ -36,7 +42,32 @@ class source:
         self.search_link_2 = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwODQ5Mjc2ODA5NjE4MzM5MDAwMzowdWd1c2phYm5scSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
+        try:
+            download = True
+
+            data = os.path.join(control.dataPath, 'provider.movie25.db')
+            data_link = 'http://offshoregit.com/extest/provider.movie25.zip'
+
+            try: download = abs(datetime.datetime.fromtimestamp(os.path.getmtime(data)) - (datetime.datetime.now())) > datetime.timedelta(days=7)
+            except: pass
+
+            if download == True:
+                r = client.request(data_link)
+                zip = zipfile.ZipFile(StringIO.StringIO(r))
+                zip.extractall(control.dataPath)
+                zip.close()
+
+            dbcon = database.connect(data)
+            dbcur = dbcon.cursor()
+            dbcur.execute("SELECT * FROM movies WHERE imdb = '%s'" % imdb)
+            url = dbcur.fetchone()[0]
+            dbcon.close()
+
+            return url
+        except:
+            pass
+
         try:
             q = self.search_link_2.decode('base64') % urllib.quote_plus(title)
 
@@ -70,9 +101,7 @@ class source:
                 except:
                     pass
 
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = re.findall('(\d+)', url)[-1]
             return url
         except:
             pass
@@ -84,24 +113,27 @@ class source:
 
             if url == None: return sources
 
+            if url.isdigit(): url = '/watch-%s-online-free-%s.html' % (url, url)
+
             url = urlparse.urljoin(self.base_link, url)
 
             result = proxy.request(url, 'ovie')
-            result = result.replace('\n','')
 
-            quality = re.compile('Quality(.+?)<').findall(result)
+            quality = re.compile('Quality(.+?)<').findall(result.replace('\n',''))
             quality = quality[0].strip() if quality else 'SD'
             if quality == 'CAM' or quality == 'TS': quality = 'CAM'
             elif quality == 'SCREENER': quality = 'SCR'
             else: quality = 'SD'
 
             dupes = []
-            links = re.findall('\'(http.+?)\'', result) + re.findall('\"(http.+?)\"', result)
+            links = re.findall('\'(.+?)\'', result) + re.findall('\"(.+?)\"', result)
+            links = [proxy.parse(i) for i in links]
+            links = [i for i in links if i.startswith('http')]
+            links = [x for y,x in enumerate(links) if x not in links[:y]]
 
             for i in links:
                 try:
                     url = i
-                    url = proxy.parse(url)
                     url = urlparse.urlparse(url).query
                     url = url.decode('base64')
                     url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]

@@ -110,11 +110,15 @@ def googletag(url):
     try: quality = quality[0]
     except: return []
 
+    if quality in ['266', '272', '313']:
+        return [{'quality': '4K', 'url': url}]
+    if quality in ['264', '271']:
+        return [{'quality': '1440p', 'url': url}]
     if quality in ['37', '137', '299', '96', '248', '303', '46']:
         return [{'quality': '1080p', 'url': url}]
     elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
         return [{'quality': 'HD', 'url': url}]
-    elif quality in ['35', '44', '135', '244', '94']:
+    elif quality in ['35', '44', '59','135', '244', '94']:
         return [{'quality': 'SD', 'url': url}]
     elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
         return [{'quality': 'SD', 'url': url}]
@@ -128,7 +132,8 @@ def googlepass(url):
     try:
         try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
         except: headers = None
-        url = client.request(url.split('|')[0], headers=headers, output='geturl')
+        url = url.split('|')[0].replace('\\', '')
+        url = client.request(url, headers=headers, output='geturl')
         if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
         else: url = url.replace('https://', 'http://')
         if headers: url += '|%s' % urllib.urlencode(headers)
@@ -186,7 +191,11 @@ def odnoklassniki(url):
 
         result = json.loads(result)['videos']
 
-        try: hd = [{'quality': '1080p', 'url': i['url']} for i in result if i['name'] == 'full']
+        try: hd = [{'quality': '4K', 'url': i['url']} for i in result if i['name'] == 'ultra']
+        except: pass
+        try: hd += [{'quality': '1440p', 'url': i['url']} for i in result if i['name'] == 'quad']
+        except: pass
+        try: hd += [{'quality': '1080p', 'url': i['url']} for i in result if i['name'] == 'full']
         except: pass
         try: hd += [{'quality': 'HD', 'url': i['url']} for i in result if i['name'] == 'hd']
         except: pass

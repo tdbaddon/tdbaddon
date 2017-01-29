@@ -24,6 +24,7 @@ import re,urllib,urlparse
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import jsunpack
 
 
 class source:
@@ -37,7 +38,7 @@ class source:
         self.tvsearch_link = '/watch/%s-%s-season-%s/%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             t = cleantitle.get(title)
 
@@ -73,7 +74,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -121,6 +122,12 @@ class source:
                     d = urlparse.urljoin(self.base_link, u)
 
                     s = client.request(d, referer=url, timeout='10')
+
+                    j = re.compile('<script>(.+?)</script>', re.DOTALL).findall(s)
+                    for i in j:
+                        try: s += jsunpack.unpack(i)
+                        except: pass
+
                     u = re.findall(m, s)
 
                     if not u: 

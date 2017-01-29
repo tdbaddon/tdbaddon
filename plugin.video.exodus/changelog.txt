@@ -1,3 +1,15 @@
+[B]3.0.1[/B]
+- Tweaked indexers
+- Tweaked sorting of streams
+- Tweaked labels of available streams
+- Added support for localized trailers when available
+- Tweaked Providers Language support
+- NOTE: It has to be set again for non English options
+- Tweaked Providers caching
+- Updated existing providers
+- Removed dead providers
+- Added new providers
+
 [B]3.0.0[/B]
 - Re-work of provider retrieval
 - Re-work of stream directories

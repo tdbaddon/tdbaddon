@@ -37,7 +37,7 @@ class source:
         self.video_link = '/ajax/dataEmbed.asp'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             result = cache.get(self.sezonlukdizi_tvcache, 120)
 

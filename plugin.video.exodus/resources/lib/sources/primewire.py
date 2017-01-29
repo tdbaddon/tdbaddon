@@ -29,7 +29,7 @@ from resources.lib.modules import proxy
 class source:
     def __init__(self):
         self.priority = 0
-        self.language = ['en', 'de']
+        self.language = ['en']
         self.domains = ['primewire.ag']
         self.base_link = 'http://www.primewire.ag'
         self.key_link = '/index.php?search'
@@ -37,17 +37,17 @@ class source:
         self.tvsearch_link = '/index.php?search_keywords=%s&key=%s&search_section=2'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             key = urlparse.urljoin(self.base_link, self.key_link)
-            key = proxy.request(key, 'searchform')
+            key = proxy.request(key, 'main_body')
             key = client.parseDOM(key, 'input', ret='value', attrs = {'name': 'key'})[0]
 
             query = self.moviesearch_link % (urllib.quote_plus(cleantitle.query(title)), key)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(proxy.request(query, 'index_item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'index_item'))
+            result = str(proxy.request(query, 'main_body'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'main_body'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -69,7 +69,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'choose_tabs')
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'main_body')
                     r = re.findall('(tt\d+)', r)
                     if imdb in r: url = i ; break
                 except:
@@ -83,17 +83,17 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             key = urlparse.urljoin(self.base_link, self.key_link)
-            key = proxy.request(key, 'searchform')
+            key = proxy.request(key, 'main_body')
             key = client.parseDOM(key, 'input', ret='value', attrs = {'name': 'key'})[0]
 
             query = self.tvsearch_link % (urllib.quote_plus(cleantitle.query(tvshowtitle)), key)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(proxy.request(query, 'index_item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'index_item'))
+            result = str(proxy.request(query, 'main_body'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'main_body'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -115,7 +115,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'tv_episode_item')
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'main_body')
                     r = re.findall('(tt\d+)', r)
                     if imdb in r: url = i ; break
                 except:
@@ -135,7 +135,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = proxy.request(url, 'tv_episode_item')
+            result = proxy.request(url, 'main_body')
             result = client.parseDOM(result, 'div', attrs = {'class': 'tv_episode_item'})
 
             title = cleantitle.get(title)
@@ -167,7 +167,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = proxy.request(url, 'choose_tabs')
+            result = proxy.request(url, 'main_body')
 
             links = client.parseDOM(result, 'tbody')
 

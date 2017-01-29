@@ -35,7 +35,7 @@ class source:
         self.search_link = '/search/%s.html'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             query = urlparse.urljoin(self.base_link, self.search_link)
             query = query % urllib.quote_plus(title)
@@ -58,7 +58,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -96,7 +96,7 @@ class source:
             try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
             except: episode = None
 
-            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
+            ref = url
 
             for i in range(3):
                 result = client.request(url)
@@ -109,7 +109,7 @@ class source:
                 post = urllib.urlencode(post)
 
                 for i in range(3):
-                    result = client.request(url, post=post, headers=headers, timeout='10')
+                    result = client.request(url, post=post, XHR=True, referer=ref, timeout='10')
                     if not result == None: break
 
             r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*server_line[^"]*'})
@@ -132,7 +132,7 @@ class source:
                     if not host in ['google', 'putlocker', 'megashare']: raise Exception()
 
                     for i in range(3):
-                        result = client.request(url, post=post, headers=headers, timeout='10')
+                        result = client.request(url, post=post, XHR=True, referer=ref, timeout='10')
                         if not result == None: break
 
                     result = json.loads(result)['s']
@@ -143,7 +143,7 @@ class source:
                     post = urllib.urlencode(post)
 
                     for i in range(3):
-                        result = client.request(url, post=post, headers=headers)
+                        result = client.request(url, post=post, XHR=True, referer=ref)
                         if not result == None: break
 
                     url = json.loads(result)['data']

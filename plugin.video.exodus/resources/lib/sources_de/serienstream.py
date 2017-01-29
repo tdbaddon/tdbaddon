@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,22 +32,18 @@ class source:
         self.base_link = 'http://serienstream.to'
         self.search_link = '/ajax/search'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(title)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(title)
+            if not url: url = self.__search(localtitle)
             return url
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(tvshowtitle)
-            if not url:
-                title = cleantitle.local(tvshowtitle, imdb, 'de-DE')
-                url = self.__search(title)
+            if not url: url = self.__search(localtvshowtitle)
             return url
         except:
             return
@@ -85,7 +81,6 @@ class source:
 
             for link, hoster, quality in r:
                 sources.append({'source': hoster, 'quality': quality,
-                                'provider': 'Serienstream',
                                 'language': 'de',
                                 'url': link,
                                 'direct': False,

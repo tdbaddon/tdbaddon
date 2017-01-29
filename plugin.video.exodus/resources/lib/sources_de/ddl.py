@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ class source:
         self.base_link = 'http://de.ddl.me'
         self.search_link = '/search_99/?q=%s'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__get_direct_url(imdb)
             if not url: return
@@ -39,7 +39,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             return self.__get_direct_url(imdb)
         except:
@@ -85,13 +85,12 @@ class source:
                 host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(h_url.strip().lower()).netloc)[0]
                 if not host in hostDict: continue
 
-                h_url = h_url if pcnt == 1 else 'stack://' + ','.join(jLinks)
+                h_url = h_url if pcnt == 1 else 'stack://' + ' , '.join(jLinks)
 
                 try:
                     sources.append(
                         {'source': jHoster, 'quality': 'SD',
-                         'provider': 'DDL',
-                         'language': 'de',
+                         'language': 'de', 'info' : '' if pcnt == 1 else 'multi-part',
                          'url': h_url, 'direct': False, 'debridonly': False})
                 except:
                     pass

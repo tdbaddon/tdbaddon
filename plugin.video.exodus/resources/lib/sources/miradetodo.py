@@ -35,7 +35,7 @@ class source:
         self.search_link = '/?s=%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             t = 'http://www.imdb.com/title/%s' % imdb
             t = client.request(t, headers={'Accept-Language':'ar-AR'})
@@ -84,17 +84,17 @@ class source:
                     if sid in dupes: raise Exception()
                     dupes.append(sid)
 
-                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
-
-                    url = client.request(u, timeout='10', headers=headers)
+                    url = client.request(u, timeout='10', XHR=True, referer=u)
                     url = client.parseDOM(url, 'a', ret='href')
                     url = [i for i in url if '.php' in i][0]
                     url = 'http:' + url if url.startswith('//') else url
-                    url = client.request(url, timeout='10', headers=headers, referer=u)
+                    url = client.request(url, timeout='10', XHR=True, referer=u)
 
-                    url = re.findall('file\s*:\s*"(.+?)"', url)
+                    s = re.findall('file\s*:\s*"(.+?)"', url)
+                    s += re.findall('"file"\s*:\s*"(.+?)"', url)
+                    s = [x.replace('\\', '') for x in s]
 
-                    for i in url:
+                    for i in s:
                         try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
                         except: pass
                 except:

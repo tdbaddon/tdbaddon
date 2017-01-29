@@ -8,7 +8,7 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
-		<setting id="providers.language" type="select" label="32360" values="English|German|All" default="English" />
+		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
@@ -21,7 +21,7 @@
 		<setting id="hosts.mode" type="enum" label="32331" lvalues="32332|32333|32334" default="1" />
 		<setting id="progress.dialog" type="enum" label="32335" lvalues="32336|32337" default="0" />
 		<setting type="lsep" label="32338" />
-		<setting id="hosts.quality" type="enum" label="32339" values="1080p|720p|480p" default="0" />
+		<setting id="hosts.quality" type="enum" label="32339" values="4K|1440p|1080p|720p|480p" default="0" />
 		<setting id="autoplay.sd" type="bool" label="32340" default="false" />
 		<setting id="hosts.captcha" type="bool" label="32341" default="true" />
 		<setting id="hosts.sort.provider" type="bool" label="32342" default="false" />
@@ -47,14 +47,16 @@
 		<setting id="provider.library" type="bool" label="LIBRARY" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
 		<setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
-		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
-		<setting id="provider.moviebiz" type="bool" label="MOVIEBIZ" default="true" />
+		<setting id="provider.movieflixter" type="bool" label="MOVIEFLIXTER" default="true" />
 		<setting id="provider.moviefree" type="bool" label="MOVIEFREE" default="true" />
 		<setting id="provider.moviegee" type="bool" label="MOVIEGEE" default="true" />
+		<setting id="provider.moviegross" type="bool" label="MOVIEGROSS" default="true" />
 		<setting id="provider.movies14" type="bool" label="MOVIES14" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MOVIESHD" default="true" />
 		<setting id="provider.moviesplanet" type="bool" label="MOVIESPLANET" default="true" />
+		<setting id="provider.moviewatcher" type="bool" label="MOVIEWATCHER" default="true" />
 		<setting id="provider.moviexk" type="bool" label="MOVIEXK" default="true" />
+		<setting id="provider.myddl" type="bool" label="MYDDL" default="true" />
 		<setting id="provider.myvideolink" type="bool" label="MYVIDEOLINK" default="true" />
 		<setting id="provider.onemovies" type="bool" label="ONEMOVIES" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="ONLINEDIZI" default="true" />
@@ -68,13 +70,12 @@
 		<setting id="provider.primewire" type="bool" label="PRIMEWIRE" default="true" />
 		<setting id="provider.pubfilm" type="bool" label="PUBFILM" default="true" />
 		<setting id="provider.putlocker" type="bool" label="PUTLOCKER" default="true" />
-		<setting id="provider.putlockerz" type="bool" label="PUTLOCKERZ" default="true" />
 		<setting id="provider.releasebb" type="bool" label="RELEASEBB" default="true" />
 		<setting id="provider.rlsbb" type="bool" label="RLSBB" default="true" />
-		<setting id="provider.rlshd" type="bool" label="RLSHD" default="true" />
 		<setting id="provider.rlsmovies" type="bool" label="RLSMOVIES" default="true" />
 		<setting id="provider.scenedown" type="bool" label="SCENEDOWN" default="true" />
 		<setting id="provider.sceper" type="bool" label="SCEPER" default="true" />
+		<setting id="provider.scnrls" type="bool" label="SCNRLS" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="SEZONLUKDIZI" default="true" />
 		<setting id="provider.streamlord" type="bool" label="STREAMLORD" default="true" />
 		<setting id="provider.tinydl" type="bool" label="TINYDL" default="true" />
@@ -97,9 +98,11 @@
 		<setting id="provider.filmpalast" type="bool" label="FILMPALAST" default="true" />
 		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
 		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
+		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />
 		<setting id="provider.kinox" type="bool" label="KINOX" default="true" />
 		<setting id="provider.meinkino" type="bool" label="MEINKINO" default="true" />
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
+		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
@@ -153,6 +156,10 @@
 		<setting type="lsep" label="Ororo.tv" />
 		<setting id="ororo.user" type="text" label="32304" option="hidden" default="" />
 		<setting id="ororo.pass" type="text" option="hidden" label="32307" default="" />
+		<setting type="sep" />
+		<setting type="lsep" label="Seriesever.net" />
+		<setting id="seriesever.user" type="text" label="32303" default="" />
+		<setting id="seriesever.pass" type="text" option="hidden" label="32307" default="" />
 	</category>
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />

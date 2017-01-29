@@ -19,23 +19,32 @@
 '''
 
 
+
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
-
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['rlshd.net']
-        self.base_link = 'https://www.rlshd.net'
+        self.domains = ['myddl.org']
+        self.base_link = 'http://myddl.org'
         self.search_link = '/search/%s/feed/rss2/'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def movie(self, imdb, title, localtitle, year):
+        try:
+            url = {'imdb': imdb, 'title': title, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -90,8 +99,19 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    u = client.parseDOM(post, 'enclosure', ret='url')
-                    items += [(t, i) for i in u]
+                    c = client.parseDOM(post, 'content.+?')[0]
+
+                    u = client.parseDOM(c, 'p')
+                    u = [client.parseDOM(i, 'a', ret='href') for i in u]
+                    u = [i[0] for i in u if len(i) == 1]
+                    if not u: raise Exception()
+
+                    if 'tvshowtitle' in data:
+                         u = [(re.sub('(720p|1080p)', '', t) + ' ' + [x for x in i.strip('//').split('/')][-1], i) for i in u]
+                    else:
+                         u = [(t, i) for i in u]
+
+                    items += u
                 except:
                     pass
 
@@ -101,7 +121,6 @@ class source:
                     name = client.replaceHTMLCodes(name)
 
                     t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
-
                     if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
 
                     y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
@@ -126,8 +145,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) [M|G]B)', name)[-1]
-                        div = 1 if size.endswith(' GB') else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -151,6 +170,9 @@ class source:
                     sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
+
+            check = [i for i in sources if not i['quality'] == 'CAM']
+            if check: sources = check
 
             return sources
         except:

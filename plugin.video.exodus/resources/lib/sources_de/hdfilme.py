@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 Viper4k
+    Copyright (C) 2016 Viper2k4
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,19 +33,17 @@ class source:
         self.base_link = 'http://hdfilme.tv'
         self.search_link = '/movie-search?key=%s'
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(title, year)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(title, year)
+            if not url: url = self.__search(localtitle, year)
             return url
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
             url = urllib.urlencode(url)
             return url
         except:
@@ -58,12 +56,23 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-            url = self.__search(title, data['year'], season, episode)
-            if not url:
-                title = cleantitle.local(title, imdb, 'de-DE')
-                url = self.__search(title, data['year'], season, episode)
+            url = self.__search(data['tvshowtitle'], data['year'], season)
+            if not url: url = self.__search(data['localtvshowtitle'], data['year'], season)
+            if not url: return
+
+            r = client.request(urlparse.urljoin(self.base_link, url))
+
+            r = client.parseDOM(r, 'ul', attrs={'class': 'list-inline list-film'})
+            r = client.parseDOM(r, 'li')
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
+            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(i[0], i[1] if re.compile("^(\d+)$").match(i[1]) else '0') for i in r]
+            r = [i[0] for i in r if int(i[1]) == int(episode)][0]
+
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
             return url
         except:
             return
@@ -82,12 +91,8 @@ class source:
             result = [i['file'] for i in result if 'file' in i]
 
             for i in result:
-                try:
-                    sources.append(
-                        {'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'HDFilme',
-                         'language': 'de', 'url': i, 'direct': False, 'debridonly': False})
-                except:
-                    pass
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:
@@ -96,7 +101,7 @@ class source:
     def resolve(self, url):
         return directstream.googlepass(url)
 
-    def __search(self, title, year, season='0', episode=False):
+    def __search(self, title, year, season='0'):
         try:
             query = self.search_link % (urllib.quote_plus(cleantitle.query(title)))
             query = urlparse.urljoin(self.base_link, query)
@@ -122,7 +127,6 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             url = url.replace('-info', '-stream')
-            if episode: url = urlparse.urlparse(url).path + '?episode=%s' % int(episode)
             return url
         except:
             return
