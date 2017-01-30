@@ -241,26 +241,31 @@ def INDEX():
 
 		try:
 			#Information for ECHO Wizard OTA updates.
+			U_A = 'TheWizardIsHere'
 			if os.path.exists(ECHO_VERSION):
 				VERSIONCHECK = ECHO_VERSION
 				FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3VwZGF0ZV93aXoudHh0')
 				checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3ZlcnNpb25fY2hlY2sudHh0')
 				pleasecheck = 1
-			
+			if os.path.exists(COMMUNITY_OTA):
+				VERSIONCHECK = COMMUNITY_OTA
+				a=open(VERSIONCHECK).read()
+				FIND_URL = re.compile('<update_url>(.+?)</update_url>').findall(a)[0]
+				checkurl = re.compile('<version_check>(.+?)</version_check>').findall(a)[0]
+				try:
+					U_A = re.compile('<user_agent>(.+?)</user_agent>').findall(a)[0]
+				except: pass
+				pleasecheck = 1
 		except:
 			pass
 
 		try:
 			if pleasecheck == 1:
-				vers = open(VERSIONCHECK, "r")
-				regex = re.compile(r'<build>(.+?)</build><version>(.+?)</version>')
-				for line in vers:
-					currversion = regex.findall(line)
-					for build_name,build_version in currversion:
-						CURRENT_BUILD = build_name
-						CURRENT_VERSION = build_version
+				a=open(VERSIONCHECK).read()
+				CURRENT_BUILD = re.compile('<build>(.+?)</build>').findall(a)[0]
+				CURRENT_VERSION = re.compile('<version>(.+?)</version>').findall(a)[0]
 				req = urllib2.Request(checkurl)
-				req.add_header('User-Agent',base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl'))
+				req.add_header('User-Agent',U_A)
 				response = urllib2.urlopen(req)
 				link=response.read()
 				response.close()
@@ -276,7 +281,6 @@ def INDEX():
 			CURRENT_VERSION_CODE = "[COLOR lightskyblue]ERROR[/COLOR]"
 			LATEST_VERSION = "[COLOR lightskyblue]ERROR[/COLOR]"
 
-
 	#######################################################################
 	#				MAIN MENU LIST
 	#######################################################################
@@ -287,7 +291,7 @@ def INDEX():
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
+		#Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
 		if pleasecheck == 1:
 			Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 			Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
@@ -302,9 +306,7 @@ def INDEX():
 			except:
 				Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 		else:
-			if os.path.exists(COMMUNITY_OTA):
-				Common.addItem('[COLOR ghostwhite][B]CHECK FOR BUILD UPDATES[/B][/COLOR]',BASEURL,33,UPDATE_ICON,FANART,'')
-			elif os.path.isfile(COMMUNITY_BUILD):
+			if os.path.isfile(COMMUNITY_BUILD):
 				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
 	if offline == 0:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')

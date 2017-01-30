@@ -16,9 +16,8 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import ast,operator,os,re,shutil,sys,urllib,urlparse
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
-import ast,os,re,shutil,sys,urllib,urlparse
 
 from metahandler import metahandlers
 from md_view import setView
@@ -92,15 +91,15 @@ class md:
 
 
 	def dialog_select(self,header,choice):
-                dialog = xbmcgui.Dialog()
-                return dialog.select(header,choice)
+		dialog = xbmcgui.Dialog()
+		return dialog.select(header,choice)
 
 
 
 
-        def numeric_select(self,header,default_no):
-                dialog = xbmcgui.Dialog()
-                return dialog.numeric(0, header, default_no)
+	def numeric_select(self,header,default_no):
+		dialog = xbmcgui.Dialog()
+		return dialog.numeric(0, header, default_no)
 
 
 
@@ -120,21 +119,27 @@ class md:
 
 
 	def search(self, blank='+'):
-                keyb = xbmc.Keyboard('', 'Search')
-                keyb.doModal()
-                if (keyb.isConfirmed()):
-                        search = keyb.getText().replace(' ',blank)
-                return search
+		keyb = xbmc.Keyboard('', 'Search')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			search = keyb.getText().replace(' ',blank)
+		return search
+
+
+
+
+	def get_max_value_index(self, my_list):
+		return max(enumerate(my_list), key=operator.itemgetter(1))
 
 
 
 
 	def remove_from_file(self,name,path,dummy):
 		with open(path,'r') as oldfile:
-                        with open(dummy, 'w') as newfile:
-                                for line in oldfile:
-                                        if name not in line:
-                                                newfile.write(line)
+			with open(dummy, 'w') as newfile:
+				for line in oldfile:
+					if name not in line:
+						newfile.write(line)
 		os.remove(path)
 		os.rename(dummy,path)
 		if os.stat(path).st_size == 0:
@@ -158,8 +163,8 @@ class md:
 
 
 	def get_fav_folder(self):
-                path = os.path.join(self.addon.get_profile(), 'favs', '')
-                if not os.path.exists(path):
+		path = os.path.join(self.addon.get_profile(), 'favs', '')
+		if not os.path.exists(path):
 			try:
 				os.makedirs(path)
 			except OSError as exc: # Guard against race condition
@@ -171,7 +176,7 @@ class md:
 
 
 	def get_fav_path(self,content):
-                self.get_fav_folder()
+		self.get_fav_folder()
 		filename = os.path.join(self.addon.get_profile(), 'favs', '%s.txt' %content)
 		if not os.path.exists(filename):
 			with open(filename, 'w'):
@@ -182,9 +187,9 @@ class md:
 
 
 
-	def fetch_favs(self):
+	def fetch_favs(self,baseurl=''):
 
-                path = self.get_fav_folder()
+		path = self.get_fav_folder()
 		from os.path import isfile, join
 		onlyfiles = [f for f in os.listdir(path) if isfile(join(path, f))]
 		dialog = xbmcgui.Dialog()
@@ -252,24 +257,30 @@ class md:
 					name = b['name']
 					content = b['content']
 
+					if baseurl:
+						if baseurl not in url:
+							base = url.split('//')[1]
+							change = base.partition('/')[2]
+							url = '%s/%s' %(baseurl,change)
+
 					if 'contextmenu_items' not in b:
 						contextmenu_items = []
 					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
 
 					self.addDir({'mode':mode, 'name':name, 'url':url, 'content':content, 'title':title},
 						    infolabels=infolabels, fan_art=fanart, is_folder=is_folder, contextmenu_items=contextmenu_items)
-                        if content == 'movies':
-                                setView(self.addon_id, 'movies', 'movie-view')
-                        elif content == 'tvshows':
-                                setView(self.addon_id, 'tvshows', 'show-view')
-                        elif content == 'seasons':
-                                setView(self.addon_id, 'files', 'sea-view')
-                        elif content == 'episodes':
-                                setView(self.addon_id,'episodes', 'epi-view')
-                        else:
-                                setView(self.addon_id, 'files', 'menu-view')
+			if content == 'movies':
+				setView(self.addon_id, 'movies', 'movie-view')
+			elif content == 'tvshows':
+				setView(self.addon_id, 'tvshows', 'show-view')
+			elif content == 'seasons':
+				setView(self.addon_id, 'files', 'sea-view')
+			elif content == 'episodes':
+				setView(self.addon_id,'episodes', 'epi-view')
+			else:
+				setView(self.addon_id, 'files', 'menu-view')
 
-                        self.addon.end_of_directory()
+			self.addon.end_of_directory()
 		
 
 
@@ -483,7 +494,7 @@ class md:
 
 	def fetch_meta(self, content, infolabels, fan_art={}):
 
-                meta = {}
+		meta = {}
 
 		if 'year' in infolabels:
 			year = infolabels['year']
@@ -528,37 +539,40 @@ class md:
 		
 		if content == 'movies':
 
-                        if self.addon.get_setting('movie_meta') == 'true':
-                                meta = metaget.get_meta('movie', simplename, year=simpleyear, imdb_id=code)
-                        else:
-                                pass
+			if self.addon.get_setting('movie_meta') == 'true':
+				meta = metaget.get_meta('movie', simplename, year=simpleyear, imdb_id=code)
+			else:
+				pass
 
 		elif content == 'tvshows':
 
-                        if self.addon.get_setting('tv_show_meta') == 'true':
-                                meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
-                        else:
-                                pass
+			if self.addon.get_setting('tv_show_meta') == 'true':
+				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+			else:
+				pass
 
 		elif content == 'seasons':
 
-                        if self.addon.get_setting('season_meta') == 'true':
-                                if season:
-                                        meta.get_seasons(simplename,code,season)
-                                else:
-                                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
-                        else:
-                                pass
+			if self.addon.get_setting('season_meta') == 'true':
+				if season:
+					try:
+						meta.get_seasons(simplename,code,season)
+					except:
+						meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+				else:
+					meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+			else:
+				pass
 
 		elif content == 'episodes':
 
-                        if self.addon.get_setting('episode_meta') == 'true':
-                                if episode:
-                                        meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
-                                else:
-                                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
-                        else:
-                                pass
+			if self.addon.get_setting('episode_meta') == 'true':
+				if episode:
+					meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
+				else:
+					meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
+			else:
+				pass
 
 		if not meta['cover_url']:
 			meta['cover_url'] = fan_art['icon']
@@ -657,12 +671,12 @@ class md:
 		else:
 			self.addon.log_debug('adding item: %s - %s' % (name, s_args))
 			ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=s_args,listitem=listitem,isFolder=is_folder,totalItems=int(item_count))
-                return ok
+		return ok
 
 
 
 
-        def check_source(self):
+	def check_source(self):
 		if xbmcvfs.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
 			with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:
 				my_file = f.read()

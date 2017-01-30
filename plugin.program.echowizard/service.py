@@ -16,6 +16,7 @@
 """
 import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs
 import urllib2,urllib
+import requests
 import shutil
 import zipfile
 from resources.lib.modules import extract
@@ -101,27 +102,91 @@ if os.path.exists(ECHO_VERSION):
 
 if nointernet == 0 and pleasecheck == 1:
 	if check == 'true':
-		if os.path.exists(VERSIONCHECK):
-			a=open(VERSIONCHECK).read()
-			build = re.compile('<build>(.+?)</build>').findall(a)[0]
-			vernumber = re.compile('<version>(.+?)</version>').findall(a)[0]
-			if vernumber > 0:
-				req = urllib2.Request(checkurl)
-				req.add_header('User-Agent', U_A)
-				try:
-					response = urllib2.urlopen(req)
-				except:
-					dialog.ok(AddonTitle,'Sorry we are unable to check for updates!','The update host appears to be down.','Please check for updates later via the wizard.')							   
-					sys.exit(1)
-							
-				link=response.read()
-				response.close()
+		selected = 0
+		dialog = xbmcgui.Dialog()
+		a=open(VERSIONCHECK).read()
+		build = re.compile('<build>(.+?)</build>').findall(a)[0]
+		vernumber = re.compile('<version>(.+?)</version>').findall(a)[0]
+		if vernumber > 0:
+			req = urllib2.Request(checkurl)
+			req.add_header('User-Agent',U_A)
+			try:
+				response = urllib2.urlopen(req)
+			except:
+				dialog.ok(AddonTitle,'Sorry we are unable to check for updates!','The update host appears to be down.','Please check for updates later via the wizard.')
+				sys.exit(1)
+				xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+			link=response.read()
+			response.close()
+			try:
+				match = re.compile('<build>'+build+'</build><version>(.+?)</version><fresh>(.+?)</fresh><changelog>(.+?)</changelog>').findall(link)
+				for newversion,fresh,CHANGE_LOG_URL in match:
+					if newversion > vernumber:
+						selected = 0
+						while selected == 0:
+							choice = dialog.select("[COLOR red][B]Found a new update for " + build + " - [/COLOR][COLOR blue]Version: " + newversion + "[/B][/COLOR]", ['[COLOR blue]View Change Log[/COLOR]','[COLOR blue]Install Version ' + newversion + '[/COLOR]','[COLOR blue]Update Later[/COLOR]'])
+							if choice == 0:
+								f = requests.get(CHANGE_LOG_URL)
+								Common.TextBoxesPlain("%s" % f.text)
+							elif choice == 1: 
+								if fresh =='false': # TRUE
+									updateurl = FIND_URL
+									req = urllib2.Request(updateurl)
+									req.add_header('User-Agent', U_A)
+									try:
+										response = urllib2.urlopen(req)
+									except:
+										dialog.ok(AddonTitle,'Sorry we were unable to download the update!','The update host appears to be down.','Please check for updates later via the wizard.')
+										sys.exit(1)		
+									xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+									link=response.read()
+									response.close()
+									match = re.compile('<build>'+build+'</build><url>(.+?)</url>').findall(link)
+									for url in match:
+										
+										path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+										name = "build"
+										dp = xbmcgui.DialogProgress()
+
+										dp.create(AddonTitle,"Downloading ",'', 'Please Wait')
+										lib=os.path.join(path, name+'.zip')
+										try:
+											os.remove(lib)
+										except:
+											pass
+										
+										downloader.download(url, lib, dp)
+										addonfolder = xbmc.translatePath(os.path.join('special://','home'))
+										time.sleep(2)
+										dp.update(0,"", "Extracting Zip Please Wait")
+										print '======================================='
+										print addonfolder
+										print '======================================='
+										extract.all_update(lib,addonfolder,dp)
+										xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+										dialog = xbmcgui.Dialog()
+										dialog.ok(AddonTitle, "Your build has succesfully been updated to the latest version.","Kodi must now force close to complete the update.")							
+										selected = 1
+										Common.KillKodi()
+								else:
+									dialog.ok('[COLOR lightskyblue]A WIPE is required for the update[/COLOR]','Select the [COLOR green]YES[/COLOR] option in the NEXT WINDOW to wipe now.','Select the [COLOR lightskyblue]NO[/COLOR] option in the NEXT WINDOW to update later.','[I][COLOR smokewhite]If you wish to update later you can do so in [/COLOR][COLOR ghostwhite]ECHO[/COLOR] [COLOR lightsteelblue]Wizard[/COLOR][/I]')
+									xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+									selected = 1
+									wipe.FRESHSTART()
+									sys.exit(1)
+							else:
+								xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+								selected = 1
+								quit()
+			except:
+				if selected == 1:
+					quit()
 				match = re.compile('<build>'+build+'</build><version>(.+?)</version><fresh>(.+?)</fresh>').findall(link)
 				for newversion,fresh in match:
 					if newversion > vernumber:
-						if fresh =='false': # TRUE
-							choice = xbmcgui.Dialog().yesno("NEW UPDATE AVAILABLE", 'Found a new update for the Build', build + " ver: "+newversion, 'Do you want to install it now?', yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-							if choice == 1: 
+						choice = dialog.select("[COLOR red][B]Found a new update for the Build " + build + " Version: " + newversion + "[/B][/COLOR]", ['[COLOR blue]Install Version ' + newversion + '[/COLOR]','[COLOR blue]Update Later[/COLOR]'])
+						if choice == 0: 
+							if fresh =='false': # TRUE
 								updateurl = FIND_URL
 								req = urllib2.Request(updateurl)
 								req.add_header('User-Agent', U_A)
@@ -130,14 +195,16 @@ if nointernet == 0 and pleasecheck == 1:
 								except:
 									dialog.ok(AddonTitle,'Sorry we were unable to download the update!','The update host appears to be down.','Please check for updates later via the wizard.')
 									sys.exit(1)
+								xbmc.executebuiltin( "Dialog.Close(busydialog)" )
 								link=response.read()
 								response.close()
 								match = re.compile('<build>'+build+'</build><url>(.+?)</url>').findall(link)
-								for url in match:				
+								for url in match:
+									
 									path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
 									name = "build"
 									dp = xbmcgui.DialogProgress()
-	
+
 									dp.create(AddonTitle,"Downloading ",'', 'Please Wait')
 									lib=os.path.join(path, name+'.zip')
 									try:
@@ -149,19 +216,22 @@ if nointernet == 0 and pleasecheck == 1:
 									addonfolder = xbmc.translatePath(os.path.join('special://','home'))
 									time.sleep(2)
 									dp.update(0,"", "Extracting Zip Please Wait")
-									installer.unzip(lib,addonfolder,dp)
+									print '======================================='
+									print addonfolder
+									print '======================================='
+									extract.all_update(lib,addonfolder,dp)
+									xbmc.executebuiltin( "Dialog.Close(busydialog)" )
 									dialog = xbmcgui.Dialog()
 									dialog.ok(AddonTitle, "Your build has succesfully been updated to the latest version.","Kodi must now force close to complete the update.")							
 									Common.KillKodi()
 							else:
-								sys.exit(1)
-						else:
-							choice = xbmcgui.Dialog().yesno( build + " " + newversion + " update available", 'Found a new update for the Build', build + " ver: "+newversion, 'Do you want to install it now?', yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-							if choice == 1: 
-								dialog.ok('[COLOR lightskyblue]A WIPE is required for the update[/COLOR]','[COLOR white]Once you wipe the system you will need to go to ECHO Wizard and download the [/COLOR]' + build + '[COLOR white] build.[/COLOR]','[COLOR smokewhite]Kodi will return to the default state after the wipe is performed![/COLOR]')
+								dialog.ok('[COLOR lightskyblue]A WIPE is required for the update[/COLOR]','Select the [COLOR green]YES[/COLOR] option in the NEXT WINDOW to wipe now.','Select the [COLOR lightskyblue]NO[/COLOR] option in the NEXT WINDOW to update later.','[I][COLOR smokewhite]If you wish to update later you can do so in [/COLOR][COLOR ghostwhite]ECHO[/COLOR] [COLOR lightsteelblue]Wizard[/COLOR][/I]')
+								xbmc.executebuiltin( "Dialog.Close(busydialog)" )
 								wipe.FRESHSTART()
-							else:
-								sys.exit(1)
+								sys.exit(1)		
+						else:
+							xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+							sys.exit(1)		
 
 # Sleeper added before the maintenance functions due to the updating of addons.
 

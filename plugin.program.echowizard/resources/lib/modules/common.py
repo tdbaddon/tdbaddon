@@ -584,6 +584,14 @@ def OPEN_URL_NORMAL(url):
     response.close()
     return link  
 
+def OPEN_URL_BEAST(url):
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
+    response = urllib2.urlopen(req)
+    link=response.read()
+    response.close()
+    return link  
+
 def get_size(start_path):
     total_size = 0
     for dirpath, dirnames, filenames in os.walk(start_path):

@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.53: 30th January 2017[/COLOR]
+[COLOR white][B]- The Beast support added.[/B][/COLOR]
+
+[COLOR yellowgreen]1.52: 30th January 2017[/COLOR]
+[COLOR white][B]- Changelog function for OTA updates.[/B][/COLOR]
+
 [COLOR yellowgreen]1.51: 27th January 2017[/COLOR]
 [COLOR white][B]- OTA Update support added for community builds.[/B][/COLOR]
 

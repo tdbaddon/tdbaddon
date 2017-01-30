@@ -154,6 +154,11 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	if 'endlessflix' in url:
 		protected_wizards.Endless_Install()
 
+
+	if 'CALL_THE_BEAST' in url:
+		protected_wizards.Beast_Install()
+		url = url.replace('CALL_THE_BEAST','')
+
 	i=0
 	dp.create(AddonTitle,"[COLOR blue]We are getting the list of developers from our server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
 	dp.update(0)
@@ -169,7 +174,9 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	a = 0
 	b = 0
 
-	link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
+	if "beast" in url:
+		link = Common.OPEN_URL_BEAST(url).replace('\n','').replace('\r','')
+	else: link = Common.OPEN_URL_NORMAL(url).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
 	dis_links = len(match)
 	for name,url,iconimage,fanart in match:

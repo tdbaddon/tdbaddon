@@ -41,275 +41,278 @@ sys.setdefaultencoding("utf-8")
 
 def MAIN():
 
-        if show_tv == 'true':
-                md.addDir({'mode': '2', 'name':'[COLOR white][B]TV[/B][/COLOR]', 'url':'url'})
-        if show_mov == 'true':
-                md.addDir({'mode': '1', 'name':'[COLOR white][B]MOVIES[/B][/COLOR]', 'url':'url'})
-        if show_fav == 'true':
-                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
-        if metaset == 'true':
-                md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
-        if show_add_set == 'true':
-                md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
-        
+	if show_tv == 'true':
+		md.addDir({'mode': '2', 'name':'[COLOR white][B]TV[/B][/COLOR]', 'url':'url'})
+	if show_mov == 'true':
+		md.addDir({'mode': '1', 'name':'[COLOR white][B]MOVIES[/B][/COLOR]', 'url':'url'})
+	if show_fav == 'true':
+		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+	if metaset == 'true':
+		md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+	if show_add_set == 'true':
+		md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+	
 
-        setView(addon_id, 'files', 'menu-view')
-        addon.end_of_directory()
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
 def MOVIES():
 
-        if show_fav == 'true':
-                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/newadd', 'content':'movies'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view', 'content':'movies'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]HOT MOVIES[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
-        md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':'url', 'content':'movies'})
-        md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
-        md.addDir({'mode': '6', 'name':'[COLOR white][B]YEAR[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
-        
-        setView(addon_id, 'files', 'menu-view')
-        addon.end_of_directory()
+	if show_fav == 'true':
+		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/newadd', 'content':'movies'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view', 'content':'movies'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]HOT MOVIES[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+	md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':'url', 'content':'movies'})
+	md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+	md.addDir({'mode': '6', 'name':'[COLOR white][B]YEAR[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+	
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
 def TV():
 
-        if show_fav == 'true':
-                md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/latest-tvshow', 'content':'tvshows'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view-tvshow', 'content':'tvshows'})
-        md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':baseurl, 'content':'tvshows'})
-        md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
-        md.addDir({'mode': '3', 'name':'[COLOR white][B]ALL[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
+	if show_fav == 'true':
+		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/latest-tvshow', 'content':'tvshows'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view-tvshow', 'content':'tvshows'})
+	md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':baseurl, 'content':'tvshows'})
+	md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
+	md.addDir({'mode': '3', 'name':'[COLOR white][B]ALL[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
 
-        setView(addon_id, 'files', 'menu-view')
-        addon.end_of_directory()
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
 def INDEX(url,content):
 
-        link = open_url(url).text
-        all_videos = md.regex_get_all(link, '"item"', 'clear:both')
-        items = len(all_videos)
+	link = open_url(url).text
+	all_videos = md.regex_get_all(link, '"item"', 'clear:both')
+	items = len(all_videos)
 
-        for a in all_videos:
-                
-                if content == 'movies':
-                        name = md.regex_from_to(a, 'cite>', '<')
+	for a in all_videos:
+		
+		if content == 'movies':
+			name = md.regex_from_to(a, 'cite>', '<')
 
-                elif content == 'tvshows':
-                        name = md.regex_from_to(a, 'href=.*?>', '<')
-                        
-                name = addon.unescape(name)
-                name = name.encode('ascii', 'ignore').decode('ascii')
-                qual = md.regex_from_to(a, 'class="h3-quality".*?>', '<')
-                url = md.regex_from_to(a, 'href="', '"')
-                thumb = md.regex_from_to(a, 'src=', 'alt=').replace(' ','')
-                epi = md.regex_from_to(a, '"h4-cat".*?>', '<')
-                fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
-                if '-tvshow-' in url:
-                        md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
-                                   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name} ,fan_art, item_count=items)
-                else:
-                        md.addDir({'mode': '8', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
-                                   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name} ,fan_art, is_folder=False, item_count=items)
+		elif content == 'tvshows':
+			name = md.regex_from_to(a, 'href=.*?>', '<')
+			
+		name = addon.unescape(name)
+		name = name.encode('ascii', 'ignore').decode('ascii')
+		qual = md.regex_from_to(a, 'class="h3-quality".*?>', '<')
+		url = md.regex_from_to(a, 'href="', '"')
+		thumb = md.regex_from_to(a, 'src=', 'alt=').replace(' ','')
+		epi = md.regex_from_to(a, '"h4-cat".*?>', '<')
+		fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
+		if '-tvshow-' in url:
+			md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
+				   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name} ,fan_art, item_count=items)
+		else:
+			md.addDir({'mode': '8', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
+				   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name} ,fan_art, is_folder=False, item_count=items)
 
-        np_fan_art = {'icon':art+'next.png', 'fanart':art+'m4u.jpg'}
-        try:
-                fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
-                np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
-                md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',
-                           'url':np, 'content':content}, fan_art=np_fan_art)
-        except:pass
+	np_fan_art = {'icon':art+'next.png', 'fanart':art+'m4u.jpg'}
+	try:
+		fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
+		np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
+		md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',
+			   'url':np, 'content':content}, fan_art=np_fan_art)
+	except:pass
 
-        try:
+	try:
 
-                np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
-                for url, name in np:
-                        md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,
-                                   'url':url, 'content':content}, np_fan_art)
-        except:pass
+		np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
+		for url, name in np:
+			md.addDir({'mode': '3', 'name':'[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,
+				   'url':url, 'content':content}, np_fan_art)
+	except:pass
 
-        if content == 'movies':
-                setView(addon_id, 'movies', 'movie-view')
-        elif content == 'tvshows':
-                setView(addon_id, 'tvshows', 'show-view')
-        addon.end_of_directory()
+	if content == 'movies':
+		setView(addon_id, 'movies', 'movie-view')
+	elif content == 'tvshows':
+		setView(addon_id, 'tvshows', 'show-view')
+	addon.end_of_directory()
 
 
 
 
 def EPIS(title,url,iconimage,content):
-        addon.log('##########################title= '+str(title))
+	addon.log('##########################title= '+str(title))
 
-        if iconimage == None:
-                iconimage = icon
+	if iconimage == None:
+		iconimage = icon
 
-        link = open_url(url).text
+	link = open_url(url).text
 
-        match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
-        items = len(match)
+	match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
+	items = len(match)
 
-        for url,name in match:
+	for url,name in match:
 
-                data = name.split('-')
-                season = data[0].replace('S','').replace('s','')
-                episode = data[1].replace('E','').replace('e','')
-                
-                try:
-                        episode = episode.split(',')[0]
-                except:
-                        pass
+		data = name.split('-')
+		season = data[0].replace('S','').replace('s','')
+		episode = data[1].replace('E','').replace('e','')
+		
+		try:
+			episode = episode.split(',')[0]
+		except:
+			pass
 
-                fan_art = {'icon':iconimage, 'fanart':art+'m4u.jpg'}
+		fan_art = {'icon':iconimage, 'fanart':art+'m4u.jpg'}
 
-                md.addDir({'mode': '8', 'name':'[I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %name,
-                           'url':url, 'iconimage':iconimage, 'content':'episodes'},
-                          {'sorttitle':title, 'season':season, 'episode':episode},
-                          fan_art, is_folder=False, item_count=items)
+		md.addDir({'mode': '8', 'name':'[I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %name,
+			   'url':url, 'iconimage':iconimage, 'content':'episodes'},
+			  {'sorttitle':title, 'season':season, 'episode':episode},
+			  fan_art, is_folder=False, item_count=items)
 
-        setView(addon_id,'episodes', 'epi-view')
-        addon.end_of_directory()
+	setView(addon_id,'episodes', 'epi-view')
+	addon.end_of_directory()
 
 
 
 
 def SEARCH(content, query):
 	try:
-                if query:
-                        search = query.replace(' ','-')
-                else:
-                        search = md.search(blank='-')
-                        if search == '':
-                                md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
-                                return
-                        else:
-                                pass
+		if query:
+			search = query.replace(' ','-')
+		else:
+			search = md.search(blank='-')
+			if search == '':
+				md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+				return
+			else:
+				pass
 
-                if content == 'movies':
-                        url = baseurl+'/tag/'+search
-                elif content == 'tvshows':
-                        url = baseurl+'/tagtvs/'+search
-                INDEX(url,content)
+		if content == 'movies':
+			url = baseurl+'/tag/'+search
+		elif content == 'tvshows':
+			url = baseurl+'/tagtvs/'+search
+		INDEX(url,content)
 
-        except:
-                md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+	except:
+		md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
 
 
 
 
 def GENRE(url,content):
 
-        link = open_url(url).text
-        if content == 'movies':
-                match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
-                for url,name in match:
-                        if '/movie-' in url:
-                                md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
-                                           'content':'movies'})
-                                
+	link = open_url(url).text
+	if content == 'movies':
+		match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+		for url,name in match:
+			if '/movie-' in url:
+				md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+					   'content':'movies'})
+				
 
-        elif content == 'tvshows':
-                match=re.compile('<li> <a href="(.*?)" title="All TVshow.*?">(.*?)</a></li>').findall(link)
-                for url,name in match:
-                        if '/tvshow-' in url:
-                                md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
-                                           'content':'tvshows'})
+	elif content == 'tvshows':
+		match=re.compile('<li> <a href="(.*?)" title="All TVshow.*?">(.*?)</a></li>').findall(link)
+		for url,name in match:
+			if '/tvshow-' in url:
+				md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+					   'content':'tvshows'})
 
-        setView(addon_id, 'files', 'menu-view')
-        addon.end_of_directory()
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
 def YEAR(url,content):
 
-        link = open_url(url).text
-        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+	link = open_url(url).text
+	match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
 
-        for url,name in match:
-                if '/year-' in url:
-                        md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
-                                           'content':'movies'})
+	for url,name in match:
+		if '/year-' in url:
+			md.addDir({'mode': '3', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+					   'content':'movies'})
 
-        setView(addon_id, 'files', 'menu-view')
-        addon.end_of_directory()
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
 def RESOLVE(url,iconimage,content,infolabels):
 
-        link = open_url(url).content
-        
-        '''try:
-                request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
-                link = OPEN_URL(request_url)
-        except: pass'''
+	link = open_url(url).content
+	
+	'''try:
+		request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
+		link = OPEN_URL(request_url)
+	except: pass'''
 
-        try:
-                soup = bs(link, "html.parser")
-                a = soup.find('h3',class_='h3-detail')
-                b = a.find('a', href=True)
-                request_url = str(b["href"])
-                link = open_url(request_url).content
-        except:
-                pass
+	try:
+		soup = bs(link, "html.parser")
+		a = soup.find('h3',class_='h3-detail')
+		b = a.find('a', href=True)
+		request_url = str(b["href"])
+		link = open_url(request_url).content
+	except:
+		pass
 
-        final_url = ''
-        
-        try:
-                try:
-                        final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[0]
-                except:
-                        pass
+	value = []
+	max_url = []
+	final_url= ''
+	
+	match = re.findall(r'"file":"(.*?),"label":"(.*?)",', str(link), re.I|re.DOTALL)
+	try:
+                for url,label in match:
+                        label = label.replace('p','')
+                        value.append(label)
+                        max_url.append(url)
+			
+                        if '1080' in label:
+                                        final_url = url
+                if not final_url:
+                        final_url =  max_url[md.get_max_value_index(value)[0]]
 
-                if final_url == '':
+		if 'google' in final_url:
+			final_url = final_url
+		else:
+			if baseurl not in final_url:
+				final_url = baseurl + '/' + final_url
 
-                        try:
-                                final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[1]
-                        except:
-                                pass
+	except:
+		try:
+			final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[0]
+		except:
+			pass
 
-                if 'google' in final_url:
-                        final_url = final_url
-                else:
-                        if baseurl not in final_url:
-                                final_url = baseurl + '/' + final_url
-                
-        except:
-                
-                final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+		if final_url == '':
 
-                if final_url == '':
+			try:
+				final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[1]
+			except:
+				pass
 
-                        try:
-                                final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
-                        except:
-                                pass
+		if 'google' in final_url:
+			final_url = final_url
+		else:
+			if baseurl not in final_url:
+				final_url = baseurl + '/' + final_url
+		
+	final_url = final_url.replace('../view.php?','view.php?')
+	final_url = final_url.replace('./view.php?','view.php?')
+		
+	liz = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
+	liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": infolabels})
+	liz.setProperty("IsPlayable","true")
+	liz.setPath(final_url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
-                if 'google' in final_url:
-                        final_url = final_url
-                else:
-                        if baseurl not in final_url:
-                                final_url = baseurl + '/' + final_url
-
-        final_url = final_url.replace('../view.php?','view.php?')
-        final_url = final_url.replace('./view.php?','view.php?')
-                
-        liz = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-        liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": infolabels})
-        liz.setProperty("IsPlayable","true")
-        liz.setPath(final_url)
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-
-        addon.end_of_directory()
+	addon.end_of_directory()
 
 
 
@@ -332,44 +335,44 @@ is_folder = md.args.get('is_folder', True)
 
 
 if mode is None or url is None or len(url)<1:
-        MAIN()
+	MAIN()
 
 elif mode is '1':
-        MOVIES()
+	MOVIES()
 
 elif mode is '2':
-        TV()
+	TV()
 
 elif mode is '3':
-        INDEX(url,content)
+	INDEX(url,content)
 
 elif mode is '4':
-        SEARCH(content,query)
+	SEARCH(content,query)
 
 elif mode is '5':
-        GENRE(url,content)
+	GENRE(url,content)
 
 elif mode is '6':
-        YEAR(url,content)
+	YEAR(url,content)
 
 elif mode is '7':
-        EPIS(title,url,iconimage,content)
+	EPIS(title,url,iconimage,content)
 
 elif mode is '8':
-        RESOLVE(url,iconimage,content,infolabels)
+	RESOLVE(url,iconimage,content,infolabels)
 
 elif mode == 'add_remove_fav':
-        md.add_remove_fav(name, url, infolabels, fan_art,
-                          content, mode_id, is_folder)
+	md.add_remove_fav(name, url, infolabels, fan_art,
+			  content, mode_id, is_folder)
 elif mode == 'fetch_favs':
-        md.fetch_favs()
+	md.fetch_favs(baseurl)
 
 elif mode == 'addon_settings':
-        addon.show_settings()
+	addon.show_settings()
 
 elif mode == 'meta_settings':
-        import metahandler
-        metahandler.display_settings()
+	import metahandler
+	metahandler.display_settings()
 
 md.check_source()
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
