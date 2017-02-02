@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,10 +18,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import json, re
+import json
+import re
 
-from resources.lib.libraries import client
-from resources.lib.libraries import logger
+from resources.lib.modules import client
+from resources.lib.modules import logger
+
 
 def resolve(url):
     try:
@@ -68,7 +70,7 @@ def resolve(url):
             url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-mobile.mp4?hosting_id=' + video_info[0]
             try :
                 result = client.request(url, output='chunk', timeout=10)
-                if test == None:
+                if result == None:
                     raise Exception()
             except:
                 pass

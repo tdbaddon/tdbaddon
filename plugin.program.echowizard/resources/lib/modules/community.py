@@ -36,6 +36,7 @@ MaintTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Maintenance Tools[/COLO
 BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
 key = base64.b64encode(plugintools.get_setting("beta"))
 COMMUNITY_ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/community.png'))
+TEMP_FILE      =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
 Community_List = BASEURL + base64.b64decode(b"Y29tbXVuaXR5L3dpemFyZHMudHh0")
 Protected_List = BASEURL + base64.b64decode(b"Y29tbXVuaXR5L3Byb3RlY3RlZC9wYWdl")
 COM_NOTICE = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/community_notice.txt'))
@@ -49,6 +50,7 @@ dialog = xbmcgui.Dialog()
 #######################################################################
 
 def COMMUNITY():
+
 	i=0
 	dp.create(AddonTitle,"[COLOR blue]We are getting the list of developers from our server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
 	dp.update(0)
@@ -56,6 +58,7 @@ def COMMUNITY():
 	urllist=[]
 	hiddenlist=[]
 	countlist=[]
+	totallist=[]
 	deslist=[]
 	iconlist=[]
 	fanartlist=[]
@@ -72,53 +75,54 @@ def COMMUNITY():
 		namelist.append(name)
 		urllist.append(url)
 		hiddenlist.append(hidden)
-		countlist.append(str(Common.community_dev_week(developer)))   
-		deslist.append(description)		
+		countlist.append(str(Common.count(developer+"DEVEL_COUNT",TEMP_FILE)))
+		totallist.append(str(Common.count(developer+"TOTAL_DEV",TEMP_FILE)))   
+		deslist.append(description)
 		iconlist.append(iconimage)
 		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,hiddenlist,deslist,iconlist,fanartlist))
+		combinedlists = list(zip(countlist,totallist,namelist,urllist,hiddenlist,deslist,iconlist,fanartlist))
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 	dp.close()
 	rank = 1
-	for count,name,url,hidden,description,iconimage,fanart in tup:
+	for count,total,name,url,hidden,description,iconimage,fanart in tup:
 		developer = str(name.replace('[COLOR white][B]','').replace('[/B][/COLOR]','').replace('[/B][/COLOR]','').replace(' BUILDS',''))
 		if hidden != "false":
 			url = hidden + "," + url
 			if rank == 1:
-				bname = " | [COLOR gold] This Week:[/COLOR][COLOR gold] " + count + " - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
-				Common.addDir("[B][COLOR gold]1st - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR gold] This Week:[/COLOR][COLOR gold] " + count + " - [COLOR gold]Total:[/COLOR][COLOR gold] " + total + "[/COLOR] - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
+				Common.addDir("[B][COLOR gold]1st - " + developer + "[/B][/COLOR]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 			elif rank == 2:
-				bname = " | [COLOR ghostwhite] This Week:[/COLOR][COLOR ghostwhite] " + count + " - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
-				Common.addDir("[B][COLOR ghostwhite]2nd - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR ghostwhite] This Week:[/COLOR][COLOR ghostwhite] " + count + " - [COLOR ghostwhite]Total:[/COLOR][COLOR ghostwhite] " + total + "[/COLOR] - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
+				Common.addDir("[B][COLOR ghostwhite]2nd - " + developer + "[/B][/COLOR]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 			elif rank == 3:
-				bname = " | [COLOR orange] This Week:[/COLOR][COLOR orange] " + count + " - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
-				Common.addDir("[B][COLOR orange]3rd - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR orange] This Week:[/COLOR][COLOR orange] " + count + " - [COLOR orange]Total:[/COLOR][COLOR orange] " + total + "[/COLOR] - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
+				Common.addDir("[B][COLOR orange]3rd - " + developer + "[/B][/COLOR]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 				Common.addItem("[COLOR grey]-----------------------------------------------[/COLOR]",url,17,iconimage,fanart,description)
 			else:
-				bname = " | [COLOR grey] This Week:[/COLOR][COLOR grey][B] " + count + " - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
+				bname = " | [COLOR grey] This Week:[/COLOR][COLOR grey][B] " + count + " - [COLOR grey]Total:[/COLOR][COLOR grey][B] " + total + "[/COLOR] - [COLOR red][PASSWORD PROTECTED][/COLOR][/B][/COLOR]"
 				Common.addDir("[COLOR grey]" + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
 		else:
 			if rank == 1:
-				bname = " | [COLOR gold] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
-				Common.addDir("[B][COLOR gold]1st - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR gold] This Week:[/COLOR][COLOR gold] " + count + "[/COLOR] - [COLOR gold]Total:[/COLOR][COLOR gold] " + total + "[/B][/COLOR]"
+				Common.addDir("[B][COLOR gold]1st - " + developer + "[/COLOR][/B]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 			elif rank == 2:
-				bname = " | [COLOR ghostwhite] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/B][/COLOR]"
-				Common.addDir("[B][COLOR ghostwhite]2nd - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR ghostwhite] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/COLOR] - [COLOR ghostwhite]Total:[/COLOR][COLOR ghostwhite] " + total + "[/B][/COLOR]"
+				Common.addDir("[B][COLOR ghostwhite]2nd - " + developer + "[/COLOR][/B]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 			elif rank == 3:
-				bname = " | [COLOR orange] This Week:[/COLOR][COLOR orange] " + count + "[/B][/COLOR]"
-				Common.addDir("[B][COLOR orange]3rd - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+				bname = "[B] | [COLOR orange] This Week:[/COLOR][COLOR orange] " + count + "[/COLOR] - [COLOR orange]Total:[/COLOR][COLOR orange] " + total + "[/B][/COLOR]"
+				Common.addDir("[B][COLOR orange]3rd - " + developer + "[/COLOR][/B]"  + bname,url,93,iconimage,fanart,description)
 				rank = rank + 1
 				Common.addItem("[COLOR grey]-----------------------------------------------[/COLOR]",url,17,iconimage,fanart,description)
 			else:
-				bname = " | [COLOR grey] This Week:[/COLOR][COLOR grey][B] " + count + "[/B][/COLOR]"
+				bname = " | [COLOR grey] This Week:[/COLOR][COLOR grey][B] " + count + "[/B][/COLOR] - [COLOR grey]Total:[/COLOR][COLOR grey][B] " + total + "[/B][/COLOR]"
 				Common.addDir("[COLOR grey]" + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
 	
-	Common.addItem('[B][COLOR lightskyblue]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
+	Common.addItem('[B][COLOR yellowgreen]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
 
 def SHOWCOMMUNITYBUILDS(name, url, description):
 
@@ -168,6 +172,8 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	deslist=[]
 	iconlist=[]
 	fanartlist=[]
+	totallist=[]
+	combinedlists=[]
 	desca = description
 	developer = desca.split(',')[0]
 	hidden = desca.split(',')[1]
@@ -186,16 +192,19 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		found = 1
 		description = "null" + "," + developer
+		name2 = name
+		url = name2 + "," + url
 		name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
 		namelist.append(name)
 		urllist.append(url)
-		countlist.append(str(Common.count_community(name)))   
+		countlist.append(str(Common.count(name2,TEMP_FILE)))
+		totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))   
 		deslist.append(description)
 		iconlist.append(iconimage)
 		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
+		combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-	for count,name,url,description,iconimage,fanart in tup:
+	for count,total,name,url,description,iconimage,fanart in tup:
 		if codename == "Jarvis":
 			if not "krypton" in name.lower():
 				b = b + 1
@@ -203,7 +212,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 					name=name.replace('skip','')
 					Common.addItem(name,url,999,iconimage,fanart,description)
 				else:
-					bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + count + "[/B][/COLOR]"
+					bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
 					Common.addDir(name + bname,url,97,iconimage,fanart,description)
 		if codename == "Krypton":
 			if "krypton" in name.lower():
@@ -212,7 +221,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 					name=name.replace('skip','')
 					Common.addItem(name,url,999,iconimage,fanart,description)
 				else:
-					bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + count + "[/B][/COLOR]"
+					bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
 					Common.addDir(name + bname,url,97,iconimage,fanart,description)
 	
 	if codename == "Krypton":
@@ -266,8 +275,10 @@ def SHOWPROTECTEDBUILDS(name, url, description):
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
 	for name,url,iconimage,fanart in match:
 		description = "null" + "," + developer
+		name2 = name
+		url = name2 + "," + url
 		name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
-		bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + str(Common.count_community(name)) + "[/B][/COLOR]"
+		bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
 		Common.addDir(name + bname,url,97,iconimage,fanart,description)
 
 	try:

@@ -33,6 +33,7 @@ class source:
         self.domains = ['scenedown.in']
         self.base_link = 'http://scenedown.in'
         self.search_link = '/search/%s/feed/rss2/'
+        self.search_link_2 = '/?s=%s&submit=Find'
 
 
     def movie(self, imdb, title, localtitle, year):
@@ -74,6 +75,8 @@ class source:
 
             if debrid.status() == False: raise Exception()
 
+            hostDict = hostprDict + hostDict
+
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
@@ -81,37 +84,107 @@ class source:
 
             hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
 
+            imdb = data['imdb']
+
+            content = 'episode' if 'tvshowtitle' in data else 'movie'
+
             query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
             query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
 
-            url = self.search_link % urllib.quote_plus(query)
-            url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url)
+            try:
+                feed = True
 
-            posts = client.parseDOM(r, 'item')
+                url = self.search_link % urllib.quote_plus(query)
+                url = urlparse.urljoin(self.base_link, url)
 
-            hostDict = hostprDict + hostDict
+                r = client.request(url)
+                if r == None: feed = False
 
-            items = []
+                posts = client.parseDOM(r, 'item')
+                if not posts: feed = False
 
-            for post in posts:
-                try:
-                    t = client.parseDOM(post, 'title')[0]
+                items = []
 
-                    u = client.parseDOM(post, 'enclosure', ret='url', attrs={'type': 'video.+?'})
-                    if not u: raise Exception()
+                for post in posts:
+                    try:
+                        t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')[0]
+                        u = client.parseDOM(post, 'enclosure', ret='url', attrs={'type': 'video.+?'})
+                        if not u: raise Exception()
 
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
-                    s = s[0] if s else '0'
+                        c = client.parseDOM(post, 'content.+?')[0]
 
-                    u = client.parseDOM(c, 'a', ret='href')
+                        s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
+                        s = s[0] if s else '0'
 
-                    items += [(t, i, s) for i in u]
-                except:
-                    pass
+                        u = client.parseDOM(c, 'a', ret='href')
+
+                        items += [(t, i, s) for i in u]
+                    except:
+                        pass
+            except:
+                pass
+
+
+            try:
+                if feed == True: raise Exception()
+
+                url = self.search_link_2 % urllib.quote_plus(query)
+                url = urlparse.urljoin(self.base_link, url)
+
+                r = client.request(url)
+
+                posts = client.parseDOM(r, 'div', attrs={'class': 'post'})
+
+                items = [] ; dupes = []
+
+                for post in posts:
+                    try:
+                        t = client.parseDOM(post, 'a')[0]
+
+                        if content == 'movie':
+                            x = re.findall('/(tt\d+)', post)[0]
+                            if not x == imdb: raise Exception()
+                            q = re.findall('<strong>\s*Video\s*:\s*</strong>.+?\s(\d+)', post)[0]
+                            if not int(q) == 1280: raise Exception()
+                            if len(dupes) > 3: raise Exception()
+                            dupes += [x]
+
+                        elif content == 'episode':
+                            x = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', t)
+                            if not cleantitle.get(title) in cleantitle.get(x): raise Exception()
+                            y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', t)[-1].upper()
+                            if not y == hdlr: raise Exception()
+                            if len(dupes) > 0: raise Exception()
+                            dupes += [x]
+
+                        u = client.parseDOM(post, 'a', ret='href')[0]
+                        r = client.request(u).replace('\n', '')
+
+                        u = client.parseDOM(r, 'div', attrs={'class': 'postContent'})[0]
+                        u = re.split('id\s*=\s*"more-\d+"', u)[-1]
+
+                        if content == 'episode':
+                            u = re.compile('(?:<strong>|)(.+?)</strong>(.+?)(?:<strong>|$)', re.MULTILINE|re.DOTALL).findall(u)
+                            u = [(re.sub('<.+?>|</.+?>|>', '', i[0]), i[1]) for i in u]
+                            u = [i for i in u if '720p' in i[0].lower()][0]
+                            u, r, t = u[1], u[1], u[0]
+
+                        u = client.parseDOM(u, 'p')
+                        u = [client.parseDOM(i, 'a', ret='href') for i in u]
+                        u = [i[0] for i in u if len(i) == 1]
+                        if not u: raise Exception()
+
+                        s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', r)
+                        s = s[0] if s else '0'
+
+                        items += [(t, i, s) for i in u]
+                    except:
+                        pass
+            except:
+                pass
+
 
             for item in items:
                 try:

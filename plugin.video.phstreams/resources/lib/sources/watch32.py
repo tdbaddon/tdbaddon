@@ -35,17 +35,10 @@ class source:
         self.search_link = '/watch?v=%s_%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.search_link % (cleantitle.geturl(title).replace('-', '_'), year)
-            url = urlparse.urljoin(self.base_link, url)
-
-            r = client.request(url, limit='2')
-            r = client.parseDOM(r, 'meta', ret='content', attrs = {'property': 'og:title'})[0]
-            if not year in r: raise Exception()
-
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = url.encode('utf-8')
+            url = {'imdb': imdb, 'title': title, 'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
@@ -57,18 +50,27 @@ class source:
 
             if url == None: return sources
 
-            referer = urlparse.urljoin(self.base_link, url)
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
+            title = data['title'] ; year = data['year']
 
-            try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
-            except: post = referer.strip('/').split('/')[-1].split('watch_', 1)[-1].rsplit('#')[0].rsplit('.')[0]
+            h = {'User-Agent': client.randomagent()}
 
-            post = urllib.urlencode({'v': post})
+            v = '%s_%s' % (cleantitle.geturl(title).replace('-', '_'), year)
 
-            url = urlparse.urljoin(self.base_link, '/video_info/iframe')
+            url = '/watch?v=%s' % v
+            url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url, post=post, headers=h, referer=url)
+            #c = client.request(url, headers=h, output='cookie')
+            #c = client.request(urlparse.urljoin(self.base_link, '/av'), cookie=c, output='cookie', headers=h, referer=url)
+            #c = client.request(url, cookie=c, headers=h, referer=url, output='cookie')
+
+            post = urllib.urlencode({'v': v})
+            u = urlparse.urljoin(self.base_link, '/video_info/iframe')
+
+            #r = client.request(u, post=post, cookie=c, headers=h, XHR=True, referer=url)
+            r = client.request(u, post=post, headers=h, XHR=True, referer=url)
             r = json.loads(r).values()
             r = [urllib.unquote(i.split('url=')[-1])  for i in r]
 

@@ -71,6 +71,8 @@ NOTICE              =  xbmc.translatePath(os.path.join('special://home/addons/' 
 DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/settings_default.xml'))
 ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
+TEMP_FOLDER         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
+TEMP_FILE           =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
 COMMUNITY_BUILD		=  xbmc.translatePath(os.path.join('special://home/userdata/','community_build.txt'))
 COMMUNITY_OTA		=  xbmc.translatePath(os.path.join('special://home/userdata/','echo_community_ota.txt'))
 KEYBOARD_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
@@ -115,6 +117,7 @@ DONATIONS_URL       = BASEURL + base64.b64decode(b'b3RoZXIvZG9uYXRpb25zLnR4dA=='
 SERVER_CHECKER      = BASEURL + base64.b64decode(b'ZG93bi50eHQ=')
 SERVER_CHECK        = BASEURL + base64.b64decode(b'Y2hlY2tlci50eHQ=')
 ADD_COMMUNITY       = BASEURL + base64.b64decode(b'b3RoZXIvYWRkX2NvbW11bml0eS50eHQ=')
+ECHO_API            = BASEURL + base64.b64decode(b"YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50")
 ECHO_CHANNEL        = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20veW91dHViZS95b3V0dWJlLnBocD9pZD1VQ29ZVkVRd3psU3VFLU4yQ3VLdlFKNHc=")
 JARVIS_URL          = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfamFydmlzLnR4dA==")
 KRYPTON_URL         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfa3J5cHRvbi50eHQ=")
@@ -206,6 +209,11 @@ if os.path.isfile(NOTICE):
 	Common.TextBoxesPlain("%s" % msg)
 	os.remove(NOTICE)
 
+if not os.path.exists(TEMP_FOLDER):
+	os.makedirs(TEMP_FOLDER)
+if not os.path.isfile(TEMP_FILE):
+	open(TEMP_FILE, 'w')
+
 #######################################################################
 #						ECHO WIZARD ROOT MENU
 #######################################################################
@@ -231,9 +239,9 @@ def INDEX():
 
 		pleasecheck 		= 0
 		BUILD_CHECK_ERROR   = 0
-		CURRENT_BUILD = "[COLOR lightskyblue]ERROR[/COLOR]"
-		CURRENT_VERSION_CODE = "[COLOR lightskyblue]ERROR[/COLOR]"
-		LATEST_VERSION = "[COLOR lightskyblue]ERROR[/COLOR]"
+		CURRENT_BUILD = "[COLOR yellowgreen]ERROR[/COLOR]"
+		CURRENT_VERSION_CODE = "[COLOR yellowgreen]ERROR[/COLOR]"
+		LATEST_VERSION = "[COLOR yellowgreen]ERROR[/COLOR]"
 
 		#######################################################################
 		#					FIND BUILD INFORMATION
@@ -277,9 +285,9 @@ def INDEX():
 					else:
 						CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
 		except:
-			CURRENT_BUILD = "[COLOR lightskyblue]ERROR[/COLOR]"
-			CURRENT_VERSION_CODE = "[COLOR lightskyblue]ERROR[/COLOR]"
-			LATEST_VERSION = "[COLOR lightskyblue]ERROR[/COLOR]"
+			CURRENT_BUILD = "[COLOR yellowgreen]ERROR[/COLOR]"
+			CURRENT_VERSION_CODE = "[COLOR yellowgreen]ERROR[/COLOR]"
+			LATEST_VERSION = "[COLOR yellowgreen]ERROR[/COLOR]"
 
 	#######################################################################
 	#				MAIN MENU LIST
@@ -287,6 +295,7 @@ def INDEX():
 	kodi_name = Common.GET_KODI_VERSION()
 
 	if offline == 0:
+		GET_COUNTS()
 		Common.addItem('[COLOR red][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
@@ -316,7 +325,7 @@ def INDEX():
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
-	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,ART+'maintwall.jpg','')
+	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,FANART,'')
 	if offline == 0:
 		Common.addDir('[COLOR ghostwhite][B]EXTRAS - FIXES, TWEAKS ETC[/B][/COLOR]',BASEURL,74,EXTRAS_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ADVANCED SETTINGS[/B][/COLOR]',BASEURL,30,ADVANCED_SET_ICON,FANART,'')	
@@ -338,6 +347,9 @@ def INDEX():
 	Common.addItem('[COLOR ghostwhite][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]CLEAR DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,180,SETTINGS_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]REGENERATE DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,179,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD SETTINGS[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 
 	kodi_name = Common.GET_KODI_VERSION()
@@ -369,7 +381,7 @@ def BUILDMENU():
 	else: codename = "Decline"
 	
 	if codename == "Decline":
-		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR lightskyblue][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
+		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR yellowgreen][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
 		return
 
 	if codename == "Jarvis":
@@ -377,6 +389,7 @@ def BUILDMENU():
 		urllist=[]
 		deslist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		link = Common.OPEN_URL(JARVIS_URL).replace('\n','').replace('\r','')
@@ -393,21 +406,25 @@ def BUILDMENU():
 			namelist.append(name)
 			urllist.append(url)
 			deslist.append(description)
-			countlist.append(str(Common.count(name)))     
+			countlist.append(str(Common.count(name,TEMP_FILE)))  
+			totallist.append(str(Common.count(name+"TOTAL_COUNT",TEMP_FILE)))     
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
+			combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		dp.close()
-		for count,name,url,description,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
-			Common.addDir(name + bname,url,83,iconimage,fanart,description)
+		for count,total,name,url,description,iconimage,fanart in tup:
+			url = name + "," + url
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+			title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
+			Common.addDir(title,url,83,iconimage,fanart,description)
 
 	if codename == "Krypton":
 		namelist=[]
 		urllist=[]
 		deslist=[]
 		countlist=[]
+		totalcount=[]
 		iconlist=[]
 		fanartlist=[]
 		link = Common.OPEN_URL(KRYPTON_URL).replace('\n','').replace('\r','')
@@ -424,15 +441,18 @@ def BUILDMENU():
 			namelist.append(name)
 			urllist.append(url)
 			deslist.append(description)
-			countlist.append(str(Common.count(name)))     
+			countlist.append(str(Common.count(name,TEMP_FILE)))  
+			totalcount.append(str(Common.count(name+"TOTAL_COUNT",TEMP_FILE)))     			
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
+			combinedlists = list(zip(countlist,totalcount,namelist,urllist,deslist,iconlist,fanartlist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		dp.close()
-		for count,name,url,description,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
-			Common.addDir(name + bname,url,83,iconimage,fanart,description)
+		for count,total,name,url,description,iconimage,fanart in tup:
+			url = name + "," + url
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+			title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
+			Common.addDir(title,url,83,iconimage,fanart,description)
 
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
@@ -590,17 +610,17 @@ def MAINTENANCE_MENU():
 		except:
 			Common.addItem("[COLOR white][B]ERROR GETTING THUMBNAIL SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]WEEKLY AUTO CLEAN - [/B][/COLOR]' + weekly_onoff,BASEURL,113,TOOLS_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]AUTO CLEAN ON KODI LAUNCH - [/B][/COLOR]' + startup_onoff,BASEURL,112,TOOLS_ICON,FANART,'')
-	Common.addItem("[COLOR lightskyblue][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]WEEKLY AUTO CLEAN - [/B][/COLOR]' + weekly_onoff,BASEURL,113,TOOLS_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]AUTO CLEAN ON KODI LAUNCH - [/B][/COLOR]' + startup_onoff,BASEURL,112,TOOLS_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	if check_log == "true":
 		Common.addItem(ERRORS_IN_LOG,BASEURL,155,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
 	if check_log == "true":
-		Common.addItem('[COLOR lightskyblue][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR white]Auto Clean Device[/COLOR]','url',31,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR white]Clear Cache[/COLOR]','url',1,TOOLS_ICON,FANART,'')
@@ -634,6 +654,7 @@ def KEYMAPS():
 	namelist=[]
 	urllist=[]
 	countlist=[]
+	totallist=[]
 	iconlist=[]
 	fanartlist=[]
 	link = Common.OPEN_URL(KeymapsURL).replace('\n','').replace('\r','')
@@ -641,16 +662,19 @@ def KEYMAPS():
 	if os.path.isfile(KEYBOARD_FILE):
 		Common.addItem('[COLOR white][B]Remove Current Keymap Configuration[/B][/COLOR]',BASEURL,128,ICON,FANART,'')
 	for name,url,iconimage,fanart,version,description in match:
+		name2 = name
+		url = name2 + "|SPLIT|" + url
 		name = "[COLOR white][B]" + name + "[/B][/COLOR]"
 		namelist.append(name)
 		urllist.append(url)
-		countlist.append(str(Common.count_advanced(name)))
+		countlist.append(str(Common.count(name2,TEMP_FILE)))
+		totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))
 		iconlist.append(iconimage)
 		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+		combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-	for count,name,url,iconimage,fanart in tup:
-		bname = " - [COLOR lightskyblue][COLOR white]This Week - [/COLOR][B]" + count + "[/B][/COLOR]"
+	for count,total,name,url,iconimage,fanart in tup:
+		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 		Common.addItem(name + bname,url,130,ADVANCED_SET_ICON,FANART,description)
 
 	view_mode = SET_VIEW("list")
@@ -662,9 +686,12 @@ def KEYMAPS():
 
 def ADVANCEDSETTINGS():
 
+	kodi_name = Common.GET_KODI_VERSION()
+
 	namelist=[]
 	urllist=[]
 	countlist=[]
+	totallist=[]
 	iconlist=[]
 	fanartlist=[]
 	link = Common.OPEN_URL(AdvancedSettings).replace('\n','').replace('\r','')
@@ -672,17 +699,29 @@ def ADVANCEDSETTINGS():
 	if os.path.isfile(ADVANCED_SET_FILE):
 		Common.addItem('[COLOR white][B]Remove Current Advanced Settings Configuration[/B][/COLOR]',BASEURL,131,ICON,FANART,'')
 	for name,url,iconimage,fanart,version,description in match:
+		name2 = name
+		url = name2 + "|SPLIT|" + url
 		name = "[COLOR white][B]" + name + "[/B][/COLOR]"
 		namelist.append(name)
 		urllist.append(url)
-		countlist.append(str(Common.count_advanced(name)))
+		countlist.append(str(Common.count(name2,TEMP_FILE)))
+		totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))
 		iconlist.append(iconimage)
 		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+		combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-	for count,name,url,iconimage,fanart in tup:
-		bname = " - [COLOR lightskyblue][COLOR white]This Week - [/COLOR][B]" + count + "[/B][/COLOR]"
-		Common.addItem(name + bname,url,98,ADVANCED_SET_ICON,FANART,description)
+	for count,total,name,url,iconimage,fanart in tup:
+	
+		if not kodi_name == "Krypton":
+			if not "kodi 17" in name.lower():
+				name = name.replace(' - Kodi 16','')
+				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+				Common.addItem(name + bname,url,98,ADVANCED_SET_ICON,FANART,description)
+		else:
+			if "kodi 17" in name.lower():
+				name = name.replace(' - Kodi 17','')
+				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+				Common.addItem(name + bname,url,98,ADVANCED_SET_ICON,FANART,description)
 
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
@@ -709,6 +748,7 @@ def FANRIFFIC_THEMES():
 		namelist=[]
 		urllist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		link = Common.OPEN_URL(FANRIFFIC_URL_NEW).replace('\n','').replace('\r','')
@@ -719,6 +759,8 @@ def FANRIFFIC_THEMES():
 		dis_links2 = len(match2)
 		dis_links  = dis_links1 + dis_links2
 		for name,url,iconimage,fanart,description in match:
+			name2 = name
+			url = name2 + "|SPLIT|" + url
 			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
 			i = i + 1
 			dis_count = str(i)
@@ -726,11 +768,14 @@ def FANRIFFIC_THEMES():
 			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 			namelist.append(name)
 			urllist.append(url)
-			countlist.append(str(Common.count_fanriffic(name)))    
+			countlist.append(str(Common.count(name2,TEMP_FILE)))    
+			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    			
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
 		for name,url,iconimage,fanart,description in match2:
+			name2 = name
+			url = name2 + "|SPLIT|" + url
 			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
 			i = i + 1
 			dis_count = str(i)
@@ -738,14 +783,15 @@ def FANRIFFIC_THEMES():
 			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 			namelist.append(name)
 			urllist.append(url)
-			countlist.append(str(Common.count_fanriffic(name)))    
+			countlist.append(str(Common.count(name2,TEMP_FILE)))   
+			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    			
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		dp.close()
-		for count,name,url,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+		for count,total,name,url,iconimage,fanart in tup:
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
 
 	elif codename == "Krypton":
@@ -755,12 +801,15 @@ def FANRIFFIC_THEMES():
 		namelist=[]
 		urllist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		link = Common.OPEN_URL(FANRIFFIC_KRYPTON).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
 		dis_links = len(match)
 		for name,url,iconimage,fanart,description in match:
+			name2 = name
+			url = name2 + "|SPLIT|" + url
 			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
 			i = i + 1
 			dis_count = str(i)
@@ -768,14 +817,15 @@ def FANRIFFIC_THEMES():
 			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 			namelist.append(name)
 			urllist.append(url)
-			countlist.append(str(Common.count_fanriffic(name)))    
+			countlist.append(str(Common.count(name2,TEMP_FILE)))    
+			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		dp.close()
-		for count,name,url,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+		for count,total,name,url,iconimage,fanart in tup:
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
 
 	#if codename == "Decline":
@@ -799,24 +849,68 @@ def SPEEDTEST():
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
 
+def GET_COUNTS():
+	
+	api_interval = plugintools.get_setting("api_interval")
+
+	if api_interval == "0":
+		mark = 60
+	elif api_interval == "1":
+		mark = 50
+	elif api_interval == "2":
+		mark = 40
+	elif api_interval == "3":
+		mark = 30
+	elif api_interval == "4":
+		mark = 20
+	elif api_interval == "5":
+		mark = 10
+	elif api_interval == "6":
+		mark = 5
+	else: mark = 60
+	
+	fileCreation = os.path.getmtime(TEMP_FILE)
+
+	now = time.time()
+
+	check = now - 60*mark
+	
+	text_file = open(TEMP_FILE)
+	compfile = text_file.read()  
+	
+	if len(compfile) == 0:
+		counts=Common.OPEN_URL_NORMAL(ECHO_API)
+
+		text_file = open(TEMP_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	elif fileCreation < check:
+
+		counts=Common.OPEN_URL_NORMAL(ECHO_API)
+
+		text_file = open(TEMP_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
 #######################################################################
 #						BACKUP MENU MENU
 #######################################################################
 	
 def BACKUPMENU():
 
-	Common.addItem('[COLOR lightskyblue][B]BACKUP OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
+	Common.addItem('[COLOR yellowgreen][B]BACKUP OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
 	Common.addItem('[COLOR white]Full Backup (All Files and Folders Included)[/COLOR]','url',69,BACKUP_ICON,FANART,'')	
 	Common.addItem('[COLOR white]Backup for Builds (Exc: Thumbnails, Databases)[/COLOR]','url',70,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Backup Addon Data[/COLOR]','url',108,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Backup RD & Trakt Settings[/COLOR]','url',103,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Backup ECHO TV Guide Settings[/COLOR]','url',107,BACKUP_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]RESTORE OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
+	Common.addItem('[COLOR yellowgreen][B]RESTORE OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
 	Common.addDir('[COLOR white]Restore A Backup - (Full/Builds)[/COLOR]','url',71,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore Addon Data[/COLOR]','url',71,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore RD & Trakt Settings[/COLOR]','url',104,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore ECHO TV Guide Settings[/COLOR]','url',71,BACKUP_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]OTHER OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
+	Common.addItem('[COLOR yellowgreen][B]OTHER OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
 	Common.addDir('[COLOR white]Delete A Backup[/COLOR]','url',72,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Delete All Backups[/COLOR]','url',73,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Select Backup Location[/COLOR]','url',9,BACKUP_ICON,FANART,'')
@@ -879,7 +973,7 @@ def ACCOUNT():
 	if check=="true":
 		a = "[COLOR yellowgreen]Yes[/COLOR]"
 	else:
-		a = "[COLOR lightskyblue]No[/COLOR]"
+		a = "[COLOR yellowgreen]No[/COLOR]"
 
 	Common.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR yellowgreen]%s' % version + " " + codename + "[/COLOR]",BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite]Check For Updates: [/COLOR]' + a,BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
@@ -937,7 +1031,7 @@ def LATEST_WINDOWS():
 	else:
 		link = Common.OPEN_URL(WINDOWS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]EXE Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]EXE Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -958,7 +1052,7 @@ def LATEST_OSX():
 	else:
 		link = Common.OPEN_URL(OSX).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B].dmg Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B].dmg Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -979,7 +1073,7 @@ def LATEST_IOS():
 	else:
 		link = Common.OPEN_URL(IOS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B].deb Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B].deb Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -1000,7 +1094,7 @@ def LATEST_ANDROID():
 	else:
 		link = Common.OPEN_URL(APKS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addDir('[COLOR yellowgreen]CLICK FOR THE LATEST SIGNED KODI/SPMC APKS WITH UP TO DATE LIB FILE INCLUDED IN APK[/COLOR]',BASEURL,32,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
@@ -1046,7 +1140,7 @@ def INSTALLER_APKS():
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		for count,name,iconimage,fanart,url in tup:
 			url2 = name + "#!" + url
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR]"
 			Common.addItem("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,171,iconimage,fanart,description="None")
 
 		view_mode = SET_VIEW("list")
@@ -1060,7 +1154,7 @@ def LATESTAPKSWITHLIB():
 
 	link = Common.OPEN_URL(APKSLIB).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-	Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 	Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,91,iconimage,fanart,description)
@@ -1076,7 +1170,7 @@ def DOWNLOADLIB():
 
 	link = Common.OPEN_URL(LIB).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-	Common.addItem('[COLOR lightskyblue][B]Lib Files Will Be Donwloaded to [COLOR yellowgreen]the Kodi special directory[/COLOR] You Will Need To Manually Install From There. The Windows Lib File will Auto Install[/B][/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
+	Common.addItem('[COLOR yellowgreen][B]Lib Files Will Be Donwloaded to [COLOR yellowgreen]the Kodi special directory[/COLOR] You Will Need To Manually Install From There. The Windows Lib File will Auto Install[/B][/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
 	Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,94,LIB_ICON,fanart,description)
@@ -1097,7 +1191,7 @@ def ANDROID_APKS():
 	else:
 		link = Common.OPEN_URL(AND_APKS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR][/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR][/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR dodgerblue][B]THIS LIST IS MAINTAINED BY @VULCAN_TDB [/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR dodgerblue][B]CONTACT HIM ON TWITTER WITH REQUESTS[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
@@ -1381,6 +1475,79 @@ def AUTO_UPDATER(name):
 
 def PLAYVIDEO(url):
 	xbmc.Player().play(url)
+	
+def GETTEMP():
+
+	TEMP_FOLDER   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
+	TEMP_BUILDS   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
+	TEMP_ADDONS   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
+	BASEURL       =  base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
+	BUILDS_API    =  BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50')
+	ADDONS_API    =  BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
+	dialog        =  xbmcgui.Dialog()
+	passed        =  0
+
+	if os.path.exists(TEMP_FOLDER):
+		
+		try:
+			shutil.rmtree(TEMP_FOLDER)
+		except: pass
+
+	try:
+		if not os.path.exists(TEMP_FOLDER):
+			os.makedirs(TEMP_FOLDER)
+
+		if not os.path.isfile(TEMP_BUILDS):
+			open(TEMP_BUILDS, 'w')
+		if not os.path.isfile(TEMP_ADDONS):
+			open(TEMP_ADDONS, 'w')
+	except: pass
+		
+	try:
+		req = urllib2.Request(BUILDS_API)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
+		response = urllib2.urlopen(req)
+		counts=response.read()
+		response.close()
+		text_file = open(TEMP_BUILDS, "w")
+		text_file.write(counts)
+		text_file.close()
+
+		req = urllib2.Request(ADDONS_API)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
+		response = urllib2.urlopen(req)
+		counts=response.read()
+		response.close()
+		text_file = open(TEMP_ADDONS, "w")
+		text_file.write(counts)
+		text_file.close()
+
+		dialog.ok(AddonTitle, "We have successfully genenerated the ECHO download counters.")
+		passed = 1
+		quit()
+	except: pass
+		
+	if passed == 0:
+		dialog.ok(AddonTitle, "There was an error generating the download counters. Please try again later.")
+		quit()
+
+def CLEARTEMP():
+
+	TEMP_FOLDER      =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
+
+	if os.path.exists(TEMP_FOLDER):
+		
+		try:
+			shutil.rmtree(TEMP_FOLDER)
+		except:
+			dialog.ok(AddonTitle, "There was an error removing the ECHO temp files.")
+			quit()
+		dialog.ok(AddonTitle, "We have succesfully removed the ECHO temp files.")
+		quit()
+
+	else:
+		dialog.ok(AddonTitle, "No temp files could be found.")
+		quit()
 
 #######################################################################
 #					OPEN THE SETTINGS DIALOG
@@ -1709,7 +1876,7 @@ elif mode==110:
 		extras.PLAYERCORE_ANDROID()
 
 elif mode==111:
-		dialog.ok(AddonTitle, '[COLOR lightskyblue][B]Current Time: [/B][/COLOR][COLOR white]' + THE_TIME + '[/COLOR]', '[COLOR lightskyblue][B]Current Date: [/B][/COLOR][COLOR white]' + THE_DATE + '[/COLOR]')
+		dialog.ok(AddonTitle, '[COLOR yellowgreen][B]Current Time: [/B][/COLOR][COLOR white]' + THE_TIME + '[/COLOR]', '[COLOR yellowgreen][B]Current Date: [/B][/COLOR][COLOR white]' + THE_DATE + '[/COLOR]')
 
 elif mode==112:
 		maintenance.AUTO_CLEAN_ON_OFF()
@@ -1892,5 +2059,11 @@ elif mode==177:
 
 elif mode==178:
 		get_addons.WRITE_SOURCE_TO_FILE_MANAGER(name,url)
+
+elif mode==179:
+		GETTEMP()
+		
+elif mode==180:
+		CLEARTEMP()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

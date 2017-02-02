@@ -35,7 +35,7 @@ class source:
         self.base_link = 'http://cartoonhd.website'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -44,7 +44,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -79,6 +79,7 @@ class source:
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
+                imdb = data['imdb'] ; year = data['year']
 
                 if 'tvshowtitle' in data:
                     url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
@@ -86,11 +87,18 @@ class source:
                     url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
 
                 result = client.request(url, limit='5')
+
+                if result == None and not 'tvshowtitle' in data:
+                    url += '-%s' % year
+                    result = client.request(url, limit='5')
+
                 result = client.parseDOM(result, 'title')[0]
 
                 if '%TITLE%' in result: raise Exception()
 
                 r = client.request(url, output='extended')
+
+                if not imdb in r[0]: raise Exception()
 
                
             else:
@@ -106,7 +114,6 @@ class source:
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
-            headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
             headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
             headers['Cookie'] = cookie
@@ -128,7 +135,7 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
-            r = client.request(u, post=post, headers=headers)
+            r = client.request(u, post=post, XHR=True)
             r = str(json.loads(r))
             r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
 

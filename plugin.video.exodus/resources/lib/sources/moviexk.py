@@ -137,8 +137,16 @@ class source:
 
             r = client.request(url, mobile=True)
 
-            r = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
-            r = client.parseDOM(r, 'li')
+            p = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
+
+            if not p:
+                p = client.parseDOM(r, 'div', attrs = {'class': 'btn-groups.+?'})
+                p = client.parseDOM(p, 'a', ret='href')[0]
+
+                p = client.request(p, mobile=True)
+                p = client.parseDOM(p, 'div', attrs = {'id': 'servers'})
+
+            r = client.parseDOM(p, 'li')
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
 
             try:

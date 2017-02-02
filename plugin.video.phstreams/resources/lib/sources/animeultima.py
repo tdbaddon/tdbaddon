@@ -35,7 +35,7 @@ class source:
         self.search_link = '/search.html?searchquery=%s'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             r = 'search/tvdb/%s?type=show&extended=full' % tvdb
             r = json.loads(trakt.getTrakt(r))
@@ -54,8 +54,6 @@ class source:
             q = urlparse.urljoin(self.base_link, q)
 
             r = client.request(q)
-            r = r.decode('iso-8859-1').encode('utf-8')
-
 
             r = client.parseDOM(r, 'ol', attrs = {'id': 'searchresult'})[0]
             r = client.parseDOM(r, 'h2')
@@ -84,7 +82,6 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
 
             r = client.request(url)
-            r = r.decode('iso-8859-1').encode('utf-8')
 
             r = client.parseDOM(r, 'tr', attrs = {'class': ''})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'td', attrs = {'class': 'epnum'})) for i in r]
@@ -111,15 +108,22 @@ class source:
             locDict = [i[0] for i in hostDict]
 
             result = client.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
 
-            r = client.parseDOM(result, 'div', attrs = {'class': 'player-embed'})[0]
-            r = client.parseDOM(r, 'iframe', ret='src')[0]
-            links = [(r, url)]
+            links = []
 
-            r = client.parseDOM(result, 'div', attrs = {'class': 'generic-video-item'})
-            r = [(i.split('</div>', 1)[-1].split()[0], client.parseDOM(i, 'a', ret='href', attrs = {'rel': '.+?'})) for i in r]
-            links += [(i[0], i[1][0]) for i in r if i[1]]
+            try:
+                r = client.parseDOM(result, 'div', attrs = {'class': 'player-embed'})[0]
+                r = client.parseDOM(r, 'iframe', ret='src')[0]
+                links += [(r, url)]
+            except:
+                pass
+
+            try:
+                r = client.parseDOM(result, 'div', attrs = {'class': 'generic-video-item'})
+                r = [(i.split('</div>', 1)[-1].split()[0], client.parseDOM(i, 'a', ret='href', attrs = {'rel': '.+?'})) for i in r]
+                links += [(i[0], i[1][0]) for i in r if i[1]]
+            except:
+                pass
 
             for i in links:
                 try:

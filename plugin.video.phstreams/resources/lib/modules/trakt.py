@@ -38,3 +38,15 @@ def getTrakt(url, post=None):
         pass
 
 
+def getMovieTranslation(id, lang):
+    url = '/movies/%s/translations/%s' % (id, lang)
+    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    except: pass
+
+
+def getTVShowTranslation(id, lang):
+    url = '/shows/%s/translations/%s' % (id, lang)
+    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    except: pass
+
+

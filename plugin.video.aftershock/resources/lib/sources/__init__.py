@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Aftershock Add-on
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 
 import datetime
 import json
+import os
 import pkgutil
 import random
 import re
@@ -27,7 +28,6 @@ import sys
 import time
 import urllib
 import urlparse
-import os
 
 try: import xbmc
 except: pass
@@ -37,22 +37,23 @@ try:
 except:
     from pysqlite2 import dbapi2 as database
 
-from resources.lib.libraries import control
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import client
-from resources.lib.libraries import workers
-from resources.lib.libraries import debrid
-from resources.lib.libraries import alterepisode
-from resources.lib.libraries import cache
+from resources.lib.modules import control
+from resources.lib.modules import cleantitle
+from resources.lib.modules import client
+from resources.lib.modules import workers
+from resources.lib.modules import debrid
+from resources.lib.modules import cache
 from resources.lib import resolvers
-from resources.lib.libraries import logger
+from resources.lib.modules import logger
+
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
 class sources:
     def __init__(self):
         self.resolverList = self.getResolverList()
         self.hostDict = self.getHostDict()
         self.hostprDict = self.getHostPrDict()
-        self.sources = []
+        self.srcs = []
         self.debridDict = debrid.debridDict()
         self.itemProperty = "%s.itemProperty" % control.addonInfo('name')
         self.metaProperty = "%s.itemMeta" % control.addonInfo('name')
@@ -72,8 +73,6 @@ class sources:
             infoMenu = control.lang(30502).encode('utf-8')
 
             downloads = True if control.setting('downloads') == 'true' and not control.setting('movie.download.path') == '' else False
-            sysaddon = sys.argv[0]
-            syshandle = int(sys.argv[1])
 
             if 'tvshowtitle' in meta and 'season' in meta and 'episode' in meta:
                 name = '%s S%02dE%02d' % (title, int(meta['season']), int(meta['episode']))
@@ -128,17 +127,17 @@ class sources:
 
                 control.addItem(handle=syshandle, url=sysurl, listitem=item, isFolder=False)
 
-            control.directory(int(sys.argv[1]), cacheToDisc=True)
+            control.directory(syshandle, cacheToDisc=True)
         except Exception as e:
             logger.error(e.message)
             control.infoDialog(control.lang(30501).encode('utf-8'))
 
-    def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select=None):
+    def play(self, name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta, url, select=None):
         try:
             if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
                 control.playlist.clear()
 
-            control.resolve(int(sys.argv[1]), True, control.item(path=''))
+            control.resolve(syshandle, True, control.item(path=''))
             control.execute('Dialog.Close(okdialog)')
 
             if imdb == '0': imdb = '0000000'
@@ -149,7 +148,7 @@ class sources:
             else :
                 content = 'movie' if tvshowtitle == None else 'episode'
 
-            self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
+            self.srcs = self.getSources(name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta)
 
             items = self.sourcesFilter()
 
@@ -162,7 +161,7 @@ class sources:
                             select = control.setting('live_host_select')
                         select = '2' if len(items) == 1 else select
                         title = name
-                        meta = self.sources[0]['meta']
+                        meta = self.srcs[0]['meta']
 
                         logger.debug('Content is live hence setting %s' % select, __name__)
                     else:
@@ -179,7 +178,7 @@ class sources:
 
                     control.sleep(200)
 
-                    return control.execute('Container.Update(%s?action=addItem&title=%s&content=%s)' % (sys.argv[0], urllib.quote_plus(title.encode('utf-8')), content))
+                    return control.execute('Container.Update(%s?action=addItem&title=%s&content=%s)' % (sysaddon, urllib.quote_plus(title.encode('utf-8')), content))
 
                 elif select == '0' or select == '1':
                     url = self.sourcesDialog(items)
@@ -195,7 +194,7 @@ class sources:
 
             control.sleep(200)
 
-            from resources.lib.libraries.player import player
+            from resources.lib.modules.player import player
             player().run(content, name, url, year, imdb, tvdb, meta)
 
             return url
@@ -205,7 +204,7 @@ class sources:
 
     def playItem(self, content, title, source):
         try:
-            control.resolve(int(sys.argv[1]), True, control.item(path=''))
+            control.resolve(syshandle, True, control.item(path=''))
             control.execute('Dialog.Close(okdialog)')
 
             next = [] ; prev = [] ; total = []
@@ -290,7 +289,7 @@ class sources:
                     if control.setting('playback_info') == 'true':
                         control.infoDialog(items[i]['label'])
 
-                    from resources.lib.libraries.player import player
+                    from resources.lib.modules.player import player
                     player().run(content, title, self.url, year, imdb, tvdb, meta)
 
                     return self.url
@@ -307,11 +306,13 @@ class sources:
             control.infoDialog(control.lang(30501).encode('utf-8'))
             pass
 
-    def getSources(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta=None):
+    def getSources(self, name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta=None):
         sourceDict = []
         channelName = name
+
         for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
         sourceDict = [i[0] for i in sourceDict if i[1] == False]
+        sourceDict = [(i, __import__(i, globals(), locals(), [], -1).source()) for i in sourceDict]
 
         if tvshowtitle == None and title == None:
             content = 'live'
@@ -322,38 +323,49 @@ class sources:
             content = 'movie' if tvshowtitle == None else 'episode'
 
         if content == 'movie':
-            sourceDict = [i for i in sourceDict if i.endswith(('_mv', '_mv_tv'))]
-            try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
-            except: sourceDict = [(i, 'true') for i in sourceDict]
+            sourceDict = [(i[0], i[1], getattr(i[1], 'movie', None)) for i in sourceDict]
+            #sourceDict = [i for i in sourceDict if i.endswith(('_mv', '_mv_tv'))]
+            #try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
+            #except: sourceDict = [(i, 'true') for i in sourceDict]
         elif content == 'episode':
-            sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
-            try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
-            except: sourceDict = [(i, 'true') for i in sourceDict]
+            sourceDict = [(i[0], i[1], getattr(i[1], 'tvshow', None)) for i in sourceDict]
+            #sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
+            #try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
+            #except: sourceDict = [(i, 'true') for i in sourceDict]
         elif content == 'live':
-            sourceDict = [i for i in sourceDict if i.endswith('_live')]
-            try: sourceDict = [(i, control.setting(re.sub('_live$', '', i))) for i in sourceDict]
-            except: sourceDict = [(i, 'true') for i in sourceDict]
+            sourceDict = [(i[0], i[1], getattr(i[1], 'livetv', None)) for i in sourceDict]
+            #sourceDict = [i for i in sourceDict if i.endswith('_live')]
+            #try: sourceDict = [(i, control.setting(re.sub('_live$', '', i))) for i in sourceDict]
+            #except: sourceDict = [(i, 'true') for i in sourceDict]
+
+        sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == None]
+
+        try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
+        except: sourceDict = [(i[0], i[1], 'true') for i in sourceDict]
+        sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == 'false']
 
         threads = []
 
         control.makeFile(control.dataPath)
         self.sourceFile = control.sourcescacheFile
 
-        sourceDict = [i[0] for i in sourceDict if i[1] == 'true']
+        #sourceDict = [i[0] for i in sourceDict if i[1] == 'true']
 
         logger.debug('Content [%s] Source Dict : %s' % (content, sourceDict), __name__)
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict: threads.append(
+                workers.Thread(self.getMovieSource, title, year, imdb, source[0], source[1]))
         elif content == 'episode':
             tvshowtitle = cleantitle.normalize(tvshowtitle)
-            season, episode = alterepisode.alterepisode().get(imdb, tmdb, tvdb, tvrage, season, episode, alter, title, date)
-
-            for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source(), meta))
+            for source in sourceDict: threads.append(
+                workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, source[0], source[1], meta))
         elif content == 'live':
-            for source in sourceDict:threads.append(workers.Thread(self.getLiveSource,channelName, genre, re.sub('_live$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict:threads.append(
+                workers.Thread(self.getLiveSource, channelName, genre, source[0], source[1]))
 
+        sourceLabel = [(i[0].upper()) for i in sourceDict]
 
         try: timeout = int(control.setting('sources_timeout_40'))
         except: timeout = 40
@@ -361,10 +373,6 @@ class sources:
         [i.start() for i in threads]
 
         control.idle()
-
-        sourceLabel = [re.sub('_mv_tv$|_mv$|_tv$|_live$', '', i) for i in sourceDict]
-        sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
-
 
         self.progressDialog = control.progressDialog
         self.progressDialog.create(control.addonInfo('name'), '')
@@ -395,9 +403,9 @@ class sources:
 
         self.progressDialog.close()
 
-        for i in range(0, len(self.sources)): self.sources[i].update({'content': content})
+        for i in range(0, len(self.srcs)): self.srcs[i].update({'content': content})
 
-        return self.sources
+        return self.srcs
 
     def getMovieSource(self, title, year, imdb, source, call):
         try:
@@ -409,15 +417,15 @@ class sources:
             pass
 
         try:
-            sources = []
+            srcs = []
             dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             match = dbcur.fetchone()
             t1 = int(re.sub('[^0-9]', '', str(match[5])))
             t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
             update = abs(t2 - t1) > 60
             if update == False:
-                sources = json.loads(match[4])
-                return self.sources.extend(sources)
+                srcs = json.loads(match[4])
+                return self.srcs.extend(srcs)
         except:
             pass
 
@@ -430,7 +438,7 @@ class sources:
             pass
 
         try:
-            if url == None: url = call.get_movie(imdb, title, year)
+            if url == None: url = call.movie(imdb, title, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
@@ -439,18 +447,18 @@ class sources:
             pass
 
         try:
-            sources = []
-            sources = call.get_sources(url)
-            if sources == None:
+            srcs = []
+            logger.debug('[%s] Call %s type(call) : %s' % (source, call, type(call)), __name__)
+            srcs = call.sources(url)
+            if srcs == None:
                 raise Exception()
-                sources = []
-            self.sources.extend(sources)
+
+            self.srcs.extend(srcs)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(srcs), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except Exception as e:
             logger.error(e)
-            import traceback
             pass
 
     def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, date, source, call, meta=None):
@@ -469,15 +477,15 @@ class sources:
                 pass
 
             try:
-                sources = []
+                srcs = []
                 dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
                 match = dbcur.fetchone()
                 t1 = int(re.sub('[^0-9]', '', str(match[5])))
                 t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
                 update = abs(t2 - t1) > 60
                 if update == False:
-                    sources = json.loads(match[4])
-                    return self.sources.extend(sources)
+                    srcs = json.loads(match[4])
+                    return self.srcs.extend(srcs)
             except:
                 pass
 
@@ -492,7 +500,7 @@ class sources:
             try:
                 if url == None:
                     tvshowurl = meta['tvshowurl']
-                    url = call.get_show(tvshowurl, imdb, tvdb, tvshowtitle, year)
+                    url = call.tvshow(tvshowurl, imdb, tvdb, tvshowtitle, year)
                 if url == None: raise Exception()
                 dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
                 dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
@@ -512,7 +520,7 @@ class sources:
             try:
                 if url == None: raise Exception()
                 if ep_url == None:
-                    ep_url = call.get_episode(url, meta['url'], imdb, tvdb, title, date, season, episode)
+                    ep_url = call.episode(url, meta['url'], imdb, tvdb, title, date, season, episode)
                 if ep_url == None: raise Exception()
                 dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
                 dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, season, episode, ep_url))
@@ -521,12 +529,12 @@ class sources:
                 pass
 
             try:
-                sources = []
-                sources = call.get_sources(ep_url)
-                if sources == None: sources = []
-                self.sources.extend(sources)
+                srcs = []
+                srcs = call.sources(ep_url)
+                if srcs == None: srcs = []
+                self.srcs.extend(srcs)
                 dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-                dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+                dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(srcs), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
                 dbcon.commit()
             except:
                 pass
@@ -544,7 +552,7 @@ class sources:
 
         logger.debug('Calling getLiveSource for %s' % call, __name__)
         retValue = 0
-        retValue, sources = call.getLiveSource()
+        retValue, srcs = call.livetv()
         logger.debug('Finished getLiveSource for %s' % call, __name__)
         if not name == None : name = name.upper()
 
@@ -555,7 +563,7 @@ class sources:
                 dbcon.commit()
 
                 idx = 0
-                for item in sources:
+                for item in srcs:
                     poster = self.getLivePoster(item['name'])
                     if not poster == None :
                         item['poster'] = poster
@@ -576,22 +584,22 @@ class sources:
                 pass
         elif retValue == 0 and name != None:
             try:
-                sources = []
+                srcs = []
                 dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
                 for row in dbcur:
                     match = row
-                    sources = json.loads(match[4])
-                    try :sources['meta'] = json.loads(sources['meta'])
+                    srcs = json.loads(match[4])
+                    try :srcs['meta'] = json.loads(srcs['meta'])
                     except:pass
-                    self.sources.append(sources)
-                logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
-                return self.sources
+                    self.srcs.append(srcs)
+                logger.debug('Fetched sources from cache for [%s]' % name, call.__class__)
+                return self.srcs
             except:
-                logger.debug('Source from cache not found for [%s]'% name, call.__class__)
+                logger.debug('Source from cache not found for [%s]' % name, call.__class__)
                 pass
 
         try:
-            sources = []
+            srcs = []
             if name == None or name == '':
                 if genre == 'all':
                     query = "SELECT * FROM rel_live WHERE source = '%s' AND season = '%s'" % (source, 'live')
@@ -602,15 +610,15 @@ class sources:
                 dbcur.execute(query)
                 for row in dbcur:
                     match = row[4]
-                    self.sources.append(json.loads(match))
-                logger.debug('Fetched Live sources : %s' % len(self.sources), call.__class__)
+                    self.srcs.append(json.loads(match))
+                logger.debug('Fetched Live sources : %s' % len(self.srcs), call.__class__)
             else :
                 dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
                 for row in dbcur:
                     match = row
-                    sources = json.loads(match[4])
-                    self.sources.append(sources)
-            return self.sources
+                    srcs = json.loads(match[4])
+                    self.srcs.append(srcs)
+            return self.srcs
         except Exception as e:
             logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
@@ -633,9 +641,7 @@ class sources:
             pass
 
         try :
-            from resources.lib.libraries import livemeta
-            # Look at moving this into the live_meta table and patch cleantitle to live meta table
-            #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+            from resources.lib.modules import livemeta
             meta = livemeta.source().getLiveMeta()
 
             for item in meta:
@@ -811,19 +817,19 @@ class sources:
 
     def sourcesFilter(self):
         logger.debug('Calling sources.filter()', __name__)
-        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources), __name__)
-        for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
-        self.sources = sorted(self.sources, key=lambda k: k['source'])
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.srcs), __name__)
+        for i in range(len(self.srcs)): self.srcs[i]['source'] = self.srcs[i]['source'].lower()
+        self.srcs = sorted(self.srcs, key=lambda k: k['source'])
 
         quality = control.setting('playback_quality')
         if quality == '': quality = '0'
 
         #set content
         filter = []
-        try:filter += [i for i in self.sources if i['content'] == 'live']
+        try:filter += [i for i in self.srcs if i['content'] == 'live']
         except:
-            filter += [dict(i.items() + [('content', '')]) for i in self.sources]
-            self.sources = filter
+            filter += [dict(i.items() + [('content', '')]) for i in self.srcs]
+            self.srcs = filter
 
         filter = []
         #logger.debug(self.debridDict, __name__)
@@ -832,46 +838,46 @@ class sources:
         #self.hostDict = ['wholecloud.net', 'vidzi.tv', 'watchers.to', 'videoraj.to', 'mersalaayitten.co', 'gorillavid.in', 'cloudy.sx', 'noslocker.com', 'divxstage.to', 'desiflicks.com', 'yourupload.com', 'streamcloud.eu', 'videoweed.es', 'nowvideo.at', 'letwatch.to', 'clicknupload.me', 'xvidstage.com', 'playpanda.net', 'cloudy.ch', 'stagevu.com', 'videoapi.my.mail.ru', 'mp4upload.com', 'vshare.eu', 'exashare.com', 'watchvideo10.us', 'allmyvideos.net', 'apnasave.in', 'uploadx.org', 'tune.pk', 'xpressvids', 'daclips.in', 'videoraj.com', 'playwire.com', 'usersfiles.com', 'vidup.org', 'my.mail.ru', 'streamin.to', 'vidlox.tv', 'vidmad.net', 'vivo.sx', 'watchvideo.us', 'youwatch.org', 'www.playhd.fo', 'nosvideo.com', 'ok.ru', 'vimeo.com', 'rapidvideo.com', 'watchvideo4.us', 'speedplay3.pw', 'byzoo.org', 'zstream.to', 'playu.me', 'nowvideo.fo', 'vidgg.to', 'powerwatch.pw', 'watchvideo7.us', 'watchvideo8.us', 'vidspot.net', 'videorev.cc', 'thevideobee.to', 'api.video.mail.ru', 'watchvideo3.us', 'dailymotion.com', 'novamov.com', 'filepup.net', 'uptobox.com', 'fileweed.net', 'idowatch.us', 'watchvideo2.us', 'jetload.tv', 'vid.me', 'trollvid.net', 'googleusercontent.com', 'mp4edge.com', 'video.tt', 'weshare.me', 'streame.net', 'veoh.com', 'speedplay1.site', 'uploadc.com', 'movshare.net', 'letwatch.us', 'mp4engine.com', 'indavideo.hu', 'videohut.to', 'happystreams.net', 'userscloud.com', 'videoraj.eu', 'play44.net', 'get.google.com', 'openload.co', 'dittotv.com', 'nowvideo.li', 'teramixer.com', 'toltsd-fel.tk', 'docs.google.com', 'vidcrazy.net', 'odnoklassniki.ru', 'videoraj.ec', 'yucache.net', 'mail.ru', 'shared.sx', 'vidbull.com', 'promptfile.com', 'filehoot.com', 'shitmovie.com', 'tvlogy.to', 'bitvid.sx', 'drive.google.com', 'movdivx.com', 'allvid.ch', 'myvidstream.net', 'watchvideo6.us', 'vshare.io', 'fastplay.cc', 'clicknupload.link', 'grifthost.com', 'vidto.me', 'nowvideo.eu', 'uploadcrazy.net', 'chouhaa.info', 'upload.af', 'youtu.be', 'auroravid.to', 'videoraj.co', 'videoraj.ch', 'nowvideo.ec', 'megamp4.net', 'playedto.me', 'rutube.ru', 'speedplay.pw', 'speedvideo.net', 'idowatch.net', 'briskfile.com', 'auengine.com', 'hugefiles.net', 'watchvideo5.us', 'dynns.com', 'everplay.watchpass.net', 'videoraj.sx', 'videozoo.me', 'watchvideo9.us', 'vk.com', 'kingfiles.net', 'thevideo.me', 'cloudy.com', 'vkpass.com', 'nowvideo.sx', 'youtube.com', 'cloudzilla.to', 'daclips.com', 'mp4stream.com', 'mersalaayitten.com', 'vidfile.xyz', 'speedplay.xyz', 'movpod.net', 'clicknupload.com', 'nowvideo.co', 'divxstage.eu', 'playbb.me', 'nowvideo.ch', 'videowing.me', 'flashx.tv', 'plus.google.com', 'movpod.in', 'openload.io', 'facebook.com', 'uptostream.com', 'divxstage.net', 'estream.to', 'video44.net', 'youlol.biz', 'cloudy.eu', 'videowood.tv', 'uploadc.ch', 'watchonline.to', 'rapidvideo.ws', 'neodrive.co', 'castamp.com', 'tamildrive.com', 'easyvideo.me', 'cloudy.ec', 'www.playhd.video', 'tusfiles.net', 'googlevideo.com', 'speedplay.us', 'zalaa.com', 'cloudtime.to', 'vodlocker.com', 'storeinusa.com', 'playu.net', 'videoweed.com', 'fastplay.sx', 'googledrive.com', 'thevideos.tv', 'gorillavid.com', 'vidup.me', 'vidshare.us']
 
         if debrid.status() == True:
-            for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
-            for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i and i['source'] not in self.hostprDict]
+            for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.srcs if i['source'].lower() in self.debridDict[d]]
+            for host in self.hostDict : filter += [i for i in self.srcs if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i and i['source'] not in self.hostprDict]
         else :
-            for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i]
+            for host in self.hostDict : filter += [i for i in self.srcs if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i]
 
-        filter += [i for i in self.sources if i['direct'] == True and not i['content'] == 'live']
-        try:filter += [i for i in self.sources if i['content'] == 'live']
+        filter += [i for i in self.srcs if i['direct'] == True and not i['content'] == 'live']
+        try:filter += [i for i in self.srcs if i['content'] == 'live']
         except:pass
-        self.sources = filter
+        self.srcs = filter
 
-        logger.debug('FINAL SOURCE COUNT : %s' % len(self.sources), __name__)
+        logger.debug('FINAL SOURCE COUNT : %s' % len(self.srcs), __name__)
 
-        random.shuffle(self.sources)
+        random.shuffle(self.srcs)
 
         filter = []
-        if quality == '0' : filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
-        if quality == '0' : filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i]
-        filter += [i for i in self.sources if i['quality'] == 'SD' and not 'debrid' in i]
-        if len(filter) < 35: filter += [i for i in self.sources if i['quality'] == 'SCR']
-        if len(filter) < 35:filter += [i for i in self.sources if i['quality'] == 'CAM']
-        if len(filter) < 35:filter += [i for i in self.sources if i['quality'] == '']
-        self.sources = filter
+        if quality == '0' : filter += [i for i in self.srcs if i['quality'] == '1080p' and 'debrid' in i]
+        if quality == '0' : filter += [i for i in self.srcs if i['quality'] == '1080p' and not 'debrid' in i]
+        if quality == '0' or quality == '1': filter += [i for i in self.srcs if i['quality'] == 'HD' and 'debrid' in i]
+        if quality == '0' or quality == '1': filter += [i for i in self.srcs if i['quality'] == 'HD' and not 'debrid' in i]
+        filter += [i for i in self.srcs if i['quality'] == 'SD' and not 'debrid' in i]
+        if len(filter) < 35: filter += [i for i in self.srcs if i['quality'] == 'SCR']
+        if len(filter) < 35:filter += [i for i in self.srcs if i['quality'] == 'CAM']
+        if len(filter) < 35:filter += [i for i in self.srcs if i['quality'] == '']
+        self.srcs = filter
 
-        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources), __name__)
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.srcs), __name__)
 
-        for i in range(len(self.sources)):
+        for i in range(len(self.srcs)):
 
-            s = self.sources[i]['source'].lower()
-            p = self.sources[i]['provider']
+            s = self.srcs[i]['source'].lower()
+            p = self.srcs[i]['provider']
             p = re.sub('v\d*$', '', p)
 
-            q = self.sources[i]['quality']
+            q = self.srcs[i]['quality']
 
-            try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
+            try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.srcs[i]['info'].split('|')]))
             except: f = ''
 
-            try: d = self.sources[i]['debrid']
-            except: d = self.sources[i]['debrid'] = ''
+            try: d = self.srcs[i]['debrid']
+            except: d = self.srcs[i]['debrid'] = ''
 
             if not d == '': label = '%02d | [I]%s[/I] | [B]%s[/B] | ' % (int(i+1), d, p)
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
@@ -886,14 +892,14 @@ class sources:
             label = re.sub('\|(?:\s+|)$', '', label)
 
             pts = None
-            try : pts = self.sources[i]['parts']
+            try : pts = self.srcs[i]['parts']
             except:pass
 
             if not pts == None and int(pts) > 1:
                 label += ' [%s]' % pts
 
-            self.sources[i]['label'] = label.upper()
-        return self.sources
+            self.srcs[i]['label'] = label.upper()
+        return self.srcs
 
     def sourcesResolve(self, item):
         try:
@@ -911,11 +917,7 @@ class sources:
                 logger.debug('RESOLVED DEBRID : %s' % u, __name__)
 
             if d == '' or u == False :
-                logger.debug('Resolving through provider',__name__)
-                if not provider.endswith(('_mv', '_tv', '_mv_tv')):
-                    sourceDict = []
-                    for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
-                    provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
+                logger.debug('Resolving through provider', __name__)
 
                 source = __import__(provider, globals(), locals(), [], -1).source()
                 u = source.resolve(url, self.resolverList)
@@ -927,7 +929,7 @@ class sources:
                     except:
                         pass
                     u += '&name=%s&iconImage=%s' % (title, iconImage)
-                logger.debug('Resolved through provider [%s]' % u ,__name__)
+                logger.debug('Resolved through provider [%s]' % u, __name__)
                 if u == False: raise Exception()
 
             url = u

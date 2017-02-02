@@ -32,7 +32,7 @@ class source:
         self.language = ['en']
         self.domains = ['moviefree.to']
         self.base_link = 'http://moviefree.to'
-        self.search_link = '/watch/%s-%s-online.html'
+        self.search_link = '/watch/%s-%s.html'
 
 
     def movie(self, imdb, title, localtitle, year):
@@ -59,6 +59,8 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
+
+            url = url.replace('-online.html', '.html')
 
             r = client.request(url)
 

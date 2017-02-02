@@ -1081,7 +1081,7 @@ def getFastData():
     try:
         jsondata=getCacheData(fname,2*60*60)
         if not jsondata==None:
-            print jsondata
+            #print jsondata
             return json.loads(base64.b64decode(jsondata))
     except:
         print 'file getting error'
@@ -1151,6 +1151,7 @@ def getNetworkTVData():
     jsondata=None
     try:
         jsondata=json.loads(link.replace('\x0a',''))
+        #print jsondata
         storeCacheData(base64.b64encode(link),fname)
     except:
         print 'getFastData file saving error'
@@ -5058,7 +5059,7 @@ def getPTCUrl():
         jsondata= json.loads(data)
     #print data 
     
-    print jsondata
+    #print jsondata
     try:
         storeCacheData(jsondata,fname)
     except:
@@ -5374,7 +5375,7 @@ def getNetworkTVPage():
     
     netData=getNetworkTVData()["data"][0]
     print netData
-    baseurl=netData["YnVueWFkaV9wYXRhX25hdnVh"]
+    baseurl=netData["YmFzZXVybG5ld3gw"]
     baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
     import random,math
     uid=int(math.floor(random.random()*50000) )
@@ -5385,6 +5386,7 @@ def getNetworkTVPage():
     post={'check':'1','user_id':str(uid),'version':'23'}
     post = urllib.urlencode(post)
     jsondata=getUrl(baseurl,post=post,headers=headers)
+    #print jsondata
     jsondata=json.loads(jsondata)
 
     chlist="eY2hhbm5lbHNfbGlzdA=="
@@ -5411,9 +5413,9 @@ def getNetworkTVPage():
                 tokentype[tt]+=1
             else:
                 tokentype[tt]=1
-                
+            
             #["24","25","28","29","30","31","32"]==29
-            if tt not in ['5','33','18','0',"24","25","28","29","30","31","32"]: continue
+            if tt not in ['5','33','18','0',"24","25","28","29","30","31","32","38"]: continue
             #if tt not in ["35","34"]: continue
             channels["channels"].append( {
             'cid': chmain[cid][:-1].decode("base64") ,
@@ -6094,6 +6096,17 @@ def getNetworkTVStringExtra(response):
         del builder[ilen - 51+3];
         del builder[ilen - 58+4];
         return "".join(builder)
+
+def getNetworkTVStringExtra2(response):
+        response = response.strip();
+        builder  = list(response);
+        ilen = len(builder) -1
+        del builder[ilen - 35+1];
+        del builder[ilen - 46+2];
+        del builder[ilen - 57+3];
+        del builder[ilen - 66+4];
+        return "".join(builder)
+
 def getNetworkTVHash (value):
     import time
     k=str( value^ int(time.time()))
@@ -6173,6 +6186,7 @@ def PlayNetworkTVLink(url,progress=None):
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
+        
     elif token=="18":
         netData=getNetworkTVData()["data"][0]        
         posturl=url["streamurl"]
@@ -6199,7 +6213,29 @@ def PlayNetworkTVLink(url,progress=None):
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=playurl[0].split('\'')[0]+"|User-Agent="+defplayua
+    elif token=="38":
+        netData=getNetworkTVData()["data"][0]        
+        posturl=netData["YmVsZ2lfMzgw"][1:].decode("base64")
+        auth=netData["Z2Vsb29mc2JyaWVm"][1:].decode("base64")
+        ref=url["referer"]
+        authua=url["user_agent"]
 
+            
+        headers=[('Authorization',auth)]
+        if ref and len(ref)>0:
+            headers.append(('Referer',ref))
+        if authua and len(authua)>0:
+            headers.append(('User-Agent',authua))     
+        else:
+            headers.append(('User-Agent',anduseragent))
+            
+        
+        authdata=getNetworkTVStringExtra2(getUrl(posturl,headers=headers))
+        defplayua=anduseragent
+        playua=url["player_user_agent"]
+        if playua and len(playua)>0:
+            defplayua=playua
+        finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
     elif token in ["24","25","28","29","30","31","32"]:
         mapping={"24":   ["YW1pX2NoYmlz","TWVuX2Nob2Jpc18w","",0],
                 "25":["aXRob2toZW5pX3BhaHMw","QmVuX3BhaGlz","",0],

@@ -20,6 +20,7 @@
 
 import re, urllib, urlparse, json
 
+from resources.lib.modules import cache
 from resources.lib.modules import client
 from resources.lib.modules import cleantitle
 
@@ -35,7 +36,7 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             t = cleantitle.get(tvshowtitle)
-            j_c = self.__get_json("series")
+            j_c = cache.get(self.__get_json, 12, "series")
             j = [i['id'] for i in j_c if t == cleantitle.get(i["series"])]
             if len(j) == 0:
                 t = cleantitle.get(localtvshowtitle)
@@ -79,7 +80,8 @@ class source:
             return sources
 
     def resolve(self, url):
-        return self.__get_json(url)['fullurl']
+        try: return self.__get_json(url)['fullurl']
+        except: return
 
     def __get_json(self, api_call):
         try:

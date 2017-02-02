@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.5" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.0" provider-name="AftershockPY">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -9,15 +9,23 @@
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
         <import addon="script.aftershocknow.guide" version="1.0.0"/>
     </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
+    <extension point="xbmc.python.pluginsource" library="aftershock.py">
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-    <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
-    <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
-    <disclaimer lang="en">The content provided in this application is available free on public domain. We do not host any content. We are just providing the way to stream and all content is the copyright of their owner. The author does not have any affiliation with the content providers.</disclaimer>
-    <platform>all</platform>
-    <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
-	<website>http://www.facebook.com/aftershockpy</website>
+        <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
+        <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
+        <disclaimer lang="en">The content provided in this application is available free on public domain. We do not host any content. We are just providing the way to stream and all content is the copyright of their owner. The author does not have any affiliation with the content providers.</disclaimer>
+        <platform>all</platform>
+        <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
+	    <website>http://www.facebook.com/aftershockpy</website>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <screenshot>resources/screenshots/screenshot-01.png</screenshot>
+            <screenshot>resources/screenshots/screenshot-02.png</screenshot>
+            <screenshot>resources/screenshots/screenshot-03.png</screenshot>
+        </assets>
+        <news>- Kodi 17.0 (Krypton) Upgrade[CR]- Code cosmetics [CR]- Code Refactor/Cleanup[CR]- Updated Providers</news>
   </extension>
 </addon>

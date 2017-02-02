@@ -35,7 +35,7 @@ class source:
         self.search_link = '/results?q=%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -67,8 +67,6 @@ class source:
 
             referer = urlparse.urljoin(self.base_link, url)
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
-
             try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
             except: post = referer.strip('/').split('/')[-1].split('watch_', 1)[-1].rsplit('#')[0].rsplit('.')[0]
 
@@ -76,7 +74,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            r = client.request(url, post=post, headers=h, referer=url)
+            r = client.request(url, post=post, XHR=True, referer=url)
             r = json.loads(r).values()
             r = [urllib.unquote(i.split('url=')[-1])  for i in r]
 

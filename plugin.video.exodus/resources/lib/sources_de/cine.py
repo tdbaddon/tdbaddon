@@ -51,10 +51,8 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             data = urllib.urlencode({'ID': re.sub('[^0-9]', '', str(data['imdb'])), 'lang': 'de'})
-            header = {'X-Requested-With': 'XMLHttpRequest',
-                      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
 
-            data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data, headers=header)
+            data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data, XHR=True)
             data = json.loads(data)
             data = [(i, data['links'][i]) for i in data['links'] if 'links' in data]
             data = [(i[0], i[1][0], (i[1][1:])) for i in data if i[0] in hostDict]

@@ -35,7 +35,7 @@ class source:
         self.moviesearch_link = '/movie/%s-%s/'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = self.moviesearch_link % (cleantitle.geturl(title.replace('\'', '-')), year)
             r = urlparse.urljoin(self.base_link, url)
@@ -63,12 +63,11 @@ class source:
 
             headers = {
             'Accept-Formating': 'application/json, text/javascript',
-            'X-Requested-With': 'XMLHttpRequest',
             'Server': 'cloudflare-nginx',
             'Referer': referer}
 
             r = urlparse.urljoin(self.base_link, '/ajax/movie/load_episodes')
-            r = client.request(r, post=p, headers=headers)
+            r = client.request(r, post=p, headers=headers, XHR=True)
             r = re.findall("load_player\(\s*'([^']+)'\s*,\s*'?(\d+)\s*'?", r)
             r = [i for i in r if int(i[1]) >= 720]
 
@@ -77,9 +76,9 @@ class source:
                     p = urllib.urlencode({'id': u[0], 'quality': u[1], '_': int(time.time() * 1000)})
                     u = urlparse.urljoin(self.base_link, '/ajax/movie/load_player_v2')
 
-                    u = client.request(u, post=p, headers=headers)
+                    u = client.request(u, post=p, headers=headers, XHR=True)
                     u = json.loads(u)['playlist']
-                    u = client.request(u, headers=headers)
+                    u = client.request(u, headers=headers, XHR=True)
                     u = json.loads(u)['playlist'][0]['sources']
                     u = [i['file'] for i in u if 'file' in i]
 

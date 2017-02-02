@@ -24,6 +24,7 @@ import re,urllib,urlparse
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import jsunpack
 
 
 class source:
@@ -37,7 +38,7 @@ class source:
         self.tvsearch_link = '/watch/%s-%s-season-%s/%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             t = cleantitle.get(title)
 
@@ -73,7 +74,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -112,29 +113,21 @@ class source:
 
             r = client.request(url)
             r = client.parseDOM(r, 'div', attrs = {'class': 'player_wraper'})
-            r = client.parseDOM(r, 'iframe', ret='src')
+            r = client.parseDOM(r, 'iframe', ret='src')[0]
+            r = urlparse.urljoin(url, r)
+            r = client.request(r, referer=url)
+            a = client.parseDOM(r, 'div', ret='value', attrs = {'id': 'k2'})[-1]
+            b = client.parseDOM(r, 'div', ret='value', attrs = {'id': 'k1'})[-1]
+            c = client.parseDOM(r, 'body', ret='style')[0]
+            c = re.findall('(\d+)',  c)[-1]
+            r = '/player/%s?s=%s&e=%s' % (a, b, c)
+            r = urlparse.urljoin(url, r)
+            r = client.request(r, referer=url)
+            r = re.findall('"(?:url|src)"\s*:\s*"(.+?)"', r)
 
-            for u in r:
-                try:
-                    m = '"(?:url|src)"\s*:\s*"(.+?)"'
-
-                    d = urlparse.urljoin(self.base_link, u)
-
-                    s = client.request(d, referer=url, timeout='10')
-                    u = re.findall(m, s)
-
-                    if not u: 
-                        p = re.findall('location\.href\s*=\s*"(.+?)"', s)
-                        if not p: p = ['/player/%s' % d.strip('/').split('/')[-1]]
-                        p = urlparse.urljoin(self.base_link, p[0])
-                        s = client.request(p, referer=d, timeout='10')
-                        u = re.findall(m, s)
-
-                    for i in u:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
-                except:
-                    pass
+            for i in r:
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:

@@ -55,7 +55,7 @@ def EXTRAS_MENU():
 	ECHO_INTRO_DISABLE = xbmc.translatePath(os.path.join(SKIN_DIR,'extras/ECHOINTRO_DISABLED.MP4'))
 	PLAYER_CORE   = xbmc.translatePath('special://userdata/playercorefactory.xml')
 
-	Common.addItem('[B][COLOR ghostwhite]SPORTS DEVIL FIX[/COLOR][/B]',BASEURL,146,EXTRAS_ICON,FANART,'')
+	#Common.addItem('[B][COLOR ghostwhite]SPORTS DEVIL FIX[/COLOR][/B]',BASEURL,146,EXTRAS_ICON,FANART,'')
 
 	if os.path.exists(GUIDE):
 		Common.addItem('[B][COLOR ghostwhite]REMOVE ALL TV GUIDE SETTINGS[/COLOR][/B]',BASEURL,158,EXTRAS_ICON,FANART,'')

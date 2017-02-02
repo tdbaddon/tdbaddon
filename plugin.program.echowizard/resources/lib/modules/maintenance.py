@@ -105,13 +105,17 @@ def clearCache():
                 
                     for f in files:
                         try:
-							if (f.endswith(".log")): continue
-							os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -126,13 +130,17 @@ def clearCache():
                 if dialog.yesno("Delete Kodi Temp Files", str(file_count) + " files found", "Do you want to delete them?"):
                     for f in files:
                         try:
-                            if (f.endswith(".log")): continue
-                            os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -151,9 +159,20 @@ def clearCache():
                 if dialog.yesno("Delete ATV2 Cache Files", str(file_count) + " files found in 'Other'", "Do you want to delete them?"):
                 
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass
@@ -169,9 +188,20 @@ def clearCache():
                 if dialog.yesno("Delete ATV2 Cache Files", str(file_count) + " files found in 'LocalAndRental'", "Do you want to delete them?"):
                 
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass    
@@ -188,10 +218,21 @@ def clearCache():
 
                     dialog = xbmcgui.Dialog()
                     if dialog.yesno(MaintTitle,str(file_count) + "%s cache files found"%(entry.name), "Do you want to delete them?"):
-                        for f in files:
-                            os.unlink(os.path.join(root, f))
-                        for d in dirs:
-                            shutil.rmtree(os.path.join(root, d))
+						for f in files:
+							try:
+								checker = (os.path.join(root, f))
+								if not "archive_cache" in str(checker):
+									if (f.endswith(".log")): continue
+									os.unlink(os.path.join(root, f))
+							except:
+								pass
+						for d in dirs:
+							try:
+								checker = (os.path.join(root, d))
+								if not "archive_cache" in str(checker):
+									shutil.rmtree(os.path.join(root, d))
+							except:
+								pass
                             
                 else:
                     pass
@@ -1060,13 +1101,17 @@ def autocleannow():
             if file_count > 0:
                     for f in files:
                         try:
-							if (f.endswith(".log")): continue
-							os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1080,13 +1125,17 @@ def autocleannow():
             if file_count > 0:
                     for f in files:
                         try:
-                            if (f.endswith(".log")): continue
-                            os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1101,9 +1150,20 @@ def autocleannow():
         
             if file_count > 0:                
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass
@@ -1115,9 +1175,20 @@ def autocleannow():
         
             if file_count > 0:
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass    
@@ -1131,10 +1202,21 @@ def autocleannow():
                 file_count = 0
                 file_count += len(files)
                 if file_count > 0:
-                        for f in files:
-                            os.unlink(os.path.join(root, f))
-                        for d in dirs:
-                            shutil.rmtree(os.path.join(root, d))
+                    for f in files:
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
+                    for d in dirs:
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                             
                 else:
                     pass
@@ -1189,13 +1271,17 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:
                     for f in files:
                         try:
-							if (f.endswith(".log")): continue
-							os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1209,13 +1295,17 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:
                     for f in files:
                         try:
-                            if (f.endswith(".log")): continue
-                            os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1230,9 +1320,20 @@ def AUTO_CLEAR_CACHE_MB():
         
             if file_count > 0:                
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass
@@ -1244,9 +1345,20 @@ def AUTO_CLEAR_CACHE_MB():
         
             if file_count > 0:
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass    
@@ -1260,10 +1372,21 @@ def AUTO_CLEAR_CACHE_MB():
                 file_count = 0
                 file_count += len(files)
                 if file_count > 0:
-                        for f in files:
-                            os.unlink(os.path.join(root, f))
-                        for d in dirs:
-                            shutil.rmtree(os.path.join(root, d))
+                    for f in files:
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
+                    for d in dirs:
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                             
                 else:
                     pass
@@ -1325,13 +1448,17 @@ def AutoCache():
             if file_count > 0:
                     for f in files:
                         try:
-							if (f.endswith(".log")): continue
-							os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1345,13 +1472,17 @@ def AutoCache():
             if file_count > 0:
                     for f in files:
                         try:
-                            if (f.endswith(".log")): continue
-                            os.unlink(os.path.join(root, f))
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
                         try:
-                            shutil.rmtree(os.path.join(root, d))
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
                         except:
                             pass
                         
@@ -1366,9 +1497,20 @@ def AutoCache():
         
             if file_count > 0:                
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                         
             else:
                 pass
@@ -1380,10 +1522,20 @@ def AutoCache():
         
             if file_count > 0:
                     for f in files:
-                        os.unlink(os.path.join(root, f))
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
                     for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
-                        
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
             else:
                 pass    
                 
@@ -1396,10 +1548,21 @@ def AutoCache():
                 file_count = 0
                 file_count += len(files)
                 if file_count > 0:
-                        for f in files:
-                            os.unlink(os.path.join(root, f))
-                        for d in dirs:
-                            shutil.rmtree(os.path.join(root, d))
+                    for f in files:
+                        try:
+							checker = (os.path.join(root, f))
+							if not "archive_cache" in str(checker):
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
+                        except:
+                            pass
+                    for d in dirs:
+                        try:
+							checker = (os.path.join(root, d))
+							if not "archive_cache" in str(checker):
+								shutil.rmtree(os.path.join(root, d))
+                        except:
+                            pass
                             
                 else:
                     pass

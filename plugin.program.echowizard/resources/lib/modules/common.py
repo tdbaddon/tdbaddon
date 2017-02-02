@@ -104,32 +104,33 @@ def addLink(name, url, mode, iconimage):
 def BUILDER(name,url,iconimage,fanart,description):
 
 	urla = url
-	url = str(name + "," + urla)
+	name = url.split(",")[0]
 	desca = description
 	notice,hash,fresh,youtube,skin = desca.split(',')
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
-	addDir("[COLOR lightskyblue][B]Download The Build Now[/B][/COLOR]",url,90,iconimage,fanart,description)
+	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,90,iconimage,fanart,description)
 	url = name
-	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR lightskyblue][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
+	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR yellowgreen][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
 	if "null" not in youtube.lower():
 		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube,95,iconimage,fanart,'')
 	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
-	addDir("[COLOR white][B]Read All Reviews - [COLOR lightskyblue]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
+	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
 	addItem("[COLOR white][B]View Build Fanart[/COLOR][/B]",fanart,116,iconimage,fanart,description)
 
 def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 
+	name,url = url.split(",")
 	urla = url
 	skin_used, developer = description.split(',')
 	url = str(name + "," + urla + "," + skin_used + "," + developer)
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
-	addDir("[COLOR lightskyblue][B]Download The Build Now[/B][/COLOR]",url,96,iconimage,fanart,description)
+	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,96,iconimage,fanart,description)
 	url = name
-	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR lightskyblue][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
+	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR yellowgreen][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
 	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
-	addDir("[COLOR white][B]Read All Reviews - [COLOR lightskyblue]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
+	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
 	addItem("[COLOR white][B]View Build Fanart[/COLOR][/B]",fanart,116,iconimage,fanart,description)
 
 
@@ -162,18 +163,18 @@ def WriteReview(build_name):
 			name_text = Review_Name.getText()
 			
 		if 	review_text == "":
-			dialog.ok(AddonTitle, "[B][COLOR smokewhite]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR smokewhite]Please try again.[/COLOR][/B]", '')
+			dialog.ok(AddonTitle, "[B][COLOR white]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR white]Please try again.[/COLOR][/B]", '')
 			sys.exit(1)
 
 		if 	name_text == "":
-			dialog.ok(AddonTitle, "[B][COLOR smokewhite]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR smokewhite]Please try again.[/COLOR][/B]", '')
+			dialog.ok(AddonTitle, "[B][COLOR white]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR white]Please try again.[/COLOR][/B]", '')
 			sys.exit(1)
 
 		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1hZGQmdGV4dD0=') + base64.b64encode(review_text) + base64.b64decode(b'Jm5hbWU9') + base64.b64encode(name_text) + base64.b64decode(b'JmlwPQ==') + base64.b64encode(review_ip) + base64.b64decode(b'JmJ1aWxkPQ==') + base64.b64encode(build_name)
 		body =urllib2.urlopen(service_url).read()
 	except: sys.exit(1)
 
-	dialog.ok(AddonTitle, "[B][COLOR smokewhite]Thanks, For leaving A Review for : [/COLOR][/B]", "", build_name )
+	dialog.ok(AddonTitle, "[COLOR white]" + name_text + ", thank you for leaving a review for " + build_name + ".[/COLOR]")
 
 	xbmc.executebuiltin("Container.Refresh")
 
@@ -187,7 +188,7 @@ def ListReview(build_name):
 	reviews = review_parse(data)
 	xbmc.log("got review parse : "+data)
 	for review in reviews:
-		review_title = "[COLOR blue][B]"+review['date']+"[/COLOR][/B] - [COLOR white][B] Read Review By : " +review['name']+ "[/COLOR][/B]"
+		review_title = "[COLOR yellowgreen][B]"+review['date']+"[/COLOR][/B] - [COLOR white][B]" +review['name']+ "[/COLOR][/B]"
 		url = review['review']
 		date = "Review Date : " + review['date']
 		xbmc.log(review['name']+" : "+review['date'])
@@ -213,11 +214,11 @@ def Write_Addon_Review(build_name):
 			name_text = Review_Name.getText()
 			
 		if 	review_text == "":
-			dialog.ok(AddonTitle, "[B][COLOR smokewhite]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR smokewhite]Please try again.[/COLOR][/B]", '')
+			dialog.ok(AddonTitle, "[B][COLOR white]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR white]Please try again.[/COLOR][/B]", '')
 			sys.exit(1)
 
 		if 	name_text == "":
-			dialog.ok(AddonTitle, "[B][COLOR smokewhite]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR smokewhite]Please try again.[/COLOR][/B]", '')
+			dialog.ok(AddonTitle, "[B][COLOR white]Sorry not a valid entry![/COLOR][/B]", "[B][COLOR white]Please try again.[/COLOR][/B]", '')
 			sys.exit(1)
 
 		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1hZGQmdGV4dD0=') + base64.b64encode(review_text) + base64.b64decode(b'Jm5hbWU9') + base64.b64encode(name_text) + base64.b64decode(b'JmlwPQ==') + base64.b64encode(review_ip) + base64.b64decode(b'JmJ1aWxkPQ==') + base64.b64encode(build_name)
@@ -322,186 +323,76 @@ def review_parse(data):
 
 def add_one(build_name):
 
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/YWN0aW9uPWFkZCZuYW1lPQ==') + base64.b64encode(build_name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
+	if not "ADDON_INSTALLER" in build_name:
+		try:
+			build_name,dev_name = build_name.split('|SPLIT|')
+			service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWFkZCZidWlsZD0=') + base64.b64encode(build_name) + "&dev=" + base64.b64encode(dev_name)
+			body =urllib2.urlopen(service_url).read()
+		except:
+			sys.exit(0)
+	else:
+		build_name = build_name.replace("ADDON_INSTALLER","")
+		try:
+			service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWFkZCZidWlsZD0=') + base64.b64encode(build_name)
+			body =urllib2.urlopen(service_url).read()
+		except:
+			sys.exit(0)
 
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV90b3RhbC5waHA/YWN0aW9uPWFkZCZuYW1lPQ==') + base64.b64encode(build_name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
+def count(build_name,FILE):
 
-def add_one_community(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHkucGhwP2FjdGlvbj1hZGQmbmFtZT0=') + base64.b64encode(build_name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def add_one_addons_total(name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbnNfdG90YWwucGhwP2FjdGlvbj1hZGQmbmFtZT0=') + base64.b64encode(name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def add_one_addons_week(name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbnNfd2Vlay5waHA/YWN0aW9uPWFkZCZuYW1lPQ==') + base64.b64encode(name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-		
-def add_one_fanriffic(name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9mYW5yaWZmaWMucGhwP2FjdGlvbj1hZGQmbmFtZT0=') + base64.b64encode(name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def add_one_community_dev_total(name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHlfZGV2X3RvdGFsLnBocD9hY3Rpb249YWRkJm5hbWU9') + base64.b64encode(name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def add_one_community_dev_week(name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHlfZGV2X3dlZWsucGhwP2FjdGlvbj1hZGQmbmFtZT0=') + base64.b64encode(name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def add_one_advanced(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZHZhbmNlZC5waHA/YWN0aW9uPWFkZCZuYW1lPQ==') + base64.b64encode(build_name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-	
-def add_one_backups(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9iYWNrdXBzLnBocD9hY3Rpb249YWRkJm5hbWU9') + base64.b64encode(build_name)
-		body =urllib2.urlopen(service_url).read()
-	except:
-		sys.exit(0)
-
-def community_dev_week(build_name):
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHlfZGV2X3dlZWsucGhwP2FjdGlvbj1jb3VudCZuYW1lPQ==') + base64.b64encode(build_name)
-	f = urllib2.urlopen(service_url)
-	data = f.read()
-	f.close()
-
-	return data
-
-def community_dev_total(build_name):
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHlfZGV2X3RvdGFsLnBocD9hY3Rpb249Y291bnQmbmFtZT0=') + base64.b64encode(build_name)
-	f = urllib2.urlopen(service_url)
-	data = f.read()
-	f.close()
-
-	return data
-
-def count_fanriffic(build_name):
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9mYW5yaWZmaWMucGhwP2FjdGlvbj1jb3VudCZuYW1lPQ==') + base64.b64encode(build_name)
-	f = urllib2.urlopen(service_url)
-	data = f.read()
-	f.close()
-
-	return data
-
-def count_addons_week(build_name):
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbnNfd2Vlay5waHA/YWN0aW9uPWNvdW50Jm5hbWU9') + base64.b64encode(build_name)
-	f = urllib2.urlopen(service_url)
-	data = f.read()
-	f.close()
-
-	return data
-
-def count_addons_total(build_name):
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbnNfdG90YWwucGhwP2FjdGlvbj1jb3VudCZuYW1lPQ==') + base64.b64encode(build_name)
-	f = urllib2.urlopen(service_url)
-	data = f.read()
-	f.close()
-
-	return data
-
-def count(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/YWN0aW9uPWNvdW50Jm5hbWU9') + base64.b64encode(build_name)
-		f = urllib2.urlopen(service_url)
-		data = f.read()
-		f.close()
-
-		return data
-	except:
-		sys.exit(0)
-
-def count_total(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV90b3RhbC5waHA/YWN0aW9uPWNvdW50Jm5hbWU9') + base64.b64encode(build_name)
-		f = urllib2.urlopen(service_url)
-		data = f.read()
-		f.close()
-
-		return data
-	except:
-		sys.exit(0)
-
-def count_community(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9jb21tdW5pdHkucGhwP2FjdGlvbj1jb3VudCZuYW1lPQ==') + base64.b64encode(build_name)
-		f = urllib2.urlopen(service_url)
-		data = f.read()
-		f.close()
-
-		return data
-	except:
-		sys.exit(0)
-
-def count_advanced(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZHZhbmNlZC5waHA/YWN0aW9uPWNvdW50Jm5hbWU9') + base64.b64encode(build_name)
-		f = urllib2.urlopen(service_url)
-		data = f.read()
-		f.close()
-
-		return data
-	except:
-		sys.exit(0)
-
-def count_backups(build_name):
-
-	try:
-		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9iYWNrdXBzLnBocD9hY3Rpb249Y291bnQmbmFtZT0=') + base64.b64encode(build_name)
-		f = urllib2.urlopen(service_url)
-		data = f.read()
-		f.close()
-
-		return data
-	except:
-		sys.exit(0)
+	if "ADDON_INSTALLER" in build_name:
+		build_name = build_name.replace("ADDON_INSTALLER","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>'+re.escape(build_name)+'</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	elif "ADDON_TOTAL" in build_name:
+		build_name = build_name.replace("ADDON_TOTAL","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>'+re.escape(build_name)+'</name>.+?<atotal>(.+?)</atotal>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	elif "DEVEL_COUNT" in build_name:
+		build_name = build_name.replace("DEVEL_COUNT","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<dev>'+re.escape(build_name)+'</dev><dcount>(.+?)</dcount>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	elif "TOTAL_DEV" in build_name:
+		build_name = build_name.replace("TOTAL_DEV","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<dev>'+re.escape(build_name)+'</dev><dcount>.+?</dcount><dtotal>(.+?)</dtotal>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	elif "TOTAL_COUNT" in build_name:
+		build_name = build_name.replace("TOTAL_COUNT","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>'+re.escape(build_name)+'</name>.+?<total>(.+?)</total>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	else:
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>'+re.escape(build_name)+'</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
 
 def SHOW_PICTURE(url):
 

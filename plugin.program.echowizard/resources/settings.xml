@@ -4,6 +4,10 @@
 		<setting type="lsep" label="[COLOR=dodgerblue]General Settings[/COLOR]"/>
 		<setting id="checkaddonupdates" type="bool" label="Check for Wizard and Repository updates on launch." default="true"/>
 		<setting id="checkupdates" type="bool" label="Check for build updates on Kodi startup" default="true"/>
+		<setting type="lsep" label="[COLOR=dodgerblue]ECHO API Settings[/COLOR]"/>
+		<setting id="api_interval" type="enum" values="60|50|40|30|20|10|5" label="Generate Download Counts Every (Minutes)" default="60"/>
+		<setting label="Regenerate Download Counts" type="action" action="RunScript($CWD\resources\lib\api\getTemp.py)" />	
+		<setting label="Clear Temp Files" type="action" action="RunScript($CWD\resources\lib\api\clearTemp.py)" />	
 		<setting type="lsep" label="[COLOR=dodgerblue]Backup Settings[/COLOR]"/>
 		<setting id="zip" type="folder"    label="Choose Backup Storage Location:"      default="special://home/backupdir"/>
 		<setting type="lsep" label="[COLOR=dodgerblue]Log Settings[/COLOR]"/>

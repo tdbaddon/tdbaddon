@@ -47,12 +47,12 @@ def request(url, check, close=True, redirect=True, error=False, proxy=None, post
 
 def geturl(url):
     try:
-
-        r = client.request(url, redirect=False, output='headers')
+        r = client.request(url, output='geturl')
         if r == None: return r
-        try: return r['Location']
-        except: pass
 
+        host1 = re.findall('([\w]+)[.][\w]+$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+        host2 = re.findall('([\w]+)[.][\w]+$', urlparse.urlparse(r.strip().lower()).netloc)[0]
+        if host1 == host2: return r
 
         proxies = sorted(get(), key=lambda x: random.random())
         proxies = sorted(proxies, key=lambda x: random.random())

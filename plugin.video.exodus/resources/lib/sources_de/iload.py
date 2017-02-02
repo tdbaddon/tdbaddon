@@ -36,7 +36,7 @@ class source:
     def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(self.search_link_mv, imdb, title)
-            if not url: url = self.__search(self.search_link_mv, imdb, localtitle)
+            if not url and title != localtitle: url = self.__search(self.search_link_mv, imdb, localtitle)
             return url
         except:
             return
@@ -44,7 +44,7 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(self.search_link_tv, imdb, tvshowtitle)
-            if not url: url = self.__search(self.search_link_tv, imdb, localtvshowtitle)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(self.search_link_tv, imdb, localtvshowtitle)
             return url
         except:
             return

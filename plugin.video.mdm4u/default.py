@@ -24,6 +24,7 @@ show_tv = addon.get_setting('enable_shows')
 show_mov = addon.get_setting('enable_movies')
 show_fav = addon.get_setting('enable_favs')
 show_add_set = addon.get_setting('add_set')
+show_meta_set = addon.get_setting('enable_meta_set')
 
 art = md.get_art()
 icon = addon.get_icon()
@@ -48,9 +49,10 @@ def MAIN():
 	if show_fav == 'true':
 		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
 	if metaset == 'true':
-		md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+                if show_meta_set == 'true':
+                        md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
 	if show_add_set == 'true':
-		md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False)
+		md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
 	
 
 	setView(addon_id, 'files', 'menu-view')
@@ -115,10 +117,10 @@ def INDEX(url,content):
 		fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
 		if '-tvshow-' in url:
 			md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
-				   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name} ,fan_art, item_count=items)
+				   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name}, fan_art, item_count=items)
 		else:
 			md.addDir({'mode': '8', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
-				   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name} ,fan_art, is_folder=False, item_count=items)
+				   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name}, fan_art, is_folder=False, item_count=items)
 
 	np_fan_art = {'icon':art+'next.png', 'fanart':art+'m4u.jpg'}
 	try:
@@ -146,8 +148,7 @@ def INDEX(url,content):
 
 
 def EPIS(title,url,iconimage,content):
-	addon.log('##########################title= '+str(title))
-
+	
 	if iconimage == None:
 		iconimage = icon
 
@@ -266,10 +267,10 @@ def RESOLVE(url,iconimage,content,infolabels):
 	max_url = []
 	final_url= ''
 	
-	match = re.findall(r'"file":"(.*?),"label":"(.*?)",', str(link), re.I|re.DOTALL)
+	match = re.findall(r'"file":"(.*?)".*?"label":"(.*?)"', str(link), re.I|re.DOTALL)
 	try:
                 for url,label in match:
-                        label = label.replace('p','')
+                        label = re.sub('\D', '', label)
                         value.append(label)
                         max_url.append(url)
 			

@@ -20,6 +20,7 @@ import base64
 import re
 import shutil
 import time
+import plugintools
 from resources.lib.modules import common as Common
 from resources.lib.modules import downloader
 import zipfile
@@ -45,10 +46,12 @@ DEP_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + ad
 ALL_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
 UPDATE_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
 REPO_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
+TEMP_FILE        =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
 ADDON_DATA       = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id, 'packs/'))
 PARENTAL_FILE    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'controls.txt'))
 PARENTAL_FOLDER  = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 BASEURL          = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
+ECHO_API         = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
 ADDON_LIST       = BASEURL + base64.b64decode(b'YWRkb25zL2FkZG9uX2xpc3RfbmV3LnhtbA==')
 ADDON_LIST_PAID  = BASEURL + base64.b64decode(b'YWRkb25zL2FkZG9uX2xpc3RfcGFpZC54bWw=')
 DEPENDENCIES     = BASEURL + base64.b64decode(b'YWRkb25zL2RlcGVuZGVuY2llc19saXN0LnhtbA==')
@@ -68,7 +71,7 @@ def MENU():
 	codename = "Decline"
 
 	total = ""
-	total_count = Common.count_addons_week(total)
+	total_count = Common.count(total,TEMP_FILE)
 	Common.addDir("[COLOR white][B]" + str(total_count) + " [/COLOR][COLOR yellowgreen]Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	
@@ -76,6 +79,11 @@ def MENU():
 	Common.addDir("[COLOR white][B]ENTER THE ECHO ADDON INSTALLER[/B][/COLOR]",BASEURL,175,ALL_ICON,FANART,'')
 
 def MENU_MAIN():
+
+	if not os.path.isfile(TEMP_FILE):
+		open(TEMP_FILE, 'w')
+	
+	GET_COUNTS()
 
 	if os.path.exists(PARENTAL_FILE):
 		vq = Common._get_keyboard( heading="Please Enter Your Password" )
@@ -95,7 +103,7 @@ def MENU_MAIN():
 					quit()
 
 	total = ""
-	total_count = Common.count_addons_week(total)
+	total_count = Common.count("Download CountADDON_INSTALLER",TEMP_FILE)
 	Common.addDir("[COLOR yellowgreen][B]" + str(total_count) + " Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
@@ -143,6 +151,7 @@ def GET_LIST(description):
 	if matcher == "repos":
 		namelist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		repolist=[]
@@ -162,27 +171,29 @@ def GET_LIST(description):
 			fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
 			dp.update(progress,"Filtering repositories " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
 			namelist.append(name)
-			countlist.append(str(Common.count_addons_week(name)))
+			countlist.append(str(Common.count(repo_path+"ADDON_INSTALLER",TEMP_FILE)))
+			totallist.append(str(Common.count(repo_path+"ADDON_TOTAL",TEMP_FILE)))
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
 			repolist.append(repo_path)
-			combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,repolist))
+			combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,iconimage,fanart,repo_path in tup:
+		for count,total,name,iconimage,fanart,repo_path in tup:
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 			url2 = repo_path + "," + name  + "," + url
 			try:
-				bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
 				bname = "Unknown"
 			if not os.path.exists(REPO):
 				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+				Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
 	elif matcher == "top":
 		namelist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		addonlist=[]
@@ -208,33 +219,34 @@ def GET_LIST(description):
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
 					namelist.append(name)
-					countlist.append(str(Common.count_addons_week(name)))
+					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
 					repolist.append(repo_path)
-					combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,addonlist,repolist))
+					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		check = 1
-		for count,name,iconimage,fanart,addon_path,repo_path in tup:
+		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 			url2 = addon_path + "," + repo_path + "," + name  + "," + url
 			if check < 14:
 				if check == 1:
-					bname = " | [COLOR gold][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
+					bname = " | [COLOR gold][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR][COLOR gold][B] - Total:[/COLOR][COLOR gold] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR gold][B]1st - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
 						Common.addDir("[COLOR gold][B]1st - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 2:
-					bname = " | [COLOR ghostwhite][B] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/B][/COLOR]"
+					bname = " | [COLOR ghostwhite][B] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/B][/COLOR][COLOR ghostwhite][B] - Total:[/COLOR][COLOR ghostwhite] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
 						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 3:
-					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
+					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR orange] " + count + "[/B][/COLOR][COLOR orange][B] - Total:[/COLOR][COLOR orange] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
@@ -242,15 +254,16 @@ def GET_LIST(description):
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
 				else:
-					bname = " | [COLOR grey] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+					bname = " | [COLOR grey] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR grey] - Total:[/COLOR][COLOR yellowgreen] [B]" + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR grey][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+						Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			check = check + 1
 	elif matcher == "paid":
 		namelist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		addonlist=[]
@@ -275,25 +288,26 @@ def GET_LIST(description):
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
 					namelist.append(name)
-					countlist.append(str(Common.count_addons_week(name)))
+					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
 					repolist.append(repo_path)
-					combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,addonlist,repolist))
+					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,iconimage,fanart,addon_path,repo_path in tup:
+		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 			url2 = addon_path + "," + repo_path + "," + name  + "," + url
 			try:
-				bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
 				bname = "Unknown"
 			if not os.path.exists(ADDON):
 				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
 			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
+				Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
 	else:
 		url = ADDON_LIST
 		url2 = ADDON_LIST
@@ -303,6 +317,7 @@ def GET_LIST(description):
 		dis_links = len(match)
 		namelist=[]
 		countlist=[]
+		totallist=[]
 		iconlist=[]
 		fanartlist=[]
 		addonlist=[]
@@ -321,20 +336,21 @@ def GET_LIST(description):
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
 					namelist.append(name)
-					countlist.append(str(Common.count_addons_week(name)))
+					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
 					repolist.append(repo_path)
-					combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,addonlist,repolist))
+					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,iconimage,fanart,addon_path,repo_path in tup:
+		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 			url2 = addon_path + "," + repo_path + "," + name  + "," + url
 			base_name = name
 			try:
-				bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
 				bname = "Unknown"
 			if matcher == "xxx":
@@ -342,19 +358,19 @@ def GET_LIST(description):
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+						Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
 			elif matcher != "all":
 				if matcher in addon_path:
 					if not os.path.exists(ADDON):
 							Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-							Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+							Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			else:
 				if not os.path.exists(ADDON):
 					Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				else:
-					Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+					Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
 	kodi_name = Common.GET_KODI_VERSION()
 
@@ -404,6 +420,7 @@ def GET_MULTI(name,url):
 	try:
 		addon_path,repo_path,base_name,url,marker   = urla.split(',')
 	except: addon_path,repo_path,base_name,url,disre,marker   = urla.split(',')
+	count_id = addon_path
 	get_url = url
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(addon_path)
 	body = urllib2.urlopen(service_url).read()
@@ -468,7 +485,7 @@ def GET_MULTI(name,url):
 						ADDON  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
 						if not os.path.exists(ADDON):
 							url = str(sturl)
-							install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
+							install_name = str("[COLOR yellowgreen][B]" + caption + "[/B][/COLOR]")
 							INSTALL(install_name,url)
 							if kodi_name == "Krypton":
 								ADD_DATABASE_ADDON(caption,"")
@@ -495,7 +512,7 @@ def GET_MULTI(name,url):
 						if not "http" in caption:
 							if not os.path.exists(ADDON2):
 								url = str(sturl)
-								install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
+								install_name = str("[COLOR yellowgreen][B]" + caption + "[/B][/COLOR]")
 								INSTALL(install_name,url)
 								if kodi_name == "Krypton":
 									if "repo" in caption.lower():
@@ -519,7 +536,7 @@ def GET_MULTI(name,url):
 					quit()	
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
-		add_download = Common.add_one_addons_week(base_name)
+		add_download = Common.add_one(count_id+"ADDON_INSTALLER")
 		dp.update(50,'Refreshing kodi addons to finish the installation process.','',' ')
 		time.sleep(2)
 		xbmc.executebuiltin("UpdateLocalAddons")
@@ -594,7 +611,7 @@ def GET_REPO(name,url):
 					if not "http" in caption:
 						if not os.path.exists(REPO):
 							url = str(sturl)
-							install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
+							install_name = str("[COLOR yellowgreen][B]" + caption + "[/B][/COLOR]")
 							INSTALL(install_name,url)
 							if kodi_name == "Krypton":
 								ADD_DATABASE_ADDON(repo_path,"")
@@ -611,7 +628,7 @@ def GET_REPO(name,url):
 				quit()	
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
-		add_download = Common.add_one_addons_week(base_name)
+		add_download = Common.add_one(base_name)
 
 		time.sleep(2)
 		xbmc.executebuiltin("UpdateLocalAddons")
@@ -820,6 +837,49 @@ def INSTALL(name, url):
 		os.remove(lib)
 	except:
 		pass
+
+def GET_COUNTS():
+
+	api_interval = plugintools.get_setting("api_interval")
+
+	if api_interval == "0":
+		mark = 60
+	elif api_interval == "1":
+		mark = 50
+	elif api_interval == "2":
+		mark = 40
+	elif api_interval == "3":
+		mark = 30
+	elif api_interval == "4":
+		mark = 20
+	elif api_interval == "5":
+		mark = 10
+	elif api_interval == "6":
+		mark = 5
+	else: mark = 60
+
+	fileCreation = os.path.getmtime(TEMP_FILE)
+
+	now = time.time()
+	check = now - 60*mark
+	
+	text_file = open(TEMP_FILE)
+	compfile = text_file.read()  
+	
+	if len(compfile) == 0:
+		counts=Common.OPEN_URL_NORMAL(ECHO_API)
+
+		text_file = open(TEMP_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	elif fileCreation < check:
+
+		counts=Common.OPEN_URL_NORMAL(ECHO_API)
+
+		text_file = open(TEMP_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
 
 def unzip(_in, _out, dp):
 	__in = zipfile.ZipFile(_in,  'r')

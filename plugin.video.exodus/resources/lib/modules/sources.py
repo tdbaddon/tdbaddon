@@ -22,6 +22,7 @@
 import sys,re,json,urllib,urlparse,random,datetime,time
 
 from resources.lib.modules import trakt
+from resources.lib.modules import cache
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -375,10 +376,6 @@ class sources:
         except: pass
 
         self.sourcesFilter()
-
-        threads = []
-        for i in range(1, 60): threads.append(workers.Thread(client.request, 'http://mkodi.co.uk/shop/'))
-        [i.start() for i in threads]
 
         return self.sources
 
@@ -887,7 +884,7 @@ class sources:
 
         self.hostprDict = ['1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
-        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'torba.se']
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
         self.hostblockDict = []
 

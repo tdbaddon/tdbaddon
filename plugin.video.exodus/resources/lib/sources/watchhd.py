@@ -82,10 +82,10 @@ class source:
                     url = '%s/movies/%s/' % (self.base_link, cleantitle.geturl(data['title']))
                     year = data['year']
 
-                url = client.request(url, output='geturl')
+                url = client.request(url, timeout='10', output='geturl')
                 if url == None: raise Exception()
 
-                r = client.request(url)
+                r = client.request(url, timeout='10')
 
                 y = client.parseDOM(r, 'span', attrs = {'class': 'date'})[0]
                 y = re.findall('(\d{4})', y)[0]
@@ -93,7 +93,7 @@ class source:
             else:
                 url = urlparse.urljoin(self.base_link, url)
 
-                r = client.request(url)
+                r = client.request(url, timeout='10')
 
 
             links = client.parseDOM(r, 'iframe', ret='src')

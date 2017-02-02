@@ -1397,6 +1397,8 @@ class episodes:
                 except: pass
                 try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
                 except: pass
+                try: meta.update({'year': re.findall('(\d{4})', i['premiered'])[0]})
+                except: pass
                 try: meta.update({'title': i['label']})
                 except: pass
 

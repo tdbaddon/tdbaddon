@@ -19,13 +19,13 @@
 '''
 
 
-import re,sys,cookielib,urllib,urllib2,urlparse,HTMLParser,time,random,base64
+import re,sys,cookielib,urllib,urllib2,urlparse,gzip,StringIO,HTMLParser,time,random,base64
 
 from resources.lib.modules import cache
 from resources.lib.modules import workers
 
 
-def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, XHR=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
     try:
         handlers = []
 
@@ -71,6 +71,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             headers['Referer'] = referer
         if not 'Accept-Language' in headers:
             headers['Accept-Language'] = 'en-US'
+        if 'X-Requested-With' in headers:
+            pass
+        elif XHR == True:
+            headers['X-Requested-With'] = 'XMLHttpRequest'
         if 'Cookie' in headers:
             pass
         elif not cookie == None:
@@ -97,7 +101,13 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         except urllib2.HTTPError as response:
 
             if response.code == 503:
-                if 'cf-browser-verification' in response.read(5242880):
+                cf_result = response.read(5242880)
+                try: encoding = response.info().getheader('Content-Encoding')
+                except: encoding = None
+                if encoding == 'gzip':
+                    cf_result = gzip.GzipFile(fileobj=StringIO.StringIO(cf_result)).read()
+
+                if 'cf-browser-verification' in cf_result:
 
                     netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
 
@@ -152,6 +162,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         else:
             result = response.read(5242880)
 
+        try: encoding = response.info().getheader('Content-Encoding')
+        except: encoding = None
+        if encoding == 'gzip':
+            result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
+
 
         if 'sucuri_cloudproxy_js' in result:
             su = sucuri().get(result)
@@ -168,6 +183,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
                 result = response.read(int(limit) * 1024)
             else:
                 result = response.read(5242880)
+
+            try: encoding = response.info().getheader('Content-Encoding')
+            except: encoding = None
+            if encoding == 'gzip':
+                result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
 
 
         if output == 'extended':
@@ -339,6 +359,10 @@ class cfcookie:
                 response = urllib2.urlopen(request, timeout=int(timeout))
             except urllib2.HTTPError as response:
                 result = response.read(5242880)
+                try: encoding = response.info().getheader('Content-Encoding')
+                except: encoding = None
+                if encoding == 'gzip':
+                    result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
 
             jschl = re.findall('name="jschl_vc" value="(.+?)"/>', result)[0]
 

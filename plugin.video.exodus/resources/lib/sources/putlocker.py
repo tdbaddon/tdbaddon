@@ -79,6 +79,7 @@ class source:
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
+                imdb = data['imdb'] ; year = data['year']
 
                 if 'tvshowtitle' in data:
                     url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
@@ -86,11 +87,18 @@ class source:
                     url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
 
                 result = client.request(url, limit='5')
+
+                if result == None and not 'tvshowtitle' in data:
+                    url += '-%s' % year
+                    result = client.request(url, limit='5')
+
                 result = client.parseDOM(result, 'title')[0]
 
                 if '%TITLE%' in result: raise Exception()
 
                 r = client.request(url, output='extended')
+
+                if not imdb in r[0]: raise Exception()
 
                
             else:

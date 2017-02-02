@@ -1,4 +1,4 @@
-import sys, re, base64
+import sys
 
 sys.argv = ['plugin.video.aftershock', '1']
 
@@ -14,19 +14,19 @@ try :
     params = {'tmdb': '0', 'name': 'Rustom (2016)', 'title': 'Rustom', 'meta': '{"rating": "7.3", "votes": "6,499", "code": "tt5165344", "cast": [["Akshay Kumar", ""], ["Ileana", ""], ["Esha Gupta", ""], ["Manoj Bajpayee", ""]], "plot": "Naval officer Rustom Pavri returns from his posting and finds his wife Cynthia is away from home since last two days his marriages is on the rocks when he finds love letters in cupboard which indicates that Cynthia has found love in one of his friend Vikram Makhija an arrogant business tycoon ,Rustom then issues a pistol from Naval Ship\'s Armory and shoots Vikram three times in his chest living him dead and surrender himself to senior inspector Vincent Lobo.", "fanart": "https://walter.trakt.us/images/movies/000/234/965/fanarts/medium/e982aad610.jpg", "poster": "https://walter.trakt.us/images/movies/000/234/965/posters/medium/c853ec5030.jpg", "title": "Rustom", "originaltitle": "Rustom", "premiered": "2016-08-12", "next": "http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&start=1&sort=release_date,desc&page=2&ref_=adv_nxt", "director": "Dharmendra Suresh Desai", "writer": "Vipul K. Rawal", "imdb": "tt5165344", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Rustom+%282016%29", "year": "2016", "duration": "8880", "genre": "Crime / Drama / Mystery", "metacache": false}', 'imdb': 'tt5165344', 't': '20161006162610402000', 'year': '2016', 'action': 'play'}
     params = {'tmdb': '330431', 'name': 'NH10 (2015)', 'title': 'NH10', 'meta': '{"rating": "6.22", "votes": "9", "tmdb": "330431", "name": "NH10 (2015)", "title": "NH10", "fanart": "http://image.tmdb.org/t/p/original/4A6QmdOzfFMe2HSIi2BZMHMJOXy.jpg", "tagline": "A woman, stacked against all odds, manages to not just stick it out but indeed give it back.", "plot": "A woman, stacked against all odds, manages to not just stick it out but indeed give it back.", "poster": "http://image.tmdb.org/t/p/w500/15xjX0ULsnnJpegmTwlfmDn4drO.jpg", "next": "", "originaltitle": "NH10", "premiered": "2015-03-13", "year": "2015", "duration": "7200", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=NH10+%282015%29", "metacache": false}', 'imdb': '0', 't': '20161007092138014000', 'year': '2015', 'action': 'play'}
     params = {'tmdb': '0', 'name': 'Welcome Back (2015)', 'title': 'Welcome Back', 'meta': '{"rating": "4.2", "votes": "4,200", "code": "tt3159708", "cast": [["Anil Kapoor", ""], ["Nana Patekar", ""], ["Dimple Kapadia", ""], ["John Abraham", ""]], "plot": "Uday Shetty and Majnu Bhai have left the underworld, and are now big businessmen. Two women, Chandni and Maharani, enter their life. Chandni is the new love in Uday Shetty and Majnu\'s life and both friends dream of tying the knot with her. However, Appa - Uday\'s father, plays spoilsport by bringing in his other daughter, Ranjana. He tells Uday Shetty to get her married to someone from a good family. Maharani puts a condition that only after her sister is married, will Chandni will marry one of them. Now, a search to find a suitable husband for Ranjana starts.", "fanart": "https://walter.trakt.us/images/movies/000/222/591/fanarts/medium/713cbb56bd.jpg", "poster": "https://walter.trakt.us/images/movies/000/222/591/posters/medium/fd484fdff3.jpg", "title": "Welcome Back", "originaltitle": "Welcome Back", "premiered": "2015-09-04", "next": "http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&start=1&sort=release_date,desc&page=4&ref_=adv_nxt", "director": "Anees Bazmee", "writer": "Anees Bazmee / Rajeev Kaul / Rajeev Kaul / Anees Bazmee / Rajan Aggarwal / Praful Parekh / Raaj Shaandilyaa", "imdb": "tt3159708", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Welcome+Back+%282015%29", "year": "2015", "duration": "9120", "genre": "Action / Comedy / Crime", "metacache": false}', 'imdb': 'tt3159708', 't': '20161007095717834000', 'year': '2015', 'action': 'play'}
-    params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez_tv'}
-    params = {'tmdb': '0', 'episode': '0', 'name': '12th October 2016', 'title': '12th October 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Bhabhiji Ghar Pe Hai', 'date': '0', 'meta': '{"tvshowurl": "forums/3143-Bhabhiji-Ghar-Pe-Hai", "title": "12th October 2016", "url": "threads/966418-Bhabhiji-Ghar-Pe-Hai-12th-October-2016-Watch-Online?s=f52027d78b6289d8dab777de23bffc4f", "tvshowtitle": "Bhabhiji Ghar Pe Hai", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bhabhiji+Ghar+Pe+Hai", "name": "12th October 2016"}', 'imdb': '0', 't': '20161014092408332000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
-    params = {'action': 'play', 'content': 'live', 'name': 'AND TV HD'}
-    params = {'action': 'tvshows', 'url': 'star-plus', 'name': 'Star Plus', 'provider': 'yodesi_tv'}
+    #params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez_tv'}
+    #params = {'tmdb': '0', 'episode': '0', 'name': '12th October 2016', 'title': '12th October 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Bhabhiji Ghar Pe Hai', 'date': '0', 'meta': '{"tvshowurl": "forums/3143-Bhabhiji-Ghar-Pe-Hai", "title": "12th October 2016", "url": "threads/966418-Bhabhiji-Ghar-Pe-Hai-12th-October-2016-Watch-Online?s=f52027d78b6289d8dab777de23bffc4f", "tvshowtitle": "Bhabhiji Ghar Pe Hai", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bhabhiji+Ghar+Pe+Hai", "name": "12th October 2016"}', 'imdb': '0', 't': '20161014092408332000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+    #params = {'action': 'play', 'content': 'live', 'name': 'AND TV HD'}
+    #params = {'action': 'tvshows', 'url': 'star-plus', 'name': 'Star Plus', 'provider': 'yodesi_tv'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '20th October 2016', 'title': '20th October 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "20th October 2016", "url": "threads/968883-Bigg-Boss-10-20th-October-2016-Watch-Online-2-hours-maha-episode?s=e002c7988b973fe76e8ffe8d634f89a0", "tvshowtitle": "Bigg Boss 10", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "20th October 2016"}', 'imdb': '0', 't': '20161020230608467000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '20th October 2016', 'title': '20th October 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Sasural Simar Ka', 'date': '0', 'meta': '{"tvshowurl": "forums/3948-Sasural-Simar-Ka", "title": "20th October 2016", "url": "threads/968880-Sasural-Simar-Ka-20th-October-2016-Watch-Online?s=6bfa8a53e72f5c9666a8bf487f22eb8c", "tvshowtitle": "Sasural Simar Ka", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Sasural+Simar+Ka", "name": "20th October 2016"}', 'imdb': '0', 't': '20161023225302497000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
-    params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez_mv_tv'}
-    params = {'tmdb': '0', 'name': 'Dear Life (2016)', 'title': 'Dear Life', 'meta': '{"rating": "8.8", "votes": "12,001", "code": "tt5946128", "cast": [["Shah Rukh Khan", ""], ["Alia Bhatt", ""], ["Angad Bedi", ""], ["Kunal Kapoor", ""]], "plot": "This is the story of Kaira, a budding cinematographer in search of perfect life. A chance encounter with Jug, an unconventional thinker, helps her gain new perspective about life. She discovers that happiness is all about finding comfort in life\'s imperfections.", "mpaa": "UNRATED", "title": "Dear Zindagi", "originaltitle": "Dear Life", "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZWQzYWI3ZGMtYzgyYy00OWZkLWEwODYtNGNiMTZhODBkNzUyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_UY98_SX500_AL_.jpg", "next": "http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&start=1&sort=release_date,desc&page=2&ref_=adv_nxt", "director": "Gauri Shinde", "writer": "Gauri Shinde", "imdb": "tt5946128", "premiered": "2016-11-25", "year": "2016", "duration": "9060", "genre": "Drama / Romance", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Dear+Life+%282016%29", "metacache": false}', 'imdb': 'tt5946128', 't': '20161130010806547000', 'year': '2016', 'action': 'play'}
-    params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
-    params = {'action': 'play', 'content': 'live', 'name': 'ABP NEWS'}
+    #params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez_mv_tv'}
+    #params = {'tmdb': '0', 'name': 'Dear Life (2016)', 'title': 'Dear Life', 'meta': '{"rating": "8.8", "votes": "12,001", "code": "tt5946128", "cast": [["Shah Rukh Khan", ""], ["Alia Bhatt", ""], ["Angad Bedi", ""], ["Kunal Kapoor", ""]], "plot": "This is the story of Kaira, a budding cinematographer in search of perfect life. A chance encounter with Jug, an unconventional thinker, helps her gain new perspective about life. She discovers that happiness is all about finding comfort in life\'s imperfections.", "mpaa": "UNRATED", "title": "Dear Zindagi", "originaltitle": "Dear Life", "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZWQzYWI3ZGMtYzgyYy00OWZkLWEwODYtNGNiMTZhODBkNzUyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_UY98_SX500_AL_.jpg", "next": "http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&start=1&sort=release_date,desc&page=2&ref_=adv_nxt", "director": "Gauri Shinde", "writer": "Gauri Shinde", "imdb": "tt5946128", "premiered": "2016-11-25", "year": "2016", "duration": "9060", "genre": "Drama / Romance", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Dear+Life+%282016%29", "metacache": false}', 'imdb': 'tt5946128', 't': '20161130010806547000', 'year': '2016', 'action': 'play'}
+    #params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
+    #params = {'action': 'play', 'content': 'live', 'name': 'ABP NEWS'}
 
-    params = {'action': 'play', 'content': 'live', 'name': '& PICTURES HD'}
-    params = {'action': 'desiLiveNavigator', 'url': 'all', 'name': 'ALL'}
+    #params = {'action': 'play', 'content': 'live', 'name': '& PICTURES HD'}
+    #params = {'action': 'desiLiveNavigator', 'url': 'all', 'name': 'ALL'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '12th December 2016', 'title': '12th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "12th December 2016", "url": "threads/987786-Bigg-Boss-10-12th-December-2016-Watch-Online?s=cc583847a54ad97a7ef547a9da3fcf8f", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=cc583847a54ad97a7ef547a9da3fcf8f", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "12th December 2016"}', 'imdb': '0', 't': '20161212203135593000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '10th December 2016', 'title': '10th December 2016', 'tvdb': '0', 'season': '9', 'tvshowtitle': 'Jhalak Dikhhla Jaa Season 9', 'date': '0', 'meta': '{"tvshowurl": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9", "title": "10th December 2016", "url": "threads/986369-Jhalak-Dikhhla-Jaa-Season-9-10th-December-2016-Watch-Online?s=584dc5e1564eed456f2a25be7f86e6ea", "season": "9", "tvshowtitle": "Jhalak Dikhhla Jaa Season 9", "next": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9/page2?s=584dc5e1564eed456f2a25be7f86e6ea", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Jhalak+Dikhhla+Jaa+Season+9", "name": "10th December 2016"}', 'imdb': '0', 't': '20161213000802688000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
 
@@ -34,10 +34,12 @@ try :
     #params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "15th December 2016", "url": "threads/989694-Bigg-Boss-10-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216013558647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Yeh Rishta Kya Kehlata Hai', 'date': '0', 'meta': '{"tvshowurl": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai", "title": "15th December 2016", "url": "threads/989675-Yeh-Rishta-Kya-Kehlata-Hai-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "tvshowtitle": "Yeh Rishta Kya Kehlata Hai", "next": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Yeh+Rishta+Kya+Kehlata+Hai", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216014224647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '11th December 2016', 'title': '11th December 2016', 'tvdb': '0', 'season': '5', 'tvshowtitle': 'Koffee With Karan Season 5 (Star World)', 'date': '0', 'meta': '{"name": "11th December 2016", "title": "11th December 2016", "url": "threads/986992-Koffee-With-Karan-Season-5-11th-December-2016-Watch-Online?s=b9f8288314dd3a877ab603c37d41a779", "season": "5", "tvshowtitle": "Koffee With Karan Season 5 (Star World)", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Koffee+With+Karan+Season+5+%28Star+World%29", "tvshowurl": "forums/4480-Koffee-With-Karan-Season-5-Star-World"}', 'imdb': '0', 't': '20161216020518662000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
-    params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=36', 'name': 'Awards ', 'provider': 'desirulez_mv_tv'}
-    params = {'tmdb': '0', 'name': 'Awards ', 'tvdb': '0', 'tvshowtitle': 'awards', 'year': '0', 'url': 'forumdisplay.php?f=36', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
-    params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
-    params = {'tmdb': '0', 'tvdb': '0', 'tvshowtitle': 'Bigg Boss 10', 'year': '2016', 'url': 'forums/3994-Bigg-Boss-10', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
+    #params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=36', 'name': 'Awards ', 'provider': 'desirulez_mv_tv'}
+    #params = {'tmdb': '0', 'name': 'Awards ', 'tvdb': '0', 'tvshowtitle': 'awards', 'year': '0', 'url': 'forumdisplay.php?f=36', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
+    #params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
+    #params = {'tmdb': '0', 'tvdb': '0', 'tvshowtitle': 'Bigg Boss 10', 'year': '2016', 'url': 'forums/3994-Bigg-Boss-10', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
+    params =  {'action': 'desiLiveNavigator', 'url': 'all', 'name': 'ALL'}
+
     select = None
 
     try:
@@ -61,17 +63,10 @@ try :
     except:
         imdb = '0'
     try:
-        tmdb = params['tmdb']
-    except:
-        tmdb = '0'
-    try:
         tvdb = params['tvdb']
     except:
         tvdb = '0'
-    try:
-        tvrage = params['tvrage']
-    except:
-        tvrage = '0'
+
     try:
         season = params['season']
     except:
@@ -89,11 +84,7 @@ try :
     except:
         pass
     try:
-        alter = params['alter']
-    except:
-        alter = '0'
-    try:
-        alter = params['genre']
+        genre = params['genre']
     except:
         pass
     try:
@@ -138,13 +129,13 @@ try :
     from resources.lib.indexers import tvshows
     from resources.lib.indexers import episodes
     from resources.lib import sources
-    from resources.lib.libraries import debrid
-    from resources.lib.libraries import client
+    from resources.lib.modules import debrid, user, client, livemeta
+    from resources.lib.modules import client
     from resources.lib.resolvers import dailymotion
     from resources.lib import resolvers
-    from resources.lib.sources import einthusan_mv
+    from resources.lib.sources import einthusan
 
-    from resources.lib.libraries import user
+    from resources.lib.modules import user
 
     #movies.movies().get(url, lang=lang)
 
@@ -156,35 +147,38 @@ try :
     print result
     '''
 
-    from resources.lib.indexers import navigator
-    episodes.episodes().get(tvshowtitle, year, imdb, tmdb, tvdb, tvrage, season, episode, provider=provider, url=url)
+    #from resources.lib.indexers import navigator
+    #episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, episode, provider=provider, url=url)
 
-    tvshows.tvshows().get(url, provider=provider, network=name)
+    #tvshows.tvshows().get(url, provider=provider, network=name)
 
-    navigator.navigator().desiLiveTV(None)
-    navigator.navigator().desiLiveTV(url)
+    #navigator.navigator().desiLiveTV(None)
+    #navigator.navigator().desiLiveTV(url)
     #from resources.lib.sources import swift_live
     #swift_live.source().getLiveSource()
 
-    from resources.lib.libraries import livemeta
+    from resources.lib.indexers import navigator
+    navigator.navigator().desiLiveTV(url)
+
+    from resources.lib.modules import livemeta
     #livemeta.source().getLiveNames()
 
     from resources.lib.sources import sources
-    sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select)
+    sources().play(name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta, url, select)
 
     #movies.movies().get(url, idx, provider, lang)
 
-    #sources.sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
+    #sources.sources().play(name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta, url)
 
     from resources.lib.indexers import tvshows
     #tvshows.tvshows().get(url, provider=provider, network=name)
-    #episodes.episodes().get('Bigg Boss', year, imdb, tmdb, tvdb, tvrage, provider='yodesi_tv', url='http://www.yodesi.net/category/colors/bigg-boss-season-10/')
+    #episodes.episodes().get('Bigg Boss', year, imdb, tvdb, provider='yodesi_tv', url='http://www.yodesi.net/category/colors/bigg-boss-season-10/')
     #from resources.lib.sources import filmywap_mv
-    #filmywap_mv.source().get_sources('abc')
+    #filmywap_mv.source().sources('abc')
 
     #from resources.lib.sources import badtameezdil_tv
     #url = 'http://badtameezdil.net/watch-video-bigg-boss-10-14th-december-2016-full-episode-60/'
-    #badtameezdil_tv.source().get_sources(url)
+    #badtameezdil_tv.source().sources(url)
     #from resources.lib.sources import dynns_live
     #dynns_live.source().getLiveSource()
     #url = 'http://live1.dyndns.tv:8081/maid/lamhe/playlist.m3u8'
@@ -199,13 +193,13 @@ try :
     #from resources.lib.sources import iptv_live
     #iptv_live.source().getLiveSource(True)
 
-    #from resources.lib.libraries import control
+    #from resources.lib.modules import control
     #control.delete('*.json')
 
     #from resources.lib.sources import swift_live
     #swift_live.source().resolve('http://163.172.142.242:8081/swiftiptv/9xjalwa/playlist.m3u8', None)
 
-    #from resources.lib.libraries import cleantitle
+    #from resources.lib.modules import cleantitle
     #print cleantitle.live('COLORS TV HD ( ENTERTAINMENT )')
     #print cleantitle.live('COLORS TV INDIA')
     #print cleantitle.live('COLORS TV APAC')
@@ -213,7 +207,7 @@ try :
 
 
 except:
-    from resources.lib.libraries import client
+    from resources.lib.modules import client
     import traceback
     traceback.print_exc()
     client.printException('aftershock-testharness')

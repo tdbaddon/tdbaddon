@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,20 +18,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
-import os, sys, re, json, urllib, urlparse, base64, datetime
+import base64
+import datetime
+import json
+import os
+import re
+import sys
+import urllib
+import urlparse
 
 try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
 except: action = None
 
-from resources.lib.libraries import control
-from resources.lib.libraries import trakt
-from resources.lib.libraries import client
-from resources.lib.libraries import cache
-from resources.lib.libraries import metacache
-from resources.lib.libraries import workers
-from resources.lib.libraries import views
-from resources.lib.libraries import logger
+from resources.lib.modules import control
+from resources.lib.modules import trakt
+from resources.lib.modules import client
+from resources.lib.modules import cache
+from resources.lib.modules import metacache
+from resources.lib.modules import workers
+from resources.lib.modules import views
+from resources.lib.modules import logger
+
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
 class movies:
     def __init__(self):
@@ -48,7 +56,6 @@ class movies:
             ('Kannada','kn')
         ]
 
-        self.tmdb_link = 'http://api.themoviedb.org'
         self.imdb_link = 'http://www.imdb.com'
         self.tmdb_key = base64.urlsafe_b64decode('MTdmMjI3YmVjNTdkOTQ4OGJiYzgyNzYyZmMxNDQ0NmM=')
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
@@ -58,10 +65,6 @@ class movies:
         self.imdb_info_link = 'http://www.omdbapi.com/?i=%s&plot=full&r=json'
         self.trakt_info_link = 'http://api-v2launch.trakt.tv/movies/%s?extended=images'
 
-        self.tmdb_info_link = 'http://api.themoviedb.org/3/movie/%s?api_key=%s&language=%s&append_to_response=credits,releases' % ('%s', self.tmdb_key, self.info_lang)
-        self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
-        self.tmdb_image = 'http://image.tmdb.org/t/p/original'
-        self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
         self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=%s' % ('%s',self.tmdb_key)
         self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
 
@@ -208,84 +211,7 @@ class movies:
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
 
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': '0', 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'poster': poster, 'banner': '0', 'fanart': '0', 'next': next})
-            except:
-                pass
-
-        return self.list
-
-    def tmdb_list(self, url):
-        try:
-            result = client.request(url % self.tmdb_key)
-            result = json.loads(result)
-            items = result['results']
-        except:
-            return
-
-        try:
-            next = str(result['page'])
-            total = str(result['total_pages'])
-            if next == total: raise Exception()
-            if not 'page=' in url: raise Exception()
-            next = '%s&page=%s' % (url.split('&page=', 1)[0], str(int(next)+1))
-            next = next.encode('utf-8')
-        except:
-            next = ''
-
-        for item in items:
-            try:
-                title = item['title']
-                title = client.replaceHTMLCodes(title)
-                title = title.encode('utf-8')
-
-                year = item['release_date']
-                year = re.compile('(\d{4})').findall(year)[-1]
-                year = year.encode('utf-8')
-
-                name = '%s (%s)' % (title, year)
-                try: name = name.encode('utf-8')
-
-                except: pass
-
-                tmdb = item['id']
-                tmdb = re.sub('[^0-9]', '', str(tmdb))
-                tmdb = tmdb.encode('utf-8')
-
-                poster = item['poster_path']
-                if poster == '' or poster == None: raise Exception()
-                else: poster = '%s%s' % (self.tmdb_poster, poster)
-                poster = poster.encode('utf-8')
-
-                fanart = item['backdrop_path']
-                if fanart == '' or fanart == None: fanart = '0'
-                if not fanart == '0': fanart = '%s%s' % (self.tmdb_image, fanart)
-                fanart = fanart.encode('utf-8')
-
-                premiered = item['release_date']
-                try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
-                except: premiered = '0'
-                premiered = premiered.encode('utf-8')
-
-                rating = str(item['vote_average'])
-                if rating == '' or rating == None: rating = '0'
-                rating = rating.encode('utf-8')
-
-                votes = str(item['vote_count'])
-                try: votes = str(format(int(votes),',d'))
-                except: pass
-                if votes == '' or votes == None: votes = '0'
-                votes = votes.encode('utf-8')
-
-                plot = item['overview']
-                if plot == '' or plot == None: plot = '0'
-                plot = client.replaceHTMLCodes(plot)
-                plot = plot.encode('utf-8')
-
-                tagline = re.compile('[.!?][\s]{1,2}(?=[A-Z])').split(plot)[0]
-                try: tagline = tagline.encode('utf-8')
-                except: pass
-
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'studio': '0', 'genre': '0', 'duration': '0', 'rating': rating, 'votes': votes, 'mpaa': '0', 'director': '0', 'writer': '0', 'cast': '0', 'plot': plot, 'tagline': tagline, 'name': name, 'code': '0', 'imdb': '0', 'tmdb': tmdb, 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': fanart, 'next': next})
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': '0', 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tvdb': '0', 'poster': poster, 'banner': '0', 'fanart': '0', 'next': next})
             except:
                 pass
 
@@ -319,7 +245,7 @@ class movies:
         self.list.append({'name': 90104, 'url': self.featured_link % lang, 'image': 'featured.png', 'action': 'movies'})
         self.list.append({'name': 90105, 'url': self.popular_link % lang, 'image': 'popular.png', 'action': 'movies'})
 
-        self.addDirectory(self.list, 'thumbnails')
+        self.addDirectory(self.list, confViewMode='thumbnails')
 
     def genres(self, lang=None):
         genres = [
@@ -465,13 +391,6 @@ class movies:
             plot = plot.encode('utf-8')
             if not plot == '0': self.list[i].update({'plot': plot})
 
-            #try : poster = item['Poster']
-            #except : pass
-            #if poster == None or poster == '' or poster == 'N/A': poster = '0'
-            #poster = client.replaceHTMLCodes(poster)
-            #poster = poster.encode('utf-8')
-            #if not poster == '0': self.list[i].update({'poster': poster})
-
             poster = item['Poster']
             if poster == None or poster == '' or poster == 'N/A': poster = '0'
             if '/nopicture/' in poster: poster = '0'
@@ -486,12 +405,6 @@ class movies:
             except:
                 pass
 
-            try :
-                tmdb = art2['id']
-                self.list[i].update({'tmdb':tmdb})
-            except :
-                tmdb = 0
-
             try:
                 fanart = art2['backdrops']
                 #fanart = [x for x in fanart if x.get('iso_639_1') == 'en'] + [x for x in fanart if not x.get('iso_639_1') == 'en']
@@ -502,8 +415,6 @@ class movies:
                 fanart = fanart.encode('utf-8')
                 if not fanart == '0': self.list[i].update({'fanart': fanart})
             except:
-                import traceback
-                traceback.print_exc()
                 fanart = '0'
 
             studio = self.list[i]['studio']
@@ -539,7 +450,7 @@ class movies:
                 fanart = fanart.encode('utf-8')
                 if not fanart == '0': self.list[i].update({'fanart': fanart})
 
-            self.meta.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
+            self.meta.append({'imdb': imdb, 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:
             pass
 
@@ -557,8 +468,6 @@ class movies:
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
-        sysaddon = sys.argv[0]
-
         try:
             from metahandler import metahandlers
             metaget = metahandlers.MetaData(tmdb_api_key=self.tmdb_key, preparezip=False)
@@ -569,7 +478,7 @@ class movies:
         for i in items:
             try:
                 label = '%s (%s)' % (i['title'], i['year'])
-                imdb,tmdb, title, year = i['imdb'], i['tmdb'],i['title'], i['year']
+                imdb, title, year = i['imdb'], i['title'], i['year']
                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
                 systitle = urllib.quote_plus(title)
 
@@ -578,7 +487,7 @@ class movies:
                 if banner == '0' and poster == '0': banner = addonBanner
                 elif banner == '0': banner = poster
 
-                logger.debug('Title : %s poster : %s banner : %s fanart : %s' % (i['title'], poster, banner, fanart), __name__ )
+                logger.debug('Title : %s poster : %s banner : %s fanart : %s' % (i['title'], poster, banner, fanart), __name__)
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if i['duration'] == '0': meta.update({'duration': '120'})
@@ -587,7 +496,7 @@ class movies:
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
-                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s&t=%s' % (sysaddon, sysname, systitle, year, imdb, tmdb, sysmeta, self.systime)
+                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, sysname, systitle, year, imdb, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
                 try:
@@ -610,7 +519,6 @@ class movies:
 
                 cm.append((control.lang(30212).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
 
-
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
 
                 try: item.setArt({'poster': poster, 'banner': banner})
@@ -624,8 +532,8 @@ class movies:
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
                 item.setProperty('IsPlayable', isPlayable)
-                item.addContextMenuItems(cm, replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
+                item.addContextMenuItems(cm)
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
             except:
                 pass
         try:
@@ -634,20 +542,20 @@ class movies:
             url = '%s?action=movies&url=%s' % (sysaddon, urllib.quote_plus(url))
             addonNext = control.addonNext()
             item = control.item(label=control.lang(30213).encode('utf-8'), iconImage=addonNext, thumbnailImage=addonNext)
-            item.addContextMenuItems([], replaceItems=False)
+            item.addContextMenuItems([])
             if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-            control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+            control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
         except:
             pass
 
 
-        control.content(int(sys.argv[1]), 'movies')
-        views.setView('movies', {'skin.confluence': control.viewMode['thumbnails']})
-        control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
+        control.content(syshandle, 'movies')
+        views.setView('movies', {'skin.confluence': control.viewMode['confluence']['thumbnails'], 'skin.estuary':
+            control.viewMode['esturary']['biglist']})
+        control.directory(syshandle, cacheToDisc=cacheToDisc)
 
-    def addDirectory(self, items, viewMode='list'):
+    def addDirectory(self, items, estViewMode='biglist', confViewMode='list'):
         if items == None or len(items) == 0: return
-        sysaddon = sys.argv[0]
         addonFanart = control.addonFanart()
         addonThumb = control.addonThumb()
         artPath = control.artPath()
@@ -668,10 +576,11 @@ class movies:
                 cm = []
 
                 item = control.item(label=name, iconImage=thumb, thumbnailImage=thumb)
-                item.addContextMenuItems(cm, replaceItems=False)
+                item.addContextMenuItems(cm)
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
-        views.setView('movies', {'skin.confluence': control.viewMode[viewMode]})
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
+        views.setView('movies', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
+            control.viewMode['esturary'][estViewMode]})
+        control.directory(syshandle, cacheToDisc=True)

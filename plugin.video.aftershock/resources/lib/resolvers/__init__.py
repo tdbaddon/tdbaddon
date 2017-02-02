@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import urlparse, urllib
-from resources.lib.libraries import client
-from resources.lib.libraries import logger
+import urllib
+import urlparse
+
+from resources.lib.modules import client
+from resources.lib.modules import logger
 
 try :import urlresolver
 except:pass

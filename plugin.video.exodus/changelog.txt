@@ -1,3 +1,14 @@
+[B]3.0.5[/B]
+- Updated existing providers
+
+[B]3.0.3[/B]
+- Updated existing providers
+
+[B]3.0.2[/B]
+- Updated existing providers
+- Removed dead providers
+- Added new providers
+
 [B]3.0.1[/B]
 - Tweaked indexers
 - Tweaked sorting of streams

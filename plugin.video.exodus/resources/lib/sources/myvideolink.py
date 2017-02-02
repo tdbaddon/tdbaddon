@@ -32,7 +32,7 @@ class source:
         self.language = ['en']
         self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga', 'myvideolinks.ga', 'ezfile.xyz', 'newmyvideolinks.ga']
         self.base_link = 'http://newmyvideolink.xyz'
-        self.search_link = '/dl/?s=%s'
+        self.search_link = '/?s=%s'
 
 
     def movie(self, imdb, title, localtitle, year):
@@ -62,8 +62,13 @@ class source:
             query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
             query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
 
-            url = self.search_link % urllib.quote_plus(query)
-            url = urlparse.urljoin(self.base_link, url)
+            s = client.request(self.base_link)
+            s = re.findall('\'(http.+?)\'', s) + re.findall('\"(http.+?)\"', s)
+            s = [i for i in s if urlparse.urlparse(self.base_link).netloc in i and len(i.strip('/').split('/')) > 3]
+            s = s[0] if s else urlparse.urljoin(self.base_link, 'index2')
+            s = s.strip('/')
+
+            url = s + self.search_link % urllib.quote_plus(query)
 
             r = client.request(url)
 

@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,14 +18,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+import os
+import sys
+import urlparse
 
-import os,sys,urlparse
+from resources.lib.modules import control
+from resources.lib.modules import logger
+from resources.lib.modules import views
+from resources.lib.modules import analytics
 
-from resources.lib.libraries import control
-from resources.lib.libraries import views
-from resources.lib.libraries import logger
-from resources.lib.libraries import analytics
-from resources.lib.libraries import user
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
 artPath = control.artPath() ; addonFanart = control.addonFanart()
 
@@ -33,8 +35,6 @@ try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
 except: action = None
 
 imdbMode = False if control.setting('imdb_user') == '' else True
-
-sysaddon = sys.argv[0]
 
 class navigator:
     def __init__(self):
@@ -51,8 +51,8 @@ class navigator:
         self.addDirectoryItem(90117, 'clearCache', 'clearcache.png', 'DefaultMovies.png')
         self.addDirectoryItem(30864, 'changelog', 'changelog.png', 'DefaultMovies.png')
 
-        from resources.lib.libraries import cache
-        from resources.lib.libraries import changelog
+        from resources.lib.modules import cache
+        from resources.lib.modules import changelog
         cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
         cache.get(self.donation, 600000000, control.addonInfo('version'), table='changelog')
         #cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
@@ -71,35 +71,22 @@ class navigator:
             self.addDirectoryItem(90126, 'clearCache&url=live', 'clearcache.png','DefaultMovies.png')
             self.addDirectoryItem(90127, 'clearCache&url=meta', 'clearcache.png','DefaultMovies.png')
 
-            self.endDirectory(viewMode='list')
+            self.endDirectory(confViewMode='list')
         elif url == 'main':
-            from resources.lib.libraries import cache
+            from resources.lib.modules import cache
             cache.clear()
         elif url == 'providers':
-            from resources.lib.libraries import cache
+            from resources.lib.modules import cache
             cache.clear(['rel_src', 'rel_url'], control.sourcescacheFile)
         elif url == 'live' :
-            from resources.lib.libraries import cache
+            from resources.lib.modules import cache
             control.deleteAll('.json')
             control.delete('user.db')
-            cache.clear(['rel_live','rel_logo', 'live_meta'], control.sourcescacheFile)
+            cache.clear(['rel_live', 'rel_logo', 'live_meta'], control.sourcescacheFile)
             cache.clear(['live_cache'])
         elif url == 'meta':
-            from resources.lib.libraries import cache
+            from resources.lib.modules import cache
             cache.clear(['meta', 'meta_imdb'], control.metacacheFile)
-
-    def desiLangMovies(self):
-        self.addDirectoryItem(30201, 'movieSearch', 'search.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90105, 'movieNavigator&lang=%s' % 'hindi', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90106, 'movieNavigator&lang=%s' % 'tamil', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90107, 'movieNavigator&lang=%s' % 'telugu', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90118, 'movieNavigator&lang=%s' % 'marathi', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90119, 'movieNavigator&lang=%s' % 'punjabi', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90120, 'movieNavigator&lang=%s' % 'bengali', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90121, 'movieNavigator&lang=%s' % 'gujarati', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90122, 'movieNavigator&lang=%s' % 'malayalam', 'language.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90123, 'movieNavigator&lang=%s' % 'kannada', 'language.png', 'DefaultMovies.png')
-        self.endDirectory()
 
     def desiLiveTV(self, url=None):
         from resources.lib.indexers import livetv
@@ -109,7 +96,7 @@ class navigator:
             for genre in genres:
                 self.addDirectoryItem(genre.upper(), 'desiLiveNavigator&url=%s' % genre, 'tv-live.png','DefaultMovies.png')
             self.addDirectoryItem('OTHERS', 'desiLiveNavigator&url=others', 'tv-live.png','DefaultMovies.png')
-            self.endDirectory(viewMode='list')
+            self.endDirectory(confViewMode='list')
         else:
             livetv.channels().get(url)
 
@@ -119,23 +106,21 @@ class navigator:
         provider = control.setting('tvshow.provider')
 
         if not provider == None:
-            for i in ('_mv_tv', '_tv'):
-                try:
-                    tProvider = provider + i
-                    call = __import__('resources.lib.sources.%s' % tProvider, globals(), locals(), ['source'], -1).source()
-                    listItems = call.get_networks()
-                    if len(listItems) > 0 :
-                        break
-                except Exception as e:
-                    logger.error(e)
-                    pass
+            try:
+                call = __import__('resources.lib.sources.%s' % provider, globals(), locals(), ['source'], -1).source()
+                listItems = call.networks()
+            except Exception as e:
+                logger.error(e)
+                pass
         else:
-            from resources.lib.sources import desirulez_mv_tv
-            listItems = desirulez_mv_tv.source().get_networks()
+            from resources.lib.sources import desirulez
+            listItems = desirulez.source().networks()
+
         listItems.sort()
 
         for item in listItems:
-            self.addDirectoryItem(item['name'], '%s&provider=%s&url=%s' % (item['action'],item['provider'], item['url']), os.path.join(control.logoPath(), item['image']), 'DefaultMovies.png')
+            self.addDirectoryItem(item['name'], '%s&provider=%s&url=%s' % (item['action'],item['provider'], item['url']), os.path.join(
+                control.logoPath(), item['image']), 'DefaultMovies.png')
 
         self.endDirectory()
 
@@ -159,10 +144,12 @@ class navigator:
 
         if not context == None: cm.append((control.lang(context[0]).encode('utf-8'), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
         item = control.item(label=name, iconImage=thumb, thumbnailImage=thumb)
-        item.addContextMenuItems(cm, replaceItems=False)
+        item.addContextMenuItems(cm)
         if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-        control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
+        control.addItem(handle=syshandle, url=url, listitem=item, isFolder=isFolder)
 
-    def endDirectory(self, cacheToDisc=False, viewMode='thumbnails'):
-        views.setView('movies', {'skin.confluence': control.viewMode[viewMode]})
-        control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
+    def endDirectory(self, cacheToDisc=False, estViewMode='biglist', confViewMode='thumbnails'):
+        control.content(syshandle, 'addons')
+        views.setView('addons', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
+            control.viewMode['esturary'][estViewMode]})
+        control.directory(syshandle, cacheToDisc=cacheToDisc)

@@ -31,9 +31,9 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['rlsbb.com']
-        self.base_link = 'http://rlsbb.com'
-        self.search_base_link = 'http://search.rlsbb.com'
+        self.domains = ['rlsbb.com', 'rlsbb.ru']
+        self.base_link = 'http://rlsbb.ru'
+        self.search_base_link = 'http://search.rlsbb.ru'
         self.search_cookie = 'serach_mode=rlsbb'
         self.search_link = '/lib/search.php?phrase=%s&pindex=1&content=true'
         self.search_link2 = '/search/%s'

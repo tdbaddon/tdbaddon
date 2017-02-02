@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,19 +18,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import sys,urllib, json, os
+import json
+import os
+import sys
+import urllib
 
-from resources.lib.libraries import control
-from resources.lib.libraries import views
-from resources.lib.libraries import cache
+from resources.lib.modules import control
+from resources.lib.modules import views
 from resources.lib.sources import sources
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import logger
+from resources.lib.modules import logger
 
 try:
     from sqlite3 import dbapi2 as database
 except:
     from pysqlite2 import dbapi2 as database
+
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
 class channels:
     def __init__(self):
@@ -49,19 +52,15 @@ class channels:
                 title=None
                 year=None
                 imdb=None
-                tmdb=None
                 tvdb=None
-                tvrage=None
                 season=None
                 episode=None
                 tvshowtitle=None
-                alter=None
                 date=None
                 meta={'genre':url}
 
+                sourceList = sources().getSources(name, title, year, imdb, tvdb, season, episode, tvshowtitle, date, meta)
 
-                #sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, table='live_cache')
-                sourceList = sources().getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
                 sourceList = dict((item['name'],item) for item in sourceList).values()
 
                 self.list.extend(sourceList)
@@ -71,20 +70,8 @@ class channels:
                     self.channelDirectory(self.list)
                 else:
                     self.channelDirectory(self.list, action='desiLiveNavigator')
-            # import os
-            # filePath = os.path.join(control.dataPath, 'live-meta.json')
-            #
-            # with open(filePath, 'w') as outfile:
-            #     for item in self.list :
-            #         a = {"name":item['name'], "genre":'', 'lang':''}
-            #         json.dump(a, outfile)
-            #         outfile.write('\n')
-
-
         except Exception as e:
-            #logger.error(e.message)
-            import traceback
-            traceback.print_exc()
+            logger.error(e, __name__)
             pass
 
     def channelDirectory(self, items, action='play'):
@@ -93,8 +80,6 @@ class channels:
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart = control.addonFanart()
         artPath = control.logoPath()
-        sysaddon = sys.argv[0]
-
 
         for i in items:
             try:
@@ -135,11 +120,13 @@ class channels:
 
                 item.setProperty('Video', 'true')
                 item.setProperty("IsPlayable", "true")
-                item.addContextMenuItems([], replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
+                item.addContextMenuItems([])
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
             except:
                 pass
 
-        #control.content(int(sys.argv[1]), 'video')
-        views.setView('movies', {'skin.confluence': control.viewMode['list']})
-        control.directory(int(sys.argv[1]), cacheToDisc=False)
+        #control.content(syshandle, 'video')
+        viewMode = 'list'
+        views.setView('movies', {'skin.confluence': control.viewMode['confluence'][viewMode], 'skin.estuary':
+            control.viewMode['esturary'][viewMode]})
+        control.directory(syshandle, cacheToDisc=False)

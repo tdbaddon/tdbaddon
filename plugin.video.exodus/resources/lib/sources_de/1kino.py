@@ -36,7 +36,7 @@ class source:
     def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(imdb, title, year)
-            if not url: url = self.__search(imdb, localtitle, year)
+            if not url and title != localtitle: url = self.__search(imdb, localtitle, year)
 
             return urllib.urlencode({'url': url}) if url else None
         except:

@@ -58,7 +58,7 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             url = self.__search(data['tvshowtitle'], data['year'], season, episode)
-            if not url:
+            if not url and data['tvshowtitle'] != data['localtvshowtitle']:
                 url = self.__search(data['localtvshowtitle'], data['year'], season, episode)
             return url
         except:

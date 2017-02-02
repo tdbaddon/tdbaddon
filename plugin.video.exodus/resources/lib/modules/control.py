@@ -232,7 +232,7 @@ def cdnImport(uri, name):
     import imp
     from resources.lib.modules import client
 
-    path = os.path.join(dataPath, 'py')
+    path = os.path.join(dataPath, 'py' + name)
     path = path.decode('utf-8')
 
     deleteDir(os.path.join(path, ''), force=True)

@@ -64,6 +64,9 @@ def INSTALL(name,url,description):
 	skinswapped = 0
 	SKIP_FAVS = 0
 
+	send_to_count = name + "|SPLIT|ECHO"
+	add_download = Common.add_one(send_to_count)
+
 	if "lose your favourites" in notice2.lower():
 		SKIP_FAVS = 1
 
@@ -251,7 +254,8 @@ def INSTALL(name,url,description):
 	except:
 		pass
 
-	add_download = Common.add_one(name)
+	send_to_count = name + "|SPLIT|ECHO"
+	add_download = Common.add_one(send_to_count)
 
 	if os.path.isfile(FAVS_NEW):
 		if os.path.isfile(FAVS):
@@ -328,7 +332,7 @@ def INSTALL_COMMUNITY(name,url,description):
 	skin         =  xbmc.getSkinDir()
 	KODIV        =  float(xbmc.getInfoLabel("System.BuildVersion")[:4])
 	skinswapped = 0
-	
+
 	raw_name = name.split('-')[0]
 
 	if not "skin." in skin_used:
@@ -465,8 +469,8 @@ def INSTALL_COMMUNITY(name,url,description):
 	dp.update(0,"","Extracting Zip File","")
 	unzip(lib,addonfolder,dp)
 	time.sleep(1)
-	add_download = Common.add_one_community(name)
-	add_download = Common.add_one_community_dev_week(developer)
+	send_to_count = name + "|SPLIT|" + developer
+	add_download = Common.add_one(send_to_count)
 	try:
 		os.remove(lib)
 	except:
@@ -544,8 +548,7 @@ def INSTALL_COMMUNITY(name,url,description):
 	
 def INSTALL_FANRIFFIC(name,url,description):
 	
-	buildname,download_nums = name.split('|')
-	buildname = buildname.replace("[/COLOR] ","[/COLOR]")
+	buildname,url = url.split("|SPLIT|")
 
 	choice = xbmcgui.Dialog().yesno(AddonTitle, '[COLOR white]Do you wish to download the ' + buildname + ' theme?[/COLOR]','',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 	if choice == 0:
@@ -567,12 +570,15 @@ def INSTALL_FANRIFFIC(name,url,description):
 	addonfolder = xbmc.translatePath(os.path.join('special://','home'))
 	dp.update(0,"Extracting Zip Please Wait",""," ")
 	unzip(lib,addonfolder,dp)
-	add_download = Common.add_one_fanriffic(buildname)
+	send_to_count = buildname + "|SPLIT|Fanriffic"
+	add_download = Common.add_one(send_to_count)
 	dialog = xbmcgui.Dialog()
 	dialog.ok(AddonTitle, "The theme has now been installed. To save the changes you must now force close Kodi.")
 	Common.killxbmc()
 
 def INSTALL_ADVANCED(name,url,description):
+
+	name,url = url.split("|SPLIT|")
 
 	#Check is the packages folder exists, if not create it.
 	path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
@@ -601,12 +607,15 @@ def INSTALL_ADVANCED(name,url,description):
 		os.remove(lib)
 	except:
 		pass
-	add_download = Common.add_one_advanced(name)
+	send_to_count = name + "|SPLIT|Advanced Settings"
+	add_download = Common.add_one(send_to_count)
 	xbmc.executebuiltin("Container.Refresh")
 
 	dialog.ok(AddonTitle, "[COLOR white]Advanced Settings installed![/COLOR]","[COLOR white]You should now see an imporvment in buffering[/COLOR]","[COLOR white]Thank you for using ECHO Wizard![/COLOR]")
 
 def INSTALL_KEYMAP(name,url,description):
+
+	name,url = url.split("|SPLIT|")
 
 	KEYBOARD_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
 	if os.path.isfile(KEYBOARD_FILE):
@@ -638,7 +647,8 @@ def INSTALL_KEYMAP(name,url,description):
 	dp.update(0,"Extracting Zip Please Wait",""," ")
 	unzip(lib,addonfolder,dp)
 	time.sleep(1)
-	add_download = Common.add_one_advanced(name)
+	send_to_count = name + "|SPLIT|Keymaps"
+	add_download = Common.add_one(send_to_count)
 	try:
 		os.remove(lib)
 	except:

@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@
 
 import re
 
-from resources.lib.libraries import client, EnkDekoder
-from resources.lib.libraries import logger
+from resources.lib.modules import client
+from resources.lib.modules import logger
+from resources.lib.modules import EnkDekoder
+
 
 def resolve(url):
     try:
@@ -29,7 +31,7 @@ def resolve(url):
         dek = EnkDekoder.dekode(result)
 
         if not dek == None:
-            url = client.parseDOM(dek, "param", attrs={ "name":"flashvars"}, ret = "value")[0]
+            url = client.parseDOM(dek, "param", attrs={"name": "flashvars"}, ret ="value")[0]
         else:
             dek = result
             url = re.compile('file*:*"(http.+?)"').findall(dek)[0]

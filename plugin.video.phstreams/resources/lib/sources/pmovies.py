@@ -31,13 +31,14 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
+        self.domains = ['watch5s.to', 'cmovieshd.com', 'pmovies.to']
         self.base_link = 'http://watch5s.to'
-        self.random_link = ['watch5s.to', 'cmovieshd.com']
+        self.random_link = ['watch5s.to', 'cmovieshd.com', 'pmovies.to']
+        self.random_link = ['pmovies.to']
         self.info_link = '/ajax/movie_qtip/%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -46,7 +47,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)

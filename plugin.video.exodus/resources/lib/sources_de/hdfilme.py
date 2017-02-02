@@ -36,7 +36,7 @@ class source:
     def movie(self, imdb, title, localtitle, year):
         try:
             url = self.__search(title, year)
-            if not url: url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(localtitle, year)
             return url
         except:
             return
@@ -58,7 +58,7 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             url = self.__search(data['tvshowtitle'], data['year'], season)
-            if not url: url = self.__search(data['localtvshowtitle'], data['year'], season)
+            if not url and data['tvshowtitle'] is not data['localtvshowtitle']: url = self.__search(data['localtvshowtitle'], data['year'], season)
             if not url: return
 
             r = client.request(urlparse.urljoin(self.base_link, url))

@@ -31,13 +31,13 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['sezonlukdizi.com']
-        self.base_link = 'http://sezonlukdizi.com'
+        self.domains = ['sezonlukdizi.net', 'sezonlukdizi.com']
+        self.base_link = 'http://sezonlukdizi.net'
         self.search_link = '/js/dizi.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             result = cache.get(self.sezonlukdizi_tvcache, 120)
 
@@ -96,47 +96,43 @@ class source:
 
             result = re.sub(r'[^\x00-\x7F]+', ' ', result)
 
-            pages = []
-
-            r = client.parseDOM(result, 'div', attrs = {'id': 'embed'})[0]
-            pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
-
+            pages = client.parseDOM(result, 'div', attrs = {'class': 'menu'})
+            pages = client.parseDOM(pages, 'div', ret='data-id')
 
             for page in pages:
                 try:
-                    if not page.startswith('http'):
-                        page = 'http:' + page
+                    url = urlparse.urljoin(self.base_link, self.video_link)
+                    post = 'id=%s' % page
 
                     for i in range(3):
-                        result = client.request(page)
+                        result = client.request(url, post=post)
+                        if not result == None: break
+
+                    url = client.parseDOM(result, 'iframe', ret='src')[0]
+
+                    if 'openload.co' in url: sources.append({'source': 'openload.co', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
+
+                    if not '.asp' in url: raise Exception()
+
+                    if not url.startswith('http'):
+                        url = 'http:' + url
+
+                    for i in range(3):
+                        result = client.request(url)
                         if not result == None: break
 
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()
 
-                    try:
-                        r = re.findall('url\s*:\s*\'(http(?:s|)://api.pcloud.com/.+?)\'', result)[0]
-                        r = client.request(r)
-                        r = json.loads(r)['variants']
-                        r = [(i['hosts'], i['path'], i['height']) for i in r if 'hosts' in i and 'path' in i and 'height' in i]
-                        r = [('%s%s' % (i[0][0], i[1]), str(i[2])) for i in r if len(i[0]) > 0]
-                        r = [(i[0] if i[0].startswith('http') else 'http://%s' % i[0], i[1]) for i in r]
-                        host = 'cdn' ; direct = False ; l = r
-                    except:
-                        pass
+                    r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', result)
 
-                    try:
-                        r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', result)
-                        if not r: raise Exception()
-                        host = 'gvideo' ; direct = True ; l = r
-                    except:
-                        pass
+                    links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
+                    links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
+                    links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
 
-                    links = [(i[0], '1080p') for i in l if int(i[1]) >= 1080]
-                    links += [(i[0], 'HD') for i in l if 720 <= int(i[1]) < 1080]
-                    links += [(i[0], 'SD') for i in l if 480 <= int(i[1]) < 720]
+                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
 
-                    for i in links: sources.append({'source': host, 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': direct, 'debridonly': False})
+                    if r: break
                 except:
                     pass
 

@@ -31,11 +31,11 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga', 'myvideolinks.ga', 'ezfile.xyz', 'newmyvideolinks.ga']
-        self.base_link = 'http://newmyvideolinks.ga'
-        self.search_link = '/search/%s/feed/rss2/'
+        self.base_link = 'http://newmyvideolink.xyz'
+        self.search_link = '/?s=%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -62,12 +62,26 @@ class source:
             query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
             query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
 
-            url = self.search_link % urllib.quote_plus(query)
-            url = urlparse.urljoin(self.base_link, url)
+            s = client.request(self.base_link)
+            s = re.findall('\'(http.+?)\'', s) + re.findall('\"(http.+?)\"', s)
+            s = [i for i in s if urlparse.urlparse(self.base_link).netloc in i and len(i.strip('/').split('/')) > 3]
+            s = s[0] if s else urlparse.urljoin(self.base_link, 'index2')
+            s = s.strip('/')
+
+            url = s + self.search_link % urllib.quote_plus(query)
 
             r = client.request(url)
 
-            posts = client.parseDOM(r, 'item')
+            r = client.parseDOM(r, 'h2', attrs = {'class': 'post-title'})
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
+            r = [(i[0], i[1], re.sub('(\.|\(|\[|\s)(\d{4}|3D)(\.|\)|\]|\s|)(.+|)', '', i[1]), re.findall('[\.|\(|\[|\s](\d{4}|)([\.|\)|\]|\s|].+)', i[1])) for i in r]
+            r = [(i[0], i[1], i[2], i[3][0][0], i[3][0][1]) for i in r if i[3]]
+            r = [(i[0], i[1], i[2], i[3], re.split('\.|\(|\)|\[|\]|\s|\-', i[4])) for i in r]
+            r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[2]) and data['year'] == i[3]]
+            r = [i for i in r if not any(x in i[4] for x in ['HDCAM', 'CAM', 'DVDR', 'DVDRip', 'DVDSCR', 'HDTS', 'TS', '3D'])]
+            r = [i for i in r if '1080p' in i[4]][:1] + [i for i in r if '720p' in i[4]][:1]
+
+            posts = [(i[1], i[0]) for i in r]
 
             hostDict = hostprDict + hostDict
 
@@ -75,19 +89,14 @@ class source:
 
             for post in posts:
                 try:
-                    t = client.parseDOM(post, 'title')[0]
+                    t = post[0]
 
-                    c = client.parseDOM(post, 'content.+?')
+                    u = client.request(post[1])
+                    u = re.findall('\'(http.+?)\'', u) + re.findall('\"(http.+?)\"', u)
+                    u = [i for i in u if not '/embed/' in i]
+                    u = [i for i in u if not 'youtube' in i]
 
-                    u = client.parseDOM(c, 'ul')
-                    u = client.parseDOM(u, 'a', ret='href')
-
-                    u += client.parseDOM(post, 'enclosure', ret='url')
-
-                    try: s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c[0])[0]
-                    except: s = '0'
-
-                    items += [(t, i, s) for i in u]
+                    items += [(t, i) for i in u]
                 except:
                     pass
 

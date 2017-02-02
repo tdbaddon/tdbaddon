@@ -19,15 +19,14 @@
 '''
 
 
-import re,urllib,urlparse
-import json, time, random, string
-import base64, hashlib
+import re,urllib,urlparse,json,base64,time
+
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
-from resources.lib.modules import control
 
+from resources.lib.modules import control
 class source:
     def __init__(self):
         self.base_link = control.setting('putlocker_base')
@@ -35,86 +34,52 @@ class source:
 		
         self.social_lock = '0A6ru35yevokjaqbb8'
         self.search_link = 'http://api.cartoonhd.online/api/v1/' + self.social_lock
-
+        self.shows_link = '/show/%s/season/%s/episode/%s'
+        self.movies_link = '/movie/%s'
 
     def movie(self, imdb, title, year):
         try:
-            tk = cache.get(self.movieshd_token, 8)
-            set = self.movieshd_set()
-            rt = self.movieshd_rt(tk + set)
-            sl = self.movieshd_sl()
-            tm = int(time.time() * 1000)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            url = self.search_link
-            print ("CARTOONHD MOVIE", url)
-            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
-            post = urllib.urlencode(post)
-			
-            r = client.request(url, post=post, headers=headers)
-            r = json.loads(r)
-            print ("CARTOONHD MOVIE", r)
-            t = cleantitle.get(title)
-
-            r = [i for i in r if 'year' in i and 'meta' in i]
-            r = [(i['permalink'], i['title'], str(i['year']), i['meta'].lower()) for i in r]
-            r = [i for i in r if 'movie' in i[3]]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-            print ("CARTOONHD MOVIE", r)
-            url = r.encode('utf-8')
-            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+            query = self.movies_link % (cleantitle.geturl(title))
+            print ("PUTLOCKER query", query)
+            url = urlparse.urljoin(self.base_link, query)
+            print ("PUTLOCKER url", url)
+            url = url.encode('utf-8')
             url = client.request(url, output='geturl')
+            url = url.encode('utf-8')		
+           
+			
             return url
         except:
             return
+
+
+
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            tk = cache.get(self.movieshd_token, 8)
-
-            set = self.movieshd_set()
-            rt = self.movieshd_rt(tk + set)
-            sl = self.movieshd_sl()
-
-            tm = int(time.time() * 1000)
-
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
-
-
-            url = self.search_link
-
-            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
-            post = urllib.urlencode(post)
-
-            r = client.request(url, post=post, headers=headers)
-            r = json.loads(r)
-            # print ("CARTOONHD r1", r)
-            t = cleantitle.get(tvshowtitle)
-
-            r = [i for i in r if 'year' in i and 'meta' in i]
-            r = [(i['permalink'], i['title'], str(i['year']), i['meta'].lower()) for i in r]
-            r = [i for i in r if 'tv' in i[3]]
-            r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
-
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            # print ("CARTOONHD r2", url)
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = {'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
-
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
-            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
-            url = client.request(url, output='geturl')
-            url = '%s/season/%01d/episode/%01d' % (url, int(season), int(episode))
-
-            # url = re.findall('(?://.+?|)(/.+)', r)[0]
-            # url = client.replaceHTMLCodes(url)
+           
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+          
+            title = cleantitle.geturl(title)
+            query = self.shows_link % (title, int(season), int(episode))
+          
+            url = urlparse.urljoin(self.base_link, query)
+            
             url = url.encode('utf-8')
+            url = client.request(url, output='geturl')
+            url = url.encode('utf-8')			
+            
             return url
         except:
             return
@@ -127,10 +92,10 @@ class source:
 
 
             if not "http" in url: url = urlparse.urljoin(self.base_link, url)
-
+          
             r = client.request(url, output='extended')
 
-
+            
             cookie = r[4] ; headers = r[3] ; result = r[0]
 
             try: auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
@@ -138,7 +103,6 @@ class source:
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
-            headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
             headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
             headers['Cookie'] = cookie
@@ -146,8 +110,9 @@ class source:
 
 
             u = '/ajax/tnembeds.php'
+            self.base_link = client.request(self.base_link, output='geturl')
             u = urlparse.urljoin(self.base_link, u)
-
+            # print ("PUTLOCKER u", u)
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
 
             elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
@@ -158,32 +123,31 @@ class source:
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
-
-            r = client.request(u, post=post, headers=headers)
+            # print ("PUTLOCKER post", post)
+            r = client.request(u, post=post, XHR=True)
+            # print ("PUTLOCKER r2", r)
             r = str(json.loads(r))
-            r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
-
-
-            links = []
-
+            # print ("PUTLOCKER r3", r)
+            r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
+            print ("PUTLOCKER r4", r)
             for i in r:
-                try: links += [{'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True}]
-                except: pass
-
-            links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
-
-            #links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
-
-
-            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
-
-          
+				if "google" in i:
+					try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Putlocker', 'url': i, 'direct': True, 'debridonly': False})
+					except: continue
+				else:
+					try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
+					except: host = 'none'
+					if not host in hostDict:continue
+					sources.append({'source':host, 'quality': 'SD', 'provider': 'Putlocker', 'url': i + "=url_resolver", 'direct': False, 'debridonly': False})
 
             return sources
         except:
             return sources
-
+			
+			
     def resolve(self, url):
+            if "url_resolver" in url: url = url.replace('=url_resolver', '')
+
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url

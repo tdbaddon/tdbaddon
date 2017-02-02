@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,14 +18,24 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+import StringIO
+import base64
+import datetime
+import json
+import os
+import re
+import sys
+import urllib
+import urllib2
+import zipfile
 
-import os,sys,re,json,zipfile,StringIO,urllib,urllib2,base64,datetime
+from resources.lib.modules import client
+from resources.lib.modules import control
+from resources.lib.modules import logger
+from resources.lib.modules import views
+from resources.lib.modules import cache
 
-from resources.lib.libraries import control
-from resources.lib.libraries import client
-from resources.lib.libraries import cache
-from resources.lib.libraries import views
-from resources.lib.libraries import logger
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
 class seasons:
     def __init__(self):
@@ -48,17 +58,17 @@ class seasons:
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
 
-    def get(self, tvshowtitle, year, imdb, tmdb, tvdb, tvrage, idx=True):
+    def get(self, tvshowtitle, year, imdb, tvdb, idx=True):
         if idx == True:
-            self.list = cache.get(self.tvdb_list, 24, tvshowtitle, year, imdb, tmdb, tvdb, tvrage, self.info_lang)
+            self.list = cache.get(self.tvdb_list, 24, tvshowtitle, year, imdb, tvdb, self.info_lang)
             self.seasonDirectory(self.list)
             return self.list
         else:
-            self.list = self.tvdb_list(tvshowtitle, year, imdb, tmdb, tvdb, tvrage, self.info_lang)
+            self.list = self.tvdb_list(tvshowtitle, year, imdb, tvdb, self.info_lang)
             return self.list
 
 
-    def tvdb_list(self, tvshowtitle, year, imdb, tmdb, tvdb, tvrage, lang, limit=''):
+    def tvdb_list(self, tvshowtitle, year, imdb, tvdb, lang, limit=''):
         try:
             if tvdb == '0' and not imdb == '0':
                 url = self.tvdb_by_imdb % imdb
@@ -77,7 +87,7 @@ class seasons:
                 tvdb = tvdb.encode('utf-8')
 
 
-            if tmdb == '0' and not imdb == '0':
+            if not imdb == '0':
                 url = self.tmdb_by_imdb % imdb
                 result = client.request(url, timeout='10')
                 result = json.loads(result)
@@ -106,7 +116,7 @@ class seasons:
             except: item = ''
             if limit == '-2' or not item == '': raise Exception()
 
-            if tmdb == '0' and not imdb == '0':
+            if not imdb == '0':
                 url = self.tmdb_by_imdb % imdb
                 result = client.request(url, timeout='10')
                 result = json.loads(result)
@@ -117,7 +127,7 @@ class seasons:
                 tmdb = tmdb.encode('utf-8')
 
 
-            if tmdb == '0' and not tvdb == '0':
+            if not tvdb == '0':
                 url = self.tmdb_by_tvdb % tvdb
                 result = client.request(url, timeout='10')
                 result = json.loads(result)
@@ -226,24 +236,11 @@ class seasons:
             elif not fanart == '0': banner = fanart
             elif not poster == '0': banner = poster
 
-            try: tvrage2 = item['external_ids']['tvrage_id']
-            except: tvrage2 = '0'
-            if tvrage == '0' or tvrage == None: tvrage = tvrage2
-            if tvrage == '' or tvrage == None: tvrage = '0'
-            tvrage = re.sub('[^0-9]', '', str(tvrage))
-            tvrage = tvrage.encode('utf-8')
-
             try: status = client.parseDOM(item2, 'Status')[0]
             except: status = ''
             if status == '': status = 'Ended'
             status = client.replaceHTMLCodes(status)
             status = status.encode('utf-8')
-
-            try: alter = client.parseDOM(item2, 'Genre')[0]
-            except: alter = '0'
-            if any(x in alter for x in ['Documentary', 'Reality', 'Game Show', 'Talk Show']): alter = '1'
-            else: alter = '0'
-            alter = alter.encode('utf-8')
 
             try: studio = item['networks'][0]['name']
             except: studio = ''
@@ -353,7 +350,7 @@ class seasons:
 
                 if thumb == '0': thumb = poster
 
-                self.list.append({'season': season, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': tvdb, 'tvrage': tvrage, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
+                self.list.append({'season': season, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
             except:
                 pass
 
@@ -427,7 +424,7 @@ class seasons:
                 try: episodeplot = episodeplot.encode('utf-8')
                 except: pass
 
-                self.list.append({'title': title, 'season': season, 'episode': episode, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': status, 'alter': alter, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': episodeplot, 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': tvdb, 'tvrage': tvrage, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
+                self.list.append({'title': title, 'season': season, 'episode': episode, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': episodeplot, 'name': name, 'code': imdb, 'imdb': imdb, 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
             except:
                 pass
 
@@ -442,13 +439,12 @@ class seasons:
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-        sysaddon = sys.argv[0]
 
         for i in items:
             try:
                 label = '%s %s' % ('Season', i['season'])
                 systitle = sysname = urllib.quote_plus(i['tvshowtitle'])
-                imdb, tmdb, tvdb, tvrage, year, season = i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['year'], i['season']
+                imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['season']
 
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
                 if poster == '0': poster = addonPoster
@@ -465,7 +461,7 @@ class seasons:
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
-                url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage, season)
+                url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s' % (sysaddon, systitle, year, imdb, tvdb, season)
 
 
                 cm = []
@@ -497,18 +493,20 @@ class seasons:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
-                item.addContextMenuItems(cm, replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+                item.addContextMenuItems(cm)
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
 
 
-        try: control.property(int(sys.argv[1]), 'showplot', items[0]['plot'])
+        try: control.property(syshandle, 'showplot', items[0]['plot'])
         except: pass
 
-        control.content(int(sys.argv[1]), 'seasons')
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
-        views.setView('seasons', {'skin.confluence': 500})
+        control.content(syshandle, 'seasons')
+        control.directory(syshandle, cacheToDisc=True)
+        viewMode = 'thumbnails'
+        views.setView('seasons', {'skin.confluence': control.viewMode['confluence'][viewMode], 'skin.estuary':
+            control.viewMode['esturary'][viewMode]})
 
 
 class episodes:
@@ -534,15 +532,15 @@ class episodes:
         self.scn_link = 'http://m2v.ru'
         self.added_link = 'http://m2v.ru/?Part=11&func=part&page=1'
 
-    def get(self, tvshowtitle, year, imdb, tmdb, tvdb, tvrage, season=None, episode=None, idx=True, provider=None, url=None):
+    def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True, provider=None, url=None):
         try:
             if idx == True:
                 #if not (tvdb == None or tvdb == '0') :
-                    #self.list = cache.get(seasons().tvdb_list, 1, tvshowtitle, year, imdb, tmdb, tvdb, tvrage, self.info_lang, season)
+                    #self.list = cache.get(seasons().tvdb_list, 1, tvshowtitle, year, imdb, tvdb, self.info_lang, season)
                 #else :
                 if not provider == None:
                     call = __import__('resources.lib.sources.%s' % provider, globals(), locals(), ['source'], -1).source()
-                    self.list = call.get_episodes(tvshowtitle, url)
+                    self.list = call.episodes(tvshowtitle, url)
                     if self.list == [] : raise Exception(control.lang(30516).encode('utf-8'))
                     self.list = self.super_info(self.list)
 
@@ -556,15 +554,14 @@ class episodes:
     def super_info(self, items):
         try :
             for i in range(0, len(items)):
-
                 try : season = items[i]['season']
                 except : season = '0'
-                self.list[i].update({'season':season, 'episode':'0','imdb':'0', 'tmdb':'0', 'tvdb':'0', 'tvrage':'0', 'year':'0', 'alter':'0','poster':'0', 'banner':'0', 'fanart':'0', 'thumb':'0', 'premiered':'0', 'duration':'30'})
+                self.list[i].update({'season':season, 'episode':'0','imdb':'0', 'tvdb':'0', 'year':'0', 'poster':'0', 'banner':'0', 'fanart':'0', 'thumb':'0', 'premiered':'0', 'duration':'30'})
             return self.list
         except:
             pass
 
-    def episodeDirectory(self, items, provider=None):
+    def episodeDirectory(self, items, provider=None, confViewMode='list', estViewMode='biglist'):
         if items == None or len(items) == 0: return
 
         isFolder = True if control.setting('host_select') == '1' else False
@@ -576,7 +573,6 @@ class episodes:
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-        sysaddon = sys.argv[0]
 
         try: multi = [i['tvshowtitle'] for i in items]
         except: multi = []
@@ -601,7 +597,7 @@ class episodes:
                 systitle = sysname = urllib.quote_plus(i['tvshowtitle'])
                 episodetitle, episodename = urllib.quote_plus(i['title']), urllib.quote_plus(i['name'])
                 syspremiered = urllib.quote_plus(i['premiered'])
-                imdb, tmdb, tvdb, tvrage, year, season, episode, alter = i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['year'], i['season'], i['episode'], i['alter']
+                imdb, tvdb, year, season, episode = i['imdb'], i['tvdb'], i['year'], i['season'], i['episode']
 
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
                 if poster == '0': poster = addonPoster
@@ -617,11 +613,11 @@ class episodes:
                 except: pass
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
-                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, self.systime)
+                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tvdb, season, episode, systitle, syspremiered, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
                 if sysaction == 'episodes':
-                    url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage, season, episode)
+                    url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode)
                     isFolder = True ; cacheToDisc = True
 
                 cm = []
@@ -632,7 +628,7 @@ class episodes:
                 cm.append((control.lang(30272).encode('utf-8'), 'Action(Info)'))
 
                 if multi == True:
-                    cm.append((control.lang(30274).encode('utf-8'), 'ActivateWindow(Videos,%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s,return)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))
+                    cm.append((control.lang(30274).encode('utf-8'), 'ActivateWindow(Videos,%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systitle, year, imdb, tvdb)))
 
                 cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
 
@@ -657,9 +653,9 @@ class episodes:
                 item.setProperty('IsPlayable', isPlayable)
                 item.setProperty('resumetime',str(0))
                 item.setProperty('totaltime',str(1))
-                item.addContextMenuItems(cm, replaceItems=True)
+                item.addContextMenuItems(cm)
 
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
             except:
                 pass
 
@@ -669,20 +665,20 @@ class episodes:
             url = '%s?action=episodes&tvshowtitle=%s&url=%s&provider=%s' % (sysaddon, systitle, urllib.quote_plus(url), provider)
             addonNext = control.addonNext()
             item = control.item(label=control.lang(30213).encode('utf-8'), iconImage=addonNext, thumbnailImage=addonNext)
-            item.addContextMenuItems([], replaceItems=False)
+            item.addContextMenuItems([])
             if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-            control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+            control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
         except:
             pass
 
-        control.content(int(sys.argv[1]), 'episodes')
-        control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
-        views.setView('episodes', {'skin.confluence': 504})
+        control.content(syshandle, 'episodes')
+        control.directory(syshandle, cacheToDisc=cacheToDisc)
+        views.setView('episodes', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
+            control.viewMode['esturary'][estViewMode]})
 
     def addDirectory(self, items):
         if items == None or len(items) == 0: return
 
-        sysaddon = sys.argv[0]
         addonFanart = control.addonFanart()
         addonThumb = control.addonThumb()
         artPath = control.artPath()
@@ -700,10 +696,10 @@ class episodes:
                 except: pass
 
                 item = control.item(label=name, iconImage=thumb, thumbnailImage=thumb)
-                item.addContextMenuItems([], replaceItems=False)
+                item.addContextMenuItems([])
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
 
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
+        control.directory(syshandle, cacheToDisc=True)

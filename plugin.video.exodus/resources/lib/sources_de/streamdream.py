@@ -72,11 +72,9 @@ class source:
             episode = data['episode'] if 'episode' in data else False
 
             if season and episode:
-                header = {'X-Requested-With': 'XMLHttpRequest',
-                          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                 r = {'imdbid': data['imdb'], 'language': 'de', 'season': season, 'episode': episode}
                 r = urllib.urlencode(r)
-                r = client.request(urlparse.urljoin(self.base_link, self.hoster_link), headers=header, post=r)
+                r = client.request(urlparse.urljoin(self.base_link, self.hoster_link), XHR=True, post=r)
             else:
                 r = client.request(url)
 

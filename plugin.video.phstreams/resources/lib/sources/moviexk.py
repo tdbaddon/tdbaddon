@@ -35,7 +35,7 @@ class source:
         self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAxMzQ0NjM1MTYzMDQ5MzU5NTE5Nzprc2NlY2tjdXZxcyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             url = '%s/%s-%s/' % (self.base_link, cleantitle.geturl(title), year)
 
@@ -75,7 +75,7 @@ class source:
             pass
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             t = cleantitle.get(tvshowtitle)
 
@@ -137,8 +137,16 @@ class source:
 
             r = client.request(url, mobile=True)
 
-            r = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
-            r = client.parseDOM(r, 'li')
+            p = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
+
+            if not p:
+                p = client.parseDOM(r, 'div', attrs = {'class': 'btn-groups.+?'})
+                p = client.parseDOM(p, 'a', ret='href')[0]
+
+                p = client.request(p, mobile=True)
+                p = client.parseDOM(p, 'div', attrs = {'id': 'servers'})
+
+            r = client.parseDOM(p, 'li')
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
 
             try:

@@ -33,7 +33,7 @@ class source:
         self.language = ['en']
         self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
         self.base_link = 'https://123movies.is'
-        self.base_link_2 = 'https://123movies.msk.ru'
+        self.base_link_2 = 'https://123movies.net.ru'
         self.search_link = '/ajax/suggest_search'
         self.search_link_2 = '/movie/search/%s'
         self.info_link = '/ajax/movie_load_info/%s'
@@ -45,9 +45,10 @@ class source:
     def request(self, url, post=None, headers=None, XHR=False):
         try:
             r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
-            if r == None: return r
 
-            if 'internetmatters.org' in r:
+            if r[0] == None: return r
+
+            if 'internetmatters.org' in r[0]:
                 url = re.findall('(?://.+?|)(/.+)', url)[0]
                 url = urlparse.urljoin(self.base_link_2, url)
                 r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
@@ -69,7 +70,7 @@ class source:
 
             r = self.request(u, post=p, XHR=True)[0]
 
-            try: r = json.loads(r)
+            try: r = json.loads(r)['content']
             except: r = None
 
             if r == None:
@@ -78,7 +79,6 @@ class source:
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
                 r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
             else:
-                r = r['content']
                 r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
 
             r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
@@ -123,7 +123,7 @@ class source:
 
             r = self.request(u, post=p, XHR=True)[0]
 
-            try: r = json.loads(r)
+            try: r = json.loads(r)['content']
             except: r = None
 
             if r == None:
@@ -132,7 +132,6 @@ class source:
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
                 r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
             else:
-                r = r['content']
                 r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
 
             r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]

@@ -12,7 +12,6 @@
 		<setting id="debug" type="bool" label="Debug" default="false" />
 		<setting id="livelocal" type="text" label="livelocal" visible="false" default="false" />
 		<setting id="analytics.enabled" type="bool" label="30807" visible="true" default="true" />
-		<setting id="user.email" type="text" label="30808" visible="false" default="" />
 	</category>
 	<category label="30830">
 		<setting id="playback_quality" type="enum" label="30831" values="1080p|720p|480p" default="0" />
@@ -24,47 +23,49 @@
 	</category>
 
 	<category label="30862">
-		<setting id="apnaview" type="bool" label="ApnaView" default="true" />
-		<setting id="badtameezdil" type="bool" label="Bad" default="true" />
-		<setting id="bmoviez" type="bool" label="BMoviez" default="true" />
-		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
-		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
-		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
-		<setting id="desihit" type="bool" label="DesiHits" default="true" />
-		<setting id="desiplex" type="bool" label="DesiPlex" default="true" />
-		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
-		<setting id="desitashan" type="bool" label="DesiTashan" default="true" />
-		<setting id="ditto" type="bool" label="Ditto" default="true"/>
-		<setting id="dltube" type="bool" label="DLTube" default="true" />
-		<setting id="dynns" type="bool" label="Dynns" visible="true" default="false" />
-		<setting id="einthusan" type="bool" label="Einthusan" default="true" />
-		<setting id="filmywap" type="bool" label="FilmyWap" default="true" />
-		<setting id="hdbuffer" type="bool" label="HDBuffer" default="true" />
-		<setting id="hevcfilm" type="bool" label="HEVC" visible="false" default="true" />
-		<setting id="hindilinks4u" type="bool" label="HindiLinks4U" default="true" />
-		<setting id="hotstar" type="bool" label="HotStar" default="true" />
-		<setting id="ibollytv" type="bool" label="iBollyTV" default="true" />
-		<setting id="json" type="bool" label="json" visible="true" default="true" />
-		<setting id="iptv" type="bool" label="IPTV" visible="true" default="true" />
-		<setting id="miradetodo" type="bool" label="Miradetodo" default="true" />
-		<setting id="movie25" type="bool" label="Movie25" default="true" />
-		<setting id="movies14" type="bool" label="Movies14" default="true" />
-		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
-		<setting id="ninemovies" type="bool" label="NineMovies" default="false" />
-		<setting id="onemovies" type="bool" label="OneMovies" default="true" />
-		<setting id="primewire" type="bool" label="PrimeWire" visible="true" default="true" />
-		<setting id="pubfilm" type="bool" label="PubFilm" default="true" />
-		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
-		<setting id="rlsmovies" type="bool" label="RLSMovies" default="true" />
-		<setting id="swift" type="bool" label="Swift" default="true" />
-		<setting id="solid" type="bool" label="Solid" default="true" />
-		<setting id="rajtamil" type="bool" label="RajTamil" default="true" />
-		<setting id="tamilgun" type="bool" label="TamilGun" default="true" />
-		<setting id="tamilyogi" type="bool" label="TamilYogi" default="true" />
-		<setting id="watchfree" type="bool" label="WatchFree" default="true" />
+		<setting id="provider.apnaview" type="bool" label="ApnaView" default="true" />
+		<setting id="provider.badtameezdil" type="bool" label="Bad" default="true" />
+		<setting id="provider.bmoviez" type="bool" label="BMoviez" default="true" />
+		<setting id="provider.cinefun" type="bool" label="CineFun" default="true" />
+		<setting id="provider.crazy4ad" type="bool" label="CRAZY4AD" default="true" />
+		<setting id="provider.desihdmovies" type="bool" label="DesiHDMovies" default="true" />
+		<setting id="provider.tdesihit" type="bool" label="TDesiHits" default="true" />
+		<setting id="provider.mdesihit" type="bool" label="MDesiHits" default="true" />
+		<setting id="provider.desiplex" type="bool" label="DesiPlex" default="true" />
+		<setting id="provider.desirulez" type="bool" label="DesiRulez" default="true" />
+		<setting id="provider.desitashan" type="bool" label="DesiTashan" default="true" />
+		<setting id="provider.lditto" type="bool" label="LDitto" default="true"/>
+		<setting id="provider.mditto" type="bool" label="MDitto" default="true"/>
+		<setting id="provider.dltube" type="bool" label="DLTube" default="true" />
+		<setting id="provider.dynns" type="bool" label="Dynns" default="true" />
+		<setting id="provider.einthusan" type="bool" label="Einthusan" default="true" />
+		<setting id="provider.filmywap" type="bool" label="FilmyWap" default="true" />
+		<setting id="provider.hdbuffer" type="bool" label="HDBuffer" default="true" />
+		<setting id="provider.hevcfilm" type="bool" label="HEVC" default="true" />
+		<setting id="provider.hindilinks4u" type="bool" label="HindiLinks4U" default="true" />
+		<setting id="provider.hotstar" type="bool" label="HotStar" default="true" />
+		<setting id="provider.ibollytv" type="bool" label="iBollyTV" default="true" />
+		<setting id="provider.staticjson" type="bool" label="staticjson" default="true" />
+		<setting id="provider.iptv" type="bool" label="IPTV" default="true" />
+		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
+		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
+		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
+		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
+		<setting id="provider.ninemovies" type="bool" label="NineMovies" default="true" />
+		<setting id="provider.onemovies" type="bool" label="OneMovies" default="true" />
+		<setting id="provider.primewire" type="bool" label="PrimeWire" default="true" />
+		<setting id="provider.pubfilm" type="bool" label="PubFilm" default="true" />
+		<setting id="provider.putlocker" type="bool" label="PutLocker" default="true" />
+		<setting id="provider.rlsmovies" type="bool" label="RLSMovies" default="true" />
+		<setting id="provider.swift" type="bool" label="Swift" default="true" />
+		<setting id="provider.solid" type="bool" label="Solid" default="true" />
+		<setting id="provider.rajtamil" type="bool" label="RajTamil" default="true" />
+		<setting id="provider.tamilgun" type="bool" label="TamilGun" default="true" />
+		<setting id="provider.tamilyogi" type="bool" label="TamilYogi" default="true" />
+		<setting id="provider.watchfree" type="bool" label="WatchFree" default="true" />
 		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
-		<setting id="ymovies" type="bool" label="YMovies" default="true" />
-		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>
+		<setting id="provider.ymovies" type="bool" label="YMovies" default="true" />
+		<setting id="provider.yodesi" type="bool" label="YoDesi" default="true"/>
 	</category>
 
 	<category label="30910">

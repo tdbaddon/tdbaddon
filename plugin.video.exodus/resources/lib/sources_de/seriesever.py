@@ -42,7 +42,7 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(tvshowtitle)
-            if not url: url = self.__search(localtvshowtitle)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle)
             return url
         except:
             return
@@ -76,7 +76,7 @@ class source:
 
             for i in p:
                 r = urllib.urlencode({'video_id': id, 'part_name': i, 'page': '0'})
-                r = client.request(query, cookie=cookie, mobile=True, headers={'X-Requested-With': 'XMLHttpRequest'}, post=r , referer=url)
+                r = client.request(query, cookie=cookie, mobile=True, XHR=True, post=r , referer=url)
 
                 try:
                     r = json.loads(r)
@@ -125,8 +125,7 @@ class source:
 
             t = cleantitle.get(title)
 
-            r = {'X-Requested-With': 'XMLHttpRequest'}
-            r = client.request(query, headers=r)
+            r = client.request(query, XHR=True)
 
             if r and r.startswith('{'): r = '[%s]' % r
 
@@ -145,6 +144,7 @@ class source:
     def __decode_hash(self, hash):
         hash = hash.replace("!BeF", "R")
         hash = hash.replace("@jkp", "Ax")
+        hash += '=' * (-len(hash) % 4)
         try: return base64.b64decode(hash)
         except: return
 
@@ -168,7 +168,7 @@ class source:
             if (self.user == '' or self.password == ''): raise Exception()
             login = urlparse.urljoin(self.base_link, self.login_link)
             post = urllib.urlencode({'username': self.user, 'password': self.password})
-            cookie = client.request(login, mobile=True, post=post, headers={'X-Requested-With': 'XMLHttpRequest'}, output='cookie')
+            cookie = client.request(login, mobile=True, post=post, XHR=True, output='cookie')
             r = client.request(urlparse.urljoin(self.base_link, 'api'), mobile=True, cookie=cookie)
             return cookie if r == '1' else ''
         except:

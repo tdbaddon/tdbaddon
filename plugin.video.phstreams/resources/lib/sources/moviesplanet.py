@@ -39,20 +39,18 @@ class source:
         self.password = control.setting('moviesplanet.pass')
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
             t = cleantitle.get(title)
-
-            h = {'X-Requested-With': 'XMLHttpRequest'}
 
             u = urlparse.urljoin(self.base_link, self.search_link)
 
             p = {'q': title.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             p = urllib.urlencode(p)
 
-            r = client.request(u, post=p, headers=h)
+            r = client.request(u, post=p, XHR=True)
             r = json.loads(r)
 
             r = [i for i in r if i['meta'].strip().split()[0].lower() == 'movie']
@@ -74,20 +72,18 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
             t = cleantitle.get(tvshowtitle)
-
-            h = {'X-Requested-With': 'XMLHttpRequest'}
 
             u = urlparse.urljoin(self.base_link, self.search_link)
 
             p = {'q': tvshowtitle.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             p = urllib.urlencode(p)
 
-            r = client.request(u, post=p, headers=h)
+            r = client.request(u, post=p, XHR=True)
             r = json.loads(r)
 
             r = [i for i in r if i['meta'].strip().split()[0].lower() == 'tv']
@@ -142,12 +138,11 @@ class source:
 
             if (self.user == '' or self.password == ''): raise Exception()
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
             login = urlparse.urljoin(self.base_link, '/login')
             post = {'username': self.user, 'password': self.password, 'action': 'login'}
             post = urllib.urlencode(post)
 
-            cookie = client.request(login, post=post, headers=headers, output='cookie')
+            cookie = client.request(login, post=post, XHR=True, output='cookie')
 
 
             url = urlparse.urljoin(self.base_link, url)

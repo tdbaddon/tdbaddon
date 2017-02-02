@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urllib2,urlparse,StringIO,gzip,json
+import re,urllib,urllib2,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -35,19 +35,7 @@ class source:
         self.movie_link = '/movie/watch/%s/'
 
 
-    def request(self, url):
-        try:
-            req = urllib2.Request(url)
-            req.add_header('User-Agent', client.randomagent())
-            res = urllib2.urlopen(req)
-            r = res.read() if not res.info().getheader('Content-Encoding') == 'gzip' else gzip.GzipFile(fileobj=StringIO.StringIO(res.read())).read()
-            res.close()
-            return r
-        except:
-            return
-
-
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             langMap = {'hi':'hindi', 'ta':'tamil', 'te':'telugu', 'ml':'malayalam', 'kn':'kannada', 'bn':'bengali', 'mr':'marathi', 'pa':'punjabi'}
 
@@ -64,7 +52,7 @@ class source:
 
             t = cleantitle.get(title)
 
-            r = self.request(q)
+            r = client.request(q)
 
             r = client.parseDOM(r, 'li')
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'h3'), client.parseDOM(i, 'div', attrs = {'class': 'info'})) for i in r]
@@ -90,7 +78,7 @@ class source:
 
             return sources
 
-            r = self.request(url)
+            r = client.request(url)
 
             sources.append({'source': 'einthusan', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': True, 'debridonly': False})
             return sources

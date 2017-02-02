@@ -2,7 +2,7 @@
 
 '''
     Aftershock Add-on
-    Copyright (C) 2015 IDev
+    Copyright (C) 2017 Aftershockpy
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,10 +18,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 import re
-from resources.lib.libraries import client
-from resources.lib.libraries import logger
+
+from resources.lib.modules import client
+from resources.lib.modules import logger
+
 
 def resolve(url):
     try:
@@ -32,15 +33,15 @@ def resolve(url):
         result = client.request(url, debug=True)
 
         try :
-            url = client.parseDOM(result, "div", attrs = {"class":"divider"})[0]
-            url = client.parseDOM(url, "a", ret = "href")
+            url = client.parseDOM(result, "div", attrs = {"class": "divider"})[0]
+            url = client.parseDOM(url, "a", ret ="href")
             url = url[0]
             url = url.replace('_ipod.mp4', '.flv')
             return url
         except:
             pass
 
-        try :url = client.parseDOM(result, "meta", attrs={"itemprop":"contentURL"}, ret="content")[0]
+        try :url = client.parseDOM(result, "meta", attrs={"itemprop": "contentURL"}, ret="content")[0]
         except:
             pass
         logger.debug('URL [%s]' % url, __name__)

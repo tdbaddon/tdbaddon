@@ -35,18 +35,16 @@ class source:
         self.search_link = '/search/search_val?language=English%20-%20UK&term='
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             if debrid.status() == False: raise Exception()
 
             t = cleantitle.get(title)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
-
             query = self.search_link + urllib.quote_plus(title)
             query = urlparse.urljoin(self.base_link, query)
 
-            r = client.request(query, headers=headers)
+            r = client.request(query, XHR=True)
             r = json.loads(r)
 
             r = [i for i in r if 'category' in i and 'movie' in i['category'].lower()]

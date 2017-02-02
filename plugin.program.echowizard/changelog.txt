@@ -1,3 +1,25 @@
+[COLOR yellowgreen]1.60: 2nd February 2017[/COLOR]
+[COLOR white][B]- Support for Kodi 17 advanced settings added.[/B][/COLOR]
+
+[COLOR yellowgreen]1.59: 1st February 2017[/COLOR]
+[COLOR white][B]- Fix error on open for some users.[/B][/COLOR]
+
+[COLOR yellowgreen]1.58: 1st February 2017[/COLOR]
+[COLOR white][B]- Added exception for "arcive_cache" folder in Kodi 17.[/B][/COLOR]
+
+[COLOR yellowgreen]1.57: 1st February 2017[/COLOR]
+[COLOR white][B]- API Interval settings added.[/B][/COLOR]
+
+[COLOR yellowgreen]1.56: 1st February 2017[/COLOR]
+[COLOR white][B]- Fix resource issue.[/B][/COLOR]
+
+[COLOR yellowgreen]1.55: 1st February 2017[/COLOR]
+[COLOR white][B]- Color changes for menu items missed.[/B][/COLOR]
+[COLOR white][B]- API settings added to the ECHO Settings screen.[/B][/COLOR]
+
+[COLOR yellowgreen]1.54: 31st January 2017[/COLOR]
+[COLOR white][B]- Integration of Echo API 2.0 - Credit to @MBOX_HD_IPTV[/B][/COLOR]
+
 [COLOR yellowgreen]1.53: 30th January 2017[/COLOR]
 [COLOR white][B]- The Beast support added.[/B][/COLOR]
 

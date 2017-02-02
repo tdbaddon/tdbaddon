@@ -36,22 +36,22 @@ class source:
         self.search_link_2 = 'http://onwatchseries.to/search/%s'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             t = cleantitle.get(tvshowtitle)
 
             q = urllib.quote_plus(cleantitle.query(tvshowtitle))
             p = urllib.urlencode({'term': q})
-            h = {'X-Requested-With': 'XMLHttpRequest'}
 
-            r = client.request(self.search_link, post=p, headers=h)
+            r = client.request(self.search_link, post=p, XHR=True)
             try: r = json.loads(r)
             except: r = None
+            r = None
 
             if r:
                 r = [(i['seo_url'], i['value'], i['label']) for i in r if 'value' in i and 'label' in i and 'seo_url' in i]
             else:
-                r = proxy.request(self.search_link_2 % q, '/search/')
+                r = proxy.request(self.search_link_2 % q, 'tv shows')
                 r = client.parseDOM(r, 'div', attrs = {'valign': '.+?'})
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), client.parseDOM(i, 'a')) for i in r]
                 r = [(i[0][0], i[1][0], i[2][0]) for i in r if i[0] and i[1] and i[2]]
@@ -76,7 +76,7 @@ class source:
 
             url = '%s/serie/%s' % (self.base_link, url)
 
-            r = proxy.request(url, 'fa-link')
+            r = proxy.request(url, 'tv shows')
             r = client.parseDOM(r, 'li', attrs = {'itemprop': 'episode'})
 
             t = cleantitle.get(title)
@@ -110,7 +110,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            r = proxy.request(url, 'fa-link')
+            r = proxy.request(url, 'tv shows')
 
             links = client.parseDOM(r, 'a', ret='href', attrs = {'target': '.+?'})
             links = [x for y,x in enumerate(links) if x not in links[:y]]

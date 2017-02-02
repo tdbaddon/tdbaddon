@@ -39,7 +39,7 @@ class source:
         self.tvsearch_link_2 = '/?s=%s'
 
 
-    def movie(self, imdb, title, year):
+    def movie(self, imdb, title, localtitle, year):
         try:
             title = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
@@ -64,7 +64,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -95,11 +95,9 @@ class source:
 
     def pidtv_tvcache(self, tvshowtitle):
         try:
-
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
             post = urllib.urlencode({'aspp': tvshowtitle, 'action': 'ajaxsearchpro_search', 'options': 'qtranslate_lang=0&set_exactonly=checked&set_intitle=None&customset%5B%5D=post', 'asid': '1', 'asp_inst_id': '1_1'})
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
-            url = client.request(url, post=post, headers=headers)
+            url = client.request(url, post=post, XHR=True)
             url = zip(client.parseDOM(url, 'a', ret='href', attrs={'class': 'asp_res_url'}), client.parseDOM(url, 'a', attrs={'class': 'asp_res_url'}))
             url = [(i[0], re.findall('(.+?: Season \d+)', i[1].strip())) for i in url]
             url = [i[0] for i in url if len(i[1]) > 0 and tvshowtitle == i[1][0]][0]
