@@ -4065,7 +4065,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 		<res width="1706" height="960" aspect="16:9" default="true" folder="xml"/>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Touched skin by TDB designed to be used on touch screen devices or Android TV with a mouse</summary>
+		<summary lang="en">KODI 17 ONLY!!!  designed to be used on touch screen devices or Android TV with a mouse</summary>
 		<description lang="en">This Skin is to be used on touch screen devices like the iPad or with a mouse</description>
 		<disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
 		<platform>all</platform>
