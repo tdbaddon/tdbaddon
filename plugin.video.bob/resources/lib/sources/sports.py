@@ -327,6 +327,7 @@ def get_nhl_home_away(title, home_content_url, away_content_url, image):
 
 def get_nfl_games(season="", week=""):
     import xmltodict
+    import xbmc
     username = 'condor13'
     password = 'condor13'
 
@@ -349,11 +350,11 @@ def get_nfl_games(season="", week=""):
 
     game_data = session.post(servlets_url + '/games',
                              data={'isFlex': 'true', 'season': season, 'week': week}).content
+
     game_data_dict = xmltodict.parse(game_data)['result']
     games = game_data_dict['games']['game']
     if isinstance(games, dict):
         games = [games]
-
     xml = ""
     start_xmls = {}
     thumbnail = "http://www.officialpsds.com/images/thumbs/NFL-Logo-psd95853.png"
@@ -362,8 +363,12 @@ def get_nfl_games(season="", week=""):
         if not 'hasProgram' in game:  # no stream
             continue
         if "programId" in game:  # only full games
-            home = game["homeTeam"]["city"] + " " + game["homeTeam"]["name"]
-            away = game["awayTeam"]["city"] + " " + game["awayTeam"]["name"]
+            homecity = game["homeTeam"]["city"] or ""
+            homename = game["homeTeam"]["name"] or ""
+            home = "%s %s" % (homecity, homename)
+            awaycity = game["awayTeam"]["city"] or ""
+            awayname = game["awayTeam"]["name"] or ""
+            away = "%s %s" % (awaycity, awayname)
             start_time = datetime(*(time.strptime(game['gameTimeGMT'], '%Y-%m-%dT%H:%M:%S.000')[0:6]))
             start_time -= timedelta(hours=5)
             start_time = start_time.strftime("%Y-%m-%d %I:%M %p EST")
@@ -375,6 +380,7 @@ def get_nfl_games(season="", week=""):
                                      "\t<fanart>%s</fanart>\n" \
                                      "</item>\n" % (start_time, thumbnail, fanart)
             game_title = home + " vs. " + away
+            game_title = " ".join(game_title.split())
             game_id = game["id"]
 
             start_xmls[start_time] += "<dir>\n" \
@@ -508,8 +514,12 @@ def get_condensed_nfl_games(season="", week=""):
         if not 'hasProgram' in game:  # no stream
             continue
         if "condensedId" in game:  # only condensed
-            home = game["homeTeam"]["city"] + " " + game["homeTeam"]["name"]
-            away = game["awayTeam"]["city"] + " " + game["awayTeam"]["name"]
+            homecity = game["homeTeam"]["city"] or ""
+            homename = game["homeTeam"]["name"] or ""
+            home = "%s %s" % (homecity, homename)
+            awaycity = game["awayTeam"]["city"] or ""
+            awayname = game["awayTeam"]["name"] or ""
+            away = "%s %s" % (awaycity, awayname)
             start_time = datetime(*(time.strptime(game['gameTimeGMT'], '%Y-%m-%dT%H:%M:%S.000')[0:6]))
             start_time -= timedelta(hours=5)
             start_time = start_time.strftime("%Y-%m-%d %I:%M %p EST")
@@ -521,6 +531,7 @@ def get_condensed_nfl_games(season="", week=""):
                                      "\t<fanart>%s</fanart>\n" \
                                      "</item>\n" % (start_time, thumbnail, fanart)
             game_title = home + " vs. " + away
+            game_title = " ".join(game_title.split())
             game_id = game["id"]
 
             start_xmls[start_time] += "<dir>\n" \

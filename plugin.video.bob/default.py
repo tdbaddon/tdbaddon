@@ -24,26 +24,30 @@ import xbmcgui
 import xbmcvfs
 import login
 
-ADDON_ID    = 'plugin.video.bob'
-HOME        = xbmc.translatePath('special://home')
-ADDON_DATA  = xbmc.translatePath('special://profile/addon_data')
-ADDONS      = os.path.join(HOME,'addons')
-BOB_DATA    = os.path.join(ADDON_DATA,ADDON_ID)
-BOB_COOKIE  = os.path.join(BOB_DATA,'cookies')
+ADDON_ID = 'plugin.video.bob'
+HOME = xbmc.translatePath('special://home')
+ADDON_DATA = xbmc.translatePath('special://profile/addon_data')
+ADDONS = os.path.join(HOME, 'addons')
+BOB_DATA = os.path.join(ADDON_DATA, ADDON_ID)
+BOB_COOKIE = os.path.join(BOB_DATA, 'cookies')
 
 if 'credits' in sys.argv[0]:
     try:
         f = xbmcvfs.File('special://home/addons/plugin.video.bob/credits.txt')
-        text = f.read() ; f.close()
+        text = f.read();
+        f.close()
         if xbmc.getInfoLabel('System.ProfileName') != "Master user":
             you = xbmc.getInfoLabel('System.ProfileName')
-        elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility('System.Platform.OSX') == True:
+        elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility(
+                'System.Platform.OSX') == True:
             if "Users\\" in HOME:
                 proyou = str(HOME).split("Users\\")
                 preyou = str(proyou[1]).split("\\")
                 you = preyou[0]
-            else: you = "You"
-        else: you = "You"
+            else:
+                you = "You"
+        else:
+            you = "You"
         if you: newcredits = text + "\r\n\r\n\r\nSpecial thanks to:\r\n\r\n" + you + " for trying our new addon.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nDo not be alarmed. \r\nNo personal data was gathered or stored in anyway.\r\nWe just used kodi's profile name or your OSX/Windows user-foldername to personalize this message on the fly..."
         label = '%s - %s' % (xbmc.getLocalizedString(470), xbmcaddon.Addon().getAddonInfo('name'))
         id = 10147
@@ -66,7 +70,8 @@ if not os.path.exists(BOB_DATA):
     os.makedirs(BOB_DATA)
     try:
         f = xbmcvfs.File(xbmcaddon.Addon().getAddonInfo('changelog'))
-        text = f.read(); f.close()
+        text = f.read();
+        f.close()
         label = '%s - %s' % (xbmc.getLocalizedString(24054), xbmcaddon.Addon().getAddonInfo('name'))
         id = 10147
         xbmc.executebuiltin('ActivateWindow(%d)' % id)
@@ -79,8 +84,10 @@ if not os.path.exists(BOB_DATA):
                 win.getControl(1).setLabel(label)
                 win.getControl(5).setText(text)
                 retry = 0
-            except: retry -= 1
-    except: pass
+            except:
+                retry -= 1
+    except:
+        pass
 
 if not os.path.exists(BOB_COOKIE):
     os.makedirs(BOB_COOKIE)
@@ -88,6 +95,7 @@ if not os.path.exists(BOB_COOKIE):
 import sys
 import urlparse
 import __builtin__
+
 __builtin__.BOB_BASE_DOMAIN = "norestrictions.club/norestrictions.club"
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?', '')))
@@ -115,40 +123,81 @@ try:
     fanart = params['fanart']
 except:
     fanart = None
+
+try:
+    uncached = params['uncached']
+    if uncached == "true":
+        uncached = True
+    else:
+        uncached = False
+except:
+    uncached = False
+
 if action is None:
     login.user_info()
-    from resources.lib.indexers import bob; bob.Indexer().root()
+    from resources.lib.indexers import bob
+    bob.Indexer().root()
 elif action == 'directory':
-    from resources.lib.indexers import bob;bob.Indexer().get(url)
+    from resources.lib.indexers import bob
+    bob.Indexer().get(url, uncached=uncached)
+elif action == 'uncached':
+    xbmc.executebuiltin('Container.Update(%s%s)' % (
+    sys.argv[0], sys.argv[2].replace("action=uncached", "action=directory&uncached=true")))
 elif action == 'get_all_episodes':
-    from resources.lib.indexers import bob; bob.Indexer().get_all_episodes(url)
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().get_all_episodes(url)
 elif action == 'xdirectory':
-    from resources.lib.indexers import bob; bob.Indexer().getx(url)
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().getx(url)
 elif action == 'developer':
-    from resources.lib.indexers import bob; bob.Indexer().developer()
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().developer()
 elif action == 'play':
-    from resources.lib.indexers import bob; bob.Player().play(url, content)
+    from resources.lib.indexers import bob;
+
+    bob.Player().play(url, content)
 elif action == 'browser':
-    from resources.lib.indexers import bob; bob.Resolver().browser(url)
+    from resources.lib.indexers import bob;
+
+    bob.Resolver().browser(url)
 elif action == 'search':
-    from resources.lib.indexers import bob; bob.Indexer().search()
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().search()
 elif action == 'add_search':
-    from resources.lib.indexers import bob; bob.Indexer().add_search(url)
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().add_search(url)
 elif action == 'delete_search':
-    from resources.lib.indexers import bob; bob.Indexer().delete_search()
+    from resources.lib.indexers import bob;
+
+    bob.Indexer().delete_search()
 elif action == 'openSettings':
-    from resources.lib.modules import control; control.openSettings()
+    from resources.lib.modules import control;
+
+    control.openSettings()
 elif action == 'addView':
-    from resources.lib.modules import views; views.addView(content)
+    from resources.lib.modules import views;
+
+    views.addView(content)
 elif action == 'clearCache':
-    from resources.lib.modules import cache; cache.clear()
+    from resources.lib.modules import cache;
+
+    cache.clear()
 elif action == 'trailer':
-    from resources.lib.modules import trailer; trailer.trailer().play(name)
+    from resources.lib.modules import trailer;
+
+    trailer.trailer().play(name)
 elif action == 'ScraperSettings':
     from resources.lib.modules import control
+
     control.openSettings(id='script.module.nanscrapers')
 elif action == 'ResolverSettings':
     from resources.lib.modules import control
+
     control.openSettings(id='script.mrknow.urlresolver')
 elif action == 'queueItem':
     from resources.lib.modules import control
@@ -188,7 +237,8 @@ elif action == 'queueItem':
                         if subitem['name'] == 'All Episodes':
                             continue
                         if not subitem['url'].endswith(".xml"):
-                            item_urls.append({'url': subitem['url'], 'name': subitem['name'], 'image': subitem['poster']})
+                            item_urls.append(
+                                {'url': subitem['url'], 'name': subitem['name'], 'image': subitem['poster']})
                 else:
                     item_urls.append({'url': item['url'], 'name': item['name'], 'image': item['poster']})
         except:
@@ -204,7 +254,8 @@ elif action == 'queueItem':
             if not hide_progress:
                 control.execute('ActivateWindow(busydialog)')
             if retrying:
-                resolved = Resolver().process(Resolver().get(item_url['url']), name=item_url['name'], hide_progress=hide_progress)
+                resolved = Resolver().process(Resolver().get(item_url['url']), name=item_url['name'],
+                                              hide_progress=hide_progress)
             else:
                 link = Resolver().get(item_url['url'], link=selected_link)
                 resolved = Resolver().process(link, name=item_url['name'], hide_progress=hide_progress)
@@ -240,11 +291,13 @@ elif action == 'playQueue':
         control.infoDialog("Queue is empty".encode('utf-8'))
 elif action == 'clearQueue':
     from resources.lib.modules import control
+
     xbmc.PlayList(xbmc.PLAYLIST_VIDEO).clear()
     control.infoDialog("Queue cleared".encode('utf-8'))
     xbmc.executebuiltin('Container.Refresh')
 elif action == "addToFavorites":
     from resources.lib.modules import favs
+
     fav_type = params['type']
     fav_link = params['link']
     fav_poster = params['poster']
@@ -252,26 +305,31 @@ elif action == "addToFavorites":
     result = favs.add_favorite(name, fav_type, fav_link, fav_poster, fav_fanart)
 elif action == "removeFromFavorites":
     from resources.lib.modules import favs
+
     fav_type = params['type']
     fav_link = params['link']
     result = favs.remove_favorite(name, fav_type, fav_link)
     xbmc.executebuiltin("Container.Refresh")
 elif action == "MoveFavorite":
     from resources.lib.modules import favs
+
     fav_type = params['type']
     fav_link = params['link']
     result = favs.move_favorite(name, fav_type, fav_link)
     xbmc.executebuiltin("Container.Refresh")
 elif action == "getfavorites":
     from resources.lib.modules import favs
+
     favs.get_favorites_menu(url)
 elif action.startswith("getfavorites_"):
     type = action.replace("getfavorites_", "")
     from resources.lib.modules import favs
+
     favs.get_favorites(type, url)
 elif action == "markwatched":
     from resources.lib.modules import metacache
     from resources.lib.modules import control
+
     imdb = params["imdb"]
     tmdb = params["tmdb"]
     tvdb = params["tvdb"]

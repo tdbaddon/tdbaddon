@@ -57,9 +57,9 @@ class Indexer:
     def __init__(self):
         self.list = []
 
-    def get(self, url, result=None):
+    def get(self, url, result=None, uncached=False):
         try:
-            self.list = self.bob_list(url, result)
+            self.list = self.bob_list(url, result, uncached)
             self.worker()
             self.add_directory(self.list, parent_url=url)
             return self.list
@@ -87,12 +87,13 @@ class Indexer:
                             you = "My"
                     if "[COLOR" in you:
                         name = re.findall("\[COLOR=.+?\](.+?)\[/COLOR\]", you)[0]
-                        you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"), you)
+                        you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"),
+                                     you)
                     elif you != "My":
                         you = you.capitalize() + "'s"
                 except:
                     pass
-            name ='%s Bob' % you
+            name = '%s Bob' % you
             self.list.insert(0, {'name': name, 'url': url, 'action': 'getfavorites', 'folder': True,
                                  'poster': "http://norestrictions.club/norestrictions.club/main/icons/my_bob.jpg"})
             self.worker()
@@ -102,7 +103,7 @@ class Indexer:
             pass
 
     def getx(self, url):
-        self.get('', url)
+        self.get('', url, uncached=True)
 
     def developer(self):
         try:
@@ -132,7 +133,6 @@ class Indexer:
                         pass
             except:
                 pass
-
             self.add_directory(self.list)
             return self.list
         except:
@@ -197,7 +197,7 @@ class Indexer:
         except:
             pass
 
-    def get_xml(self, url):
+    def get_xml(self, url, uncached=False):
         import xbmc
         import xbmcaddon
         import xbmcvfs
@@ -207,47 +207,89 @@ class Indexer:
             from pysqlite2 import dbapi2 as database
         import os
         import requests
+        import time
+
+        now = int(time.time())
         xbmcvfs.mkdir(xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')))
         cache_location = os.path.join(
-                xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')).decode('utf-8'),
-                'url_cache.db')
-        request = requests.get(url)
-        try:
-            last_modified = request.headers['Last-Modified']
-        except:
-            last_modified = ""
+            xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')).decode('utf-8'),
+            'url_cache.db')
         try:
             dbcon = database.connect(cache_location)
             dbcur = dbcon.cursor()
             try:
                 dbcur.execute("SELECT * FROM version")
                 match = dbcur.fetchone()
+                if match[0] == "0.5.4":
+                    dbcur.execute("DELETE FROM version WHERE version = '%s'" % ("0.5.4"))
+                    dbcur.execute("INSERT INTO version Values ('0.5.5')")
+                    dbcur.execute('ALTER TABLE xml ADD COLUMN created INTEGER DEFAULT 0')
+                    dbcon.commit()
             except:
                 dbcur.execute("CREATE TABLE version (""version TEXT)")
-                dbcur.execute("INSERT INTO version Values ('0.5.4')")
+                dbcur.execute("INSERT INTO version Values ('0.5.5')")
                 dbcon.commit()
             dbcur.execute(
-                    "CREATE TABLE IF NOT EXISTS xml (url TEXT, xml TEXT, last_modified Text, UNIQUE(url, last_modified));")
-            try:
-                dbcur.execute(
-                        "SELECT * FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
-                match = dbcur.fetchone()
-                if match:
-                    if match[2] == last_modified:
-                        return match[1]
-            except:
-                pass
+                "CREATE TABLE IF NOT EXISTS xml (url TEXT, xml TEXT, last_modified TEXT, created INTEGER DEFAULT 0, UNIQUE(url, last_modified));")
+            if not uncached:
+                try:
+                    dbcur.execute(
+                        "SELECT * FROM xml WHERE url = '%s'" % (url))
+                    match = dbcur.fetchone()
+                    if match:
+                        return (match[1], match[3])
+                except:
+                    pass
 
+            try:
+                request = requests.get(url, timeout=6)
+            except:
+                request = None
+            try:
+                last_modified = request.headers['Last-Modified']
+            except:
+                last_modified = ""
+            if last_modified:
+                try:
+                    dbcur.execute(
+                        "SELECT * FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
+                    match = dbcur.fetchone()
+                    if match:
+                        if match[2] == last_modified:
+                            dbcur.execute(
+                                "UPDATE xml set created = %s WHERE last_modified = '%s' and url = '%s'" % (
+                                now, last_modified, url))
+                            dbcon.commit()
+                            return (match[1], match[3])
+                except:
+                    pass
+            else:
+                try:
+                    dbcur.execute(
+                        "SELECT * FROM xml WHERE url = '%s'" % (url))
+                    match = dbcur.fetchone()
+                    if match:
+                        return (match[1], match[3])
+                except:
+                    pass
+            if not last_modified:
+                request = requests.get(url)
+                last_modified = request.headers['Last-Modified']
             xml = request.content
             try:
-                dbcur.execute("DELETE FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
-                dbcur.execute("INSERT INTO xml Values (?, ?, ?)", (url, xml, last_modified))
-                dbcon.commit()
+                dbcur.execute("DELETE FROM xml WHERE url = '%s'" % (url))
             except:
                 pass
-            return xml
+            xml = xml.replace("\n", "").replace("##", "").replace('\t', "")
+            try:
+                dbcur.execute("INSERT INTO xml Values (?, ?, ?, ?)",
+                              (url, xml.encode("utf-8", "ignore"), last_modified, now))
+            except:
+                dbcur.execute("INSERT INTO xml Values (?, ?, ?, ?)", (url, xml.decode("utf-8"), last_modified, now))
+            dbcon.commit()
+            return (xml, now)
         except:
-            pass
+            return ("", now)
 
     @staticmethod
     def bob_get_tag_content(collection, tag, default):
@@ -257,7 +299,9 @@ class Indexer:
         except:
             return default
 
-    def bob_list(self, url, result=None):
+    def bob_list(self, url, result=None, uncached=False):
+        import time
+        now = int(time.time())
         try:
             try:
                 if not "sport_acesoplisting" == url:
@@ -378,9 +422,14 @@ class Indexer:
                 pass
 
             original_url = url
+            created = 0
             if result is None:
-                result = self.get_xml(url)
-                #result = cache.get(client.request, 0.1, url)
+                result, created = self.get_xml(url, uncached)
+                try:
+                    created = int(created)
+                except:
+                    created = 0
+                    # result = cache.get(client.request, 0.1, url)
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
                 result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE | re.DOTALL).findall(result)
@@ -405,6 +454,18 @@ class Indexer:
             image = replace_url(self.bob_get_tag_content(info, 'thumbnail', '0'))
 
             fanart = replace_url(self.bob_get_tag_content(info, 'fanart', '0'))
+
+            try:
+                cache_time = int(self.bob_get_tag_content(info, 'cache', 0))
+                if (not uncached) and (cache_time > 0 or created == 0):
+                    if created == 0 or now > created + cache_time:
+                        uncached_xml, _ = self.get_xml(url, True)
+                        return self.bob_list("", uncached_xml, True)
+                elif (not uncached) and cache_time == 0:
+                    uncached_xml, _ = self.get_xml(url, True)
+                    return self.bob_list("", uncached_xml, True)
+            except:
+                pass
 
             items = re.compile(
                 '((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|'
@@ -958,6 +1019,13 @@ class Indexer:
 
                 cm = []
 
+                try:
+                    if i['url'].endswith(".xml"):
+                        cm.append(
+                            ("Update Selected List", "RunPlugin(%s)" % url.replace("action=directory", "action=uncached")))
+                except:
+                    pass
+
                 if content in ['movies', 'tvshows']:
                     meta.update({'trailer': '%s?action=trailer&name=%s' % (system_addon, urllib.quote_plus(name))})
                     cm.append((control.lang(30707).encode('utf-8'),
@@ -1304,7 +1372,7 @@ class Resolver:
             pass
 
     @staticmethod
-    def process(url, direct=True, name='', hide_progress = False):
+    def process(url, direct=True, name='', hide_progress=False):
         from resources.lib.sources import sources
         try:
             if not any(i in url for i in ['.jpg', '.png', '.gif']):
@@ -1844,7 +1912,7 @@ class Player(xbmc.Player):
         episode = Indexer.bob_get_tag_content(self.original_url, 'episode', '0')
         content = Indexer.bob_get_tag_content(self.original_url, 'content', '0')
         if content == "episode":
-                metacache.episodes_set_watched(imdb, tmdb, tvdb, season, episode)
+            metacache.episodes_set_watched(imdb, tmdb, tvdb, season, episode)
         elif content == "movie":
             metacache.movies_set_watched(imdb, tmdb, tvdb)
         control.refresh()
