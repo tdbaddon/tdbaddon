@@ -1,3 +1,12 @@
+[COLOR yellowgreen]1.63: 3rd February 2017[/COLOR]
+[COLOR white][B]- General improvments.[/B][/COLOR]
+
+[COLOR yellowgreen]1.62: 3rd February 2017[/COLOR]
+[COLOR white][B]- ECHO Security Checker support for Kodi 17.[/B][/COLOR]
+
+[COLOR yellowgreen]1.61: 3rd February 2017[/COLOR]
+[COLOR white][B]- Added ECHO Security Checker.[/B][/COLOR]
+
 [COLOR yellowgreen]1.60: 2nd February 2017[/COLOR]
 [COLOR white][B]- Support for Kodi 17 advanced settings added.[/B][/COLOR]
 

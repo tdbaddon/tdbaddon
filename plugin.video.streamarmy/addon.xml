@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="1.0.6" provider-name="Stream Army">
+<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="2.0.0" provider-name="Stream Army">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
+	<import addon="script.module.pydes" version="2.0.1"/>
     <import addon="script.module.urlresolver"  version="3.0.26"/>
     <import addon="script.module.liveresolver" version="0.1.48"/>
     <import addon="script.common.plugin.cache" version="2.5.8"/>    
@@ -15,7 +16,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">The Home Of Stream Army Add-on  Stream Army Addon Fully Loaded With Great Playlists</summary>
-    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p / Silent Partner</description>
+    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p</description>
     <platform>all</platform>
   </extension>
 </addon>

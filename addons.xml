@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.60"
+	     version="1.63"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -490,7 +490,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.super.favourites"
        name="TDB SUPER FAVS"
-       version="3001"
+       version="3002"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -512,7 +512,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides>video audio</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -2183,10 +2183,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="1.0.6" provider-name="Stream Army">
+<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="2.0.0" provider-name="Stream Army">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
+	<import addon="script.module.pydes" version="2.0.1"/>
     <import addon="script.module.urlresolver"  version="3.0.26"/>
     <import addon="script.module.liveresolver" version="0.1.48"/>
     <import addon="script.common.plugin.cache" version="2.5.8"/>
@@ -2199,7 +2200,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">The Home Of Stream Army Add-on  Stream Army Addon Fully Loaded With Great Playlists</summary>
-    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p / Silent Partner</description>
+    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2305,7 +2306,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1004"
+       version="1005"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2325,7 +2326,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides>video audio</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -4055,6 +4056,31 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
+<addon id="skin.TDBTOUCHED" version="1000" name="TDB TOUCHED" provider-name="TDB">
+	<requires>
+		<import addon="xbmc.gui" version="5.12.0"/>
+	</requires>
+	<extension point="xbmc.gui.skin" debugging="false">
+		<res width="1280" height="960" aspect="4:3" folder="xml"/>
+		<res width="1706" height="960" aspect="16:9" default="true" folder="xml"/>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Touched skin by TDB designed to be used on touch screen devices or Android TV with a mouse</summary>
+		<description lang="en">This Skin is to be used on touch screen devices like the iPad or with a mouse</description>
+		<disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+		<platform>all</platform>
+		<license></license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<source></source>
+		<assets>
+		<icon>resources/icon.png</icon>
+		<fanart>resources/fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="skin.TDBTouched-K" version="1.07" name="TDB Touched Kodi" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.10.0"/>
@@ -4212,10 +4238,9 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
                 </extension>
                 </addon>
 
-<addon id="weather.yahoo" name="Yahoo! Weather" version="3.3.3" provider-name="ronie">
+<addon id="weather.yahoo" name="Yahoo! Weather" version="4.3.1" provider-name="ronie">
 	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-		<import addon="script.module.simplejson" version="3.3.0"/>
+		<import addon="xbmc.python" version="2.25.0"/>
 	</requires>
 	<extension point="xbmc.python.weather" library="default.py"/>
 	<extension point="xbmc.addon.metadata">

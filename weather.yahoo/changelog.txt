@@ -1,17 +1,35 @@
-v3.3.3
-- retry a few times if no valid weather data is returned
+v4.3.1
+- retry to fetch weather a few times
 
-v3.3.2
-- don't crash on empty result
+v4.3.0
+- cache weather data
 
-v3.3.1
+v4.2.4
+- update translations
+
+v4.2.3
 - fix sunrise/sunset format
 
-v3.3.0
+v4.2.2
+- handle keys with value null
+
+v4.2.1
 - bugfix
 
-v3.2.0
+v4.2.0
+- add support for daily infolabels
+
+v4.1.0
 - update to new api
+
+v4.0.1
+- localize sunset/sunrise
+
+v4.0.0
+- remove simplejson support
+
+v3.1.1
+- remove unused code
 
 v3.1.0
 - change url due to api changes

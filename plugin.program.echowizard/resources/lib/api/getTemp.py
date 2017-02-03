@@ -28,10 +28,14 @@ BASEURL       =  base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
 BUILDS_API    =  BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50')
 ADDONS_API    =  BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
 dialog        =  xbmcgui.Dialog()
+dp            =  xbmcgui.DialogProgress()
 passed        =  0
 
+dp.create(AddonTitle, "[COLOR yellowgreen][B]Connecting to the ECHO Wizard API....[/B][/COLOR]")
+dp.update(0)
+
 if os.path.exists(TEMP_FOLDER):
-	
+
 	try:
 		shutil.rmtree(TEMP_FOLDER)
 	except: pass
@@ -47,6 +51,7 @@ try:
 except: pass
 	
 try:
+	dp.update(50, '[COLOR yellowgreen][B]Connected![/B][/COLOR]','[COLOR white]Getting build information from the API.[/COLOR]')
 	req = urllib2.Request(BUILDS_API)
 	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 	response = urllib2.urlopen(req)
@@ -56,6 +61,7 @@ try:
 	text_file.write(counts)
 	text_file.close()
 
+	dp.update(75, '','[COLOR white]Getting addon installer information from the API.[/COLOR]')
 	req = urllib2.Request(ADDONS_API)
 	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 	response = urllib2.urlopen(req)
@@ -65,6 +71,8 @@ try:
 	text_file.write(counts)
 	text_file.close()
 
+	dp.update(100, '','[COLOR dodgerblue]Finishing up.[/COLOR]')
+	dp.close()
 	dialog.ok(AddonTitle, "We have successfully genenerated the ECHO download counters.")
 	passed = 1
 	quit()

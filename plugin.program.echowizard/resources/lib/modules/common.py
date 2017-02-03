@@ -385,6 +385,22 @@ def count(build_name,FILE):
 		except: 
 			count = "0"
 		return count
+	elif "TOTAL_BUILDS_WEEK" in build_name:
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>Download Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
+	elif "TOTAL_ADDONS_WEEK" in build_name:
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>Download Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: 
+			count = "0"
+		return count
 	else:
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
@@ -393,6 +409,7 @@ def count(build_name,FILE):
 		except: 
 			count = "0"
 		return count
+
 
 def SHOW_PICTURE(url):
 

@@ -105,10 +105,8 @@ def clearCache():
                 
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -130,10 +128,8 @@ def clearCache():
                 if dialog.yesno("Delete Kodi Temp Files", str(file_count) + " files found", "Do you want to delete them?"):
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -160,10 +156,8 @@ def clearCache():
                 
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -189,10 +183,8 @@ def clearCache():
                 
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -220,10 +212,8 @@ def clearCache():
                     if dialog.yesno(MaintTitle,str(file_count) + "%s cache files found"%(entry.name), "Do you want to delete them?"):
 						for f in files:
 							try:
-								checker = (os.path.join(root, f))
-								if not "archive_cache" in str(checker):
-									if (f.endswith(".log")): continue
-									os.unlink(os.path.join(root, f))
+								if (f.endswith(".log")): continue
+								os.unlink(os.path.join(root, f))
 							except:
 								pass
 						for d in dirs:
@@ -1101,10 +1091,8 @@ def autocleannow():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1125,10 +1113,8 @@ def autocleannow():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1151,10 +1137,8 @@ def autocleannow():
             if file_count > 0:                
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1176,10 +1160,8 @@ def autocleannow():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1204,10 +1186,8 @@ def autocleannow():
                 if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1271,10 +1251,8 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1295,10 +1273,8 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1321,10 +1297,8 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:                
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1346,10 +1320,8 @@ def AUTO_CLEAR_CACHE_MB():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1374,10 +1346,8 @@ def AUTO_CLEAR_CACHE_MB():
                 if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1448,10 +1418,8 @@ def AutoCache():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1472,10 +1440,8 @@ def AutoCache():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1498,10 +1464,8 @@ def AutoCache():
             if file_count > 0:                
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1523,10 +1487,8 @@ def AutoCache():
             if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:
@@ -1550,10 +1512,8 @@ def AutoCache():
                 if file_count > 0:
                     for f in files:
                         try:
-							checker = (os.path.join(root, f))
-							if not "archive_cache" in str(checker):
-								if (f.endswith(".log")): continue
-								os.unlink(os.path.join(root, f))
+							if (f.endswith(".log")): continue
+							os.unlink(os.path.join(root, f))
                         except:
                             pass
                     for d in dirs:

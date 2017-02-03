@@ -54,6 +54,7 @@ from resources.lib.modules import common as Common
 from resources.lib.modules import wipe
 from resources.lib.modules import versioncheck
 from resources.lib.modules import extras
+from resources.lib.modules import security
 
 #######################################################################
 #					VERIABLES NEEDED
@@ -73,6 +74,7 @@ ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
 TEMP_FOLDER         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
 TEMP_FILE           =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
+TEMP_ADDONS         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
 COMMUNITY_BUILD		=  xbmc.translatePath(os.path.join('special://home/userdata/','community_build.txt'))
 COMMUNITY_OTA		=  xbmc.translatePath(os.path.join('special://home/userdata/','echo_community_ota.txt'))
 KEYBOARD_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
@@ -117,6 +119,7 @@ DONATIONS_URL       = BASEURL + base64.b64decode(b'b3RoZXIvZG9uYXRpb25zLnR4dA=='
 SERVER_CHECKER      = BASEURL + base64.b64decode(b'ZG93bi50eHQ=')
 SERVER_CHECK        = BASEURL + base64.b64decode(b'Y2hlY2tlci50eHQ=')
 ADD_COMMUNITY       = BASEURL + base64.b64decode(b'b3RoZXIvYWRkX2NvbW11bml0eS50eHQ=')
+ADDONS_API          = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
 ECHO_API            = BASEURL + base64.b64decode(b"YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50")
 ECHO_CHANNEL        = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20veW91dHViZS95b3V0dWJlLnBocD9pZD1VQ29ZVkVRd3psU3VFLU4yQ3VLdlFKNHc=")
 JARVIS_URL          = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfamFydmlzLnR4dA==")
@@ -213,6 +216,8 @@ if not os.path.exists(TEMP_FOLDER):
 	os.makedirs(TEMP_FOLDER)
 if not os.path.isfile(TEMP_FILE):
 	open(TEMP_FILE, 'w')
+if not os.path.isfile(TEMP_ADDONS):
+	open(TEMP_ADDONS, 'w')
 
 #######################################################################
 #						ECHO WIZARD ROOT MENU
@@ -294,9 +299,31 @@ def INDEX():
 	#######################################################################
 	kodi_name = Common.GET_KODI_VERSION()
 
+	api_interval = plugintools.get_setting("api_interval")
+
+	if api_interval == "0":
+		mark = "60"
+	elif api_interval == "1":
+		mark = "50"
+	elif api_interval == "2":
+		mark = "40"
+	elif api_interval == "3":
+		mark = "30"
+	elif api_interval == "4":
+		mark = "20"
+	elif api_interval == "5":
+		mark = "10"
+	elif api_interval == "6":
+		mark = "5"
+	else: mark = "60"
+
 	if offline == 0:
 		GET_COUNTS()
-		Common.addItem('[COLOR red][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
+		total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_ADDONS)
+		total_builds_week = Common.count("TOTAL_BUILDS_WEEK",TEMP_FILE)
+		Common.addDir("[COLOR white][B]ADDONS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+		Common.addDir("[COLOR white][B]BUILDS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_builds_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,999,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
@@ -324,6 +351,7 @@ def INDEX():
 		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,FANART,'')
 	if offline == 0:
@@ -348,8 +376,10 @@ def INDEX():
 	Common.addItem('[COLOR ghostwhite][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]THE ECHO API REFRESHES EVERY ' + '[COLOR yellowgreen]'+str(mark)+' [/COLOR]MINUTES[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]CLEAR DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,180,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]REGENERATE DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,179,SETTINGS_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD SETTINGS[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 
 	kodi_name = Common.GET_KODI_VERSION()
@@ -870,6 +900,7 @@ def GET_COUNTS():
 	else: mark = 60
 	
 	fileCreation = os.path.getmtime(TEMP_FILE)
+	fileCreation2 = os.path.getmtime(TEMP_ADDONS)
 
 	now = time.time()
 
@@ -877,6 +908,8 @@ def GET_COUNTS():
 	
 	text_file = open(TEMP_FILE)
 	compfile = text_file.read()  
+	text_file = open(TEMP_ADDONS)
+	compfile2 = text_file.read()  
 	
 	if len(compfile) == 0:
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
@@ -892,6 +925,21 @@ def GET_COUNTS():
 		text_file = open(TEMP_FILE, "w")
 		text_file.write(counts)
 		text_file.close()
+
+	if len(compfile2) == 0:
+		counts=Common.OPEN_URL_NORMAL(ADDONS_API)
+
+		text_file = open(TEMP_ADDONS, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	elif fileCreation2 < check:
+
+		counts=Common.OPEN_URL_NORMAL(ADDONS_API)
+		text_file = open(TEMP_ADDONS, "w")
+		text_file.write(counts)
+		text_file.close()
+		
 
 #######################################################################
 #						BACKUP MENU MENU
@@ -1006,14 +1054,33 @@ def LATEST_LIST():
 	if xbmc.getCondVisibility('system.platform.windows'):
 		LATEST_WINDOWS()
 
-	if xbmc.getCondVisibility('system.platform.osx'):
+	elif xbmc.getCondVisibility('system.platform.osx'):
 		LATEST_OSX()
 
-	if xbmc.getCondVisibility('system.platform.ios'):
+	elif xbmc.getCondVisibility('system.platform.darwin'):
+		LATEST_OSX()
+
+	elif xbmc.getCondVisibility('system.platform.ios'):
 		LATEST_IOS()
 
-	if xbmc.getCondVisibility('system.platform.android'):
+	elif xbmc.getCondVisibility('system.platform.android'):
 		LATEST_ANDROID()
+	else:
+	
+		if xbmc.getCondVisibility('system.platform.linux'):
+			platform_name = "Linux"
+		elif xbmc.getCondVisibility('system.platform.linuxraspberrypi'):
+			platform_name = "Raspberry Pi"
+		elif xbmc.getCondVisibility('system.platform.darwin'):
+			platform_name = "Linux"
+		elif xbmc.getCondVisibility('system.platform.atv2'):
+			platform_name = "Apple TV 2"
+		elif xbmc.getCondVisibility('system.platform.atv4'):
+			platform_name = "Apple TV 4"
+		else: platform_name = "Unknown"
+		
+		Common.addItem('[COLOR white][B]Detected Platform: [/B][/COLOR][COLOR yellowgreen]' + platform_name + '[/COLOR]',url,999,ICON,FANART,'')
+		Common.addItem('No installation files found for this platform.',url,999,ICON,FANART,'')
 
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
@@ -1487,6 +1554,9 @@ def GETTEMP():
 	dialog        =  xbmcgui.Dialog()
 	passed        =  0
 
+	dp.create(AddonTitle, "[COLOR yellowgreen][B]Connecting to the ECHO Wizard API....[/B][/COLOR]")
+	dp.update(0)
+
 	if os.path.exists(TEMP_FOLDER):
 		
 		try:
@@ -1504,6 +1574,7 @@ def GETTEMP():
 	except: pass
 		
 	try:
+		dp.update(50, '[COLOR yellowgreen][B]Connected![/B][/COLOR]','[COLOR white]Getting build information from the API.[/COLOR]')
 		req = urllib2.Request(BUILDS_API)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 		response = urllib2.urlopen(req)
@@ -1513,6 +1584,7 @@ def GETTEMP():
 		text_file.write(counts)
 		text_file.close()
 
+		dp.update(75, '','[COLOR white]Getting addon installer information from the API.[/COLOR]')
 		req = urllib2.Request(ADDONS_API)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 		response = urllib2.urlopen(req)
@@ -1522,17 +1594,22 @@ def GETTEMP():
 		text_file.write(counts)
 		text_file.close()
 
+		dp.update(100, '','[COLOR dodgerblue]Finishing up.[/COLOR]')
+		dp.close()
 		dialog.ok(AddonTitle, "We have successfully genenerated the ECHO download counters.")
 		passed = 1
 		quit()
 	except: pass
 		
 	if passed == 0:
+		dp.close()
 		dialog.ok(AddonTitle, "There was an error generating the download counters. Please try again later.")
 		quit()
 
 def CLEARTEMP():
 
+	dp.create(AddonTitle, "[COLOR yellowgreen]Removing ECHO Wizard temp files.[/COLOR]")
+	
 	TEMP_FOLDER      =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
 
 	if os.path.exists(TEMP_FOLDER):
@@ -1540,12 +1617,15 @@ def CLEARTEMP():
 		try:
 			shutil.rmtree(TEMP_FOLDER)
 		except:
+			dp.close()
 			dialog.ok(AddonTitle, "There was an error removing the ECHO temp files.")
 			quit()
+		dp.close()
 		dialog.ok(AddonTitle, "We have succesfully removed the ECHO temp files.")
 		quit()
 
 	else:
+		dp.close()
 		dialog.ok(AddonTitle, "No temp files could be found.")
 		quit()
 
@@ -2065,5 +2145,8 @@ elif mode==179:
 		
 elif mode==180:
 		CLEARTEMP()
+
+elif mode==181:
+		security.check()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

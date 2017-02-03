@@ -19,21 +19,27 @@
 #######################################################################
 import xbmcgui, shutil, os
 
-addon_id = 'plugin.program.echowizard'
-AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-TEMP_FOLDER      =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
-dialog = xbmcgui.Dialog()
+addon_id    = 'plugin.program.echowizard'
+AddonTitle  = "[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+TEMP_FOLDER = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
+dialog      = xbmcgui.Dialog()
+dp          = xbmcgui.DialogProgress()
+
+dp.create(AddonTitle, "[COLOR yellowgreen]Removing ECHO Wizard temp files.[/COLOR]")
 
 if os.path.exists(TEMP_FOLDER):
 	
 	try:
 		shutil.rmtree(TEMP_FOLDER)
 	except:
+		dp.close()
 		dialog.ok(AddonTitle, "There was an error removing the ECHO temp files.")
 		quit()
+	dp.close()
 	dialog.ok(AddonTitle, "We have succesfully removed the ECHO temp files.")
 	quit()
 
 else:
+	dp.close()
 	dialog.ok(AddonTitle, "No temp files could be found.")
 	quit()
