@@ -1,4 +1,7 @@
-v2.9
+v2.9.2
+- Kodi 17 View Fix
+
+v2.9.0
 - Sportsdevil Fix
 
 v2.8

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.TDBTOUCHED" version="1000" name="TDB TOUCHED" provider-name="TDB">
+<addon id="skin.TDBTOUCHED" version="1001" name="TDB TOUCHED" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.12.0"/>
 	</requires>
@@ -8,9 +8,9 @@
 		<res width="1706" height="960" aspect="16:9" default="true" folder="xml"/>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">KODI 17 ONLY!!!  designed to be used on touch screen devices or Android TV with a mouse</summary>
-		<description lang="en">This Skin is to be used on touch screen devices like the iPad or with a mouse</description>
-		<disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+		<summary lang="en">KODI 17 ONLY!!! designed to be used on touch screen devices or Android TV with a mouse.</summary>
+		<description lang="en"></description>
+		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
 		<license></license>
 		<forum></forum>

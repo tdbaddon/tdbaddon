@@ -8,6 +8,13 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="false" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
+		<setting type="lsep" label="Tv Shows Settings" />
+		<setting id="episodes_notaired" type="bool" label="Show Not Aired Episodes" default="true" />
+		<setting id="episodes_colours" type="enum" label="Not Aired Episodes Colours" values="Gold|Green|Red|Normal" default="0"  visible="!eq(-1,false)" />
+		<setting id="show_specials" type="bool" label="Show Special Seasons" default="false" />
+
+		
+		
 		<setting type="lsep" label="32319" />
 		<setting id="movie.widget" type="enum" label="Spotlight Content" values="None|New Movies|Trending|Populars|In Theaters|Top Rated" default="2" />
 		<setting id="cachesources" type="bool" label="Cache Sources" default="true" />
@@ -55,7 +62,6 @@
 		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
 		
-		<setting id="provider.bcinema" type="bool" label="Bcinema" default="true" />
 		<setting id="provider.bobby" type="bool" label="Bobby" default="true" />	
 
 		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />

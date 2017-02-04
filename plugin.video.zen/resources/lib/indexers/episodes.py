@@ -36,7 +36,7 @@ action = params.get('action')
 class seasons:
     def __init__(self):
         self.list = []
-
+        self.show_specials = control.setting('show_specials')
         self.lang = 'en'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
@@ -156,7 +156,7 @@ class seasons:
             item = result[0] ; item2 = result2[0]
 
             episodes = [i for i in result if '<EpisodeNumber>' in i]
-            episodes = [i for i in episodes if not '<SeasonNumber>0</SeasonNumber>' in i]
+            if  self.show_specials == 'false': episodes = [i for i in episodes if not '<SeasonNumber>0</SeasonNumber>' in i]
             episodes = [i for i in episodes if not '<EpisodeNumber>0</EpisodeNumber>' in i]
 
             seasons = [i for i in episodes if '<EpisodeNumber>1</EpisodeNumber>' in i]
@@ -504,7 +504,8 @@ class seasons:
 class episodes:
     def __init__(self):
         self.list = []
-
+        self.episodes_colours = control.setting('episodes_colours')
+        self.episodes_notaired = control.setting('episodes_notaired')
         self.trakt_link = 'http://api-v2launch.trakt.tv'
         self.tvdb_key = base64.urlsafe_b64decode('MUQ2MkYyRjkwMDMwQzQ0NA==')
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
@@ -1230,7 +1231,17 @@ class episodes:
                     label = '%sx%02d . %s' % (i['season'], int(i['episode']), i['label'])
                 if multi == True:
                     label = '%s - %s' % (i['tvshowtitle'], label)
-                if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  label = '[I]%s[/I]' % label
+					
+                if self.episodes_notaired == 'true':
+					if self.episodes_colours == '0': label2 = '[COLOR gold][I]%s[/I][/COLOR]' % label
+					elif self.episodes_colours == '1': label2 = '[COLOR green][I]%s[/I][/COLOR]' % label
+					elif self.episodes_colours == '2': label2 = '[COLOR red][I]%s[/I][/COLOR]' % label
+					else: label2 = '[I]%s[/I]' % label
+								
+					if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  label = label2
+                else:
+					if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  raise Exception()
+				
                 imdb, tvdb, year, season, episode = i['imdb'], i['tvdb'], i['original_year'], i['season'], i['episode']
 
                 systitle = urllib.quote_plus(i['title'])

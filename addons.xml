@@ -345,28 +345,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-    <addon id="plugin.program.addoninstaller" version="1.2.9"
-    	name="Addon Installer" provider-name="tvaddons.ag, Blazetamer">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.addon.common" optional="true" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>executable</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Addon Browser</summary>
-        <description>Its like an App Store where you'll find Addons for Kodi, and everything is free!</description>
-        <disclaimer>By using this, you take reponsibility for anything that happens.</disclaimer>
-        <language>en</language>
-        <platform>all</platform>
-        <forum>http://forums.tvaddons.ag/forums/156-ADDON-INSTALLER</forum>
-        <website>http://addons.tvaddons.ag/</website>
-        <source></source>
-        <email></email>
-    </extension>
-</addon>
-
 <addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
     <requires>
     </requires>
@@ -490,7 +468,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.super.favourites"
        name="TDB SUPER FAVS"
-       version="3002"
+       version="3003"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2689,7 +2667,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="2.9.0" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="2.9.2" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -2812,7 +2790,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.7.6" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.8.0" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2831,7 +2809,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Improved overall speed, update providers, fixed bugs - Update and Fix Major Providers - Implemented various modules for cloudflare and better scraping</news>
+		<news>Settings for shows and episodes</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3449,24 +3427,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.0" provider-name="sClarke">
-	<extension point="xbmc.addon.repository" name="StreamHub Repository">
-	<dir>
-		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	</dir>
-		<info compressed="false">http://mkodi.co.uk/streamhub/repofiles/addons.xml</info>
-		<checksum>http://mkodi.co.uk/streamhub/repofiles/addons.xml.md5</checksum>
-		<datadir zip="true">http://mkodi.co.uk/streamhub/repofiles/Zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>MediaHub Repo</summary>
-		<description>Bringing you the MediaHub Addons.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
 <extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
 		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
@@ -3820,7 +3780,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.6" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.7" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3894,25 +3854,6 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.4" provider-name="sClarke">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.requests" />
-	<import addon="script.module.urlresolver" />
-	<import addon="script.module.liveresolver" version="0.1.24"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>all</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Dependency Addon for StreamHub</summary>
-    <description lang="en">Dependency Addon for StreamHub</description>
-	<disclaimer lang="en">Dependency Addon for StreamHub</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="script.module.xbmcswift" name="xbmcswift" version="0.2.2" provider-name="Jonathan Beluch (jbel)">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3977,30 +3918,6 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.streamhub.artwork" version="1.0.0" name="Streamhub Artwork" provider-name="sClarke">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the StreamHub Addon</summary>
-		<description>Themes for StreamHub are maintained separately to make distribution of the the addon itself easier/faster.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="script.streamhub.metadata" version="1.0.0" name="StreamHub Metadata" provider-name="sClarke">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Metadata for the StreamHub Addon</summary>
-		<description>Metadata for StreamHub are maintained separately to make distribution of the the addon itself easier/faster.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
 	     version="3.5.1a"
@@ -4024,7 +3941,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 </addon>
 
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="1011" provider-name="TDB">
+    name="TDB-Backup" version="1012" provider-name="TDB">
   <requires>
 	<!-- jarvis -->
     <import addon="xbmc.python" version="2.24.0"/>
@@ -4063,7 +3980,31 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="skin.TDBTOUCHED" version="1000" name="TDB TOUCHED" provider-name="TDB">
+<addon id="skin.TDBCONFLUENCE" version="1000" name="TDB CONFLUENCE" provider-name="TDB">
+	<requires>
+		<import addon="xbmc.gui" version="5.12.0"/>
+	</requires>
+	<extension point="xbmc.gui.skin" debugging="false" effectslowdown="1.0">
+		<res width="1280" height="720" aspect="16:9" default="true" folder="720p" />
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_US">Original Confluence skin redesigned for Kodi 17</summary>
+		<description lang="en_US">.</description>
+		<platform>all</platform>
+		<license></license>
+		<forum></forum>
+		<website/>
+		<email/>
+		<source></source>
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.jpg</fanart>
+		</assets>
+		<news></news>
+	</extension>
+</addon>
+
+<addon id="skin.TDBTOUCHED" version="1001" name="TDB TOUCHED" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.12.0"/>
 	</requires>
@@ -4072,9 +4013,9 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 		<res width="1706" height="960" aspect="16:9" default="true" folder="xml"/>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">KODI 17 ONLY!!!  designed to be used on touch screen devices or Android TV with a mouse</summary>
-		<description lang="en">This Skin is to be used on touch screen devices like the iPad or with a mouse</description>
-		<disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+		<summary lang="en">KODI 17 ONLY!!! designed to be used on touch screen devices or Android TV with a mouse.</summary>
+		<description lang="en"></description>
+		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
 		<license></license>
 		<forum></forum>

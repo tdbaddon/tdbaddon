@@ -494,7 +494,7 @@ class md:
 
 	def fetch_meta(self, content, infolabels, fan_art={}):
 
-		meta = {}
+                meta = {}
 
 		if 'year' in infolabels:
 			year = infolabels['year']
@@ -534,8 +534,10 @@ class md:
 
 		if simpleyear == '':
 			simpleyear = year
-
-		simpleyear = re.sub('\D', '', simpleyear) 
+			
+                season = re.sub('\D', '', season)
+                episode = re.sub('\D', '', episode)
+                simpleyear = re.sub('\D', '', simpleyear) 
 		
 		if content == 'movies':
 
@@ -545,31 +547,21 @@ class md:
 				pass
 
 		elif content == 'tvshows':
-
-			if self.addon.get_setting('tv_show_meta') == 'true':
+                        self.addon.log('################ssetvs= '+str(self.addon.get_setting('tv_show_meta')))
+                        if self.addon.get_setting('tv_show_meta') == 'true':
 				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 			else:
 				pass
 
-		elif content == 'seasons':
-
-			if self.addon.get_setting('season_meta') == 'true':
-				if season:
-					try:
-						meta.get_seasons(simplename,code,season)
-					except:
-						meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
-				else:
-					meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
-			else:
-				pass
-
 		elif content == 'episodes':
-
+                        self.addon.log('################ssetepi= '+str(self.addon.get_setting('episode_meta')))
 			if self.addon.get_setting('episode_meta') == 'true':
-				if episode:
-					meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
-				else:
+                                self.addon.log('################season= '+str(season))
+                                self.addon.log('################episode= '+str(episode))
+                                self.addon.log('################title= '+str(simplename))
+				try:
+                                        meta = metaget.get_episode_meta(simplename,code,season,episode)
+				except:
 					meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 			else:
 				pass
@@ -587,7 +579,7 @@ class md:
 
 	def addDir(self, queries, infolabels={}, fan_art={}, properties=None, contextmenu_items='',
 		   context_replace=False, playlist=False, item_type='video', stream_info='',
-		   is_folder=True, is_playable=True, item_count=0, add_fav=True):
+		   is_folder=True, is_playable=True, item_count=0, add_fav=True, add_search=True):
 
 		infolabels = self.addon.unescape_dict(infolabels)
 		name = queries['name'].replace('()','')
@@ -630,6 +622,9 @@ class md:
 						fan_art['thumb'] = infolabels['thumb_url']
 					else:
 						fanart['thumb'] = infolabels['cover_url']
+
+					#if infolabels['trailer_url'] == '':
+                                                #del infolabels['trailer_url']
 					
 			else:
 				pass
@@ -644,25 +639,35 @@ class md:
 
 		if not is_folder:
 			if is_playable and item_type=='video':
-				listitem.setProperty("IsPlayable","true")
+				listitem.setProperty('IsPlayable','true')
 				listitem.addStreamInfo(item_type, stream_info)
 
 		if properties:
 			for prop in properties.items():
 				listitem.setProperty(prop[0], prop[1])
 
+		if add_search:
+                        if not contextmenu_items:
+				contextmenu_items = []
+                        contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
+
+
 		if add_fav:
 			if not contextmenu_items:
 				contextmenu_items = []
+			
+                        try:
+                                baseurl = self.addon.get_setting('base_url')
+                        except:
+                                baseurl = ''
 
+                        contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'baseurl':baseurl})))
 			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
 						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
 									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,
 									       'mode_id':queries['mode'], 'is_folder':is_folder})))
-
-		if contextmenu_items:
-			#contextmenu_items.append(['[B][COLOR gold]Search[/COLOR][/B]', 'XBMC.RunPlugin(%s)' % self.addon.build_plugin_url({'mode': '2', 'name':'[B][COLOR white]SEARCH[/COLOR][/B]', 'url':'url', 'content':content})])
-			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
+                if contextmenu_items:
+                        listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
 
 		if playlist is not False:
 			self.addon.log_debug('adding item: %s - %s to playlist' % \
@@ -677,7 +682,7 @@ class md:
 
 
 	def check_source(self):
-		if xbmcvfs.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
+		if os.path.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
 			with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:
 				my_file = f.read()
 				if re.search(r'http://muckys.mediaportal4kodi.ml', my_file):
@@ -695,3 +700,4 @@ class md:
 					shutil.rmtree(delete_repo, ignore_errors=True)
 					self.addon.log('===DELETING===ADDON===+===REPO===')
 					self.addon.show_ok_dialog(self.addon.get_name(), line4, line5)
+		

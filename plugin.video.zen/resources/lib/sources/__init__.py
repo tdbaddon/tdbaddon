@@ -286,12 +286,18 @@ class sources:
 
 
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, presetDict=[], timeout=30):
+        progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
+        progressDialog.create(control.addonInfo('name'), '')
+        progressDialog.update(0,'Preparing Scrapers...')	
+		
         sourceDict = []
         for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
         sourceDict = [i[0] for i in sourceDict if i[1] == False]
 
         if not presetDict == []: sourceDict = [i for i in presetDict if i in sourceDict]
 
+		
+		
         content = 'movie' if tvshowtitle == None else 'episode'
 
 
@@ -326,9 +332,7 @@ class sources:
         sourceLabel = [i for i in sourceDict]
         # sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
 
-        progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
-        progressDialog.create(control.addonInfo('name'), '')
-        progressDialog.update(0)
+
 
         string1 = control.lang(32404).encode('utf-8')
         string2 = control.lang(32405).encode('utf-8')

@@ -1,3 +1,8 @@
+######## v1.1.7 ########
+ 
+- More work done to md_tools
+- Added search and my favs to the context menu for mucky ducks addons 
+
 ######## v1.1.6 ########
  
 - More work done to md_tools

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="1011" provider-name="TDB">
+    name="TDB-Backup" version="1012" provider-name="TDB">
   <requires>
 	<!-- jarvis -->
     <import addon="xbmc.python" version="2.24.0"/>

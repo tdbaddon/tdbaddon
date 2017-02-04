@@ -9,10 +9,10 @@ selfAddon       = xbmcaddon.Addon(id=addon_id)
 fanart          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 fanarts         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-searchicon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'search.jpg'))
-newicon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-walloffameicon  = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'walloffame.png'))
-nextpage        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'next.png'))
+searchicon      = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/search.jpg'))
+newicon         = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/whatsnew.jpg'))
+walloffameicon  = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/walloffame.png'))
+nextpage        = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/next.png'))
 sd_path         = xbmc.translatePath(os.path.join('special://home/addons/', 'plugin.video.sportsdevil'))
 baseurl         = 'http://pbear90repo.netai.net/addons/wweondemand/pbearmain.xml'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
@@ -28,8 +28,7 @@ RUNNER 			= base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
                                                                
 def GetMenu():
-        popup()
-        xbmc.executebuiltin('Container.SetViewMode(500)')
+        xbmc.executebuiltin('Container.SetViewMode(55)')
         url = baseurl
         addDir('[B][COLOR gold]Whats New[/COLOR][/B]',url,10,newicon,fanarts)
         link=open_url(baseurl)
@@ -528,7 +527,7 @@ def showText(heading, text):
 def view(link):
         try:
                 match= re.compile('<layouttype>(.+?)</layouttype>').findall(link)[0]
-                if layout=='thumbnail': xbmc.executebuiltin('Container.SetViewMode(500)')              
+                if layout=='thumbnail': xbmc.executebuiltin('Container.SetViewMode(55)')              
                 else:xbmc.executebuiltin('Container.SetViewMode(50)')  
         except:pass
 

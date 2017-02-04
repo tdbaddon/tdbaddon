@@ -1,3 +1,9 @@
+[B]1.8.0[/B]
+- Added Settings to Show Special Seasons
+- Settings to change colour of episodes not aired
+- enable/disable Episodes not aired
+- Scraper Fixes
+
 [B]1.7.0[/B]
 - Improved overall code speed and scraper queries
 - Rewritten obsolete code
