@@ -747,16 +747,16 @@ def AddPv2Sports(url):
         seq=r[1]        
         if seq.isdigit() and prevseq<>seq:
             col=colors[int(seq)]
-            addDir(Colored(url[int(seq)].capitalize(),col),'',37,'', False, True,isItFolder=True)            
+            addDir(ColoredOpt(url[int(seq)].capitalize(),col),'',37,'', False, True,isItFolder=True)            
         prevseq=seq    
-        addDir (Colored(r[0].capitalize(),col) ,base64.b64encode(r[2]),37,r[3], False, True,isItFolder=False)
+        addDir (ColoredOpt(r[0].capitalize(),col) ,base64.b64encode(r[2]),37,r[3], False, True,isItFolder=False)
 
 def AddMyTVSports(url=None):
         
     for cname,ctype,curl,imgurl in getMyTVChannels():
         cname=cname.encode('ascii', 'ignore').decode('ascii')
         mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
     
 def AddPakTVSports(url=None):
@@ -764,7 +764,7 @@ def AddPakTVSports(url=None):
     if url=="sss":
         cats=['CTG Stadium','T20 World Cup','Live Cricket','Ptv Sports','PSL','Pak VS NZ','IND VS AUS','ENG VS SA','India Sports','World Sports','Football Clubs','Pak Sports','Cricket','Footbal','Golf','Wrestling & Boxing','T20 Big Bash League']
         isSports=True
-        addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"paktv",66 ,'', False, True,isItFolder=True)
+        addDir(ColoredOpt('>>Click here for All Categories<<'.capitalize(),'red') ,"paktv",66 ,'', False, True,isItFolder=True)
     else:
         cats=[url]
         isSports=False
@@ -777,14 +777,14 @@ def AddPakTVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
                    
 def AddPTCSports(url=None):
     if url=="sss":
         isSports=True
         cats=['PSL','IPL','Ptv Sports','Star Sports','Sports','BPL T20','Live Cricket','Live Footbal','Ten Sports','BT Sports','Euro Sports']
-        addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"ptc",66 ,'', False, True,isItFolder=True)
+        addDir(ColoredOpt('>>Click here for All Categories<<'.capitalize(),'red') ,"ptc",66 ,'', False, True,isItFolder=True)
     else:
         cats=[url]
         isSports=False
@@ -796,7 +796,7 @@ def AddPTCSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
     
 def total_seconds(dt):
@@ -1215,7 +1215,7 @@ def AddFootballCats(url=None):
         if len(channels)>0:
             for cname,ctype,curl,imgurl,seq in channels:
                 cname=cname.encode('ascii', 'ignore').decode('ascii') 
-                addDir(Colored (cname,'blue') ,'',0,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+                addDir(ColoredOpt (cname,'blue') ,'',0,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
                 addDir('   -Highlights/Live Streams' ,curl,87,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
                 addDir('   -Videos' ,curl,88,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
     except: 
@@ -1305,7 +1305,7 @@ def getFootballMatches(url):
                 namecol="blue"
                 playtype="live"
                 curl=channel["highlight"][0]["media_url"]
-            cname=Colored( datenum+' '+channel["home_team"]["name"]  + ' ' +str(channel["home_score"]) +'-' +str(channel["guest_score"] ) +' '+channel["guest_team"]["name"],namecol) +'\n' + Colored(channel["competition"]["name"],'red')
+            cname=ColoredOpt( datenum+' '+channel["home_team"]["name"]  + ' ' +str(channel["home_score"]) +'-' +str(channel["guest_score"] ) +' '+channel["guest_team"]["name"],namecol) +'\n' + ColoredOpt(channel["competition"]["name"],'red')
             
             cimage=channel["screenshot"]  
             
@@ -1440,7 +1440,7 @@ def AddIndianPakShowsEP(url):
 def AddYuppSports(url=None):
     try:
 
-        addDir(Colored("Live Streams".capitalize(),'ZM') ,"" ,-1,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt("Live Streams".capitalize(),'ZM') ,"" ,-1,"", False, True,isItFolder=False)		#name,url,mode,icon
         channels=getYuppSportsChannel(Live=True)
         if len(channels)>0:
             for cname,ctype,curl,imgurl in channels:
@@ -1453,7 +1453,7 @@ def AddYuppSports(url=None):
     except: pass
     try:
 
-        addDir(Colored("Recorded/Highlights".capitalize(),'ZM') ,"" ,-1,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt("Recorded/Highlights".capitalize(),'ZM') ,"" ,-1,"", False, True,isItFolder=False)		#name,url,mode,icon
         channels=getYuppSportsChannel(Live=False)
         if len(channels)>0:
             for cname,ctype,curl,imgurl in channels:
@@ -1498,7 +1498,7 @@ def AddUKTVNowChannels(url=None):
         mm=11
 #        print repr(curl)
        
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return   
 
 def AddIpBoxSources(url=None):
@@ -1507,7 +1507,7 @@ def AddIpBoxSources(url=None):
             #print cname
             cname=cname#cname.encode('ascii', 'ignore').decode('ascii')
            
-            addDir(Colored(cname.capitalize(),'ZM') ,curl ,61 ,"", False, True,isItFolder=True)		#name,url,mode,icon
+            addDir(ColoredOpt(cname.capitalize(),'ZM') ,curl ,61 ,"", False, True,isItFolder=True)		#name,url,mode,icon
         except: traceback.print_exc(file=sys.stdout) 
     return
     
@@ -1524,7 +1524,7 @@ def AddIpBoxChannels(url=None):
             mm=11
     #        print repr(curl)
            
-            addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+            addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
         except: traceback.print_exc(file=sys.stdout) 
     return     
     
@@ -1546,7 +1546,7 @@ def AddWTVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return      
     
 def AddGTVSports(url=None):
@@ -1567,13 +1567,13 @@ def AddGTVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return      
 
     
 def AddSafeLang(url=None):
     for cname,ctype in [('English','en'),('German','de'),('French','fr'),('Italian','it'),('Dutch','nl'),('Polish','pl')]:        
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(cname+','+ctype) ,73 ,'', False, True,isItFolder=True)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(cname+','+ctype) ,73 ,'', False, True,isItFolder=True)		#name,url,mode,icon
     return  
     
     
@@ -1719,7 +1719,7 @@ def AddMAMAHDChannels(url):
                 except:
                     traceback.print_exc(file=sys.stdout)
                     pass
-                cname+=Colored(livetxt,'red')
+                cname+=ColoredOpt(livetxt,'red')
 
             addDir(cname ,base64.b64encode('mamahd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
         except:
@@ -2126,7 +2126,7 @@ def AddHDFreeChannels(url):
         #print name, logo
         if not logo.startswith('http'):
             logo= 'http://hdfree.tv'+logo
-        addDir(Colored(name.capitalize(),col) ,base64.b64encode('hdfree:'+url) ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
+        addDir(ColoredOpt(name.capitalize(),col) ,base64.b64encode('hdfree:'+url) ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
     
 
         
@@ -2156,7 +2156,7 @@ def AddPITVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return  
 
 
@@ -2177,7 +2177,7 @@ def AddNetworkTVSports2(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return       
     
 def AddNetworkTVSports(url=None):  
@@ -2197,7 +2197,7 @@ def AddNetworkTVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return        
     
 def AddFastSport(url=None):   
@@ -2217,7 +2217,7 @@ def AddFastSport(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return        
 def AddUniTVSports(url=None):   
 
@@ -2236,7 +2236,7 @@ def AddUniTVSports(url=None):
             mm=45
         else:
             mm=11
-        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return        
     
 def ShowAllCategories(url):
@@ -2287,7 +2287,7 @@ def ShowAllCategories(url):
             cname=cname.encode("utf-8")
         else:
             cid=cname
-        addDir(Colored(cname.capitalize(),'red') ,cid,cmode,'', False, True,isItFolder=True)
+        addDir(ColoredOpt(cname.capitalize(),'red') ,cid,cmode,'', False, True,isItFolder=True)
         
 
     
@@ -2297,7 +2297,7 @@ def AddStreamSports(url=None):
     ret=[]
     addDir('Refresh' ,'Live' ,39,'')
     for source in sources["Value"]:
-        cname=Colored(source["Sport"] ,'EB')
+        cname=ColoredOpt(source["Sport"] ,'EB')
         #print 'source["VI"]',source["VI"],cname
         if not "cyber" in cname.lower() and not 'xgame' in source["VI"]:
             if "Opp1" in source and not source["Opp1"].encode('ascii','ignore')=="":
@@ -3022,7 +3022,7 @@ def AddWillowCric(url):
                     print 'videos',videos
                     if "roku" in videos:
                         for video in videos["roku"]["URL"]:
-                            addDir(Colored('Source %s %s '%(str(video["priority"]), video["player"]),'ZM',True) +entry_name ,match_id+':'+str(video["priority"]),21,'', False, True,isItFolder=False)		#name,url,mode,icon
+                            addDir(ColoredOpt('Source %s %s '%(str(video["priority"]), video["player"]),'ZM',True) +entry_name ,match_id+':'+str(video["priority"]),21,'', False, True,isItFolder=False)		#name,url,mode,icon
                             liveadded=True
         if not liveadded:
             addDir(Colored('     ----No Live Games----','red',True) ,'' ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
@@ -4816,7 +4816,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
             cname=cname.encode('ascii', 'ignore').decode('ascii')
             if ctype.startswith('ebmode:'):
                 ctype=ctype.split(':')[1]
-                addDir(Colored(cname.capitalize(),'EB') ,curl ,ctype,imgurl, False, True,isItFolder=False)
+                addDir(ColoredOpt(cname.capitalize(),'EB') ,curl ,ctype,imgurl, False, True,isItFolder=False)
             else:            
                 
                 if ctype=='manual2':
@@ -4850,7 +4850,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     cc='ffbb1111'
                 elif cname.lower().endswith(' nettv'):
                     cc='ff991111'
-                addDir(Colored(cname.capitalize(),cc) ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+                addDir(ColoredOpt(cname.capitalize(),cc) ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
     
 def addiptvSports(url):
@@ -5383,7 +5383,7 @@ def getNetworkTVPage():
     ref = netData["SXNpc2VrZWxvX3Nlc2lzdGltdV95ZXppbm9tYm9sbzAw"][1:].decode("base64")
                 
     headers=[('User-Agent',getFastUA()),('Authorization',auth),('Referer',ref)]
-    post={'check':'1','user_id':str(uid),'version':'23'}
+    post={'check':'1','user_id':str(uid),'version':'26'}
     post = urllib.urlencode(post)
     jsondata=getUrl(baseurl,post=post,headers=headers)
     #print jsondata
@@ -6700,7 +6700,22 @@ def getChannelsFromEboundInternal():
     return ret_match
             
    
-
+def ColoredOpt(text = '', colorid = '', isBold = False):
+    if not selfAddon.getSetting( "enablecolor")=='true': 
+        return text
+    if colorid == 'ZM':
+        color = 'FF11b500'
+    elif colorid == 'EB':
+        color = 'FFe37101'
+    elif colorid == 'bold':
+        return '[B]' + text + '[/B]'
+    else:
+        color = colorid
+        
+    if isBold == True:
+        text = '[B]' + text + '[/B]'
+    return '[COLOR ' + color + ']' + text + '[/COLOR]'	
+    
 def Colored(text = '', colorid = '', isBold = False):
     if colorid == 'ZM':
         color = 'FF11b500'
@@ -6741,7 +6756,7 @@ def AddProgramsAndShows(Fromurl):
     #'<option value="(.*?)">(.*?)<'
     #<optgroup label='(.*?)'
     for cname in match:
-        addDir(Colored(cname,'ZM'),cname ,-9,'', True,isItFolder=False)
+        addDir(ColoredOpt(cname,'ZM'),cname ,-9,'', True,isItFolder=False)
         subprogs=link.split('<optgroup label="%s"'%cname)[1].split('</optgroup>')[0]
         submatch=re.findall('<option value="(.*?)">(.*?)<', subprogs, re.UNICODE)
         for csubname in submatch:
@@ -6893,7 +6908,7 @@ def AddChannels():
     #	print match
     h = HTMLParser.HTMLParser()
     for cname in match:
-        addDir(Colored(h.unescape(cname[2].replace("Watch Now Watch ","").replace("Live, High Quality Streaming","").replace("Live &#8211; High Quality Streaming","").replace("Watch Now ","")) ,'ZM'),cname[0] ,4,cname[1],False,True,isItFolder=False)		
+        addDir(ColoredOpt(h.unescape(cname[2].replace("Watch Now Watch ","").replace("Live, High Quality Streaming","").replace("Live &#8211; High Quality Streaming","").replace("Watch Now ","")) ,'ZM'),cname[0] ,4,cname[1],False,True,isItFolder=False)		
     return	
 
 def PlayShowLink ( url, redirect=True ): 

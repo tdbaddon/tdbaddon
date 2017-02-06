@@ -661,7 +661,7 @@ class md:
                         except:
                                 baseurl = ''
 
-                        contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'baseurl':baseurl})))
+                        contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
 			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
 						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
 									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,

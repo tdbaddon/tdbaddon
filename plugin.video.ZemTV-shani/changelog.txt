@@ -1,3 +1,7 @@
+[B]Version 6.3.2[/B]
+networktv update
+[B]Version 6.3.1[/B]
+remove colours from listings, enable in settings
 [B]Version 6.3.0[/B]
 networktv update
 [B]Version 6.2.9[/B]

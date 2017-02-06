@@ -1,3 +1,8 @@
+######## v1.1.8 ########
+ 
+- More work done to md_tools
+- Fixed error with favs noot opening from context menu
+
 ######## v1.1.7 ########
  
 - More work done to md_tools

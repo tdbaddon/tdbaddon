@@ -68,9 +68,9 @@ def MOVIES():
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/newadd', 'content':'movies'})
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view', 'content':'movies'})
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]HOT MOVIES[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
-	md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':'url', 'content':'movies'})
-	md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
-	md.addDir({'mode': '6', 'name':'[COLOR white][B]YEAR[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+	md.addDir({'mode': 'search', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':'url', 'content':'movies'})
+	md.addDir({'mode': '4', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
+	md.addDir({'mode': '5', 'name':'[COLOR white][B]YEAR[/B][/COLOR]', 'url':baseurl, 'content':'movies'})
 	
 	setView(addon_id, 'files', 'menu-view')
 	addon.end_of_directory()
@@ -84,8 +84,8 @@ def TV():
 		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]LATEST ADDED[/B][/COLOR]', 'url':baseurl+'/latest-tvshow', 'content':'tvshows'})
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]MOST VIEWED[/B][/COLOR]', 'url':baseurl+'/top-view-tvshow', 'content':'tvshows'})
-	md.addDir({'mode': '4', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':baseurl, 'content':'tvshows'})
-	md.addDir({'mode': '5', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
+	md.addDir({'mode': 'search', 'name':'[COLOR white][B]SEARCH[/B][/COLOR]', 'url':baseurl, 'content':'tvshows'})
+	md.addDir({'mode': '4', 'name':'[COLOR white][B]GENRE[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
 	md.addDir({'mode': '3', 'name':'[COLOR white][B]ALL[/B][/COLOR]', 'url':baseurl+'/tvshow', 'content':'tvshows'})
 
 	setView(addon_id, 'files', 'menu-view')
@@ -116,10 +116,10 @@ def INDEX(url,content):
 		epi = md.regex_from_to(a, '"h4-cat".*?>', '<')
 		fan_art = {'icon':thumb, 'fanart':art+'m4u.jpg'}
 		if '-tvshow-' in url:
-			md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
+			md.addDir({'mode': '6', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,epi), 'title':name,
 				   'url':url, 'iconimage':thumb ,'content':'tvshows'}, {'sorttitle':name}, fan_art, item_count=items)
 		else:
-			md.addDir({'mode': '8', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
+			md.addDir({'mode': '7', 'name':'[B][COLOR white]%s[/COLOR] [I][COLOR dodgerblue]%s[/COLOR][/I][/B]' %(name,qual),
 				   'url':url, 'iconimage':thumb, 'content':'movies'}, {'sorttitle':name}, fan_art, is_folder=False, item_count=items)
 
 	np_fan_art = {'icon':art+'next.png', 'fanart':art+'m4u.jpg'}
@@ -170,37 +170,13 @@ def EPIS(title,url,iconimage,content):
 
 		fan_art = {'icon':iconimage, 'fanart':art+'m4u.jpg'}
 
-		md.addDir({'mode': '8', 'name':'[I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %name,
+		md.addDir({'mode': '7', 'name':'[I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %name,
 			   'url':url, 'iconimage':iconimage, 'content':'episodes'},
 			  {'sorttitle':title, 'season':season, 'episode':episode},
 			  fan_art, is_folder=False, item_count=items)
 
 	setView(addon_id,'episodes', 'epi-view')
 	addon.end_of_directory()
-
-
-
-
-def SEARCH(content, query):
-	try:
-		if query:
-			search = query.replace(' ','-')
-		else:
-			search = md.search(blank='-')
-			if search == '':
-				md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
-				return
-			else:
-				pass
-
-		if content == 'movies':
-			url = baseurl+'/tag/'+search
-		elif content == 'tvshows':
-			url = baseurl+'/tagtvs/'+search
-		INDEX(url,content)
-
-	except:
-		md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
 
 
 
@@ -245,15 +221,34 @@ def YEAR(url,content):
 
 
 
+def SEARCH(content, query):
+	try:
+		if query:
+			search = query.replace(' ','-')
+		else:
+			search = md.search(blank='-')
+			if search == '':
+				md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+				return
+			else:
+				pass
+
+		if content == 'movies':
+			url = baseurl+'/tag/'+search
+		elif content == 'tvshows':
+			url = baseurl+'/tagtvs/'+search
+		INDEX(url,content)
+
+	except:
+		md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+
+
+
+
 def RESOLVE(url,iconimage,content,infolabels):
 
 	link = open_url(url).content
 	
-	'''try:
-		request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
-		link = OPEN_URL(request_url)
-	except: pass'''
-
 	try:
 		soup = bs(link, "html.parser")
 		a = soup.find('h3',class_='h3-detail')
@@ -266,44 +261,32 @@ def RESOLVE(url,iconimage,content,infolabels):
 	value = []
 	max_url = []
 	final_url= ''
-	
+
 	match = re.findall(r'"file":"(.*?)".*?"label":"(.*?)"', str(link), re.I|re.DOTALL)
-	try:
-                for url,label in match:
-                        label = re.sub('\D', '', label)
-                        value.append(label)
-                        max_url.append(url)
-			
-                        if '1080' in label:
-                                        final_url = url
-                if not final_url:
-                        final_url =  max_url[md.get_max_value_index(value)[0]]
+	for url,label in match:
+                value.append(int(re.sub('\D', '', label)))
+                max_url.append(url)
 
-		if 'google' in final_url:
-			final_url = final_url
-		else:
-			if baseurl not in final_url:
-				final_url = baseurl + '/' + final_url
+        try:
+                final_url =  max_url[md.get_max_value_index(value)[0]]
+        except:
+                pass
 
-	except:
-		try:
-			final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[0]
-		except:
-			pass
+        if not final_url:
+                request_url = '%s/demo.php' %baseurl
+                try:
+                        params = {'v':re.findall(r'<span class="btn-eps " link="(.*?)" >Server 1</span>', str(link), re.I|re.DOTALL)[0]}
+                except:
+                        params = {'v':re.findall(r'<span class="btn-eps " link="(.*?)" >Server 2</span>', str(link), re.I|re.DOTALL)[0]}
+                link2 = open_url(request_url, params=params).content
+                final_url = re.findall(r'source.*?src="(.*?)"', str(link2), re.I|re.DOTALL)[0]
 
-		if final_url == '':
+        if 'google' in final_url:
+		final_url = final_url
+	else:
+		if baseurl not in final_url:
+			final_url = '%s/%s' %(baseurl,final_url)
 
-			try:
-				final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[1]
-			except:
-				pass
-
-		if 'google' in final_url:
-			final_url = final_url
-		else:
-			if baseurl not in final_url:
-				final_url = baseurl + '/' + final_url
-		
 	final_url = final_url.replace('../view.php?','view.php?')
 	final_url = final_url.replace('./view.php?','view.php?')
 		
@@ -338,29 +321,29 @@ is_folder = md.args.get('is_folder', True)
 if mode is None or url is None or len(url)<1:
 	MAIN()
 
-elif mode is '1':
+elif mode == '1':
 	MOVIES()
 
-elif mode is '2':
+elif mode == '2':
 	TV()
 
-elif mode is '3':
+elif mode == '3':
 	INDEX(url,content)
 
-elif mode is '4':
-	SEARCH(content,query)
-
-elif mode is '5':
+elif mode == '4':
 	GENRE(url,content)
 
-elif mode is '6':
+elif mode == '5':
 	YEAR(url,content)
 
-elif mode is '7':
+elif mode == '6':
 	EPIS(title,url,iconimage,content)
 
-elif mode is '8':
+elif mode == '7':
 	RESOLVE(url,iconimage,content,infolabels)
+
+elif mode == 'search':
+	SEARCH(content,query)
 
 elif mode == 'add_remove_fav':
 	md.add_remove_fav(name, url, infolabels, fan_art,
@@ -376,4 +359,4 @@ elif mode == 'meta_settings':
 	metahandler.display_settings()
 
 md.check_source()
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+addon.end_of_directory()

@@ -1788,3 +1788,57 @@ def AUTO_WEEKLY_CLEAN_ON_OFF():
                  f.close()
 
     xbmc.executebuiltin("Container.Refresh")
+	
+def get_size(start_path):
+    total_size = 0
+    for dirpath, dirnames, filenames in os.walk(start_path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            total_size += os.path.getsize(fp)
+    return total_size
+
+def convertSize(size):
+   import math
+   if (size == 0):
+       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
+   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+   i = int(math.floor(math.log(size,1024)))
+   p = math.pow(1024,i)
+   s = round(size/p,2)
+   if size_name[i] == "B":
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if size_name[i] == "KB":
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if size_name[i] == "GB":
+        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if size_name[i] == "TB":
+        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s < 50:
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s >= 50:
+        if s < 100:
+            return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s >= 100:
+        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+
+def convertSizeInstall(size):
+   import math
+   if (size == 0):
+       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
+   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+   i = int(math.floor(math.log(size,1024)))
+   p = math.pow(1024,i)
+   s = round(size/p,2)
+   if size_name[i] == "B":
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if size_name[i] == "KB":
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if size_name[i] == "TB":
+        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s < 1000:
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s >= 1000:
+        if s < 1500:
+            return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+   if s >= 1500:
+        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'

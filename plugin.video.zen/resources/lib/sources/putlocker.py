@@ -17,8 +17,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
-
 import re,urllib,urlparse,json,base64,time
 
 from resources.lib.modules import cleantitle
@@ -39,50 +37,34 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-
-
-            query = self.movies_link % (cleantitle.geturl(title))
-            print ("PUTLOCKER query", query)
-            url = urlparse.urljoin(self.base_link, query)
-            print ("PUTLOCKER url", url)
-            url = url.encode('utf-8')
-            url = client.request(url, output='geturl')
-            url = url.encode('utf-8')		
-           
-			
-            return url
-        except:
-            return
-
-
-
-
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
-        try:
-            url = {'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
             return url
         except:
             return
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+
+
+    def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-           
-            data = urlparse.parse_qs(url)
-            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-          
-            title = cleantitle.geturl(title)
-            query = self.shows_link % (title, int(season), int(episode))
-          
-            url = urlparse.urljoin(self.base_link, query)
-            
-            url = url.encode('utf-8')
-            url = client.request(url, output='geturl')
-            url = url.encode('utf-8')			
-            
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
+
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            if url == None: return
+
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
 
     def sources(self, url, hostDict, hostprDict):
         try:
@@ -90,12 +72,41 @@ class source:
 
             if url == None: return sources
 
+            if not str(url).startswith('http'):
 
-            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
-          
-            r = client.request(url, output='extended')
+                data = urlparse.parse_qs(url)
+                data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            
+                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+
+                imdb = data['imdb'] ; year = data['year']
+
+                if 'tvshowtitle' in data:
+                    url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
+                else:
+                    url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
+
+                result = client.request(url, limit='5')
+
+                if result == None and not 'tvshowtitle' in data:
+                    url += '-%s' % year
+                    result = client.request(url, limit='5')
+
+                result = client.parseDOM(result, 'title')[0]
+
+                if '%TITLE%' in result: raise Exception()
+
+                r = client.request(url, output='extended')
+
+                if not imdb in r[0]: raise Exception()
+
+               
+            else:
+                url = urlparse.urljoin(self.base_link, url)
+               
+                r = client.request(url, output='extended')
+
+
             cookie = r[4] ; headers = r[3] ; result = r[0]
 
             try: auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
@@ -112,7 +123,7 @@ class source:
             u = '/ajax/tnembeds.php'
             self.base_link = client.request(self.base_link, output='geturl')
             u = urlparse.urljoin(self.base_link, u)
-            # print ("PUTLOCKER u", u)
+
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
 
             elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
@@ -123,59 +134,20 @@ class source:
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
-            # print ("PUTLOCKER post", post)
+
             r = client.request(u, post=post, XHR=True)
-            # print ("PUTLOCKER r2", r)
             r = str(json.loads(r))
-            # print ("PUTLOCKER r3", r)
             r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
-            print ("PUTLOCKER r4", r)
+
             for i in r:
-				if "google" in i:
-					try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Putlocker', 'url': i, 'direct': True, 'debridonly': False})
-					except: continue
-				else:
-					try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
-					except: host = 'none'
-					if not host in hostDict:continue
-					sources.append({'source':host, 'quality': 'SD', 'provider': 'Putlocker', 'url': i + "=url_resolver", 'direct': False, 'debridonly': False})
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Putlocker', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:
             return sources
-			
-			
+
+
     def resolve(self, url):
-            if "url_resolver" in url: url = url.replace('=url_resolver', '')
-
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-		
-			
-    def movieshd_token(self):
-        try:
-            token = client.request(self.base_link)
-            token = re.findall("var\s+tok\s*=\s*'([^']+)", token)[0]
-            return token
-        except:
-            return
-
-
-    def movieshd_set(self):
-        return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
-
-    def movieshd_sl(self):
-        return hashlib.md5(base64.encodestring('0A6ru35yyi5yn4THYpJqy0X82tE95btV')+self.social_lock).hexdigest()
-
-
-    def movieshd_rt(self, s, shift=13):
-        s2 = ''
-        for c in s:
-            limit = 122 if c in string.ascii_lowercase else 90
-            new_code = ord(c) + shift
-            if new_code > limit:
-                new_code -= 26
-            s2 += chr(new_code)
-        return s2
+        return directstream.googlepass(url)
 

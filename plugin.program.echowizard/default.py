@@ -55,6 +55,7 @@ from resources.lib.modules import wipe
 from resources.lib.modules import versioncheck
 from resources.lib.modules import extras
 from resources.lib.modules import security
+from resources.lib.modules import cache_dir
 
 #######################################################################
 #					VERIABLES NEEDED
@@ -69,6 +70,7 @@ CHANGELOG           =  xbmc.translatePath(os.path.join('special://home/addons/' 
 WIZARD_VERSION      =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'version.txt'))
 RESOURCES           =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources'))
 NOTICE              =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/NOTICE.txt'))
+GET_VERSION         =  xbmc.translatePath('special://home/addons/' + addon_id + '/addon.xml')
 DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/settings_default.xml'))
 ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
@@ -169,6 +171,12 @@ TWITTER_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' +
 KEYMAPS_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 #######################################################################
+#				CONTACT THE RUNNER
+#######################################################################
+
+runner.check()
+
+#######################################################################
 #					ECHO VERSION CHECKERS
 #######################################################################
 
@@ -187,6 +195,12 @@ class MyOpener(FancyURLopener):
 
 myopener = MyOpener()
 urlopen = MyOpener().open
+
+#######################################################################
+#			CHECK FOR ARCHIVE_CACHE IN KODI 17
+#######################################################################
+
+cache_dir.check()
 
 #######################################################################
 #			CREATE SETTINGS XML IF IT DOES NOT EXIST
@@ -212,6 +226,10 @@ if os.path.isfile(NOTICE):
 	Common.TextBoxesPlain("%s" % msg)
 	os.remove(NOTICE)
 
+#######################################################################
+#			CREATE FILES AND FOLDERS FOR ECHO API
+#######################################################################
+
 if not os.path.exists(TEMP_FOLDER):
 	os.makedirs(TEMP_FOLDER)
 if not os.path.isfile(TEMP_FILE):
@@ -226,78 +244,83 @@ if not os.path.isfile(TEMP_ADDONS):
 def INDEX():
 
 	#######################################################################
-	#				CONTACT THE RUNNER
+	#	VERIABLES NEEDED IN THE LIST MENU
 	#######################################################################
 
-	runner.check()
+	pleasecheck 		= 0
+	BUILD_CHECK_ERROR   = 0
+	CURRENT_BUILD = "[COLOR yellowgreen]ERROR[/COLOR]"
+	CURRENT_VERSION_CODE = "[COLOR yellowgreen]ERROR[/COLOR]"
+	LATEST_VERSION = "[COLOR yellowgreen]ERROR[/COLOR]"
 
 	#######################################################################
-	#				CHECK IF THE SERVERS ARE DOWN OR UP
+	#					FIND ADDON VERSION
+	#######################################################################
+	
+	a=open(GET_VERSION).read()
+	b=a.replace('\n',' ').replace('\r',' ')
+	match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+	for item in match:
+		addon_version = float(item)
+	
+	#######################################################################
+	#					FIND BUILD INFORMATION
 	#######################################################################
 
-	offline = 0
-	if offline == 0:
+	try:
+		U_A = 'TheWizardIsHere'
+		if os.path.exists(ECHO_VERSION):
+			VERSIONCHECK = ECHO_VERSION
+			FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3VwZGF0ZV93aXoudHh0')
+			checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3ZlcnNpb25fY2hlY2sudHh0')
+			pleasecheck = 1
+		if os.path.exists(COMMUNITY_OTA):
+			VERSIONCHECK = COMMUNITY_OTA
+			a=open(VERSIONCHECK).read()
+			FIND_URL = re.compile('<update_url>(.+?)</update_url>').findall(a)[0]
+			checkurl = re.compile('<version_check>(.+?)</version_check>').findall(a)[0]
+			try:
+				U_A = re.compile('<user_agent>(.+?)</user_agent>').findall(a)[0]
+			except: pass
+			pleasecheck = 1
+	except:
+		pass
 
-		#######################################################################
-		#	VERIABLES NEEDED IN THE LIST MENU
-		#######################################################################
+	#######################################################################
+	#					CHECK FOR BUILD UPDATES
+	#######################################################################
 
-		pleasecheck 		= 0
-		BUILD_CHECK_ERROR   = 0
+	try:
+		if pleasecheck == 1:
+			a=open(VERSIONCHECK).read()
+			CURRENT_BUILD = re.compile('<build>(.+?)</build>').findall(a)[0]
+			CURRENT_VERSION = re.compile('<version>(.+?)</version>').findall(a)[0]
+			req = urllib2.Request(checkurl)
+			req.add_header('User-Agent',U_A)
+			response = urllib2.urlopen(req)
+			link=response.read()
+			response.close()
+			match = re.compile('<build>'+CURRENT_BUILD+'</build><version>(.+?)</version><fresh>(.+?)</fresh>').findall(link)
+			for newversion,fresh in match:
+				LATEST_VERSION = newversion
+				if CURRENT_VERSION < LATEST_VERSION:
+					CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
+				else:
+					CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
+	except:
 		CURRENT_BUILD = "[COLOR yellowgreen]ERROR[/COLOR]"
 		CURRENT_VERSION_CODE = "[COLOR yellowgreen]ERROR[/COLOR]"
 		LATEST_VERSION = "[COLOR yellowgreen]ERROR[/COLOR]"
 
-		#######################################################################
-		#					FIND BUILD INFORMATION
-		#######################################################################
-
-		try:
-			#Information for ECHO Wizard OTA updates.
-			U_A = 'TheWizardIsHere'
-			if os.path.exists(ECHO_VERSION):
-				VERSIONCHECK = ECHO_VERSION
-				FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3VwZGF0ZV93aXoudHh0')
-				checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3ZlcnNpb25fY2hlY2sudHh0')
-				pleasecheck = 1
-			if os.path.exists(COMMUNITY_OTA):
-				VERSIONCHECK = COMMUNITY_OTA
-				a=open(VERSIONCHECK).read()
-				FIND_URL = re.compile('<update_url>(.+?)</update_url>').findall(a)[0]
-				checkurl = re.compile('<version_check>(.+?)</version_check>').findall(a)[0]
-				try:
-					U_A = re.compile('<user_agent>(.+?)</user_agent>').findall(a)[0]
-				except: pass
-				pleasecheck = 1
-		except:
-			pass
-
-		try:
-			if pleasecheck == 1:
-				a=open(VERSIONCHECK).read()
-				CURRENT_BUILD = re.compile('<build>(.+?)</build>').findall(a)[0]
-				CURRENT_VERSION = re.compile('<version>(.+?)</version>').findall(a)[0]
-				req = urllib2.Request(checkurl)
-				req.add_header('User-Agent',U_A)
-				response = urllib2.urlopen(req)
-				link=response.read()
-				response.close()
-				match = re.compile('<build>'+CURRENT_BUILD+'</build><version>(.+?)</version><fresh>(.+?)</fresh>').findall(link)
-				for newversion,fresh in match:
-					LATEST_VERSION = newversion
-					if CURRENT_VERSION < LATEST_VERSION:
-						CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
-					else:
-						CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
-		except:
-			CURRENT_BUILD = "[COLOR yellowgreen]ERROR[/COLOR]"
-			CURRENT_VERSION_CODE = "[COLOR yellowgreen]ERROR[/COLOR]"
-			LATEST_VERSION = "[COLOR yellowgreen]ERROR[/COLOR]"
-
 	#######################################################################
-	#				MAIN MENU LIST
+	#					FIND OUT VERSION OF KODI
 	#######################################################################
+
 	kodi_name = Common.GET_KODI_VERSION()
+
+	#######################################################################
+	#					GET API INFORMATION
+	#######################################################################
 
 	api_interval = plugintools.get_setting("api_interval")
 
@@ -317,69 +340,72 @@ def INDEX():
 		mark = "5"
 	else: mark = "60"
 
-	if offline == 0:
-		GET_COUNTS()
-		total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_ADDONS)
-		total_builds_week = Common.count("TOTAL_BUILDS_WEEK",TEMP_FILE)
-		Common.addDir("[COLOR white][B]ADDONS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
-		Common.addDir("[COLOR white][B]BUILDS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_builds_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,999,ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-		#Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
-		if pleasecheck == 1:
-			Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-			Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-			Common.addItem('[COLOR ghostwhite][B]YOUR VERSION: [/B][/COLOR][B]' + CURRENT_VERSION_CODE + '[/B]',BASEURL,4,BUILD_ICON,FANART,'')
-			Common.addItem('[COLOR ghostwhite][B]LATEST VERSION: [/B][/COLOR][COLOR yellowgreen][B]' + LATEST_VERSION + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-			try:
-				if LATEST_VERSION > CURRENT_VERSION:
-					if "ERROR" not in CURRENT_VERSION_CODE:
-						Common.addItem('[COLOR ghostwhite][B]CLICK TO UPDATE ' + CURRENT_BUILD.upper() + ' NOW![/B][/COLOR]',BASEURL,33,UPDATE_ICON,FANART,'')
-				else:
-					Common.addItem('[COLOR yellowgreen][B]' + CURRENT_BUILD.upper() + ' IS UP TO DATE![/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
-			except:
-				Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
-		else:
-			if os.path.isfile(COMMUNITY_BUILD):
-				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
-	if offline == 0:
+	#######################################################################
+	#					GET COUNTS FROM THE ECHO API
+	#######################################################################
+
+	GET_COUNTS()
+	
+	#######################################################################
+	#					START MAIN MENU
+	#######################################################################
+
+	Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
+	total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_ADDONS)
+	total_builds_week = Common.count("TOTAL_BUILDS_WEEK",TEMP_FILE)
+	Common.addDir("[COLOR white][B]ADDONS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	Common.addDir("[COLOR white][B]BUILDS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_builds_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	#Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
+	if pleasecheck == 1:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]YOUR VERSION: [/B][/COLOR][B]' + CURRENT_VERSION_CODE + '[/B]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]LATEST VERSION: [/B][/COLOR][COLOR yellowgreen][B]' + LATEST_VERSION + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		try:
+			if LATEST_VERSION > CURRENT_VERSION:
+				if "ERROR" not in CURRENT_VERSION_CODE:
+					Common.addItem('[COLOR ghostwhite][B]CLICK TO UPDATE ' + CURRENT_BUILD.upper() + ' NOW![/B][/COLOR]',BASEURL,33,UPDATE_ICON,FANART,'')
+			else:
+				Common.addItem('[COLOR yellowgreen][B]' + CURRENT_BUILD.upper() + ' IS UP TO DATE![/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
+		except:
+			Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
+	else:
+		if os.path.isfile(COMMUNITY_BUILD):
+			Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,FANART,'')
-	if offline == 0:
-		Common.addDir('[COLOR ghostwhite][B]EXTRAS - FIXES, TWEAKS ETC[/B][/COLOR]',BASEURL,74,EXTRAS_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ADVANCED SETTINGS[/B][/COLOR]',BASEURL,30,ADVANCED_SET_ICON,FANART,'')	
-		Common.addDir('[COLOR ghostwhite][B]CUSTOM KEYMAPS[/B][/COLOR]',BASEURL,129,KEYMAPS_ICON,FANART,'')	
-		Common.addDir('[COLOR ghostwhite][B]SPEED TEST[/B][/COLOR]',BASEURL,16,SPEEDTEST_ICON,FANART,'')
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		#Common.addDir('[COLOR ghostwhite][B]ANDROID APKS[/B][/COLOR]',BASEURL,149,TOOLS_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]MUST HAVE KODI PROGRAMS & TOOLS[/B][/COLOR]',BASEURL,46,TOOLS_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]LATEST KODI INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]LATEST KODI LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
-	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
-	if offline == 0:
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]HOW TO GET SUPPORT[/B][/COLOR]',BASEURL,79,SUPPORT_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]VIEW WIZARD CHANGELOG[/B][/COLOR]',BASEURL,80,SEARCH_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]SPEED TEST[/B][/COLOR]',BASEURL,16,SPEEDTEST_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]EXTRAS - FIXES, TWEAKS ETC[/B][/COLOR]',BASEURL,74,EXTRAS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]ADVANCED SETTINGS[/B][/COLOR]',BASEURL,30,ADVANCED_SET_ICON,FANART,'')	
+	Common.addDir('[COLOR ghostwhite][B]CUSTOM KEYMAPS[/B][/COLOR]',BASEURL,129,KEYMAPS_ICON,FANART,'')	
+	#Common.addDir('[COLOR ghostwhite][B]ANDROID APKS[/B][/COLOR]',BASEURL,149,TOOLS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]MUST HAVE KODI PROGRAMS & TOOLS[/B][/COLOR]',BASEURL,46,TOOLS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]THE DAYS SPORT LISTINGS[/B][/COLOR]',BASEURL,47,SPORTS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]THE ECHO API REFRESHES EVERY ' + '[COLOR yellowgreen]'+str(mark)+' [/COLOR]MINUTES[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]CLEAR DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,180,SETTINGS_ICON,FANART,'')
+	#Common.addItem('[COLOR ghostwhite][B]CLEAR DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,180,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]REGENERATE DOWNLOAD COUNTERS[/B][/COLOR]',BASEURL,179,SETTINGS_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]HOW TO GET SUPPORT[/B][/COLOR]',BASEURL,79,SUPPORT_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]VIEW WIZARD CHANGELOG[/B][/COLOR]',BASEURL,80,SEARCH_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]VIEW EHCO WIZARD CREDITS[/B][/COLOR]',BASEURL,81,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD SETTINGS[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 
 	kodi_name = Common.GET_KODI_VERSION()
@@ -490,60 +516,6 @@ def BUILDMENU():
 #######################################################################
 #						MAINTENANCE MENU
 #######################################################################
-	
-def get_size(start_path):
-    total_size = 0
-    for dirpath, dirnames, filenames in os.walk(start_path):
-        for f in filenames:
-            fp = os.path.join(dirpath, f)
-            total_size += os.path.getsize(fp)
-    return total_size
-
-def convertSize(size):
-   import math
-   if (size == 0):
-       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
-   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-   i = int(math.floor(math.log(size,1024)))
-   p = math.pow(1024,i)
-   s = round(size/p,2)
-   if size_name[i] == "B":
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if size_name[i] == "KB":
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if size_name[i] == "GB":
-        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if size_name[i] == "TB":
-        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s < 50:
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s >= 50:
-        if s < 100:
-            return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s >= 100:
-        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-
-def convertSizeInstall(size):
-   import math
-   if (size == 0):
-       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
-   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-   i = int(math.floor(math.log(size,1024)))
-   p = math.pow(1024,i)
-   s = round(size/p,2)
-   if size_name[i] == "B":
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if size_name[i] == "KB":
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if size_name[i] == "TB":
-        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s < 1000:
-        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s >= 1000:
-        if s < 1500:
-            return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
-   if s >= 1500:
-        return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
 
 def MAINTENANCE_MENU():
 
@@ -569,26 +541,26 @@ def MAINTENANCE_MENU():
 
 		if CACHE == "NULL":
 			try:
-				PACKAGES_SIZE_BYTE = get_size(PACKAGES)
-				THUMB_SIZE_BYTE    = get_size(THUMBS)
+				PACKAGES_SIZE_BYTE = maintenance.get_size(PACKAGES)
+				THUMB_SIZE_BYTE    = maintenance.get_size(THUMBS)
 			except: pass
 		else:
 			try:
-				CACHE_SIZE_BYTE    = get_size(CACHE)
-				PACKAGES_SIZE_BYTE = get_size(PACKAGES)
-				THUMB_SIZE_BYTE    = get_size(THUMBS)
+				CACHE_SIZE_BYTE    = maintenance.get_size(CACHE)
+				PACKAGES_SIZE_BYTE = maintenance.get_size(PACKAGES)
+				THUMB_SIZE_BYTE    = maintenance.get_size(THUMBS)
 			except: pass
 		
 		if CACHE == "NULL":
 			try:
-				PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
-				THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
+				PACKAGES_SIZE = maintenance.convertSize(PACKAGES_SIZE_BYTE)
+				THUMB_SIZE    = maintenance.convertSize(THUMB_SIZE_BYTE)
 			except: pass
 		else:
 			try:
-				CACHE_SIZE    = convertSize(CACHE_SIZE_BYTE)
-				PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
-				THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
+				CACHE_SIZE    = maintenance.convertSize(CACHE_SIZE_BYTE)
+				PACKAGES_SIZE = maintenance.convertSize(PACKAGES_SIZE_BYTE)
+				THUMB_SIZE    = maintenance.convertSize(THUMB_SIZE_BYTE)
 			except: pass
 		
 		if CACHE == "NULL":
@@ -625,7 +597,7 @@ def MAINTENANCE_MENU():
 		else:
 			ERRORS_IN_LOG = "[COLOR red][B]" + str(i) + " ERRORS FOUND IN LOG[/B][/COLOR]"
 
-	Common.addDir('[COLOR blue][B]CLICK FOR SYSTEM INFORMATION (ADDONS, IP, ETC)[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
+	Common.addDir('[COLOR yellowgreen][B]CLICK FOR SYSTEM INFORMATION (ADDONS, IP, ETC)[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
 	if check_folders == "true":
 		try:
 			Common.addItem("[COLOR white][B]CACHE SIZE IS [/B][/COLOR]" + str(CACHE_SIZE),BASEURL,79,ICON,FANART,'')
@@ -640,17 +612,17 @@ def MAINTENANCE_MENU():
 		except:
 			Common.addItem("[COLOR white][B]ERROR GETTING THUMBNAIL SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	Common.addItem('[COLOR yellowgreen][B]WEEKLY AUTO CLEAN - [/B][/COLOR]' + weekly_onoff,BASEURL,113,TOOLS_ICON,FANART,'')
-	Common.addItem('[COLOR yellowgreen][B]AUTO CLEAN ON KODI LAUNCH - [/B][/COLOR]' + startup_onoff,BASEURL,112,TOOLS_ICON,FANART,'')
-	Common.addItem("[COLOR yellowgreen][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
+	Common.addItem('[COLOR white][B]WEEKLY AUTO CLEAN - [/B][/COLOR]' + weekly_onoff,BASEURL,113,TOOLS_ICON,FANART,'')
+	Common.addItem('[COLOR white][B]AUTO CLEAN ON KODI LAUNCH - [/B][/COLOR]' + startup_onoff,BASEURL,112,TOOLS_ICON,FANART,'')
+	Common.addItem("[COLOR white][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	if check_log == "true":
 		Common.addItem(ERRORS_IN_LOG,BASEURL,155,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR yellowgreen][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR yellowgreen][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR white][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR white][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
 	if check_log == "true":
-		Common.addItem('[COLOR yellowgreen][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR yellowgreen][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
+		Common.addItem('[COLOR white][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
+	Common.addItem('[COLOR white][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR white]Auto Clean Device[/COLOR]','url',31,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR white]Clear Cache[/COLOR]','url',1,TOOLS_ICON,FANART,'')
@@ -973,11 +945,13 @@ def BACKUPMENU():
 def SPORT_LISTINGS():
 
 	url = base64.b64decode(b'aHR0cDovL3d3dy53aGVyZXN0aGVtYXRjaC5jb20vdHYvaG9tZS5hc3A=')
-	r = requests.get(url)
-	match = re.compile('http://www\.wheresthematch\.com/fixtures/(.+?)\..+?channelid.+?">(.+?)<em class="livestream">Live Stream</em></a></span> <span class="ground">(.+?)</span>').findall(r.content)
-	for game,image,name in match:
-		Common.addItem('[COLOR white][B]'+image+' '+'[/COLOR][/B]- [COLOR white]'+game+' [/COLOR]','','',ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite]Watch '+name+'[/COLOR]','','',ICON,FANART,'')
+	r = Common.OPEN_URL_NORMAL(url).replace('\r','').replace('\n','').replace('\t','')
+	match = re.compile('href="http://www.wheresthematch.com/fixtures/(.+?).asp.+?class="">(.+?)</em> <em class="">v</em> <em class="">(.+?)</em>.+?time-channel ">(.+?)</span>').findall(r)
+	for game,name1,name2,gametime in match:
+		a,b = gametime.split(" on ")
+		Common.addItem('[COLOR white]'+name1+' vs '+name2+' - '+a+' [/COLOR]','','',ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]Watch on '+b+'[/B][/COLOR]','','',ICON,FANART,'')
+		Common.addItem('------------------------------------------','','',ICON,FANART,'')
 
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
@@ -2073,7 +2047,7 @@ elif mode==154:
 		maintenance.view_LastError()
 
 elif mode==155:
-		maintenance.viewErrors()
+		maintenance.view_Errors()
 
 elif mode==156:
 		get_addons.GET_PAID(name,url)

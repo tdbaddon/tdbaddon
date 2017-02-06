@@ -395,7 +395,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.63"
+	     version="1.65"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -1649,7 +1649,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="2.0.3" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.0.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -2603,7 +2603,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.23" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.25" provider-name="MetalKettle">
 
   <requires>
 
@@ -2624,8 +2624,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <import addon="script.video.F4mProxy" version="2.5.3"/>
 
     <import addon="script.module.liveresolver" version="0.1.24"/>
-
-    <import addon="repository.xbmchub" version="1.0.0"/>
 
   </requires>
 
@@ -2706,7 +2704,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.3.8" provider-name="h0d3nt3uf3l, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.4.0" provider-name="h0d3nt3uf3l, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -2759,7 +2757,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.3.0"
+       version="6.3.2"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2790,7 +2788,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.8.0" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.8.2" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2818,6 +2816,30 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 			<screenshot>resources/screenshots/03.jpg</screenshot>
         </assets>
 	</extension>
+</addon>
+
+<addon id="program.plexus"
+       name="Plexus"
+       version="0.1.4"
+       provider-name="enen92, TV ADDONS">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>executable</provides>
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+    <summary>SopCast and AceStream for Kodi</summary>
+    <description lang="en">Plexus - Any complex structure containing an intricate network of parts. Plexus brings native peer-to-peer support (AceStream and SopCast) for Kodi Entertainment Center for several platforms.[CR][CR]Documentation: (missing)</description>
+    <description lang="pt">Plexus - Uma estrutura complexa constituída por uma rede de partes. O Plexus adiciona suporte peer-to-peer nativo (AceStream e Sopcast) ao Kodi Entertainment Center para várias plataformas.[CR][CR]Documentação: (em falta)</description>
+    <disclaimer lang="en">The author does not host nor distribute any of the content you may watch using this addon. The author has no part in the development of any included technologies. When seeking help in Kodi's forum please respect rules (http://kodi.wiki/view/Forum_rules).</disclaimer>
+    <disclaimer lang="pt">Os autores não alojam nem distribuem nenhum do conteúdo que poderá ser reproduzido a partir deste addon. Os autores não têm qualquer parte no desenvolvimento de qualquer uma das tecnologias. Se procurar ajuda no fórum oficial do Kodi por favor respeite as regras do fórum (http://kodi.wiki/view/Forum_rules).</disclaimer>
+    <forum>http://forums.tvaddons.ag</forum>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="repo.natko1412" name="natko1412 repo" version="2.0.0" provider-name="natko1412">
@@ -3220,8 +3242,13 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.1" provider-name="MetalKettle">
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.2" provider-name="MetalKettle">
 	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+	<dir>
+		<info compressed="false">https://raw.githubusercontent.com/MetalKettle/Addon_Repository/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/MetalKettle/Addon_Repository/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/MetalKettle/Addon_Repository/master/zips</datadir>
+	</dir>
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
@@ -3330,8 +3357,13 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.5.1" provider-name="SchisM">
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.6.0" provider-name="SchisM">
     <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
+	<dir>
+		<info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
+		<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
+	</dir>
         <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
         <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
         <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
@@ -3780,7 +3812,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.7" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.1.8" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

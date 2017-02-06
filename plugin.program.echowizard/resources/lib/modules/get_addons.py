@@ -110,7 +110,7 @@ def MENU_MAIN():
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
 	Common.addDir("[COLOR white][B]File Manager Sources[/B][/COLOR]",BASEURL,177,REPO_ICON,FANART,description='')
 	Common.addDir("[COLOR white][B]Top 14 downloaded addons this week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
-	Common.addDir("[COLOR white][B]APK Addons[/B][/COLOR]",BASEURL,170,XXX_ICON,FANART,description='Null')
+	#Common.addDir("[COLOR white][B]APK Addons[/B][/COLOR]",BASEURL,170,XXX_ICON,FANART,description='Null')
 	Common.addDir("[COLOR white][B]Video Addons[/B][/COLOR]",BASEURL,150,VIDEO_ICON,FANART,description='video')
 	Common.addDir("[COLOR white][B]Program Addons[/B][/COLOR]",BASEURL,150,PROGRAM_ICON,FANART,description='program')
 	Common.addDir("[COLOR white][B]Music Addons[/B][/COLOR]",BASEURL,150,MUSIC_ICON,FANART,description='audio')
@@ -450,15 +450,12 @@ def GET_MULTI(name,url):
 		dp.update(0,'','',' ')
 		try:
 			shutil.rmtree(ADDON)
-			shutil.rmtree(REPO)
-		except: pass
-		if kodi_name == "Krypton":
 			DISABLE_DATABASE_ADDON(addon_path)
-		time.sleep(2)
+		except: pass
+		time.sleep(1)
 		xbmc.executebuiltin("UpdateLocalAddons")
-		time.sleep(2)
+		time.sleep(0.5)
 		xbmc.executebuiltin("UpdateAddonRepos")
-		time.sleep(2)
 		dp.close()
 		dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
 		xbmc.executebuiltin("Container.Refresh")
@@ -659,7 +656,7 @@ def FILE_MANAGER_SOURCES(name,url,description):
 		
 		if str(source) not in open(SOURCES).read():
 			url = title + '|SPLIT|' + source
-			Common.addItem('[COLOR white]' + title + 's Source[/COLOR]',url,178,ICON,FANART,"")
+			Common.addItem('[COLOR yellowgreen][B]' + title + ' [/B][/COLOR][COLOR darkgray]- ' + source +'[/COLOR]',url,178,ICON,FANART,"")
 			i = i + 1
 	
 	if i == 0:
@@ -670,6 +667,7 @@ def WRITE_SOURCE_TO_FILE_MANAGER(name,url):
 	SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
 
 	name,source = url.split('|SPLIT|')
+	source = source.replace(" ","")
 
 	choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Write the following to your File Manager?[/COLOR]","[COLOR white]Name:[/COLOR][COLOR dodgerblue][B]" + name + "[/B][/COLOR]","[COLOR white]Source:[/COLOR][COLOR dodgerblue][B]" + source + "[/B][/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
 	if choice == 1:

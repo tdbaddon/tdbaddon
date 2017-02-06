@@ -30,6 +30,7 @@
     <!--<string id="32023">SSS Maxbitrate</string>-->
         <string id="32024">Willow US Proxy Address</string>
             <string id="32025">Willow US Proxy Port</string>
-
+            <string id="32042">Enable colors in listing</string>
+            
             
 </strings>

@@ -33,6 +33,10 @@
                     <setting type="sep"/>
                   <setting label="32039" type="text"   id="usethisviewmode" default=""/>    
           <setting type="sep"/>
+          
+         <setting type="sep"/>
+                  <setting label="32042" type="bool"   id="enablecolor" default="false"/>    
+
 
 
         <!-- <setting label="32023" type="select" id="defualtSSSBitRate"  default="1300" values="Maximum (Highest Quality)|500|650|900|1300|1900|2700"/>-->

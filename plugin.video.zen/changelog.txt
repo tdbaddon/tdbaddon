@@ -1,3 +1,6 @@
+[B]1.8.2[/B]
+- Update Providers
+
 [B]1.8.0[/B]
 - Added Settings to Show Special Seasons
 - Settings to change colour of episodes not aired

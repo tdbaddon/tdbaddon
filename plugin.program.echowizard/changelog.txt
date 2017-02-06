@@ -1,3 +1,11 @@
+[COLOR yellowgreen]1.65: 5th February 2017[/COLOR]
+[COLOR white][B]- Fix view all errors in log (Credit to Aftermath Wizard).[/B][/COLOR]
+[COLOR white][B]- Add Wizard version to main menu.[/B][/COLOR]
+[COLOR white][B]- Change order of main menu.[/B][/COLOR]
+
+[COLOR yellowgreen]1.64: 5th February 2017[/COLOR]
+[COLOR white][B]- Sports Listing fix.[/B][/COLOR]
+
 [COLOR yellowgreen]1.63: 3rd February 2017[/COLOR]
 [COLOR white][B]- General improvments.[/B][/COLOR]
 
