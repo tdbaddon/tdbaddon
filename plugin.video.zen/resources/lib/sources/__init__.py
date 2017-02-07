@@ -286,28 +286,26 @@ class sources:
 
 
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, presetDict=[], timeout=30):
+        sourceDict = []
+        for pkg, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
+        sourceDict = [i[0] for i in sourceDict if i[1] == False]
+        sourceDict = [(i, __import__(i, globals(), locals(), [], -1).source()) for i in sourceDict]
+		
+
         progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
         progressDialog.create(control.addonInfo('name'), '')
-        progressDialog.update(0,'Preparing Scrapers...')	
-		
-        sourceDict = []
-        for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
-        sourceDict = [i[0] for i in sourceDict if i[1] == False]
+        progressDialog.update(0,'Preparing Sources...')
 
-        if not presetDict == []: sourceDict = [i for i in presetDict if i in sourceDict]
-
-		
-		
         content = 'movie' if tvshowtitle == None else 'episode'
+        if content == 'movie':
+            sourceDict = [(i[0], i[1], getattr(i[1], 'movie', None)) for i in sourceDict]
+        else:
+            sourceDict = [(i[0], i[1], getattr(i[1], 'tvshow', None)) for i in sourceDict]
+        sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == None]
 
-
-        sourceDict = [i for i in sourceDict ]
-
-
-        try: sourceDict = [(i, control.setting('provider.' + i)) for i in sourceDict]
-        except: sourceDict = [(i, 'true') for i in sourceDict]
-
-        sourceDict = [i[0] for i in sourceDict if not i[1] == 'false']
+        try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
+        except: sourceDict = [(i[0], i[1], 'true') for i in sourceDict]
+        sourceDict = [i[0] for i in sourceDict if not i[2] == 'false']
 
         threads = []
 
@@ -317,10 +315,10 @@ class sources:
 
 
         if content == 'movie':
-            title = cleantitle.normalize(title)
+            title = self.getTitle(title)
             for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, source, __import__(source, globals(), locals(), [], -1).source()))
         else:
-            tvshowtitle = cleantitle.normalize(tvshowtitle)
+            tvshowtitle = self.getTitle(tvshowtitle)
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, source, __import__(source, globals(), locals(), [], -1).source()))
 
 
@@ -331,8 +329,6 @@ class sources:
 
         sourceLabel = [i for i in sourceDict]
         # sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
-
-
 
         string1 = control.lang(32404).encode('utf-8')
         string2 = control.lang(32405).encode('utf-8')
@@ -372,8 +368,11 @@ class sources:
         self.sourcesFilter()
 
         return self.sources
-
-
+		
+    def getTitle(self, title):
+        title = cleantitle.normalize(title)
+        return title
+		
     def getMovieSource(self, title, year, imdb, source, call):
         try:
             dbcon = database.connect(self.sourceFile)

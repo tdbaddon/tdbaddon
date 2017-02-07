@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="TheAlphaP.repository" name="[COLOR gold][B]@TheAlphaP Repo[/B][/COLOR]" version="1.0.1" provider-name="[COLOR gold][B]@TheAlphaP[/B][/COLOR]">
+	<extension point="xbmc.addon.repository" name="@TheAlphaP">
+		<info compressed="false">http://thealpha.shaneysrepo.com/Repository/addons.xml</info>
+		<checksum>http://thealpha.shaneysrepo.com/Repository/addons.xml.md5</checksum>
+		<datadir zip="true">http://thealpha.shaneysrepo.com/Repository/Addons/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>@TheAlphaP's Repository</summary>
+		<description>Add-ons from [COLOR white][B]@TheAlphaP[/B][/COLOR] and friends [COLOR yellow][B]:-)[/B][/COLOR].</description>
+		<platform>all</platform>
+	</extension>
+</addon>

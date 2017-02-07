@@ -1,0 +1,43 @@
+[B]Version 0.0.13[/B]
+- Add get_kodi_version
+- Reduce logging
+
+[B]Version 0.0.12[/B]
+- Add thumbnail log spam fix
+- Add has_addon
+- Allow queries to be a string
+
+[B]Version 0.0.11[/B]
+- Handle art directly
+- Add real busy dialog (Krypton only)
+- Add support for setCast() (Krypton only)
+
+[B]Version 0.0.9[/B]
+- Improve CustomProgressDialog cancel button
+
+[B]Version 0.0.8[/B]
+- Drop zorder of progress dialog to 0
+- Allow user to specify location of Progress Dialog XML
+
+[B]Version 0.0.7[/B]
+- More CustomProgressDialog fixes
+
+[B]Version 0.0.6[/B]
+- Fix CustomProgressDialog xml reference
+
+[B]Version 0.0.5[/B]
+- Add close_all
+- Add custom progress dialog fallback
+
+[B]Version 0.0.4[/B]
+- Add countdown dialog
+- Strip headers during extension generation
+
+[B]Version 0.0.3[/B]
+Force strptime import to avoid python bug
+
+[B]Version 0.0.2[/B]
+- Add optional component specific logging
+
+[B]Version 0.0.1[/B]
+- Initial Release.

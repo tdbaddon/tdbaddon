@@ -71,7 +71,7 @@ WIZARD_VERSION      =  xbmc.translatePath(os.path.join('special://home/addons/' 
 RESOURCES           =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources'))
 NOTICE              =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/NOTICE.txt'))
 GET_VERSION         =  xbmc.translatePath('special://home/addons/' + addon_id + '/addon.xml')
-DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/settings_default.xml'))
+DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/files/settings_default.xml'))
 ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
 TEMP_FOLDER         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
@@ -124,8 +124,7 @@ ADD_COMMUNITY       = BASEURL + base64.b64decode(b'b3RoZXIvYWRkX2NvbW11bml0eS50e
 ADDONS_API          = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
 ECHO_API            = BASEURL + base64.b64decode(b"YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50")
 ECHO_CHANNEL        = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20veW91dHViZS95b3V0dWJlLnBocD9pZD1VQ29ZVkVRd3psU3VFLU4yQ3VLdlFKNHc=")
-JARVIS_URL          = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfamFydmlzLnR4dA==")
-KRYPTON_URL         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfa3J5cHRvbi50eHQ=")
+ECHO_BUILDS         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZC54bWw=")
 youtubelink         = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")
 FANRIFFIC_URL_NEW   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lcy50eHQ=')
 FANRIFFIC_URL_OLD   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lc29sZC50eHQ=')
@@ -430,35 +429,76 @@ def BUILDMENU():
 	dp.create(AddonTitle,"[COLOR blue]We are getting the list of builds from our server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
 	dp.update(0)
 
-	if version >= 16.0 and version <= 16.9:
+	if version >= 16.0 and version < 17.0:
 		codename = 'Jarvis'
-	elif version >= 17.0 and version <= 17.9:
+	elif version >= 17.0 and version < 18.0:
 		codename = 'Krypton'
 	else: codename = "Decline"
+
+	v = str(version)
+	vv = v.split(".")[0]
+	vvv = vv + ".9"
+	version_end = float(vvv)
 	
 	if codename == "Decline":
 		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR yellowgreen][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
 		return
 
-	if codename == "Jarvis":
-		namelist=[]
-		urllist=[]
-		deslist=[]
-		countlist=[]
-		totallist=[]
-		iconlist=[]
-		fanartlist=[]
-		link = Common.OPEN_URL(JARVIS_URL).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)"').findall(link)
-		dis_links = len(match)
-		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube in match:
-			skin = 'null'
-			i = i + 1
-			dis_count = str(i)
-			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-			id=youtubelink+youtube
-			description = str(desc + "," + hash + "," + fresh + "," + id + "," + skin)
+	namelist=[]
+	urllist=[]
+	deslist=[]
+	countlist=[]
+	totallist=[]
+	iconlist=[]
+	fanartlist=[]
+	link = Common.OPEN_URL(ECHO_BUILDS).replace('\n','').replace('\r','')
+	link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>").replace("<hash></hash>","<hash>null</hash>")
+	match= re.compile('<item>(.+?)</item>').findall(link)
+	dis_links = len(match)
+	for item in match:
+		name=re.compile('<title>(.+?)</title>').findall(item)[0]
+		url=re.compile('<link>(.+?)</link>').findall(item)[0]
+		try:
+			build_version=re.compile('<version>(.+?)</version>').findall(item)[0]
+		except: build_version = "null"
+		try:
+			notice=re.compile('<notice>(.+?)</notice>').findall(item)[0]
+		except: notice = "null"
+		try:
+			platform=re.compile('<platform>(.+?)</platform>').findall(item)[0]
+		except: platform = "16.1"
+		try:
+			youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+		except: youtube_id = "null"
+		try:
+			iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+		except: iconimage = ICON
+		try:
+			fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+		except: fanart = FANART
+		try:
+			build_image=re.compile('<build_image>(.+?)</build_image>').findall(item)[0]
+		except: build_image = "null"
+		try:
+			hash=re.compile('<hash>(.+?)</hash>').findall(item)[0]
+		except: hash = "null"
+		if iconimage.lower() == "null":
+			iconimage = ICON
+		if fanart.lower() == "null":
+			fanart = FANART
+		if not "." in platform:
+			platform = platform + ".0"
+			platform = float(platform)
+		else: platform = float(platform)
+
+		skin = 'null'
+		i = i + 1
+		dis_count = str(i)
+		progress = 100 * int(i)/int(dis_links)
+		dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+		
+		if platform >= version and platform < version_end:
+			description = str(notice + "," + hash + "," + "0" + "," + youtube_id + "," + "null" + "," + build_image)
 			namelist.append(name)
 			urllist.append(url)
 			deslist.append(description)
@@ -467,48 +507,14 @@ def BUILDMENU():
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
 			combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		dp.close()
-		for count,total,name,url,description,iconimage,fanart in tup:
-			url = name + "," + url
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
-			title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
-			Common.addDir(title,url,83,iconimage,fanart,description)
-
-	if codename == "Krypton":
-		namelist=[]
-		urllist=[]
-		deslist=[]
-		countlist=[]
-		totalcount=[]
-		iconlist=[]
-		fanartlist=[]
-		link = Common.OPEN_URL(KRYPTON_URL).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)"').findall(link)
-		dis_links = len(match)
-		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube in match:
-			skin = 'null'
-			i = i + 1
-			dis_count = str(i)
-			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-			id=youtubelink+youtube
-			description = str(desc + "," + hash + "," + fresh + "," + id + "," + skin)
-			namelist.append(name)
-			urllist.append(url)
-			deslist.append(description)
-			countlist.append(str(Common.count(name,TEMP_FILE)))  
-			totalcount.append(str(Common.count(name+"TOTAL_COUNT",TEMP_FILE)))     			
-			iconlist.append(iconimage)
-			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,totalcount,namelist,urllist,deslist,iconlist,fanartlist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		dp.close()
-		for count,total,name,url,description,iconimage,fanart in tup:
-			url = name + "," + url
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
-			title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
-			Common.addDir(title,url,83,iconimage,fanart,description)
+	
+	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+	dp.close()
+	for count,total,name,url,description,iconimage,fanart in tup:
+		url = name + "," + url
+		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+		title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
+		Common.addDir(title,url,83,iconimage,fanart,description)
 
 	view_mode = SET_VIEW("list")
 	xbmc.executebuiltin(view_mode)
@@ -1515,6 +1521,7 @@ def AUTO_UPDATER(name):
 #######################################################################
 
 def PLAYVIDEO(url):
+
 	xbmc.Player().play(url)
 	
 def GETTEMP():
@@ -1602,6 +1609,14 @@ def CLEARTEMP():
 		dp.close()
 		dialog.ok(AddonTitle, "No temp files could be found.")
 		quit()
+
+#######################################################################
+#					DISPLAY INFORMATION IN A DIALOG
+#######################################################################
+
+def DISPLAY_INFORMATION(url):
+
+	dialog.ok(AddonTitle, str(url))
 
 #######################################################################
 #					OPEN THE SETTINGS DIALOG
@@ -2122,5 +2137,8 @@ elif mode==180:
 
 elif mode==181:
 		security.check()
+
+elif mode==182:
+		DISPLAY_INFORMATION(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

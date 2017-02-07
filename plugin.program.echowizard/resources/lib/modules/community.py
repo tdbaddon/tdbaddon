@@ -39,7 +39,7 @@ COMMUNITY_ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addo
 TEMP_FILE      =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
 Community_List = BASEURL + base64.b64decode(b"Y29tbXVuaXR5L3dpemFyZHMudHh0")
 Protected_List = BASEURL + base64.b64decode(b"Y29tbXVuaXR5L3Byb3RlY3RlZC9wYWdl")
-COM_NOTICE = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/community_notice.txt'))
+COM_NOTICE = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/files/community_notice.txt'))
 SEARCH_ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/search.png'))
 page_number = 1
 dialog = xbmcgui.Dialog()
@@ -155,6 +155,11 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	if version >= 17.0 and version < 18.0:
 		codename = 'Krypton'
 
+	v = str(version)
+	vv = v.split(".")[0]
+	vvv = vv + ".9"
+	version_end = float(vvv)
+			
 	if 'endlessflix' in url:
 		protected_wizards.Endless_Install()
 
@@ -183,56 +188,114 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	if "beast" in url:
 		link = Common.OPEN_URL_BEAST(url).replace('\n','').replace('\r','')
 	else: link = Common.OPEN_URL_NORMAL(url).replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-	dis_links = len(match)
-	for name,url,iconimage,fanart in match:
+	
+	link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>")
+	match= re.compile('<item>(.+?)</item>').findall(link)
+	match2 = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
+	dis_links1 = len(match)
+	dis_links2 = len(match2)
+	dis_links = dis_links1 + dis_links2
+	for item in match:
+		name=re.compile('<title>(.+?)</title>').findall(item)[0]
+		url=re.compile('<link>(.+?)</link>').findall(item)[0]
+		try:
+			build_version=re.compile('<version>(.+?)</version>').findall(item)[0]
+		except: build_version = "null"
+		try:
+			notice=re.compile('<notice>(.+?)</notice>').findall(item)[0]
+		except: notice = "null"
+		try:
+			platform=re.compile('<platform>(.+?)</platform>').findall(item)[0]
+		except: platform = "16.1"
+		try:
+			youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+		except: youtube_id = "null"
+		try:
+			iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+		except: iconimage = ICON
+		try:
+			fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+		except: fanart = FANART
+		try:
+			build_image=re.compile('<build_image>(.+?)</build_image>').findall(item)[0]
+		except: build_image = "null"
+		if iconimage.lower() == "null":
+			iconimage = ICON
+		if fanart.lower() == "null":
+			fanart = FANART
+		if not "." in platform:
+			platform = platform + ".0"
+			platform = float(platform)
+		else: platform = float(platform)
+		i = i + 1
+		dis_count = str(i)
+		progress = 100 * int(i)/int(dis_links)
+		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+		found = 1
+		description = "null" + "," + developer + "," + youtube_id + "," + notice + "," + build_image
+		name2 = name
+		url = name2 + "," + url
+		name = name.lower()
+		name=name.replace("(","").replace(")","").replace(" krypton","").replace("krypton","").replace(" jarvis","").replace("jarvis","")
+		if build_version.lower() == "null":
+			name = "[COLOR ghostwhite][B]" + name.title() + "[/B][/COLOR]"
+		else: name = "[COLOR ghostwhite][B]" + name.title() + "[/COLOR] - [COLOR yellowgreen]Ver: " + build_version + "[/B][/COLOR] "
+		if platform >= version and platform < version_end:
+			namelist.append(name)
+			urllist.append(url)
+			countlist.append(str(Common.count(name2,TEMP_FILE)))
+			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))   
+			deslist.append(description)
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
+	for name,url,iconimage,fanart in match2:
 		i = i + 1
 		dis_count = str(i)
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		found = 1
 		description = "null" + "," + developer
-		name2 = name
+		name2 = name.lower()
 		url = name2 + "," + url
-		name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
-		namelist.append(name)
-		urllist.append(url)
-		countlist.append(str(Common.count(name2,TEMP_FILE)))
-		totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))   
-		deslist.append(description)
-		iconlist.append(iconimage)
-		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
+		name = name.lower()
+		name=name.replace("(","").replace(")","").replace(" krypton","").replace("krypton","").replace(" jarvis","").replace("jarvis","")
+		name = "[COLOR ghostwhite][B]" + name.title() + "[/B][/COLOR]"
+		
+		if codename.lower() == "jarvis":
+			if not "krypton" in name2.lower():
+				namelist.append(name)
+				urllist.append(url)
+				countlist.append(str(Common.count(name2,TEMP_FILE)))
+				totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))   
+				deslist.append(description)
+				iconlist.append(iconimage)
+				fanartlist.append(fanart)
+				combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
+		else:
+			if codename.lower() in name2.lower():
+				namelist.append(name)
+				urllist.append(url)
+				countlist.append(str(Common.count(name2,TEMP_FILE)))
+				totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))   
+				deslist.append(description)
+				iconlist.append(iconimage)
+				fanartlist.append(fanart)
+				combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
+
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 	for count,total,name,url,description,iconimage,fanart in tup:
-		if codename == "Jarvis":
-			if not "krypton" in name.lower():
-				b = b + 1
-				if "skip" in name.lower():
-					name=name.replace('skip','')
-					Common.addItem(name,url,999,iconimage,fanart,description)
-				else:
-					bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
-					Common.addDir(name + bname,url,97,iconimage,fanart,description)
-		if codename == "Krypton":
-			if "krypton" in name.lower():
-				a = a + 1
-				if "skip" in name.lower():
-					name=name.replace('skip','')
-					Common.addItem(name,url,999,iconimage,fanart,description)
-				else:
-					bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
-					Common.addDir(name + bname,url,97,iconimage,fanart,description)
+		a = a + 1
+		if "skip" in name.lower():
+			name=name.replace('skip','')
+			Common.addItem(name,url,999,iconimage,fanart,description)
+		else:
+			bname = "- [COLOR white]Week:[/COLOR] [COLOR yellowgreen][B]" + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR] [COLOR yellowgreen][B]" + total + "[/B][/COLOR]"
+			Common.addDir(name + bname,url,97,iconimage,fanart,description)
 	
-	if codename == "Krypton":
-		if a == 0:
-			dialog.ok(AddonTitle, "[COLOR white]Sorry, no Krypton builds were found![/COLOR]")
-			sys,exit(1)
-
-	if codename == "Jarvis":
-		if b == 0:
-			dialog.ok(AddonTitle, "[COLOR white]Sorry, no Jarvis builds were found![/COLOR]")
-			sys,exit(1)
+	if a == 0:
+		dialog.ok(AddonTitle, "[COLOR white]Sorry, no builds were found for " + codename + "![/COLOR]")
+		sys,exit(1)
 
 	try:
 		f = open(COM_NOTICE,mode='r'); msg = f.read(); f.close()
@@ -245,6 +308,10 @@ def SHOWPROTECTEDBUILDS(name, url, description):
 	developer = desca.split(',')[0]
 	hidden = desca.split(',')[1]
 	
+	try:
+		youtube_id = desca.split(',')[2] 
+	except: youtube_id = "null"
+
 	try:
 		link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
 		match = re.compile('notice="(.+?)"').findall(link)
@@ -274,7 +341,7 @@ def SHOWPROTECTEDBUILDS(name, url, description):
 	link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
 	for name,url,iconimage,fanart in match:
-		description = "null" + "," + developer
+		description = "null" + "," + developer + "," + youtube_id 
 		name2 = name
 		url = name2 + "," + url
 		name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"

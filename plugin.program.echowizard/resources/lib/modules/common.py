@@ -106,32 +106,55 @@ def BUILDER(name,url,iconimage,fanart,description):
 	urla = url
 	name = url.split(",")[0]
 	desca = description
-	notice,hash,fresh,youtube,skin = desca.split(',')
+	youtube_id = "null"
+	notice = "null"
+	build_image = "null"
+
+	notice,hash,fresh,youtube_id,skin,build_image = desca.split(',')
+
+	if not youtube_id.lower() == "null":
+		if not "http" in youtube_id.lower():
+			youtube_id = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+youtube_id
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
 	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,90,iconimage,fanart,description)
+	if not notice.lower() == "null":
+		addItem("[COLOR white][B]View Build Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
 	url = name
-	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR yellowgreen][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
-	if "null" not in youtube.lower():
-		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube,95,iconimage,fanart,'')
+	if "null" not in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+	if "null" not in build_image.lower():
+		addItem("[COLOR white][B]View Image of Build[/COLOR][/B]",build_image,116,iconimage,fanart,description)
 	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
 	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
-	addItem("[COLOR white][B]View Build Fanart[/COLOR][/B]",fanart,116,iconimage,fanart,description)
 
 def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 
 	name,url = url.split(",")
 	urla = url
-	skin_used, developer = description.split(',')
+	youtube_id = "null"
+	notice = "null"
+	build_image = "null"
+	try:
+		skin_used, developer = description.split(',')
+	except:	skin_used, developer, youtube_id, notice, build_image = description.split(',')
+
+	if not youtube_id.lower() == "null":
+		if not "http" in youtube_id.lower():
+			youtube_id = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+youtube_id
 	url = str(name + "," + urla + "," + skin_used + "," + developer)
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
 	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,96,iconimage,fanart,description)
+	if not notice.lower() == "null":
+		addItem("[COLOR white][B]View Build Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
 	url = name
-	addItem("[COLOR white][B]---------------[/COLOR][/B] [COLOR yellowgreen][B]EXTRAS[/COLOR][/B] [COLOR white][B]---------------[/COLOR][/B]",url,666,iconimage,fanart,description)
+	if "null" not in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+	if "null" not in build_image.lower():
+		addItem("[COLOR white][B]View Image of Build[/COLOR][/B]",build_image,116,iconimage,fanart,description)
 	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
 	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
-	addItem("[COLOR white][B]View Build Fanart[/COLOR][/B]",fanart,116,iconimage,fanart,description)
 
 
 #######################################################################

@@ -52,7 +52,7 @@ def INSTALL(name,url,description):
 	urla = url
 	desca = description
 
-	notice2,description,fresh,youtube,skin_used = desca.split(',')
+	notice2,description,fresh,youtube,skin_used,build_notice = desca.split(',')
 	notice = "[COLOR white][B]" + notice2 + "[/COLOR][/B]"
 	name,url = urla.split(',')
 	wipeme = 0

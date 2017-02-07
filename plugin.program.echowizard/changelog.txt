@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.67: 6th February 2017[/COLOR]
+[COLOR white][B]- Improvment to builds method.[/B][/COLOR]
+
+[COLOR yellowgreen]1.66: 6th February 2017[/COLOR]
+[COLOR white][B]- Additional method of using community builds.[/B][/COLOR]
+
 [COLOR yellowgreen]1.65: 5th February 2017[/COLOR]
 [COLOR white][B]- Fix view all errors in log (Credit to Aftermath Wizard).[/B][/COLOR]
 [COLOR white][B]- Add Wizard version to main menu.[/B][/COLOR]

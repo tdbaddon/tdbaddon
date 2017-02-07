@@ -1,3 +1,9 @@
+[B]Version 0.0.8[/B]
+- Switch to image resource
+
+[B]Version 0.0.7[/B]
+- Make module for Krypton
+
 [B]Version 0.0.6[/B]
 - Add new primewire icons
 

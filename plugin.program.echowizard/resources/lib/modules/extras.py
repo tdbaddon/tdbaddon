@@ -24,23 +24,26 @@ from resources.lib.modules import extract
 import shutil
 from resources.lib.modules import downloader
 from resources.lib.modules import installer
+
 #######################################################################
 #					VERIABLES NEEDED
 #######################################################################
-AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-addon_id = 'plugin.program.echowizard'
-ADDON = xbmcaddon.Addon(id=addon_id)
-skin         =  xbmc.getSkinDir()
-FANART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-SKIN_DIR     =  xbmc.translatePath(os.path.join('special://home/addons',skin))
-BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
-dialog = xbmcgui.Dialog()
-AdvancedSettings = xbmc.translatePath('special://userdata/advancedsettings.xml')
-EXTRAS_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/extras.png'))
-PLAYER_CORE   = xbmc.translatePath('special://userdata/playercorefactory.xml')
-YOUTUBE_DATA  = xbmc.translatePath('special://userdata/addon_data/plugin.video.youtube')
-GUIDE   = xbmc.translatePath('special://userdata/addon_data/plugin.program.echotvguide')
+
+AddonTitle        = "[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+addon_id          = 'plugin.program.echowizard'
+ADDON             = xbmcaddon.Addon(id=addon_id)
+skin              = xbmc.getSkinDir()
+FANART            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
+ICON              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SKIN_DIR          = xbmc.translatePath(os.path.join('special://home/addons',skin))
+BASEURL           = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
+dialog            = xbmcgui.Dialog()
+AdvancedSettings  = xbmc.translatePath('special://userdata/advancedsettings.xml')
+EXTRAS_ICON       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/extras.png'))
+PLAYER_CORE       = xbmc.translatePath('special://userdata/playercorefactory.xml')
+YOUTUBE_INSTALL   = xbmc.translatePath(os.path.join('special://home/addons/','plugin.video.youtube'))
+YOUTUBE_DATA      = xbmc.translatePath('special://userdata/addon_data/plugin.video.youtube')
+GUIDE             = xbmc.translatePath('special://userdata/addon_data/plugin.program.echotvguide')
 
 #######################################################################
 #						EXTRAS MENU
@@ -91,9 +94,8 @@ def EXTRAS_MENU():
 
 	Common.addItem('[B][COLOR ghostwhite]RUYA EMPTY LIST FIX[/COLOR][/B]','url',109,EXTRAS_ICON,FANART,'')
 
-	if os.path.exists(YOUTUBE_DATA):
-		Common.addItem('[B][COLOR ghostwhite]YOUTUBE FIX[/COLOR][/B]','url',132,EXTRAS_ICON,FANART,'')
-
+	if os.path.exists(YOUTUBE_INSTALL):
+		Common.addItem('[B][COLOR ghostwhite]YOUTUBE FIX (EXCEEDED DAILY LIMIT)[/COLOR][/B]','url',132,EXTRAS_ICON,FANART,'')
 
 #######################################################################
 #				ENABLE/DISABLE THE INTRO VIDEO FOR HORUS
@@ -224,18 +226,24 @@ def PLAYERCORE_WINDOWS():
 def YOUTUBE_REMOVE():
 
 	dialog = xbmcgui.Dialog()
+	
 	if os.path.exists(YOUTUBE_DATA):
 		try:
 			shutil.rmtree(YOUTUBE_DATA)
 		except:
 			dialog.ok(AddonTitle,"[COLOR white]There was an error removing the YouTube addon data folder. Thank you for using ECHO Wizard[/COLOR]")
 			sys.exit(0)
-		dialog.ok(AddonTitle,"[COLOR white]The YouTube plugin should now be fixed and working correctly. Thank you for using ECHO Wizard[/COLOR]")
-		xbmc.executebuiltin("Container.Refresh")
+	try:
+		YOUTUBE_FOLDER              =  xbmc.translatePath('special://home/userdata/addon_data/plugin.video.youtube')
+		os.makedirs(YOUTUBE_FOLDER)
+		DEFAULT_YOUTUBE_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/files/youtube_settings.xml'))
+		YOUTUBE_SETTINGS            =  xbmc.translatePath('special://home/userdata/addon_data/plugin.video.youtube/settings.xml')
+		shutil.copyfile(DEFAULT_YOUTUBE_SETTINGS, YOUTUBE_SETTINGS)
+	except:
+		dialog.ok(AddonTitle,"[COLOR white]There was an error creating the YouTube addon data settings. Thank you for using ECHO Wizard[/COLOR]")
 		sys.exit(0)
-	else:
-		dialog.ok(AddonTitle,"[COLOR white]We were unable to find any YouTube data saved on your system. Thank you for using ECHO Wizard[/COLOR]")
-		sys.exit(0)
+	dialog.ok(AddonTitle,"[COLOR white]The YouTube plugin should now be fixed and working correctly. Thank you for using ECHO Wizard[/COLOR]")
+	sys.exit(0)
 		
 def SPORTS_DEVIL_FIX():
 

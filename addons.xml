@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<!--suppress ALL -->
+<addon id="context.salts.tools" version="1.0.6" name="SALTS Context Tools" provider-name="tknorris">
+    <requires>
+        <import addon="xbmc.python" version="2.2.0"/>
+        <import addon="plugin.video.salts" version="1.0.65"/>
+        <import addon="script.module.tknorris.shared" version="0.0.1"/>
+    </requires>
+    <extension point="kodi.context.item" library="default.py">
+      <item>
+        <label>SALTS Tools...</label>
+        <visible>!StringCompare(ListItem.dbid,)+[StringCompare(ListItem.dbtype,movie)|StringCompare(ListItem.dbtype,tvshow)|StringCompare(ListItem.dbtype,season)|StringCompare(ListItem.dbtype,episode)]</visible>
+      </item>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Library Context Menu Tools for SALTS</summary>
+        <description>This addon provides context menu items for the SALTS addon</description>
+        <platform>all</platform>
+        <website>http://tvaddons.ag/</website>
+		<forum>http://forums.tvaddons.ag/forums/180-TKNORRIS-RELEASE-REPOSITORY</forum>
+	</extension>
+</addon>
+
 <addon id="plugin.audio.dipremium" name="DI Premium" version="2.0" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -395,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.65"
+	     version="1.67"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -2077,6 +2099,40 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<!--suppress ALL -->
+<addon id="plugin.video.salts" version="2.0.142" name="Stream All The Sources" provider-name="tknorris">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="script.module.urlresolver" version="3.0.0"/>
+        <import addon="script.module.myconnpy" version="1.1.6" />
+        <import addon="script.module.tknorris.shared" version="0.0.12"/>
+        <import addon="script.module.image_cache" version="0.0.1" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+     <extension point="xbmc.service" library="service.py" start="startup"/>
+    <extension point="xbmc.addon.metadata">
+        <summary>Stream video from many difference sources</summary>
+        <description>This addon uses trakt.tv for most show and movie meta data and uses a variety of websites for hoster sources
+
+***This addon is developed and supported at [COLOR blue]www.tvaddons.ag[/COLOR]***
+        </description>
+        <platform>all</platform>
+        <website>http://tvaddons.ag/</website>
+		<forum>http://forums.tvaddons.ag/forums/180-TKNORRIS-RELEASE-REPOSITORY</forum>
+		<assets>
+		  <icon>icon.png</icon>
+		  <fanart>fanart.jpg</fanart>
+		  <screenshot>resources/screenshots/screenshot1.png</screenshot>
+          <screenshot>resources/screenshots/screenshot2.png</screenshot>
+          <screenshot>resources/screenshots/screenshot3.png</screenshot>
+          <screenshot>resources/screenshots/screenshot4.png</screenshot>
+          <screenshot>resources/screenshots/screenshot5.png</screenshot>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="plugin.video.skymashitvkids" name="SkymashiTV Kids" version="1.5" provider-name="SkymashiTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2788,7 +2844,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.8.2" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.8.3" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -3583,6 +3639,39 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         </extension>
     </addon>
 
+<addon id="repository.tknorris.beta" name="tknorris Beta Testing Repository" version="1.0.5" provider-name="tknorris">
+    <extension point="xbmc.addon.repository" name="tknorris beta testing repository">
+	    <dir>
+	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	    </dir>
+        <dir>
+            <info compressed="false">http://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml</info>
+            <checksum>http://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
+            <datadir zip="true">http://github.com/norris-addons/tknorris-beta-repo/raw/master/zips/</datadir>
+        </dir>
+        <info compressed="false">http://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml</info>
+        <checksum>http://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">http://github.com/tknorris/tknorris-beta-repo/raw/master/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>This is used ONLY for beta testing</summary>
+        <description>Beta testing only!!!
+DO NOT INSTALL UNLESS YOU WISH TO PARTICIPATE IN BETA TESTING
+
+Addons Included
+    - 1Channel (Beta)
+    - 1Channel Thempak
+    - SALTS (Beta)
+    - SALTS Themepak
+    - Trakt (Beta)
+    - Trakt List Manager (Alpha)
+        </description>
+        <platform>all</platform>
+    </extension>
+</addon>
+
     <addon id="repository.ufo-repo" name="[COLOR lightgreen]UFO[/COLOR] Repository" version="0.1.5" provider-name="krAZ">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
@@ -3749,13 +3838,11 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.1channel.themepak" version="0.0.6" name="1Channel Themepak" provider-name="tknorris">
+<addon id="script.1channel.themepak" version="0.0.8" name="1Channel Themepak" provider-name="tknorris">
     <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="kodi.resource" version="1.0.0"/>
     </requires>
-    <extension point="xbmc.python.script" library="default.py">
-        <provides>executable</provides>
-    </extension>
+    <extension point="kodi.resource.images" compile="false" type="themepak" />
     <extension point="xbmc.addon.metadata">
         <summary>Themes for the 1Channel/PrimeWire Addon</summary>
         <description>Themes for 1Channel are maintained separately to make distribution of the the addon itself easier/faster.</description>
@@ -3883,6 +3970,17 @@ six v1.10.0 from https://pypi.python.org/pypi/six :
 unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 		</description>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+	</extension>
+</addon>
+
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.13" provider-name="tknorris">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Reusable Modules used by several of tknorris's addons</summary>
 	</extension>
 </addon>
 
@@ -4217,6 +4315,19 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
+
+<addon id="TheAlphaP.repository" name="[COLOR gold][B]@TheAlphaP Repo[/B][/COLOR]" version="1.0.1" provider-name="[COLOR gold][B]@TheAlphaP[/B][/COLOR]">
+	<extension point="xbmc.addon.repository" name="@TheAlphaP">
+		<info compressed="false">http://thealpha.shaneysrepo.com/Repository/addons.xml</info>
+		<checksum>http://thealpha.shaneysrepo.com/Repository/addons.xml.md5</checksum>
+		<datadir zip="true">http://thealpha.shaneysrepo.com/Repository/Addons/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>@TheAlphaP's Repository</summary>
+		<description>Add-ons from [COLOR white][B]@TheAlphaP[/B][/COLOR] and friends [COLOR yellow][B]:-)[/B][/COLOR].</description>
+		<platform>all</platform>
+	</extension>
+</addon>
 
 <addon id="weather.yahoo" name="Yahoo! Weather" version="4.3.1" provider-name="ronie">
 	<requires>
