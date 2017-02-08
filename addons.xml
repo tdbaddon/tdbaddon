@@ -990,70 +990,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.esa" name="ESA Videos" version="1.1.0" provider-name="Jose Antonio Montes (jamontes)">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary lang="en">Watch the ESA videos from the ESA web site.</summary>
-        <description lang="en">The European Space Agency (ESA) is Europe’s gateway to space. Its mission is to shape the development of Europe’s space capability and ensure that investment in space continues to deliver benefits to the citizens of Europe and the world.[CR]This plugin allows to watch directly the ESA videos from your XBMC.[CR]More than 1500 videos are available.</description>
-        <summary lang="cs">ESA videa.</summary>
-        <description lang="cs">Evropská Kosmická Agentura (ESA) je v Evropě brána do vesmíru. Jejím posláním je utvářet vývoj vesmírných schopností Evropy a zajistit, aby investice do vesmíru i nadále přinášet výhody pro občany Evropy a světa.[CR]Tento modul umožňuje sledovat přímo v ESA videa z Vašeho XBMC.[CR]Více než 1500 videa jsou k dispozici.</description>
-        <summary lang="es">Mira los vídeos de la ESA localizados en su página web.</summary>
-        <description lang="es">La Agencia Espacial Europea (ESA) es la puerta de Europa al espacio. Su misión es impulsar el desarrollo espacial en Europa, y asegurar que las inversiones en el espacio continuan produciendo beneficios a los ciudadanos de Europa y el mundo.[CR]Este plugin te permite ver los vídeos de la ESA directamente desde tu XBMC.[CR]Hay más de 1.500 vídeos disponibles.</description>
-        <summary lang="fr">ESA vidéos.</summary>
-        <description lang="fr">L'Agence Spatiale Européenne (ESA) est la porte de l'Europe à l'espace. Sa mission consiste à façonner le développement des capacités spatiales de l'Europe et de s'assurer que les investissements dans l'espace continue d'offrir des avantages aux citoyens de l'Europe et le monde.[CR]Ce plugin permet de regarder directement les vidéos ESA à partir de votre XBMC.[CR]Plus de 1500 vidéos sont disponibles.</description>
-        <summary lang="de">ESA videos.</summary>
-        <description lang="de">Die Europäische Weltraumorganisation (ESA) ist Europas Tor zum Weltraum. Seine Mission ist es, die Entwicklung der europäischen Raum-Fähigkeit zu gestalten und sicherzustellen, dass Investitionen in die Raumfahrt weiterhin Vorteile für die Bürger Europas und der Welt.[CR]Dieses Plugin erlaubt es, direkt beobachten die ESA Videos von Ihrem XBMC.[CR]Mehr liefern als 1500 Videos stehen zur Verfügung.</description>
-        <summary lang="el">ESA βίντεο.</summary>
-        <description lang="el">Ο Ευρωπαϊκός Οργανισμός Διαστήματος (ESA) αποτελεί την πύλη της Ευρώπης στο διάστημα. Η αποστολή του είναι η διαμόρφωση της ανάπτυξης της διαστημικής ικανότητας της Ευρώπης και να εξασφαλίσει ότι οι επενδύσεις στο χώρο συνεχίζει να προσφέρει οφέλη για τους πολίτες της Ευρώπης και του κόσμου.[CR]Αυτό το plugin σας επιτρέπει να παρακολουθήσετε απευθείας τα βίντεο ESA από το XBMC σας.[CR]Περισσότερα από 1500 βίντεο είναι διαθέσιμα.</description>
-        <summary lang="it">ESA video.</summary>
-        <description lang="it">L'Agenzia Spaziale Europea (ESA) è la porta dell'Europa verso lo spazio. La sua missione è quella di plasmare lo sviluppo delle capacità spaziali europee e garantire che gli investimenti nello spazio continua a fornire benefici per i cittadini d'Europa e del mondo.[CR]Questo plugin permette di guardare direttamente i video dell'ESA dal XBMC.[CR]Altri oltre 1500 video sono disponibili.</description>
-        <summary lang="pt">ESA vídeos.</summary>
-        <description lang="pt">A Agência Espacial Europeia (ESA) é a porta de entrada da Europa ao espaço. Sua missão é moldar o desenvolvimento da capacidade espacial da Europa e assegurar que o investimento no espaço continua a trazer benefícios para os cidadãos da Europa e do mundo.[CR]Este plugin permite assistir diretamente os vídeos do ESA a partir do seu XBMC.[CR]Mais de 1500 vídeos estão disponíveis.</description>
-        <language>cs en es fr de el it pt</language>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <forum>http://forum.xbmc.org/showthread.php?tid=170058</forum>
-        <source>https://github.com/jamontes/plugin.video.esa</source>
-        <website>http://www.esa.int/ESA</website>
-    </extension>
-</addon>
-
-<addon id="plugin.video.eso" name="ESO Videos" version="1.0.6" provider-name="Jose Antonio Montes (jamontes)">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary lang="en">Watch the ESO videos from the ESO web site.</summary>
-        <description lang="en">ESO, the European Southern Observatory, is the foremost intergovernmental astronomy organisation in Europe and the world's most productive astronomical observatory.[CR]This plugin allows to watch directly the ESO videos from your XBMC.[CR]More than 2000 videos are available.[CR]Don't forget to choose your preferred subtitle language from System=>Appearance=>International=>Preferred Subtitle language.</description>
-        <summary lang="cs">ESO videa.</summary>
-        <description lang="cs">ESO, Evropská jižní observatoř, je nejvýznamnější mezivládní astronomická organizace v Evropě a nejproduktivnější astronomická observatoř na světě.[CR]Tento modul umožňuje sledovat přímo v ESO videa z Vašeho XBMC.[CR]Více než 2000 videa jsou k dispozici.[CR]Nezapomeňte si vybrat preferovaný jazyk titulků z jazyka systému=>Vzhled=>International=>Preferovaný titulků.</description>
-        <summary lang="es">Mira los vídeos de la ESO localizados en su página web.</summary>
-        <description lang="es">ESO, el Observatorio Europeo Austral, es la principal organización astronómica intergubernamental en Europa y el observatorio astronómico más productivo del mundo.[CR]Este plugin te permite ver los vídeos de la ESO directamente desde tu XBMC.[CR]Hay más de 2.000 vídeos disponibles.[CR]No te olvides de elegir tu idioma preferido para los subtítulos en Sistema=>Apariencia=>Internacional=>Idioma de subtitulos preferido.</description>
-        <summary lang="fr">ESO vidéos.</summary>
-        <description lang="fr">L’ESO – l’Observatoire Européen Austral – est la première organisation intergouvernementale pour l’astronomie en Europe et l’observatoire astronomique le plus productif au monde.[CR]Ce plugin permet de regarder directement les vidéos ESO à partir de votre XBMC.[CR]Plus de 2000 vidéos sont disponibles.[CR]Ne oubliez pas de choisir votre langue préferée pour le sous-titres sur Système=>Apparence=>Région=>Langue préférée pour les sous-titres.</description>
-        <summary lang="de">ESO videos.</summary>
-        <description lang="de">Die Europäische Südsternwarte (engl. European Southern Observatory, kurz ESO) ist die führende europäische Organisation für astronomische Forschung und das wissenschaftlich produktivste Observatorium der Welt.[CR]Dieses Plugin erlaubt es, direkt beobachten die ESO Videos von Ihrem XBMC.[CR]Mehr liefern als 2000 Videos stehen zur Verfügung.[CR]Vergessen Sie nicht, Ihre bevorzugte Untertitelsprache aus System=>Darstellung=>International=>Bevorzugte Untertitelsprache zu wählen.</description>
-        <summary lang="it">ESO video.</summary>
-        <description lang="it">L'ESO (European Southern Observatory) è la principale organizzazione intergovernativa di Astronomia in Europa e l'osservatorio astronomico più produttivo al mondo.[CR]Questo plugin permette di guardare direttamente i video dell'ESO dal XBMC.[CR]Altri oltre 2000 video sono disponibili.[CR]Non dimenticare di scegliere la lingua dei sottotitoli preferita del Sistema=>Aspetto=>Internazionale=>Lingua preferita per i sottotitoli.</description>
-        <summary lang="pt">ESO vídeos.</summary>
-        <description lang="pt">O ESO, o Observatório Europeu do Sul, é a mais importante organização europeia intergovernamental para a investigação/pesquisas em Astronomia e é o observatório astronómico mais produtivo do mundo.[CR]Este plugin permite assistir diretamente os vídeos do ESO a partir do seu XBMC.[CR]Mais de 2000 vídeos estão disponíveis.[CR]Não se esqueça de escolher o idioma de legenda preferido do Sistema=>Aparência=>Internacional=>Seleccionados Legenda.</description>
-        <language>cs en es fr de it pt</language>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <forum>http://forum.xbmc.org/showthread.php?tid=186024</forum>
-        <source>https://github.com/jamontes/plugin.video.eso</source>
-        <website>http://www.eso.org/</website>
-    </extension>
-</addon>
-
 <addon id="plugin.video.et.canada"
        name="ET Canada"
        version="3.0.3"
@@ -1700,25 +1636,6 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdhdbox" name="HD Box" version="1.0.0" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">This Addon Will Not Work Unless You Have http://muckysmediaportal4kodi.ml In File Manager.</summary>
-    <description lang="en">This Addon Will Not Work Unless You Have http://muckysmediaportal4kodi.ml In File Manager.Stream Content From The xmovies8.org WebSite</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.mdm4u" name="M4U" version="2.0.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1733,25 +1650,6 @@ For DMCA Reports, please send message to our FB page.
     <summary lang="en">Stream content From The m4ufree.info WebSite</summary>
     <description lang="en">This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml In File Manager. Stream Content From The m4ufree.info WebSite</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mdniter" name="niter" version="1.0.6" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream Movies From The niter.co WebSite</summary>
-    <description lang="en">Stream Movies From The niter.co WebSite</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2061,34 +1959,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.paragon" name="[COLOR gold] Paragon [/COLOR]" version="1.1" provider-name="Paragon">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-	<import addon="script.module.urlresolver" />
-	<import addon="script.module.liveresolver" />
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Paragon add-on</summary>
-    <description lang="en">[I]The Paragon add-on[/I]</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.phstreams" name="Phoenix" version="3.2.1" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2251,28 +2121,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specialistss" version="1.8" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="script.video.F4mProxy" version="2.2.3"/>
-		<import addon="repository.movies" version="1.1"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Specialist Super Streams addon.</summary>
-		<description lang="en">Specialist Super Streams will be the go to place for all your iptv streams, movies, tv shows. and more. Big Thanks to Ozzy for all his hard work</description>
-		<platform>all</platform>
-		<forum>Specialist Super Streams can be found on facbook at https://www.facebook.com/groups/thespecialistwizard/</forum>
-		<website>Find us on facebook.</website>
-	</extension>
-</addon>
-
 <addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.28.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2321,28 +2169,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <summary></summary>
     <description></description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="2.0.0" provider-name="Stream Army">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-	<import addon="script.module.pydes" version="2.0.1"/>
-    <import addon="script.module.urlresolver"  version="3.0.26"/>
-    <import addon="script.module.liveresolver" version="0.1.48"/>
-    <import addon="script.common.plugin.cache" version="2.5.8"/>
-  <import addon="script.module.metahandler" version="2.9.1"/>
-    <import addon="plugin.video.youtube" version="5.3.6" optional="false" />
-  <import addon="plugin.video.f4mTester" version="2.7.1" optional="false" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">The Home Of Stream Army Add-on  Stream Army Addon Fully Loaded With Great Playlists</summary>
-    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2631,32 +2457,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
 	</extension>
-</addon>
-
-<addon id="plugin.video.totaltv"
-	name=" [COLOR yellow]Total[/COLOR] TV"
-	version="1.2.0"
-	provider-name="SchisM">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.urlresolver" version="2.10.12" />
-    <import addon="script.module.metahandler" />
-    <import addon="script.module.axel.downloader" version="0.2.0" optional="true"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.pyxbmct" version="1.1.4" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Watch your favourite TV Shows!</summary>
-        <description>Watch your favourites TV Shows! Credits goes to natko</description>
-
-    <platform>all</platform>
-    <forum></forum>
-
-  </extension>
 </addon>
 
 <addon id="plugin.video.tvo"
@@ -3404,23 +3204,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.movies" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" version="1.5" provider-name="a">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.requests" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>repository</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-	<disclaimer lang="en"></disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="repository.nhlstreams" name="[COLOR red]NHL Streams[/COLOR] Repo" version="1.0.0" provider-name="iCanuck">
 	<extension point="xbmc.addon.repository" name="NHL Streams Repository">
        <info>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml</info>
@@ -3585,19 +3368,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="repository.StreamArmy" name="Stream Army" version="1.0" provider-name="Nemzzy / MancSteven / DoomsdayPrep / Silent Partner">
-	<extension point="xbmc.addon.repository" name="Stream Army">
-		<info compressed="false">http://www.streamarmy.uk/Plugins/addons.xml</info>
-		<checksum>http://www.streamarmy.uk/Plugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://www.streamarmy.uk/Plugins/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Stream Army Repo</summary>
-		<description>Repo For Stream Army, Who Streams Wins bought to you by @Nemzzy668 /  @_MANC_  / @DoomsdayPr3p / Silent Partner</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
 <extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
 		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
@@ -3673,19 +3443,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary>thec0de Repo</summary>
 		<description>Download and Install The BEST Add-Ons for Kodi out there!</description>
 		<disclaimer>I made none of these - Just repost from Kodi Forums - Use at your own discretion. I am not responsible for what you do with this stuff.</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.thespecialist" name="The specialist repository" version="10000" provider-name="James Hagans">
-	<extension point="xbmc.addon.repository" name="The specialist repository">
-		<info compressed="false">http://kodirestore.co/specialist/repo/files/addons.xml</info>
-		<checksum>http://kodirestore.co/specialist/repo/files/addons.xml.md5</checksum>
-		<datadir zip="true">http://kodirestore.co/specialist/repo/files/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary></summary>
-		<description></description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4102,6 +3859,18 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <forum></forum>
     <website></website>
   </extension>
+</addon>
+
+<addon id="script.salts.themepak" version="0.0.12" name="SALTS Themepak" provider-name="tknorris">
+    <requires>
+        <import addon="kodi.resource" version="1.0.0"/>
+    </requires>
+    <extension point="kodi.resource.images" compile="false" type="themepak" />
+    <extension point="xbmc.addon.metadata">
+        <summary>Themes for the SALTS Addon</summary>
+        <description>Themes for SALTS are maintained separately to make distribution of the the addon itself easier/faster.</description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="script.specto.media" version="2016.07.07" name="Specto Themepak" provider-name="mrknow" >
