@@ -160,7 +160,7 @@ class source:
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
+                    sources.append({'provider':'movie25','source': host, 'quality': quality, 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
                 except:
                     pass
 

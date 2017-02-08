@@ -498,7 +498,7 @@ def BUILDMENU():
 		dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		
 		if platform >= version and platform < version_end:
-			description = str(notice + "," + hash + "," + "0" + "," + youtube_id + "," + "null" + "," + build_image)
+			description = str(notice + "," + hash + "," + "1" + "," + youtube_id + "," + "null" + "," + build_image)
 			namelist.append(name)
 			urllist.append(url)
 			deslist.append(description)

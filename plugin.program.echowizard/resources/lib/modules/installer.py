@@ -53,7 +53,6 @@ def INSTALL(name,url,description):
 	desca = description
 
 	notice2,description,fresh,youtube,skin_used,build_notice = desca.split(',')
-	notice = "[COLOR white][B]" + notice2 + "[/COLOR][/B]"
 	name,url = urla.split(',')
 	wipeme = 0
 	xxl = 0
@@ -64,19 +63,11 @@ def INSTALL(name,url,description):
 	skinswapped = 0
 	SKIP_FAVS = 0
 
-	send_to_count = name + "|SPLIT|ECHO"
-	add_download = Common.add_one(send_to_count)
-
 	if "lose your favourites" in notice2.lower():
 		SKIP_FAVS = 1
 
 	if not "skin." in skin_used:
 		skin_used = "NULL"
-
-	if not "null" in notice.lower():
-		choice = xbmcgui.Dialog().yesno(AddonTitle, notice,'[COLOR smokewhite]Do you wish to download this build?[/COLOR]','',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-		if choice == 0:
-			sys.exit(1)
 
 	if fresh == "1":
 		wipeme = 1
@@ -678,7 +669,7 @@ def INSTALLAPK_INSTALLER(name,url,description):
 	name,url = url.split('#!')
 	dialog.ok(AddonTitle, str(name))
 
-	add_download = Common.add_one_addons_week(name)
+	#add_download = Common.add_one_addons_week(name)
 
 	path = xbmc.translatePath(os.path.join('/storage/emulated/0/Download',''))
 	dp = xbmcgui.DialogProgress()

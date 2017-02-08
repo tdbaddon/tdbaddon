@@ -114,6 +114,7 @@ class source:
                         if not headers == None:
                             cUrl = '%s|%s' % (cUrl, headers)
                         channelList['%s||%s' % (title, type)] ={'icon':'','url':cUrl,'provider':'iptv','source':type,'direct':False, 'quality':'HD'}
+                    logger.debug('Fetched [%s] from %s' % (len(channelList), link), __name__)
 
 
                 filePath = os.path.join(control.dataPath, self.fileName)
@@ -136,5 +137,5 @@ class source:
                 url='plugin://plugin.video.f4mTester/?url=%s&streamtype=TSDOWNLOADER'%(urllib.quote_plus(url))
             elif '.m3u8' in url:
                 url='plugin://plugin.video.f4mTester/?url=%s&streamtype=HLSRETRY'%(urllib.quote_plus(url))
-        result = client.validateUrl(url)
+        #result = client.validateUrl(url)
         return url

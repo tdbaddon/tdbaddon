@@ -1,3 +1,6 @@
+[COLOR yellowgreen]1.68: 6th February 2017[/COLOR]
+[COLOR white][B]- Fix error getting counts for some builds.[/B][/COLOR]
+
 [COLOR yellowgreen]1.67: 6th February 2017[/COLOR]
 [COLOR white][B]- Improvment to builds method.[/B][/COLOR]
 

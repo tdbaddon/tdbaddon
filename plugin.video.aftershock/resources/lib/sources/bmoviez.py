@@ -138,11 +138,11 @@ class source:
                     pass
 
             check = [i for i in srcs if not i['quality'] == 'CAM']
-            if check: sources = check
+            if check: srcs = check
 
-            return sources
+            return srcs
         except:
-            return sources
+            return srcs
 
 
     def resolve(self, url, resolverList):

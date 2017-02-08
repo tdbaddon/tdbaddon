@@ -93,7 +93,7 @@ class source:
                         url = "##".join(urls)
                     else:
                         url = urls[0]
-                    srcs.append({'source': host, 'parts' : str(len(urls)), 'quality': quality, 'provider': 'DesiHit', 'url': url, 'direct':False})
+                    srcs.append({'source': host, 'parts' : str(len(urls)), 'quality': quality, 'provider': 'tDesiHit', 'url': url, 'direct':False})
                 except :
                     pass
             logger.debug('SOURCES [%s]' % srcs, __name__)

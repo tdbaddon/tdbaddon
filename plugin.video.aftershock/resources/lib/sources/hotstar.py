@@ -53,6 +53,7 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
+            url = None
             self.base_link = random.choice([self.base_link_1, self.base_link_2])
 
             query = '%s %s' % (title, year)

@@ -1,773 +1,773 @@
-import os as O0O00OOOOOO0O0OO0 ,re as O000OOO0OOOOOO0O0 ,sys as O00OOO00OOOOOO0O0 ,hashlib as O00O00O00O0000O00 ,urllib as O0O0OOO0O0O0OOOOO ,urlparse as OOOO000O0OO0OO000 ,json as OOO000OOOOOO00OO0 ,base64 as O0O0OOO0000O00OO0 ,random as O00O00000OO0OOO00 ,datetime as OO000OOO0OOOO0OO0 #line:1
-import xbmc as OO0OO000O0O0OOO00 #line:2
-try :from sqlite3 import dbapi2 as OO00O00OOOO000O0O #line:4
-except :from pysqlite2 import dbapi2 as OO00O00OOOO000O0O #line:5
-from resources .lib .modules import cache as O0O000O00000OOO00 #line:7
-from resources .lib .modules import metacache as O00OO0000OOOOOO0O #line:8
-from resources .lib .modules import client as OOOO000O000O00O0O #line:9
-from resources .lib .modules import control as O000OOO0OO0OO00OO #line:10
-from resources .lib .modules import regex as O00OOOO0O0OOO00O0 #line:11
-from resources .lib .modules import trailer as OO0O000O000O00OOO #line:12
-from resources .lib .modules import workers as O00000OO0O0OO0OOO #line:13
-from resources .lib .modules import youtube as O000OO00O0000O000 #line:14
-from resources .lib .modules import views as OO00O00OO0OOO0OOO #line:15
-class indexer :#line:19
-    def __init__ (O00O00O0O0OOO0000 ):#line:20
-        O00O00O0O0OOO0000 .list =[];O00O00O0O0OOO0000 .hash =[]#line:21
-    def root (OO0OO0OOOOO000000 ):#line:24
-        try :#line:25
-            O00OOOO0O0OOO00O0 .clear ()#line:26
-            OO00OO0O0O000O0OO ='http://kodirestore.co/specialist/addon/specialist%20index.xml'#line:27
-            OO0OO0OOOOO000000 .list =OO0OO0OOOOO000000 .specialist_list (OO00OO0O0O000O0OO )#line:28
-            for OOOOO0000OO00OO0O in OO0OO0OOOOO000000 .list :OOOOO0000OO00OO0O .update ({'content':'addons'})#line:29
-            OO0OO0OOOOO000000 .addDirectory (OO0OO0OOOOO000000 .list )#line:30
-            return OO0OO0OOOOO000000 .list #line:31
-        except :#line:32
-            pass #line:33
-    def get (OO000OO0O0O00000O ,OOOOOOO0OO000OO00 ):#line:36
-        try :#line:37
-            OO000OO0O0O00000O .list =OO000OO0O0O00000O .specialist_list (OOOOOOO0OO000OO00 )#line:38
-            OO000OO0O0O00000O .worker ()#line:39
-            OO000OO0O0O00000O .addDirectory (OO000OO0O0O00000O .list )#line:40
-            return OO000OO0O0O00000O .list #line:41
-        except :#line:42
-            pass #line:43
-    def getq (OOO0000O0O0O0O00O ,O0O00OOOOO0OOOOOO ):#line:46
-        try :#line:47
-            OOO0000O0O0O0O00O .list =OOO0000O0O0O0O00O .specialist_list (O0O00OOOOO0OOOOOO )#line:48
-            OOO0000O0O0O0O00O .worker ()#line:49
-            OOO0000O0O0O0O00O .addDirectory (OOO0000O0O0O0O00O .list ,queue =True )#line:50
-            return OOO0000O0O0O0O00O .list #line:51
-        except :#line:52
-            pass #line:53
-    def getx (OOO0O0OO00OOO000O ,OO00O000OOOOO00O0 ,worker =False ):#line:56
-        try :#line:57
-            O00OOOOO0OO0000OO ,O00O0O000O0000OOO =O000OOO0OOOOOO0O0 .findall ('(.+?)\|regex=(.+?)$',OO00O000OOOOO00O0 )[0 ]#line:58
-            O00O0O000O0000OOO =O00OOOO0O0OOO00O0 .fetch (O00O0O000O0000OOO )#line:59
-            O00OOOOO0OO0000OO +=O0O0OOO0O0O0OOOOO .unquote_plus (O00O0O000O0000OOO )#line:60
-            OO00O000OOOOO00O0 =O00OOOO0O0OOO00O0 .resolve (O00OOOOO0OO0000OO )#line:61
-            OOO0O0OO00OOO000O .list =OOO0O0OO00OOO000O .specialist_list ('',result =OO00O000OOOOO00O0 )#line:62
-            OOO0O0OO00OOO000O .addDirectory (OOO0O0OO00OOO000O .list )#line:63
-            return OOO0O0OO00OOO000O .list #line:64
-        except :#line:65
-            pass #line:66
-    def developer (OOO0OOO000OO0000O ):#line:69
-        try :#line:70
-            O0000O0OOOOO0O000 =O0O00OOOOOO0O0OO0 .path .join (O000OOO0OO0OO00OO .dataPath ,'testings.xml')#line:71
-            OO0O0OO0OOO0OOO0O =O000OOO0OO0OO00OO .openFile (O0000O0OOOOO0O000 );O0OOO0O00OOO0OO00 =OO0O0OO0OOO0OOO0O .read ();OO0O0OO0OOO0OOO0O .close ()#line:72
-            OOO0OOO000OO0000O .list =OOO0OOO000OO0000O .specialist_list ('',result =O0OOO0O00OOO0OO00 )#line:73
-            for O0000O000O000O00O in OOO0OOO000OO0000O .list :O0000O000O000O00O .update ({'content':'videos'})#line:74
-            OOO0OOO000OO0000O .addDirectory (OOO0OOO000OO0000O .list )#line:75
-            return OOO0OOO000OO0000O .list #line:76
-        except :#line:77
-            pass #line:78
-    def youtube (O0OO00OO0OOOO000O ,OO0OOOOOO00O0O0O0 ,O0O0OOO00OO0OO0OO ):#line:81
-        try :#line:82
-            OO000OO0OOOO00000 =OO0O000O000O00OOO .trailer ().key_link .split ('=',1 )[-1 ]#line:83
-            if 'PlaylistTuner'in O0O0OOO00OO0OO0OO :#line:85
-                O0OO00OO0OOOO000O .list =O0O000O00000OOO00 .get (O000OO00O0000O000 .youtube (key =OO000OO0OOOO00000 ).playlist ,1 ,OO0OOOOOO00O0O0O0 )#line:86
-            elif 'Playlist'in O0O0OOO00OO0OO0OO :#line:87
-                O0OO00OO0OOOO000O .list =O0O000O00000OOO00 .get (O000OO00O0000O000 .youtube (key =OO000OO0OOOO00000 ).playlist ,1 ,OO0OOOOOO00O0O0O0 ,True )#line:88
-            elif 'ChannelTuner'in O0O0OOO00OO0OO0OO :#line:89
-                O0OO00OO0OOOO000O .list =O0O000O00000OOO00 .get (O000OO00O0000O000 .youtube (key =OO000OO0OOOO00000 ).videos ,1 ,OO0OOOOOO00O0O0O0 )#line:90
-            elif 'Channel'in O0O0OOO00OO0OO0OO :#line:91
-                O0OO00OO0OOOO000O .list =O0O000O00000OOO00 .get (O000OO00O0000O000 .youtube (key =OO000OO0OOOO00000 ).videos ,1 ,OO0OOOOOO00O0O0O0 ,True )#line:92
-            if 'Tuner'in O0O0OOO00OO0OO0OO :#line:94
-                for OOO00O00O0O000O00 in O0OO00OO0OOOO000O .list :OOO00O00O0O000O00 .update ({'name':OOO00O00O0O000O00 ['title'],'poster':OOO00O00O0O000O00 ['image'],'action':'plugin','folder':False })#line:95
-                if 'Tuner2'in O0O0OOO00OO0OO0OO :O0OO00OO0OOOO000O .list =sorted (O0OO00OO0OOOO000O .list ,key =lambda OOO0O0OOO0O0O0OO0 :O00O00000OO0OOO00 .random ())#line:96
-                O0OO00OO0OOOO000O .addDirectory (O0OO00OO0OOOO000O .list ,queue =True )#line:97
-            else :#line:98
-                for OOO00O00O0O000O00 in O0OO00OO0OOOO000O .list :OOO00O00O0O000O00 .update ({'name':OOO00O00O0O000O00 ['title'],'poster':OOO00O00O0O000O00 ['image'],'nextaction':O0O0OOO00OO0OO0OO ,'action':'play','folder':False })#line:99
-                O0OO00OO0OOOO000O .addDirectory (O0OO00OO0OOOO000O .list )#line:100
-            return O0OO00OO0OOOO000O .list #line:102
-        except :#line:103
-            pass #line:104
-    def tvtuner (OO0OOOOOOO0OO00O0 ,O0O0000OOO000O000 ):#line:107
-        try :#line:108
-            OO00OOO00OO000O0O =O000OOO0OOOOOO0O0 .findall ('<preset>(.+?)</preset>',O0O0000OOO000O000 )[0 ]#line:109
-            O00OO0OOOOOO0O0O0 =((OO000OOO0OOOO0OO0 .datetime .utcnow ()-OO000OOO0OOOO0OO0 .timedelta (hours =5 ))).strftime ('%Y-%m-%d')#line:111
-            O00OO0OOOOOO0O0O0 =int (O000OOO0OOOOOO0O0 .sub ('[^0-9]','',str (O00OO0OOOOOO0O0O0 )))#line:112
-            O0O0000OOO000O000 ,OOO00OO00OOOOOOO0 ,OOOO0O0O0OOO0OO00 ,OO0O000O0O0O0OO0O ,O0OOO000OO00OO00O ,O0OOOO00O00000000 ,O000000O00O0O0O00 =O000OOO0OOOOOO0O0 .findall ('<url>(.+?)</url>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<imdb>(.+?)</imdb>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<tvdb>(.+?)</tvdb>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<tvshowtitle>(.+?)</tvshowtitle>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<year>(.+?)</year>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<thumbnail>(.+?)</thumbnail>',O0O0000OOO000O000 )[0 ],O000OOO0OOOOOO0O0 .findall ('<fanart>(.+?)</fanart>',O0O0000OOO000O000 )[0 ]#line:114
-            OO0OO0OOO000OO000 =OOOO000O000O00O0O .request ('http://api.tvmaze.com/lookup/shows?thetvdb=%s'%OOOO0O0O0OOO0OO00 )#line:116
-            if OO0OO0OOO000OO000 ==None :OO0OO0OOO000OO000 =OOOO000O000O00O0O .request ('http://api.tvmaze.com/lookup/shows?imdb=%s'%OOO00OO00OOOOOOO0 )#line:117
-            OO0OO0OOO000OO000 ='http://api.tvmaze.com/shows/%s/episodes'%str (OOO000OOOOOO00OO0 .loads (OO0OO0OOO000OO000 ).get ('id'))#line:118
-            O0OOO00000O00OOOO =OOO000OOOOOO00OO0 .loads (OOOO000O000O00O0O .request (OO0OO0OOO000OO000 ))#line:119
-            O0OOO00000O00OOOO =[(str (O0O000OO000OO00O0 .get ('season')),str (O0O000OO000OO00O0 .get ('number')),O0O000OO000OO00O0 .get ('name').strip (),O0O000OO000OO00O0 .get ('airdate'))for O0O000OO000OO00O0 in O0OOO00000O00OOOO ]#line:120
-            if OO00OOO00OO000O0O =='tvtuner':#line:122
-                O0OO0OO0O00O000OO =O00O00000OO0OOO00 .choice (O0OOO00000O00OOOO )#line:123
-                O0OOO00000O00OOOO =O0OOO00000O00OOOO [O0OOO00000O00OOOO .index (O0OO0OO0O00O000OO ):]+O0OOO00000O00OOOO [:O0OOO00000O00OOOO .index (O0OO0OO0O00O000OO )]#line:124
-                O0OOO00000O00OOOO =O0OOO00000O00OOOO [:100 ]#line:125
-            OOO00OO00000OOO0O =''#line:127
-            for O00OO0OOO0OO0000O in O0OOO00000O00OOOO :#line:129
-                try :#line:130
-                    if int (O000OOO0OOOOOO0O0 .sub ('[^0-9]','',str (O00OO0OOO0OO0000O [3 ])))>O00OO0OOOOOO0O0O0 :raise Exception ()#line:131
-                    OOO00OO00000OOO0O +='<item><title> %01dx%02d . %s</title><meta><content>episode</content><imdb>%s</imdb><tvdb>%s</tvdb><tvshowtitle>%s</tvshowtitle><year>%s</year><title>%s</title><premiered>%s</premiered><season>%01d</season><episode>%01d</episode></meta><link><sublink>search</sublink><sublink>searchsd</sublink></link><thumbnail>%s</thumbnail><fanart>%s</fanart></item>'%(int (O00OO0OOO0OO0000O [0 ]),int (O00OO0OOO0OO0000O [1 ]),O00OO0OOO0OO0000O [2 ],OOO00OO00OOOOOOO0 ,OOOO0O0O0OOO0OO00 ,OO0O000O0O0O0OO0O ,O0OOO000OO00OO00O ,O00OO0OOO0OO0000O [2 ],O00OO0OOO0OO0000O [3 ],int (O00OO0OOO0OO0000O [0 ]),int (O00OO0OOO0OO0000O [1 ]),O0OOOO00O00000000 ,O000000O00O0O0O00 )#line:132
-                except :#line:133
-                    pass #line:134
-            OOO00OO00000OOO0O =O000OOO0OOOOOO0O0 .sub (r'[^\x00-\x7F]+',' ',OOO00OO00000OOO0O )#line:136
-            if OO00OOO00OO000O0O =='tvtuner':#line:138
-                OOO00OO00000OOO0O =OOO00OO00000OOO0O .replace ('<sublink>searchsd</sublink>','')#line:139
-            OO0OOOOOOO0OO00O0 .list =OO0OOOOOOO0OO00O0 .specialist_list ('',result =OOO00OO00000OOO0O )#line:141
-            if OO00OOO00OO000O0O =='tvtuner':#line:143
-                OO0OOOOOOO0OO00O0 .addDirectory (OO0OOOOOOO0OO00O0 .list ,queue =True )#line:144
-            else :#line:145
-                OO0OOOOOOO0OO00O0 .worker ()#line:146
-                OO0OOOOOOO0OO00O0 .addDirectory (OO0OOOOOOO0OO00O0 .list )#line:147
-        except :#line:148
-            pass #line:149
-    def search (O0O0OO000O00OOO0O ):#line:152
-        try :#line:153
-            O0O0OO000O00OOO0O .list =[{'name':30702 ,'action':'addSearch'}]#line:154
-            O0O0OO000O00OOO0O .list +=[{'name':30703 ,'action':'delSearch'}]#line:155
-            try :#line:157
-                def OO00O0O00O0O0OOOO ():return #line:158
-                OO00OOOOOO00OOOOO =O0O000O00000OOO00 .get (OO00O0O00O0O0OOOO ,600000000 ,table ='rel_srch')#line:159
-                for OO00O0OOOOOOO000O in OO00OOOOOO00OOOOO :#line:161
-                    try :O0O0OO000O00OOO0O .list +=[{'name':'%s...'%OO00O0OOOOOOO000O ,'url':OO00O0OOOOOOO000O ,'action':'addSearch'}]#line:162
-                    except :pass #line:163
-            except :#line:164
-                pass #line:165
-            O0O0OO000O00OOO0O .addDirectory (O0O0OO000O00OOO0O .list )#line:167
-            return O0O0OO000O00OOO0O .list #line:168
-        except :#line:169
-            pass #line:170
-    def delSearch (OOOOO0OO00O0O0000 ):#line:173
-        try :#line:174
-            O0O000O00000OOO00 .clear ('rel_srch')#line:175
-            O000OOO0OO0OO00OO .refresh ()#line:176
-        except :#line:177
-            pass #line:178
-    def addSearch (O000OO00OO00O000O ,url =None ):#line:181
-        try :#line:182
-            O0OOO00O0O00OO0O0 ='http://kodirestore.co/specialist/addon/search.xml'#line:183
-            if (url ==None or url ==''):#line:185
-                OOOO00OO0OOOO00OO =O000OOO0OO0OO00OO .keyboard ('',O000OOO0OO0OO00OO .lang (30702 ).encode ('utf-8'))#line:186
-                OOOO00OO0OOOO00OO .doModal ()#line:187
-                if not (OOOO00OO0OOOO00OO .isConfirmed ()):return #line:188
-                url =OOOO00OO0OOOO00OO .getText ()#line:189
-            if (url ==None or url ==''):return #line:191
-            def O0O0OOO0000O0O00O ():return [url ]#line:193
-            OOO00OOOOO00OO0OO =O0O000O00000OOO00 .get (O0O0OOO0000O0O00O ,600000000 ,table ='rel_srch')#line:194
-            def O0O0OOO0000O0O00O ():return [OO0O000OOO000OO00 for OO0OOO00OO000OO0O ,OO0O000OOO000OO00 in enumerate ((OOO00OOOOO00OO0OO +[url ]))if OO0O000OOO000OO00 not in (OOO00OOOOO00OO0OO +[url ])[:OO0OOO00OO000OO0O ]]#line:195
-            O0O000O00000OOO00 .get (O0O0OOO0000O0O00O ,0 ,table ='rel_srch')#line:196
-            OO00O0O00O00O00OO =OOOO000O000O00O0O .request (O0OOO00O0O00OO0O0 )#line:198
-            OO00O0O00O00O00OO =O000OOO0OOOOOO0O0 .findall ('<link>(.+?)</link>',OO00O0O00O00O00OO )#line:199
-            OO00O0O00O00O00OO =[O0OO0OO0OOOOOOOO0 for O0OO0OO0OOOOOOOO0 in OO00O0O00O00O00OO if str (O0OO0OO0OOOOOOOO0 ).startswith ('http')]#line:200
-            O000OO00OO00O000O .list =[];OO0O000OO000OOO0O =[]#line:202
-            for O0OOO00O0O00OO0O0 in OO00O0O00O00O00OO :OO0O000OO000OOO0O .append (O00000OO0O0OO0OOO .Thread (O000OO00OO00O000O .specialist_list ,O0OOO00O0O00OO0O0 ))#line:203
-            [O00O00OO00OOO00O0 .start ()for O00O00OO00OOO00O0 in OO0O000OO000OOO0O ];[OO0O0O0O00OO0O0OO .join ()for OO0O0O0O00OO0O0OO in OO0O000OO000OOO0O ]#line:204
-            O000OO00OO00O000O .list =[O0O00OOOOO0OO0000 for O0O00OOOOO0OO0000 in O000OO00OO00O000O .list if url .lower ()in O0O00OOOOO0OO0000 ['name'].lower ()]#line:206
-            for O0O00O0OOOO00O0O0 in O000OO00OO00O000O .list :#line:208
-                try :#line:209
-                    O0OO00O0OO0OO0O0O =''#line:210
-                    if not O0O00O0OOOO00O0O0 ['vip']in ['specialist TV']:O0OO00O0OO0OO0O0O +='[B]%s[/B] | '%O0O00O0OOOO00O0O0 ['vip'].upper ()#line:211
-                    O0OO00O0OO0OO0O0O +=O0O00O0OOOO00O0O0 ['name']#line:212
-                    O0O00O0OOOO00O0O0 .update ({'name':O0OO00O0OO0OO0O0O })#line:213
-                except :#line:214
-                    pass #line:215
-            for O0O00O0OOOO00O0O0 in O000OO00OO00O000O .list :O0O00O0OOOO00O0O0 .update ({'content':'videos'})#line:217
-            O000OO00OO00O000O .addDirectory (O000OO00OO00O000O .list )#line:218
-        except :#line:219
-            pass #line:220
-    def specialist_list (O000O0OOOOO000O0O ,O0OOOO00000O0OOOO ,result =None ):#line:223
-        try :#line:224
-            if result ==None :result =O0O000O00000OOO00 .get (OOOO000O000O00O0O .request ,0 ,O0OOOO00000O0OOOO )#line:225
-            if result .strip ().startswith ('#EXTM3U')and '#EXTINF'in result :#line:227
-                result =O000OOO0OOOOOO0O0 .compile ('#EXTINF:.+?\,(.+?)\n(.+?)\n',O000OOO0OOOOOO0O0 .MULTILINE |O000OOO0OOOOOO0O0 .DOTALL ).findall (result )#line:228
-                result =['<item><title>%s</title><link>%s</link></item>'%(OOO0O000000O0OOOO [0 ],OOO0O000000O0OOOO [1 ])for OOO0O000000O0OOOO in result ]#line:229
-                result =''.join (result )#line:230
-            try :O0OOO00OOO00OO00O =O0O0OOO0000O00OO0 .b64decode (result )#line:232
-            except :O0OOO00OOO00OO00O =''#line:233
-            if '</link>'in O0OOO00OOO00OO00O :result =O0OOO00OOO00OO00O #line:234
-            result =str (result )#line:236
-            result =O000O0OOOOO000O0O .account_filter (result )#line:238
-            O0O0O000O0O0O00O0 =result .split ('<item>')[0 ].split ('<dir>')[0 ]#line:240
-            try :O000O0O000000OOO0 =O000OOO0OOOOOO0O0 .findall ('<poster>(.+?)</poster>',O0O0O000O0O0O00O0 )[0 ]#line:242
-            except :O000O0O000000OOO0 ='0'#line:243
-            try :O00OO000OO0OO0O00 =O000OOO0OOOOOO0O0 .findall ('<thumbnail>(.+?)</thumbnail>',O0O0O000O0O0O00O0 )[0 ]#line:245
-            except :O00OO000OO0OO0O00 ='0'#line:246
-            try :O00OO0OOOOOO00OOO =O000OOO0OOOOOO0O0 .findall ('<fanart>(.+?)</fanart>',O0O0O000O0O0O00O0 )[0 ]#line:248
-            except :O00OO0OOOOOO00OOO ='0'#line:249
-            OOOO0000000000O0O =O000OOO0OOOOOO0O0 .compile ('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))',O000OOO0OOOOOO0O0 .MULTILINE |O000OOO0OOOOOO0O0 .DOTALL ).findall (result )#line:251
-        except :#line:252
-            return #line:253
-        for O00O000O0O0O0O0O0 in OOOO0000000000O0O :#line:255
-            try :#line:256
-                OO0O0O0000O0O0O00 =O000OOO0OOOOOO0O0 .compile ('(<regex>.+?</regex>)',O000OOO0OOOOOO0O0 .MULTILINE |O000OOO0OOOOOO0O0 .DOTALL ).findall (O00O000O0O0O0O0O0 )#line:257
-                OO0O0O0000O0O0O00 =''.join (OO0O0O0000O0O0O00 )#line:258
-                OO0000OOOOO0O00O0 =O000OOO0OOOOOO0O0 .compile ('(<listrepeat>.+?</listrepeat>)',O000OOO0OOOOOO0O0 .MULTILINE |O000OOO0OOOOOO0O0 .DOTALL ).findall (OO0O0O0000O0O0O00 )#line:259
-                OO0O0O0000O0O0O00 =O0O0OOO0O0O0OOOOO .quote_plus (OO0O0O0000O0O0O00 )#line:260
-                OO0O00OO0OOO0OOO0 =O00O00O00O0000O00 .md5 ()#line:262
-                for OO0O000000OOO00OO in OO0O0O0000O0O0O00 :OO0O00OO0OOO0OOO0 .update (str (OO0O000000OOO00OO ))#line:263
-                OO0O00OO0OOO0OOO0 =str (OO0O00OO0OOO0OOO0 .hexdigest ())#line:264
-                O00O000O0O0O0O0O0 =O00O000O0O0O0O0O0 .replace ('\r','').replace ('\n','').replace ('\t','').replace ('&nbsp;','')#line:266
-                O00O000O0O0O0O0O0 =O000OOO0OOOOOO0O0 .sub ('<regex>.+?</regex>','',O00O000O0O0O0O0O0 )#line:267
-                O00O000O0O0O0O0O0 =O000OOO0OOOOOO0O0 .sub ('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','',O00O000O0O0O0O0O0 )#line:268
-                O00O000O0O0O0O0O0 =O000OOO0OOOOOO0O0 .sub ('<link></link>','',O00O000O0O0O0O0O0 )#line:269
-                O000O000OO000O0O0 =O000OOO0OOOOOO0O0 .sub ('<meta>.+?</meta>','',O00O000O0O0O0O0O0 )#line:271
-                try :O000O000OO000O0O0 =O000OOO0OOOOOO0O0 .findall ('<title>(.+?)</title>',O000O000OO000O0O0 )[0 ]#line:272
-                except :O000O000OO000O0O0 =O000OOO0OOOOOO0O0 .findall ('<name>(.+?)</name>',O000O000OO000O0O0 )[0 ]#line:273
-                try :O0OO00OOOOO00O0O0 =O000OOO0OOOOOO0O0 .findall ('<date>(.+?)</date>',O00O000O0O0O0O0O0 )[0 ]#line:275
-                except :O0OO00OOOOO00O0O0 =''#line:276
-                if O000OOO0OOOOOO0O0 .search (r'\d+',O0OO00OOOOO00O0O0 ):O000O000OO000O0O0 +=' [COLOR red] Updated %s[/COLOR]'%O0OO00OOOOO00O0O0 #line:277
-                try :OOOO0O000OO0OOOO0 =O000OOO0OOOOOO0O0 .findall ('<thumbnail>(.+?)</thumbnail>',O00O000O0O0O0O0O0 )[0 ]#line:279
-                except :OOOO0O000OO0OOOO0 =O00OO000OO0OO0O00 #line:280
-                try :O0OOO0O0O0OO0O00O =O000OOO0OOOOOO0O0 .findall ('<fanart>(.+?)</fanart>',O00O000O0O0O0O0O0 )[0 ]#line:282
-                except :O0OOO0O0O0OO0O00O =O00OO0OOOOOO00OOO #line:283
-                try :OO0OO00OO00O00OOO =O000OOO0OOOOOO0O0 .findall ('<meta>(.+?)</meta>',O00O000O0O0O0O0O0 )[0 ]#line:285
-                except :OO0OO00OO00O00OOO ='0'#line:286
-                try :O0OOOO00000O0OOOO =O000OOO0OOOOOO0O0 .findall ('<link>(.+?)</link>',O00O000O0O0O0O0O0 )[0 ]#line:288
-                except :O0OOOO00000O0OOOO ='0'#line:289
-                O0OOOO00000O0OOOO =O0OOOO00000O0OOOO .replace ('>search<','><preset>search</preset>%s<'%OO0OO00OO00O00OOO )#line:290
-                O0OOOO00000O0OOOO ='<preset>search</preset>%s'%OO0OO00OO00O00OOO if O0OOOO00000O0OOOO =='search'else O0OOOO00000O0OOOO #line:291
-                O0OOOO00000O0OOOO =O0OOOO00000O0OOOO .replace ('>searchsd<','><preset>searchsd</preset>%s<'%OO0OO00OO00O00OOO )#line:292
-                O0OOOO00000O0OOOO ='<preset>searchsd</preset>%s'%OO0OO00OO00O00OOO if O0OOOO00000O0OOOO =='searchsd'else O0OOOO00000O0OOOO #line:293
-                O0OOOO00000O0OOOO =O000OOO0OOOOOO0O0 .sub ('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','',O0OOOO00000O0OOOO )#line:294
-                if O00O000O0O0O0O0O0 .startswith ('<item>'):O0O000OOO0OO00OOO ='play'#line:296
-                elif O00O000O0O0O0O0O0 .startswith ('<plugin>'):O0O000OOO0OO00OOO ='plugin'#line:297
-                elif O00O000O0O0O0O0O0 .startswith ('<info>')or O0OOOO00000O0OOOO =='0':O0O000OOO0OO00OOO ='0'#line:298
-                else :O0O000OOO0OO00OOO ='directory'#line:299
-                if O0O000OOO0OO00OOO =='play'and OO0000OOOOO0O00O0 :O0O000OOO0OO00OOO ='xdirectory'#line:300
-                if not OO0O0O0000O0O0O00 =='':#line:302
-                    O000O0OOOOO000O0O .hash .append ({'regex':OO0O00OO0OOO0OOO0 ,'response':OO0O0O0000O0O0O00 })#line:303
-                    O0OOOO00000O0OOOO +='|regex=%s'%OO0O00OO0OOO0OOO0 #line:304
-                if O0O000OOO0OO00OOO in ['directory','xdirectory','plugin']:#line:306
-                    O00O00OO00O0O000O =True #line:307
-                else :#line:308
-                    O00O00OO00O0O000O =False #line:309
-                try :O000000O00O00O000 =O000OOO0OOOOOO0O0 .findall ('<content>(.+?)</content>',OO0OO00OO00O00OOO )[0 ]#line:311
-                except :O000000O00O00O000 ='0'#line:312
-                if O000000O00O00O000 =='0':#line:313
-                    try :O000000O00O00O000 =O000OOO0OOOOOO0O0 .findall ('<content>(.+?)</content>',O00O000O0O0O0O0O0 )[0 ]#line:314
-                    except :O000000O00O00O000 ='0'#line:315
-                if not O000000O00O00O000 =='0':O000000O00O00O000 +='s'#line:316
-                if 'tvshow'in O000000O00O00O000 and not O0OOOO00000O0OOOO .strip ().endswith ('.xml'):#line:318
-                    O0OOOO00000O0OOOO ='<preset>tvindexer</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s'%(O0OOOO00000O0OOOO ,OOOO0O000OO0OOOO0 ,O0OOO0O0O0OO0O00O ,OO0OO00OO00O00OOO )#line:319
-                    O0O000OOO0OO00OOO ='tvtuner'#line:320
-                if 'tvtuner'in O000000O00O00O000 and not O0OOOO00000O0OOOO .strip ().endswith ('.xml'):#line:322
-                    O0OOOO00000O0OOOO ='<preset>tvtuner</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s'%(O0OOOO00000O0OOOO ,OOOO0O000OO0OOOO0 ,O0OOO0O0O0OO0O00O ,OO0OO00OO00O00OOO )#line:323
-                    O0O000OOO0OO00OOO ='tvtuner'#line:324
-                try :O0O0000O0O0000OO0 =O000OOO0OOOOOO0O0 .findall ('<imdb>(.+?)</imdb>',OO0OO00OO00O00OOO )[0 ]#line:326
-                except :O0O0000O0O0000OO0 ='0'#line:327
-                try :OO0O00OO00O00OO0O =O000OOO0OOOOOO0O0 .findall ('<tvdb>(.+?)</tvdb>',OO0OO00OO00O00OOO )[0 ]#line:329
-                except :OO0O00OO00O00OO0O ='0'#line:330
-                try :O000OOOOO0OO0O0O0 =O000OOO0OOOOOO0O0 .findall ('<tvshowtitle>(.+?)</tvshowtitle>',OO0OO00OO00O00OOO )[0 ]#line:332
-                except :O000OOOOO0OO0O0O0 ='0'#line:333
-                try :O00OOO0OO0000OO0O =O000OOO0OOOOOO0O0 .findall ('<title>(.+?)</title>',OO0OO00OO00O00OOO )[0 ]#line:335
-                except :O00OOO0OO0000OO0O ='0'#line:336
-                if O00OOO0OO0000OO0O =='0'and not O000OOOOO0OO0O0O0 =='0':O00OOO0OO0000OO0O =O000OOOOO0OO0O0O0 #line:338
-                try :OOOOOOO000OOOOO0O =O000OOO0OOOOOO0O0 .findall ('<year>(.+?)</year>',OO0OO00OO00O00OOO )[0 ]#line:340
-                except :OOOOOOO000OOOOO0O ='0'#line:341
-                try :OO000O0O00OO0OOO0 =O000OOO0OOOOOO0O0 .findall ('<premiered>(.+?)</premiered>',OO0OO00OO00O00OOO )[0 ]#line:343
-                except :OO000O0O00OO0OOO0 ='0'#line:344
-                try :O0OO0O0O000OO0000 =O000OOO0OOOOOO0O0 .findall ('<season>(.+?)</season>',OO0OO00OO00O00OOO )[0 ]#line:346
-                except :O0OO0O0O000OO0000 ='0'#line:347
-                try :O0OO0000O0OOO00O0 =O000OOO0OOOOOO0O0 .findall ('<episode>(.+?)</episode>',OO0OO00OO00O00OOO )[0 ]#line:349
-                except :O0OO0000O0OOO00O0 ='0'#line:350
-                O000O0OOOOO000O0O .list .append ({'name':O000O000OO000O0O0 ,'vip':O000O0O000000OOO0 ,'url':O0OOOO00000O0OOOO ,'action':O0O000OOO0OO00OOO ,'folder':O00O00OO00O0O000O ,'poster':OOOO0O000OO0OOOO0 ,'banner':'0','fanart':O0OOO0O0O0OO0O00O ,'content':O000000O00O00O000 ,'imdb':O0O0000O0O0000OO0 ,'tvdb':OO0O00OO00O00OO0O ,'tmdb':'0','title':O00OOO0OO0000OO0O ,'originaltitle':O00OOO0OO0000OO0O ,'tvshowtitle':O000OOOOO0OO0O0O0 ,'year':OOOOOOO000OOOOO0O ,'premiered':OO000O0O00OO0OOO0 ,'season':O0OO0O0O000OO0000 ,'episode':O0OO0000O0OOO00O0 })#line:352
-            except :#line:353
-                pass #line:354
-        O00OOOO0O0OOO00O0 .insert (O000O0OOOOO000O0O .hash )#line:356
-        return O000O0OOOOO000O0O .list #line:358
-    def account_filter (O0O0OO0OO00000OO0 ,OO0O0O00OO0000O0O ):#line:361
-        if (O000OOO0OO0OO00OO .setting ('ustvnow_email')==''or O000OOO0OO0OO00OO .setting ('ustvnow_pass')==''):#line:362
-            OO0O0O00OO0000O0O =O000OOO0OOOOOO0O0 .sub ('http(?:s|)://(?:www\.|)ustvnow\.com/.+?<','<',OO0O0O00OO0000O0O )#line:363
-        if (O000OOO0OO0OO00OO .setting ('streamlive_user')==''or O000OOO0OO0OO00OO .setting ('streamlive_pass')==''):#line:365
-            OO0O0O00OO0000O0O =O000OOO0OOOOOO0O0 .sub ('http(?:s|)://(?:www\.|)streamlive\.to/.+?<','<',OO0O0O00OO0000O0O )#line:366
-        return OO0O0O00OO0000O0O #line:368
-    def worker (OOO00OO00O000OO0O ):#line:371
-        if not O000OOO0OO0OO00OO .setting ('metadata')=='true':return #line:372
-        OOO00OO00O000OO0O .imdb_info_link ='http://www.omdbapi.com/?i=%s&plot=full&r=json'#line:374
-        OOO00OO00O000OO0O .tvmaze_info_link ='http://api.tvmaze.com/lookup/shows?thetvdb=%s'#line:375
-        OOO00OO00O000OO0O .lang ='en'#line:376
-        OOO00OO00O000OO0O .meta =[]#line:378
-        O00OO0O00OOOO00O0 =len (OOO00OO00O000OO0O .list )#line:379
-        if O00OO0O00OOOO00O0 ==0 :return #line:380
-        for OOOOOO0000O00O0OO in range (0 ,O00OO0O00OOOO00O0 ):OOO00OO00O000OO0O .list [OOOOOO0000O00O0OO ].update ({'metacache':False })#line:382
-        OOO00OO00O000OO0O .list =O00OO0000OOOOOO0O .fetch (OOO00OO00O000OO0O .list ,OOO00OO00O000OO0O .lang )#line:383
-        O0OOOO0O00OO00OO0 =[O0OOOOO0OOOOOO0O0 ['imdb']for O0OOOOO0OOOOOO0O0 in OOO00OO00O000OO0O .list ]#line:385
-        O0OOOO0O00OO00OO0 =[OOO00O000O0OOO00O for OOOOOOO0O0O0O0O00 ,OOO00O000O0OOO00O in enumerate (O0OOOO0O00OO00OO0 )if OOO00O000O0OOO00O not in O0OOOO0O00OO00OO0 [:OOOOOOO0O0O0O0O00 ]]#line:386
-        if len (O0OOOO0O00OO00OO0 )==1 :#line:387
-                OOO00OO00O000OO0O .movie_info (0 );OOO00OO00O000OO0O .tv_info (0 )#line:388
-                if OOO00OO00O000OO0O .meta :O00OO0000OOOOOO0O .insert (OOO00OO00O000OO0O .meta )#line:389
-        for OOOOOO0000O00O0OO in range (0 ,O00OO0O00OOOO00O0 ):OOO00OO00O000OO0O .list [OOOOOO0000O00O0OO ].update ({'metacache':False })#line:391
-        OOO00OO00O000OO0O .list =O00OO0000OOOOOO0O .fetch (OOO00OO00O000OO0O .list ,OOO00OO00O000OO0O .lang )#line:392
-        for O0000OO0O000O0O0O in range (0 ,O00OO0O00OOOO00O0 ,50 ):#line:394
-            O00OOO0O00OO0OO0O =[]#line:395
-            for OOOOOO0000O00O0OO in range (O0000OO0O000O0O0O ,O0000OO0O000O0O0O +50 ):#line:396
-                if OOOOOO0000O00O0OO <=O00OO0O00OOOO00O0 :O00OOO0O00OO0OO0O .append (O00000OO0O0OO0OOO .Thread (OOO00OO00O000OO0O .movie_info ,OOOOOO0000O00O0OO ))#line:397
-                if OOOOOO0000O00O0OO <=O00OO0O00OOOO00O0 :O00OOO0O00OO0OO0O .append (O00000OO0O0OO0OOO .Thread (OOO00OO00O000OO0O .tv_info ,OOOOOO0000O00O0OO ))#line:398
-            [O0OO00OOO0OO0OO00 .start ()for O0OO00OOO0OO0OO00 in O00OOO0O00OO0OO0O ]#line:399
-            [O0000O00OOO00O0O0 .join ()for O0000O00OOO00O0O0 in O00OOO0O00OO0OO0O ]#line:400
-        if OOO00OO00O000OO0O .meta :O00OO0000OOOOOO0O .insert (OOO00OO00O000OO0O .meta )#line:402
-    def movie_info (O0OOO0OOO0O0O0OO0 ,O00000OO0O0O00OO0 ):#line:405
-        try :#line:406
-            if O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ]['metacache']==True :raise Exception ()#line:407
-            if not O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ]['content']=='movies':raise Exception ()#line:409
-            OO0OO0O00O0O0O00O =O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ]['imdb']#line:411
-            if OO0OO0O00O0O0O00O =='0':raise Exception ()#line:412
-            O00OO0O00OO0OOO00 =O0OOO0OOO0O0O0OO0 .imdb_info_link %OO0OO0O00O0O0O00O #line:414
-            O00OO00OO0O0O0OO0 =OOOO000O000O00O0O .request (O00OO0O00OO0OOO00 ,timeout ='10')#line:416
-            O00OO00OO0O0O0OO0 =OOO000OOOOOO00OO0 .loads (O00OO00OO0O0O0OO0 )#line:417
-            if 'Error'in O00OO00OO0O0O0OO0 and 'incorrect imdb'in O00OO00OO0O0O0OO0 ['Error'].lower ():#line:419
-                return O0OOO0OOO0O0O0OO0 .meta .append ({'imdb':OO0OO0O00O0O0O00O ,'tmdb':'0','tvdb':'0','lang':O0OOO0OOO0O0O0OO0 .lang ,'item':{'code':'0'}})#line:420
-            O0OO0OOO0000O0OO0 =O00OO00OO0O0O0OO0 ['Title']#line:422
-            O0OO0OOO0000O0OO0 =O0OO0OOO0000O0OO0 .encode ('utf-8')#line:423
-            if not O0OO0OOO0000O0OO0 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'title':O0OO0OOO0000O0OO0 })#line:424
-            O0O00000OO0O00OOO =O00OO00OO0O0O0OO0 ['Year']#line:426
-            O0O00000OO0O00OOO =O0O00000OO0O00OOO .encode ('utf-8')#line:427
-            if not O0O00000OO0O00OOO =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'year':O0O00000OO0O00OOO })#line:428
-            OO0OO0O00O0O0O00O =O00OO00OO0O0O0OO0 ['imdbID']#line:430
-            if OO0OO0O00O0O0O00O ==None or OO0OO0O00O0O0O00O ==''or OO0OO0O00O0O0O00O =='N/A':OO0OO0O00O0O0O00O ='0'#line:431
-            OO0OO0O00O0O0O00O =OO0OO0O00O0O0O00O .encode ('utf-8')#line:432
-            if not OO0OO0O00O0O0O00O =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'imdb':OO0OO0O00O0O0O00O ,'code':OO0OO0O00O0O0O00O })#line:433
-            O0OOO0OOOO0000O00 =O00OO00OO0O0O0OO0 ['Released']#line:435
-            if O0OOO0OOOO0000O00 ==None or O0OOO0OOOO0000O00 ==''or O0OOO0OOOO0000O00 =='N/A':O0OOO0OOOO0000O00 ='0'#line:436
-            O0OOO0OOOO0000O00 =O000OOO0OOOOOO0O0 .findall ('(\d*) (.+?) (\d*)',O0OOO0OOOO0000O00 )#line:437
-            try :O0OOO0OOOO0000O00 ='%s-%s-%s'%(O0OOO0OOOO0000O00 [0 ][2 ],{'Jan':'01','Feb':'02','Mar':'03','Apr':'04','May':'05','Jun':'06','Jul':'07','Aug':'08','Sep':'09','Oct':'10','Nov':'11','Dec':'12'}[O0OOO0OOOO0000O00 [0 ][1 ]],O0OOO0OOOO0000O00 [0 ][0 ])#line:438
-            except :O0OOO0OOOO0000O00 ='0'#line:439
-            O0OOO0OOOO0000O00 =O0OOO0OOOO0000O00 .encode ('utf-8')#line:440
-            if not O0OOO0OOOO0000O00 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'premiered':O0OOO0OOOO0000O00 })#line:441
-            OOO0O0000OOOO0OOO =O00OO00OO0O0O0OO0 ['Genre']#line:443
-            if OOO0O0000OOOO0OOO ==None or OOO0O0000OOOO0OOO ==''or OOO0O0000OOOO0OOO =='N/A':OOO0O0000OOOO0OOO ='0'#line:444
-            OOO0O0000OOOO0OOO =OOO0O0000OOOO0OOO .replace (', ',' / ')#line:445
-            OOO0O0000OOOO0OOO =OOO0O0000OOOO0OOO .encode ('utf-8')#line:446
-            if not OOO0O0000OOOO0OOO =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'genre':OOO0O0000OOOO0OOO })#line:447
-            O0O0OO0OO0O00O0OO =O00OO00OO0O0O0OO0 ['Runtime']#line:449
-            if O0O0OO0OO0O00O0OO ==None or O0O0OO0OO0O00O0OO ==''or O0O0OO0OO0O00O0OO =='N/A':O0O0OO0OO0O00O0OO ='0'#line:450
-            O0O0OO0OO0O00O0OO =O000OOO0OOOOOO0O0 .sub ('[^0-9]','',str (O0O0OO0OO0O00O0OO ))#line:451
-            try :O0O0OO0OO0O00O0OO =str (int (O0O0OO0OO0O00O0OO )*60 )#line:452
-            except :pass #line:453
-            O0O0OO0OO0O00O0OO =O0O0OO0OO0O00O0OO .encode ('utf-8')#line:454
-            if not O0O0OO0OO0O00O0OO =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'duration':O0O0OO0OO0O00O0OO })#line:455
-            OOOO0OO0O0OOOOO00 =O00OO00OO0O0O0OO0 ['imdbRating']#line:457
-            if OOOO0OO0O0OOOOO00 ==None or OOOO0OO0O0OOOOO00 ==''or OOOO0OO0O0OOOOO00 =='N/A'or OOOO0OO0O0OOOOO00 =='0.0':OOOO0OO0O0OOOOO00 ='0'#line:458
-            OOOO0OO0O0OOOOO00 =OOOO0OO0O0OOOOO00 .encode ('utf-8')#line:459
-            if not OOOO0OO0O0OOOOO00 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'rating':OOOO0OO0O0OOOOO00 })#line:460
-            O0OOOOOO0OOOO0OOO =O00OO00OO0O0O0OO0 ['imdbVotes']#line:462
-            try :O0OOOOOO0OOOO0OOO =str (format (int (O0OOOOOO0OOOO0OOO ),',d'))#line:463
-            except :pass #line:464
-            if O0OOOOOO0OOOO0OOO ==None or O0OOOOOO0OOOO0OOO ==''or O0OOOOOO0OOOO0OOO =='N/A':O0OOOOOO0OOOO0OOO ='0'#line:465
-            O0OOOOOO0OOOO0OOO =O0OOOOOO0OOOO0OOO .encode ('utf-8')#line:466
-            if not O0OOOOOO0OOOO0OOO =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'votes':O0OOOOOO0OOOO0OOO })#line:467
-            OOOOO000OOOOOO000 =O00OO00OO0O0O0OO0 ['Rated']#line:469
-            if OOOOO000OOOOOO000 ==None or OOOOO000OOOOOO000 ==''or OOOOO000OOOOOO000 =='N/A':OOOOO000OOOOOO000 ='0'#line:470
-            OOOOO000OOOOOO000 =OOOOO000OOOOOO000 .encode ('utf-8')#line:471
-            if not OOOOO000OOOOOO000 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'mpaa':OOOOO000OOOOOO000 })#line:472
-            O000O00OO00000O0O =O00OO00OO0O0O0OO0 ['Director']#line:474
-            if O000O00OO00000O0O ==None or O000O00OO00000O0O ==''or O000O00OO00000O0O =='N/A':O000O00OO00000O0O ='0'#line:475
-            O000O00OO00000O0O =O000O00OO00000O0O .replace (', ',' / ')#line:476
-            O000O00OO00000O0O =O000OOO0OOOOOO0O0 .sub (r'\(.*?\)','',O000O00OO00000O0O )#line:477
-            O000O00OO00000O0O =' '.join (O000O00OO00000O0O .split ())#line:478
-            O000O00OO00000O0O =O000O00OO00000O0O .encode ('utf-8')#line:479
-            if not O000O00OO00000O0O =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'director':O000O00OO00000O0O })#line:480
-            O0O00OOOOO0O00OO0 =O00OO00OO0O0O0OO0 ['Writer']#line:482
-            if O0O00OOOOO0O00OO0 ==None or O0O00OOOOO0O00OO0 ==''or O0O00OOOOO0O00OO0 =='N/A':O0O00OOOOO0O00OO0 ='0'#line:483
-            O0O00OOOOO0O00OO0 =O0O00OOOOO0O00OO0 .replace (', ',' / ')#line:484
-            O0O00OOOOO0O00OO0 =O000OOO0OOOOOO0O0 .sub (r'\(.*?\)','',O0O00OOOOO0O00OO0 )#line:485
-            O0O00OOOOO0O00OO0 =' '.join (O0O00OOOOO0O00OO0 .split ())#line:486
-            O0O00OOOOO0O00OO0 =O0O00OOOOO0O00OO0 .encode ('utf-8')#line:487
-            if not O0O00OOOOO0O00OO0 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'writer':O0O00OOOOO0O00OO0 })#line:488
-            OOO0OOOOO0000OO00 =O00OO00OO0O0O0OO0 ['Actors']#line:490
-            if OOO0OOOOO0000OO00 ==None or OOO0OOOOO0000OO00 ==''or OOO0OOOOO0000OO00 =='N/A':OOO0OOOOO0000OO00 ='0'#line:491
-            OOO0OOOOO0000OO00 =[O000O000OO0O00000 .strip ()for O000O000OO0O00000 in OOO0OOOOO0000OO00 .split (',')if not O000O000OO0O00000 =='']#line:492
-            try :OOO0OOOOO0000OO00 =[(OO000OO00O000OO00 .encode ('utf-8'),'')for OO000OO00O000OO00 in OOO0OOOOO0000OO00 ]#line:493
-            except :OOO0OOOOO0000OO00 =[]#line:494
-            if OOO0OOOOO0000OO00 ==[]:OOO0OOOOO0000OO00 ='0'#line:495
-            if not OOO0OOOOO0000OO00 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'cast':OOO0OOOOO0000OO00 })#line:496
-            OOO000OOOO00OO0O0 =O00OO00OO0O0O0OO0 ['Plot']#line:498
-            if OOO000OOOO00OO0O0 ==None or OOO000OOOO00OO0O0 ==''or OOO000OOOO00OO0O0 =='N/A':OOO000OOOO00OO0O0 ='0'#line:499
-            OOO000OOOO00OO0O0 =OOOO000O000O00O0O .replaceHTMLCodes (OOO000OOOO00OO0O0 )#line:500
-            OOO000OOOO00OO0O0 =OOO000OOOO00OO0O0 .encode ('utf-8')#line:501
-            if not OOO000OOOO00OO0O0 =='0':O0OOO0OOO0O0O0OO0 .list [O00000OO0O0O00OO0 ].update ({'plot':OOO000OOOO00OO0O0 })#line:502
-            O0OOO0OOO0O0O0OO0 .meta .append ({'imdb':OO0OO0O00O0O0O00O ,'tmdb':'0','tvdb':'0','lang':O0OOO0OOO0O0O0OO0 .lang ,'item':{'title':O0OO0OOO0000O0OO0 ,'year':O0O00000OO0O00OOO ,'code':OO0OO0O00O0O0O00O ,'imdb':OO0OO0O00O0O0O00O ,'premiered':O0OOO0OOOO0000O00 ,'genre':OOO0O0000OOOO0OOO ,'duration':O0O0OO0OO0O00O0OO ,'rating':OOOO0OO0O0OOOOO00 ,'votes':O0OOOOOO0OOOO0OOO ,'mpaa':OOOOO000OOOOOO000 ,'director':O000O00OO00000O0O ,'writer':O0O00OOOOO0O00OO0 ,'cast':OOO0OOOOO0000OO00 ,'plot':OOO000OOOO00OO0O0 }})#line:504
-        except :#line:505
-            pass #line:506
-    def tv_info (O0O00000OO00OOO00 ,O000OO0OOO0O0000O ):#line:509
-        try :#line:510
-            if O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ]['metacache']==True :raise Exception ()#line:511
-            if not O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ]['content']in ['tvshows','seasons','episodes']:raise Exception ()#line:513
-            O00O00000000O0O00 =O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ]['tvdb']#line:515
-            if O00O00000000O0O00 =='0':raise Exception ()#line:516
-            OOOO000O0OOO00OOO =O0O00000OO00OOO00 .tvmaze_info_link %O00O00000000O0O00 #line:518
-            O0OO00O0000000OOO =OOOO000O000O00O0O .request (OOOO000O0OOO00OOO ,output ='extended',error =True ,timeout ='10')#line:520
-            if O0OO00O0000000OOO [1 ]=='404':#line:522
-                return O0O00000OO00OOO00 .meta .append ({'imdb':'0','tmdb':'0','tvdb':O00O00000000O0O00 ,'lang':O0O00000OO00OOO00 .lang ,'item':{'code':'0'}})#line:523
-            O0OO00O0000000OOO =OOO000OOOOOO00OO0 .loads (O0OO00O0000000OOO [0 ])#line:525
-            O0O000O00O0000OO0 =O0OO00O0000000OOO ['name']#line:527
-            O0O000O00O0000OO0 =O0O000O00O0000OO0 .encode ('utf-8')#line:528
-            if not O0O000O00O0000OO0 =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'tvshowtitle':O0O000O00O0000OO0 })#line:529
-            O0OOO0000OOO0O0O0 =O0OO00O0000000OOO ['premiered']#line:531
-            O0OOO0000OOO0O0O0 =O000OOO0OOOOOO0O0 .findall ('(\d{4})',O0OOO0000OOO0O0O0 )[0 ]#line:532
-            O0OOO0000OOO0O0O0 =O0OOO0000OOO0O0O0 .encode ('utf-8')#line:533
-            if not O0OOO0000OOO0O0O0 =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'year':O0OOO0000OOO0O0O0 })#line:534
-            try :O0OOOOOO000OOOOO0 =O0OO00O0000000OOO ['externals']['imdb']#line:536
-            except :O0OOOOOO000OOOOO0 ='0'#line:537
-            if O0OOOOOO000OOOOO0 ==''or O0OOOOOO000OOOOO0 ==None :O0OOOOOO000OOOOO0 ='0'#line:538
-            O0OOOOOO000OOOOO0 =O0OOOOOO000OOOOO0 .encode ('utf-8')#line:539
-            if O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ]['imdb']=='0'and not O0OOOOOO000OOOOO0 =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'imdb':O0OOOOOO000OOOOO0 })#line:540
-            try :OO00O0OO000O0OOOO =O0OO00O0000000OOO ['network']['name']#line:542
-            except :OO00O0OO000O0OOOO ='0'#line:543
-            if OO00O0OO000O0OOOO ==''or OO00O0OO000O0OOOO ==None :OO00O0OO000O0OOOO ='0'#line:544
-            OO00O0OO000O0OOOO =OO00O0OO000O0OOOO .encode ('utf-8')#line:545
-            if not OO00O0OO000O0OOOO =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'studio':OO00O0OO000O0OOOO })#line:546
-            O0OOOOO00O0OO0OO0 =O0OO00O0000000OOO ['genres']#line:548
-            if O0OOOOO00O0OO0OO0 ==''or O0OOOOO00O0OO0OO0 ==None or O0OOOOO00O0OO0OO0 ==[]:O0OOOOO00O0OO0OO0 ='0'#line:549
-            O0OOOOO00O0OO0OO0 =' / '.join (O0OOOOO00O0OO0OO0 )#line:550
-            O0OOOOO00O0OO0OO0 =O0OOOOO00O0OO0OO0 .encode ('utf-8')#line:551
-            if not O0OOOOO00O0OO0OO0 =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'genre':O0OOOOO00O0OO0OO0 })#line:552
-            try :OO00OO0OO0OO0OO0O =str (O0OO00O0000000OOO ['runtime'])#line:554
-            except :OO00OO0OO0OO0OO0O ='0'#line:555
-            if OO00OO0OO0OO0OO0O ==''or OO00OO0OO0OO0OO0O ==None :OO00OO0OO0OO0OO0O ='0'#line:556
-            try :OO00OO0OO0OO0OO0O =str (int (OO00OO0OO0OO0OO0O )*60 )#line:557
-            except :pass #line:558
-            OO00OO0OO0OO0OO0O =OO00OO0OO0OO0OO0O .encode ('utf-8')#line:559
-            if not OO00OO0OO0OO0OO0O =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'duration':OO00OO0OO0OO0OO0O })#line:560
-            O0OOO0O0OO0OO00OO =str (O0OO00O0000000OOO ['rating']['average'])#line:562
-            if O0OOO0O0OO0OO00OO ==''or O0OOO0O0OO0OO00OO ==None :O0OOO0O0OO0OO00OO ='0'#line:563
-            O0OOO0O0OO0OO00OO =O0OOO0O0OO0OO00OO .encode ('utf-8')#line:564
-            if not O0OOO0O0OO0OO00OO =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'rating':O0OOO0O0OO0OO00OO })#line:565
-            O00OOO0O00O0OO000 =O0OO00O0000000OOO ['summary']#line:567
-            if O00OOO0O00O0OO000 ==''or O00OOO0O00O0OO000 ==None :O00OOO0O00O0OO000 ='0'#line:568
-            O00OOO0O00O0OO000 =O000OOO0OOOOOO0O0 .sub ('\n|<.+?>|</.+?>|.+?#\d*:','',O00OOO0O00O0OO000 )#line:569
-            O00OOO0O00O0OO000 =O00OOO0O00O0OO000 .encode ('utf-8')#line:570
-            if not O00OOO0O00O0OO000 =='0':O0O00000OO00OOO00 .list [O000OO0OOO0O0000O ].update ({'plot':O00OOO0O00O0OO000 })#line:571
-            O0O00000OO00OOO00 .meta .append ({'imdb':O0OOOOOO000OOOOO0 ,'tmdb':'0','tvdb':O00O00000000O0O00 ,'lang':O0O00000OO00OOO00 .lang ,'item':{'tvshowtitle':O0O000O00O0000OO0 ,'year':O0OOO0000OOO0O0O0 ,'code':O0OOOOOO000OOOOO0 ,'imdb':O0OOOOOO000OOOOO0 ,'tvdb':O00O00000000O0O00 ,'studio':OO00O0OO000O0OOOO ,'genre':O0OOOOO00O0OO0OO0 ,'duration':OO00OO0OO0OO0OO0O ,'rating':O0OOO0O0OO0OO00OO ,'plot':O00OOO0O00O0OO000 }})#line:573
-        except :#line:574
-            pass #line:575
-    def addDirectory (OO000OOO0O0O00000 ,OO000OO0O00O0OOO0 ,queue =False ):#line:578
-        if OO000OO0O00O0OOO0 ==None or len (OO000OO0O00O0OOO0 )==0 :return #line:579
-        O00O0000OOO0OO0O0 =O00OOO00OOOOOO0O0 .argv [0 ]#line:581
-        OOOOO0O00OO00OO00 =OOO000OO000000OOO =O000OOO0OO0OO00OO .addonInfo ('icon')#line:582
-        O00O0000OOOO0O000 =O000OOO0OO0OO00OO .addonInfo ('fanart')#line:583
-        OOO0000OO0000O0OO =O000OOO0OO0OO00OO .playlist #line:585
-        if not queue ==False :OOO0000OO0000O0OO .clear ()#line:586
-        try :OO0OO00OOOOOO00O0 =True if 'testings.xml'in O000OOO0OO0OO00OO .listDir (O000OOO0OO0OO00OO .dataPath )[1 ]else False #line:588
-        except :OO0OO00OOOOOO00O0 =False #line:589
-        O000O000OO000OOO0 =[O0O00O000O000O00O ['content']for O0O00O000O000O00O in OO000OO0O00O0OOO0 if 'content'in O0O00O000O000O00O ]#line:591
-        if 'movies'in O000O000OO000OOO0 :O000O000OO000OOO0 ='movies'#line:592
-        elif 'tvshows'in O000O000OO000OOO0 :O000O000OO000OOO0 ='tvshows'#line:593
-        elif 'seasons'in O000O000OO000OOO0 :O000O000OO000OOO0 ='seasons'#line:594
-        elif 'episodes'in O000O000OO000OOO0 :O000O000OO000OOO0 ='episodes'#line:595
-        elif 'addons'in O000O000OO000OOO0 :O000O000OO000OOO0 ='addons'#line:596
-        else :O000O000OO000OOO0 ='videos'#line:597
-        for O00O0OOO0OOO0O000 in OO000OO0O00O0OOO0 :#line:599
-            try :#line:600
-                try :O00O0O0OO0O0O000O =O000OOO0OO0OO00OO .lang (int (O00O0OOO0OOO0O000 ['name'])).encode ('utf-8')#line:601
-                except :O00O0O0OO0O0O000O =O00O0OOO0OOO0O000 ['name']#line:602
-                O0O0OOOOOOOO000OO ='%s?action=%s'%(O00O0000OOO0OO0O0 ,O00O0OOO0OOO0O000 ['action'])#line:604
-                try :O0O0OOOOOOOO000OO +='&url=%s'%O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['url'])#line:605
-                except :pass #line:606
-                try :O0O0OOOOOOOO000OO +='&content=%s'%O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['content'])#line:607
-                except :pass #line:608
-                if O00O0OOO0OOO0O000 ['action']=='plugin'and 'url'in O00O0OOO0OOO0O000 :O0O0OOOOOOOO000OO =O00O0OOO0OOO0O000 ['url']#line:610
-                try :OOO000OO00O00O00O =dict (OOOO000O0OO0OO000 .parse_qsl (OOOO000O0OO0OO000 .urlparse (O0O0OOOOOOOO000OO ).query ))['action']#line:612
-                except :OOO000OO00O00O00O =None #line:613
-                if OOO000OO00O00O00O =='developer'and not OO0OO00OOOOOO00O0 ==True :raise Exception ()#line:614
-                O0OOOO0O0O00O0O0O =O00O0OOO0OOO0O000 ['poster']if 'poster'in O00O0OOO0OOO0O000 else '0'#line:616
-                OO0OO000O00O0O0OO =O00O0OOO0OOO0O000 ['banner']if 'banner'in O00O0OOO0OOO0O000 else '0'#line:617
-                OO0O00OO000O0OO0O =O00O0OOO0OOO0O000 ['fanart']if 'fanart'in O00O0OOO0OOO0O000 else '0'#line:618
-                if O0OOOO0O0O00O0O0O =='0':O0OOOO0O0O00O0O0O =OOOOO0O00OO00OO00 #line:619
-                if OO0OO000O00O0O0OO =='0'and O0OOOO0O0O00O0O0O =='0':OO0OO000O00O0O0OO =OOO000OO000000OOO #line:620
-                elif OO0OO000O00O0O0OO =='0':OO0OO000O00O0O0OO =O0OOOO0O0O00O0O0O #line:621
-                O000000000O0OO000 =O00O0OOO0OOO0O000 ['content']if 'content'in O00O0OOO0OOO0O000 else '0'#line:623
-                O0O0OO000O00OO000 =O00O0OOO0OOO0O000 ['folder']if 'folder'in O00O0OOO0OOO0O000 else True #line:625
-                O00OO0OO00000OOO0 =dict ((O0O0000O00O000O0O ,OOO00OO00O0O0OOO0 )for O0O0000O00O000O0O ,OOO00OO00O0O0OOO0 in O00O0OOO0OOO0O000 .iteritems ()if not OOO00OO00O0O0OOO0 =='0')#line:627
-                OOOOO00OO0000000O =[]#line:629
-                if O000000000O0OO000 in ['movies','tvshows']:#line:631
-                    O00OO0OO00000OOO0 .update ({'trailer':'%s?action=trailer&name=%s'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (O00O0O0OO0O0O000O ))})#line:632
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30707 ).encode ('utf-8'),'RunPlugin(%s?action=trailer&name=%s)'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (O00O0O0OO0O0O000O ))))#line:633
-                if O000000000O0OO000 in ['movies','tvshows','seasons','episodes']:#line:635
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30708 ).encode ('utf-8'),'XBMC.Action(Info)'))#line:636
-                if (O0O0OO000O00OO000 ==False and not '|regex='in str (O00O0OOO0OOO0O000 .get ('url')))or (O0O0OO000O00OO000 ==True and O000000000O0OO000 in ['tvshows','seasons']):#line:638
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30723 ).encode ('utf-8'),'RunPlugin(%s?action=queueItem)'%O00O0000OOO0OO0O0 ))#line:639
-                if O000000000O0OO000 =='movies':#line:641
-                    try :OO0O00O0O0OOOOO0O ='%s (%s)'%(O00O0OOO0OOO0O000 ['title'],O00O0OOO0OOO0O000 ['year'])#line:642
-                    except :OO0O00O0O0OOOOO0O =O00O0O0OO0O0O000O #line:643
-                    try :OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (OO0O00O0O0OOOOO0O ),O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['url']),O0O0OOO0O0O0OOOOO .quote_plus (O0OOOO0O0O00O0O0O ))))#line:644
-                    except :pass #line:645
-                elif O000000000O0OO000 =='episodes':#line:646
-                    try :OO0O00O0O0OOOOO0O ='%s S%02dE%02d'%(O00O0OOO0OOO0O000 ['tvshowtitle'],int (O00O0OOO0OOO0O000 ['season']),int (O00O0OOO0OOO0O000 ['episode']))#line:647
-                    except :OO0O00O0O0OOOOO0O =O00O0O0OO0O0O000O #line:648
-                    try :OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (OO0O00O0O0OOOOO0O ),O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['url']),O0O0OOO0O0O0OOOOO .quote_plus (O0OOOO0O0O00O0O0O ))))#line:649
-                    except :pass #line:650
-                elif O000000000O0OO000 =='songs':#line:651
-                    try :OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (O00O0O0OO0O0O000O ),O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['url']),O0O0OOO0O0O0OOOOO .quote_plus (O0OOOO0O0O00O0O0O ))))#line:652
-                    except :pass #line:653
-                if O000O000OO000OOO0 =='movies':#line:655
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30711 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=movies)'%O00O0000OOO0OO0O0 ))#line:656
-                elif O000O000OO000OOO0 =='tvshows':#line:657
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30712 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=tvshows)'%O00O0000OOO0OO0O0 ))#line:658
-                elif O000O000OO000OOO0 =='seasons':#line:659
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30713 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=seasons)'%O00O0000OOO0OO0O0 ))#line:660
-                elif O000O000OO000OOO0 =='episodes':#line:661
-                    OOOOO00OO0000000O .append ((O000OOO0OO0OO00OO .lang (30714 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=episodes)'%O00O0000OOO0OO0O0 ))#line:662
-                if OO0OO00OOOOOO00O0 ==True :#line:664
-                    try :OOOOO00OO0000000O .append (('Open in browser','RunPlugin(%s?action=browser&url=%s)'%(O00O0000OOO0OO0O0 ,O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['url']))))#line:665
-                    except :pass #line:666
-                O00OOOOO0OO000OOO =O000OOO0OO0OO00OO .item (label =O00O0O0OO0O0O000O ,iconImage =O0OOOO0O0O00O0O0O ,thumbnailImage =O0OOOO0O0O00O0O0O )#line:669
-                try :O00OOOOO0OO000OOO .setArt ({'poster':O0OOOO0O0O00O0O0O ,'tvshow.poster':O0OOOO0O0O00O0O0O ,'season.poster':O0OOOO0O0O00O0O0O ,'banner':OO0OO000O00O0O0OO ,'tvshow.banner':OO0OO000O00O0O0OO ,'season.banner':OO0OO000O00O0O0OO })#line:671
-                except :pass #line:672
-                if not OO0O00OO000O0OO0O =='0':#line:674
-                    O00OOOOO0OO000OOO .setProperty ('Fanart_Image',OO0O00OO000O0OO0O )#line:675
-                elif not O00O0000OOOO0O000 ==None :#line:676
-                    O00OOOOO0OO000OOO .setProperty ('Fanart_Image',O00O0000OOOO0O000 )#line:677
-                if queue ==False :#line:679
-                    O00OOOOO0OO000OOO .setInfo (type ='Video',infoLabels =O00OO0OO00000OOO0 )#line:680
-                    O00OOOOO0OO000OOO .addContextMenuItems (OOOOO00OO0000000O )#line:681
-                    O000OOO0OO0OO00OO .addItem (handle =int (O00OOO00OOOOOO0O0 .argv [1 ]),url =O0O0OOOOOOOO000OO ,listitem =O00OOOOO0OO000OOO ,isFolder =O0O0OO000O00OO000 )#line:682
-                else :#line:683
-                    O00OOOOO0OO000OOO .setInfo (type ='Video',infoLabels =O00OO0OO00000OOO0 )#line:684
-                    OOO0000OO0000O0OO .add (url =O0O0OOOOOOOO000OO ,listitem =O00OOOOO0OO000OOO )#line:685
-            except :#line:686
-                pass #line:687
-        if not queue ==False :#line:689
-            return O000OOO0OO0OO00OO .player .play (OOO0000OO0000O0OO )#line:690
-        try :#line:692
-            O00O0OOO0OOO0O000 =OO000OO0O00O0OOO0 [0 ]#line:693
-            if O00O0OOO0OOO0O000 ['next']=='':raise Exception ()#line:694
-            O0O0OOOOOOOO000OO ='%s?action=%s&url=%s'%(O00O0000OOO0OO0O0 ,O00O0OOO0OOO0O000 ['nextaction'],O0O0OOO0O0O0OOOOO .quote_plus (O00O0OOO0OOO0O000 ['next']))#line:695
-            O00OOOOO0OO000OOO =O000OOO0OO0OO00OO .item (label =O000OOO0OO0OO00OO .lang (30500 ).encode ('utf-8'))#line:696
-            O00OOOOO0OO000OOO .setArt ({'addonPoster':OOOOO0O00OO00OO00 ,'thumb':OOOOO0O00OO00OO00 ,'poster':OOOOO0O00OO00OO00 ,'tvshow.poster':OOOOO0O00OO00OO00 ,'season.poster':OOOOO0O00OO00OO00 ,'banner':OOOOO0O00OO00OO00 ,'tvshow.banner':OOOOO0O00OO00OO00 ,'season.banner':OOOOO0O00OO00OO00 })#line:697
-            O00OOOOO0OO000OOO .setProperty ('addonFanart_Image',O00O0000OOOO0O000 )#line:698
-            O000OOO0OO0OO00OO .addItem (handle =int (O00OOO00OOOOOO0O0 .argv [1 ]),url =O0O0OOOOOOOO000OO ,listitem =O00OOOOO0OO000OOO ,isFolder =True )#line:699
-        except :#line:700
-            pass #line:701
-        if not O000O000OO000OOO0 ==None :O000OOO0OO0OO00OO .content (int (O00OOO00OOOOOO0O0 .argv [1 ]),O000O000OO000OOO0 )#line:703
-        O000OOO0OO0OO00OO .directory (int (O00OOO00OOOOOO0O0 .argv [1 ]),cacheToDisc =True )#line:704
-        if O000O000OO000OOO0 in ['movies','tvshows','seasons','episodes']:#line:705
-            OO00O00OO0OOO0OOO .setView (O000O000OO000OOO0 ,{'skin.estuary':55 })#line:706
-class resolver :#line:710
-    def browser (OO0O00O0O0OOOO000 ,OOOOO0OO0OO0O0000 ):#line:711
-        try :#line:712
-            OOOOO0OO0OO0O0000 =OO0O00O0O0OOOO000 .get (OOOOO0OO0OO0O0000 )#line:713
-            if OOOOO0OO0OO0O0000 ==False :return #line:714
-            O000OOO0OO0OO00OO .execute ('RunPlugin(plugin://plugin.program.chrome.launcher/?url=%s&mode=showSite&stopPlayback=no)'%O0O0OOO0O0O0OOOOO .quote_plus (OOOOO0OO0OO0O0000 ))#line:715
-        except :#line:716
-            pass #line:717
-    def link (OOOOO0000O000O000 ,O0O0O0O0000OO0O00 ):#line:720
-        try :#line:721
-            O0O0O0O0000OO0O00 =OOOOO0000O000O000 .get (O0O0O0O0000OO0O00 )#line:722
-            if O0O0O0O0000OO0O00 ==False :return #line:723
-            O000OOO0OO0OO00OO .execute ('ActivateWindow(busydialog)')#line:725
-            O0O0O0O0000OO0O00 =OOOOO0000O000O000 .process (O0O0O0O0000OO0O00 )#line:726
-            O000OOO0OO0OO00OO .execute ('Dialog.Close(busydialog)')#line:727
-            if O0O0O0O0000OO0O00 ==None :return O000OOO0OO0OO00OO .infoDialog (O000OOO0OO0OO00OO .lang (30705 ).encode ('utf-8'))#line:729
-            return O0O0O0O0000OO0O00 #line:730
-        except :#line:731
-            pass #line:732
-    def get (OO00000OOOO000OO0 ,OO0OOO0OO0O0OOO00 ):#line:735
-        try :#line:736
-            O0OOO000O0OOO0O00 =O000OOO0OOOOOO0O0 .compile ('<sublink(?:\s+name=|)(?:\'|\"|)(.*?)(?:\'|\"|)>(.+?)</sublink>').findall (OO0OOO0OO0O0OOO00 )#line:737
-            if len (O0OOO000O0OOO0O00 )==0 :return OO0OOO0OO0O0OOO00 #line:739
-            if len (O0OOO000O0OOO0O00 )==1 :return O0OOO000O0OOO0O00 [0 ][1 ]#line:740
-            O0OOO000O0OOO0O00 =[('Link %s'%(int (O0OOO000O0OOO0O00 .index (OOOO0OOOO00O0OOO0 ))+1 )if OOOO0OOOO00O0OOO0 [0 ]==''else OOOO0OOOO00O0OOO0 [0 ],OOOO0OOOO00O0OOO0 [1 ])for OOOO0OOOO00O0OOO0 in O0OOO000O0OOO0O00 ]#line:742
-            OO000OO0000O0OOO0 =O000OOO0OO0OO00OO .selectDialog ([OOO0OO00O00OO0OO0 [0 ]for OOO0OO00O00OO0OO0 in O0OOO000O0OOO0O00 ],O000OOO0OO0OO00OO .infoLabel ('listitem.label'))#line:744
-            if OO000OO0000O0OOO0 ==-1 :return False #line:746
-            else :return O0OOO000O0OOO0O00 [OO000OO0000O0OOO0 ][1 ]#line:747
-        except :#line:748
-            pass #line:749
-    def f4m (O0OOO000O000O000O ,OOO0OO00O00OO0000 ,O0O000000OOOOOOOO ):#line:752
-            try :#line:753
-                if not any (OOO0O00O0000O0O0O in OOO0OO00O00OO0000 for OOO0O00O0000O0O0O in ['.f4m','.ts']):raise Exception ()#line:754
-                OOOO000OOO0O0OOO0 =OOO0OO00O00OO0000 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:755
-                if not OOOO000OOO0O0OOO0 in ['f4m','ts']:raise Exception ()#line:756
-                O00OOO0000O0O00OO =OOOO000O0OO0OO000 .parse_qs (OOO0OO00O00OO0000 )#line:758
-                try :OOO0OOO0O0O00000O =O00OOO0000O0O00OO ['proxy'][0 ]#line:760
-                except :OOO0OOO0O0O00000O =None #line:761
-                try :OOOOO00O000O000OO =OOO000OOOOOO00OO0 .loads (O00OOO0000O0O00OO ['proxy_for_chunks'][0 ])#line:763
-                except :OOOOO00O000O000OO =True #line:764
-                try :O0OO0O0000000O0OO =int (O00OOO0000O0O00OO ['maxbitrate'][0 ])#line:766
-                except :O0OO0O0000000O0OO =0 #line:767
-                try :OOO0OO0000O00OOOO =OOO000OOOOOO00OO0 .loads (O00OOO0000O0O00OO ['simpledownloader'][0 ])#line:769
-                except :OOO0OO0000O00OOOO =False #line:770
-                try :OO0000OO00OOO0OOO =O00OOO0000O0O00OO ['auth'][0 ]#line:772
-                except :OO0000OO00OOO0OOO =''#line:773
-                try :OO000000O0OOOO0O0 =O00OOO0000O0O00OO ['streamtype'][0 ]#line:775
-                except :OO000000O0OOOO0O0 ='TSDOWNLOADER'if OOOO000OOO0O0OOO0 =='ts'else 'HDS'#line:776
-                try :O0O000O00O00OOOO0 =O00OOO0000O0O00OO ['swf'][0 ]#line:778
-                except :O0O000O00O00OOOO0 =None #line:779
-                from F4mProxy import f4mProxyHelper as O0OO0O0OO0000OO0O #line:781
-                return O0OO0O0OO0000OO0O ().playF4mLink (OOO0OO00O00OO0000 ,O0O000000OOOOOOOO ,OOO0OOO0O0O00000O ,OOOOO00O000O000OO ,O0OO0O0000000O0OO ,OOO0OO0000O00OOOO ,OO0000OO00OOO0OOO ,OO000000O0OOOO0O0 ,False ,O0O000O00O00OOOO0 )#line:782
-            except :#line:783
-                pass #line:784
-    def process (O00OO0OOO00O0OOOO ,OO000OO0OOO000OO0 ,direct =True ):#line:787
-        try :#line:788
-            if not any (O0O00O0O00OO00OOO in OO000OO0OOO000OO0 for O0O00O0O00OO00OOO in ['.jpg','.png','.gif']):raise Exception ()#line:789
-            OO00O000O0O0OO00O =OO000OO0OOO000OO0 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:790
-            if not OO00O000O0O0OO00O in ['jpg','png','gif']:raise Exception ()#line:791
-            try :#line:792
-                O0OO00O0000OO0O00 =O0O00OOOOOO0O0OO0 .path .join (O000OOO0OO0OO00OO .dataPath ,'img')#line:793
-                O000OOO0OO0OO00OO .deleteFile (O0OO00O0000OO0O00 )#line:794
-                OO0O00OO0OOO0OOOO =O000OOO0OO0OO00OO .openFile (O0OO00O0000OO0O00 ,'w')#line:795
-                OO0O00OO0OOO0OOOO .write (OOOO000O000O00O0O .request (OO000OO0OOO000OO0 ))#line:796
-                OO0O00OO0OOO0OOOO .close ()#line:797
-                O000OOO0OO0OO00OO .execute ('ShowPicture("%s")'%O0OO00O0000OO0O00 )#line:798
-                return False #line:799
-            except :#line:800
-                return #line:801
-        except :#line:802
-            pass #line:803
-        try :#line:805
-            O00OOOO0OO0OOO000 ,OO0OO000OO00OO0O0 =O000OOO0OOOOOO0O0 .findall ('(.+?)\|regex=(.+?)$',OO000OO0OOO000OO0 )[0 ]#line:806
-            OO0OO000OO00OO0O0 =O00OOOO0O0OOO00O0 .fetch (OO0OO000OO00OO0O0 )#line:807
-            O00OOOO0OO0OOO000 +=O0O0OOO0O0O0OOOOO .unquote_plus (OO0OO000OO00OO0O0 )#line:808
-            if not '</regex>'in O00OOOO0OO0OOO000 :raise Exception ()#line:809
-            O00OO000O0O0O0OOO =O00OOOO0O0OOO00O0 .resolve (O00OOOO0OO0OOO000 )#line:810
-            if not O00OO000O0O0O0OOO ==None :OO000OO0OOO000OO0 =O00OO000O0O0O0OOO #line:811
-        except :#line:812
-            pass #line:813
-        try :#line:815
-            if not OO000OO0OOO000OO0 .startswith ('rtmp'):raise Exception ()#line:816
-            if len (O000OOO0OOOOOO0O0 .compile ('\s*timeout=(\d*)').findall (OO000OO0OOO000OO0 ))==0 :OO000OO0OOO000OO0 +=' timeout=10'#line:817
-            return OO000OO0OOO000OO0 #line:818
-        except :#line:819
-            pass #line:820
-        try :#line:822
-            if not any (OOOO0000OO0000OO0 in OO000OO0OOO000OO0 for OOOO0000OO0000OO0 in ['.m3u8','.f4m','.ts']):raise Exception ()#line:823
-            OO00O000O0O0OO00O =OO000OO0OOO000OO0 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:824
-            if not OO00O000O0O0OO00O in ['m3u8','f4m','ts']:raise Exception ()#line:825
-            return OO000OO0OOO000OO0 #line:826
-        except :#line:827
-            pass #line:828
-        try :#line:830
-            OOO0000O00O000OOO =O000OOO0OOOOOO0O0 .findall ('<preset>(.+?)</preset>',OO000OO0OOO000OO0 )[0 ]#line:831
-            if not 'search'in OOO0000O00O000OOO :raise Exception ()#line:833
-            OOOO000O0OOOO000O ,OO0000000OO0O0000 ,OOO000O00O0OOO0O0 =O000OOO0OOOOOO0O0 .findall ('<title>(.+?)</title>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<year>(.+?)</year>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<imdb>(.+?)</imdb>',OO000OO0OOO000OO0 )[0 ]#line:835
-            try :O0O0O00OO00OOO00O ,O000O0O0O0000000O ,O0OOOO0OOO0OOOO00 ,OO00OOO0O0OO0000O ,O0OOOO00O000OO0OO =O000OOO0OOOOOO0O0 .findall ('<tvdb>(.+?)</tvdb>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<tvshowtitle>(.+?)</tvshowtitle>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<premiered>(.+?)</premiered>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<season>(.+?)</season>',OO000OO0OOO000OO0 )[0 ],O000OOO0OOOOOO0O0 .findall ('<episode>(.+?)</episode>',OO000OO0OOO000OO0 )[0 ]#line:837
-            except :O0O0O00OO00OOO00O =O000O0O0O0000000O =O0OOOO0OOO0OOOO00 =OO00OOO0O0OO0000O =O0OOOO00O000OO0OO =None #line:838
-            direct =False #line:840
-            OOOOOOO0O0O00OO00 ='HD'if not OOO0000O00O000OOO =='searchsd'else 'SD'#line:842
-            from resources .lib .sources import sources as OOO0000O0OOOOOO0O #line:844
-            O00OO000O0O0O0OOO =OOO0000O0OOOOOO0O ().getSources (OOOO000O0OOOO000O ,OO0000000OO0O0000 ,OOO000O00O0OOO0O0 ,O0O0O00OO00OOO00O ,OO00OOO0O0OO0000O ,O0OOOO00O000OO0OO ,O000O0O0O0000000O ,O0OOOO0OOO0OOOO00 ,OOOOOOO0O0O00OO00 )#line:846
-            if not O00OO000O0O0O0OOO ==None :return O00OO000O0O0O0OOO #line:848
-        except :#line:849
-            pass #line:850
-        try :#line:852
-            from resources .lib .sources import sources as OOO0000O0OOOOOO0O #line:853
-            O00OO000O0O0O0OOO =OOO0000O0OOOOOO0O ().getURISource (OO000OO0OOO000OO0 )#line:855
-            if not O00OO000O0O0O0OOO ==False :direct =False #line:857
-            if O00OO000O0O0O0OOO ==None or O00OO000O0O0O0OOO ==False :raise Exception ()#line:858
-            return O00OO000O0O0O0OOO #line:860
-        except :#line:861
-            pass #line:862
-        try :#line:864
-            if not '.google.com'in OO000OO0OOO000OO0 :raise Exception ()#line:865
-            from resources .lib .modules import directstream as OOOO0O0O0O00O0000 #line:866
-            O00OO000O0O0O0OOO =OOOO0O0O0O00O0000 .google (OO000OO0OOO000OO0 )[0 ]['url']#line:867
-            return O00OO000O0O0O0OOO #line:868
-        except :#line:869
-            pass #line:870
-        try :#line:872
-            if not 'filmon.com/'in OO000OO0OOO000OO0 :raise Exception ()#line:873
-            from resources .lib .modules import filmon as O0O0OO0O00OO0O000 #line:874
-            O00OO000O0O0O0OOO =O0O0OO0O00OO0O000 .resolve (OO000OO0OOO000OO0 )#line:875
-            return O00OO000O0O0O0OOO #line:876
-        except :#line:877
-            pass #line:878
-        try :#line:880
-            import urlresolver as OOO0000000OOOOO00 #line:881
-            O0O0OOOOOO000O00O =OOO0000000OOOOO00 .HostedMediaFile (url =OO000OO0OOO000OO0 )#line:883
-            if O0O0OOOOOO000O00O .valid_url ()==False :raise Exception ()#line:885
-            direct =False ;O00OO000O0O0O0OOO =O0O0OOOOOO000O00O .resolve ()#line:887
-            if not O00OO000O0O0O0OOO ==False :return O00OO000O0O0O0OOO #line:889
-        except :#line:890
-            pass #line:891
-        if direct ==True :return OO000OO0OOO000OO0 #line:893
-class player (OO0OO000O0O0OOO00 .Player ):#line:896
-    def __init__ (O0000000O0000O0OO ):#line:897
-        OO0OO000O0O0OOO00 .Player .__init__ (O0000000O0000O0OO )#line:898
-    def play (OO0O000OOO0OO0O0O ,O0O0O00O00O0OOOOO ,content =None ):#line:901
-        try :#line:902
-            OOOO00O0OOOOOOO00 =O0O0O00O00O0OOOOO #line:903
-            O0O0O00O00O0OOOOO =resolver ().get (O0O0O00O00O0OOOOO )#line:905
-            if O0O0O00O00O0OOOOO ==False :return #line:906
-            O000OOO0OO0OO00OO .execute ('ActivateWindow(busydialog)')#line:908
-            O0O0O00O00O0OOOOO =resolver ().process (O0O0O00O00O0OOOOO )#line:909
-            O000OOO0OO0OO00OO .execute ('Dialog.Close(busydialog)')#line:910
-            if O0O0O00O00O0OOOOO ==None :return O000OOO0OO0OO00OO .infoDialog (O000OOO0OO0OO00OO .lang (30705 ).encode ('utf-8'))#line:912
-            if O0O0O00O00O0OOOOO ==False :return #line:913
-            OOO0O0OO0O00O00OO ={}#line:915
-            for O0O00O0000OOO0000 in ['title','originaltitle','tvshowtitle','year','season','episode','genre','rating','votes','director','writer','plot','tagline']:#line:916
-                try :OOO0O0OO0O00O00OO [O0O00O0000OOO0000 ]=O000OOO0OO0OO00OO .infoLabel ('listitem.%s'%O0O00O0000OOO0000 )#line:917
-                except :pass #line:918
-            OOO0O0OO0O00O00OO =dict ((O0O0OOOOOO0OO0OO0 ,O0O00O00O00O00000 )for O0O0OOOOOO0OO0OO0 ,O0O00O00O00O00000 in OOO0O0OO0O00O00OO .iteritems ()if not O0O00O00O00O00000 =='')#line:919
-            if not 'title'in OOO0O0OO0O00O00OO :OOO0O0OO0O00O00OO ['title']=O000OOO0OO0OO00OO .infoLabel ('listitem.label')#line:920
-            O00O0O0O0O0O00O00 =O000OOO0OO0OO00OO .infoLabel ('listitem.icon')#line:921
-            OO0O000OOO0OO0O0O .name =OOO0O0OO0O00O00OO ['title'];OO0O000OOO0OO0O0O .year =OOO0O0OO0O00O00OO ['year']if 'year'in OOO0O0OO0O00O00OO else '0'#line:924
-            OO0O000OOO0OO0O0O .getbookmark =True if (content =='movies'or content =='episodes')else False #line:926
-            OO0O000OOO0OO0O0O .offset =bookmarks ().get (OO0O000OOO0OO0O0O .name ,OO0O000OOO0OO0O0O .year )#line:928
-            O0OO00OOO0OO0O0O0 =resolver ().f4m (O0O0O00O00O0OOOOO ,OO0O000OOO0OO0O0O .name )#line:930
-            if not O0OO00OOO0OO0O0O0 ==None :return #line:931
-            OOOO0OOO0O0OO0O00 =O000OOO0OO0OO00OO .item (path =O0O0O00O00O0OOOOO ,iconImage =O00O0O0O0O0O00O00 ,thumbnailImage =O00O0O0O0O0O00O00 )#line:934
-            try :OOOO0OOO0O0OO0O00 .setArt ({'icon':O00O0O0O0O0O00O00 })#line:935
-            except :pass #line:936
-            OOOO0OOO0O0OO0O00 .setInfo (type ='Video',infoLabels =OOO0O0OO0O00O00OO )#line:937
-            O000OOO0OO0OO00OO .player .play (O0O0O00O00O0OOOOO ,OOOO0OOO0O0OO0O00 )#line:938
-            O000OOO0OO0OO00OO .resolve (int (O00OOO00OOOOOO0O0 .argv [1 ]),True ,OOOO0OOO0O0OO0O00 )#line:939
-            OO0O000OOO0OO0O0O .totalTime =0 ;OO0O000OOO0OO0O0O .currentTime =0 #line:941
-            for O0O00O0000OOO0000 in range (0 ,240 ):#line:943
-                if OO0O000OOO0OO0O0O .isPlayingVideo ():break #line:944
-                O000OOO0OO0OO00OO .sleep (1000 )#line:945
-            while OO0O000OOO0OO0O0O .isPlayingVideo ():#line:946
-                try :#line:947
-                    OO0O000OOO0OO0O0O .totalTime =OO0O000OOO0OO0O0O .getTotalTime ()#line:948
-                    OO0O000OOO0OO0O0O .currentTime =OO0O000OOO0OO0O0O .getTime ()#line:949
-                except :#line:950
-                    pass #line:951
-                O000OOO0OO0OO00OO .sleep (2000 )#line:952
-            O000OOO0OO0OO00OO .sleep (5000 )#line:953
-        except :#line:954
-            pass #line:955
-    def onPlayBackStarted (O0O00O0OOOO0O0O0O ):#line:958
-        O000OOO0OO0OO00OO .execute ('Dialog.Close(all,true)')#line:959
-        if O0O00O0OOOO0O0O0O .getbookmark ==True and not O0O00O0OOOO0O0O0O .offset =='0':#line:960
-            O0O00O0OOOO0O0O0O .seekTime (float (O0O00O0OOOO0O0O0O .offset ))#line:961
-    def onPlayBackStopped (OO00OO0OO00OOO000 ):#line:964
-        if OO00OO0OO00OOO000 .getbookmark ==True :#line:965
-            bookmarks ().reset (OO00OO0OO00OOO000 .currentTime ,OO00OO0OO00OOO000 .totalTime ,OO00OO0OO00OOO000 .name ,OO00OO0OO00OOO000 .year )#line:966
-    def onPlayBackEnded (OOOOOO0000O00O0O0 ):#line:969
-        OOOOOO0000O00O0O0 .onPlayBackStopped ()#line:970
-class bookmarks :#line:974
-    def get (OO0O000OOO000OOOO ,O00O0O00000O0OOO0 ,year ='0'):#line:975
-        try :#line:976
-            O00O0O0OO0O000OOO ='0'#line:977
-            O0O0000OOOOO00OO0 =O00O00O00O0000O00 .md5 ()#line:981
-            for O0OO000O00OO0OO0O in O00O0O00000O0OOO0 :O0O0000OOOOO00OO0 .update (str (O0OO000O00OO0OO0O ))#line:982
-            for O0OO000O00OO0OO0O in year :O0O0000OOOOO00OO0 .update (str (O0OO000O00OO0OO0O ))#line:983
-            O0O0000OOOOO00OO0 =str (O0O0000OOOOO00OO0 .hexdigest ())#line:984
-            OO0OOOO0OOO0O000O =OO00O00OOOO000O0O .connect (O000OOO0OO0OO00OO .bookmarksFile )#line:986
-            O0O0OO00O00O0O00O =OO0OOOO0OOO0O000O .cursor ()#line:987
-            O0O0OO00O00O0O00O .execute ("SELECT * FROM bookmark WHERE idFile = '%s'"%O0O0000OOOOO00OO0 )#line:988
-            OOOO00OOO0000OOO0 =O0O0OO00O00O0O00O .fetchone ()#line:989
-            OO0O000OOO000OOOO .offset =str (OOOO00OOO0000OOO0 [1 ])#line:990
-            OO0OOOO0OOO0O000O .commit ()#line:991
-            if OO0O000OOO000OOOO .offset =='0':raise Exception ()#line:993
-            O000O00O0O0OO0O0O ,OOOO0OO0OOOOOOO00 =divmod (float (OO0O000OOO000OOOO .offset ),60 );OO000O00OOO0O0000 ,O000O00O0O0OO0O0O =divmod (O000O00O0O0OO0O0O ,60 )#line:995
-            OO00OO00O0OO0OOO0 ='%02d:%02d:%02d'%(OO000O00OOO0O0000 ,O000O00O0O0OO0O0O ,OOOO0OO0OOOOOOO00 )#line:996
-            OO00OO00O0OO0OOO0 =(O000OOO0OO0OO00OO .lang (32502 )%OO00OO00O0OO0OOO0 ).encode ('utf-8')#line:997
-            try :O00OO00O0OO000OOO =O000OOO0OO0OO00OO .dialog .contextmenu ([OO00OO00O0OO0OOO0 ,O000OOO0OO0OO00OO .lang (32501 ).encode ('utf-8'),])#line:999
-            except :O00OO00O0OO000OOO =O000OOO0OO0OO00OO .yesnoDialog (OO00OO00O0OO0OOO0 ,'','',str (O00O0O00000O0OOO0 ),O000OOO0OO0OO00OO .lang (32503 ).encode ('utf-8'),O000OOO0OO0OO00OO .lang (32501 ).encode ('utf-8'))#line:1000
-            if O00OO00O0OO000OOO :OO0O000OOO000OOOO .offset ='0'#line:1002
-            return OO0O000OOO000OOOO .offset #line:1004
-        except :#line:1005
-            return O00O0O0OO0O000OOO #line:1006
-    def reset (OO0O0OOOO0O0O0OO0 ,O000O0O000O000O0O ,O0O0OO0O00O0000O0 ,OO00OOO0O000OO0O0 ,year ='0'):#line:1009
-        try :#line:1010
-            OOOO0OO0O0OO000O0 =str (O000O0O000O000O0O )#line:1013
-            OO0O00000O0O00O0O =int (O000O0O000O000O0O )>180 and (O000O0O000O000O0O /O0O0OO0O00O0000O0 )<=.92 #line:1014
-            O0O000OO0OO0O0OOO =O00O00O00O0000O00 .md5 ()#line:1016
-            for O00000000O0OO000O in OO00OOO0O000OO0O0 :O0O000OO0OO0O0OOO .update (str (O00000000O0OO000O ))#line:1017
-            for O00000000O0OO000O in year :O0O000OO0OO0O0OOO .update (str (O00000000O0OO000O ))#line:1018
-            O0O000OO0OO0O0OOO =str (O0O000OO0OO0O0OOO .hexdigest ())#line:1019
-            O000OOO0OO0OO00OO .makeFile (O000OOO0OO0OO00OO .dataPath )#line:1021
-            O000OOOO0OO000000 =OO00O00OOOO000O0O .connect (O000OOO0OO0OO00OO .bookmarksFile )#line:1022
-            OOO0OOOO0O0OOO00O =O000OOOO0OO000000 .cursor ()#line:1023
-            OOO0OOOO0O0OOO00O .execute ("CREATE TABLE IF NOT EXISTS bookmark (" "idFile TEXT, " "timeInSeconds TEXT, " "UNIQUE(idFile)" ");")#line:1024
-            OOO0OOOO0O0OOO00O .execute ("DELETE FROM bookmark WHERE idFile = '%s'"%O0O000OO0OO0O0OOO )#line:1025
-            if OO0O00000O0O00O0O :OOO0OOOO0O0OOO00O .execute ("INSERT INTO bookmark Values (?, ?)",(O0O000OO0OO0O0OOO ,OOOO0OO0O0OO000O0 ))#line:1026
-            O000OOOO0OO000000 .commit ()#line:1027
-        except :#line:1028
+import os as OOOOOOO00OOO0O0O0 ,re as OO0O000OOO00O0OOO ,sys as OO00000OO00000000 ,hashlib as O0OOOO00O0OO0O000 ,urllib as OOOOOO000O000OOOO ,urlparse as OOO0OO0000OO0OOOO ,json as OO00000O0OOOOOOOO ,base64 as OOOO0O0O0OO0O0000 ,random as OOOOOO00OOO0OO0O0 ,datetime as OOO00O0O000OO0O00 #line:1
+import xbmc as O0OOO00O000OO00OO #line:2
+try :from sqlite3 import dbapi2 as OOO0OO00OO0OO0O00 #line:4
+except :from pysqlite2 import dbapi2 as OOO0OO00OO0OO0O00 #line:5
+from resources .lib .modules import cache as O0OOOOO0OO0O0O00O #line:7
+from resources .lib .modules import metacache as OOO0OO0OO0O0000O0 #line:8
+from resources .lib .modules import client as O00O00O0OO00OOO00 #line:9
+from resources .lib .modules import control as O000OOO0OOO0000O0 #line:10
+from resources .lib .modules import regex as OO00O0OO0OO000000 #line:11
+from resources .lib .modules import trailer as OOO0O0OOO000O0OOO #line:12
+from resources .lib .modules import workers as O0O0OOO000O000O0O #line:13
+from resources .lib .modules import youtube as O000OOOO00OOOOO0O #line:14
+from resources .lib .modules import views as O0OO0OOOOO0OOOO0O #line:15
+version =102 #line:18
+class indexer :#line:20
+    def __init__ (O0OO0O00000O000OO ):#line:21
+        O0OO0O00000O000OO .list =[];O0OO0O00000O000OO .hash =[]#line:22
+    def root (O00O0OOOO00O00OO0 ):#line:25
+        try :#line:26
+            OO00O0OO0OO000000 .clear ()#line:27
+            O0O000O0OOO0OOO0O ='http://beaub.srve.io/specialist/addon/specialist%20index.xml'#line:28
+            O00O0OOOO00O00OO0 .list =O00O0OOOO00O00OO0 .specialist_list (O0O000O0OOO0OOO0O )#line:29
+            for O00OO0O0O00O000OO in O00O0OOOO00O00OO0 .list :O00OO0O0O00O000OO .update ({'content':'addons'})#line:30
+            O00O0OOOO00O00OO0 .addDirectory (O00O0OOOO00O00OO0 .list )#line:31
+            return O00O0OOOO00O00OO0 .list #line:32
+        except :#line:33
+            pass #line:34
+    def get (OO000000O00O0OO00 ,O0OOO000OOOOO0O0O ):#line:37
+        try :#line:38
+            OO000000O00O0OO00 .list =OO000000O00O0OO00 .specialist_list (O0OOO000OOOOO0O0O )#line:39
+            OO000000O00O0OO00 .worker ()#line:40
+            OO000000O00O0OO00 .addDirectory (OO000000O00O0OO00 .list )#line:41
+            return OO000000O00O0OO00 .list #line:42
+        except :#line:43
+            pass #line:44
+    def getq (OOOO0000OOO000O0O ,O0O000O0O0OO00O00 ):#line:47
+        try :#line:48
+            OOOO0000OOO000O0O .list =OOOO0000OOO000O0O .specialist_list (O0O000O0O0OO00O00 )#line:49
+            OOOO0000OOO000O0O .worker ()#line:50
+            OOOO0000OOO000O0O .addDirectory (OOOO0000OOO000O0O .list ,queue =True )#line:51
+            return OOOO0000OOO000O0O .list #line:52
+        except :#line:53
+            pass #line:54
+    def getx (O0OOO0000O000OOO0 ,OOOO0OOO00O0O0000 ,worker =False ):#line:57
+        try :#line:58
+            OO000OO0000O000O0 ,OO0OO000O0O0O0OO0 =OO0O000OOO00O0OOO .findall ('(.+?)\|regex=(.+?)$',OOOO0OOO00O0O0000 )[0 ]#line:59
+            OO0OO000O0O0O0OO0 =OO00O0OO0OO000000 .fetch (OO0OO000O0O0O0OO0 )#line:60
+            OO000OO0000O000O0 +=OOOOOO000O000OOOO .unquote_plus (OO0OO000O0O0O0OO0 )#line:61
+            OOOO0OOO00O0O0000 =OO00O0OO0OO000000 .resolve (OO000OO0000O000O0 )#line:62
+            O0OOO0000O000OOO0 .list =O0OOO0000O000OOO0 .specialist_list ('',result =OOOO0OOO00O0O0000 )#line:63
+            O0OOO0000O000OOO0 .addDirectory (O0OOO0000O000OOO0 .list )#line:64
+            return O0OOO0000O000OOO0 .list #line:65
+        except :#line:66
+            pass #line:67
+    def developer (OO00O0OO0O00OO00O ):#line:70
+        try :#line:71
+            O0000000O0OOO000O =OOOOOOO00OOO0O0O0 .path .join (O000OOO0OOO0000O0 .dataPath ,'testings.xml')#line:72
+            O00OOOO00OO0OO0OO =O000OOO0OOO0000O0 .openFile (O0000000O0OOO000O );O0O0O0OOOO0OO0OOO =O00OOOO00OO0OO0OO .read ();O00OOOO00OO0OO0OO .close ()#line:73
+            OO00O0OO0O00OO00O .list =OO00O0OO0O00OO00O .specialist_list ('',result =O0O0O0OOOO0OO0OOO )#line:74
+            for O0OOO0OO0000OOO00 in OO00O0OO0O00OO00O .list :O0OOO0OO0000OOO00 .update ({'content':'videos'})#line:75
+            OO00O0OO0O00OO00O .addDirectory (OO00O0OO0O00OO00O .list )#line:76
+            return OO00O0OO0O00OO00O .list #line:77
+        except :#line:78
+            pass #line:79
+    def youtube (O00O0O00OOOOO00OO ,OO0O0O0OOOO00O000 ,O0O0OOO000OOO0OO0 ):#line:82
+        try :#line:83
+            O0OOOOOOO000OO0O0 =OOO0O0OOO000O0OOO .trailer ().key_link .split ('=',1 )[-1 ]#line:84
+            if 'PlaylistTuner'in O0O0OOO000OOO0OO0 :#line:86
+                O00O0O00OOOOO00OO .list =O0OOOOO0OO0O0O00O .get (O000OOOO00OOOOO0O .youtube (key =O0OOOOOOO000OO0O0 ).playlist ,1 ,OO0O0O0OOOO00O000 )#line:87
+            elif 'Playlist'in O0O0OOO000OOO0OO0 :#line:88
+                O00O0O00OOOOO00OO .list =O0OOOOO0OO0O0O00O .get (O000OOOO00OOOOO0O .youtube (key =O0OOOOOOO000OO0O0 ).playlist ,1 ,OO0O0O0OOOO00O000 ,True )#line:89
+            elif 'ChannelTuner'in O0O0OOO000OOO0OO0 :#line:90
+                O00O0O00OOOOO00OO .list =O0OOOOO0OO0O0O00O .get (O000OOOO00OOOOO0O .youtube (key =O0OOOOOOO000OO0O0 ).videos ,1 ,OO0O0O0OOOO00O000 )#line:91
+            elif 'Channel'in O0O0OOO000OOO0OO0 :#line:92
+                O00O0O00OOOOO00OO .list =O0OOOOO0OO0O0O00O .get (O000OOOO00OOOOO0O .youtube (key =O0OOOOOOO000OO0O0 ).videos ,1 ,OO0O0O0OOOO00O000 ,True )#line:93
+            if 'Tuner'in O0O0OOO000OOO0OO0 :#line:95
+                for O00O00O00OOO00O00 in O00O0O00OOOOO00OO .list :O00O00O00OOO00O00 .update ({'name':O00O00O00OOO00O00 ['title'],'poster':O00O00O00OOO00O00 ['image'],'action':'plugin','folder':False })#line:96
+                if 'Tuner2'in O0O0OOO000OOO0OO0 :O00O0O00OOOOO00OO .list =sorted (O00O0O00OOOOO00OO .list ,key =lambda OO0OO0OOO00OO0OO0 :OOOOOO00OOO0OO0O0 .random ())#line:97
+                O00O0O00OOOOO00OO .addDirectory (O00O0O00OOOOO00OO .list ,queue =True )#line:98
+            else :#line:99
+                for O00O00O00OOO00O00 in O00O0O00OOOOO00OO .list :O00O00O00OOO00O00 .update ({'name':O00O00O00OOO00O00 ['title'],'poster':O00O00O00OOO00O00 ['image'],'nextaction':O0O0OOO000OOO0OO0 ,'action':'play','folder':False })#line:100
+                O00O0O00OOOOO00OO .addDirectory (O00O0O00OOOOO00OO .list )#line:101
+            return O00O0O00OOOOO00OO .list #line:103
+        except :#line:104
+            pass #line:105
+    def tvtuner (OO000000OO0O00000 ,O0OOO0O00O00OO0OO ):#line:108
+        try :#line:109
+            OOOOOOOOO00OOOOOO =OO0O000OOO00O0OOO .findall ('<preset>(.+?)</preset>',O0OOO0O00O00OO0OO )[0 ]#line:110
+            OOO00000OO0O0O0O0 =((OOO00O0O000OO0O00 .datetime .utcnow ()-OOO00O0O000OO0O00 .timedelta (hours =5 ))).strftime ('%Y-%m-%d')#line:112
+            OOO00000OO0O0O0O0 =int (OO0O000OOO00O0OOO .sub ('[^0-9]','',str (OOO00000OO0O0O0O0 )))#line:113
+            O0OOO0O00O00OO0OO ,OO000OOOOOO00OOOO ,O00O00OO00OO00OOO ,OO00OO0O0OO0OO0O0 ,OO00O00O00OOOO0OO ,O00OOOOOO000O0000 ,OOOO0O0O00000000O =OO0O000OOO00O0OOO .findall ('<url>(.+?)</url>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<imdb>(.+?)</imdb>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<tvdb>(.+?)</tvdb>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<tvshowtitle>(.+?)</tvshowtitle>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<year>(.+?)</year>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<thumbnail>(.+?)</thumbnail>',O0OOO0O00O00OO0OO )[0 ],OO0O000OOO00O0OOO .findall ('<fanart>(.+?)</fanart>',O0OOO0O00O00OO0OO )[0 ]#line:115
+            OO0O00O000OOO0OO0 =O00O00O0OO00OOO00 .request ('http://api.tvmaze.com/lookup/shows?thetvdb=%s'%O00O00OO00OO00OOO )#line:117
+            if OO0O00O000OOO0OO0 ==None :OO0O00O000OOO0OO0 =O00O00O0OO00OOO00 .request ('http://api.tvmaze.com/lookup/shows?imdb=%s'%OO000OOOOOO00OOOO )#line:118
+            OO0O00O000OOO0OO0 ='http://api.tvmaze.com/shows/%s/episodes'%str (OO00000O0OOOOOOOO .loads (OO0O00O000OOO0OO0 ).get ('id'))#line:119
+            O0O000000O0000O0O =OO00000O0OOOOOOOO .loads (O00O00O0OO00OOO00 .request (OO0O00O000OOO0OO0 ))#line:120
+            O0O000000O0000O0O =[(str (O0000OO0OO00O0OO0 .get ('season')),str (O0000OO0OO00O0OO0 .get ('number')),O0000OO0OO00O0OO0 .get ('name').strip (),O0000OO0OO00O0OO0 .get ('airdate'))for O0000OO0OO00O0OO0 in O0O000000O0000O0O ]#line:121
+            if OOOOOOOOO00OOOOOO =='tvtuner':#line:123
+                O000OO00OO0OOO000 =OOOOOO00OOO0OO0O0 .choice (O0O000000O0000O0O )#line:124
+                O0O000000O0000O0O =O0O000000O0000O0O [O0O000000O0000O0O .index (O000OO00OO0OOO000 ):]+O0O000000O0000O0O [:O0O000000O0000O0O .index (O000OO00OO0OOO000 )]#line:125
+                O0O000000O0000O0O =O0O000000O0000O0O [:100 ]#line:126
+            O00OOO0000OOOOOOO =''#line:128
+            for O000O00OO00OOOO0O in O0O000000O0000O0O :#line:130
+                try :#line:131
+                    if int (OO0O000OOO00O0OOO .sub ('[^0-9]','',str (O000O00OO00OOOO0O [3 ])))>OOO00000OO0O0O0O0 :raise Exception ()#line:132
+                    O00OOO0000OOOOOOO +='<item><title> %01dx%02d . %s</title><meta><content>episode</content><imdb>%s</imdb><tvdb>%s</tvdb><tvshowtitle>%s</tvshowtitle><year>%s</year><title>%s</title><premiered>%s</premiered><season>%01d</season><episode>%01d</episode></meta><link><sublink>search</sublink><sublink>searchsd</sublink></link><thumbnail>%s</thumbnail><fanart>%s</fanart></item>'%(int (O000O00OO00OOOO0O [0 ]),int (O000O00OO00OOOO0O [1 ]),O000O00OO00OOOO0O [2 ],OO000OOOOOO00OOOO ,O00O00OO00OO00OOO ,OO00OO0O0OO0OO0O0 ,OO00O00O00OOOO0OO ,O000O00OO00OOOO0O [2 ],O000O00OO00OOOO0O [3 ],int (O000O00OO00OOOO0O [0 ]),int (O000O00OO00OOOO0O [1 ]),O00OOOOOO000O0000 ,OOOO0O0O00000000O )#line:133
+                except :#line:134
+                    pass #line:135
+            O00OOO0000OOOOOOO =OO0O000OOO00O0OOO .sub (r'[^\x00-\x7F]+',' ',O00OOO0000OOOOOOO )#line:137
+            if OOOOOOOOO00OOOOOO =='tvtuner':#line:139
+                O00OOO0000OOOOOOO =O00OOO0000OOOOOOO .replace ('<sublink>searchsd</sublink>','')#line:140
+            OO000000OO0O00000 .list =OO000000OO0O00000 .specialist_list ('',result =O00OOO0000OOOOOOO )#line:142
+            if OOOOOOOOO00OOOOOO =='tvtuner':#line:144
+                OO000000OO0O00000 .addDirectory (OO000000OO0O00000 .list ,queue =True )#line:145
+            else :#line:146
+                OO000000OO0O00000 .worker ()#line:147
+                OO000000OO0O00000 .addDirectory (OO000000OO0O00000 .list )#line:148
+        except :#line:149
+            pass #line:150
+    def search (OO0OO0O00OOOOO00O ):#line:153
+        try :#line:154
+            OO0OO0O00OOOOO00O .list =[{'name':30702 ,'action':'addSearch'}]#line:155
+            OO0OO0O00OOOOO00O .list +=[{'name':30703 ,'action':'delSearch'}]#line:156
+            try :#line:158
+                def O0OO0000O0O0OOO0O ():return #line:159
+                O0OOO000O0O0000O0 =O0OOOOO0OO0O0O00O .get (O0OO0000O0O0OOO0O ,600000000 ,table ='rel_srch')#line:160
+                for O0OOO000OO000OOOO in O0OOO000O0O0000O0 :#line:162
+                    try :OO0OO0O00OOOOO00O .list +=[{'name':'%s...'%O0OOO000OO000OOOO ,'url':O0OOO000OO000OOOO ,'action':'addSearch'}]#line:163
+                    except :pass #line:164
+            except :#line:165
+                pass #line:166
+            OO0OO0O00OOOOO00O .addDirectory (OO0OO0O00OOOOO00O .list )#line:168
+            return OO0OO0O00OOOOO00O .list #line:169
+        except :#line:170
+            pass #line:171
+    def delSearch (OO0OOOOO00OOOOOO0 ):#line:174
+        try :#line:175
+            O0OOOOO0OO0O0O00O .clear ('rel_srch')#line:176
+            O000OOO0OOO0000O0 .refresh ()#line:177
+        except :#line:178
+            pass #line:179
+    def addSearch (OO00O00000OO000O0 ,url =None ):#line:182
+        try :#line:183
+            O00OOOO000O0000OO ='http://beaub.srve.io/specialist/addon/search.xml'#line:184
+            if (url ==None or url ==''):#line:186
+                OOO0OOOO00OO00O0O =O000OOO0OOO0000O0 .keyboard ('',O000OOO0OOO0000O0 .lang (30702 ).encode ('utf-8'))#line:187
+                OOO0OOOO00OO00O0O .doModal ()#line:188
+                if not (OOO0OOOO00OO00O0O .isConfirmed ()):return #line:189
+                url =OOO0OOOO00OO00O0O .getText ()#line:190
+            if (url ==None or url ==''):return #line:192
+            def OOOOO000OO0O0000O ():return [url ]#line:194
+            O0O0O0O00000OOOO0 =O0OOOOO0OO0O0O00O .get (OOOOO000OO0O0000O ,600000000 ,table ='rel_srch')#line:195
+            def OOOOO000OO0O0000O ():return [OOO00000O00OO0OO0 for OO0OOO0O00O0OO0O0 ,OOO00000O00OO0OO0 in enumerate ((O0O0O0O00000OOOO0 +[url ]))if OOO00000O00OO0OO0 not in (O0O0O0O00000OOOO0 +[url ])[:OO0OOO0O00O0OO0O0 ]]#line:196
+            O0OOOOO0OO0O0O00O .get (OOOOO000OO0O0000O ,0 ,table ='rel_srch')#line:197
+            OOOO0OO0OO0000OOO =O00O00O0OO00OOO00 .request (O00OOOO000O0000OO )#line:199
+            OOOO0OO0OO0000OOO =OO0O000OOO00O0OOO .findall ('<link>(.+?)</link>',OOOO0OO0OO0000OOO )#line:200
+            OOOO0OO0OO0000OOO =[OOOO0OOO00OO000O0 for OOOO0OOO00OO000O0 in OOOO0OO0OO0000OOO if str (OOOO0OOO00OO000O0 ).startswith ('http')]#line:201
+            OO00O00000OO000O0 .list =[];O0OO00O0O0OO0OOOO =[]#line:203
+            for O00OOOO000O0000OO in OOOO0OO0OO0000OOO :O0OO00O0O0OO0OOOO .append (O0O0OOO000O000O0O .Thread (OO00O00000OO000O0 .specialist_list ,O00OOOO000O0000OO ))#line:204
+            [OO0OO000O0O000O0O .start ()for OO0OO000O0O000O0O in O0OO00O0O0OO0OOOO ];[OO0O0OOOOO00OO0OO .join ()for OO0O0OOOOO00OO0OO in O0OO00O0O0OO0OOOO ]#line:205
+            OO00O00000OO000O0 .list =[OOO0000O0OOO0OO00 for OOO0000O0OOO0OO00 in OO00O00000OO000O0 .list if url .lower ()in OOO0000O0OOO0OO00 ['name'].lower ()]#line:207
+            for OOOOOOOOOOO0OOO0O in OO00O00000OO000O0 .list :#line:209
+                try :#line:210
+                    OO00O000000OOOOOO =''#line:211
+                    if not OOOOOOOOOOO0OOO0O ['vip']in ['specialist TV']:OO00O000000OOOOOO +='[B]%s[/B] | '%OOOOOOOOOOO0OOO0O ['vip'].upper ()#line:212
+                    OO00O000000OOOOOO +=OOOOOOOOOOO0OOO0O ['name']#line:213
+                    OOOOOOOOOOO0OOO0O .update ({'name':OO00O000000OOOOOO })#line:214
+                except :#line:215
+                    pass #line:216
+            for OOOOOOOOOOO0OOO0O in OO00O00000OO000O0 .list :OOOOOOOOOOO0OOO0O .update ({'content':'videos'})#line:218
+            OO00O00000OO000O0 .addDirectory (OO00O00000OO000O0 .list )#line:219
+        except :#line:220
+            pass #line:221
+    def specialist_list (OOOO00O0O000O00O0 ,OOO000OO00O00O00O ,result =None ):#line:224
+        try :#line:225
+            if result ==None :result =O0OOOOO0OO0O0O00O .get (O00O00O0OO00OOO00 .request ,0 ,OOO000OO00O00O00O )#line:226
+            if result .strip ().startswith ('#EXTM3U')and '#EXTINF'in result :#line:228
+                result =OO0O000OOO00O0OOO .compile ('#EXTINF:.+?\,(.+?)\n(.+?)\n',OO0O000OOO00O0OOO .MULTILINE |OO0O000OOO00O0OOO .DOTALL ).findall (result )#line:229
+                result =['<item><title>%s</title><link>%s</link></item>'%(OOO0OOO00O0OOO0O0 [0 ],OOO0OOO00O0OOO0O0 [1 ])for OOO0OOO00O0OOO0O0 in result ]#line:230
+                result =''.join (result )#line:231
+            try :OO0O0OO000000O000 =OOOO0O0O0OO0O0000 .b64decode (result )#line:233
+            except :OO0O0OO000000O000 =''#line:234
+            if '</link>'in OO0O0OO000000O000 :result =OO0O0OO000000O000 #line:235
+            result =str (result )#line:237
+            result =OOOO00O0O000O00O0 .account_filter (result )#line:239
+            O0O0O0OO0O0O0OOOO =result .split ('<item>')[0 ].split ('<dir>')[0 ]#line:241
+            try :OOOO000O0OOOO0O0O =OO0O000OOO00O0OOO .findall ('<poster>(.+?)</poster>',O0O0O0OO0O0O0OOOO )[0 ]#line:243
+            except :OOOO000O0OOOO0O0O ='0'#line:244
+            try :OOO0OO00OOO00OO0O =OO0O000OOO00O0OOO .findall ('<thumbnail>(.+?)</thumbnail>',O0O0O0OO0O0O0OOOO )[0 ]#line:246
+            except :OOO0OO00OOO00OO0O ='0'#line:247
+            try :O0O000OO0000OO0OO =OO0O000OOO00O0OOO .findall ('<fanart>(.+?)</fanart>',O0O0O0OO0O0O0OOOO )[0 ]#line:249
+            except :O0O000OO0000OO0OO ='0'#line:250
+            OOO00O0O0OO000OOO =OO0O000OOO00O0OOO .compile ('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))',OO0O000OOO00O0OOO .MULTILINE |OO0O000OOO00O0OOO .DOTALL ).findall (result )#line:252
+        except :#line:253
+            return #line:254
+        for OO0O0O0000O000OOO in OOO00O0O0OO000OOO :#line:256
+            try :#line:257
+                O0O000O000OO000O0 =OO0O000OOO00O0OOO .compile ('(<regex>.+?</regex>)',OO0O000OOO00O0OOO .MULTILINE |OO0O000OOO00O0OOO .DOTALL ).findall (OO0O0O0000O000OOO )#line:258
+                O0O000O000OO000O0 =''.join (O0O000O000OO000O0 )#line:259
+                OO0O0O0OO00OO0OO0 =OO0O000OOO00O0OOO .compile ('(<listrepeat>.+?</listrepeat>)',OO0O000OOO00O0OOO .MULTILINE |OO0O000OOO00O0OOO .DOTALL ).findall (O0O000O000OO000O0 )#line:260
+                O0O000O000OO000O0 =OOOOOO000O000OOOO .quote_plus (O0O000O000OO000O0 )#line:261
+                O0O00O00000OO0OOO =O0OOOO00O0OO0O000 .md5 ()#line:263
+                for O00OOOO0O0OOOOO0O in O0O000O000OO000O0 :O0O00O00000OO0OOO .update (str (O00OOOO0O0OOOOO0O ))#line:264
+                O0O00O00000OO0OOO =str (O0O00O00000OO0OOO .hexdigest ())#line:265
+                OO0O0O0000O000OOO =OO0O0O0000O000OOO .replace ('\r','').replace ('\n','').replace ('\t','').replace ('&nbsp;','')#line:267
+                OO0O0O0000O000OOO =OO0O000OOO00O0OOO .sub ('<regex>.+?</regex>','',OO0O0O0000O000OOO )#line:268
+                OO0O0O0000O000OOO =OO0O000OOO00O0OOO .sub ('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','',OO0O0O0000O000OOO )#line:269
+                OO0O0O0000O000OOO =OO0O000OOO00O0OOO .sub ('<link></link>','',OO0O0O0000O000OOO )#line:270
+                O0OO0O00OO000OOO0 =OO0O000OOO00O0OOO .sub ('<meta>.+?</meta>','',OO0O0O0000O000OOO )#line:272
+                try :O0OO0O00OO000OOO0 =OO0O000OOO00O0OOO .findall ('<title>(.+?)</title>',O0OO0O00OO000OOO0 )[0 ]#line:273
+                except :O0OO0O00OO000OOO0 =OO0O000OOO00O0OOO .findall ('<name>(.+?)</name>',O0OO0O00OO000OOO0 )[0 ]#line:274
+                try :O0000OO0O0O000O0O =OO0O000OOO00O0OOO .findall ('<date>(.+?)</date>',OO0O0O0000O000OOO )[0 ]#line:276
+                except :O0000OO0O0O000O0O =''#line:277
+                if OO0O000OOO00O0OOO .search (r'\d+',O0000OO0O0O000O0O ):O0OO0O00OO000OOO0 +=' [COLOR red] Updated %s[/COLOR]'%O0000OO0O0O000O0O #line:278
+                try :OOOO000OO0OOO00OO =OO0O000OOO00O0OOO .findall ('<thumbnail>(.+?)</thumbnail>',OO0O0O0000O000OOO )[0 ]#line:280
+                except :OOOO000OO0OOO00OO =OOO0OO00OOO00OO0O #line:281
+                try :O0O00OOO0O000OO0O =OO0O000OOO00O0OOO .findall ('<fanart>(.+?)</fanart>',OO0O0O0000O000OOO )[0 ]#line:283
+                except :O0O00OOO0O000OO0O =O0O000OO0000OO0OO #line:284
+                try :O0000000O00OO0000 =OO0O000OOO00O0OOO .findall ('<meta>(.+?)</meta>',OO0O0O0000O000OOO )[0 ]#line:286
+                except :O0000000O00OO0000 ='0'#line:287
+                try :OOO000OO00O00O00O =OO0O000OOO00O0OOO .findall ('<link>(.+?)</link>',OO0O0O0000O000OOO )[0 ]#line:289
+                except :OOO000OO00O00O00O ='0'#line:290
+                OOO000OO00O00O00O =OOO000OO00O00O00O .replace ('>search<','><preset>search</preset>%s<'%O0000000O00OO0000 )#line:291
+                OOO000OO00O00O00O ='<preset>search</preset>%s'%O0000000O00OO0000 if OOO000OO00O00O00O =='search'else OOO000OO00O00O00O #line:292
+                OOO000OO00O00O00O =OOO000OO00O00O00O .replace ('>searchsd<','><preset>searchsd</preset>%s<'%O0000000O00OO0000 )#line:293
+                OOO000OO00O00O00O ='<preset>searchsd</preset>%s'%O0000000O00OO0000 if OOO000OO00O00O00O =='searchsd'else OOO000OO00O00O00O #line:294
+                OOO000OO00O00O00O =OO0O000OOO00O0OOO .sub ('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','',OOO000OO00O00O00O )#line:295
+                if OO0O0O0000O000OOO .startswith ('<item>'):OOOOOOOOO0OOO00O0 ='play'#line:297
+                elif OO0O0O0000O000OOO .startswith ('<plugin>'):OOOOOOOOO0OOO00O0 ='plugin'#line:298
+                elif OO0O0O0000O000OOO .startswith ('<info>')or OOO000OO00O00O00O =='0':OOOOOOOOO0OOO00O0 ='0'#line:299
+                else :OOOOOOOOO0OOO00O0 ='directory'#line:300
+                if OOOOOOOOO0OOO00O0 =='play'and OO0O0O0OO00OO0OO0 :OOOOOOOOO0OOO00O0 ='xdirectory'#line:301
+                if not O0O000O000OO000O0 =='':#line:303
+                    OOOO00O0O000O00O0 .hash .append ({'regex':O0O00O00000OO0OOO ,'response':O0O000O000OO000O0 })#line:304
+                    OOO000OO00O00O00O +='|regex=%s'%O0O00O00000OO0OOO #line:305
+                if OOOOOOOOO0OOO00O0 in ['directory','xdirectory','plugin']:#line:307
+                    O00OO0000OO000OO0 =True #line:308
+                else :#line:309
+                    O00OO0000OO000OO0 =False #line:310
+                try :O00O0OO00OO0OOOO0 =OO0O000OOO00O0OOO .findall ('<content>(.+?)</content>',O0000000O00OO0000 )[0 ]#line:312
+                except :O00O0OO00OO0OOOO0 ='0'#line:313
+                if O00O0OO00OO0OOOO0 =='0':#line:314
+                    try :O00O0OO00OO0OOOO0 =OO0O000OOO00O0OOO .findall ('<content>(.+?)</content>',OO0O0O0000O000OOO )[0 ]#line:315
+                    except :O00O0OO00OO0OOOO0 ='0'#line:316
+                if not O00O0OO00OO0OOOO0 =='0':O00O0OO00OO0OOOO0 +='s'#line:317
+                if 'tvshow'in O00O0OO00OO0OOOO0 and not OOO000OO00O00O00O .strip ().endswith ('.xml'):#line:319
+                    OOO000OO00O00O00O ='<preset>tvindexer</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s'%(OOO000OO00O00O00O ,OOOO000OO0OOO00OO ,O0O00OOO0O000OO0O ,O0000000O00OO0000 )#line:320
+                    OOOOOOOOO0OOO00O0 ='tvtuner'#line:321
+                if 'tvtuner'in O00O0OO00OO0OOOO0 and not OOO000OO00O00O00O .strip ().endswith ('.xml'):#line:323
+                    OOO000OO00O00O00O ='<preset>tvtuner</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s'%(OOO000OO00O00O00O ,OOOO000OO0OOO00OO ,O0O00OOO0O000OO0O ,O0000000O00OO0000 )#line:324
+                    OOOOOOOOO0OOO00O0 ='tvtuner'#line:325
+                try :OOO0O0O00O0OOOO0O =OO0O000OOO00O0OOO .findall ('<imdb>(.+?)</imdb>',O0000000O00OO0000 )[0 ]#line:327
+                except :OOO0O0O00O0OOOO0O ='0'#line:328
+                try :OOOOOOOOOOO00O0OO =OO0O000OOO00O0OOO .findall ('<tvdb>(.+?)</tvdb>',O0000000O00OO0000 )[0 ]#line:330
+                except :OOOOOOOOOOO00O0OO ='0'#line:331
+                try :OO000O0O0OO0O000O =OO0O000OOO00O0OOO .findall ('<tvshowtitle>(.+?)</tvshowtitle>',O0000000O00OO0000 )[0 ]#line:333
+                except :OO000O0O0OO0O000O ='0'#line:334
+                try :O00OO0OO00O00OOO0 =OO0O000OOO00O0OOO .findall ('<title>(.+?)</title>',O0000000O00OO0000 )[0 ]#line:336
+                except :O00OO0OO00O00OOO0 ='0'#line:337
+                if O00OO0OO00O00OOO0 =='0'and not OO000O0O0OO0O000O =='0':O00OO0OO00O00OOO0 =OO000O0O0OO0O000O #line:339
+                try :OOO0OO0000O00O00O =OO0O000OOO00O0OOO .findall ('<year>(.+?)</year>',O0000000O00OO0000 )[0 ]#line:341
+                except :OOO0OO0000O00O00O ='0'#line:342
+                try :O0O0OO000OO0OOO00 =OO0O000OOO00O0OOO .findall ('<premiered>(.+?)</premiered>',O0000000O00OO0000 )[0 ]#line:344
+                except :O0O0OO000OO0OOO00 ='0'#line:345
+                try :O0O000OO00000O000 =OO0O000OOO00O0OOO .findall ('<season>(.+?)</season>',O0000000O00OO0000 )[0 ]#line:347
+                except :O0O000OO00000O000 ='0'#line:348
+                try :OOOO0OO00OOO0O000 =OO0O000OOO00O0OOO .findall ('<episode>(.+?)</episode>',O0000000O00OO0000 )[0 ]#line:350
+                except :OOOO0OO00OOO0O000 ='0'#line:351
+                OOOO00O0O000O00O0 .list .append ({'name':O0OO0O00OO000OOO0 ,'vip':OOOO000O0OOOO0O0O ,'url':OOO000OO00O00O00O ,'action':OOOOOOOOO0OOO00O0 ,'folder':O00OO0000OO000OO0 ,'poster':OOOO000OO0OOO00OO ,'banner':'0','fanart':O0O00OOO0O000OO0O ,'content':O00O0OO00OO0OOOO0 ,'imdb':OOO0O0O00O0OOOO0O ,'tvdb':OOOOOOOOOOO00O0OO ,'tmdb':'0','title':O00OO0OO00O00OOO0 ,'originaltitle':O00OO0OO00O00OOO0 ,'tvshowtitle':OO000O0O0OO0O000O ,'year':OOO0OO0000O00O00O ,'premiered':O0O0OO000OO0OOO00 ,'season':O0O000OO00000O000 ,'episode':OOOO0OO00OOO0O000 })#line:353
+            except :#line:354
+                pass #line:355
+        OO00O0OO0OO000000 .insert (OOOO00O0O000O00O0 .hash )#line:357
+        return OOOO00O0O000O00O0 .list #line:359
+    def account_filter (O0O0OOOOO00O0OO0O ,OOO0OOO0OOO00OOOO ):#line:362
+        if (O000OOO0OOO0000O0 .setting ('ustvnow_email')==''or O000OOO0OOO0000O0 .setting ('ustvnow_pass')==''):#line:363
+            OOO0OOO0OOO00OOOO =OO0O000OOO00O0OOO .sub ('http(?:s|)://(?:www\.|)ustvnow\.com/.+?<','<',OOO0OOO0OOO00OOOO )#line:364
+        if (O000OOO0OOO0000O0 .setting ('streamlive_user')==''or O000OOO0OOO0000O0 .setting ('streamlive_pass')==''):#line:366
+            OOO0OOO0OOO00OOOO =OO0O000OOO00O0OOO .sub ('http(?:s|)://(?:www\.|)streamlive\.to/.+?<','<',OOO0OOO0OOO00OOOO )#line:367
+        return OOO0OOO0OOO00OOOO #line:369
+    def worker (O00O0OO0O0OOO0000 ):#line:372
+        if not O000OOO0OOO0000O0 .setting ('metadata')=='true':return #line:373
+        O00O0OO0O0OOO0000 .imdb_info_link ='http://www.omdbapi.com/?i=%s&plot=full&r=json'#line:375
+        O00O0OO0O0OOO0000 .tvmaze_info_link ='http://api.tvmaze.com/lookup/shows?thetvdb=%s'#line:376
+        O00O0OO0O0OOO0000 .lang ='en'#line:377
+        O00O0OO0O0OOO0000 .meta =[]#line:379
+        O0OO000OO0OOOO000 =len (O00O0OO0O0OOO0000 .list )#line:380
+        if O0OO000OO0OOOO000 ==0 :return #line:381
+        for OO0OOOOO0O000O0O0 in range (0 ,O0OO000OO0OOOO000 ):O00O0OO0O0OOO0000 .list [OO0OOOOO0O000O0O0 ].update ({'metacache':False })#line:383
+        O00O0OO0O0OOO0000 .list =OOO0OO0OO0O0000O0 .fetch (O00O0OO0O0OOO0000 .list ,O00O0OO0O0OOO0000 .lang )#line:384
+        OOO0O00OO0O000OO0 =[OOOO0O0O0OOO0O000 ['imdb']for OOOO0O0O0OOO0O000 in O00O0OO0O0OOO0000 .list ]#line:386
+        OOO0O00OO0O000OO0 =[OO000O0O000O00OO0 for OO0000O0OO0000000 ,OO000O0O000O00OO0 in enumerate (OOO0O00OO0O000OO0 )if OO000O0O000O00OO0 not in OOO0O00OO0O000OO0 [:OO0000O0OO0000000 ]]#line:387
+        if len (OOO0O00OO0O000OO0 )==1 :#line:388
+                O00O0OO0O0OOO0000 .movie_info (0 );O00O0OO0O0OOO0000 .tv_info (0 )#line:389
+                if O00O0OO0O0OOO0000 .meta :OOO0OO0OO0O0000O0 .insert (O00O0OO0O0OOO0000 .meta )#line:390
+        for OO0OOOOO0O000O0O0 in range (0 ,O0OO000OO0OOOO000 ):O00O0OO0O0OOO0000 .list [OO0OOOOO0O000O0O0 ].update ({'metacache':False })#line:392
+        O00O0OO0O0OOO0000 .list =OOO0OO0OO0O0000O0 .fetch (O00O0OO0O0OOO0000 .list ,O00O0OO0O0OOO0000 .lang )#line:393
+        for O0OOOO000OOOO000O in range (0 ,O0OO000OO0OOOO000 ,50 ):#line:395
+            O000O0O0OOOO0O0O0 =[]#line:396
+            for OO0OOOOO0O000O0O0 in range (O0OOOO000OOOO000O ,O0OOOO000OOOO000O +50 ):#line:397
+                if OO0OOOOO0O000O0O0 <=O0OO000OO0OOOO000 :O000O0O0OOOO0O0O0 .append (O0O0OOO000O000O0O .Thread (O00O0OO0O0OOO0000 .movie_info ,OO0OOOOO0O000O0O0 ))#line:398
+                if OO0OOOOO0O000O0O0 <=O0OO000OO0OOOO000 :O000O0O0OOOO0O0O0 .append (O0O0OOO000O000O0O .Thread (O00O0OO0O0OOO0000 .tv_info ,OO0OOOOO0O000O0O0 ))#line:399
+            [O0OO0OO0O00OO000O .start ()for O0OO0OO0O00OO000O in O000O0O0OOOO0O0O0 ]#line:400
+            [OO00O0OO0OOO0OO00 .join ()for OO00O0OO0OOO0OO00 in O000O0O0OOOO0O0O0 ]#line:401
+        if O00O0OO0O0OOO0000 .meta :OOO0OO0OO0O0000O0 .insert (O00O0OO0O0OOO0000 .meta )#line:403
+    def movie_info (OO0O0OOOO0OOOO00O ,O00OO0O00O0OOOO0O ):#line:406
+        try :#line:407
+            if OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ]['metacache']==True :raise Exception ()#line:408
+            if not OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ]['content']=='movies':raise Exception ()#line:410
+            OO00O000O0OOO0O00 =OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ]['imdb']#line:412
+            if OO00O000O0OOO0O00 =='0':raise Exception ()#line:413
+            O000O000OO0OOO0O0 =OO0O0OOOO0OOOO00O .imdb_info_link %OO00O000O0OOO0O00 #line:415
+            O0O00OO00O00OOOO0 =O00O00O0OO00OOO00 .request (O000O000OO0OOO0O0 ,timeout ='10')#line:417
+            O0O00OO00O00OOOO0 =OO00000O0OOOOOOOO .loads (O0O00OO00O00OOOO0 )#line:418
+            if 'Error'in O0O00OO00O00OOOO0 and 'incorrect imdb'in O0O00OO00O00OOOO0 ['Error'].lower ():#line:420
+                return OO0O0OOOO0OOOO00O .meta .append ({'imdb':OO00O000O0OOO0O00 ,'tmdb':'0','tvdb':'0','lang':OO0O0OOOO0OOOO00O .lang ,'item':{'code':'0'}})#line:421
+            O0OO0O00OOOOOOOOO =O0O00OO00O00OOOO0 ['Title']#line:423
+            O0OO0O00OOOOOOOOO =O0OO0O00OOOOOOOOO .encode ('utf-8')#line:424
+            if not O0OO0O00OOOOOOOOO =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'title':O0OO0O00OOOOOOOOO })#line:425
+            OOO0O00O0OOOO000O =O0O00OO00O00OOOO0 ['Year']#line:427
+            OOO0O00O0OOOO000O =OOO0O00O0OOOO000O .encode ('utf-8')#line:428
+            if not OOO0O00O0OOOO000O =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'year':OOO0O00O0OOOO000O })#line:429
+            OO00O000O0OOO0O00 =O0O00OO00O00OOOO0 ['imdbID']#line:431
+            if OO00O000O0OOO0O00 ==None or OO00O000O0OOO0O00 ==''or OO00O000O0OOO0O00 =='N/A':OO00O000O0OOO0O00 ='0'#line:432
+            OO00O000O0OOO0O00 =OO00O000O0OOO0O00 .encode ('utf-8')#line:433
+            if not OO00O000O0OOO0O00 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'imdb':OO00O000O0OOO0O00 ,'code':OO00O000O0OOO0O00 })#line:434
+            OO0OO00OO000O0OO0 =O0O00OO00O00OOOO0 ['Released']#line:436
+            if OO0OO00OO000O0OO0 ==None or OO0OO00OO000O0OO0 ==''or OO0OO00OO000O0OO0 =='N/A':OO0OO00OO000O0OO0 ='0'#line:437
+            OO0OO00OO000O0OO0 =OO0O000OOO00O0OOO .findall ('(\d*) (.+?) (\d*)',OO0OO00OO000O0OO0 )#line:438
+            try :OO0OO00OO000O0OO0 ='%s-%s-%s'%(OO0OO00OO000O0OO0 [0 ][2 ],{'Jan':'01','Feb':'02','Mar':'03','Apr':'04','May':'05','Jun':'06','Jul':'07','Aug':'08','Sep':'09','Oct':'10','Nov':'11','Dec':'12'}[OO0OO00OO000O0OO0 [0 ][1 ]],OO0OO00OO000O0OO0 [0 ][0 ])#line:439
+            except :OO0OO00OO000O0OO0 ='0'#line:440
+            OO0OO00OO000O0OO0 =OO0OO00OO000O0OO0 .encode ('utf-8')#line:441
+            if not OO0OO00OO000O0OO0 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'premiered':OO0OO00OO000O0OO0 })#line:442
+            OOOO00O000000OO00 =O0O00OO00O00OOOO0 ['Genre']#line:444
+            if OOOO00O000000OO00 ==None or OOOO00O000000OO00 ==''or OOOO00O000000OO00 =='N/A':OOOO00O000000OO00 ='0'#line:445
+            OOOO00O000000OO00 =OOOO00O000000OO00 .replace (', ',' / ')#line:446
+            OOOO00O000000OO00 =OOOO00O000000OO00 .encode ('utf-8')#line:447
+            if not OOOO00O000000OO00 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'genre':OOOO00O000000OO00 })#line:448
+            OOOO0OOO0O000OOO0 =O0O00OO00O00OOOO0 ['Runtime']#line:450
+            if OOOO0OOO0O000OOO0 ==None or OOOO0OOO0O000OOO0 ==''or OOOO0OOO0O000OOO0 =='N/A':OOOO0OOO0O000OOO0 ='0'#line:451
+            OOOO0OOO0O000OOO0 =OO0O000OOO00O0OOO .sub ('[^0-9]','',str (OOOO0OOO0O000OOO0 ))#line:452
+            try :OOOO0OOO0O000OOO0 =str (int (OOOO0OOO0O000OOO0 )*60 )#line:453
+            except :pass #line:454
+            OOOO0OOO0O000OOO0 =OOOO0OOO0O000OOO0 .encode ('utf-8')#line:455
+            if not OOOO0OOO0O000OOO0 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'duration':OOOO0OOO0O000OOO0 })#line:456
+            OOOOOOO0O0000000O =O0O00OO00O00OOOO0 ['imdbRating']#line:458
+            if OOOOOOO0O0000000O ==None or OOOOOOO0O0000000O ==''or OOOOOOO0O0000000O =='N/A'or OOOOOOO0O0000000O =='0.0':OOOOOOO0O0000000O ='0'#line:459
+            OOOOOOO0O0000000O =OOOOOOO0O0000000O .encode ('utf-8')#line:460
+            if not OOOOOOO0O0000000O =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'rating':OOOOOOO0O0000000O })#line:461
+            OO0O0O00O0OO0OOOO =O0O00OO00O00OOOO0 ['imdbVotes']#line:463
+            try :OO0O0O00O0OO0OOOO =str (format (int (OO0O0O00O0OO0OOOO ),',d'))#line:464
+            except :pass #line:465
+            if OO0O0O00O0OO0OOOO ==None or OO0O0O00O0OO0OOOO ==''or OO0O0O00O0OO0OOOO =='N/A':OO0O0O00O0OO0OOOO ='0'#line:466
+            OO0O0O00O0OO0OOOO =OO0O0O00O0OO0OOOO .encode ('utf-8')#line:467
+            if not OO0O0O00O0OO0OOOO =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'votes':OO0O0O00O0OO0OOOO })#line:468
+            OO0OOOOO00OOOO0OO =O0O00OO00O00OOOO0 ['Rated']#line:470
+            if OO0OOOOO00OOOO0OO ==None or OO0OOOOO00OOOO0OO ==''or OO0OOOOO00OOOO0OO =='N/A':OO0OOOOO00OOOO0OO ='0'#line:471
+            OO0OOOOO00OOOO0OO =OO0OOOOO00OOOO0OO .encode ('utf-8')#line:472
+            if not OO0OOOOO00OOOO0OO =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'mpaa':OO0OOOOO00OOOO0OO })#line:473
+            OO0OOOOO0O0OO0000 =O0O00OO00O00OOOO0 ['Director']#line:475
+            if OO0OOOOO0O0OO0000 ==None or OO0OOOOO0O0OO0000 ==''or OO0OOOOO0O0OO0000 =='N/A':OO0OOOOO0O0OO0000 ='0'#line:476
+            OO0OOOOO0O0OO0000 =OO0OOOOO0O0OO0000 .replace (', ',' / ')#line:477
+            OO0OOOOO0O0OO0000 =OO0O000OOO00O0OOO .sub (r'\(.*?\)','',OO0OOOOO0O0OO0000 )#line:478
+            OO0OOOOO0O0OO0000 =' '.join (OO0OOOOO0O0OO0000 .split ())#line:479
+            OO0OOOOO0O0OO0000 =OO0OOOOO0O0OO0000 .encode ('utf-8')#line:480
+            if not OO0OOOOO0O0OO0000 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'director':OO0OOOOO0O0OO0000 })#line:481
+            O0OOO000O0OOO000O =O0O00OO00O00OOOO0 ['Writer']#line:483
+            if O0OOO000O0OOO000O ==None or O0OOO000O0OOO000O ==''or O0OOO000O0OOO000O =='N/A':O0OOO000O0OOO000O ='0'#line:484
+            O0OOO000O0OOO000O =O0OOO000O0OOO000O .replace (', ',' / ')#line:485
+            O0OOO000O0OOO000O =OO0O000OOO00O0OOO .sub (r'\(.*?\)','',O0OOO000O0OOO000O )#line:486
+            O0OOO000O0OOO000O =' '.join (O0OOO000O0OOO000O .split ())#line:487
+            O0OOO000O0OOO000O =O0OOO000O0OOO000O .encode ('utf-8')#line:488
+            if not O0OOO000O0OOO000O =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'writer':O0OOO000O0OOO000O })#line:489
+            O0O0000O0OOO00O00 =O0O00OO00O00OOOO0 ['Actors']#line:491
+            if O0O0000O0OOO00O00 ==None or O0O0000O0OOO00O00 ==''or O0O0000O0OOO00O00 =='N/A':O0O0000O0OOO00O00 ='0'#line:492
+            O0O0000O0OOO00O00 =[O00OO0OO00000O00O .strip ()for O00OO0OO00000O00O in O0O0000O0OOO00O00 .split (',')if not O00OO0OO00000O00O =='']#line:493
+            try :O0O0000O0OOO00O00 =[(O0OO0OOOO0OOOOO0O .encode ('utf-8'),'')for O0OO0OOOO0OOOOO0O in O0O0000O0OOO00O00 ]#line:494
+            except :O0O0000O0OOO00O00 =[]#line:495
+            if O0O0000O0OOO00O00 ==[]:O0O0000O0OOO00O00 ='0'#line:496
+            if not O0O0000O0OOO00O00 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'cast':O0O0000O0OOO00O00 })#line:497
+            O00O000000O00O000 =O0O00OO00O00OOOO0 ['Plot']#line:499
+            if O00O000000O00O000 ==None or O00O000000O00O000 ==''or O00O000000O00O000 =='N/A':O00O000000O00O000 ='0'#line:500
+            O00O000000O00O000 =O00O00O0OO00OOO00 .replaceHTMLCodes (O00O000000O00O000 )#line:501
+            O00O000000O00O000 =O00O000000O00O000 .encode ('utf-8')#line:502
+            if not O00O000000O00O000 =='0':OO0O0OOOO0OOOO00O .list [O00OO0O00O0OOOO0O ].update ({'plot':O00O000000O00O000 })#line:503
+            OO0O0OOOO0OOOO00O .meta .append ({'imdb':OO00O000O0OOO0O00 ,'tmdb':'0','tvdb':'0','lang':OO0O0OOOO0OOOO00O .lang ,'item':{'title':O0OO0O00OOOOOOOOO ,'year':OOO0O00O0OOOO000O ,'code':OO00O000O0OOO0O00 ,'imdb':OO00O000O0OOO0O00 ,'premiered':OO0OO00OO000O0OO0 ,'genre':OOOO00O000000OO00 ,'duration':OOOO0OOO0O000OOO0 ,'rating':OOOOOOO0O0000000O ,'votes':OO0O0O00O0OO0OOOO ,'mpaa':OO0OOOOO00OOOO0OO ,'director':OO0OOOOO0O0OO0000 ,'writer':O0OOO000O0OOO000O ,'cast':O0O0000O0OOO00O00 ,'plot':O00O000000O00O000 }})#line:505
+        except :#line:506
+            pass #line:507
+    def tv_info (OOO00OO0OO00OOO00 ,OOO00OOO00OO00000 ):#line:510
+        try :#line:511
+            if OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ]['metacache']==True :raise Exception ()#line:512
+            if not OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ]['content']in ['tvshows','seasons','episodes']:raise Exception ()#line:514
+            O0O00000O0OO0O000 =OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ]['tvdb']#line:516
+            if O0O00000O0OO0O000 =='0':raise Exception ()#line:517
+            OOOO0O0OO000O0000 =OOO00OO0OO00OOO00 .tvmaze_info_link %O0O00000O0OO0O000 #line:519
+            O0OOOOO000O0OOO00 =O00O00O0OO00OOO00 .request (OOOO0O0OO000O0000 ,output ='extended',error =True ,timeout ='10')#line:521
+            if O0OOOOO000O0OOO00 [1 ]=='404':#line:523
+                return OOO00OO0OO00OOO00 .meta .append ({'imdb':'0','tmdb':'0','tvdb':O0O00000O0OO0O000 ,'lang':OOO00OO0OO00OOO00 .lang ,'item':{'code':'0'}})#line:524
+            O0OOOOO000O0OOO00 =OO00000O0OOOOOOOO .loads (O0OOOOO000O0OOO00 [0 ])#line:526
+            O0O00000OOO000O0O =O0OOOOO000O0OOO00 ['name']#line:528
+            O0O00000OOO000O0O =O0O00000OOO000O0O .encode ('utf-8')#line:529
+            if not O0O00000OOO000O0O =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'tvshowtitle':O0O00000OOO000O0O })#line:530
+            OOOO0O0OOOOOO00O0 =O0OOOOO000O0OOO00 ['premiered']#line:532
+            OOOO0O0OOOOOO00O0 =OO0O000OOO00O0OOO .findall ('(\d{4})',OOOO0O0OOOOOO00O0 )[0 ]#line:533
+            OOOO0O0OOOOOO00O0 =OOOO0O0OOOOOO00O0 .encode ('utf-8')#line:534
+            if not OOOO0O0OOOOOO00O0 =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'year':OOOO0O0OOOOOO00O0 })#line:535
+            try :O00O0OO0OO00O000O =O0OOOOO000O0OOO00 ['externals']['imdb']#line:537
+            except :O00O0OO0OO00O000O ='0'#line:538
+            if O00O0OO0OO00O000O ==''or O00O0OO0OO00O000O ==None :O00O0OO0OO00O000O ='0'#line:539
+            O00O0OO0OO00O000O =O00O0OO0OO00O000O .encode ('utf-8')#line:540
+            if OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ]['imdb']=='0'and not O00O0OO0OO00O000O =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'imdb':O00O0OO0OO00O000O })#line:541
+            try :O00OO0O0OO0OO0O00 =O0OOOOO000O0OOO00 ['network']['name']#line:543
+            except :O00OO0O0OO0OO0O00 ='0'#line:544
+            if O00OO0O0OO0OO0O00 ==''or O00OO0O0OO0OO0O00 ==None :O00OO0O0OO0OO0O00 ='0'#line:545
+            O00OO0O0OO0OO0O00 =O00OO0O0OO0OO0O00 .encode ('utf-8')#line:546
+            if not O00OO0O0OO0OO0O00 =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'studio':O00OO0O0OO0OO0O00 })#line:547
+            O0OO0000O0OOOOOOO =O0OOOOO000O0OOO00 ['genres']#line:549
+            if O0OO0000O0OOOOOOO ==''or O0OO0000O0OOOOOOO ==None or O0OO0000O0OOOOOOO ==[]:O0OO0000O0OOOOOOO ='0'#line:550
+            O0OO0000O0OOOOOOO =' / '.join (O0OO0000O0OOOOOOO )#line:551
+            O0OO0000O0OOOOOOO =O0OO0000O0OOOOOOO .encode ('utf-8')#line:552
+            if not O0OO0000O0OOOOOOO =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'genre':O0OO0000O0OOOOOOO })#line:553
+            try :O00OO0O0OOO0O0OO0 =str (O0OOOOO000O0OOO00 ['runtime'])#line:555
+            except :O00OO0O0OOO0O0OO0 ='0'#line:556
+            if O00OO0O0OOO0O0OO0 ==''or O00OO0O0OOO0O0OO0 ==None :O00OO0O0OOO0O0OO0 ='0'#line:557
+            try :O00OO0O0OOO0O0OO0 =str (int (O00OO0O0OOO0O0OO0 )*60 )#line:558
+            except :pass #line:559
+            O00OO0O0OOO0O0OO0 =O00OO0O0OOO0O0OO0 .encode ('utf-8')#line:560
+            if not O00OO0O0OOO0O0OO0 =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'duration':O00OO0O0OOO0O0OO0 })#line:561
+            OOO00OO000O0O0OOO =str (O0OOOOO000O0OOO00 ['rating']['average'])#line:563
+            if OOO00OO000O0O0OOO ==''or OOO00OO000O0O0OOO ==None :OOO00OO000O0O0OOO ='0'#line:564
+            OOO00OO000O0O0OOO =OOO00OO000O0O0OOO .encode ('utf-8')#line:565
+            if not OOO00OO000O0O0OOO =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'rating':OOO00OO000O0O0OOO })#line:566
+            OO0OO0OO00OOOOO0O =O0OOOOO000O0OOO00 ['summary']#line:568
+            if OO0OO0OO00OOOOO0O ==''or OO0OO0OO00OOOOO0O ==None :OO0OO0OO00OOOOO0O ='0'#line:569
+            OO0OO0OO00OOOOO0O =OO0O000OOO00O0OOO .sub ('\n|<.+?>|</.+?>|.+?#\d*:','',OO0OO0OO00OOOOO0O )#line:570
+            OO0OO0OO00OOOOO0O =OO0OO0OO00OOOOO0O .encode ('utf-8')#line:571
+            if not OO0OO0OO00OOOOO0O =='0':OOO00OO0OO00OOO00 .list [OOO00OOO00OO00000 ].update ({'plot':OO0OO0OO00OOOOO0O })#line:572
+            OOO00OO0OO00OOO00 .meta .append ({'imdb':O00O0OO0OO00O000O ,'tmdb':'0','tvdb':O0O00000O0OO0O000 ,'lang':OOO00OO0OO00OOO00 .lang ,'item':{'tvshowtitle':O0O00000OOO000O0O ,'year':OOOO0O0OOOOOO00O0 ,'code':O00O0OO0OO00O000O ,'imdb':O00O0OO0OO00O000O ,'tvdb':O0O00000O0OO0O000 ,'studio':O00OO0O0OO0OO0O00 ,'genre':O0OO0000O0OOOOOOO ,'duration':O00OO0O0OOO0O0OO0 ,'rating':OOO00OO000O0O0OOO ,'plot':OO0OO0OO00OOOOO0O }})#line:574
+        except :#line:575
+            pass #line:576
+    def addDirectory (OOO0000OO00OOOO00 ,O0OOOOOO0OOO0O000 ,queue =False ):#line:579
+        if O0OOOOOO0OOO0O000 ==None or len (O0OOOOOO0OOO0O000 )==0 :return #line:580
+        OOOOOOO00OOOOO00O =OO00000OO00000000 .argv [0 ]#line:582
+        OOOOO000OOOO0OOOO =OO0OOO000O0O0OO00 =O000OOO0OOO0000O0 .addonInfo ('icon')#line:583
+        O00O0OO0OOO0000OO =O000OOO0OOO0000O0 .addonInfo ('fanart')#line:584
+        OOO00000OO0O0OO00 =O000OOO0OOO0000O0 .playlist #line:586
+        if not queue ==False :OOO00000OO0O0OO00 .clear ()#line:587
+        try :O0OOOOOOOOO0O000O =True if 'testings.xml'in O000OOO0OOO0000O0 .listDir (O000OOO0OOO0000O0 .dataPath )[1 ]else False #line:589
+        except :O0OOOOOOOOO0O000O =False #line:590
+        O000O0000OOO0O000 =[O000O000O00000O00 ['content']for O000O000O00000O00 in O0OOOOOO0OOO0O000 if 'content'in O000O000O00000O00 ]#line:592
+        if 'movies'in O000O0000OOO0O000 :O000O0000OOO0O000 ='movies'#line:593
+        elif 'tvshows'in O000O0000OOO0O000 :O000O0000OOO0O000 ='tvshows'#line:594
+        elif 'seasons'in O000O0000OOO0O000 :O000O0000OOO0O000 ='seasons'#line:595
+        elif 'episodes'in O000O0000OOO0O000 :O000O0000OOO0O000 ='episodes'#line:596
+        elif 'addons'in O000O0000OOO0O000 :O000O0000OOO0O000 ='addons'#line:597
+        else :O000O0000OOO0O000 ='videos'#line:598
+        for O0OOO0000OOO0O0OO in O0OOOOOO0OOO0O000 :#line:600
+            try :#line:601
+                try :O0O0OOOO00000O0O0 =O000OOO0OOO0000O0 .lang (int (O0OOO0000OOO0O0OO ['name'])).encode ('utf-8')#line:602
+                except :O0O0OOOO00000O0O0 =O0OOO0000OOO0O0OO ['name']#line:603
+                OO00O0O000OO0O0OO ='%s?action=%s'%(OOOOOOO00OOOOO00O ,O0OOO0000OOO0O0OO ['action'])#line:605
+                try :OO00O0O000OO0O0OO +='&url=%s'%OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['url'])#line:606
+                except :pass #line:607
+                try :OO00O0O000OO0O0OO +='&content=%s'%OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['content'])#line:608
+                except :pass #line:609
+                if O0OOO0000OOO0O0OO ['action']=='plugin'and 'url'in O0OOO0000OOO0O0OO :OO00O0O000OO0O0OO =O0OOO0000OOO0O0OO ['url']#line:611
+                try :OO0O0OOOO0O000000 =dict (OOO0OO0000OO0OOOO .parse_qsl (OOO0OO0000OO0OOOO .urlparse (OO00O0O000OO0O0OO ).query ))['action']#line:613
+                except :OO0O0OOOO0O000000 =None #line:614
+                if OO0O0OOOO0O000000 =='developer'and not O0OOOOOOOOO0O000O ==True :raise Exception ()#line:615
+                O0OO00O0000OO0O0O =O0OOO0000OOO0O0OO ['poster']if 'poster'in O0OOO0000OOO0O0OO else '0'#line:617
+                O0000OO0000000OOO =O0OOO0000OOO0O0OO ['banner']if 'banner'in O0OOO0000OOO0O0OO else '0'#line:618
+                OO0OOOOOOO0O0OOO0 =O0OOO0000OOO0O0OO ['fanart']if 'fanart'in O0OOO0000OOO0O0OO else '0'#line:619
+                if O0OO00O0000OO0O0O =='0':O0OO00O0000OO0O0O =OOOOO000OOOO0OOOO #line:620
+                if O0000OO0000000OOO =='0'and O0OO00O0000OO0O0O =='0':O0000OO0000000OOO =OO0OOO000O0O0OO00 #line:621
+                elif O0000OO0000000OOO =='0':O0000OO0000000OOO =O0OO00O0000OO0O0O #line:622
+                OOOOOO0O00000OOOO =O0OOO0000OOO0O0OO ['content']if 'content'in O0OOO0000OOO0O0OO else '0'#line:624
+                O0OOO000O0O0OO0O0 =O0OOO0000OOO0O0OO ['folder']if 'folder'in O0OOO0000OOO0O0OO else True #line:626
+                OOO00000OO0000000 =dict ((OO0O00O00OO0OOO00 ,O0OOO0OO00O00OOO0 )for OO0O00O00OO0OOO00 ,O0OOO0OO00O00OOO0 in O0OOO0000OOO0O0OO .iteritems ()if not O0OOO0OO00O00OOO0 =='0')#line:628
+                O0O00000OOOOO00O0 =[]#line:630
+                if OOOOOO0O00000OOOO in ['movies','tvshows']:#line:632
+                    OOO00000OO0000000 .update ({'trailer':'%s?action=trailer&name=%s'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (O0O0OOOO00000O0O0 ))})#line:633
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30707 ).encode ('utf-8'),'RunPlugin(%s?action=trailer&name=%s)'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (O0O0OOOO00000O0O0 ))))#line:634
+                if OOOOOO0O00000OOOO in ['movies','tvshows','seasons','episodes']:#line:636
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30708 ).encode ('utf-8'),'XBMC.Action(Info)'))#line:637
+                if (O0OOO000O0O0OO0O0 ==False and not '|regex='in str (O0OOO0000OOO0O0OO .get ('url')))or (O0OOO000O0O0OO0O0 ==True and OOOOOO0O00000OOOO in ['tvshows','seasons']):#line:639
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30723 ).encode ('utf-8'),'RunPlugin(%s?action=queueItem)'%OOOOOOO00OOOOO00O ))#line:640
+                if OOOOOO0O00000OOOO =='movies':#line:642
+                    try :OOO0O0OOO0O0OOOOO ='%s (%s)'%(O0OOO0000OOO0O0OO ['title'],O0OOO0000OOO0O0OO ['year'])#line:643
+                    except :OOO0O0OOO0O0OOOOO =O0O0OOOO00000O0O0 #line:644
+                    try :O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (OOO0O0OOO0O0OOOOO ),OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['url']),OOOOOO000O000OOOO .quote_plus (O0OO00O0000OO0O0O ))))#line:645
+                    except :pass #line:646
+                elif OOOOOO0O00000OOOO =='episodes':#line:647
+                    try :OOO0O0OOO0O0OOOOO ='%s S%02dE%02d'%(O0OOO0000OOO0O0OO ['tvshowtitle'],int (O0OOO0000OOO0O0OO ['season']),int (O0OOO0000OOO0O0OO ['episode']))#line:648
+                    except :OOO0O0OOO0O0OOOOO =O0O0OOOO00000O0O0 #line:649
+                    try :O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (OOO0O0OOO0O0OOOOO ),OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['url']),OOOOOO000O000OOOO .quote_plus (O0OO00O0000OO0O0O ))))#line:650
+                    except :pass #line:651
+                elif OOOOOO0O00000OOOO =='songs':#line:652
+                    try :O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30722 ).encode ('utf-8'),'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (O0O0OOOO00000O0O0 ),OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['url']),OOOOOO000O000OOOO .quote_plus (O0OO00O0000OO0O0O ))))#line:653
+                    except :pass #line:654
+                if O000O0000OOO0O000 =='movies':#line:656
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30711 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=movies)'%OOOOOOO00OOOOO00O ))#line:657
+                elif O000O0000OOO0O000 =='tvshows':#line:658
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30712 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=tvshows)'%OOOOOOO00OOOOO00O ))#line:659
+                elif O000O0000OOO0O000 =='seasons':#line:660
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30713 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=seasons)'%OOOOOOO00OOOOO00O ))#line:661
+                elif O000O0000OOO0O000 =='episodes':#line:662
+                    O0O00000OOOOO00O0 .append ((O000OOO0OOO0000O0 .lang (30714 ).encode ('utf-8'),'RunPlugin(%s?action=addView&content=episodes)'%OOOOOOO00OOOOO00O ))#line:663
+                if O0OOOOOOOOO0O000O ==True :#line:665
+                    try :O0O00000OOOOO00O0 .append (('Open in browser','RunPlugin(%s?action=browser&url=%s)'%(OOOOOOO00OOOOO00O ,OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['url']))))#line:666
+                    except :pass #line:667
+                O0OOO0000OOOOO000 =O000OOO0OOO0000O0 .item (label =O0O0OOOO00000O0O0 ,iconImage =O0OO00O0000OO0O0O ,thumbnailImage =O0OO00O0000OO0O0O )#line:670
+                try :O0OOO0000OOOOO000 .setArt ({'poster':O0OO00O0000OO0O0O ,'tvshow.poster':O0OO00O0000OO0O0O ,'season.poster':O0OO00O0000OO0O0O ,'banner':O0000OO0000000OOO ,'tvshow.banner':O0000OO0000000OOO ,'season.banner':O0000OO0000000OOO })#line:672
+                except :pass #line:673
+                if not OO0OOOOOOO0O0OOO0 =='0':#line:675
+                    O0OOO0000OOOOO000 .setProperty ('Fanart_Image',OO0OOOOOOO0O0OOO0 )#line:676
+                elif not O00O0OO0OOO0000OO ==None :#line:677
+                    O0OOO0000OOOOO000 .setProperty ('Fanart_Image',O00O0OO0OOO0000OO )#line:678
+                if queue ==False :#line:680
+                    O0OOO0000OOOOO000 .setInfo (type ='Video',infoLabels =OOO00000OO0000000 )#line:681
+                    O0OOO0000OOOOO000 .addContextMenuItems (O0O00000OOOOO00O0 )#line:682
+                    O000OOO0OOO0000O0 .addItem (handle =int (OO00000OO00000000 .argv [1 ]),url =OO00O0O000OO0O0OO ,listitem =O0OOO0000OOOOO000 ,isFolder =O0OOO000O0O0OO0O0 )#line:683
+                else :#line:684
+                    O0OOO0000OOOOO000 .setInfo (type ='Video',infoLabels =OOO00000OO0000000 )#line:685
+                    OOO00000OO0O0OO00 .add (url =OO00O0O000OO0O0OO ,listitem =O0OOO0000OOOOO000 )#line:686
+            except :#line:687
+                pass #line:688
+        if not queue ==False :#line:690
+            return O000OOO0OOO0000O0 .player .play (OOO00000OO0O0OO00 )#line:691
+        try :#line:693
+            O0OOO0000OOO0O0OO =O0OOOOOO0OOO0O000 [0 ]#line:694
+            if O0OOO0000OOO0O0OO ['next']=='':raise Exception ()#line:695
+            OO00O0O000OO0O0OO ='%s?action=%s&url=%s'%(OOOOOOO00OOOOO00O ,O0OOO0000OOO0O0OO ['nextaction'],OOOOOO000O000OOOO .quote_plus (O0OOO0000OOO0O0OO ['next']))#line:696
+            O0OOO0000OOOOO000 =O000OOO0OOO0000O0 .item (label =O000OOO0OOO0000O0 .lang (30500 ).encode ('utf-8'))#line:697
+            O0OOO0000OOOOO000 .setArt ({'addonPoster':OOOOO000OOOO0OOOO ,'thumb':OOOOO000OOOO0OOOO ,'poster':OOOOO000OOOO0OOOO ,'tvshow.poster':OOOOO000OOOO0OOOO ,'season.poster':OOOOO000OOOO0OOOO ,'banner':OOOOO000OOOO0OOOO ,'tvshow.banner':OOOOO000OOOO0OOOO ,'season.banner':OOOOO000OOOO0OOOO })#line:698
+            O0OOO0000OOOOO000 .setProperty ('addonFanart_Image',O00O0OO0OOO0000OO )#line:699
+            O000OOO0OOO0000O0 .addItem (handle =int (OO00000OO00000000 .argv [1 ]),url =OO00O0O000OO0O0OO ,listitem =O0OOO0000OOOOO000 ,isFolder =True )#line:700
+        except :#line:701
+            pass #line:702
+        if not O000O0000OOO0O000 ==None :O000OOO0OOO0000O0 .content (int (OO00000OO00000000 .argv [1 ]),O000O0000OOO0O000 )#line:704
+        O000OOO0OOO0000O0 .directory (int (OO00000OO00000000 .argv [1 ]),cacheToDisc =True )#line:705
+        if O000O0000OOO0O000 in ['movies','tvshows','seasons','episodes']:#line:706
+            O0OO0OOOOO0OOOO0O .setView (O000O0000OOO0O000 ,{'skin.estuary':55 })#line:707
+class resolver :#line:711
+    def browser (OO00O00OOOO00OOO0 ,OOO0OOOO000000O00 ):#line:712
+        try :#line:713
+            OOO0OOOO000000O00 =OO00O00OOOO00OOO0 .get (OOO0OOOO000000O00 )#line:714
+            if OOO0OOOO000000O00 ==False :return #line:715
+            O000OOO0OOO0000O0 .execute ('RunPlugin(plugin://plugin.program.chrome.launcher/?url=%s&mode=showSite&stopPlayback=no)'%OOOOOO000O000OOOO .quote_plus (OOO0OOOO000000O00 ))#line:716
+        except :#line:717
+            pass #line:718
+    def link (OO00O0O00O0O0O00O ,O0OO0OO00OOOOOO00 ):#line:721
+        try :#line:722
+            O0OO0OO00OOOOOO00 =OO00O0O00O0O0O00O .get (O0OO0OO00OOOOOO00 )#line:723
+            if O0OO0OO00OOOOOO00 ==False :return #line:724
+            O000OOO0OOO0000O0 .execute ('ActivateWindow(busydialog)')#line:726
+            O0OO0OO00OOOOOO00 =OO00O0O00O0O0O00O .process (O0OO0OO00OOOOOO00 )#line:727
+            O000OOO0OOO0000O0 .execute ('Dialog.Close(busydialog)')#line:728
+            if O0OO0OO00OOOOOO00 ==None :return O000OOO0OOO0000O0 .infoDialog (O000OOO0OOO0000O0 .lang (30705 ).encode ('utf-8'))#line:730
+            return O0OO0OO00OOOOOO00 #line:731
+        except :#line:732
+            pass #line:733
+    def get (O000OO00OO0OO0OOO ,OOO00O0O0O000OO0O ):#line:736
+        try :#line:737
+            OOO0OO00O000OO000 =OO0O000OOO00O0OOO .compile ('<sublink(?:\s+name=|)(?:\'|\"|)(.*?)(?:\'|\"|)>(.+?)</sublink>').findall (OOO00O0O0O000OO0O )#line:738
+            if len (OOO0OO00O000OO000 )==0 :return OOO00O0O0O000OO0O #line:740
+            if len (OOO0OO00O000OO000 )==1 :return OOO0OO00O000OO000 [0 ][1 ]#line:741
+            OOO0OO00O000OO000 =[('Link %s'%(int (OOO0OO00O000OO000 .index (OOOO000OO0OOOOOOO ))+1 )if OOOO000OO0OOOOOOO [0 ]==''else OOOO000OO0OOOOOOO [0 ],OOOO000OO0OOOOOOO [1 ])for OOOO000OO0OOOOOOO in OOO0OO00O000OO000 ]#line:743
+            OOO0OOO0OO0000O00 =O000OOO0OOO0000O0 .selectDialog ([O0O0OO0OOO0000000 [0 ]for O0O0OO0OOO0000000 in OOO0OO00O000OO000 ],O000OOO0OOO0000O0 .infoLabel ('listitem.label'))#line:745
+            if OOO0OOO0OO0000O00 ==-1 :return False #line:747
+            else :return OOO0OO00O000OO000 [OOO0OOO0OO0000O00 ][1 ]#line:748
+        except :#line:749
+            pass #line:750
+    def f4m (OO0O000O00O00OOO0 ,O0OO000000000OO00 ,O0O000OOO0OOOO0OO ):#line:753
+            try :#line:754
+                if not any (O00O00OO0O0O0O0OO in O0OO000000000OO00 for O00O00OO0O0O0O0OO in ['.f4m','.ts']):raise Exception ()#line:755
+                OO0OO0O00O000OO0O =O0OO000000000OO00 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:756
+                if not OO0OO0O00O000OO0O in ['f4m','ts']:raise Exception ()#line:757
+                O000O000OOOO0OO0O =OOO0OO0000OO0OOOO .parse_qs (O0OO000000000OO00 )#line:759
+                try :OOO0OOOO0O00O00O0 =O000O000OOOO0OO0O ['proxy'][0 ]#line:761
+                except :OOO0OOOO0O00O00O0 =None #line:762
+                try :O00OOOOO00OO0OOOO =OO00000O0OOOOOOOO .loads (O000O000OOOO0OO0O ['proxy_for_chunks'][0 ])#line:764
+                except :O00OOOOO00OO0OOOO =True #line:765
+                try :O0O00OO0OO0O00000 =int (O000O000OOOO0OO0O ['maxbitrate'][0 ])#line:767
+                except :O0O00OO0OO0O00000 =0 #line:768
+                try :OOOOOO00O00O000O0 =OO00000O0OOOOOOOO .loads (O000O000OOOO0OO0O ['simpledownloader'][0 ])#line:770
+                except :OOOOOO00O00O000O0 =False #line:771
+                try :OOOOOOOO00O0O0OOO =O000O000OOOO0OO0O ['auth'][0 ]#line:773
+                except :OOOOOOOO00O0O0OOO =''#line:774
+                try :OOO0OOO000O0O0O0O =O000O000OOOO0OO0O ['streamtype'][0 ]#line:776
+                except :OOO0OOO000O0O0O0O ='TSDOWNLOADER'if OO0OO0O00O000OO0O =='ts'else 'HDS'#line:777
+                try :O0OOO0O00O0O0OOOO =O000O000OOOO0OO0O ['swf'][0 ]#line:779
+                except :O0OOO0O00O0O0OOOO =None #line:780
+                from F4mProxy import f4mProxyHelper as OOO0OOO00O0O000O0 #line:782
+                return OOO0OOO00O0O000O0 ().playF4mLink (O0OO000000000OO00 ,O0O000OOO0OOOO0OO ,OOO0OOOO0O00O00O0 ,O00OOOOO00OO0OOOO ,O0O00OO0OO0O00000 ,OOOOOO00O00O000O0 ,OOOOOOOO00O0O0OOO ,OOO0OOO000O0O0O0O ,False ,O0OOO0O00O0O0OOOO )#line:783
+            except :#line:784
+                pass #line:785
+    def process (OOO00OO0O000O00OO ,O000000O0OOOOOOO0 ,direct =True ):#line:788
+        try :#line:789
+            if not any (O0OO00OOO0OOO00O0 in O000000O0OOOOOOO0 for O0OO00OOO0OOO00O0 in ['.jpg','.png','.gif']):raise Exception ()#line:790
+            OO0O00OOO00000O00 =O000000O0OOOOOOO0 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:791
+            if not OO0O00OOO00000O00 in ['jpg','png','gif']:raise Exception ()#line:792
+            try :#line:793
+                OOOOO0OOOO0O00000 =OOOOOOO00OOO0O0O0 .path .join (O000OOO0OOO0000O0 .dataPath ,'img')#line:794
+                O000OOO0OOO0000O0 .deleteFile (OOOOO0OOOO0O00000 )#line:795
+                OOOO0OOOOOOO0OO00 =O000OOO0OOO0000O0 .openFile (OOOOO0OOOO0O00000 ,'w')#line:796
+                OOOO0OOOOOOO0OO00 .write (O00O00O0OO00OOO00 .request (O000000O0OOOOOOO0 ))#line:797
+                OOOO0OOOOOOO0OO00 .close ()#line:798
+                O000OOO0OOO0000O0 .execute ('ShowPicture("%s")'%OOOOO0OOOO0O00000 )#line:799
+                return False #line:800
+            except :#line:801
+                return #line:802
+        except :#line:803
+            pass #line:804
+        try :#line:806
+            OOO0000OOOOO00O0O ,OOOO00000000O0OO0 =OO0O000OOO00O0OOO .findall ('(.+?)\|regex=(.+?)$',O000000O0OOOOOOO0 )[0 ]#line:807
+            OOOO00000000O0OO0 =OO00O0OO0OO000000 .fetch (OOOO00000000O0OO0 )#line:808
+            OOO0000OOOOO00O0O +=OOOOOO000O000OOOO .unquote_plus (OOOO00000000O0OO0 )#line:809
+            if not '</regex>'in OOO0000OOOOO00O0O :raise Exception ()#line:810
+            OO000O00O00O0O00O =OO00O0OO0OO000000 .resolve (OOO0000OOOOO00O0O )#line:811
+            if not OO000O00O00O0O00O ==None :O000000O0OOOOOOO0 =OO000O00O00O0O00O #line:812
+        except :#line:813
+            pass #line:814
+        try :#line:816
+            if not O000000O0OOOOOOO0 .startswith ('rtmp'):raise Exception ()#line:817
+            if len (OO0O000OOO00O0OOO .compile ('\s*timeout=(\d*)').findall (O000000O0OOOOOOO0 ))==0 :O000000O0OOOOOOO0 +=' timeout=10'#line:818
+            return O000000O0OOOOOOO0 #line:819
+        except :#line:820
+            pass #line:821
+        try :#line:823
+            if not any (OOO000O00OOOOO000 in O000000O0OOOOOOO0 for OOO000O00OOOOO000 in ['.m3u8','.f4m','.ts']):raise Exception ()#line:824
+            OO0O00OOO00000O00 =O000000O0OOOOOOO0 .split ('?')[0 ].split ('&')[0 ].split ('|')[0 ].rsplit ('.')[-1 ].replace ('/','').lower ()#line:825
+            if not OO0O00OOO00000O00 in ['m3u8','f4m','ts']:raise Exception ()#line:826
+            return O000000O0OOOOOOO0 #line:827
+        except :#line:828
+            pass #line:829
+        try :#line:831
+            OO00O000O0O0O0OOO =OO0O000OOO00O0OOO .findall ('<preset>(.+?)</preset>',O000000O0OOOOOOO0 )[0 ]#line:832
+            if not 'search'in OO00O000O0O0O0OOO :raise Exception ()#line:834
+            OO00O00O000O000O0 ,OO000O000O0O0000O ,O000O0000O0OOOOO0 =OO0O000OOO00O0OOO .findall ('<title>(.+?)</title>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<year>(.+?)</year>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<imdb>(.+?)</imdb>',O000000O0OOOOOOO0 )[0 ]#line:836
+            try :OOO0OO0O0OO000O00 ,OO000O0O00O0O00OO ,O00O00O00OOO000O0 ,O0OO00000OO0OOOO0 ,O000O0OOOOO0O0O0O =OO0O000OOO00O0OOO .findall ('<tvdb>(.+?)</tvdb>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<tvshowtitle>(.+?)</tvshowtitle>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<premiered>(.+?)</premiered>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<season>(.+?)</season>',O000000O0OOOOOOO0 )[0 ],OO0O000OOO00O0OOO .findall ('<episode>(.+?)</episode>',O000000O0OOOOOOO0 )[0 ]#line:838
+            except :OOO0OO0O0OO000O00 =OO000O0O00O0O00OO =O00O00O00OOO000O0 =O0OO00000OO0OOOO0 =O000O0OOOOO0O0O0O =None #line:839
+            direct =False #line:841
+            OO0OO0O0O00O00OOO ='HD'if not OO00O000O0O0O0OOO =='searchsd'else 'SD'#line:843
+            from resources .lib .sources import sources as O0OOOOOOOOOOOOOO0 #line:845
+            OO000O00O00O0O00O =O0OOOOOOOOOOOOOO0 ().getSources (OO00O00O000O000O0 ,OO000O000O0O0000O ,O000O0000O0OOOOO0 ,OOO0OO0O0OO000O00 ,O0OO00000OO0OOOO0 ,O000O0OOOOO0O0O0O ,OO000O0O00O0O00OO ,O00O00O00OOO000O0 ,OO0OO0O0O00O00OOO )#line:847
+            if not OO000O00O00O0O00O ==None :return OO000O00O00O0O00O #line:849
+        except :#line:850
+            pass #line:851
+        try :#line:853
+            from resources .lib .sources import sources as O0OOOOOOOOOOOOOO0 #line:854
+            OO000O00O00O0O00O =O0OOOOOOOOOOOOOO0 ().getURISource (O000000O0OOOOOOO0 )#line:856
+            if not OO000O00O00O0O00O ==False :direct =False #line:858
+            if OO000O00O00O0O00O ==None or OO000O00O00O0O00O ==False :raise Exception ()#line:859
+            return OO000O00O00O0O00O #line:861
+        except :#line:862
+            pass #line:863
+        try :#line:865
+            if not '.google.com'in O000000O0OOOOOOO0 :raise Exception ()#line:866
+            from resources .lib .modules import directstream as O0O000OOO0OO000OO #line:867
+            OO000O00O00O0O00O =O0O000OOO0OO000OO .google (O000000O0OOOOOOO0 )[0 ]['url']#line:868
+            return OO000O00O00O0O00O #line:869
+        except :#line:870
+            pass #line:871
+        try :#line:873
+            if not 'filmon.com/'in O000000O0OOOOOOO0 :raise Exception ()#line:874
+            from resources .lib .modules import filmon as OOO0OO00OOOOO0OO0 #line:875
+            OO000O00O00O0O00O =OOO0OO00OOOOO0OO0 .resolve (O000000O0OOOOOOO0 )#line:876
+            return OO000O00O00O0O00O #line:877
+        except :#line:878
+            pass #line:879
+        try :#line:881
+            import urlresolver as O0000O0OOOO0000O0 #line:882
+            OOOOOOOO00O0OO00O =O0000O0OOOO0000O0 .HostedMediaFile (url =O000000O0OOOOOOO0 )#line:884
+            if OOOOOOOO00O0OO00O .valid_url ()==False :raise Exception ()#line:886
+            direct =False ;OO000O00O00O0O00O =OOOOOOOO00O0OO00O .resolve ()#line:888
+            if not OO000O00O00O0O00O ==False :return OO000O00O00O0O00O #line:890
+        except :#line:891
+            pass #line:892
+        if direct ==True :return O000000O0OOOOOOO0 #line:894
+class player (O0OOO00O000OO00OO .Player ):#line:897
+    def __init__ (OOOOO0O0OO0O00OOO ):#line:898
+        O0OOO00O000OO00OO .Player .__init__ (OOOOO0O0OO0O00OOO )#line:899
+    def play (OOO0O000O00O00O00 ,OOOO0O00OO00OO00O ,content =None ):#line:902
+        try :#line:903
+            O0O00O0O000O0O0OO =OOOO0O00OO00OO00O #line:904
+            OOOO0O00OO00OO00O =resolver ().get (OOOO0O00OO00OO00O )#line:906
+            if OOOO0O00OO00OO00O ==False :return #line:907
+            O000OOO0OOO0000O0 .execute ('ActivateWindow(busydialog)')#line:909
+            OOOO0O00OO00OO00O =resolver ().process (OOOO0O00OO00OO00O )#line:910
+            O000OOO0OOO0000O0 .execute ('Dialog.Close(busydialog)')#line:911
+            if OOOO0O00OO00OO00O ==None :return O000OOO0OOO0000O0 .infoDialog (O000OOO0OOO0000O0 .lang (30705 ).encode ('utf-8'))#line:913
+            if OOOO0O00OO00OO00O ==False :return #line:914
+            OO00O0OOO000OOO0O ={}#line:916
+            for O0OO0OO0000OO00O0 in ['title','originaltitle','tvshowtitle','year','season','episode','genre','rating','votes','director','writer','plot','tagline']:#line:917
+                try :OO00O0OOO000OOO0O [O0OO0OO0000OO00O0 ]=O000OOO0OOO0000O0 .infoLabel ('listitem.%s'%O0OO0OO0000OO00O0 )#line:918
+                except :pass #line:919
+            OO00O0OOO000OOO0O =dict ((O0O0O000O0O00OOOO ,O0O0OO0O0O0OO00O0 )for O0O0O000O0O00OOOO ,O0O0OO0O0O0OO00O0 in OO00O0OOO000OOO0O .iteritems ()if not O0O0OO0O0O0OO00O0 =='')#line:920
+            if not 'title'in OO00O0OOO000OOO0O :OO00O0OOO000OOO0O ['title']=O000OOO0OOO0000O0 .infoLabel ('listitem.label')#line:921
+            O00OOO0OOO0000000 =O000OOO0OOO0000O0 .infoLabel ('listitem.icon')#line:922
+            OOO0O000O00O00O00 .name =OO00O0OOO000OOO0O ['title'];OOO0O000O00O00O00 .year =OO00O0OOO000OOO0O ['year']if 'year'in OO00O0OOO000OOO0O else '0'#line:925
+            OOO0O000O00O00O00 .getbookmark =True if (content =='movies'or content =='episodes')else False #line:927
+            OOO0O000O00O00O00 .offset =bookmarks ().get (OOO0O000O00O00O00 .name ,OOO0O000O00O00O00 .year )#line:929
+            OOO0O0O0000O00000 =resolver ().f4m (OOOO0O00OO00OO00O ,OOO0O000O00O00O00 .name )#line:931
+            if not OOO0O0O0000O00000 ==None :return #line:932
+            O00000O0O0000O0OO =O000OOO0OOO0000O0 .item (path =OOOO0O00OO00OO00O ,iconImage =O00OOO0OOO0000000 ,thumbnailImage =O00OOO0OOO0000000 )#line:935
+            try :O00000O0O0000O0OO .setArt ({'icon':O00OOO0OOO0000000 })#line:936
+            except :pass #line:937
+            O00000O0O0000O0OO .setInfo (type ='Video',infoLabels =OO00O0OOO000OOO0O )#line:938
+            O000OOO0OOO0000O0 .player .play (OOOO0O00OO00OO00O ,O00000O0O0000O0OO )#line:939
+            O000OOO0OOO0000O0 .resolve (int (OO00000OO00000000 .argv [1 ]),True ,O00000O0O0000O0OO )#line:940
+            OOO0O000O00O00O00 .totalTime =0 ;OOO0O000O00O00O00 .currentTime =0 #line:942
+            for O0OO0OO0000OO00O0 in range (0 ,240 ):#line:944
+                if OOO0O000O00O00O00 .isPlayingVideo ():break #line:945
+                O000OOO0OOO0000O0 .sleep (1000 )#line:946
+            while OOO0O000O00O00O00 .isPlayingVideo ():#line:947
+                try :#line:948
+                    OOO0O000O00O00O00 .totalTime =OOO0O000O00O00O00 .getTotalTime ()#line:949
+                    OOO0O000O00O00O00 .currentTime =OOO0O000O00O00O00 .getTime ()#line:950
+                except :#line:951
+                    pass #line:952
+                O000OOO0OOO0000O0 .sleep (2000 )#line:953
+            O000OOO0OOO0000O0 .sleep (5000 )#line:954
+        except :#line:955
+            pass #line:956
+    def onPlayBackStarted (O0OOOO0OO00O0O00O ):#line:959
+        O000OOO0OOO0000O0 .execute ('Dialog.Close(all,true)')#line:960
+        if O0OOOO0OO00O0O00O .getbookmark ==True and not O0OOOO0OO00O0O00O .offset =='0':#line:961
+            O0OOOO0OO00O0O00O .seekTime (float (O0OOOO0OO00O0O00O .offset ))#line:962
+    def onPlayBackStopped (O0OOO00O0O0OO000O ):#line:965
+        if O0OOO00O0O0OO000O .getbookmark ==True :#line:966
+            bookmarks ().reset (O0OOO00O0O0OO000O .currentTime ,O0OOO00O0O0OO000O .totalTime ,O0OOO00O0O0OO000O .name ,O0OOO00O0O0OO000O .year )#line:967
+    def onPlayBackEnded (OOO0O0O0O00OO0OO0 ):#line:970
+        OOO0O0O0O00OO0OO0 .onPlayBackStopped ()#line:971
+class bookmarks :#line:975
+    def get (OO000OO00O00OOO00 ,O00OO000O00000000 ,year ='0'):#line:976
+        try :#line:977
+            O0O00OOO0OO000O00 ='0'#line:978
+            O0O0OO000O0OOO0OO =O0OOOO00O0OO0O000 .md5 ()#line:982
+            for O00O0OO00OO0O00O0 in O00OO000O00000000 :O0O0OO000O0OOO0OO .update (str (O00O0OO00OO0O00O0 ))#line:983
+            for O00O0OO00OO0O00O0 in year :O0O0OO000O0OOO0OO .update (str (O00O0OO00OO0O00O0 ))#line:984
+            O0O0OO000O0OOO0OO =str (O0O0OO000O0OOO0OO .hexdigest ())#line:985
+            O00000000OO0O0O0O =OOO0OO00OO0OO0O00 .connect (O000OOO0OOO0000O0 .bookmarksFile )#line:987
+            O0O00OO0OOO000OO0 =O00000000OO0O0O0O .cursor ()#line:988
+            O0O00OO0OOO000OO0 .execute ("SELECT * FROM bookmark WHERE idFile = '%s'"%O0O0OO000O0OOO0OO )#line:989
+            OO0000OOO000O0OO0 =O0O00OO0OOO000OO0 .fetchone ()#line:990
+            OO000OO00O00OOO00 .offset =str (OO0000OOO000O0OO0 [1 ])#line:991
+            O00000000OO0O0O0O .commit ()#line:992
+            if OO000OO00O00OOO00 .offset =='0':raise Exception ()#line:994
+            O0000OOO0000O0000 ,OOO00O0OOO00OOO0O =divmod (float (OO000OO00O00OOO00 .offset ),60 );OO0OO0OO000O000OO ,O0000OOO0000O0000 =divmod (O0000OOO0000O0000 ,60 )#line:996
+            OOO0O0OO0OO00000O ='%02d:%02d:%02d'%(OO0OO0OO000O000OO ,O0000OOO0000O0000 ,OOO00O0OOO00OOO0O )#line:997
+            OOO0O0OO0OO00000O =(O000OOO0OOO0000O0 .lang (32502 )%OOO0O0OO0OO00000O ).encode ('utf-8')#line:998
+            try :O0O0O0OOOOO0OOOO0 =O000OOO0OOO0000O0 .dialog .contextmenu ([OOO0O0OO0OO00000O ,O000OOO0OOO0000O0 .lang (32501 ).encode ('utf-8'),])#line:1000
+            except :O0O0O0OOOOO0OOOO0 =O000OOO0OOO0000O0 .yesnoDialog (OOO0O0OO0OO00000O ,'','',str (O00OO000O00000000 ),O000OOO0OOO0000O0 .lang (32503 ).encode ('utf-8'),O000OOO0OOO0000O0 .lang (32501 ).encode ('utf-8'))#line:1001
+            if O0O0O0OOOOO0OOOO0 :OO000OO00O00OOO00 .offset ='0'#line:1003
+            return OO000OO00O00OOO00 .offset #line:1005
+        except :#line:1006
+            return O0O00OOO0OO000O00 #line:1007
+    def reset (O00000OO0OOOO00O0 ,OOOOOO0O0000O000O ,O00O000O0O0O00000 ,OO0O0O00OO00O0OO0 ,year ='0'):#line:1010
+        try :#line:1011
+            O0O000O0O00OO0O0O =str (OOOOOO0O0000O000O )#line:1014
+            OO0000OO0OOO000O0 =int (OOOOOO0O0000O000O )>180 and (OOOOOO0O0000O000O /O00O000O0O0O00000 )<=.92 #line:1015
+            O0O0000OO0O0O00OO =O0OOOO00O0OO0O000 .md5 ()#line:1017
+            for OO00OOO00O00OOOOO in OO0O0O00OO00O0OO0 :O0O0000OO0O0O00OO .update (str (OO00OOO00O00OOOOO ))#line:1018
+            for OO00OOO00O00OOOOO in year :O0O0000OO0O0O00OO .update (str (OO00OOO00O00OOOOO ))#line:1019
+            O0O0000OO0O0O00OO =str (O0O0000OO0O0O00OO .hexdigest ())#line:1020
+            O000OOO0OOO0000O0 .makeFile (O000OOO0OOO0000O0 .dataPath )#line:1022
+            O0000O0O0OO000O00 =OOO0OO00OO0OO0O00 .connect (O000OOO0OOO0000O0 .bookmarksFile )#line:1023
+            OOO000O0000000OOO =O0000O0O0OO000O00 .cursor ()#line:1024
+            OOO000O0000000OOO .execute ("CREATE TABLE IF NOT EXISTS bookmark (" "idFile TEXT, " "timeInSeconds TEXT, " "UNIQUE(idFile)" ");")#line:1025
+            OOO000O0000000OOO .execute ("DELETE FROM bookmark WHERE idFile = '%s'"%O0O0000OO0O0O00OO )#line:1026
+            if OO0000OO0OOO000O0 :OOO000O0000000OOO .execute ("INSERT INTO bookmark Values (?, ?)",(O0O0000OO0O0O00OO ,O0O000O0O00OO0O0O ))#line:1027
+            O0000O0O0OO000O00 .commit ()#line:1028
+        except :#line:1029
             pass 
 #e9015584e6a44b14988f13e2298bcbf9
-

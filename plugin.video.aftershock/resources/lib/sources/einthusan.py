@@ -91,7 +91,7 @@ class source:
 
             r = self.request(url)
 
-            sources.append({'source': 'einthusan', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': True, 'debridonly': False})
+            sources.append({'provider':'einthusan','source': 'einthusan', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': True, 'debridonly': False})
             logger.debug('SOURCES URL %s' % url, __name__)
             return sources
         except:

@@ -706,6 +706,35 @@ def getPV2Cats(movies=False):
         traceback.print_exc(file=sys.stdout)
     return ret  
 
+def  AddEmoviesMain(url):
+    dummy,url=url.split('emovies:')
+    urldata=json.loads(url)
+    print urldata
+    if urldata["type"]=="decade":
+        addEmoviesFromSearch(urldata)
+    elif urldata["type"]=="search":
+        userinput="Love"
+        if len(userinput)==0: return
+        urldata["searchdata"]=userinput
+        addEmoviesFromSearch(urldata)
+    else:
+        addDir ('Search Movie' ,'emovies:{"lang":"%s","type":"search"}'%(urldata["lang"]),36,'', False, True,isItFolder=True)
+        for s in ['2010','2000','1990','1980','1970','1960','1950','1940']:
+            addDir ('Movies from %s'%s ,'emovies:{"lang":"%s","type":"decade","decadenum":"%s"}'%(urldata["lang"],s),36,'', False, True,isItFolder=True)
+            #addDir ('Test Movie' ,base64.b64encode('emovies:4jWb,hindi'),11,'', False, True,isItFolder=False)
+
+def addEmoviesFromSearch(urldata):
+    url=""
+    print 'addEmoviesFromSearch',urldata
+    if urldata["type"]=="decade":
+        dacadenumer=urldata["decadenum"]
+        lang=urldata["lang"]
+        url="https://einthusan.tv/movie/results/?decade=%s&find=Decade&lang=%s"%(dacadenumer,lang)
+    #getUrl(url)
+    
+    addDir ('Test Movie' ,base64.b64encode('emovies:4jWb,hindi'),11,'', False, True,isItFolder=False)
+
+
     
 def AddPv2Sports(url):
     xmldata=getPV2Url()
@@ -2256,6 +2285,10 @@ def ShowAllCategories(url):
         cmode=57    
     elif url=="pv2":
         cats=getPV2Cats(True if name.lower()=="movies" else False)
+        if name.lower()=="movies":
+            cats.append(('emovies:{"lang":"hindi","type":"main"}','Hindi - Einthusan Movies [comingsoon]'))
+            cats.append(('emovies:{"lang":"hindi","type":"main"}','Punjabi - Einthusan Movies [comingsoon]'))
+        
         cmode=36
     elif url=="mona":
         cats=getMonaCats()
@@ -5729,7 +5762,7 @@ def getPV2UserAgent(option):
 
 def getpv2stkey():
     headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5T21waGJuVm5aWEp0WVc0PQ=='))]
-    return getUrl(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL3Bha2luZGlhdjJwLnBocA=='),headers=headers)
+    return getUrl(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL2FyYWJpY3R2djFwLnBocA=='),headers=headers)
     
 def getPV2Device(option):
     useragent=getpv2stkey()
@@ -6307,7 +6340,57 @@ def PlayNetworkTVLink(url,progress=None):
     PlayGen(base64.b64encode(urlnew))
     #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
     
+def decodeEInth(lnk):
+    t=10
+    #var t=10,r=e.slice(0,t)+e.slice(e.length-1)+e.slice(t+2,e.length-1)
+    r=lnk[0:t]+lnk[-1]+lnk[t+2:-1]
+    return r
+def encodeEInth(lnk):
+    t=10
+    #var t=10,r=e.slice(0,t)+e.slice(e.length-1)+e.slice(t+2,e.length-1)
+    r=lnk[0:t]+lnk[-1]+lnk[t+2:-1]
+    return r
     
+def PlayEinthusamLink(url,progress=None):
+    url,lang=url.split(',')
+    cookieJar = cookielib.LWPCookieJar()
+    headers=[('Origin','https://einthusan.tv'),('Referer','https://einthusan.tv/movie/browse/?lang=hindi'),('User-Agent',base64.b64decode('TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xOyBXT1c2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzU1LjAuMjg4My44NyBTYWZhcmkvNTM3LjM2'))]
+    mainurl='https://einthusan.tv/movie/watch/%s/?lang=%s'%(url,lang)
+    mainurlajax='https://einthusan.tv/ajax/movie/watch/%s/?lang=%s'%(url,lang)
+    
+    #htm=getUrl(mainurl,headers=headers,cookieJar=cookieJar)
+    htm=getUrl(mainurl,headers=headers,cookieJar=cookieJar)
+    lnk=re.findall('data-ejpingables=["\'](.*?)["\']',htm)[0]#.replace('&amp;','&')
+
+    r=decodeEInth(lnk)
+    #for s in json.loads(r.decode("base64")):
+    #    getUrl(s,headers=headers,cookieJar=cookieJar)
+    jdata='{"EJOutcomes":"%s","NativeHLS":false}'%lnk
+    
+    h = HTMLParser.HTMLParser()
+    gid=re.findall('data-pageid=["\'](.*?)["\']',htm)[0]
+    gid=h.unescape(gid).encode("utf-8")
+    #gid="mDLAIYbcj9HmxLt7F+2j8p1cOpLlUmNfbcGXxmG0yPBMJzVUCwih/D02umaXkrhNP3Vh3ZUayTVmNy4DLatp4w=="
+    #for s in ["goadx_primary_lr1","goadx_primary_lb1","goadx_primary_lb2","goadx_primary_lb3"]:
+    #    postdata={'xEvent':'GetAd','xJson':'{"AdID":"%s"}'%s,'arcVersion':'3','appVersion':'59','tabID':gid+'652','gorilla.csrf.Token':gid}
+    #    postdata = urllib.urlencode(postdata)
+    #    rdata=getUrl('https://einthusan.tv/ajax/movie/watch/4jWb/?lang=hindi',headers=headers,post=postdata,cookieJar=cookieJar)
+        
+    
+    postdata={'xEvent':'UIVideoPlayer.PingOutcome','xJson':jdata,'arcVersion':'3','appVersion':'59','gorilla.csrf.Token':gid}
+    postdata = urllib.urlencode(postdata)
+    rdata=getUrl(mainurlajax,headers=headers,post=postdata,cookieJar=cookieJar)
+    r=json.loads(rdata)["Data"]["EJLinks"]
+    print r
+    lnk=json.loads(decodeEInth(r).decode("base64"))["HLSLink"]
+    
+    
+      
+    urlnew=lnk+('|https://einthusan.tv&Referer=%s&User-Agent=%s'%(mainurl,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'))
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    PlayGen(base64.b64encode(urlnew))
+    #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
+        
     
     
 def PlayFastLink(url,progress=None):
@@ -6466,7 +6549,9 @@ def PlayOtherUrl ( url ):
     if "fast:" in url:
         PlayFastLink(url.split('fast:')[1],progress=progress)
         return 
-
+    if "emovies:" in url:
+        PlayEinthusamLink(url.split('emovies:')[1],progress=progress)
+        return 
     if "networktv:" in url:
         PlayNetworkTVLink(url.split('networktv:')[1],progress=progress)
         return    
@@ -7739,7 +7824,10 @@ try:
         PlaySSSEvent(url)                
     elif mode==36 :
         print "Play url is "+url
-        AddPv2Sports(url) 
+        if not 'emovies:' in url:
+            AddPv2Sports(url) 
+        else:
+            AddEmoviesMain(url)
     elif mode==37 :
         print "Play url is "+url
         PlayPV2Link(url) 

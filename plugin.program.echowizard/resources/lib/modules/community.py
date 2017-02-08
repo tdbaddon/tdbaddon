@@ -236,7 +236,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		name2 = name
 		url = name2 + "," + url
 		name = name.lower()
-		name=name.replace("(","").replace(")","").replace(" krypton","").replace("krypton","").replace(" jarvis","").replace("jarvis","")
+		name=name.replace('(krypton)','').replace('(jarvis)','').replace('jarvis ','').replace('krypton ','')
 		if build_version.lower() == "null":
 			name = "[COLOR ghostwhite][B]" + name.title() + "[/B][/COLOR]"
 		else: name = "[COLOR ghostwhite][B]" + name.title() + "[/COLOR] - [COLOR yellowgreen]Ver: " + build_version + "[/B][/COLOR] "
@@ -256,10 +256,10 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		found = 1
 		description = "null" + "," + developer
-		name2 = name.lower()
+		name2 = name
 		url = name2 + "," + url
 		name = name.lower()
-		name=name.replace("(","").replace(")","").replace(" krypton","").replace("krypton","").replace(" jarvis","").replace("jarvis","")
+		name=name.replace('(krypton)','').replace('(jarvis)','').replace('jarvis ','').replace('krypton ','')
 		name = "[COLOR ghostwhite][B]" + name.title() + "[/B][/COLOR]"
 		
 		if codename.lower() == "jarvis":

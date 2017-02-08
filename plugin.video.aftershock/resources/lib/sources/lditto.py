@@ -75,7 +75,7 @@ class source:
                     if 'temple' in title.lower():
                         continue
                     url = self.channel_link % url
-                    channelList[title] ={'icon':icon,'url':url,'provider':'ditto','source':'ditto','direct':False, 'quality':'HD', 'content':'live'}
+                    channelList[title] ={'icon':icon,'url':url,'provider':'lditto','source':'ditto','direct':False, 'quality':'HD', 'content':'live'}
 
                 filePath = os.path.join(control.dataPath, self.fileName)
                 with open(filePath, 'w') as outfile:

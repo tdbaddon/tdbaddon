@@ -98,7 +98,7 @@ class source:
                 for link in links:
                     url = link.find('a')['href']
                     host = client.host(url)
-                    srcs.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'tamilgun', 'url': url, 'direct':False})
+                    srcs.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'rajtamil', 'url': url, 'direct':False})
             except:
                 pass
 
@@ -107,7 +107,7 @@ class source:
                 for link in links:
                     url = link.get('src')
                     host = client.host(url)
-                    srcs.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'tamilgun', 'url': url, 'direct':False})
+                    srcs.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'rajtamil', 'url': url, 'direct':False})
             except:
                 pass
 

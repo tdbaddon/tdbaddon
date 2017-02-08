@@ -93,7 +93,6 @@ class source:
 
     def sources(self, url):
         try:
-            logger.debug('Test')
             srcs = []
 
             if url == None: return srcs

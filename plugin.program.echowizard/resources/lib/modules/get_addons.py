@@ -23,6 +23,7 @@ import time
 import plugintools
 from resources.lib.modules import common as Common
 from resources.lib.modules import downloader
+from resources.lib.modules import maintenance
 import zipfile
 import urllib,urllib2
 
@@ -513,8 +514,9 @@ def GET_MULTI(name,url):
 								INSTALL(install_name,url)
 								if kodi_name == "Krypton":
 									if "repo" in caption.lower():
-										ADD_DATABASE_ADDON(repo_path,"")
 										ADD_DATABASE_REPO(repo_path)
+										time.sleep(1)
+										ADD_DATABASE_ADDON(repo_path,"")
 									else:
 										ADD_DATABASE_ADDON(str(caption),repo_path)
 								i=i+1
@@ -719,15 +721,20 @@ def ADD_DATABASE_ADDON(name,url):
  
 	import sqlite3
 
-	i = 50
-	got_db = 0
-	while got_db == 0:
-		DB_File = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
-		if os.path.exists(DB_File):
-			got_db = 1
-		else: i = i-1
-
-	DB_Path = DB_File
+	try:
+		log_file = maintenance.grab_Log(True,False)
+		
+		log_text=open(log_file).read()
+		db_version = re.compile('Running database version Addons(.+?)\n').findall(log_text)[0]
+		DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(db_version)+'.db'))
+	except:
+		i = 50
+		got_db = 0
+		while got_db == 0:
+			DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
+			if os.path.exists(DB_Path):
+				got_db = 1
+			else: i = i-1
 
 	conn = sqlite3.connect(DB_Path)
 	cursor = conn.cursor()
@@ -759,15 +766,20 @@ def ADD_DATABASE_REPO(name):
 	
 		import sqlite3
 
-		i = 50
-		got_db = 0
-		while got_db == 0:
-			DB_File = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
-			if os.path.exists(DB_File):
-				got_db = 1
-			else: i = i-1
-
-		DB_Path = DB_File
+		try:
+			log_file = maintenance.grab_Log(True,False)
+			
+			log_text=open(log_file).read()
+			db_version = re.compile('Running database version Addons(.+?)\n').findall(log_text)[0]
+			DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(db_version)+'.db'))
+		except:
+			i = 50
+			got_db = 0
+			while got_db == 0:
+				DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons'+str(i)+'.db'))
+				if os.path.exists(DB_Path):
+					got_db = 1
+				else: i = i-1
 
 		conn = sqlite3.connect(DB_Path)
 		cursor = conn.cursor()

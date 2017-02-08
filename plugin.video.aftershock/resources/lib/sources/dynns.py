@@ -138,7 +138,7 @@ class source:
         headers = {'User-Agent':base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I='),
                    'Authorization':base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5T21waGJuVm5aWEp0WVc0PQ==')}
 
-        useragent = client.request(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL3Bha2luZGlhdjJwLnBocA=='), headers=headers)
+        useragent = client.request(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL2FyYWJpY3R2djFwLnBocA=='), headers=headers)
 
         logger.debug('UserAgent : %s' % useragent, __name__)
         return useragent

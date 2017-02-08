@@ -82,7 +82,7 @@ class source:
             url = client.parseDOM(url, "source", ret="src")[0]
             url = '%s|Referer=%s' % (url, oUrl)
 
-            srcs.append({'source': "Ditto", 'parts': '1', 'quality': "HD", 'provider': 'Ditto', 'url': url, 'direct':True})
+            srcs.append({'source': "Ditto", 'parts': '1', 'quality': "HD", 'provider': 'mDitto', 'url': url, 'direct':True})
             logger.debug('SOURCES [%s]' % srcs, __name__)
             return srcs
         except:

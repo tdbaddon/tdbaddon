@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.67"
+	     version="1.68"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -601,7 +601,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.0" provider-name="AftershockPY">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.3" provider-name="AftershockPY">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -628,7 +628,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
             <screenshot>resources/screenshots/screenshot-02.png</screenshot>
             <screenshot>resources/screenshots/screenshot-03.png</screenshot>
         </assets>
-        <news>- Kodi 17.0 (Krypton) Upgrade[CR]- Code cosmetics [CR]- Code Refactor/Cleanup[CR]- Updated Providers</news>
+        <news>-Updated Live Providers</news>
   </extension>
 </addon>
 
@@ -1054,6 +1054,32 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
+<addon id="plugin.video.et.canada"
+       name="ET Canada"
+       version="3.0.3"
+       provider-name="t1m">
+  <requires>
+    <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="script.module.t1mlib" version="1.0.14"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">ET Canada - For Use Only In Canada</summary>
+    <description lang="en">Entertainment Tonight Canada - For Use Only In Canada</description>
+    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum></forum>
+    <website>http://www.etcanada.com/</website>
+    <email></email>
+    <source>https://github.com/learningit/plugin.video.et.canada</source>
+  </extension>
+</addon>
+
 <addon id="plugin.video.euronews.com" version="1.1.0" name="Euronews" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0" />
@@ -1136,26 +1162,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.F.T.V"
-       name="FilmOn.TV"
-       version="1.3.7a"
-       provider-name="kinkin, icon by azad720">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.t0mm0.common" version="1.1.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Free to view live streaming</summary>
-        <description>Stream Live TV from FilmOn or watch FilmOn Demand. Login with your FilmOn user-name to access recording features.</description>
-    </extension>
-
-</addon>
-
 <addon id="plugin.video.f4mTester" version="2.7.1" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1228,6 +1234,22 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <summary lang="en">Help from SimpleCore and Markov for playlists</summary>
     <description lang="en">Dedicated to Fido</description>
     <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.filmon.simple" name="FilmOn Simple" version="0.1.5" provider-name="mhancoc7">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">FilmOn Simple</summary>
+    <description lang="en">Please visit [COLOR blue]https://www.tvaddons.ag[/COLOR] for addon support! Watch Live TV from FilmOn.</description>
+    <platform>all</platform>
+    <forum>https://forums.tvaddons.ag/mhancoc7-s-addons/</forum>
+    <website>https://tvaddons.ag/</website>
   </extension>
 </addon>
 
@@ -1431,6 +1453,32 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<website>https://offshoregit.com/lambda81/</website>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="plugin.video.hgtv"
+       name="HGTV"
+       version="3.0.7"
+       provider-name="t1m">
+  <requires>
+    <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="script.module.t1mlib" version="1.0.15"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">HGTV Video Addon</summary>
+    <description lang="en">Play videos from the HGTV Network</description>
+    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.xbmc.org/showthread.php?tid=97018</forum>
+    <website>www.hgtv.com</website>
+    <email></email>
+    <source>https://github.com/learningit/Kodi-plugins-source/tree/master/plugin.video.hgtv</source>
+  </extension>
 </addon>
 
 <addon id="plugin.video.icefilms"
@@ -1895,6 +1943,32 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.myvevo"
+       name="VEVO"
+       version="3.0.5"
+       provider-name="t1m">
+  <requires>
+    <import addon="xbmc.python" version="2.24.0"/>
+    <import addon="script.module.t1mlib" version="1.0.15"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">VEVO Video Addon</summary>
+    <description lang="en">Watch music videos, artist videos, and original shows on VEVO and VEVO TV</description>
+    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991. Icons are made by Freepik from www.flaticon.com and are licensed under Creative Commons BY 3.0</license>
+    <forum>http://forum.kodi.tv/showthread.php?tid=223221</forum>
+    <website>www.vevo.com</website>
+    <email></email>
+    <source>https://github.com/learningit/Kodi-plugins-source</source>
+  </extension>
+</addon>
+
 <addon id="plugin.video.nfl-teams" version="1.3.1" name="NFL Teams" provider-name="Tenzer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1916,6 +1990,32 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <source>https://github.com/Tenzer/plugin.video.nfl-teams</source>
         <email>xbmc@tenzer.dk</email>
     </extension>
+</addon>
+
+<addon id="plugin.video.nhklive"
+       name="NHK Live"
+       version="3.0.6"
+       provider-name="t1m">
+  <requires>
+    <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="script.module.t1mlib" version="1.0.14"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">NHK Live</summary>
+    <description lang="en">NHK World Japan Live</description>
+    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.kodi.tv/showthread.php?tid=263652</forum>
+    <website>http://www3.nhk.or.jp/</website>
+    <email></email>
+    <source>https://github.com/learningit/Kodi-plugins-source</source>
+  </extension>
 </addon>
 
 <addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.5" provider-name="lambda,jsergio">
@@ -2151,7 +2251,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specialistss" version="1.7" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
+<addon id="plugin.video.specialistss" version="1.8" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2813,7 +2913,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.3.2"
+       version="6.3.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3203,23 +3303,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-    <addon id="repository.kaosbox2" name="KAOSbox Repo" version="3.0.1" provider-name="KAOSbox">
-        <requires>
-            <import addon="xbmc.addon" version="12.0.0"/>
-        </requires>
-        <extension point="xbmc.addon.repository" name="KAOSbox Repo">
-            <info compressed="false">https://offshoregit.com/kaosbox/addons.xml</info>
-            <checksum>https://offshoregit.com/kaosbox/addons.xml.md5</checksum>
-            <datadir zip="true">https://offshoregit.com/kaosbox/zips/</datadir>
-            <hashes>false</hashes>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <summary>Official New Repo for the KAOSbox (www.kaosbox.tv)</summary>
-            <description>Download and install addons for the KAOSbox (www.kaosbox.tv)</description>
-            <platform>all</platform>
-    </extension>
-</addon>
-
 <addon id="repository.Kinkin" name="Kinkins REPO" version="1.4" provider-name="Kinkin">
 	<extension point="xbmc.addon.repository" name="Kinkin Addon Repository">
 		<info compressed="false">https://offshoregit.com/kinkin-xbmc-repository/addons.xml</info>
@@ -3603,19 +3686,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.addon.metadata">
 		<summary></summary>
 		<description></description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.TheYid" name="TheYid's REPO" version="2.0" provider-name="tcz009 AKA TheYid">
-	<extension point="xbmc.addon.repository" name="TheYid Addon Repository">
-		<info compressed="false">https://raw.github.com/TheYid/My-Repo/master/addons.xml</info>
-		<checksum>https://raw.github.com/TheYid/My-Repo/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/TheYid/My-Repo/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install TheYid's repo and Addons</summary>
-		<description>install addons from tcz009 AKA TheYid .......For OFFICIAL Support please Visit www.tvaddons.ag or follow me on Twitter @TheYid009 If you enjoy my addons and would like to donate please goto http://forums.tvaddons.ag/forums/146-THEYID-REPO and thanks for the support</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4315,19 +4385,6 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
-
-<addon id="TheAlphaP.repository" name="[COLOR gold][B]@TheAlphaP Repo[/B][/COLOR]" version="1.0.1" provider-name="[COLOR gold][B]@TheAlphaP[/B][/COLOR]">
-	<extension point="xbmc.addon.repository" name="@TheAlphaP">
-		<info compressed="false">http://thealpha.shaneysrepo.com/Repository/addons.xml</info>
-		<checksum>http://thealpha.shaneysrepo.com/Repository/addons.xml.md5</checksum>
-		<datadir zip="true">http://thealpha.shaneysrepo.com/Repository/Addons/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>@TheAlphaP's Repository</summary>
-		<description>Add-ons from [COLOR white][B]@TheAlphaP[/B][/COLOR] and friends [COLOR yellow][B]:-)[/B][/COLOR].</description>
-		<platform>all</platform>
-	</extension>
-</addon>
 
 <addon id="weather.yahoo" name="Yahoo! Weather" version="4.3.1" provider-name="ronie">
 	<requires>

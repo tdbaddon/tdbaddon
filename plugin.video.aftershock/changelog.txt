@@ -1,3 +1,18 @@
+Aftershock v4.6.3
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Updated Live Providers
+
+Aftershock v4.6.2
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Updated Movies Providers
+
+Aftershock v4.6.1
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- IPTV Fix
+
 Aftershock v4.6.0
 --------------------------------
 - [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]

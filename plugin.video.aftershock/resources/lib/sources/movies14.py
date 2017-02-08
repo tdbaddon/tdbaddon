@@ -111,7 +111,7 @@ class source:
 
                     for i in u:
                         try:
-                            sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'],
+                            sources.append({'provider':'movies14','source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'],
                                             'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
                         except:
                             pass

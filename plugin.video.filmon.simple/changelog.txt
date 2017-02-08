@@ -1,0 +1,17 @@
+[B]Version 0.1.5[/B]
+- Fixed Carribean Channels
+
+[B]Version 0.1.4[/B]
+- Code clean up
+
+[B]Version 0.1.3[/B]
+- Initial release
+
+[B]Version 0.1.2[/B]
+- Fixed name issues
+
+[B]Version 0.1.1[/B]
+- Fixed name issues
+
+[B]Version 0.1.0[/B]
+- Initial version
