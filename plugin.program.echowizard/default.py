@@ -77,6 +77,7 @@ ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/
 TEMP_FOLDER         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp'))
 TEMP_FILE           =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
 TEMP_ADDONS         =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
+KODIAPPS_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/kodiapps.xml'))
 COMMUNITY_BUILD		=  xbmc.translatePath(os.path.join('special://home/userdata/','community_build.txt'))
 COMMUNITY_OTA		=  xbmc.translatePath(os.path.join('special://home/userdata/','echo_community_ota.txt'))
 KEYBOARD_FILE       =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
@@ -129,6 +130,9 @@ youtubelink         = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmU
 FANRIFFIC_URL_NEW   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lcy50eHQ=')
 FANRIFFIC_URL_OLD   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lc29sZC50eHQ=')
 FANRIFFIC_KRYPTON   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L2tyeXB0b250aGVtZXMudHh0')
+KODIAPPS_ICON       = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20vaW1hZ2VzL2FkZG9ucy9wbHVnaW4udmlkZW8uZXRoZXJlYWx0di9pY29uLnBuZw==')
+KODIAPPS_FANART     = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20vaW1hZ2VzL2FkZG9ucy9wbHVnaW4udmlkZW8uZXRoZXJlYWx0di9mYW5hcnQuanBn')
+KODIAPPS_API        = base64.b64decode(b'aHR0cHM6Ly9rb2RpYXBwcy5jb20vZWNob3MueG1s')
 
 #######################################################################
 #					ECHO WIZARD ICONS
@@ -349,14 +353,22 @@ def INDEX():
 	#					START MAIN MENU
 	#######################################################################
 
-	Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
 	total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_ADDONS)
+	total_addons_alltime = Common.count("TOTAL_ADDONS_ALLTIME",TEMP_ADDONS)
 	total_builds_week = Common.count("TOTAL_BUILDS_WEEK",TEMP_FILE)
-	Common.addDir("[COLOR white][B]ADDONS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
-	Common.addDir("[COLOR white][B]BUILDS DOWNLOADED THIS WEEK - [/COLOR][COLOR yellowgreen]" + str(total_builds_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	total_builds_alltime = Common.count("TOTAL_BUILDS_ALLTIME",TEMP_FILE)
+	total_addons_week = "[COLOR yellowgreen]" + total_addons_week + "[/COLOR]"
+	total_addons_alltime = "[COLOR yellowgreen]" + total_addons_alltime + "[/COLOR]"
+	total_builds_week = "[COLOR yellowgreen]" + total_builds_week + "[/COLOR]"
+	total_builds_alltime = "[COLOR yellowgreen]" + total_builds_alltime + "[/COLOR]"
+
+	Common.addItem("[COLOR yellowgreen][B]ECHO DOWNLOAD STATISTICS[/B][/COLOR]",BASEURL,999,ICON,FANART,'')
+	Common.addDir("[COLOR white][B]ADDONS - WEEK (" + str(total_addons_week) + ") | TOTAL ("+str(total_addons_alltime)+")[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	Common.addDir("[COLOR white][B]BUILDS - WEEK (" + str(total_builds_week) + ") | TOTAL ("+str(total_builds_alltime)+")[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
 	#Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
 	if pleasecheck == 1:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]YOUR VERSION: [/B][/COLOR][B]' + CURRENT_VERSION_CODE + '[/B]',BASEURL,4,BUILD_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST VERSION: [/B][/COLOR][COLOR yellowgreen][B]' + LATEST_VERSION + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
@@ -369,6 +381,8 @@ def INDEX():
 		except:
 			Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 	else:
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
 		if os.path.isfile(COMMUNITY_BUILD):
 			Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
@@ -378,6 +392,7 @@ def INDEX():
 	Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]SOURCE AND REPOSITORY CHECKER[/COLOR][/B]',BASEURL,184,KODIAPPS_ICON,KODIAPPS_FANART,'Information brought to you by kodiapps.com')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
@@ -391,6 +406,7 @@ def INDEX():
 	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]KODIAPPS ADDON CHART[/B][/COLOR]',BASEURL,185,KODIAPPS_ICON,KODIAPPS_FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]THE DAYS SPORT LISTINGS[/B][/COLOR]',BASEURL,47,SPORTS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
@@ -467,9 +483,13 @@ def BUILDMENU():
 		try:
 			platform=re.compile('<platform>(.+?)</platform>').findall(item)[0]
 		except: platform = "16.1"
-		try:
-			youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
-		except: youtube_id = "null"
+		tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+		if len(tubes) > 1:
+			youtube_id = "multi"
+		else:
+			try:
+				youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+			except: youtube_id = "null"
 		try:
 			iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
 		except: iconimage = ICON
@@ -511,7 +531,13 @@ def BUILDMENU():
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 	dp.close()
 	for count,total,name,url,description,iconimage,fanart in tup:
-		url = name + "," + url
+		url = name + "," + url + "," + ECHO_BUILDS
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail	
 		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 		title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
 		Common.addDir(title,url,83,iconimage,fanart,description)
@@ -1386,6 +1412,76 @@ def REMOVE_ADVANCED_FILE():
 	xbmc.executebuiltin("Container.Refresh")
 
 #######################################################################
+#			REPO SOURCE CHECKER (BY KODIAPPS)
+#######################################################################
+
+def REPO_SOURCE_CHECKER():
+
+	try:
+		link=Common.OPEN_URL_NORMAL(KODIAPPS_API).replace('<tag></tag>','<tag>null</tag>')
+		match=re.compile('<item>(.+?)</item>',re.DOTALL).findall(link)
+		Common.addItem("[COLOR dodgerblue][B]THE FOLLOWING INFORMATION IS BROUGHT TO YOU BY KODIAPPS.COM[/B][/COLOR]","url",999,KODIAPPS_ICON,KODIAPPS_FANART,'This information is brought to you by kodiapps.com')
+		Common.addItem("---------------------------------------------------------------","url",999,KODIAPPS_ICON,KODIAPPS_FANART,'This information is brought to you by kodiapps.com')
+		for items in match:
+
+			name=re.compile('<name>(.+?)</name>').findall(items)[0]    
+			repo=re.compile('<repo>(.+?)</repo>').findall(items)[0]    
+			source=re.compile('<sce>(.+?)</sce>').findall(items)[0]    
+			
+			if "O" in source:
+				source = "[COLOR lime][B]ONLINE[/B][/COLOR]"
+			else: source = "[COLOR red][B]OFFLINE[/B][/COLOR]"
+			if "O" in repo:
+				repo = "[COLOR lime][B]ONLINE[/B][/COLOR]"
+			else: repo = "[COLOR red][B]OFFLINE[/B][/COLOR]"
+			
+			name = "[COLOR yellowgreen][B]" + name + "[/B][/COLOR]"
+			Common.addItem(name + " - [COLOR white]Source: [/COLOR]" + source + "[COLOR white] | " + "Repo: [/COLOR]" + repo  ,"url",999,KODIAPPS_ICON,KODIAPPS_FANART,'This information is brought to you by kodiapps.com')
+	except:
+		dialog.ok(AddonTitle,"There was an error getting the information from Kodiapps.com Please try again later.")
+		quit()
+
+def GET_KODIAPPS_RANKING():
+
+	if not os.path.isfile(KODIAPPS_FILE):
+		open(KODIAPPS_FILE, 'w')
+
+	fileCreation = os.path.getmtime(KODIAPPS_FILE)
+
+	now = time.time()
+	check = now - 60*60
+	
+	text_file = open(KODIAPPS_FILE)
+	compfile = text_file.read()  
+	
+	if len(compfile) == 0:
+		counts=Common.OPEN_URL_NORMAL(KODIAPPS_API)
+
+		text_file = open(KODIAPPS_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	elif fileCreation < check:
+
+		counts=Common.OPEN_URL_NORMAL(KODIAPPS_API)
+
+		text_file = open(KODIAPPS_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	get_file = open(KODIAPPS_FILE)
+	get_data = get_file.read()  
+	link=get_data.replace('<tag></tag>','<tag>null</tag>')
+	match=re.compile('<item>(.+?)</item>',re.DOTALL).findall(link)
+	for items in match:
+		try:
+			name=re.compile('<name>(.+?)</name>').findall(items)[0] 
+			rank=re.compile('<rank>(.+?)</rank>').findall(items)[0] 
+			iconimage=re.compile('<imge>(.+?)</imge>').findall(items)[0]    
+			Common.addItem("[COLOR yellowgreen][B]" + rank + "[/COLOR] - [COLOR white]" + name + "[/B][/COLOR]","url",999,iconimage,KODIAPPS_FANART,"")
+		except: pass
+
+#######################################################################
 #			AUTO UPDATER
 #######################################################################
 
@@ -1552,10 +1648,12 @@ def GETTEMP():
 			open(TEMP_BUILDS, 'w')
 		if not os.path.isfile(TEMP_ADDONS):
 			open(TEMP_ADDONS, 'w')
+		if not os.path.isfile(KODIAPPS_FILE):
+			open(KODIAPPS_FILE, 'w')
 	except: pass
 		
 	try:
-		dp.update(50, '[COLOR yellowgreen][B]Connected![/B][/COLOR]','[COLOR white]Getting build information from the API.[/COLOR]')
+		dp.update(25, '[COLOR yellowgreen][B]Connected![/B][/COLOR]','[COLOR white]Getting build information from the API.[/COLOR]')
 		req = urllib2.Request(BUILDS_API)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 		response = urllib2.urlopen(req)
@@ -1565,13 +1663,23 @@ def GETTEMP():
 		text_file.write(counts)
 		text_file.close()
 
-		dp.update(75, '','[COLOR white]Getting addon installer information from the API.[/COLOR]')
+		dp.update(50, '','[COLOR white]Getting addon installer information from the API.[/COLOR]')
 		req = urllib2.Request(ADDONS_API)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 		response = urllib2.urlopen(req)
 		counts=response.read()
 		response.close()
 		text_file = open(TEMP_ADDONS, "w")
+		text_file.write(counts)
+		text_file.close()
+		
+		dp.update(75, '','[COLOR white]Getting addon installer information from the API.[/COLOR]')
+		req = urllib2.Request(KODIAPPS_API)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
+		response = urllib2.urlopen(req)
+		counts=response.read()
+		response.close()
+		text_file = open(KODIAPPS_FILE, "w")
 		text_file.write(counts)
 		text_file.close()
 
@@ -2140,5 +2248,14 @@ elif mode==181:
 
 elif mode==182:
 		DISPLAY_INFORMATION(url)
+
+elif mode==183:
+		Common.multi_youtube_videos(url)
+
+elif mode==184:
+		REPO_SOURCE_CHECKER()
+
+elif mode==185:
+		GET_KODIAPPS_RANKING()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

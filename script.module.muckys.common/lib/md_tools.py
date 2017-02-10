@@ -681,6 +681,17 @@ class md:
 
 
 
+	def resolved(self, url, name='', iconimage='', infolabels=''):
+                listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
+                listitem.setInfo(type='Video', infoLabels={'Title': name, 'Plot':infolabels})
+                listitem.setProperty("IsPlayable","true")
+                listitem.setPath(str(url))
+                ok = xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
+                return ok
+
+
+
+
 	def check_source(self):
 		if os.path.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
 			with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:

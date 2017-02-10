@@ -22,7 +22,7 @@ from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 from HTMLParser import HTMLParser
 import time
-import urllib
+import traceback
 import base64
 from lib.png import Reader as PNGReader
 
@@ -33,6 +33,14 @@ try:
     ctx.verify_mode = ssl.CERT_NONE
 except:
     pass
+
+def printExc(msg=''):
+    print("===============================================")
+    print("                   EXCEPTION                   ")
+    print("===============================================")
+    msg = msg + ': \n%s' % traceback.format_exc()
+    print(msg)
+    print("===============================================")
 
 try:
     compat_chr = unichr  # Python 2
@@ -111,7 +119,63 @@ class OpenLoadResolver(UrlResolver):
         n = re.findall('<span id="(.*?)">(.*?)</span>', html)
         print "y",n
         ol_id = n[0][1]
-        print ol_id
+        print "ol_id", ol_id
+        #encTab = re.compile('''<span[^>]+?id="%s[^"]*?"[^>]*?>([^<]+?)<\/span>''' % varName).findall(data)
+
+        #ol_id = '1912600068121040814522121400721607315067330652607609130410762808802070250653206719095380702907317071131340712337065301180513039121031453407418075140682307336104010682109835145110682406827068201270613010067311244209004';
+
+        ok = False
+        #for enc in ol_id:
+        enc = ol_id
+
+        #Decode form samsamsam
+        #https://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2/blob/a6253cd4b6a0627f5070b28c01037d04d0dee7e7/IPTVPlayer/libs/urlparser.py
+
+
+
+        for fs in [-1, 1]:
+            decTab = {}
+            try:
+                s = int(enc[0:2]) * fs
+                idx = 2
+                while idx < len(enc):
+                    key = int(enc[idx + 3:idx + 5])
+                    decTab[key] = chr(int(enc[idx:idx + 3]) + s)
+                    idx += 5
+                dec = ''
+                for key in range(len(decTab)):
+                    dec += decTab[key]
+                if re.compile('~[0-9]{10}~').search(dec):
+                    ok = True
+                    break
+            except Exception:
+                printExc()
+                continue
+            if ok:
+                break
+
+        print("DEC",dec)
+        return dec
+
+
+
+
+        first_two_chars = int(float(ol_id[0:][:2]))
+        urlcode = {}
+        num = 2
+
+        while num < len(ol_id):
+            key = int(float(ol_id[num + 3:][:2]))
+            urlcode[key] = chr(int(float(ol_id[num:][:3])) - first_two_chars)
+            num += 5
+
+        sorted(urlcode, key=lambda key: urlcode[key])
+
+        urllink = ''.join(['%s' % (value) for (key, value) in urlcode.items()])
+
+        video_url = 'https://openload.co/stream/' + urllink
+
+        print(video_url)
 
         def parseInt(sin):
             m = re.search(r'^(\d+)[.,]?\d*?', str(sin))
@@ -119,10 +183,11 @@ class OpenLoadResolver(UrlResolver):
 
         first_three_chars = int(float(ol_id[0:][:3]))
         fifth_char = int(float(ol_id[3:5]))
-        num = 5;
+        num = 5
         txt = ''
         while num < len(ol_id):
-            txt += compat_chr(int(float(ol_id[num:][:3])) + first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
+            #txt += compat_chr(int(float(ol_id[num:][:3])) + first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
+            txt += compat_chr(int(float(ol_id[num:][:3])) +  first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
             num += 5
 
         return txt

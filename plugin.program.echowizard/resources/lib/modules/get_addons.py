@@ -47,7 +47,7 @@ DEP_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + ad
 ALL_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
 UPDATE_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
 REPO_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
-TEMP_FILE        =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
+TEMP_FILE        = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp_installer.xml'))
 ADDON_DATA       = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id, 'packs/'))
 PARENTAL_FILE    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'controls.txt'))
 PARENTAL_FOLDER  = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
@@ -63,26 +63,12 @@ SOURCES_URL      = BASEURL + base64.b64decode(b'YWRkb25zL3NvdXJjZXMueG1s')
 DEP_LIST         = BASEURL + base64.b64decode(b'YWRkb25zL2RlcHMueG1s')
 PAID_DESC        = BASEURL + base64.b64decode(b'YWRkb25zL3BhaWRfZGVzY3JpcHRpb25zLw==')
 DESC             = BASEURL + base64.b64decode(b'YWRkb25zL2Rlc2NyaXB0aW9ucy8=')
+KODIAPPS_FILE    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/kodiapps.xml'))
+KODIAPPS_ICON    = "http://echocoder.com/images/addons/plugin.video.etherealtv/icon.png"
+KODIAPPS_FANART  = "http://echocoder.com/images/addons/plugin.video.etherealtv/fanart.jpg"
 USER_AGENT       = base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl')
 
-def MENU():
-
-	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
-	version=float(xbmc_version[:4])
-	codename = "Decline"
-
-	total = ""
-	total_count = Common.count(total,TEMP_FILE)
-	Common.addDir("[COLOR white][B]" + str(total_count) + " [/COLOR][COLOR yellowgreen]Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
-	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
-	
-	Common.addDir("[COLOR dodgerblue][B]UPDATE INSTALLED ADDONS[/B][/COLOR]",BASEURL,174,ALL_ICON,FANART,'')
-	Common.addDir("[COLOR white][B]ENTER THE ECHO ADDON INSTALLER[/B][/COLOR]",BASEURL,175,ALL_ICON,FANART,'')
-
 def MENU_MAIN():
-
-	if not os.path.isfile(TEMP_FILE):
-		open(TEMP_FILE, 'w')
 	
 	GET_COUNTS()
 
@@ -102,22 +88,27 @@ def MENU_MAIN():
 				if not password == pass_one:
 					dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
 					quit()
-
-	total = ""
-	total_count = Common.count("Download CountADDON_INSTALLER",TEMP_FILE)
-	Common.addDir("[COLOR yellowgreen][B]" + str(total_count) + " Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+					
+	number_of_addons = Common.count("NUMBER_OF_ADDONS",TEMP_FILE)
+	total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_FILE)
+	total_addons_alltime = Common.count("TOTAL_ADDONS_ALLTIME",TEMP_FILE)
+	Common.addDir("[COLOR white][B]Addons Available In Addon Installer  - [/COLOR][COLOR yellowgreen]" + str(number_of_addons) + " Addons[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	Common.addDir("[COLOR white][B]Addons Downloaded (Week)  - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	Common.addDir("[COLOR white][B]Addons Downloaded (Total) - [/COLOR][COLOR yellowgreen]" + str(total_addons_alltime) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	
 	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
 	Common.addDir("[COLOR white][B]File Manager Sources[/B][/COLOR]",BASEURL,177,REPO_ICON,FANART,description='')
-	Common.addDir("[COLOR white][B]Top 14 downloaded addons this week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
+	Common.addDir("[COLOR white][B]Top 14 Downloaded Addons This Week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
+	Common.addDir("[COLOR white][B]Kodiapps Addon Chart[/B][/COLOR]",BASEURL,150,KODIAPPS_ICON,KODIAPPS_FANART,description='kodiapps')
 	#Common.addDir("[COLOR white][B]APK Addons[/B][/COLOR]",BASEURL,170,XXX_ICON,FANART,description='Null')
 	Common.addDir("[COLOR white][B]Video Addons[/B][/COLOR]",BASEURL,150,VIDEO_ICON,FANART,description='video')
 	Common.addDir("[COLOR white][B]Program Addons[/B][/COLOR]",BASEURL,150,PROGRAM_ICON,FANART,description='program')
 	Common.addDir("[COLOR white][B]Music Addons[/B][/COLOR]",BASEURL,150,MUSIC_ICON,FANART,description='audio')
 	Common.addDir("[COLOR white][B]Picture Addons[/B][/COLOR]",BASEURL,150,PICTURE_ICON,FANART,description='image')
 	Common.addDir("[COLOR white][B]Adult (XXX) Addons[/B][/COLOR]",BASEURL,150,XXX_ICON,FANART,description='xxx')
-	Common.addDir("[COLOR yellowgreen][B][I]Subscription Based Services (e.g IPTV,VPN,TV GUIDES).[/I][/B][/COLOR]",BASEURL,150,PAID_ICON,FANART,description='paid')
+	#Common.addDir("[COLOR yellowgreen][B][I]Subscription Based Services (e.g IPTV,VPN,TV GUIDES).[/I][/B][/COLOR]",BASEURL,150,PAID_ICON,FANART,description='paid')
 	Common.addDir("[COLOR dodgerblue][B]Report A Broken Addon[/B][/COLOR]",BASEURL,152,SUPPORT_ICON,FANART,'')
 	Common.addDir("[COLOR dodgerblue][B]How To Get an Addon Added[/B][/COLOR]",BASEURL,153,SUPPORT_ICON,FANART,'')
 
@@ -170,7 +161,7 @@ def GET_LIST(description):
 			repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
 			iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 			fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
-			dp.update(progress,"Filtering repositories " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
+			dp.update(progress,"Filtering repositories " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]Found " + name + "[/B][/COLOR]")
 			namelist.append(name)
 			countlist.append(str(Common.count(repo_path+"ADDON_INSTALLER",TEMP_FILE)))
 			totallist.append(str(Common.count(repo_path+"ADDON_TOTAL",TEMP_FILE)))
@@ -182,6 +173,12 @@ def GET_LIST(description):
 		for count,total,name,iconimage,fanart,repo_path in tup:
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 			url2 = repo_path + "," + name  + "," + url
+			countfail = count
+			try:
+				count2 = int(count)
+				count3 = "{:,}".format(count2)
+				count = str(count3)
+			except: count = countfail
 			try:
 				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
@@ -214,14 +211,23 @@ def GET_LIST(description):
 				progress = 100 * int(i)/int(dis_links)
 				if len(links)>1:
 					name=re.compile('<title>(.+?)</title>').findall(item)[0]
-					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
+					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]Found " + name + "[/B][/COLOR]")
 					addon_path=re.compile('<addon_path>(.+?)</addon_path>').findall(item)[0]
 					repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
+					tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+					if len(tubes) > 1:
+						youtube_id = "multi"
+					else:
+						try:
+							youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+						except: youtube_id = "null"
+					addon_path2 = addon_path
+					addon_path = addon_path + "|SPLIT|" + youtube_id
 					namelist.append(name)
-					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
-					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
+					countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
@@ -230,9 +236,16 @@ def GET_LIST(description):
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		check = 1
 		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
+			addon_path,youtube_id = addon_path.split("|SPLIT|")
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-			url2 = addon_path + "," + repo_path + "," + name  + "," + url
+			url2 = addon_path + "," + repo_path + "," + name  + "," + url + "," + youtube_id
+			countfail = count
+			try:
+				count2 = int(count)
+				count3 = "{:,}".format(count2)
+				count = str(count3)
+			except: count = countfail	
 			if check < 14:
 				if check == 1:
 					bname = " | [COLOR gold][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR][COLOR gold][B] - Total:[/COLOR][COLOR gold] " + total + "[/B][/COLOR]"
@@ -241,23 +254,23 @@ def GET_LIST(description):
 					else:
 						Common.addDir("[COLOR gold][B]1st - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 2:
-					bname = " | [COLOR ghostwhite][B] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/B][/COLOR][COLOR ghostwhite][B] - Total:[/COLOR][COLOR ghostwhite] " + total + "[/B][/COLOR]"
+					bname = " | [COLOR silver][B] This Week:[/COLOR][COLOR silver] " + count + "[/B][/COLOR][COLOR silver][B] - Total:[/COLOR][COLOR silver] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+						Common.addDir("[COLOR silver][B]2nd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+						Common.addDir("[COLOR silver][B]2nd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 3:
 					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR orange] " + count + "[/B][/COLOR][COLOR orange][B] - Total:[/COLOR][COLOR orange] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+						Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
 					else:
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+						Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
 				else:
-					bname = " | [COLOR grey] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR grey] - Total:[/COLOR][COLOR yellowgreen] [B]" + total + "[/B][/COLOR]"
+					bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen] [B]" + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR grey][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+						Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
 						Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			check = check + 1
@@ -283,14 +296,23 @@ def GET_LIST(description):
 				progress = 100 * int(i)/int(dis_links)
 				if len(links)>1:
 					name=re.compile('<title>(.+?)</title>').findall(item)[0]
-					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
+					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]Found " + name + "[/B][/COLOR]")
 					addon_path=re.compile('<addon_path>(.+?)</addon_path>').findall(item)[0]
 					repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
 					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
+					tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+					if len(tubes) > 1:
+						youtube_id = "multi"
+					else:
+						try:
+							youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+						except: youtube_id = "null"
+					addon_path2 = addon_path
+					addon_path = addon_path + "|SPLIT|" + youtube_id
 					namelist.append(name)
-					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
-					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
+					countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
@@ -298,17 +320,118 @@ def GET_LIST(description):
 					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
+			addon_path,youtube_id = addon_path.split("|SPLIT|")
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-			url2 = addon_path + "," + repo_path + "," + name  + "," + url
+			url2 = addon_path + "," + repo_path + "," + name  + "," + url + ",paid," + youtube_id
+			countfail = count
+			try:
+				count2 = int(count)
+				count3 = "{:,}".format(count2)
+				count = str(count3)
+			except: count = countfail	
 			try:
 				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
 				bname = "Unknown"
 			if not os.path.exists(ADDON):
-				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
+				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			else:
-				Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
+				Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+	elif matcher == "kodiapps":
+		namelist=[]
+		ranklist=[]
+		countlist=[]
+		totallist=[]
+		iconlist=[]
+		fanartlist=[]
+		addonlist=[]
+		repolist=[]
+		found_one = 0
+		url = ADDON_LIST
+		url2 = ADDON_LIST
+		link = open_url(url)
+		dp.update(0)
+		match= re.compile('<item>(.+?)</item>').findall(link)
+		dis_links = len(match)	
+		for item in sorted(match):
+			if '<link>' in item:
+				links=re.compile('<link>(.+?)</link>').findall(item)
+				i = i + 1
+				dis_count = str(i)
+				progress = 100 * int(i)/int(dis_links)
+				if len(links)>1:
+					name=re.compile('<title>(.+?)</title>').findall(item)[0]
+					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]Found " + name + "[/B][/COLOR]")
+					addon_path=re.compile('<addon_path>(.+?)</addon_path>').findall(item)[0]
+					repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
+					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
+					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
+					tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+					rank = GET_KODIAPPS_RANKING_LOCAL(addon_path)
+					rank = rank.replace("[COLOR yellowgreen]","").replace("[/COLOR]","")
+					if len(tubes) > 1:
+						youtube_id = "multi"
+					else:
+						try:
+							youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+						except: youtube_id = "null"
+					addon_path2 = addon_path
+					addon_path = addon_path + "|SPLIT|" + youtube_id
+					namelist.append(name)
+					countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
+					ranklist.append(rank)
+					iconlist.append(iconimage)
+					fanartlist.append(fanart)
+					addonlist.append(addon_path)
+					repolist.append(repo_path)
+					combinedlists = list(zip(ranklist,countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
+		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=False)
+		displayed = 0
+		for rank,count,total,name,iconimage,fanart,addon_path,repo_path in tup:
+			if displayed == 0:
+				Common.addItem("[COLOR dodgerblue][B]KODIAPPS.COM ADDONS RANKING LIST[/B][/COLOR]",url2,999,KODIAPPS_ICON,KODIAPPS_FANART,'')
+				Common.addItem("[COLOR white][B]If a rank is missing from the list it is because we do not have permission to have that addon in the installer.[/B][/COLOR]",url2,999,KODIAPPS_ICON,KODIAPPS_FANART,'')
+				Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+				displayed = 1
+			if not rank == "0":
+				addon_path,youtube_id = addon_path.split("|SPLIT|")
+				ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
+				REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
+				url2 = addon_path + "," + repo_path + "," + name  + "," + url + "," + youtube_id
+				countfail = count
+				try:
+					count2 = int(count)
+					count3 = "{:,}".format(count2)
+					count = str(count3)
+				except: count = countfail
+				if rank == "4":
+					Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+				if rank == "1":
+					bname = " | [COLOR gold][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR][COLOR gold][B] - Total:[/COLOR][COLOR gold] " + total + "[/B][/COLOR]"
+					if not os.path.exists(ADDON):
+						Common.addDir("[COLOR gold][B]RANK 1 - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+					else:
+						Common.addDir("[COLOR gold][B]RANK 1 - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+				elif rank == "2":
+					bname = " | [COLOR silver][B] This Week:[/COLOR][COLOR silver] " + count + "[/B][/COLOR][COLOR silver][B] - Total:[/COLOR][COLOR silver] " + total + "[/B][/COLOR]"
+					if not os.path.exists(ADDON):
+						Common.addDir("[COLOR silver][B]RANK 2 - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+					else:
+						Common.addDir("[COLOR silver][B]RANK 2 - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+				elif rank == "3":
+					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR orange] " + count + "[/B][/COLOR][COLOR orange][B] - Total:[/COLOR][COLOR orange] " + total + "[/B][/COLOR]"
+					if not os.path.exists(ADDON):
+						Common.addDir("[COLOR orange][B]RANK 3 - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+					else:
+						Common.addDir("[COLOR orange][B]RANK 3 - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+				else:
+					bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen] [B]" + total + "[/B][/COLOR]"
+					if not os.path.exists(ADDON):
+						Common.addDir("[COLOR white][B]" + rank + " - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
+					else:
+						Common.addDir("[COLOR yellowgreen][B]" + rank + " - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 	else:
 		url = ADDON_LIST
 		url2 = ADDON_LIST
@@ -331,14 +454,23 @@ def GET_LIST(description):
 				progress = 100 * int(i)/int(dis_links)
 				if len(links)>1:
 					name=re.compile('<title>(.+?)</title>').findall(item)[0]
-					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
+					dp.update(progress,"Filtering addon " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]Found " + name + "[/B][/COLOR]")
 					addon_path=re.compile('<addon_path>(.+?)</addon_path>').findall(item)[0]
 					repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
 					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
-					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
+					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+					tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+					if len(tubes) > 1:
+						youtube_id = "multi"
+					else:
+						try:
+							youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+						except: youtube_id = "null"
+					addon_path2 = addon_path
+					addon_path = addon_path + "|SPLIT|" + youtube_id					
 					namelist.append(name)
-					countlist.append(str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
-					totallist.append(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))
+					countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+					totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
 					iconlist.append(iconimage)
 					fanartlist.append(fanart)
 					addonlist.append(addon_path)
@@ -346,10 +478,17 @@ def GET_LIST(description):
 					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		for count,total,name,iconimage,fanart,addon_path,repo_path in tup:
+			addon_path,youtube_id = addon_path.split("|SPLIT|")
 			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-			url2 = addon_path + "," + repo_path + "," + name  + "," + url
+			url2 = addon_path + "," + repo_path + "," + name  + "," + url + "," + youtube_id
 			base_name = name
+			countfail = count
+			try:
+				count2 = int(count)
+				count3 = "{:,}".format(count2)
+				count = str(count3)
+			except: count = countfail	
 			try:
 				bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 			except:
@@ -383,36 +522,90 @@ def GET_LIST(description):
 
 def ADDON_DECIDE(name,url,iconimage,fanart):
 
+	paid = 0
+	normal = 0
+	repo = 0
+
 	urla  = url
 	paid_mark = "null"
+	youtube_id="null"
 	try:
-		addon_path,repo_path,base_name,url,paid_mark   = urla.split(',')
+		addon_path,repo_path,base_name,url,paid_mark,youtube_id   = url.split(',')
+		normal = 1
+		paid = 1
 	except:
 		try:
-			addon_path,repo_path,base_name,url   = urla.split(',')
-		except: repo_path,base_name,url   = urla.split(',')
+			addon_path,repo_path,base_name,url,youtube_id   = urla.split(',')
+			normal = 1
+		except: 
+			repo_path,base_name,url   = urla.split(',')
+			repo = 1
+
+	if normal == 1:
 	
-	try:
+		send_youtube_multi = base_name + "," + url
+
+		RANKING = GET_KODIAPPS_RANKING_LOCAL(addon_path)
+
+		if not youtube_id.lower() == "null":
+			if "http" in youtube_id.lower():
+				youtube_id = youtube_id.replace("https://www.youtube.com/watch?v=","")
+			if not "multi" in youtube_id.lower():
+					youtube_id = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+youtube_id
+
+		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(addon_path)
+		body = urllib2.urlopen(service_url).read()
+
 		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 		if not os.path.exists(ADDON):
-			Common.addItem("[COLOR white][B]Install Addon[/B][/COLOR]",urla+",install_me",151,iconimage,fanart,'')
+			Common.addItem("[COLOR yellowgreen][B]Install Addon[/B][/COLOR]",urla+",install_me",151,iconimage,fanart,'')
 		else:
-			Common.addItem("[COLOR white][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,iconimage,fanart,'')
-		if paid_mark == "paid":
+			Common.addItem("[COLOR yellowgreen][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,iconimage,fanart,'')
+		
+		if paid == 1:
 			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",paid_info",151,iconimage,fanart,'')
 		else:
 			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",info_me",151,iconimage,fanart,'')
-		Common.addDir("[COLOR white][B]Read Addon Reviews[/B][/COLOR]",urla+",readreview_me",151,iconimage,fanart,'')
+		if "multi" in youtube_id.lower():
+			Common.addItem('[COLOR white][B]Watch YouTube Review of ' + base_name + '[/B][/COLOR]',send_youtube_multi,183,iconimage,fanart,'')
+		elif "null" not in youtube_id.lower():
+			Common.addItem('[COLOR white][B]Watch YouTube Review of ' + base_name + '[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+		if not RANKING.lower() == "0":
+			Common.addItem('[COLOR white][B]Kodiapps Rank: ' + RANKING + '[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+		week  = (str(Common.count(addon_path+"ADDON_INSTALLER",TEMP_FILE)))
+		total =(str(Common.count(addon_path+"ADDON_TOTAL",TEMP_FILE)))   
+		countfail = week
+
+		try:
+			count2 = int(week)
+			count3 = "{:,}".format(count2)
+			week = str(count3)
+		except: week = countfail	
+
+		Common.addItem('[COLOR white][B]Downloads This Week -  [/COLOR][COLOR yellowgreen]' + str(week) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+		Common.addItem('[COLOR white][B]All Time Downloads -  [/COLOR][COLOR yellowgreen]' + str(total) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+
 		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",151,iconimage,fanart,'')
-	except:
+		Common.addDir("[COLOR white][B]Read Addon Reviews - [COLOR yellowgreen]" + body + " [/COLOR][/B][/COLOR]",urla+",readreview_me",151,iconimage,fanart,'')
+
+	elif repo == 1:
+		service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(repo_path)
+		body = urllib2.urlopen(service_url).read()
 		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 		if not os.path.exists(ADDON):
-			Common.addItem("[COLOR white][B]Install Repository[/B][/COLOR]",urla+",install_me",164,iconimage,fanart,'')
+			Common.addItem("[COLOR yellowgreen][B]Install Repository[/B][/COLOR]",urla+",install_me",164,iconimage,fanart,'')
 		else:
-			Common.addItem("[COLOR white][B]Uninstall Repository[/B][/COLOR]",urla+",uninstall_me",164,iconimage,fanart,'')
+			Common.addItem("[COLOR yellowgreen][B]Uninstall Repository[/B][/COLOR]",urla+",uninstall_me",164,iconimage,fanart,'')
 		Common.addItem("[COLOR white][B]Repository Information[/B][/COLOR]",urla+",info_me",164,iconimage,fanart,'')
-		Common.addDir("[COLOR white][B]Read Repository Reviews[/B][/COLOR]",urla+",readreview_me",164,iconimage,fanart,'')
+		
+		week  = (str(Common.count(repo_path+"ADDON_INSTALLER",TEMP_FILE)))
+		total =(str(Common.count(repo_path+"ADDON_TOTAL",TEMP_FILE)))   
+
+		Common.addItem('[COLOR white][B]Downloads This Week -  [/COLOR][COLOR yellowgreen]' + str(week) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+		Common.addItem('[COLOR white][B]All Time Downloads -  [/COLOR][COLOR yellowgreen]' + str(total) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+
 		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",164,iconimage,fanart,'')
+		Common.addDir("[COLOR white][B]Read Repository Reviews - [COLOR yellowgreen]" + body + " [/COLOR][/B][/COLOR]",urla+",readreview_me",164,iconimage,fanart,'')
 
 def GET_MULTI(name,url):
 	
@@ -627,27 +820,33 @@ def GET_REPO(name,url):
 				quit()	
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
-		add_download = Common.add_one(base_name)
-
+		add_download = Common.add_one(repo_path+"ADDON_INSTALLER")
+		dp.update(50,'Refreshing kodi addons to finish the installation process.','',' ')
 		time.sleep(2)
 		xbmc.executebuiltin("UpdateLocalAddons")
 		time.sleep(2)
 		xbmc.executebuiltin("UpdateAddonRepos")
 		time.sleep(2)
 		xbmc.executebuiltin("Container.Refresh")
-
-		dp.close()
+		dp.close
 
 		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
 
 def FILE_MANAGER_SOURCES(name,url,description):
 	
 	SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
+	original = url
+	namelist      = []
+	sourcelist    = []
+	countlist     = []
+	combinedlists = []
 
 	if not os.path.isfile(SOURCES):
 		f = open(SOURCES,'w')
 		f.write('<sources>\n    <files>\n        <default pathversion="1"></default>\n    </files>\n</sources>')
 		f.close()
+
+	f = open(SOURCES,mode='r'); msg = f.read(); f.close()
 	i=0
 	link = open_url(SOURCES_URL)
 	match= re.compile('<item>(.+?)</item>').findall(link)
@@ -655,60 +854,200 @@ def FILE_MANAGER_SOURCES(name,url,description):
 
 		title=re.compile('<title>(.+?)</title>').findall(item)[0]
 		source=re.compile('<source>(.+?)</source>').findall(item)[0]
-		
-		if str(source) not in open(SOURCES).read():
-			url = title + '|SPLIT|' + source
-			Common.addItem('[COLOR yellowgreen][B]' + title + ' [/B][/COLOR][COLOR darkgray]- ' + source +'[/COLOR]',url,178,ICON,FANART,"")
-			i = i + 1
-	
-	if i == 0:
-		Common.addItem('[COLOR white]All of the sources we have are already in your File Manager.[/COLOR]','url',999,ICON,FANART,"")
+
+		source = source.replace(" ","")
+		if not source in msg:
+			countlist.append("0")
+		else: 
+			countlist.append("1")
+		namelist.append(title)
+		sourcelist.append(source)
+
+		combinedlists = list(zip(countlist,namelist,sourcelist))
+
+	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+
+	marker = 0
+	marker2 = 0
+
+	Common.addItem('[COLOR dodgerblue][B]WRITE ALL SOURCES TO FILE MANAGER[/B][/COLOR]',original,178,ICON,FANART,"")
+	Common.addItem('[COLOR dodgerblue][B]REMOVE ALL SOURCES FROM FILE MANAGER[/B][/COLOR]',original,178,ICON,FANART,"")
+
+	for counter,name,url in tup:
+		if counter == "1":
+			url2 = name + '|SPLIT|REMOVE' + url
+			if marker == 0:
+				Common.addItem('[COLOR darkgray][B]------------------------------------------------[/B][/COLOR]',url2,999,ICON,FANART,"")
+				Common.addItem('[COLOR yellowgreen][B]INSTALLED IN FILE MANAGER[/B][/COLOR]',url2,999,ICON,FANART,"")
+				marker = 1
+			Common.addItem('[COLOR yellowgreen][B]' + name + ' [/B][/COLOR][COLOR white]- ' + url +'[/COLOR]',url2,178,ICON,FANART,"")
+		else: 
+			url2 = name + '|SPLIT|' + url
+			if marker2 == 0:
+				Common.addItem('[COLOR darkgray][B]------------------------------------------------[/B][/COLOR]',url2,999,ICON,FANART,"")
+				Common.addItem('[COLOR darkgray][B]NOT INSTALLED IN FILE MANAGER[/B][/COLOR]',url2,999,ICON,FANART,"")
+				marker2 = 1
+			Common.addItem('[COLOR darkgray][B]' + name + ' [/B][/COLOR][COLOR darkgray]- ' + url +'[/COLOR]',url2,178,ICON,FANART,"")
 
 def WRITE_SOURCE_TO_FILE_MANAGER(name,url):
 
 	SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
 
-	name,source = url.split('|SPLIT|')
-	source = source.replace(" ","")
+	if "WRITE ALL SOURCES TO FILE MANAGER" in name:
 
-	choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Write the following to your File Manager?[/COLOR]","[COLOR white]Name:[/COLOR][COLOR dodgerblue][B]" + name + "[/B][/COLOR]","[COLOR white]Source:[/COLOR][COLOR dodgerblue][B]" + source + "[/B][/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
-	if choice == 1:
+		choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Write all the sources to your File Manager?[/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
+		if choice == 1:
+			try:
+				link = open_url(SOURCES_URL)
+				match= re.compile('<item>(.+?)</item>').findall(link)
+				for item in match:
+
+					name=re.compile('<title>(.+?)</title>').findall(item)[0]
+					source=re.compile('<source>(.+?)</source>').findall(item)[0]
+					source = source.replace(" ","")
+
+					if not source in open(SOURCES).read():
+						dialog.ok("22", "here")
+						OLD = '<files>\n		<default pathversion="1"></default>'
+						NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+						a=open(SOURCES).read()
+						b=a.replace(OLD, NEW)
+						f= open((SOURCES), mode='w')
+						f.write(str(b))
+						f.close()
+					if not source in open(SOURCES).read():
+						OLD = '<files>\n        <default pathversion="1"></default>'
+						NEW = '<files>\n        <default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+						a=open(SOURCES).read()
+						b=a.replace(OLD, NEW)
+						f= open((SOURCES), mode='w')
+						f.write(str(b))
+						f.close()
+			except:	
+				dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+				quit()
+		else:
+			quit()
+	
+		xbmc.executebuiltin("RereshSources")
+
+		dialog.ok(AddonTitle, '[COLOR white]The sources have been written to your File Manager.', '[COLOR red][B]The Sources will NOT SHOW in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+
+		xbmc.executebuiltin("Container.Refresh") 
+	elif "REMOVE ALL SOURCES FROM FILE MANAGER" in name:
 		try:
-			OLD = '<files>\n		<default pathversion="1"></default>'
-			NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
-			a=open(SOURCES).read()
-			b=a.replace(OLD, NEW)
-			f= open((SOURCES), mode='w')
-			f.write(str(b))
-			f.close()
-		except:	
-			dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+			os.remove(SOURCES)
+			if not os.path.isfile(SOURCES):
+				f = open(SOURCES,'w')
+				f.write('<sources>\n    <files>\n        <default pathversion="1"></default>\n    </files>\n</sources>')
+				f.close()
+			xbmc.executebuiltin("Container.Refresh") 
+			dialog.ok(AddonTitle, '[COLOR white]The sources have been removed from your File Manager.', '[COLOR red][B]The Sources will NOT REFRESH in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+		except:
+			xbmc.executebuiltin("Container.Refresh") 
+			dialog.ok(AddonTitle, '[COLOR white]There was an error removing the sources. Please try again later.','Thank you for using ECHO Wizard.[/COLOR]')
 			quit()
 	else:
-		quit()
-
-	if not source in open(SOURCES).read():
-		try:
-			OLD = '<files>\n        <default pathversion="1"></default>'
-			NEW = '<files>\n        <default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
-			a=open(SOURCES).read()
-			b=a.replace(OLD, NEW)
-			f= open((SOURCES), mode='w')
-			f.write(str(b))
-			f.close()
-		except:	
-			dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
-			quit()
-			
-	if not source in open(SOURCES).read():
-		dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
-		quit()
 	
-	xbmc.executebuiltin("RereshSources")
+		name,source = url.split('|SPLIT|')
+		source = source.replace(" ","")
+		
+		if "remove" in url.lower():
+			source = source.replace("REMOVE","")
+			
+			choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Remove the following to your File Manager?[/COLOR]","[COLOR white]Name:[/COLOR][COLOR dodgerblue][B]" + name + "[/B][/COLOR]","[COLOR white]Source:[/COLOR][COLOR dodgerblue][B]" + source + "[/B][/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
+			if choice == 1:
+				try:
+					OLD = '<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+					NEW = ''
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+					OLD = '		\n'
+					NEW = ''
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+				except:	
+					dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error removing the source to the file manager.[/COLOR]')
+					quit()
+			else:
+				quit()
 
-	dialog.ok(AddonTitle, '[COLOR white]The ' + name + ' source has been written to your File Manager.', '[COLOR red][B]The Source will NOT SHOW in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+			if source in open(SOURCES).read():
+				try:
+					OLD = '<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+					NEW = '\n'
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+					OLD = '		\n'
+					NEW = ''
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+				except:	
+					dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error removing the source to the file manager.[/COLOR]')
+					quit()
+					
+			if source in open(SOURCES).read():
+				dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+				quit()
+			
+			xbmc.executebuiltin("RereshSources")
 
-	xbmc.executebuiltin("Container.Refresh") 
+			dialog.ok(AddonTitle, '[COLOR white]The ' + name + ' source has been removed from your File Manager.', '[COLOR red][B]The Source will NOT SHOW in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+
+			xbmc.executebuiltin("Container.Refresh") 
+
+		else:
+
+			choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Write the following to your File Manager?[/COLOR]","[COLOR white]Name:[/COLOR][COLOR dodgerblue][B]" + name + "[/B][/COLOR]","[COLOR white]Source:[/COLOR][COLOR dodgerblue][B]" + source + "[/B][/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
+			if choice == 1:
+				try:
+					OLD = '<files>\n		<default pathversion="1"></default>'
+					NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+				except:	
+					dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+					quit()
+			else:
+				quit()
+
+			if not source in open(SOURCES).read():
+				try:
+					OLD = '<files>\n        <default pathversion="1"></default>'
+					NEW = '<files>\n        <default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+					a=open(SOURCES).read()
+					b=a.replace(OLD, NEW)
+					f= open((SOURCES), mode='w')
+					f.write(str(b))
+					f.close()
+				except:	
+					dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+					quit()
+					
+			if not source in open(SOURCES).read():
+				dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+				quit()
+			
+			xbmc.executebuiltin("RereshSources")
+
+			dialog.ok(AddonTitle, '[COLOR white]The ' + name + ' source has been written to your File Manager.', '[COLOR red][B]The Source will NOT SHOW in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+
+			xbmc.executebuiltin("Container.Refresh") 
 
 def ADD_DATABASE_ADDON(name,url):
 
@@ -788,7 +1127,54 @@ def ADD_DATABASE_REPO(name):
 		cursor.execute(q, (str(AddonID), str(checksum_id), str(installDate), str(version_id)))
 		conn.commit()
 	except: pass
-	
+
+def GET_KODIAPPS_RANKING_LOCAL(addon_id):
+
+	try:
+		if not os.path.isfile(KODIAPPS_FILE):
+			open(KODIAPPS_FILE, 'w')
+
+		fileCreation = os.path.getmtime(KODIAPPS_FILE)
+
+		now = time.time()
+		check = now - 60*60
+		
+		text_file = open(KODIAPPS_FILE)
+		compfile = text_file.read()  
+		
+		if len(compfile) == 0:
+			counts=Common.OPEN_URL_NORMAL("https://kodiapps.com/echos.xml")
+
+			text_file = open(KODIAPPS_FILE, "w")
+			text_file.write(counts)
+			text_file.close()
+
+		elif fileCreation < check:
+
+			counts=Common.OPEN_URL_NORMAL("https://kodiapps.com/echos.xml")
+
+			text_file = open(KODIAPPS_FILE, "w")
+			text_file.write(counts)
+			text_file.close()
+
+		get_file = open(KODIAPPS_FILE)
+		get_data = get_file.read()  
+		found = 0
+		link=get_data.replace('<tag></tag>','<tag>null</tag>')
+		match=re.compile('<item>(.+?)</item>',re.DOTALL).findall(link)
+		for items in match:
+			id=re.compile('<tag>(.+?)</tag>').findall(items)[0]    
+			rank=re.compile('<rank>(.+?)</rank>').findall(items)[0]    
+
+			if addon_id.lower() == id.lower():
+				found = 1
+				return "[COLOR yellowgreen]" + rank + "[/COLOR]"
+		
+		if found == 0:
+			return "0"
+
+	except: return "0"
+
 def DISABLE_DATABASE_ADDON(name):
 
 	Enabled = 0
@@ -868,6 +1254,9 @@ def GET_COUNTS():
 		mark = 5
 	else: mark = 60
 
+	if not os.path.isfile(TEMP_FILE):
+		open(TEMP_FILE, 'w')
+
 	fileCreation = os.path.getmtime(TEMP_FILE)
 
 	now = time.time()
@@ -923,6 +1312,7 @@ def unzip(_in, _out, dp):
 	return True 
 
 def open_url(url):
+
 	try:
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', USER_AGENT)
@@ -931,9 +1321,12 @@ def open_url(url):
 		response.close()
 		link=link.replace('\n','').replace('\r','').replace('<title></title>','<title>x</title>').replace('<link></link>','<link>x</link>').replace('<fanart></fanart>','<fanart>x</fanart>').replace('<thumbnail></thumbnail>','<thumbnail>x</thumbnail>').replace('<utube>','<link>https://www.youtube.com/watch?v=').replace('</utube>','</link>')#.replace('></','>x</')
 		return link
-	except: pass
-	
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
+		
 def open_url_desc(url):
+
 	try:
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', USER_AGENT)
@@ -941,7 +1334,9 @@ def open_url_desc(url):
 		link=response.read()
 		response.close()
 		return link
-	except: pass
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
 
 def PARENTAL_CONTROLS():
 

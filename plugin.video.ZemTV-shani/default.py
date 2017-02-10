@@ -713,26 +713,83 @@ def  AddEmoviesMain(url):
     if urldata["type"]=="decade":
         addEmoviesFromSearch(urldata)
     elif urldata["type"]=="search":
-        userinput="Love"
-        if len(userinput)==0: return
-        urldata["searchdata"]=userinput
+        if 'searchdata' not in urldata:
+            userinput=xbmcgui.Dialog().input('Enter Search', type=xbmcgui.INPUT_ALPHANUM)
+            if len(userinput)==0: return
+            urldata["searchdata"]=userinput        
+            searchurl='emovies:'+json.dumps(urldata)
+            searchurl = '%s?mode=36&url=%s' % (sys.argv[0], urllib.quote_plus(searchurl))
+            xbmc.executebuiltin('Container.Update(%s)' % searchurl)
+            return
+        addEmoviesFromSearch(urldata)
+    elif urldata["type"]=="alpha":
+        if 'searchdata' not in urldata:
+            dialog = xbmcgui.Dialog()
+            import string
+            alphas=list(string.ascii_uppercase)
+            index = dialog.select('Choose Starts with', alphas)
+            userinput=""
+            if index > -1:
+                userinput=alphas[index]
+            if len(userinput)==0: return
+            urldata["searchdata"]=userinput
+            searchurl='emovies:'+json.dumps(urldata)
+            searchurl = '%s?mode=36&url=%s' % (sys.argv[0], urllib.quote_plus(searchurl))
+            xbmc.executebuiltin('Container.Update(%s)' % searchurl)
+            return
         addEmoviesFromSearch(urldata)
     else:
-        addDir ('Search Movie' ,'emovies:{"lang":"%s","type":"search"}'%(urldata["lang"]),36,'', False, True,isItFolder=True)
+        addDir ('Search Movie' ,'emovies:{"lang":"%s","type":"search"}'%(urldata["lang"]),36,'', False, True,isItFolder=False)
+        addDir ('Alphabetically List' ,'emovies:{"lang":"%s","type":"alpha"}'%(urldata["lang"]),36,'', False, True,isItFolder=False)
         for s in ['2010','2000','1990','1980','1970','1960','1950','1940']:
             addDir ('Movies from %s'%s ,'emovies:{"lang":"%s","type":"decade","decadenum":"%s"}'%(urldata["lang"],s),36,'', False, True,isItFolder=True)
-            #addDir ('Test Movie' ,base64.b64encode('emovies:4jWb,hindi'),11,'', False, True,isItFolder=False)
+
 
 def addEmoviesFromSearch(urldata):
     url=""
     print 'addEmoviesFromSearch',urldata
+    page="1"
+    lang=urldata["lang"]
+    url1=""
+    url2=""
+    if 'page' in urldata:
+        page=urldata["page"]
+    urlpage=int(page)*2
     if urldata["type"]=="decade":
         dacadenumer=urldata["decadenum"]
-        lang=urldata["lang"]
-        url="https://einthusan.tv/movie/results/?decade=%s&find=Decade&lang=%s"%(dacadenumer,lang)
-    #getUrl(url)
-    
-    addDir ('Test Movie' ,base64.b64encode('emovies:4jWb,hindi'),11,'', False, True,isItFolder=False)
+        url1="https://einthusan.tv/movie/results/?decade=%s&find=Decade&lang=%s&page=%s"%(dacadenumer,lang,str(urlpage-1))
+        url2="https://einthusan.tv/movie/results/?decade=%s&find=Decade&lang=%s&page=%s"%(dacadenumer,lang,str(urlpage))
+    elif urldata["type"]=="search":
+        searchdata=urldata["searchdata"]
+        url1="https://einthusan.tv/movie/results/?query=%s&lang=%s&page=%s"%(urllib.quote_plus(searchdata),lang,str(urlpage-1))
+        url2="https://einthusan.tv/movie/results/?query=%s&lang=%s&page=%s"%(urllib.quote_plus(searchdata),lang,str(urlpage))
+    elif urldata["type"]=="alpha":
+        searchdata=urldata["searchdata"]
+        url1="https://einthusan.tv/movie/results/?alpha=%s&find=Alphabets&lang=%s&page=%s"%(urllib.quote_plus(searchdata),lang,str(urlpage-1))
+        url2="https://einthusan.tv/movie/results/?alpha=%s&find=Alphabets&lang=%s&page=%s"%(urllib.quote_plus(searchdata),lang,str(urlpage))
+                
+    newpage=str(int(page)+1)
+    newpagedata=urldata
+    newpagedata["page"]=newpage
+    moviecode=""
+    html1=""
+    try:
+        html1=getUrl(url1)
+        if len(url2)>0:
+            html1+=getUrl(url1)
+    except: pass
+    added=False
+    for mov in re.findall( "<div class=\"block1\">.*?href=['\"].*?watch\/(.*?)\/\?lang=(.*?)['\"].*?src=['\"](.*?)['\"].*?<h3>(.*?)<",html1):
+        try:
+            added=True
+            moviecode=mov[0]
+            imageurl=mov[2]
+            if imageurl.startswith('//'): imageurl='http:'+imageurl
+            mname=mov[3]
+            addDir (mname,base64.b64encode('emovies:%s,%s'%(moviecode,lang)),11,imageurl, False, True,isItFolder=False)
+        except: pass
+    if added:
+        addDir ('Next Page %s'%newpage ,'emovies:'+json.dumps(newpagedata),36,'', False, True,isItFolder=True)
 
 
     
@@ -1949,6 +2006,9 @@ def playHDCast(url, mainref, altref=None):
     except:
         traceback.print_exc(file=sys.stdout)
         return False
+
+
+        
 class InputWindow(xbmcgui.WindowDialog):
     def __init__(self, *args, **kwargs):
         self.cptloc = kwargs.get('captcha')
@@ -1968,7 +2028,6 @@ class InputWindow(xbmcgui.WindowDialog):
         text=xbmcgui.Dialog().input('Enter Captcha', type=xbmcgui.INPUT_ALPHANUM)
         self.close()
         return text
-        
         return False  
         
     def showme():
@@ -2284,10 +2343,11 @@ def ShowAllCategories(url):
         cats=getUKTVCats()
         cmode=57    
     elif url=="pv2":
-        cats=getPV2Cats(True if name.lower()=="movies" else False)
         if name.lower()=="movies":
-            cats.append(('emovies:{"lang":"hindi","type":"main"}','Hindi - Einthusan Movies [comingsoon]'))
-            cats.append(('emovies:{"lang":"hindi","type":"main"}','Punjabi - Einthusan Movies [comingsoon]'))
+            cats.append(('emovies:{"lang":"hindi","type":"main"}','Hindi - Einthusan Movies'))
+            cats.append(('emovies:{"lang":"hindi","type":"main"}','Punjabi - Einthusan Movies'))
+        cats+=getPV2Cats(True if name.lower()=="movies" else False)
+
         
         cmode=36
     elif url=="mona":
@@ -7822,7 +7882,7 @@ try:
     elif mode==35 :
         print "Play url is "+url
         PlaySSSEvent(url)                
-    elif mode==36 :
+    elif mode in [36] :
         print "Play url is "+url
         if not 'emovies:' in url:
             AddPv2Sports(url) 
@@ -8016,7 +8076,7 @@ try:
             xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
 except: traceback.print_exc(file=sys.stdout)
 
-if not  (mode in  playmode )  :
+if not  (mode in  playmode ):
     if mode in [144,156]:
         xbmcplugin.endOfDirectory(int(sys.argv[1]),updateListing=True)
     else:

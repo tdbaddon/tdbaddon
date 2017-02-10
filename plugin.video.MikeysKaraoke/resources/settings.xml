@@ -4,10 +4,10 @@
     <setting id="pop_time" type="text" label="For POP UP" default="2000-01-01 00:00:00" visible="false"/>
     <setting id="ga_time" type="text" label="GA Called" default="2000-01-01 00:00:00" visible="false"/>
     <setting id="visitor_ga" type="text" label="GA visitor" default="" visible="false"/>
-	<setting id="downloads" type="bool" label="Enable YouTube Downloads" default="false"/>
+	<!--<setting id="downloads" type="bool" label="Enable YouTube Downloads" default="false"/>-->
     <setting type="sep" />
 	<setting id="sfenable" type="bool" label="Enable Sunfly Download" default="false"/>
-	<setting id="sfdownloads" type="folder" enable="!eq(-1,false)"/>
+	<setting id="sfdownloads" label="Download Path" type="folder" enable="!eq(-1,false)"/>
 	<setting id="previous_folder_path" type="bool" label="previous_folder_path" default="" visible="false"/>
 	<setting id="id" type="text" label="id number" default="0" visible="false"/>
     <setting id="favs" type="text" label="Favorites" default="" visible="false" />

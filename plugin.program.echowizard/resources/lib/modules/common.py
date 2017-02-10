@@ -62,7 +62,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)
         ok=True
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name, "Plot": description } )
+        liz.setInfo( type="Video", infoLabels={ "Title": name} )
         liz.setProperty( "Fanart_Image", fanart )
         if mode==90 :
             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
@@ -71,7 +71,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
         return ok
 
 def addItem(name,url,mode,iconimage,fanart,description):
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)
 	ok=True
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={ "Title": name } )
@@ -104,33 +104,57 @@ def addLink(name, url, mode, iconimage):
 def BUILDER(name,url,iconimage,fanart,description):
 
 	urla = url
-	name = url.split(",")[0]
+	name,url,original = url.split(",")
+	url = name + "," + url
+	send_youtube_multi = name + "," + original
 	desca = description
 	youtube_id = "null"
 	notice = "null"
 	build_image = "null"
-
 	notice,hash,fresh,youtube_id,skin,build_image = desca.split(',')
 
+	TEMP_FILE =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
+	week  = (str(count(name,TEMP_FILE)))
+	total =(str(count(name+"TOTAL_COUNT",TEMP_FILE)))  
+	countfail = week
+	try:
+		count2 = int(week)
+		count3 = "{:,}".format(count2)
+		week = str(count3)
+	except: week = countfail		
+
 	if not youtube_id.lower() == "null":
-		if not "http" in youtube_id.lower():
+		if "http" in youtube_id.lower():
+			youtube_id = youtube_id.replace("https://www.youtube.com/watch?v=","")
+		if not "multi" in youtube_id.lower():
 			youtube_id = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+youtube_id
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
-	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,90,iconimage,fanart,description)
+	addDir("[COLOR yellowgreen][B]Download " + name.title() + " Now[/B][/COLOR]",url,90,iconimage,fanart,description)
 	if not notice.lower() == "null":
-		addItem("[COLOR white][B]View Build Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
+		addItem("[COLOR white][B]View " + name.title() + " Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
 	url = name
-	if "null" not in youtube_id.lower():
-		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+
+	if "multi" in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Review of ' + name.title() + '[/B][/COLOR]',send_youtube_multi,183,iconimage,fanart,'')
+	elif "null" not in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Review of ' + name.title() + '[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+		
+	addItem('[COLOR white][B]Downloads This Week -  [/COLOR][COLOR yellowgreen]' + str(week) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+	addItem('[COLOR white][B]All Time Downloads -  [/COLOR][COLOR yellowgreen]' + str(total) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+
 	if "null" not in build_image.lower():
-		addItem("[COLOR white][B]View Image of Build[/COLOR][/B]",build_image,116,iconimage,fanart,description)
-	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
-	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
+		addItem("[COLOR white][B]View Image of " + name.title() + "[/COLOR][/B]",build_image,116,iconimage,fanart,description)
+	addItem("[COLOR white][B]Leave A Review for " + name.title() + "[/COLOR][/B]",url,58,iconimage,fanart,description)
+	addDir("[COLOR white][B]Read All Reviews for " + name.title() + " - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
 
 def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 
-	name,url = url.split(",")
+	send_youtube_multi = "null"
+	try:
+		name,url,original = url.split(",")
+		send_youtube_multi = name + "," + original
+	except: name,url = url.split(',')
 	urla = url
 	youtube_id = "null"
 	notice = "null"
@@ -139,23 +163,82 @@ def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 		skin_used, developer = description.split(',')
 	except:	skin_used, developer, youtube_id, notice, build_image = description.split(',')
 
+	TEMP_FILE =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
+	week  = (str(count(name,TEMP_FILE)))
+	countfail = week
+	try:
+		count2 = int(week)
+		count3 = "{:,}".format(count2)
+		week = str(count3)
+	except: week = countfail	
+	total =(str(count(name+"TOTAL_COUNT",TEMP_FILE)))   
+
 	if not youtube_id.lower() == "null":
-		if not "http" in youtube_id.lower():
+		if "http" in youtube_id.lower():
+			youtube_id = youtube_id.replace("https://www.youtube.com/watch?v=","")
+		if not "multi" in youtube_id.lower():
 			youtube_id = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+youtube_id
 	url = str(name + "," + urla + "," + skin_used + "," + developer)
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9idWlsZF9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(name)
 	body = urllib2.urlopen(service_url).read()
-	addDir("[COLOR yellowgreen][B]Download The Build Now[/B][/COLOR]",url,96,iconimage,fanart,description)
+	addDir("[COLOR yellowgreen][B]Download The " + name.title() + " Now[/B][/COLOR]",url,96,iconimage,fanart,description)
 	if not notice.lower() == "null":
-		addItem("[COLOR white][B]View Build Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
+		addItem("[COLOR white][B]View " + name.title() + " Information[/B][/COLOR]",notice,182,iconimage,fanart,description)
 	url = name
-	if "null" not in youtube_id.lower():
-		addItem('[COLOR white][B]Watch YouTube Guide of The Build[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
-	if "null" not in build_image.lower():
-		addItem("[COLOR white][B]View Image of Build[/COLOR][/B]",build_image,116,iconimage,fanart,description)
-	addItem("[COLOR white][B]Write A Review[/COLOR][/B]",url,58,iconimage,fanart,description)
-	addDir("[COLOR white][B]Read All Reviews - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
 
+	if "multi" in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Review of ' + name.title() + '[/B][/COLOR]',send_youtube_multi,183,iconimage,fanart,'')
+	elif "null" not in youtube_id.lower():
+		addItem('[COLOR white][B]Watch YouTube Review of ' + name.title() + '[/B][/COLOR]',youtube_id,95,iconimage,fanart,'')
+
+	addItem('[COLOR white][B]Downloads This Week -  [/COLOR][COLOR yellowgreen]' + str(week) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+	addItem('[COLOR white][B]All Time Downloads -  [/COLOR][COLOR yellowgreen]' + str(total) + '[/B][/COLOR]',url,999,iconimage,fanart,'')
+
+	if "null" not in build_image.lower():
+		addItem("[COLOR white][B]View Image of " + name.title() + "[/COLOR][/B]",build_image,116,iconimage,fanart,description)
+	addItem("[COLOR white][B]Leave A Review for " + name.title() + "[/COLOR][/B]",url,58,iconimage,fanart,description)
+	addDir("[COLOR white][B]Read All Reviews for " + name.title() + " - [COLOR yellowgreen]" + body + " [/COLOR] [/COLOR][/B]",url,59,iconimage,fanart,description)
+
+def multi_youtube_videos(url):
+
+	name,url = url.split(",")
+	streamurl=[]
+	streamname=[]
+	link=OPEN_URL(url)
+	urls=re.compile('<title>'+re.escape(name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
+	links=re.compile('<youtube>(.+?)</youtube>').findall(urls)
+	for sturl in links:
+		if "(" in sturl:
+			sturl2=sturl
+			sturl=sturl.split('(')[0]
+			caption=str(sturl2.split('(')[1].replace(')',''))
+			caption2 = "[COLOR white]" + caption + "[/COLOR]"
+			streamurl.append(sturl)
+			streamname.append(caption2)
+		else:
+			streamurl.append(sturl)
+			streamname.append("[COLOR white]No Description Given[/COLOR]")
+
+	name='[COLOR yellowgreen][B]'+name+' YouTube Videos[/B][/COLOR]'
+	dialog = xbmcgui.Dialog()
+	select = dialog.select(name,streamname)
+	if select < 0:
+		quit()
+	else:
+		url = streamurl[select]
+		print url
+
+	url = streamurl[select]
+	name = streamname[select]
+	if "http" in url.lower():
+		url = url.replace("https://www.youtube.com/watch?v=","")
+	url = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")+url
+
+	PLAYLINK(name,url,ICON)
+
+def PLAYLINK(name,url,icon):
+
+	xbmc.Player().play(url)
 
 #######################################################################
 #				INDIVIDUAL BUILDS MENU
@@ -369,8 +452,21 @@ def count(build_name,FILE):
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>'+re.escape(build_name)+'</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		return count
+	elif "NUMBER_OF_ADDONS" in build_name:
+		build_name = build_name.replace("NUMBER_OF_ADDONS","")
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>addon Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	elif "ADDON_TOTAL" in build_name:
 		build_name = build_name.replace("ADDON_TOTAL","")
@@ -378,8 +474,13 @@ def count(build_name,FILE):
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>'+re.escape(build_name)+'</name>.+?<atotal>(.+?)</atotal>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	elif "DEVEL_COUNT" in build_name:
 		build_name = build_name.replace("DEVEL_COUNT","")
@@ -387,8 +488,7 @@ def count(build_name,FILE):
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<dev>'+re.escape(build_name)+'</dev><dcount>(.+?)</dcount>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
 		return count
 	elif "TOTAL_DEV" in build_name:
 		build_name = build_name.replace("TOTAL_DEV","")
@@ -396,8 +496,13 @@ def count(build_name,FILE):
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<dev>'+re.escape(build_name)+'</dev><dcount>.+?</dcount><dtotal>(.+?)</dtotal>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	elif "TOTAL_COUNT" in build_name:
 		build_name = build_name.replace("TOTAL_COUNT","")
@@ -405,32 +510,72 @@ def count(build_name,FILE):
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>'+re.escape(build_name)+'</name>.+?<total>(.+?)</total>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	elif "TOTAL_BUILDS_WEEK" in build_name:
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>Download Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	elif "TOTAL_ADDONS_WEEK" in build_name:
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>Download Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
+		return count
+	elif "TOTAL_BUILDS_ALLTIME" in build_name:
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>Download Total Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
+		return count
+	elif "TOTAL_ADDONS_ALLTIME" in build_name:
+		f = open(FILE,mode='r'); msg = f.read(); f.close()
+		msg = msg.replace('\n','')
+		try:
+			count = re.compile('<item><name>Download Total Count</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
+		except: count = 0
+		countfail = count
+		try:
+			count2 = int(count)
+			count3 = "{:,}".format(count2)
+			count = str(count3)
+		except: count = countfail
 		return count
 	else:
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
 			count = re.compile('<item><name>'+re.escape(build_name)+'</name><count>(.+?)</count>',re.DOTALL).findall(msg)[0]
-		except: 
-			count = "0"
+		except: count = 0
 		return count
 
 
@@ -500,28 +645,56 @@ def TextBoxesPlain(announce):
 		time.sleep(.5)
 
 def OPEN_URL(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl'))
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link  
+
+	try:
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl'))
+		response = urllib2.urlopen(req)
+		link=response.read()
+		response.close()
+		return link
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
+	
+def OPEN_URL_CUSTOM(url,ua):
+
+	try:
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', ua)
+		response = urllib2.urlopen(req)
+		link=response.read()
+		response.close()
+		return link
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
 
 def OPEN_URL_NORMAL(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'python-requests/2.9.1')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link  
+
+	try:
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', 'python-requests/2.9.1')
+		response = urllib2.urlopen(req)
+		link=response.read()
+		response.close()
+		return link
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
 
 def OPEN_URL_BEAST(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link  
+
+	try:
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
+		response = urllib2.urlopen(req)
+		link=response.read()
+		response.close()
+		return link
+	except: 
+		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
+		quit()
 
 def get_size(start_path):
     total_size = 0

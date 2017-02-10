@@ -1,11 +1,6 @@
 <?xml version="1.0.1" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.2" provider-name="MetalKettle">
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.3" provider-name="MetalKettle">
 	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
-	<dir>
-		<info compressed="false">https://raw.githubusercontent.com/MetalKettle/Addon_Repository/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/MetalKettle/Addon_Repository/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/MetalKettle/Addon_Repository/master/zips</datadir>
-	</dir>
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
@@ -21,3 +16,4 @@
 		<platform>all</platform>
 	</extension>
 </addon>
+

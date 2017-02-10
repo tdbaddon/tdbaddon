@@ -449,7 +449,7 @@ def TITLE_ORDERS_YOUTUBE(name, url,fanart):
         
 def SF_Download(name,url,iconimage,split):
     import downloader
-    name=name.replace(' [/color]','').split('~')[split]
+    name=name.replace(' [/COLOR]','').split('~')[split]
     dp = xbmcgui.DialogProgress()
     dp.create("Mikeys Karaoke","",'Downloading', name)
     path = xbmc.translatePath(os.path.join(sfdownloads,''))

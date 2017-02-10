@@ -338,7 +338,7 @@ class VideoInfo(object):
     def load_stream_infos(self, video_id):
         return self._method_get_video_info(video_id)
 
-    def _method_watch(self, video_id, reason=u''):
+    def _method_watch(self, video_id, reason=u'', meta_info=None):
         stream_list = []
 
         headers = {'Host': 'www.youtube.com',
@@ -373,20 +373,23 @@ class VideoInfo(object):
                 pass
             pass
 
-        meta_info = {'video': {},
-                     'channel': {},
-                     'images': {},
-                     'subtitles': []}
+        _meta_info = {'video': {},
+                      'channel': {},
+                      'images': {},
+                      'subtitles': []}
+        meta_info = meta_info if meta_info else _meta_info
 
         re_match_hlsvp = re.search(r'\"hlsvp\"[^:]*:[^"]*\"(?P<hlsvp>[^"]*\")', html)
         if re_match_hlsvp:
             hlsvp = urllib.unquote(re_match_hlsvp.group('hlsvp')).replace('\/', '/')
-            return self._load_manifest(hlsvp, video_id)
+            return self._load_manifest(hlsvp, video_id, meta_info=meta_info)
 
         re_match_js = re.search(r'\"js\"[^:]*:[^"]*\"(?P<js>.+?)\"', html)
         cipher = None
         if re_match_js:
             js = re_match_js.group('js').replace('\\', '').strip('//')
+            if not js.startswith('http'):
+                js = 'http://www.youtube.com/%s' % js
             cipher = Cipher(self._context, java_script_url=js)
             pass
 
@@ -467,7 +470,7 @@ class VideoInfo(object):
 
         return stream_list
 
-    def _load_manifest(self, url, video_id):
+    def _load_manifest(self, url, video_id, meta_info=None):
         headers = {'Host': 'manifest.googlevideo.com',
                    'Connection': 'keep-alive',
                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
@@ -478,6 +481,11 @@ class VideoInfo(object):
                    'Accept-Language': 'en-US,en;q=0.8,de;q=0.6'}
         result = requests.get(url, headers=headers, verify=False, allow_redirects=True)
         lines = result.text.splitlines()
+        _meta_info = {'video': {},
+                      'channel': {},
+                      'images': {},
+                      'subtitles': []}
+        meta_info = meta_info if meta_info else _meta_info
         streams = []
         re_line = re.compile(r'RESOLUTION=(?P<width>\d+)x(?P<height>\d+)')
         re_itag = re.compile(r'/itag/(?P<itag>\d+)')
@@ -495,7 +503,8 @@ class VideoInfo(object):
 
                     width = int(re_match.group('width'))
                     height = int(re_match.group('height'))
-                    video_stream = {'url': line}
+                    video_stream = {'url': line,
+                                    'meta': meta_info}
                     video_stream.update(yt_format)
                     streams.append(video_stream)
                     pass
@@ -533,15 +542,6 @@ class VideoInfo(object):
         data = result.text
         params = dict(urlparse.parse_qsl(data))
 
-        if params.get('status', '') == 'fail':
-            return self._method_watch(video_id, reason=params.get('reason', 'UNKNOWN'))
-
-        if params.get('live_playback', '0') == '1':
-            url = params.get('hlsvp', '')
-            if url:
-                return self._load_manifest(url, video_id)
-            pass
-
         meta_info = {'video': {},
                      'channel': {},
                      'images': {},
@@ -560,6 +560,15 @@ class VideoInfo(object):
             if image_url:
                 meta_info['images'][image_data['to']] = image_url
                 pass
+            pass
+
+        if params.get('status', '') == 'fail':
+            return self._method_watch(video_id, reason=params.get('reason', 'UNKNOWN'), meta_info=meta_info)
+
+        if params.get('live_playback', '0') == '1':
+            url = params.get('hlsvp', '')
+            if url:
+                return self._load_manifest(url, video_id, meta_info=meta_info)
             pass
 
         """
@@ -588,21 +597,32 @@ class VideoInfo(object):
             pass
         """
 
-        if self._context.get_settings().use_dash():
-            mpd_url = params.get('dashmpd', None)
-            use_cipher_signature = 'True' == params.get('use_cipher_signature', None)
-            if mpd_url:
-                if use_cipher_signature or re.search('/s/[0-9A-F\.]+', mpd_url):
-                    # fuck!!! in this case we must call the web page
-                    return self._method_watch(video_id)
+        settings = self._context.get_settings()
+        use_dash = settings.use_dash()
 
-                meta_info['subtitles'] = Subtitles(self._context, video_id).get()
-                video_stream = {'url': mpd_url,
-                                'title': meta_info['video'].get('title', ''),
-                                'meta': meta_info}
-                video_stream.update(self.FORMAT.get('9999'))
-                stream_list.append(video_stream)
-                return stream_list
+        if use_dash:
+            if settings.dash_support_addon() and not self._context.addon_enabled('inputstream.adaptive'):
+                if self._context.get_ui().on_yes_no_input(self._context.get_name(), self._context.localize(30579)):
+                    use_dash = self._context.set_addon_enabled('inputstream.adaptive')
+                else:
+                    use_dash = False
+
+            if use_dash:
+                mpd_url = params.get('dashmpd', None)
+                use_cipher_signature = 'True' == params.get('use_cipher_signature', None)
+                if mpd_url:
+                    if use_cipher_signature or re.search('/s/[0-9A-F\.]+', mpd_url):
+                        # in this case we must call the web page
+                        self._context.log_info('Unable to use mpeg-dash for %s, unable to decipher signature. Attempting fallback play method...' % video_id)
+                        return self._method_watch(video_id, meta_info=meta_info)
+
+                    meta_info['subtitles'] = Subtitles(self._context, video_id).get()
+                    video_stream = {'url': mpd_url,
+                                    'title': meta_info['video'].get('title', ''),
+                                    'meta': meta_info}
+                    video_stream.update(self.FORMAT.get('9999'))
+                    stream_list.append(video_stream)
+                    return stream_list
 
         added_subs = False  # avoid repeat calls from loop or cipher signature
         # extract streams from map
@@ -618,8 +638,8 @@ class VideoInfo(object):
                     if 'sig' in stream_map:
                         url += '&signature=%s' % stream_map['sig']
                     elif 's' in stream_map:
-                        # fuck!!! in this case we must call the web page
-                        return self._method_watch(video_id)
+                        # in this case we must call the web page
+                        return self._method_watch(video_id, meta_info=meta_info)
 
                     itag = stream_map['itag']
                     yt_format = self.FORMAT.get(itag, None)

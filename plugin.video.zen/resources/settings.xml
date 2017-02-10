@@ -63,6 +63,7 @@
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
 		
 		<setting id="provider.bobby" type="bool" label="Bobby" default="true" />	
+		<setting id="provider.chillflix" type="bool" label="Chillflix" default="true" />	
 
 		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
 

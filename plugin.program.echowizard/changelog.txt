@@ -1,3 +1,19 @@
+[COLOR yellowgreen]1.73: 10th February 2017[/COLOR]
+[COLOR white][B]- Numerous fixes.[/B][/COLOR]
+
+[COLOR yellowgreen]1.72: 9th February 2017[/COLOR]
+[COLOR white][B]- Added numerous additions from Kodiapps.[/B][/COLOR]
+
+[COLOR yellowgreen]1.71: 9th February 2017[/COLOR]
+[COLOR white][B]- Repo/Source checker by Kodiapps added.[/B][/COLOR]
+
+[COLOR yellowgreen]1.70: 9th February 2017[/COLOR]
+[COLOR white][B]- Changes made to download counters.[/B][/COLOR]
+
+[COLOR yellowgreen]1.69: 8th February 2017[/COLOR]
+[COLOR white][B]- YouTube videos added to builds and addons.[/B][/COLOR]
+[COLOR white][B]- Rework of file manager sources.[/B][/COLOR]
+
 [COLOR yellowgreen]1.68: 6th February 2017[/COLOR]
 [COLOR white][B]- Fix error getting counts for some builds.[/B][/COLOR]
 
