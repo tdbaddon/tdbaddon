@@ -57,6 +57,33 @@ def GET_KODI_VERSION():
 	else: codename = "Decline"
 	
 	return codename
+	
+def GET_KODI_VERSION_DETAILS():
+
+	try:
+		xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
+		version=float(xbmc_version[:4])
+		if version >= 11.0 and version <= 11.9:
+			codename = 'Eden'
+		elif version >= 12.0 and version <= 12.9:
+			codename = 'Frodo'
+		elif version >= 13.0 and version <= 13.9:
+			codename = 'Gotham'
+		elif version >= 14.0 and version <= 14.9:
+			codename = 'Helix'
+		elif version >= 15.0 and version <= 15.9:
+			codename = 'Isengard'
+		elif version >= 16.0 and version <= 16.9:
+			codename = 'Jarvis'
+		elif version >= 17.0 and version <= 17.9:
+			codename = 'Krypton'
+		else: codename = "Decline"
+		
+		string = codename + " - " + str(version)
+	except: string = "Unknown"
+
+	return string
+
 
 def addDir(name,url,mode,iconimage,fanart,description):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)
@@ -430,14 +457,16 @@ def review_parse(data):
 def add_one(build_name):
 
 	if not "ADDON_INSTALLER" in build_name:
+		build_name,dev_name = build_name.split('|SPLIT|')
+		build_name = INVALID_CHARACTERS(build_name)
 		try:
-			build_name,dev_name = build_name.split('|SPLIT|')
 			service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWFkZCZidWlsZD0=') + base64.b64encode(build_name) + "&dev=" + base64.b64encode(dev_name)
 			body =urllib2.urlopen(service_url).read()
 		except:
 			sys.exit(0)
 	else:
 		build_name = build_name.replace("ADDON_INSTALLER","")
+		build_name = INVALID_CHARACTERS(build_name)
 		try:
 			service_url = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWFkZCZidWlsZD0=') + base64.b64encode(build_name)
 			body =urllib2.urlopen(service_url).read()
@@ -448,6 +477,7 @@ def count(build_name,FILE):
 
 	if "ADDON_INSTALLER" in build_name:
 		build_name = build_name.replace("ADDON_INSTALLER","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -456,6 +486,7 @@ def count(build_name,FILE):
 		return count
 	elif "NUMBER_OF_ADDONS" in build_name:
 		build_name = build_name.replace("NUMBER_OF_ADDONS","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -470,6 +501,7 @@ def count(build_name,FILE):
 		return count
 	elif "ADDON_TOTAL" in build_name:
 		build_name = build_name.replace("ADDON_TOTAL","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -484,6 +516,7 @@ def count(build_name,FILE):
 		return count
 	elif "DEVEL_COUNT" in build_name:
 		build_name = build_name.replace("DEVEL_COUNT","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -492,6 +525,7 @@ def count(build_name,FILE):
 		return count
 	elif "TOTAL_DEV" in build_name:
 		build_name = build_name.replace("TOTAL_DEV","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -506,6 +540,7 @@ def count(build_name,FILE):
 		return count
 	elif "TOTAL_COUNT" in build_name:
 		build_name = build_name.replace("TOTAL_COUNT","")
+		build_name = INVALID_CHARACTERS(build_name)
 		f = open(FILE,mode='r'); msg = f.read(); f.close()
 		msg = msg.replace('\n','')
 		try:
@@ -578,6 +613,13 @@ def count(build_name,FILE):
 		except: count = 0
 		return count
 
+def INVALID_CHARACTERS(string):
+
+	string = str(string)
+	string = string.replace("&","and")
+	string = string.replace(",","")
+	
+	return string
 
 def SHOW_PICTURE(url):
 
@@ -646,19 +688,19 @@ def TextBoxesPlain(announce):
 
 def OPEN_URL(url):
 
-	try:
+		if "https://" in url:
+			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl'))
 		response = urllib2.urlopen(req)
 		link=response.read()
 		response.close()
 		return link
-	except: 
-		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
-		quit()
 	
 def OPEN_URL_CUSTOM(url,ua):
 
+		if "https://" in url:
+			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', ua)
 		response = urllib2.urlopen(req)
@@ -668,8 +710,10 @@ def OPEN_URL_CUSTOM(url,ua):
 
 def OPEN_URL_NORMAL(url):
 
+		if "https://" in url:
+			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
-		req.add_header('User-Agent', 'python-requests/2.9.1')
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 		response = urllib2.urlopen(req)
 		link=response.read()
 		response.close()
@@ -677,6 +721,8 @@ def OPEN_URL_NORMAL(url):
 
 def OPEN_URL_BEAST(url):
 
+		if "https://" in url:
+			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
 		response = urllib2.urlopen(req)

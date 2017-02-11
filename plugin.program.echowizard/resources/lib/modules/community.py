@@ -243,6 +243,10 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 			iconimage = ICON
 		if fanart.lower() == "null":
 			fanart = FANART
+		if platform == "16":
+			platform = "16.1"
+		if "16.0" in platform:
+			platform = "16.1"
 		if not "." in platform:
 			platform = platform + ".0"
 			platform = float(platform)

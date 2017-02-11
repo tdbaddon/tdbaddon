@@ -230,17 +230,6 @@ if os.path.isfile(NOTICE):
 	os.remove(NOTICE)
 
 #######################################################################
-#			CREATE FILES AND FOLDERS FOR ECHO API
-#######################################################################
-
-if not os.path.exists(TEMP_FOLDER):
-	os.makedirs(TEMP_FOLDER)
-if not os.path.isfile(TEMP_FILE):
-	open(TEMP_FILE, 'w')
-if not os.path.isfile(TEMP_ADDONS):
-	open(TEMP_ADDONS, 'w')
-
-#######################################################################
 #						ECHO WIZARD ROOT MENU
 #######################################################################
 
@@ -320,6 +309,7 @@ def INDEX():
 	#######################################################################
 
 	kodi_name = Common.GET_KODI_VERSION()
+	kodi_details = Common.GET_KODI_VERSION_DETAILS()
 
 	#######################################################################
 	#					GET API INFORMATION
@@ -380,11 +370,9 @@ def INDEX():
 				Common.addItem('[COLOR yellowgreen][B]' + CURRENT_BUILD.upper() + ' IS UP TO DATE![/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 		except:
 			Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
-	else:
-		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
-		if os.path.isfile(COMMUNITY_BUILD):
-			Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
+	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	Common.addItem("[COLOR white][B]ECHO WIZARD VERSION:[/COLOR] [COLOR yellowgreen]" + str(addon_version) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
+	Common.addItem("[COLOR white][B]KODI VERSION:[/COLOR] [COLOR yellowgreen]" + str(kodi_details) + "[/B][/COLOR]",'url',999,ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
@@ -460,13 +448,15 @@ def BUILDMENU():
 		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR yellowgreen][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
 		return
 
-	namelist=[]
-	urllist=[]
-	deslist=[]
-	countlist=[]
-	totallist=[]
-	iconlist=[]
-	fanartlist=[]
+	namelist      = []
+	urllist       = []
+	deslist       = []
+	countlist     = []
+	totallist     = []
+	iconlist      = []
+	fanartlist    = []
+	combinedlists = []
+
 	link = Common.OPEN_URL(ECHO_BUILDS).replace('\n','').replace('\r','')
 	link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>").replace("<hash></hash>","<hash>null</hash>")
 	match= re.compile('<item>(.+?)</item>').findall(link)
@@ -685,12 +675,14 @@ def MAINTENANCE_MENU():
 
 def KEYMAPS():
 
-	namelist=[]
-	urllist=[]
-	countlist=[]
-	totallist=[]
-	iconlist=[]
-	fanartlist=[]
+	namelist      = []
+	urllist       = []
+	countlist     = []
+	totallist     = []
+	iconlist      = []
+	fanartlist    = []
+	combinedlists = []
+
 	link = Common.OPEN_URL(KeymapsURL).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?ash="(.+?)"').findall(link)
 	if os.path.isfile(KEYBOARD_FILE):
@@ -722,12 +714,14 @@ def ADVANCEDSETTINGS():
 
 	kodi_name = Common.GET_KODI_VERSION()
 
-	namelist=[]
-	urllist=[]
-	countlist=[]
-	totallist=[]
-	iconlist=[]
-	fanartlist=[]
+	namelist      = []
+	urllist       = []
+	countlist     = []
+	totallist     = []
+	iconlist      = []
+	fanartlist    = []
+	combinedlists = []
+
 	link = Common.OPEN_URL(AdvancedSettings).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?ash="(.+?)"').findall(link)
 	if os.path.isfile(ADVANCED_SET_FILE):
@@ -766,81 +760,40 @@ def ADVANCEDSETTINGS():
 
 def FANRIFFIC_THEMES():
 
-	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
-	version=float(xbmc_version[:4])
-	codename = "Decline"
+	dp.create(AddonTitle, "[COLOR red][B]NOT CONNECTED![/B][/COLOR]", "[COLOR yellowgreen]Attempting to connect to Fanriffic server.[/COLOR]")
 
-	if version >= 16.0 and version <= 16.9:
-		codename = 'Jarvis'
-	if version >= 17.0 and version <= 17.9:
-		codename = 'Krypton'
+	namelist      = []
+	urllist       = []
+	countlist     = []
+	totallist     = []
+	iconlist      = []
+	fanartlist    = []
+	combinedlists = []
+	combinedlists2= []
+	
+	codename = Common.GET_KODI_VERSION()
 	
 	if codename == "Jarvis":
-		i=0
-		dp.create(AddonTitle,"[COLOR blue]We are getting the list of themes from the fanriffic server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
-		dp.update(0)
-		namelist=[]
-		urllist=[]
-		countlist=[]
-		totallist=[]
-		iconlist=[]
-		fanartlist=[]
-		link = Common.OPEN_URL(FANRIFFIC_URL_NEW).replace('\n','').replace('\r','')
-		link2 = Common.OPEN_URL(FANRIFFIC_URL_OLD).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
-		match2 = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link2)
-		dis_links1 = len(match)
-		dis_links2 = len(match2)
-		dis_links  = dis_links1 + dis_links2
-		for name,url,iconimage,fanart,description in match:
-			name2 = name
-			url = name2 + "|SPLIT|" + url
-			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
-			i = i + 1
-			dis_count = str(i)
-			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-			namelist.append(name)
-			urllist.append(url)
-			countlist.append(str(Common.count(name2,TEMP_FILE)))    
-			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    			
-			iconlist.append(iconimage)
-			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
-		for name,url,iconimage,fanart,description in match2:
-			name2 = name
-			url = name2 + "|SPLIT|" + url
-			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
-			i = i + 1
-			dis_count = str(i)
-			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-			namelist.append(name)
-			urllist.append(url)
-			countlist.append(str(Common.count(name2,TEMP_FILE)))   
-			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    			
-			iconlist.append(iconimage)
-			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		dp.close()
-		for count,total,name,url,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
-			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
+		urls = [FANRIFFIC_URL_NEW,FANRIFFIC_URL_OLD]
+	elif codename == "Krypton": 
+		urls = [FANRIFFIC_KRYPTON]
+	else:
+		dialog.ok(AddonTitle, "Sorry, there are no supported Fanriffic themes for " + codename)
+		quit()
 
-	elif codename == "Krypton":
-		i=0
-		dp.create(AddonTitle,"[COLOR blue]We are getting the list of themes from the fanriffic server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
-		dp.update(0)
-		namelist=[]
-		urllist=[]
-		countlist=[]
-		totallist=[]
-		iconlist=[]
-		fanartlist=[]
-		link = Common.OPEN_URL(FANRIFFIC_KRYPTON).replace('\n','').replace('\r','')
+	url_count = len(urls)
+	i=0
+	j = 1
+
+	for url_list in urls:
+		dp.update(0, "[COLOR lime][B]CONNECTED![/B][/COLOR]", "[COLOR yellowgreen]Getting themes from location " + str(j) + " of " + str(url_count) + "[/COLOR]")
+		link = Common.OPEN_URL(url_list).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
+		dis_links = 0
 		dis_links = len(match)
+		i = 0
+		j = j + 1
+
 		for name,url,iconimage,fanart,description in match:
 			name2 = name
 			url = name2 + "|SPLIT|" + url
@@ -848,26 +801,21 @@ def FANRIFFIC_THEMES():
 			i = i + 1
 			dis_count = str(i)
 			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			dp.update(progress,"","","[COLOR white]Getting details from theme " + str(dis_count) + " of " + str(dis_links) + "[/COLOR]")
 			namelist.append(name)
 			urllist.append(url)
 			countlist.append(str(Common.count(name2,TEMP_FILE)))    
-			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    
+			totallist.append(str(Common.count(name2+"TOTAL_COUNT",TEMP_FILE)))    			
 			iconlist.append(iconimage)
 			fanartlist.append(fanart)
 			combinedlists = list(zip(countlist,totallist,namelist,urllist,iconlist,fanartlist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		dp.close()
-		for count,total,name,url,iconimage,fanart in tup:
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
-			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
 
-	#if codename == "Decline":
-	#	dialog.ok(AddonTitle,'[COLOR white]Sorry there are no supported themes for your version of Kodi.')
-    #   quit()
+	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+	dp.close()
 
-	view_mode = SET_VIEW("list")
-	xbmc.executebuiltin(view_mode)
+	for count,total,name,url,iconimage,fanart in tup:
+		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
+		Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
 
 #######################################################################
 #						SPEEDTEST LIST
@@ -885,6 +833,15 @@ def SPEEDTEST():
 
 def GET_COUNTS():
 	
+	if not os.path.exists(TEMP_FOLDER):
+		os.makedirs(TEMP_FOLDER)
+	if not os.path.isfile(TEMP_FILE):
+		open(TEMP_FILE, 'w')
+	if not os.path.isfile(TEMP_ADDONS):
+		open(TEMP_ADDONS, 'w')
+	if not os.path.isfile(KODIAPPS_FILE):
+		open(KODIAPPS_FILE, 'w')
+
 	api_interval = plugintools.get_setting("api_interval")
 
 	if api_interval == "0":
@@ -905,6 +862,7 @@ def GET_COUNTS():
 	
 	fileCreation = os.path.getmtime(TEMP_FILE)
 	fileCreation2 = os.path.getmtime(TEMP_ADDONS)
+	fileCreation3 = os.path.getmtime(KODIAPPS_FILE)
 
 	now = time.time()
 
@@ -914,7 +872,9 @@ def GET_COUNTS():
 	compfile = text_file.read()  
 	text_file = open(TEMP_ADDONS)
 	compfile2 = text_file.read()  
-	
+	text_file = open(KODIAPPS_FILE)
+	compfile3 = text_file.read()
+
 	if len(compfile) == 0:
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
 
@@ -944,6 +904,19 @@ def GET_COUNTS():
 		text_file.write(counts)
 		text_file.close()
 		
+	if len(compfile3) == 0:
+		counts=Common.OPEN_URL_NORMAL(KODIAPPS_API)
+
+		text_file = open(KODIAPPS_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
+
+	elif fileCreation3 < check:
+
+		counts=Common.OPEN_URL_NORMAL(KODIAPPS_API)
+		text_file = open(KODIAPPS_FILE, "w")
+		text_file.write(counts)
+		text_file.close()
 
 #######################################################################
 #						BACKUP MENU MENU

@@ -601,8 +601,8 @@ class indexer:
         elif 'tvshows' in mode: mode = 'tvshows'
         elif 'seasons' in mode: mode = 'seasons'
         elif 'episodes' in mode: mode = 'episodes'
-        elif 'addons' in mode: mode = 'addons'
-        else: mode = 'videos'
+        elif 'videos' in mode: mode = 'videos'
+        else: mode = 'addons'
 
         for i in items:
             try:

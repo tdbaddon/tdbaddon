@@ -1,2 +1,2 @@
-[B]3.2.1[/B]
-Updated providers
+[B]3.2.2[/B]
+- Tweaks

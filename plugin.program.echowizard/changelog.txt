@@ -1,3 +1,8 @@
+[COLOR yellowgreen]1.75: 11th February 2017[/COLOR]
+[COLOR white][B]- Fix issues with OSMC.[/B][/COLOR]
+[COLOR white][B]- Better system for Fanriffic themes.[/B][/COLOR]
+[COLOR white][B]- Fix issues with invalid characters added to database.[/B][/COLOR]
+
 [COLOR yellowgreen]1.74: 10th February 2017[/COLOR]
 [COLOR white][B]- Hopefully a fix for Kodi 16 errors in addon installer.[/B][/COLOR]
 
