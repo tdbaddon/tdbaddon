@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.bretts.retro.tv" name="[COLOR red]B[/COLOR][COLOR white]RETT'S[/COLOR] [COLOR red]R[/COLOR][COLOR white]ETRO[/COLOR] [COLOR red]T[/COLOR][COLOR white]V[/COLOR]" version="2.0.0" provider-name="BRETTUS">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="community.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Watch All Episodes And Movies For All Your All Time Retro Faves</summary>
+    <description lang="en">Brett's Retro TV Info And Help Can Be Found On Facebook Or Twitter Just Search Brettus Builds</description>
+    <platform>all</platform>
+  </extension>
+</addon>

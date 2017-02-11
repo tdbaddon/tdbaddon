@@ -659,42 +659,30 @@ def OPEN_URL(url):
 	
 def OPEN_URL_CUSTOM(url,ua):
 
-	try:
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', ua)
 		response = urllib2.urlopen(req)
 		link=response.read()
 		response.close()
 		return link
-	except: 
-		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
-		quit()
 
 def OPEN_URL_NORMAL(url):
 
-	try:
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'python-requests/2.9.1')
 		response = urllib2.urlopen(req)
 		link=response.read()
 		response.close()
 		return link
-	except: 
-		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
-		quit()
 
 def OPEN_URL_BEAST(url):
 
-	try:
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
 		response = urllib2.urlopen(req)
 		link=response.read()
 		response.close()
 		return link
-	except: 
-		dialog.ok(AddonTitle, "[COLOR red][B]There was an error connecting to the requested URL.[/B][/COLOR]", "[COLOR yellowgreen][I]Please try again later.[/I][/COLOR]")
-		quit()
 
 def get_size(start_path):
     total_size = 0

@@ -676,6 +676,7 @@ def GET_MULTI(name,url):
 						ADDON  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
 						if not os.path.exists(ADDON):
 							url = str(sturl)
+							url = url.replace("https://","http://")
 							install_name = str("[COLOR yellowgreen][B]" + caption + "[/B][/COLOR]")
 							INSTALL(install_name,url)
 							if kodi_name == "Krypton":
@@ -703,6 +704,7 @@ def GET_MULTI(name,url):
 						if not "http" in caption:
 							if not os.path.exists(ADDON2):
 								url = str(sturl)
+								url = url.replace("https://","http://")
 								install_name = str("[COLOR yellowgreen][B]" + caption + "[/B][/COLOR]")
 								INSTALL(install_name,url)
 								if kodi_name == "Krypton":
@@ -1143,7 +1145,7 @@ def GET_KODIAPPS_RANKING_LOCAL(addon_id):
 		compfile = text_file.read()  
 		
 		if len(compfile) == 0:
-			counts=Common.OPEN_URL_NORMAL("https://kodiapps.com/echos.xml")
+			counts=Common.OPEN_URL_NORMAL("http://kodiapps.com/echos.xml")
 
 			text_file = open(KODIAPPS_FILE, "w")
 			text_file.write(counts)
@@ -1151,7 +1153,7 @@ def GET_KODIAPPS_RANKING_LOCAL(addon_id):
 
 		elif fileCreation < check:
 
-			counts=Common.OPEN_URL_NORMAL("https://kodiapps.com/echos.xml")
+			counts=Common.OPEN_URL_NORMAL("http://kodiapps.com/echos.xml")
 
 			text_file = open(KODIAPPS_FILE, "w")
 			text_file.write(counts)

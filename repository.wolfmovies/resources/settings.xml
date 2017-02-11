@@ -1,0 +1,7 @@
+<settings>
+	
+	<category label="Site-Url">
+		<setting id="base_url" type="text" label="BaseUrl" default="https://123movies.net.ru" visible="true"/>
+	</category>
+	
+</settings>

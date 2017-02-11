@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <addon id="plugin.video.velocity" version="1.0.8" name="Velocity" provider-name="Blazetamer">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver"  version="2.1.2"/>
+        <import addon="script.module.t0mm0.common" version="2.0.0"/>
+        <import addon="script.module.autoupdate" version="2.0.0" />
+
+        
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Stream Videos from multiple sources</summary>
+        <description>Stream Videos from multiple sources via Information obtained from Trakt.tv, and or your Trakt Account</description>
+        <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content providers.</disclaimer>
+        <language>en</language>
+        <platform>all</platform>
+        <forum>https://forums.tvaddons.ag/blazetamer-s-repository/39658-velocity-20.html</forum>
+        <website>https://offshoregit.com/Blazetamer/velocity.html</website>
+        <source></source>
+        <email></email>
+    </extension>
+</addon>

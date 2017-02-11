@@ -147,7 +147,7 @@ def GETPLAYLINK(name,url,iconimage):
                 #jsdone=jsunpack.unpack(js)
                 #try:url=re.compile('<source src="(.+?)" type="video/mp4"').findall(jsdone)[-2]
                 #except:url=re.compile('<source src="(.+?)" type="video/mp4"').findall(jsdone)[0]
-        urls=re.compile('Right Click and Save Link as(.+?)id="timepause"></div>').findall(link)[0]
+        urls=re.compile('Right Click and Save Link as(.+?)pausePlayer',re.DOTALL).findall(link)[0]
         url=re.compile('<a href="(.+?)" target').findall(link)[-1]
         PLAYLINK(name,url,iconimage)
 

@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.73"
+	     version="1.74"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -448,29 +448,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <screenshot>resources/art/screenshots/screenshot-5.png</screenshot>
         <screenshot>resources/art/screenshots/screenshot-6.png</screenshot>
     </assets>
-  </extension>
-</addon>
-
-<addon id="plugin.program.goodfellasmessages" version="1.1.2"
-       name="GoodFellas Messages" provider-name="The Goodfellas">
-  <requires>
-  	<import addon="xbmc.python" version="2.1.0"/>
-  	<import addon="script.module.addon.common" optional="true" />
-  </requires>
-  <extension point="xbmc.python.script" library="default.py">
-    <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="startup">
-  </extension>
-  <extension point="xbmc.addon.metadata">
-  	<summary>GOODFELLAS NEWS</summary>
-  	<description>Goodfellas Messages</description>
-  	<disclaimer>We do not assume any responsibility for any problems this may cause plugin.</disclaimer>
-  	<language>en</language>
-  	<platform>all</platform>
-  	<website>http://www.teamgoodfellas.com</website>
-  	<source></source>
-  	<email>none</email>
   </extension>
 </addon>
 
@@ -534,30 +511,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description>HalowTV and iStream Playlister | Kodi Build Maker | Follow Me @TheChief_Kodi | The Rest Is History |</description>
 	<disclaimer lang="en">[B]Free Builds Created By The Chief For The Commnunity. Please Do Not Sell these builds. They Are Given Free To The Community. Do Not Ruin It For Them.[/B]</disclaimer>
     <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.program.xbmchub.notifications" version="1.0.2"
-       name="Notifications" provider-name="tvaddons.ag">
-  <requires>
-  	<import addon="xbmc.python" version="2.1.0"/>
-  	<import addon="script.module.addon.common" optional="true" />
-  </requires>
-  <extension point="xbmc.python.script" library="default.py">
-    <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="startup">
-  </extension>
-  <extension point="xbmc.addon.metadata">
-  	<summary>TVADDONS NEWS</summary>
-  	<description>Receive Important TVADDONS Notifications. Unsubscribe within Add-on Settings.</description>
-  	<disclaimer>We take no responsibility for any problems this plugin might in any way, form, shape or size cause.</disclaimer>
-  	<language>en</language>
-  	<platform>all</platform>
-  	<forum>http://forums.tvaddons.ag/forum.php</forum>
-  	<website>http://www.tvaddons.ag/</website>
-  	<source></source>
-  	<email></email>
   </extension>
 </addon>
 
@@ -694,7 +647,23 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.24" provider-name="MetalKettle">
+<addon id="plugin.video.bretts.retro.tv" name="[COLOR red]B[/COLOR][COLOR white]RETT'S[/COLOR] [COLOR red]R[/COLOR][COLOR white]ETRO[/COLOR] [COLOR red]T[/COLOR][COLOR white]V[/COLOR]" version="2.0.0" provider-name="BRETTUS">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="community.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Watch All Episodes And Movies For All Your All Time Retro Faves</summary>
+    <description lang="en">Brett's Retro TV Info And Help Can Be Found On Facebook Or Twitter Just Search Brettus Builds</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.25" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -2459,6 +2428,21 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="plugin.video.tvmix" name="TV Mix" version="1.0.6" provider-name="MetalKettle">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.urlresolver"  version="2.1.2"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en"></summary>
+		<description lang="en"></description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="plugin.video.tvo"
        name="TV Ontario"
        version="1.0.7"
@@ -2601,6 +2585,31 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 </addon>
 
+    <addon id="plugin.video.velocity" version="1.0.8" name="Velocity" provider-name="Blazetamer">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver"  version="2.1.2"/>
+        <import addon="script.module.t0mm0.common" version="2.0.0"/>
+        <import addon="script.module.autoupdate" version="2.0.0" />
+
+
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Stream Videos from multiple sources</summary>
+        <description>Stream Videos from multiple sources via Information obtained from Trakt.tv, and or your Trakt Account</description>
+        <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content providers.</disclaimer>
+        <language>en</language>
+        <platform>all</platform>
+        <forum>https://forums.tvaddons.ag/blazetamer-s-repository/39658-velocity-20.html</forum>
+        <website>https://offshoregit.com/Blazetamer/velocity.html</website>
+        <source></source>
+        <email></email>
+    </extension>
+</addon>
+
 <addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="2.0.1" provider-name="Ozzy And Brettus">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2618,6 +2627,36 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
 		<forum>White Devil-Streams</forum>
 		<website>White Devil-Streams</website>
+	</extension>
+</addon>
+
+<addon id="plugin.video.wolfpack" version="1.2" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+		<import addon="repository.wolfmovies" version="1.5"/>
+		<import addon="script.module.wolfpack" version="1.0.3"/>
+		<import addon="plugin.video.bretts.retro.tv" version="2.0.0"/>
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Wolfpack </summary>
+		<description lang="en">Bringing you the best for 2017, this addon is jam packed with
+movies, tv shows, 3D, IPTV, Karaoke, music videos, music album
+and much much more. From the guys who brought you Specialist
+Streams, Brettus media, Beau's Place and more....Wolf Pack is the new
+collaboration guaranteed to mark their territory in the community.
+Enjoy!</description>
+		<platform>all</platform>
+		<forum>Wolfpack can be found on facbook at https://www.facebook.com/groups/kodiwolfpack/</forum>
+		<website>Find us on facebook.</website>
 	</extension>
 </addon>
 
@@ -2876,6 +2915,27 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<description>BES-IPTV Repository by SimpleKodi,SaydinX</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.BlazeRepo" name="Blazetamer's Repository" version="3.2" provider-name="Blazetamer">
+<extension point="xbmc.addon.repository" name="Blaztamer's Addon Repository">
+    <dir>
+	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+    </dir>
+    <dir>
+            <info compressed="false">https://offshoregit.com/Blazetamer/repo/raw/master/addons.xml</info>
+            <checksum>https://offshoregit.com/Blazetamer/repo/raw/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/Blazetamer/repo/raw/master/zips</datadir>
+    </dir>
+
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Install all of Blazetamer's Addons</summary>
+<description>Download and install addons from Blazetamer.......For Official Support Visit TVADDONS.AG</description>
+<platform>all</platform>
+</extension>
 </addon>
 
 <addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.9.0" provider-name="The @CommunityRepo Team">
@@ -3303,13 +3363,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.6.0" provider-name="SchisM">
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.7.0" provider-name="SchisM">
     <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
-	<dir>
-		<info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
-		<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
-		<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
-	</dir>
         <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
         <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
         <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
@@ -3584,6 +3639,23 @@ Addons Included
 	</extension>
 </addon>
 
+<addon id="repository.wolfmovies" name="[COLOR lime][B]WOLFPACK MOVIES[/B][/COLOR]" version="1.5" provider-name="a">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>repository</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+	<disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="repository.xbmchub" name="TVADDONS.AG Add-on Repository" version="1.0.7" provider-name="tvaddons.ag">
 	<extension point="xbmc.addon.repository" name="TVADDONS.AG Add-on Repository">
 	<dir>
@@ -3734,6 +3806,24 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
         <website>http://www.facebook.com/aftershockpy</website>
 		<email>aftershockpy@gmail.com</email>
 	</extension>
+</addon>
+
+<addon id="script.module.autoupdate" name="autoupdate" version="2.0.1" provider-name="Blazetamer">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+  </requires>
+ <extension point="xbmc.python.module" library="lib"/>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">AutoUpdate Add-On at launch</summary>
+    <description lang="en">Allows AutoUpdate of Add-on/Repo at time of add-on launch</description>
+    <language></language>
+    <platform>all</platform>
+        <license>GPLv2</license>
+        <forum></forum>
+        <website>http://cliqaddon.com</website>
+        <email>blazetamer@gmail.com</email>
+        <source></source>
+    </extension>
 </addon>
 
 <addon id="script.module.lamlib" name="lambda Library Routines" version="1.0.0" provider-name="lambda">

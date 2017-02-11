@@ -132,7 +132,7 @@ FANRIFFIC_URL_OLD   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3B
 FANRIFFIC_KRYPTON   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L2tyeXB0b250aGVtZXMudHh0')
 KODIAPPS_ICON       = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20vaW1hZ2VzL2FkZG9ucy9wbHVnaW4udmlkZW8uZXRoZXJlYWx0di9pY29uLnBuZw==')
 KODIAPPS_FANART     = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20vaW1hZ2VzL2FkZG9ucy9wbHVnaW4udmlkZW8uZXRoZXJlYWx0di9mYW5hcnQuanBn')
-KODIAPPS_API        = base64.b64decode(b'aHR0cHM6Ly9rb2RpYXBwcy5jb20vZWNob3MueG1s')
+KODIAPPS_API        = base64.b64decode(b'aHR0cDovL2tvZGlhcHBzLmNvbS9lY2hvcy54bWw=')
 
 #######################################################################
 #					ECHO WIZARD ICONS
@@ -1427,6 +1427,9 @@ def REPO_SOURCE_CHECKER():
 			name=re.compile('<name>(.+?)</name>').findall(items)[0]    
 			repo=re.compile('<repo>(.+?)</repo>').findall(items)[0]    
 			source=re.compile('<sce>(.+?)</sce>').findall(items)[0]    
+			try:
+				iconimage=re.compile('<imge>(.+?)</imge>').findall(items)[0]    
+			except: iconimage = KODIAPPS_ICON
 			
 			if "O" in source:
 				source = "[COLOR lime][B]ONLINE[/B][/COLOR]"
@@ -1436,7 +1439,7 @@ def REPO_SOURCE_CHECKER():
 			else: repo = "[COLOR red][B]OFFLINE[/B][/COLOR]"
 			
 			name = "[COLOR yellowgreen][B]" + name + "[/B][/COLOR]"
-			Common.addItem(name + " - [COLOR white]Source: [/COLOR]" + source + "[COLOR white] | " + "Repo: [/COLOR]" + repo  ,"url",999,KODIAPPS_ICON,KODIAPPS_FANART,'This information is brought to you by kodiapps.com')
+			Common.addItem(name + " - [COLOR white]Source: [/COLOR]" + source + "[COLOR white] | " + "Repo: [/COLOR]" + repo  ,"url",999,iconimage,KODIAPPS_FANART,'This information is brought to you by kodiapps.com')
 	except:
 		dialog.ok(AddonTitle,"There was an error getting the information from Kodiapps.com Please try again later.")
 		quit()
