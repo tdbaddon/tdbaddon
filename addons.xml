@@ -1567,20 +1567,32 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <addon id="plugin.video.MartyMusic"
-       name="Marty Music"
-       version="1005"
+       name="MARTY MUSIC"
+       version="1006"
        provider-name="TDB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>video</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>Marty Music</summary>
-<description>Classical Music for Dogs!</description>
-<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1971,25 +1983,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <description>Live HD sport streams from reddit</description>
     <platform>all</platform>
     <language>en</language>
-  </extension>
-</addon>
-
-<addon id="plugin.video.raspfree" name="Rasp IPTV" version="1.0" provider-name="RaspTV">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Visit us at https://www.rasp.tv</summary>
-    <description lang="en">Free IPTV Channel Lists Maintained by https://www.rasp.tv</description>
-    <disclaimer lang="en">We are not responsible for anything that happens.</disclaimer>
-    <language>en</language>
-    <platform>all</platform>
-    <license>MIT</license>
-    <forum></forum>
-    <source></source>
   </extension>
 </addon>
 
@@ -3445,19 +3438,6 @@ Enjoy!</description>
             <description>SkymashiTV Repository for our Addons and Builds</description>
             <platform>all</platform>
     </extension>
-</addon>
-
-<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
-<extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
-		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
-		<checksum>http://repo.streamteam.space/plugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://repo.streamteam.space/plugins/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>The Streamteam Repository v1.4</summary>
-		<description>The Streamteam Repository v1.4 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="repository.tdbaddon" name="TDB REPO" version="1000" provider-name="TDB">
