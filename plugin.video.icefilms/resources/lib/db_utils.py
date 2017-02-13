@@ -56,7 +56,7 @@ class DB_Connection():
             self.db_type = DB_TYPES.SQLITE
             self.profile_path = addon.get_profile()
             self.cache_path = xbmc.translatePath('special://temp/')
-            self.db_path = os.path.join(self.cache_path, 'ice_cache.db')
+            self.db_path = os.path.join(self.profile_path, 'ice_cache.db')
         self.__connect_to_db()
 
 

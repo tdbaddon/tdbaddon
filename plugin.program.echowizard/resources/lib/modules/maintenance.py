@@ -819,7 +819,7 @@ def view_LastError():
 							dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
 						else:
 							c=THE_ERROR.replace('NEW_L','\n').replace('NEW_R','\r')
-							Common.TextBoxesPlain("%s" % c)
+							Common.TextBoxError('[COLOR yellowgreen][B]ECHO Wizard - ERRORS[/B][/COLOR]',"%s" % c)
 							sys.exit(0)
 
 	if os.path.exists(WindowsCache):
@@ -839,7 +839,7 @@ def view_LastError():
 							dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
 						else:
 							c=THE_ERROR.replace('NEW_L','\n').replace('NEW_R','\r')
-							Common.TextBoxesPlain("%s" % c)
+							Common.TextBoxError('[COLOR yellowgreen][B]ECHO Wizard - ERRORS[/B][/COLOR]',"%s" % c)
 							sys.exit(0)
 	if got_log == 0:
 		dialog.ok(MaintTitle,'Sorry we could not find a log file on your system')
@@ -888,7 +888,7 @@ def view_LastError():
 			for item in error1: errors.append(item)
 	if len(errors) > 0:
 		msg = "[B][COLOR red]THE LAST ERROR YOU ENCOUNTERED WAS:[/B][/COLOR]\n\n%s" % (str(errors[-1]).replace('NEW_L','\n').replace('NEW_R','\r'))
-		Common.TextBoxesPlain(msg)
+		Common.TextBoxError('[COLOR yellowgreen][B]ECHO Wizard - ERRORS[/B][/COLOR]',msg)
 	else: 
 		dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
 
@@ -914,125 +914,55 @@ def view_Errors():
 		for item in errors:
 			i += 1
 			string += "[B][COLOR red]ERROR NUMBER %s[/B][/COLOR]\n\n%s\n" % (str(i), item)
-		Common.TextBoxesPlain(string.replace('NEW_L','\n').replace('NEW_R','\r'))
+		Common.TextBoxError('[COLOR yellowgreen][B]ECHO Wizard - ERRORS[/B][/COLOR]',string.replace('NEW_L','\n').replace('NEW_R','\r'))
 	else:
 		dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
 
-def viewErrors():
-
-	cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
-	tempPath = os.path.join(xbmc.translatePath('special://home'), 'temp')
-	WindowsCache = xbmc.translatePath('special://home')
-	found = 0
-	get_log = 0
-	i = 0
-	String = " "
-
-	if os.path.exists(tempPath):
-		for root, dirs, files in os.walk(tempPath,topdown=True):
-			dirs[:] = [d for d in dirs]
-			for name in files:
-				if ".old.log" not in name.lower():
-					if ".log" in name.lower():
-						got_log = 1
-						a=open((os.path.join(root, name))).read()	
-						b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-						match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-						for checker in match:
-							found = 1
-							i = i + 1
-							if i == 1:
-								String = "[B][COLOR red]ERROR NUMBER " + str(i) + "[/B][/COLOR]\n\n" + checker + '\n'
-							else:
-								String = String + "[B][COLOR red]ERROR NUMBER: " + str(i) + "[/B][/COLOR]\n\n" + checker + '\n'
-
-						if found == 0:
-							dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
-						else:
-							c=String.replace('NEW_L','\n').replace('NEW_R','\r')
-							Common.TextBoxesPlain("%s" % c)
-							sys.exit(0)
-
-	if os.path.exists(WindowsCache):
-		for root, dirs, files in os.walk(WindowsCache,topdown=True):
-			dirs[:] = [d for d in dirs]
-			for name in files:
-				if ".old.log" not in name.lower():
-					if ".log" in name.lower():
-						got_log = 1
-						a=open((os.path.join(root, name))).read()	
-						b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-						match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-						for checker in match:
-							found = 1
-							i = i + 1
-							if i == 1:
-								String = "[B][COLOR red]ERROR NUMBER " + str(i) + "[/B][/COLOR]\n\n" + checker + '\n'
-							else:
-								String = String + "[B][COLOR red]ERROR NUMBER " + str(i) + "[/B][/COLOR]\n\n" + checker + '\n'
-
-						if found == 0:
-							dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
-						else:
-							c=String.replace('NEW_L','\n').replace('NEW_R','\r')
-							Common.TextBoxesPlain("%s" % c)
-							sys.exit(0)
-	if got_log == 0:
-		dialog.ok(MaintTitle,'Sorry we could not find a log file on your system')
-		quit()
-
 def viewLogFile():
-	kodilog = xbmc.translatePath('special://logpath/kodi.log')
-	spmclog = xbmc.translatePath('special://logpath/spmc.log')
-	dbmclog = xbmc.translatePath('special://logpath/dbmc.log')
-	kodiold = xbmc.translatePath('special://logpath/kodi.old.log')
-	spmcold = xbmc.translatePath('special://logpath/spmc.old.log')
-	dbmcold = xbmc.translatePath('special://logpath/dbmc.old.log')
 
-	if os.path.exists(dbmclog):
-		if os.path.exists(dbmclog) and os.path.exists(dbmcold):
-			choice = xbmcgui.Dialog().yesno(MaintTitle,"Current & Old Log Detected on your system.","Which log would you like to view?","", yeslabel='[B]OLD[/B]',nolabel='[B]CURRENT[/B]')
-			if choice == 0:
-				f = open(dbmclog,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - dbmc.log" % "[COLOR white]" + msg + "[/COLOR]")
-			else:
-				f = open(dbmcold,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - dbmc.old.log" % "[COLOR white]" + msg + "[/COLOR]")
-		else:
-			f = open(dbmclog,mode='r'); msg = f.read(); f.close()
-			Common.TextBoxes("%s - dbmc.log" % "[COLOR white]" + msg + "[/COLOR]")
+	LOG = xbmc.translatePath('special://logpath/')
+	finalfile   = 0
+	gotold = 0
+	logfilepath = os.listdir(LOG)
+	logsfound_old       = []
+	logsfound_current   = []
 
-	if os.path.exists(spmclog):
-		if os.path.exists(spmclog) and os.path.exists(spmcold):
-			choice = xbmcgui.Dialog().yesno(MaintTitle,"Current & Old Log Detected on your system.","Which log would you like to view?","", yeslabel='[B]OLD[/B]',nolabel='[B]CURRENT[/B]')
-			if choice == 0:
-				f = open(spmclog,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - spmc.log" % "[COLOR white]" + msg + "[/COLOR]")
-			else:
-				f = open(spmcold,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - spmc.old.log" % "[COLOR white]" + msg + "[/COLOR]")
-		else:
-			f = open(spmclog,mode='r'); msg = f.read(); f.close()
-			Common.TextBoxes("%s - spmc.log" % "[COLOR white]" + msg + "[/COLOR]")
-			
-	if os.path.exists(kodilog):
-		if os.path.exists(kodilog) and os.path.exists(kodiold):
-			choice = xbmcgui.Dialog().yesno(MaintTitle,"Current & Old Log Detected on your system.","Which log would you like to view?","", yeslabel='[B]OLD[/B]',nolabel='[B]CURRENT[/B]')
-			if choice == 0:
-				f = open(kodilog,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - kodi.log" % "[COLOR white]" + msg + "[/COLOR]")
-			else:
-				f = open(kodiold,mode='r'); msg = f.read(); f.close()
-				Common.TextBoxes("%s - kodi.old.log" % "[COLOR white]" + msg + "[/COLOR]")
-		else:
-			f = open(kodilog,mode='r'); msg = f.read(); f.close()
-			Common.TextBoxes("%s - kodi.log" % "[COLOR white]" + msg + "[/COLOR]")
+	for item in logfilepath:
+		if item.endswith('.old.log'): 
+			logsfound_old.append(os.path.join(LOG, item))
+			name_old = item
+			gotold = 1
+		elif item.endswith('.log'):
+			name_current = item
+			logsfound_current.append(os.path.join(LOG, item))
 
-	if os.path.isfile(kodilog) or os.path.isfile(spmclog) or os.path.isfile(dbmclog):
-		return True
+	if len(logsfound_old) > 0:
+		choice = xbmcgui.Dialog().yesno(MaintTitle, '[COLOR white]Found: [/COLOR]' + '[COLOR yellowgreen][B]' + str(name_current) + ' (CURRENT)[/B][/COLOR]','[COLOR white]Found: [/COLOR]' + '[COLOR yellowgreen][B]' + str(name_old) + ' (OLD)[/B][/COLOR]','Which log would you like to view?',nolabel='[B]CURRENT[/B]', yeslabel='[B]OLD[/B]')
+		if choice == 0:
+			logsfound_current.sort(key=lambda f: os.path.getmtime(f))
+			if file == True: return logsfound_current[-1]
+			else:
+				filename    = open(logsfound_current[-1], 'r')
+				logtext     = filename.read()
+				filename.close()
+				Common.TextBoxError('[COLOR yellowgreen]ECHO Wizard - Viewing ' + name_current + '[/COLOR]',logtext)
+		else:
+			logsfound_old.sort(key=lambda f: os.path.getmtime(f))
+			if file == True: return logsfound_old[-1]
+			else:
+				filename    = open(logsfound_old[-1], 'r')
+				logtext     = filename.read()
+				filename.close()
+				Common.TextBoxError('[COLOR yellowgreen]ECHO Wizard - Viewing ' + name_old + '[/COLOR]',logtext)
 	else:
-		dialog.ok(MaintTitle,'Sorry, No log file was found.','','[COLOR smokewhite]Thank you for using ECHO Wizard[/COLOR]')
-
+		logsfound_current.sort(key=lambda f: os.path.getmtime(f))
+		if file == True: return logsfound_current[-1]
+		else:
+			filename    = open(logsfound_current[-1], 'r')
+			logtext     = filename.read()
+			filename.close()
+			Common.TextBoxError('[COLOR yellowgreen]ECHO Wizard - Viewing ' + name_current + '[/COLOR]',logtext)
+	
 def autocleanask():
     
 	choice = xbmcgui.Dialog().yesno(MaintTitle, 'Selecting [COLOR green]YES[/COLOR] will delete your cache, thumbnails and packages.','[I][COLOR lightsteelblue]Do you wish to continue?[/I][/COLOR]', yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')

@@ -686,6 +686,7 @@ class resolver:
         try:
             result = getUrl(url, timeout='30').result
             result = result.replace('\n','')
+            result = re.sub(r'<script.+?</script>', '', result, flags=re.DOTALL)
             
             try:
                 url = re.search("data-config\s*=\s*(?:\'|\")(.+?)(?:\'|\")", result).groups()[0]

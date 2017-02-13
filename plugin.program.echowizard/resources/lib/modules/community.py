@@ -64,9 +64,9 @@ def COMMUNITY():
 	iconlist=[]
 	fanartlist=[]
 	link = Common.OPEN_URL(Community_List).replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?rotected="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?seragent="(.+?)"').findall(link)
+	match = re.compile('name="(.+?)".+?rl="(.+?)".+?rotected="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?seragent="(.+?)".+?ontact="(.+?)"').findall(link)
 	dis_links = len(match)
-	for name,url,hidden,iconimage,fanart,useragent in match:
+	for name,url,hidden,iconimage,fanart,useragent,contact in match:
 		if useragent.lower() == "null":
 			useragent == "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36"
 		i = i + 1
@@ -74,7 +74,7 @@ def COMMUNITY():
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details of developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		developer = str(name.replace('[COLOR white][B]','').replace('[/B][/COLOR]','').replace('[/B][/COLOR]','').replace(' BUILDS',''))
-		description = str(developer + "," + hidden)
+		description = str(developer + "," + hidden + "," + contact)
 		namelist.append(name)
 		urllist.append(url)
 		hiddenlist.append(hidden)
@@ -136,6 +136,13 @@ def COMMUNITY():
 	Common.addItem('[B][COLOR yellowgreen]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
 
 def SHOWCOMMUNITYBUILDS(name, url, description):
+
+	try:
+		contact = description.split(',')[2]
+	except: contact = "Unknown"
+
+	if not contact == "Unknown":
+		Common.addItem("[COLOR white][B]Contact Details: [/COLOR][COLOR yellowgreen]" + str(contact) + "[/B][/COLOR]","url",999,ICON,FANART,description)
 
 	try:
 		url,ua = url.split("|SPLIT|")
@@ -256,7 +263,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		found = 1
-		description = "null" + "," + developer + "," + youtube_id + "," + notice + "," + build_image
+		description = "null" + "," + developer + "," + youtube_id + "," + notice + "," + build_image + "," + contact
 		name2 = name
 		url = name2 + "," + url + "," + original
 		name = name.lower()
@@ -279,7 +286,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		found = 1
-		description = "null" + "," + developer
+		description = "null" + "," + developer  + "," + contact 
 		name2 = name
 		url = name2 + "," + url
 		name = name.lower()
@@ -329,7 +336,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 
 	try:
 		f = open(COM_NOTICE,mode='r'); msg = f.read(); f.close()
-		Common.TextBoxesPlain("%s" % msg)
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Community Builds[/B][/COLOR]',"%s" % msg)
 	except: pass
 
 def SHOWPROTECTEDBUILDS(name, url, description):
@@ -380,7 +387,7 @@ def SHOWPROTECTEDBUILDS(name, url, description):
 
 	try:
 		f = open(COM_NOTICE,mode='r'); msg = f.read(); f.close()
-		Common.TextBoxesPlain("%s" % msg)
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Community Builds[/B][/COLOR]',"%s" % msg)
 	except: pass
 
 #######################################################################

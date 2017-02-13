@@ -232,7 +232,7 @@ def YOUTUBE_REMOVE():
 			shutil.rmtree(YOUTUBE_DATA)
 		except:
 			dialog.ok(AddonTitle,"[COLOR white]There was an error removing the YouTube addon data folder. Thank you for using ECHO Wizard[/COLOR]")
-			sys.exit(0)
+			quit()
 	try:
 		YOUTUBE_FOLDER              =  xbmc.translatePath('special://home/userdata/addon_data/plugin.video.youtube')
 		os.makedirs(YOUTUBE_FOLDER)
@@ -241,9 +241,8 @@ def YOUTUBE_REMOVE():
 		shutil.copyfile(DEFAULT_YOUTUBE_SETTINGS, YOUTUBE_SETTINGS)
 	except:
 		dialog.ok(AddonTitle,"[COLOR white]There was an error creating the YouTube addon data settings. Thank you for using ECHO Wizard[/COLOR]")
-		sys.exit(0)
+		quit()
 	dialog.ok(AddonTitle,"[COLOR white]The YouTube plugin should now be fixed and working correctly. Thank you for using ECHO Wizard[/COLOR]")
-	sys.exit(0)
 		
 def SPORTS_DEVIL_FIX():
 
@@ -318,7 +317,7 @@ def SPORTS_DEVIL_FIX():
 	xbmc.executebuiltin("UpdateLocalAddons")	
 
 	dialog.ok(AddonTitle,"[COLOR white]The Sports Devil plugin should now be fixed and working correctly. If you have any issues please turn AUTO UPDATE OFF on Sports Devil and run this fix again.[/COLOR]")
-	sys.exit(0)
+	quit()
 
 def REMOVE_GUIDE():
 

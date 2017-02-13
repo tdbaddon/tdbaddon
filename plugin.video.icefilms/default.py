@@ -245,6 +245,12 @@ def Startup_Routines():
      if not xbmcvfs.exists(datapath): xbmcvfs.mkdir(datapath)
      if not xbmcvfs.exists(downinfopath): xbmcvfs.mkdir(downinfopath)
      if not xbmcvfs.exists(cookie_path): xbmcvfs.mkdir(cookie_path)
+     
+     #Check for DB in old location (cache folder), move it to addon profile if exists
+     special_db = os.path.join(xbmc.translatePath('special://temp/'), 'ice_cache.db')
+     if xbmcvfs.exists(special_db):
+        xbmcvfs.copy(special_db, os.path.join(datapath, 'ice_cache.db'))
+        xbmcvfs.delete(special_db)
             
      # Run the startup routines for special download directory structure 
      DLDirStartup()

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.macedoniaondemand.kodi-plugins" name="Macedonia On Demand Add-ons Repository" version="1.1.0" provider-name="Viktor Mladenovski">
+	<extension point="xbmc.addon.repository" name="Macedonia On Demand Add-on Repository">
+		<info compressed="false">https://raw.githubusercontent.com/mviktor/kodi-plugins/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/mviktor/kodi-plugins/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/mviktor/kodi-plugins/master/download/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from Macedonia On Demand Repository</summary>
+		<description>Add-ons for KODI/XBMC</description>
+		<disclaimer>by Viktor Mladenovski</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>

@@ -1,3 +1,12 @@
+[COLOR yellowgreen]1.78: 13th February 2017[/COLOR]
+[COLOR white][B]- Fix for quit() sys.exit() issues.[/B][/COLOR]
+
+[COLOR yellowgreen]1.77: 12th February 2017[/COLOR]
+[COLOR white][B]- Part two of update for the day.[/B][/COLOR]
+
+[COLOR yellowgreen]1.76: 12th February 2017[/COLOR]
+[COLOR white][B]- Too much to say :-)[/B][/COLOR]
+
 [COLOR yellowgreen]1.75: 11th February 2017[/COLOR]
 [COLOR white][B]- Fix issues with OSMC.[/B][/COLOR]
 [COLOR white][B]- Better system for Fanriffic themes.[/B][/COLOR]

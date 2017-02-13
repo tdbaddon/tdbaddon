@@ -26,6 +26,7 @@ from resources.lib.modules import downloader
 from resources.lib.modules import maintenance
 import zipfile
 import urllib,urllib2
+from HTMLParser import HTMLParser
 
 dialog           = xbmcgui.Dialog()
 dp               =  xbmcgui.DialogProgress()
@@ -561,11 +562,8 @@ def ADDON_DECIDE(name,url,iconimage,fanart):
 			Common.addItem("[COLOR yellowgreen][B]Install Addon[/B][/COLOR]",urla+",install_me",151,iconimage,fanart,'')
 		else:
 			Common.addItem("[COLOR yellowgreen][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,iconimage,fanart,'')
-		
-		if paid == 1:
-			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",paid_info",151,iconimage,fanart,'')
-		else:
-			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",info_me",151,iconimage,fanart,'')
+		if not RANKING.lower() == "0":
+			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",ADDON,187,iconimage,fanart,'')
 		if "multi" in youtube_id.lower():
 			Common.addItem('[COLOR white][B]Watch YouTube Review of ' + base_name + '[/B][/COLOR]',send_youtube_multi,183,iconimage,fanart,'')
 		elif "null" not in youtube_id.lower():
@@ -627,14 +625,14 @@ def GET_MULTI(name,url):
 		string = str(content)
 		if string == "None":
 			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-		TextBoxes("%s" % string)
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Addon Installer[/B][/COLOR]',"%s" % string)
 	elif marker == "paid_info":
 		url = PAID_DESC + addon_path + ".txt"
 		content = open_url_desc(url)
 		string = str(content)
 		if string == "None":
 			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-		TextBoxes("%s" % string)
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Addon Installer[/B][/COLOR]',"%s" % string)
 	elif marker == "readreview_me":
 		Common.List_Addon_Review(addon_path)
 	elif marker == "leavereview_me":
@@ -738,6 +736,7 @@ def GET_MULTI(name,url):
 		xbmc.executebuiltin("UpdateAddonRepos")
 		time.sleep(2)
 		xbmc.executebuiltin("Container.Refresh")
+		dp.update(100)
 		dp.close
 
 		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
@@ -762,7 +761,7 @@ def GET_REPO(name,url):
 		if string == "None":
 			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
 			quit()
-		TextBoxes("%s" % string)
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Addon Installer[/B][/COLOR]',"%s" % string)
 	elif marker == "readreview_me":
 		Common.List_Addon_Review(repo_path)
 	elif marker == "leavereview_me":
@@ -830,6 +829,7 @@ def GET_REPO(name,url):
 		xbmc.executebuiltin("UpdateAddonRepos")
 		time.sleep(2)
 		xbmc.executebuiltin("Container.Refresh")
+		dp.update(100)
 		dp.close
 
 		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
@@ -858,7 +858,11 @@ def FILE_MANAGER_SOURCES(name,url,description):
 		source=re.compile('<source>(.+?)</source>').findall(item)[0]
 
 		source = source.replace(" ","")
-		if not source in msg:
+		
+		source_test = open(SOURCES).read().replace('/','')
+		url_test    = source.replace('/','')
+	
+		if not url_test in source_test:
 			countlist.append("0")
 		else: 
 			countlist.append("1")
@@ -909,7 +913,6 @@ def WRITE_SOURCE_TO_FILE_MANAGER(name,url):
 					source = source.replace(" ","")
 
 					if not source in open(SOURCES).read():
-						dialog.ok("22", "here")
 						OLD = '<files>\n		<default pathversion="1"></default>'
 						NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
 						a=open(SOURCES).read()
@@ -1129,6 +1132,36 @@ def ADD_DATABASE_REPO(name):
 		cursor.execute(q, (str(AddonID), str(checksum_id), str(installDate), str(version_id)))
 		conn.commit()
 	except: pass
+
+def GET_ADDON_DESCRIPTION(name,url,iconimage):
+
+	try:
+		get_file = open(KODIAPPS_FILE)
+		get_data = get_file.read()  
+		link=get_data.replace('<tag></tag>','<tag>null</tag>')
+		match=re.compile('<item>(.+?)</item>',re.DOTALL).findall(link)
+		for items in match:
+			id=re.compile('<tag>(.+?)</tag>').findall(items)[0]    
+			url2=re.compile('<link>(.+?)</link>').findall(items)[0]    
+			if id in url:
+				url3 = url2
+
+		link = Common.OPEN_URL_NORMAL(url3).replace('\n',' ').replace('\r',' ')
+		match=re.compile('<h1 style="padding:10px(.+?)</div>',re.DOTALL).findall(link)
+		string = str(match)
+		heading = re.compile('>(.+?)</h1>').findall(string)[0]
+		heading = "[COLOR yellowgreen][B]" + heading + "[/B][/COLOR]"
+		content = re.compile('<h4>(.+?)</h4>').findall(string)[0]
+		content = content.replace('</li>','\n')
+		heading = strip_tags(heading)
+		content = strip_tags(content)
+		content = content.strip(' ')
+		display = heading + "\n\n" + content + "\n\n" + "[B][COLOR blue]Brought to you by Kodiapps.com[/B][/COLOR]"
+
+		Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard Addon Installer[/B][/COLOR]',"%s" % display)
+	except:
+		dialog.ok(AddonTitle, "Sorry, we are unable to get the information at this time. Please try again later.")
+		quit()
 
 def GET_KODIAPPS_RANKING_LOCAL(addon_id):
 
@@ -1417,22 +1450,16 @@ def PARENTAL_CONTROLS_OFF():
 		dialog.ok(AddonTitle,'There was an error disabling the parental controls.')
 		xbmc.executebuiltin("Container.Refresh")
 
-def TextBoxes(announce):
-	class TextBox():
-		WINDOW=10147
-		CONTROL_LABEL=1
-		CONTROL_TEXTBOX=5
-		def __init__(self,*args,**kwargs):
-			xbmc.executebuiltin("ActivateWindow(%d)" % (self.WINDOW, )) # activate the text viewer window
-			self.win=xbmcgui.Window(self.WINDOW) # get window
-			xbmc.sleep(500) # give window time to initialize
-			self.setControls()
-		def setControls(self):
-			self.win.getControl(self.CONTROL_LABEL).setLabel('Information') # set heading
-			try: f=open(announce); text=f.read()
-			except: text=announce
-			self.win.getControl(self.CONTROL_TEXTBOX).setText(str(text))
-			return
-	TextBox()
-	while xbmc.getCondVisibility('Window.IsVisible(10147)'):
-		time.sleep(.5)
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()

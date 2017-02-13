@@ -20,6 +20,7 @@
 
 import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs
 from urllib import FancyURLopener
+from HTMLParser import HTMLParser
 import platform
 import shutil
 import urllib2,urllib
@@ -347,10 +348,10 @@ def INDEX():
 	total_addons_alltime = Common.count("TOTAL_ADDONS_ALLTIME",TEMP_ADDONS)
 	total_builds_week = Common.count("TOTAL_BUILDS_WEEK",TEMP_FILE)
 	total_builds_alltime = Common.count("TOTAL_BUILDS_ALLTIME",TEMP_FILE)
-	total_addons_week = "[COLOR yellowgreen]" + total_addons_week + "[/COLOR]"
-	total_addons_alltime = "[COLOR yellowgreen]" + total_addons_alltime + "[/COLOR]"
-	total_builds_week = "[COLOR yellowgreen]" + total_builds_week + "[/COLOR]"
-	total_builds_alltime = "[COLOR yellowgreen]" + total_builds_alltime + "[/COLOR]"
+	total_addons_week = "[COLOR yellowgreen]" + str(total_addons_week) + "[/COLOR]"
+	total_addons_alltime = "[COLOR yellowgreen]" + str(total_addons_alltime) + "[/COLOR]"
+	total_builds_week = "[COLOR yellowgreen]" + str(total_builds_week) + "[/COLOR]"
+	total_builds_alltime = "[COLOR yellowgreen]" + str(total_builds_alltime) + "[/COLOR]"
 
 	Common.addItem("[COLOR yellowgreen][B]ECHO DOWNLOAD STATISTICS[/B][/COLOR]",BASEURL,999,ICON,FANART,'')
 	Common.addDir("[COLOR white][B]ADDONS - WEEK (" + str(total_addons_week) + ") | TOTAL ("+str(total_addons_alltime)+")[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
@@ -378,6 +379,7 @@ def INDEX():
 	Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]KODIAPPS ADDON CHART[/B][/COLOR]',BASEURL,185,KODIAPPS_ICON,KODIAPPS_FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]SOURCE AND REPOSITORY CHECKER[/COLOR][/B]',BASEURL,184,KODIAPPS_ICON,KODIAPPS_FANART,'Information brought to you by kodiapps.com')
@@ -394,7 +396,6 @@ def INDEX():
 	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]KODI/SPMC LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	Common.addDir('[COLOR ghostwhite][B]KODIAPPS ADDON CHART[/B][/COLOR]',BASEURL,185,KODIAPPS_ICON,KODIAPPS_FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]THE DAYS SPORT LISTINGS[/B][/COLOR]',BASEURL,47,SPORTS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
@@ -408,7 +409,7 @@ def INDEX():
 	Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]HOW TO GET SUPPORT[/B][/COLOR]',BASEURL,79,SUPPORT_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW WIZARD CHANGELOG[/B][/COLOR]',BASEURL,80,SEARCH_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]VIEW EHCO WIZARD CREDITS[/B][/COLOR]',BASEURL,81,SETTINGS_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite][B]VIEW ECHO WIZARD CREDITS[/B][/COLOR]',BASEURL,81,SETTINGS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD SETTINGS[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 
 	kodi_name = Common.GET_KODI_VERSION()
@@ -427,26 +428,15 @@ def BUILDMENU():
 
 	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
 	version=float(xbmc_version[:4])
-	codename = "Decline"
 
 	i=0
 	dp.create(AddonTitle,"[COLOR blue]We are getting the list of builds from our server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
 	dp.update(0)
 
-	if version >= 16.0 and version < 17.0:
-		codename = 'Jarvis'
-	elif version >= 17.0 and version < 18.0:
-		codename = 'Krypton'
-	else: codename = "Decline"
-
 	v = str(version)
 	vv = v.split(".")[0]
 	vvv = vv + ".9"
 	version_end = float(vvv)
-	
-	if codename == "Decline":
-		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR yellowgreen][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
-		return
 
 	namelist      = []
 	urllist       = []
@@ -531,9 +521,6 @@ def BUILDMENU():
 		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
 		title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
 		Common.addDir(title,url,83,iconimage,fanart,description)
-
-	view_mode = SET_VIEW("list")
-	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #						MAINTENANCE MENU
@@ -1307,7 +1294,7 @@ def SET_VIEW(name):
 def VIEW_CHANGELOG():
 
 	f = open(CHANGELOG,mode='r'); msg = f.read(); f.close()
-	Common.TextBoxesPlain("%s" % msg)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',msg)
 
 #######################################################################
 #					HOW TO GET SUPPORT
@@ -1316,7 +1303,7 @@ def VIEW_CHANGELOG():
 def GET_SUPPORT():
 
 	f = requests.get(SUPPORT)
-	Common.TextBoxesPlain("%s" % f.text)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',f.text)
 
 #######################################################################
 #					ADD TO COMMUNITY BUILDS
@@ -1325,7 +1312,7 @@ def GET_SUPPORT():
 def ADD_COMMUNITY_BUILD():
 
 	f = requests.get(ADD_COMMUNITY)
-	Common.TextBoxesPlain("%s" % f.text)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',f.text)
 
 #######################################################################
 #					LATEST ECHO NEWS
@@ -1334,7 +1321,7 @@ def ADD_COMMUNITY_BUILD():
 def LATEST_NEWS():
 
 	f = requests.get(NEWS)
-	Common.TextBoxesPlain("%s" % f.text)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',f.text)
 
 #######################################################################
 #					ECHO DONATIONS
@@ -1343,7 +1330,7 @@ def LATEST_NEWS():
 def DONATIONS_LINK():
 
 	f = requests.get(DONATIONS_URL)
-	Common.TextBoxesPlain("%s" % f.text)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',f.text)
 
 #######################################################################
 #					ECHO WIZARD CREDITS
@@ -1352,7 +1339,7 @@ def DONATIONS_LINK():
 def VIEW_CREDITS():
 
 	f = requests.get(CREDITS)
-	Common.TextBoxesPlain("%s" % f.text)
+	Common.TextBox('[COLOR yellowgreen][B]ECHO Wizard[/B][/COLOR]',f.text)
 
 #######################################################################
 #					REMOVE KEYBOARD.XML FILE
@@ -1454,8 +1441,79 @@ def GET_KODIAPPS_RANKING():
 			name=re.compile('<name>(.+?)</name>').findall(items)[0] 
 			rank=re.compile('<rank>(.+?)</rank>').findall(items)[0] 
 			iconimage=re.compile('<imge>(.+?)</imge>').findall(items)[0]    
-			Common.addItem("[COLOR yellowgreen][B]" + rank + "[/COLOR] - [COLOR white]" + name + "[/B][/COLOR]","url",999,iconimage,KODIAPPS_FANART,"")
+			url2=re.compile('<link>(.+?)</link>').findall(items)[0]    
+			Common.addItem("[COLOR yellowgreen][B]" + rank + "[/COLOR] - [COLOR white]" + name + "[/B][/COLOR]",url2,186,iconimage,KODIAPPS_FANART,"")
 		except: pass
+
+def GET_KODIAPPS_INFORMATION(name,url,iconimage):
+
+	name = name.split(' - ')[1]
+	name = name.replace('[COLOR white]','') \
+	.replace('[/COLOR]','') \
+	.replace('[/B]','')
+	
+	choice = dialog.select("[COLOR yellowgreen][B]" + str(name) + " - Please Select an Option[/B][/COLOR]", ['[COLOR blue]View ' + str(name) + ' Information[/COLOR]','[COLOR blue]Add ' + str(name) + ' Source to File Manager[/COLOR]'])
+
+	link = Common.OPEN_URL_DIALOG(url).replace('\n',' ').replace('\r',' ')
+	try:
+		url2=re.compile('Enter (.+?) in the top box',re.DOTALL).findall(link)[0]
+	except: url2="null"
+	match=re.compile('<h1 style="padding:10px(.+?)</div>',re.DOTALL).findall(link)
+
+	if choice == 0:
+		display = ""
+		link = Common.OPEN_URL_NORMAL(url).replace('\n',' ').replace('\r',' ')
+		for items in match:
+			
+				heading = re.compile('>(.+?)</h1>').findall(items)[0]
+				heading = "[COLOR yellowgreen][B]" + heading + "[/B][/COLOR]"
+				content = re.compile('<h4>(.+?)</h4>').findall(items)[0] 
+				content = content.replace('</li>','\n')
+				content = content.strip('	')
+				content = content.strip(' ')
+				heading = heading.strip(' ')
+				heading = strip_tags(heading)
+				content = strip_tags(content)
+				display = display + heading + "\n\n" + content + "\n\n"
+					
+		display = display + "\n[COLOR dodgerblue][B]Information brought to you by Kodiapps.com[/B][/COLOR]"
+
+		Common.TextBox("[COLOR yellowgreen]Kodiapps Addon Information[/COLOR]",display)
+	elif choice == 1:
+
+		SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
+
+		source_test = open(SOURCES).read().replace('/','')
+		url_test    = url2.replace('/','')
+
+		if url_test in source_test:
+			dialog.ok(AddonTitle, "Sorry, the source " + url2 + " is already in your file manager")
+			quit()
+		if not url_test in source_test:
+			OLD = '<files>\n		<default pathversion="1"></default>'
+			NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+url2+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+			a=open(SOURCES).read()
+			b=a.replace(OLD, NEW)
+			f= open((SOURCES), mode='w')
+			f.write(str(b))
+			f.close()
+		if not url_test in source_test:
+			OLD = '<files>\n        <default pathversion="1"></default>'
+			NEW = '<files>\n        <default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+url2+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+			a=open(SOURCES).read()
+			b=a.replace(OLD, NEW)
+			f= open((SOURCES), mode='w')
+			f.write(str(b))
+			f.close()
+
+		source_test = open(SOURCES).read().replace('/','')
+
+		if url_test in source_test:
+			dialog.ok(AddonTitle, "[COLOR white]Name: [/COLOR][COLOR yellowgreen]" + str(name) + "[/COLOR]", "[COLOR white]Source: [/COLOR][COLOR yellowgreen]" + str(url2) + "[/COLOR]","[COLOR dodgerblue]Succesfully added to file manager.[/COLOR]")
+		else:
+			dialog.ok(AddonTitle, "[COLOR white]Name: [/COLOR][COLOR yellowgreen]" + str(name) + "[/COLOR]", "[COLOR white]Source: [/COLOR][COLOR yellowgreen]" + str(url2) + "[/COLOR]","[COLOR red]Was NOT added to the File Manager, please try again later.[/COLOR]")
+
+	else: quit()
 
 #######################################################################
 #			AUTO UPDATER
@@ -1709,6 +1767,20 @@ def DISPLAY_INFORMATION(url):
 def OPEN_SETTINGS(params):
     plugintools.open_settings_dialog()
 
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
 ##############################    END    #########################################
 
 ##################################################################################
@@ -1749,489 +1821,596 @@ try:
 except:
         pass
 
-if mode==None or url==None or len(url)<1:
-        INDEX()
+try:
+	if mode==None or url==None or len(url)<1:
+			INDEX()
+			
+	elif mode==1:
+			maintenance.clearCache()
+			
+	elif mode==2:
+			maintenance.deleteThumbnails()
+
+	elif mode==3:
+			maintenance.purgePackages()
+
+	elif mode==4:
+			ACCOUNT()
+			
+	elif mode==5:
+			MAINTENANCE_MENU()
+
+	elif mode==6:        
+			wipe.FRESHSTART()
+			
+	elif mode==7:
+			COMINGSOON()
+
+	elif mode==8:
+			BACKUPMENU()
+			
+	elif mode==9:
+			OPEN_SETTINGS(params)
+			
+	elif mode==10:
+			maintenance.deleteAddonDB()
+
+	elif mode==11:
+			update.updateaddons()
+			
+	elif mode==12:
+			xbmc.executebuiltin("RunAddon(plugin.program.echowizard)")
+			
+	elif mode==13:
+			maintenance.Fix_Special(url)
+
+	elif mode==14:
+			versioncheck.XBMC_Version()
+			
+	elif mode==15:
+			speedtest.runtest(url)
+			
+	elif mode==16:
+			SPEEDTEST()
+
+	elif mode==17:
+		   ADD_COMMUNITY_BUILD()
+
+	elif mode==18:
+		   community.CommunityUpdateNotice()
+
+	elif mode==22:
+			GET_SUPPORT()
+
+	elif mode==25:
+			maintenance.DeleteCrashLogs()
+			
+	elif mode==26:
+			maintenance.HidePasswords()
+
+	elif mode==27:
+			maintenance.lib()
+
+	elif mode==28:
+			LATEST_LIST()
 		
-elif mode==1:
-		maintenance.clearCache()
-        
-elif mode==2:
-		maintenance.deleteThumbnails()
+	elif mode==29:
+			DOWNLOADLIB()
+			
+	elif mode==30:
+			ADVANCEDSETTINGS()
+			
+	elif mode==31:
+			maintenance.autocleanask()
+			
+	elif mode==32:
+			LATESTAPKSWITHLIB()
+			
+	elif mode==33:
+			update.check()
 
-elif mode==3:
-		maintenance.purgePackages()
+	elif mode==35:
+			maintenance.viewLogFile()
+			
+	elif mode==36:
+			uploadlog.main(argv=None)
 
-elif mode==4:
-		ACCOUNT()
+	elif mode==37:
+			maintenance.UnhidePasswords()
+			
+	elif mode==40:
+			LATEST_WINDOWS()
+			
+	elif mode==41:
+			LATEST_ANDROID()
+			
+	elif mode==42:
+			LATEST_IOS()
+			
+	elif mode==43:
+			LATEST_OSX()
+
+	elif mode==44:
+			versioncheck.BUILD_Version()
+
+	elif mode==46:
+			KODI_TOOLS()
+
+	elif mode==47:
+			SPORT_LISTINGS()
+			
+	elif mode==49:
+			dialog.ok(AddonTitle, url )
+
+	elif mode==50:
+			BUILDMENU()
+
+	elif mode==58:
+		Common.WriteReview(url)
+
+	elif mode==59:
+		Common.ListReview(url)
+
+	elif mode==60:
+			youtube.MAINMENU()
+			
+	elif mode==61:
+			youtube.LOADLIST(name,url)
+			
+	elif mode==62:
+			youtube.LOADITEM(name,url)
+			
+	elif mode==63:
+			youtube.OTHER_CHANNELS(url)
+			
+	elif mode==64:
+			search.YOUTUBE()
+			
+	elif mode==65:
+			search.COMMUNITY()
+			
+	elif mode==66:
+			search.BUILDS()
+			
+	elif mode==67:
+			search.ALL()
+
+	elif mode==69:
+			backuprestore.FullBackup()
+
+	elif mode==70:
+			backuprestore.Backup()
+			
+	elif mode==71:
+			backuprestore.Restore()
 		
-elif mode==5:
-        MAINTENANCE_MENU()
+	elif mode==72:
+			backuprestore.ListBackDel()
+			
+	elif mode==73:
+			backuprestore.DeleteAllBackups()
+			
+	elif mode==74:
+			extras.EXTRAS_MENU()
+			
+	elif mode==75:
+			extras.HORUS_INTRO()
+			
+	elif mode==76:
+			extras.ENABLE_HORUS_INTRO()
 
-elif mode==6:        
-		wipe.FRESHSTART()
+	elif mode==77:
+			extras.SPMC_MINIMIZE()
+
+	elif mode==79:
+			GET_SUPPORT()
+			
+	elif mode==80:
+			VIEW_CHANGELOG()
+			
+	elif mode==81:
+			VIEW_CREDITS()
+
+	elif mode==82:
+			maintenance.viewLogFile()
+
+	elif mode==83:
+			Common.BUILDER(name,url,iconimage,fanart,description)
+
+	elif mode==84:
+			KODI_CONTACTS()
+
+	elif mode==85:
+			print "############   ATTEMPT TO KILL XBMC/KODI   #################"
+			Common.killxbmc()
+
+	elif mode==86:
+			print "############   ATTEMPT TO KILL XBMC/KODI   #################"
+			Common.KillKodi()
+
+	elif mode==87:
+		   community.COMMUNITY()
+
+	elif mode==88:
+			BUILDMENU()
 		
-elif mode==7:
-        COMINGSOON()
+	elif mode==89:
+			installer.INSTALLEXE(name,url,description)
 
-elif mode==8:
-        BACKUPMENU()
+	elif mode==90:
+			installer.INSTALL(name,url,description)
+			
+	elif mode==91:
+			installer.INSTALLAPK(name,url,description)
+
+	elif mode==92:
+			status.Check()
+			
+	elif mode==93:
+		   community.SHOWCOMMUNITYBUILDS(name, url, description)
+		 
+	elif mode==94:
+			installer.INSTALLLIB(name,url,description)
+
+	elif mode==95:
+			PLAYVIDEO(url)
+			
+	elif mode==96:
+			installer.INSTALL_COMMUNITY(name,url,description)
+		 
+	elif mode==97:
+			Common.BUILDER_COMMUNITY(name,url,iconimage,fanart,description)
+
+	elif mode==98:
+			installer.INSTALL_ADVANCED(name,url,description)
+
+	elif mode==99:
+			installer.INSTALL(name,url,description)
+
+	elif mode==100:
+			backuprestore.READ_ZIP(url)
 		
-elif mode==9:
-        OPEN_SETTINGS(params)
+	elif mode==101:
+			backuprestore.DeleteBackup(url)
+
+	elif mode==102:
+			xbmc.executebuiltin(description)
+			sys.exit(0)
+
+	elif mode==103:
+			backuprestore.BACKUP_RD_TRAKT()
+
+	elif mode==104:
+			backuprestore.RESTORE_RD_TRAKT()
+
+	elif mode==105:
+			backuprestore.READ_ZIP_TRAKT(url)
+
+	elif mode==106:
+			LATEST_NEWS()
+
+	elif mode==107:
+			backuprestore.TV_GUIDE_BACKUP()
+			
+	elif mode==108:
+			backuprestore.ADDON_DATA_BACKUP()
+			
+	elif mode==109:
+			maintenance.RUYA_FIX()
+
+	elif mode==110:
+			extras.PLAYERCORE_ANDROID()
+
+	elif mode==111:
+			dialog.ok(AddonTitle, '[COLOR yellowgreen][B]Current Time: [/B][/COLOR][COLOR white]' + THE_TIME + '[/COLOR]', '[COLOR yellowgreen][B]Current Date: [/B][/COLOR][COLOR white]' + THE_DATE + '[/COLOR]')
+
+	elif mode==112:
+			maintenance.AUTO_CLEAN_ON_OFF()
+
+	elif mode==113:
+			maintenance.AUTO_WEEKLY_CLEAN_ON_OFF()
+
+	elif mode==114:
+			xbmc.executebuiltin("Container.Refresh")
+
+	elif mode==115:
+			extras.PLAYERCORE_WINDOWS()
+
+	elif mode==116:
+			Common.SHOW_PICTURE(fanart)
+
+	elif mode==117:
+			maintenance.BASE64_ENCODE_DECODE()
+
+	elif mode==118:
+			Common.WriteTicket()
+
+	elif mode==119:
+			Common.ListTickets()
+
+	elif mode==120:
+			dialog.ok(AddonTitle, url )
+			xbmc.executebuiltin("Container.Refresh")
+
+	elif mode==121:
+			get_addons.MENU_MAIN()
+
+	elif mode==122:
+			get_addons.GET_SINGLE(name,url)
+			
+	elif mode==123:
+			get_addons.GET_MULTI(name,url)
+
+	elif mode==124:
+			xbmc.executebuiltin("ReloadSkin()")
+
+	elif mode==125:
+			xbmc.executebuiltin("ActivateWindow(busydialog)")
+			xbmc.executebuiltin("UpdateAddonRepos")
+			xbmc.executebuiltin("UpdateLocalAddons")
+			xbmc.executebuiltin("Dialog.Close(busydialog)")
+			
+	elif mode==126:
+			maintenance.OPEN_EXTERNAL_SETTINGS()
+
+	elif mode==127:
+			xbmc.executebuiltin("ToggleDebug")
+
+	elif mode==128:
+			REMOVE_KEYBOARD_FILE()
+
+	elif mode==129:
+			KEYMAPS()
+
+	elif mode==130:
+			installer.INSTALL_KEYMAP(name,url,description)
+
+	elif mode==131:
+			REMOVE_ADVANCED_FILE()
+
+	elif mode==132:
+			extras.YOUTUBE_REMOVE()
+			
+	elif mode==140:
+			community.NEXT_PAGE_COMMUNITY(description)
+			
+	elif mode==141:
+			community.PROTECTED_FOLDER()
+			
+	elif mode==142:
+			community.NEXT_PAGE_PROTECTED(description)
+			
+	elif mode==143:
+			community.SHOWPROTECTEDBUILDS(name,url,description)
+
+	elif mode==144:
+			FANRIFFIC_THEMES()
+
+	elif mode==145:
+			installer.INSTALL_FANRIFFIC(name,url,description)
+
+	elif mode==146:
+			extras.SPORTS_DEVIL_FIX()
+			
+	elif mode==147:
+			maintenance.CHECK_BROKEN_REPOS()
+
+	elif mode==148:
+			maintenance.CHECK_BROKEN_SOURCES()
+
+	elif mode==149:
+			ANDROID_APKS()
+
+	elif mode==150:
+			get_addons.GET_LIST(description)
+
+	elif mode==151:
+			get_addons.GET_MULTI(name,url)
+
+	elif mode==152:
+			dialog = xbmcgui.Dialog()
+			dialog.ok(AddonTitle, '[COLOR white][B]Please contact ECHO on Twitter: [/B][/COLOR]','[COLOR dodgerblue][B]@echo_coding[/B][/COLOR]')
+
+	elif mode==153:
+			dialog = xbmcgui.Dialog()
+			dialog.ok(AddonTitle, '[COLOR white][B]To get an addon added to the installer we must have permission from the developer. If you would like to add an addon please ask them for permission and if granted contact ECHO on twitter @echo_coding to let us know. We will get the addon added ASAP. Thank you![/B][/COLOR]')
+
+	elif mode==154:
+			maintenance.view_LastError()
+
+	elif mode==155:
+			maintenance.view_Errors()
+
+	elif mode==156:
+			get_addons.GET_PAID(name,url)
+
+	elif mode==157:
+			dialog = xbmcgui.Dialog()
+			dialog.ok(AddonTitle, '[COLOR white][B]COMING SOON! Please contact ECHO on Twitter for more information: [/B][/COLOR]','[COLOR dodgerblue][B]@echo_coding[/B][/COLOR]')
+
+	elif mode==158:
+			extras.REMOVE_GUIDE()
+
+	elif mode==159:
+			get_addons.PARENTAL_CONTROLS()
+
+	elif mode==160:
+			get_addons.PARENTAL_CONTROLS_PIN()
+
+	elif mode==161:
+			get_addons.PARENTAL_CONTROLS_OFF()
+
+	elif mode==162:
+			AUTO_UPDATER(name)
+
+	elif mode==163:
+			maintenance.GET_ADDON_STATS()
+
+	elif mode==164:
+			get_addons.GET_REPO(name,url)
+
+	elif mode==165:
+			AUTO_UPDATER("dialog")
+
+	elif mode==170:
+			INSTALLER_APKS()
+
+	elif mode==171:
+			installer.INSTALLAPK_INSTALLER(name,url,description)
+
+	elif mode==172:
+			DONATIONS_LINK()
+
+	elif mode==173:
+			get_addons.FINISH()
+
+	elif mode==174:
+			dp.create(AddonTitle)
+			dp.update(0, "Updating installed addons, please wait.")
+			xbmc.executebuiltin("UpdateAddonRepos")
+			xbmc.executebuiltin("UpdateLocalAddons")
+			time.sleep(5)
+			dp.close()
+			dialog.ok(AddonTitle, "All local addons have been updated. Thank you for using ECHO Wizard!")
+			sys.exit(0)
+
+	elif mode==175:
+			get_addons.MENU_MAIN()
 		
-elif mode==10:
-        maintenance.deleteAddonDB()
+	elif mode==176:
+			get_addons.ADDON_DECIDE(name,url,iconimage,fanart)
+			
+	elif mode==177:
+			get_addons.FILE_MANAGER_SOURCES(name,url,description)
 
-elif mode==11:
-        update.updateaddons()
+	elif mode==178:
+			get_addons.WRITE_SOURCE_TO_FILE_MANAGER(name,url)
+
+	elif mode==179:
+			GETTEMP()
+			
+	elif mode==180:
+			CLEARTEMP()
+
+	elif mode==181:
+			security.check()
+
+	elif mode==182:
+			DISPLAY_INFORMATION(url)
+
+	elif mode==183:
+			Common.multi_youtube_videos(url)
+
+	elif mode==184:
+			REPO_SOURCE_CHECKER()
+
+	elif mode==185:
+			GET_KODIAPPS_RANKING()
+
+	elif mode==186:
+			GET_KODIAPPS_INFORMATION(name,url,iconimage)
+
+	elif mode==187:
+			get_addons.GET_ADDON_DESCRIPTION(name,url,iconimage)
+
+	xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+#except Exception as e:
+#
+#	error = e.__class__, e.__doc__, e.message
+#	msg = error
+#	name = "ECHO WIZARD: ERROR: EXCEPTION : "
+#	ending = "report<--"
+#	level = xbmc.LOGNOTICE
+#	try: xbmc.log('%s: %s %s' % (name, msg, ending), level)
+#	except:
+#		try: xbmc.log('Logging Failure', level)
+#		except: pass
+#	xbmcgui.Dialog().ok(AddonTitle, str(error), '[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
+
+except:
+		import traceback as tb
+		# start by logging the usual info to stderr
+		(etype, value, traceback) = sys.exc_info()
+		tb.print_exception(etype, value, traceback)
+		#this now contains the traceback information
+		error_traceback = tb.format_tb(traceback)
+		#this now contains the error type
+		error_type = str(etype)
+		#this now contains the error value
+		error_value =  str(value)
 		
-elif mode==12:
-        xbmc.executebuiltin("RunAddon(plugin.program.echowizard)")
+		xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
+		xbmc_builddate=xbmc.getInfoLabel('System.BuildDate')
+		xbmc_language=xbmc.getInfoLabel('System.Language')
+		python_version = sys.version
+		local_time = time.asctime( time.localtime(time.time()) )
+		version=float(xbmc_version[:4])
+		if version >= 11.0 and version <= 11.9:
+			codename = 'Eden'
+		elif version >= 12.0 and version <= 12.9:
+			codename = 'Frodo'
+		elif version >= 13.0 and version <= 13.9:
+			codename = 'Gotham'
+		elif version >= 14.0 and version <= 14.9:
+			codename = 'Helix'
+		elif version >= 15.0 and version <= 15.9:
+			codename = 'Isengard'
+		elif version >= 16.0 and version <= 16.9:
+			codename = 'Jarvis'
+		elif version >= 17.0 and version <= 17.9:
+			codename = 'Krypton'
+		else: codename = "Decline"
 		
-elif mode==13:
-        maintenance.Fix_Special(url)
+		a=open(GET_VERSION).read()
+		b=a.replace('\n',' ').replace('\r',' ')
+		match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+		for item in match:
+			addon_version = float(item)
 
-elif mode==14:
-        versioncheck.XBMC_Version()
+		l_time     = local_time
+		k_name     = codename
+		k_ver      = str(version)
+		k_date     = str(xbmc_builddate)
+		k_lan      = str(xbmc_language)
+		p_ver      = str(python_version)
+		e_ver      = str(addon_version)
+		er_type    = error_type
+		er_value   = error_value 
+		er_message = str(error_traceback)
+
+		if "quit" in str(error_traceback).lower():
+			pass
+			quit()
+		if "sys.exit" in str(error_traceback).lower():
+			pass
+			quit()
+		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhwP2FjdGlvbj1hZGQmbF90aW1lPQ==') + base64.b64encode(l_time) + \
+		'&k_name=' + base64.b64encode(k_name) + \
+		'&k_ver=' + base64.b64encode(k_ver) + \
+		'&k_date=' + base64.b64encode(k_date) + \
+		'&k_lan=' + base64.b64encode(k_lan) + \
+		'&p_ver=' + base64.b64encode(p_ver) + \
+		'&e_ver=' + base64.b64encode(e_ver) + \
+		'&er_type=' + base64.b64encode(er_type) + \
+		'&er_value=' + base64.b64encode(er_value) + \
+		'&er_message=' + base64.b64encode(er_message)
+
+		#body =urllib2.urlopen(service_url).read()
+
+		msg = "[I]Kodi Information[/I]" + \
+		"\nLocal Time : " + local_time + \
+		"\nKodi " + codename + \
+		"\nVersion - " + str(version) + \
+		"\nBuild Date -  " + str(xbmc_builddate) + \
+		"\nLanguage - " + str(xbmc_language) + \
+		"\nPython - " + str(python_version) + \
+		"\n\n[I]Addon Information[/I]" + \
+		"\nAddon - ECHO Wizard" + \
+		"\nVersion - " + str(addon_version) + \
+		"\n\n[I]Error Information[/I]" + \
+		"\nError Type:" + error_type + \
+		"\nError Value:"  + error_value  + \
+		"\n\nError Content:" + str(error_traceback)
 		
-elif mode==15:
-        speedtest.runtest(url)
-		
-elif mode==16:
-        SPEEDTEST()
-
-elif mode==17:
-       ADD_COMMUNITY_BUILD()
-
-elif mode==18:
-       community.CommunityUpdateNotice()
-
-elif mode==22:
-        GET_SUPPORT()
-
-elif mode==25:
-		maintenance.DeleteCrashLogs()
-		
-elif mode==26:
-		maintenance.HidePasswords()
-
-elif mode==27:
-		maintenance.lib()
-
-elif mode==28:
-		LATEST_LIST()
-	
-elif mode==29:
-		DOWNLOADLIB()
-		
-elif mode==30:
-		ADVANCEDSETTINGS()
-		
-elif mode==31:
-		maintenance.autocleanask()
-		
-elif mode==32:
-		LATESTAPKSWITHLIB()
-		
-elif mode==33:
-        update.check()
-
-elif mode==35:
-        maintenance.viewLogFile()
-		
-elif mode==36:
-        uploadlog.main(argv=None)
-
-elif mode==37:
-		maintenance.UnhidePasswords()
-		
-elif mode==40:
-		LATEST_WINDOWS()
-		
-elif mode==41:
-		LATEST_ANDROID()
-		
-elif mode==42:
-		LATEST_IOS()
-		
-elif mode==43:
-		LATEST_OSX()
-
-elif mode==44:
-        versioncheck.BUILD_Version()
-
-elif mode==46:
-        KODI_TOOLS()
-
-elif mode==47:
-        SPORT_LISTINGS()
-		
-elif mode==49:
-		dialog.ok(AddonTitle, url )
-
-elif mode==50:
-        BUILDMENU()
-
-elif mode==58:
-	Common.WriteReview(url)
-
-elif mode==59:
-	Common.ListReview(url)
-
-elif mode==60:
-        youtube.MAINMENU()
-		
-elif mode==61:
-        youtube.LOADLIST(name,url)
-		
-elif mode==62:
-        youtube.LOADITEM(name,url)
-		
-elif mode==63:
-        youtube.OTHER_CHANNELS(url)
-		
-elif mode==64:
-        search.YOUTUBE()
-		
-elif mode==65:
-        search.COMMUNITY()
-		
-elif mode==66:
-        search.BUILDS()
-		
-elif mode==67:
-        search.ALL()
-
-elif mode==69:
-        backuprestore.FullBackup()
-
-elif mode==70:
-        backuprestore.Backup()
-		
-elif mode==71:
-        backuprestore.Restore()
-	
-elif mode==72:
-        backuprestore.ListBackDel()
-		
-elif mode==73:
-        backuprestore.DeleteAllBackups()
-		
-elif mode==74:
-        extras.EXTRAS_MENU()
-		
-elif mode==75:
-        extras.HORUS_INTRO()
-		
-elif mode==76:
-        extras.ENABLE_HORUS_INTRO()
-
-elif mode==77:
-        extras.SPMC_MINIMIZE()
-
-elif mode==79:
-        GET_SUPPORT()
-		
-elif mode==80:
-        VIEW_CHANGELOG()
-		
-elif mode==81:
-        VIEW_CREDITS()
-
-elif mode==82:
-        maintenance.viewLogFile()
-
-elif mode==83:
-        Common.BUILDER(name,url,iconimage,fanart,description)
-
-elif mode==84:
-        KODI_CONTACTS()
-
-elif mode==85:
-        print "############   ATTEMPT TO KILL XBMC/KODI   #################"
-        Common.killxbmc()
-
-elif mode==86:
-        print "############   ATTEMPT TO KILL XBMC/KODI   #################"
-        Common.KillKodi()
-
-elif mode==87:
-       community.COMMUNITY()
-
-elif mode==88:
-        BUILDMENU()
-	
-elif mode==89:
-        installer.INSTALLEXE(name,url,description)
-
-elif mode==90:
-        installer.INSTALL(name,url,description)
-		
-elif mode==91:
-        installer.INSTALLAPK(name,url,description)
-
-elif mode==92:
-        status.Check()
-		
-elif mode==93:
-       community.SHOWCOMMUNITYBUILDS(name, url, description)
-	 
-elif mode==94:
-        installer.INSTALLLIB(name,url,description)
-
-elif mode==95:
-        PLAYVIDEO(url)
-		
-elif mode==96:
-        installer.INSTALL_COMMUNITY(name,url,description)
-	 
-elif mode==97:
-        Common.BUILDER_COMMUNITY(name,url,iconimage,fanart,description)
-
-elif mode==98:
-        installer.INSTALL_ADVANCED(name,url,description)
-
-elif mode==99:
-		installer.INSTALL(name,url,description)
-
-elif mode==100:
-		backuprestore.READ_ZIP(url)
-	
-elif mode==101:
-		backuprestore.DeleteBackup(url)
-
-elif mode==102:
-        xbmc.executebuiltin(description)
-        sys.exit(0)
-
-elif mode==103:
-		backuprestore.BACKUP_RD_TRAKT()
-
-elif mode==104:
-		backuprestore.RESTORE_RD_TRAKT()
-
-elif mode==105:
-		backuprestore.READ_ZIP_TRAKT(url)
-
-elif mode==106:
-		LATEST_NEWS()
-
-elif mode==107:
-		backuprestore.TV_GUIDE_BACKUP()
-		
-elif mode==108:
-		backuprestore.ADDON_DATA_BACKUP()
-		
-elif mode==109:
-		maintenance.RUYA_FIX()
-
-elif mode==110:
-		extras.PLAYERCORE_ANDROID()
-
-elif mode==111:
-		dialog.ok(AddonTitle, '[COLOR yellowgreen][B]Current Time: [/B][/COLOR][COLOR white]' + THE_TIME + '[/COLOR]', '[COLOR yellowgreen][B]Current Date: [/B][/COLOR][COLOR white]' + THE_DATE + '[/COLOR]')
-
-elif mode==112:
-		maintenance.AUTO_CLEAN_ON_OFF()
-
-elif mode==113:
-		maintenance.AUTO_WEEKLY_CLEAN_ON_OFF()
-
-elif mode==114:
-		xbmc.executebuiltin("Container.Refresh")
-
-elif mode==115:
-		extras.PLAYERCORE_WINDOWS()
-
-elif mode==116:
-		Common.SHOW_PICTURE(fanart)
-
-elif mode==117:
-		maintenance.BASE64_ENCODE_DECODE()
-
-elif mode==118:
-		Common.WriteTicket()
-
-elif mode==119:
-		Common.ListTickets()
-
-elif mode==120:
-		dialog.ok(AddonTitle, url )
-		xbmc.executebuiltin("Container.Refresh")
-
-elif mode==121:
-		get_addons.MENU_MAIN()
-
-elif mode==122:
-		get_addons.GET_SINGLE(name,url)
-		
-elif mode==123:
-		get_addons.GET_MULTI(name,url)
-
-elif mode==124:
-		xbmc.executebuiltin("ReloadSkin()")
-
-elif mode==125:
-		xbmc.executebuiltin("ActivateWindow(busydialog)")
-		xbmc.executebuiltin("UpdateAddonRepos")
-		xbmc.executebuiltin("UpdateLocalAddons")
-		xbmc.executebuiltin("Dialog.Close(busydialog)")
-		
-elif mode==126:
-		maintenance.OPEN_EXTERNAL_SETTINGS()
-
-elif mode==127:
-		xbmc.executebuiltin("ToggleDebug")
-
-elif mode==128:
-		REMOVE_KEYBOARD_FILE()
-
-elif mode==129:
-		KEYMAPS()
-
-elif mode==130:
-        installer.INSTALL_KEYMAP(name,url,description)
-
-elif mode==131:
-		REMOVE_ADVANCED_FILE()
-
-elif mode==132:
-		extras.YOUTUBE_REMOVE()
-		
-elif mode==140:
-		community.NEXT_PAGE_COMMUNITY(description)
-		
-elif mode==141:
-		community.PROTECTED_FOLDER()
-		
-elif mode==142:
-		community.NEXT_PAGE_PROTECTED(description)
-		
-elif mode==143:
-		community.SHOWPROTECTEDBUILDS(name,url,description)
-
-elif mode==144:
-		FANRIFFIC_THEMES()
-
-elif mode==145:
-        installer.INSTALL_FANRIFFIC(name,url,description)
-
-elif mode==146:
-		extras.SPORTS_DEVIL_FIX()
-		
-elif mode==147:
-		maintenance.CHECK_BROKEN_REPOS()
-
-elif mode==148:
-		maintenance.CHECK_BROKEN_SOURCES()
-
-elif mode==149:
-		ANDROID_APKS()
-
-elif mode==150:
-		get_addons.GET_LIST(description)
-
-elif mode==151:
-		get_addons.GET_MULTI(name,url)
-
-elif mode==152:
-		dialog = xbmcgui.Dialog()
-		dialog.ok(AddonTitle, '[COLOR white][B]Please contact ECHO on Twitter: [/B][/COLOR]','[COLOR dodgerblue][B]@echo_coding[/B][/COLOR]')
-
-elif mode==153:
-		dialog = xbmcgui.Dialog()
-		dialog.ok(AddonTitle, '[COLOR white][B]To get an addon added to the installer we must have permission from the developer. If you would like to add an addon please ask them for permission and if granted contact ECHO on twitter @echo_coding to let us know. We will get the addon added ASAP. Thank you![/B][/COLOR]')
-
-elif mode==154:
-		maintenance.view_LastError()
-
-elif mode==155:
-		maintenance.view_Errors()
-
-elif mode==156:
-		get_addons.GET_PAID(name,url)
-
-elif mode==157:
-		dialog = xbmcgui.Dialog()
-		dialog.ok(AddonTitle, '[COLOR white][B]COMING SOON! Please contact ECHO on Twitter for more information: [/B][/COLOR]','[COLOR dodgerblue][B]@echo_coding[/B][/COLOR]')
-
-elif mode==158:
-		extras.REMOVE_GUIDE()
-
-elif mode==159:
-		get_addons.PARENTAL_CONTROLS()
-
-elif mode==160:
-		get_addons.PARENTAL_CONTROLS_PIN()
-
-elif mode==161:
-		get_addons.PARENTAL_CONTROLS_OFF()
-
-elif mode==162:
-		AUTO_UPDATER(name)
-
-elif mode==163:
-		maintenance.GET_ADDON_STATS()
-
-elif mode==164:
-		get_addons.GET_REPO(name,url)
-
-elif mode==165:
-		AUTO_UPDATER("dialog")
-
-elif mode==170:
-		INSTALLER_APKS()
-
-elif mode==171:
-        installer.INSTALLAPK_INSTALLER(name,url,description)
-
-elif mode==172:
-		DONATIONS_LINK()
-
-elif mode==173:
-		get_addons.FINISH()
-
-elif mode==174:
-		dp.create(AddonTitle)
-		dp.update(0, "Updating installed addons, please wait.")
-		xbmc.executebuiltin("UpdateAddonRepos")
-		xbmc.executebuiltin("UpdateLocalAddons")
-		time.sleep(5)
-		dp.close()
-		dialog.ok(AddonTitle, "All local addons have been updated. Thank you for using ECHO Wizard!")
-		sys.exit(0)
-
-elif mode==175:
-		get_addons.MENU_MAIN()
-	
-elif mode==176:
-		get_addons.ADDON_DECIDE(name,url,iconimage,fanart)
-		
-elif mode==177:
-		get_addons.FILE_MANAGER_SOURCES(name,url,description)
-
-elif mode==178:
-		get_addons.WRITE_SOURCE_TO_FILE_MANAGER(name,url)
-
-elif mode==179:
-		GETTEMP()
-		
-elif mode==180:
-		CLEARTEMP()
-
-elif mode==181:
-		security.check()
-
-elif mode==182:
-		DISPLAY_INFORMATION(url)
-
-elif mode==183:
-		Common.multi_youtube_videos(url)
-
-elif mode==184:
-		REPO_SOURCE_CHECKER()
-
-elif mode==185:
-		GET_KODIAPPS_RANKING()
-
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+		Common.TextBoxError("Error Encountered - Please Report to @EchoCoder",  str(msg) + '\n[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')

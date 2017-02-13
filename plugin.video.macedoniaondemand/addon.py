@@ -128,7 +128,14 @@ def createZuluListing():
 	#	print station, thumb
 	return match
 
-def playZuluStream(url):
+def playZuluStream(url, useproxy):
+
+	if useproxy == True:
+		if checkIsProxyEnabled() == False:
+			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
+			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+			return
+
 	pDialog = xbmcgui.DialogProgress()
 	pDialog.create('Zulu Stream', 'Initializing')
 	pDialog.update(30, 'Fetching video stream')
@@ -139,7 +146,14 @@ def playZuluStream(url):
 	response.close()
 	nextframe = re.compile('<iframe src="(.+?)"').findall(link)
 	pDialog.update(60, 'Fetching video stream')
-	req = urllib2.Request('http://on.net.mk/'+nextframe[0])
+	if useproxy == True:
+		servername	= 'macedoniaondemand.com'
+		hostname	= 'on.net.mk'
+	else:
+		servername	= 'on.net.mk'
+		hostname	= 'on.net.mk'
+	req = urllib2.Request('http://'+servername+'/'+nextframe[0])
+	req.add_header('Host', hostname)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
 	link = response.read()
@@ -150,6 +164,41 @@ def playZuluStream(url):
 	playurl(streammatch[0])
 
 	return True
+
+# Proxy methods
+
+def checkIsProxyEnabled():
+	result = False
+	url = 'http://macedoniaondemand.com/proxy_status.php'
+	try:
+		req = urllib2.Request(url)
+		req.add_header('Host', 'proxytest.macedoniaondemand.com')
+		req.add_header('User-Agent', user_agent)
+		req.add_header('Accept', str_accept)
+		response = urllib2.urlopen(req)
+		data=response.read()
+		response.close()
+		if data.__contains__('OK'):
+			result = True
+	except:
+		result = False
+
+	return result
+
+# WEB MAXTV methods
+
+def createWebmaxtvListing():
+	url='http://macedoniaondemand.com/xml/channels1.xml'
+	req = urllib2.Request(url)
+	req.add_header('Host', 'web.maxtv.mk')
+	req.add_header('User-Agent', user_agent)
+	response = urllib2.urlopen(req)
+	link=response.read()
+	response.close()
+	match=re.compile('<c id=".+?" c="(.+?)" path="rtmp://(.+?)/(.+?)" pathBck=".+?" logo="(.+?)"').findall(link)
+	#for name, server, u, thumb in match:
+	#	print name, server, u, thumb
+	return match
 
 # TELEKABEL live
 
@@ -275,9 +324,9 @@ def play24VestiVideo(url):
 	titlematch = re.compile('<title>(.+?)</title>').findall(link)
 
 	if filematch[0].__contains__('dailymotion'):
-		stream = 'plugin://plugin.video.dailymotion_com/?url='+filematch[0].split('/')[-1]+'&mode=playVideo'
+		stream = 'plugin://plugin.video.dailymotion_com/?url='+filematch[0].split('/')[-1].split('&')[0]+'&mode=playVideo'
 	elif filematch[0].__contains__('youtube'):
-		stream = 'plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid='+filematch[0].split('/')[-1]
+		stream = 'plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid='+filematch[0].split('/')[-1].split('&')[0]
 	else:
 		stream = filematch[0]
 
@@ -455,7 +504,9 @@ def createmrtfrontList():
 	response = urllib2.urlopen(req)
 	link=response.read()
 	response.close()
-	match=re.compile('<li class="">\n        <a href="(.+?)">\n            (.+?)        </a>\t\n    </li>').findall(link)
+	start=link.find('<ul class="nav navbar-nav">')
+	end=link.find('<li class="dropdown">', start)
+	match=re.compile('<li class=""><a href="(.+?)">(.+?)</a></li>').findall(link, start, end)
 	return match
 
 def duration_in_minutes(duration):
@@ -465,33 +516,44 @@ def duration_in_minutes(duration):
 		minutes = minutes*60 + int(split_duration[i])
 	return minutes
 
-def list_mrtchannel(url):
-	url = 'http://play.mrt.com.mk'+url
+def list_mrtvideos(url1, url2, pagenr):
+	url=url1+pagenr+url2+'/0'
+	req = urllib2.Request(url)
+	req.add_header('User-Agent', user_agent)
+	response = urllib2.urlopen(req)
+	data = json.load(response)
+	response.close()
+	nrpages = data['page_count']
+	nextpage = {}
+	if int(nrpages) > int(pagenr):
+		nextpage = {"url1":url1,"url2":url2,"pagenr":str(int(pagenr)+1)}
+	match = re.compile('<a href="(.+?)">.+?<img src="(.+?)".+?<div class="desc">(.+?)</div>').findall(data['page_html'].encode('utf-8'))
+	return [nextpage, match]
+
+def list_mrtcategories(url):
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
 	link=response.read()
 	response.close()
 	list=[]
-	match=re.compile('<div class="col-xs-6 col-sm-3 (.+?) content">\n.+?<a href="(.+?)".+?\n.+?<img src="(.+?)".+?\n.+?\n.+?<span class="title gradient">(.+?)</span>').findall(link)
 
-	# extract channels
-	for type,url,thumb,title in match:
-		list.append([type,url,thumb,'',title])
+	match=re.compile('<div class="col-xs-6 col-sm-3"><a href="(.+?)">.+?<img src="(.+?)" .+?<div class="desc category">(.+?)</div>').findall(link)
 
-	match=re.compile('<div class="col-xs-6 col-sm-3 (.+?) content">\n.+?<a href="(.+?)".+?\n.+?<img src="(.+?)".+?\n.+?\n.+?<span class="duration">(.+?)</span>\n.+?<span class="title gradient">(.+?)</span>').findall(link)
+	# extract categories
+	for url, thumb, title in match:
+		list.append(["category", url, thumb, '', title])
 
-	# extract latest videos on current channel
-	for type,url,thumb,duration,title in match:
-		list.append([type,url,thumb,str(duration_in_minutes(duration)),title])
+	#extract videos in this category
 
-	nextpage=''
-	nextpagestart = link.find('class="next"')
-	if nextpagestart != -1:
-		nextpageend = link.find('</div>', nextpagestart)
-		nextpagematch = re.compile("url:'(.+?)'").findall(link, nextpagestart, nextpageend)
-		if nextpagematch != []:
-			nextpage = nextpagematch[0]
+	match=re.compile("var txPageVideosUrl = '(.+?)'\+pxPageNum\+'(.+?)'").findall(link)
+
+	if match == []:
+		return [list, []]
+
+	[nextpage,videos] = list_mrtvideos(match[0][0], match[0][1], '1')
+	for url, thumb, title in videos:
+		list.append(["video", url, thumb, '', title])
 
 	return [list, nextpage]
 
@@ -504,45 +566,39 @@ def list_mrtlive():
 	response.close()
 	start=link.find('<ul class="dropdown-menu text-left')
 	end=link.find('</ul', start)
-	match=re.compile('<a class="channel" href=".+?" data-href="(.+?)" .+? title="(.+?)">\n.*?<img src="(.+?)"').findall(link[start:end])
+	match=re.compile('<a class="channel" href="(.+?)" data-href="#" data-url="#" title="(.+?)"><img src="(.+?)"></a>').findall(link[start:end])
 	return match
 
-def playmrtvideo(url):
-	pDialog = xbmcgui.DialogProgress()
-	pDialog.create('MRT Play live stream', 'Initializing')
+def playmrtvideo(url, useproxy):
+
+	if useproxy == True:
+		if checkIsProxyEnabled() == False:
+			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
+			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+			return
+
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', user_agent)
-	pDialog.update(50, 'Fetching video stream')
 	response = urllib2.urlopen(req)
 	link = response.read()
 	response.close()
 
-	match2=re.compile('"playlist":\[{"url":"(.+?)"').findall(link)
-	match1 = re.compile('"baseUrl":"(.+?)"').findall(link)
 
-	title = re.compile('<meta property="og:title" content="(.+?)"').findall(link)
+	match = re.compile('<source src=("|\')(http|rtmp)://(.+?)(:[0-9]+?|)/(.+?)("|\') ').findall(link)
+	if match != []:
+		if match[0][1] == 'http':
+			#playurl(match[0][1]+'://'+match[0][2]+match[0][3]+'/'+match[0][4])
+			if useproxy == True:
+				playurl(match[0][1]+'://macedoniaondemand.com/'+match[0][4]+'|Host='+match[0][2]+match[0][3])
+			else:
+				playurl(match[0][1]+'://'+match[0][2]+match[0][3]+'/'+match[0][4]+'|Host='+match[0][2]+match[0][3])
+		elif match[0][1] == 'rtmp':
+			if useproxy == True:
+				url=match[0][1]+'://macedoniaondemand.com:1935/'+match[0][4]+' pageUrl='+url+' swfUrl=http://vjs.zencdn.net/swf/5.0.1/video-js.swf'
+			else:
+				url=match[0][1]+'://'+match[0][2]+match[0][3]+'/'+match[0][4]+' pageUrl='+url+' swfUrl=http://vjs.zencdn.net/swf/5.0.1/video-js.swf'
+			playurl(url)
 
-	if match2 != [] and match1 != []:
-		stream=match1[0]+"/"+match2[0]
-		stream=stream[:stream.rfind('/')]+'/master.m3u8'
-		if title != []:
-			videotitle = title[0]
-		else:
-			videotitle = 'MRT Video'
-		pDialog.update(70, 'Playing')
-		playurl(stream)
-		pDialog.close()
-	elif match2 != []:
-		stream=match2[0]
-		if title != []:
-			videotitle = title[0]
-		else:
-			videotitle = 'MRT Video'
-		pDialog.update(70, 'Playing')
-		playurl(stream)
-		pDialog.close()
-
-	return True
 
 #  OTHER live streams methods
 
@@ -601,7 +657,7 @@ def playHRTVideo(url):
 	link = response.read()
 	response.close()
 
-	filematch = re.compile('<video data-url="(.+?)"').findall(link)
+	filematch = re.compile('<video data-.+?="(.+?)"').findall(link)
 	if filematch == []:
 		filematch = re.compile('<video src="(.+?)"').findall(link)
 	titlematch = re.compile('<title>(.+?)</title>').findall(link)
@@ -661,13 +717,21 @@ def playSerbiaPlusStream(url):
 		return False
 
 def serbiaplussearchurl(intext):
-	stream = []
+	streams = []
+	streams = searchstreams(intext)
+	if streams != []:
+		return HTMLParser.HTMLParser().unescape(streams[0])
+	else:
+		return ''
+
+def searchstreams(intext):
+	streams = []
 	if intext.find("file: \"") != -1 or intext.find("file:\"") != -1:
-		stream=re.compile('file:.*?"(.+?)"').findall(intext)
+		streams += re.compile('file:.*?"(.+?)"').findall(intext)
 	if intext.find("\"file\"") != -1:
-		stream=re.compile(', *?"file":"(.+?)"').findall(intext)
+		streams += re.compile(', *?"file":"(.+?)"').findall(intext)
 	if intext.find("'file':") != -1:
-		stream=re.compile("'file' *?: *?'(.+?)'").findall(intext)
+		streams += re.compile("'file' *?: *?'(.+?)'").findall(intext)
 	if intext.find("application/x-vlc-plugin") != -1 or intext.find("application/x-google-vlc-plugin") != -1:
 		start = intext.find("application/x-vlc-plugin")
 		if start == -1:
@@ -678,22 +742,26 @@ def serbiaplussearchurl(intext):
 		else:
 			start = 0
 
-		stream=re.compile('target="(.+?)"').findall(intext, start)
+		streams += re.compile('target="(.+?)"').findall(intext, start)
 	if intext.find("streamer=rtmp://") != -1:
 		tmp=re.compile('file=(.+?)&streamer=(.+?)&').findall(intext)
 		if tmp != []:
-			stream = [tmp[0][1]+tmp[0][0]]
+			streams += [tmp[0][1]+tmp[0][0]]
 	if intext.find('flashvars="src') != -1 or intext.find('flashvars="streamer') != -1:
 		tmp=re.compile('flashvars=".+?=(.+?)"').findall(intext)
 		if tmp != []:
-			stream=[urllib.unquote_plus(tmp[0]).strip()]
+			streams += [urllib.unquote_plus(tmp[0]).strip()]
 			stream[0]=stream[0].split(' ')[0]
 			stream[0]=stream[0].split('&')[0]
 
-	if stream != []:
-		return HTMLParser.HTMLParser().unescape(stream[0])
-	else:
-		return ''
+	newstreams = []
+	for stream in streams:
+		trimmedstream = stream
+		trimmedstream = trimmedstream.split(' ')[0]
+		trimmedstream = trimmedstream.split('&')[0]
+		newstreams += [trimmedstream]
+
+	return newstreams
 
 def decode_serbiaplus_frame(s, splitconst, appendconst, offsetconst):
 	r = ""
@@ -838,7 +906,18 @@ def playvolimtvurl(url):
 # netraja methods
 
 def listNetrajaCategories():
-	url='http://www.netraja.net'
+	urlbase = 'http://netraja.net/'
+	req = urllib2.Request(urlbase)
+	req.add_header('User-Agent', user_agent);
+	response = urllib2.urlopen(req)
+	link = response.read()
+	response.close()
+
+	match = re.compile("<FRAME SRC='(.+?)'>").findall(link)
+	if match == []:
+		return []
+
+	url=match[0]
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
@@ -851,8 +930,9 @@ def listNetrajaCategories():
 	return match
 
 def listNetrajaTvs(url):
+	baseurl = url.split('/')[2]
 	category = url.split('/')[-1]
-	url = 'http://www.netraja.net/feeds/posts/summary/-/'+category+'?start-index=1&max-results=200&alt=json'
+	url = 'http://'+baseurl+'/feeds/posts/summary/-/'+category+'?start-index=1&max-results=200&alt=json'
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
@@ -865,7 +945,8 @@ def listNetrajaTvs(url):
 
 	return {}
 
-def playNetrajaStream(url):
+
+def listNetrajaStreams(url):
 	pDialog = xbmcgui.DialogProgress()
 	pDialog.create('Netraja', 'Initializing')
 	req = urllib2.Request(url)
@@ -877,23 +958,17 @@ def playNetrajaStream(url):
 	start = link.find("<div class='post-body entry-content'")
 	end = link.find("<div style='clear: both;'></div>", start)
 
-	stream=serbiaplussearchurl(link[start:end])
+	streams = []
 
-	if stream == '':
+	streams = searchstreams(link[start:end])
+
+	if streams == []:
 		if link[start:end].find("www.youtube.com/embed/") != -1:
 			match=re.compile('www.youtube.com/embed/(.+?)"').findall(link[start:end])
 			if match != []:
-				stream='plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid='+match[0]
+				streams=['plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid='+match[0]]
 
-	if stream != '':
-		if stream.__contains__('youtube.com'):
-			stream = 'plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid='+stream.split('=')[-1].strip()
-
-		pDialog.update(80, 'Playing')
-		playurl(stream)
-
-	pDialog.close()
-	return True
+	return streams
 
 # rts methods
 
@@ -1194,19 +1269,13 @@ def playurl(url):
 
 	if url[:4] == 'rtmp':
 		url = url + ' timeout=10'
-
-	listitem = xbmcgui.ListItem(guititle)
-	play=xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-	play.clear()
-	play.add(url, listitem)
-	player = xbmc.Player(xbmc.PLAYER_CORE_AUTO)
-	player.play(play)
+	listitem = xbmcgui.ListItem(path=url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
 	return True
 
 def playGenericChannel(url):
 	pDialog = xbmcgui.DialogProgress()
 	pDialog.create('Macedonia On Demand', 'Initializing')
-
 	pDialog.update(50, 'Finding stream')
 	try:
 		content=readurl(url)
@@ -1302,11 +1371,20 @@ def PROCESS_PAGE(page,url='',name=''):
 		addDir('telekabel.com.mk', 'live_telekabelmk', '', '')
 		addDir('zulu.mk', 'live_zulumk', '', '')
 		addDir('мрт play', 'list_mrtlive', '', 'http://mrt.com.mk/sites/all/themes/mrt/logo.png')
-		addDir('volim.tv', 'volimtv_front', '', 'http://www.volim.tv/images/banners/logo.png')
-		addDir('serbiaplus (beta)', 'serbiaplus_front', '', '')
+		#addDir('volim.tv', 'volimtv_front', '', 'http://www.volim.tv/images/banners/logo.png')
+		#addDir('serbiaplus (beta)', 'serbiaplus_front', '', '')
 		addDir('netraja.net (beta)', 'netraja_front', '', 'http://3.bp.blogspot.com/-_z6ksp3rY6Q/U0HL30rMwaI/AAAAAAAADAs/_hSEFNwNZ_8/s1600/7.png')
-		addDir('tvboxuzivo (beta)', 'tvboxuzivo_front', '', '')
+		#addDir('tvboxuzivo (beta)', 'tvboxuzivo_front', '', '')
+		addLink('ТВ НОВА - Македонија', 'tvnovamk_live', 'tvnovamk_live', 'http://tvnova.mk/images/logo.png')
 		addDir('останати...', 'live_other', '', '')
+		setView()
+		xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+	elif page == 'tv_proxy_front':
+		addDir('zulu', 'live_zulumk_proxy', '', '')
+		if checkIsProxyEnabled():
+			addDir('maxtv', 'live_maxtv_proxy', '', '')
+		addDir('mrt', 'list_mrtlive_proxy', '', '')
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
@@ -1345,27 +1423,60 @@ def PROCESS_PAGE(page,url='',name=''):
 	elif page == 'netraja_list_tvs':
 		listing = listNetrajaTvs(url)
 		for item in listing:
-			addLink(item['link'][-1]['title'].encode('ascii', 'ignore'), item['link'][-1]['href'], 'netraja_play_stream', item.values()[7].values()[0] )
+			addDir(item['link'][-1]['title'].encode('ascii', 'ignore'), 'netraja_list_streams', item['link'][-1]['href'], item.values()[7].values()[0] )
 		xbmc.executebuiltin("Container.SetViewMode(500)")
+		setView()
+		xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+	elif page == 'netraja_list_streams':
+		listing = listNetrajaStreams(url)
+		streamcnt = 1
+		for stream in listing:
+			addLink("Stream"+str(streamcnt), stream, '', '')
+			streamcnt = streamcnt + 1
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 	elif page == 'netraja_play_stream':
 		playNetrajaStream(url)
 
-	elif page == 'live_zulumk':
+	elif page.__contains__('live_zulumk'):
 		listing = createZuluListing()
 		#for station, thumb in match:
 		#	print station, thumb
+		if page == 'live_zulumk':
+			nextpage = 'playzulustream'
+		else:
+			nextpage = 'playzulustreamproxy'
+
 		for station, thumb in listing:
-			addLink(station.split('/')[-1], station, 'playzulustream', 'http://on.net.mk/'+thumb)
+			addLink(station.split('/')[-1], station, nextpage, 'http://on.net.mk/'+thumb)
 		setView('files', 500)
 		xbmc.executebuiltin("Container.SetViewMode(500)")
-
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
+		if nextpage == 'playzulustreamproxy' and checkIsProxyEnabled() == False:
+			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
+			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+
+
 	elif page=='playzulustream':
-		playZuluStream(url)
+		playZuluStream(url, False)
+
+	elif page=='playzulustreamproxy':
+		playZuluStream(url, True)
+
+	elif page == 'live_maxtv_proxy':
+		if checkIsProxyEnabled() == False:
+			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
+			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+		else:
+			listing = createWebmaxtvListing()
+			for title, server, u, thumb in listing:
+				addLink(title, 'rtmp://'+server+'/'+u+' app='+u+' pageUrl=http://web.maxtv.mk/ swfUrl=http://web.maxtv.mk/maxTv14.swf  live=true playpath=stream2 swfVfy=true timeout=5', '', 'http://web.maxtv.mk/'+thumb)
+			setView('files', 500)
+			xbmc.executebuiltin("Container.SetViewMode(500)")
+			xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 	elif page == 'live_telekabelmk':
 		listing = createTelekabelListing()
@@ -1379,6 +1490,9 @@ def PROCESS_PAGE(page,url='',name=''):
 
 	elif page=='playtelekabelstream':
 		playTelekabelStream(url)
+
+	elif page == 'tvnovamk_live':
+		playGenericChannel('http://tvnova.mk/')
 
 	elif page == 'live_other':
 		listing = createOtherListing()
@@ -1486,37 +1600,60 @@ def PROCESS_PAGE(page,url='',name=''):
 	elif page == "mrt_front":
 		listing = createmrtfrontList()
 		for url,channel in listing:
-			addDir(channel, 'list_mrtchannel', url, '')
+			addDir(channel, 'list_mrtcategories', url, '')
 		addDir('ВО ЖИВО', 'list_mrtlive', '', '')
 
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-	elif page == 'list_mrtlive':
+	elif page == 'list_mrtlive' or page == 'list_mrtlive_proxy':
 		listing = list_mrtlive()
+		if page == 'list_mrtlive':
+			nextpage = 'play_mrt_video'
+		else:
+			nextpage = 'play_mrt_video_proxy'
 		for url,title,thumb in listing:
-			addLink(title, url, 'play_mrt_video', thumb)
+			addLink(title, url, nextpage, thumb)
 
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-	elif page == 'list_mrtchannel':
-		[listing, nextpage] = list_mrtchannel(url)
+	elif page == 'list_mrtcategories':
+		[listing, nextpage] = list_mrtcategories(url)
 
 		for type,url,thumb,duration,title in listing:
 			if type=="video":
 				addLink(title, url, 'play_mrt_video', thumb, '', duration)
-			elif type=="channel":
-				addDir(">>  "+title, 'list_mrtchannel', url, thumb)
+			elif type=="category":
+				addDir(">>  "+title, 'list_mrtcategories', url, thumb)
 
-		if nextpage != '':
-			addDir(">> Следна Страна", 'list_mrtchannel', nextpage.replace('&amp;', '&'), '')
+		if nextpage != {}:
+			print "nextpage="+str(nextpage)
+			addDir(">> Следна Страна", 'list_mrtvvideos', json.dumps(nextpage), '')
+
+		setView()
+		xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+	elif page == 'list_mrtvvideos':
+		data=json.loads(url)
+
+		[nextpage,videos] = list_mrtvideos(data['url1'], data['url2'], data['pagenr'])
+
+		for videourl, thumb, title in videos:
+			addLink(title, videourl, 'play_mrt_video', thumb, '', '')
+
+		if nextpage != {}:
+			print "nextpage="+str(nextpage)
+			addDir(">> Следна Страна", 'list_mrtvvideos', json.dumps(nextpage), '')
 
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 	elif page == 'play_mrt_video':
-		playmrtvideo(url)
+		playmrtvideo(url, False)
+
+	elif page == 'play_mrt_video_proxy':
+		playmrtvideo(url, True)
 
 	elif page == 'hrt_front':
 		addLink('HRT1 Live', 'http://5323.live.streamtheworld.com/HTV1?streamtheworld_user=1&nobuf=1361039552824', '', 'http://upload.wikimedia.org/wikipedia/commons/1/1f/HRT1_Logo_aktuell.jpg')
@@ -1748,7 +1885,7 @@ def addLink(name,url,page,iconimage,fanart='',duration='00:00', published='0000-
 	if description != '':
 		liz.setInfo('video', { 'plot':description })
 
-	#liz.setProperty('IsPlayable', 'false')
+	liz.setProperty('IsPlayable', 'true')
 	if fanart!='':
 		liz.setProperty('fanart_image', fanart)
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz)
@@ -1805,4 +1942,3 @@ except:
 
 if result:
 	PROCESS_PAGE(page, url, name)
-

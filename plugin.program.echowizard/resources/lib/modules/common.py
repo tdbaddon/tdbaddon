@@ -19,6 +19,7 @@ import urllib2,urllib
 from urllib2 import urlopen
 from resources.lib.modules import extract
 from resources.lib.modules import downloader
+from resources.lib.modules import uploadlog
 import re
 import time
 addon_id = 'plugin.program.echowizard'
@@ -27,6 +28,7 @@ AddonID='plugin.program.echowizard'
 AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 HOME         =  xbmc.translatePath('special://home/')
 dialog       =  xbmcgui.Dialog()
+dp           =  xbmcgui.DialogProgress()
 BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
 SUPPORT_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/support.png'))
 FANART              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
@@ -187,8 +189,8 @@ def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 	notice = "null"
 	build_image = "null"
 	try:
-		skin_used, developer = description.split(',')
-	except:	skin_used, developer, youtube_id, notice, build_image = description.split(',')
+		skin_used, developer, contact = description.split(',')
+	except:	skin_used, developer, youtube_id, notice, build_image, contact = description.split(',')
 
 	TEMP_FILE =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'temp/temp.xml'))
 	week  = (str(count(name,TEMP_FILE)))
@@ -199,6 +201,9 @@ def BUILDER_COMMUNITY(name,url,iconimage,fanart,description):
 		week = str(count3)
 	except: week = countfail	
 	total =(str(count(name+"TOTAL_COUNT",TEMP_FILE)))   
+
+	if not contact == "Unknown":
+		addItem("[COLOR white][B]Contact Details: [/COLOR][COLOR yellowgreen]" + str(contact) + "[/B][/COLOR]","url",999,iconimage,fanart,description)
 
 	if not youtube_id.lower() == "null":
 		if "http" in youtube_id.lower():
@@ -645,46 +650,154 @@ def _get_keyboard( default="", heading="", hidden=False ):
     if ( keyboard.isConfirmed() ):
         return unicode( keyboard.getText(), "utf-8" )
     return default
-		
-def TextBoxes(announce):
-	class TextBox():
-		WINDOW=10147
-		CONTROL_LABEL=1
-		CONTROL_TEXTBOX=5
-		def __init__(self,*args,**kwargs):
-			xbmc.executebuiltin("ActivateWindow(%d)" % (self.WINDOW, )) # activate the text viewer window
-			self.win=xbmcgui.Window(self.WINDOW) # get window
-			xbmc.sleep(500) # give window time to initialize
-			self.setControls()
-		def setControls(self):
-			self.win.getControl(self.CONTROL_LABEL).setLabel('ECHO Wizard - View Log Facility') # set heading
-			try: f=open(announce); text=f.read()
-			except: text=announce
-			self.win.getControl(self.CONTROL_TEXTBOX).setText(str(text))
-			return
-	TextBox()
-	while xbmc.getCondVisibility('Window.IsVisible(10147)'):
-		time.sleep(.5)
 
-def TextBoxesPlain(announce):
-	class TextBox():
-		WINDOW=10147
-		CONTROL_LABEL=1
-		CONTROL_TEXTBOX=5
-		def __init__(self,*args,**kwargs):
-			xbmc.executebuiltin("ActivateWindow(%d)" % (self.WINDOW, )) # activate the text viewer window
-			self.win=xbmcgui.Window(self.WINDOW) # get window
-			xbmc.sleep(500) # give window time to initialize
-			self.setControls()
-		def setControls(self):
-			self.win.getControl(self.CONTROL_LABEL).setLabel('[COLOR smokewhite][B]ECHO Wizard[/B][/COLOR]') # set heading
-			try: f=open(announce); text=f.read()
-			except: text=announce
-			self.win.getControl(self.CONTROL_TEXTBOX).setText(str(text))
-			return
-	TextBox()
-	while xbmc.getCondVisibility('Window.IsVisible(10147)'):
-		time.sleep(.5)
+def TextBoxError(title, msg):
+	class TextBoxes(xbmcgui.WindowXMLDialog):
+		def onInit(self):
+			self.title         = 100
+			self.msg           = 101
+			self.okbutton      = 102
+			self.uploadbutton  = 103
+			self.scrollbar     = 104
+
+			self.showdialog()
+
+		def showdialog(self):
+		
+			self.getControl(self.title).setLabel(title)
+			self.getControl(self.msg).setText(msg)
+			self.setFocusId(self.scrollbar)
+
+			
+		def onClick(self, controlId):
+			if (controlId == self.okbutton):
+				self.close()
+			elif (controlId == self.uploadbutton):
+				uploadlog.main(argv=None)	
+	
+	if "log" in title.lower():
+
+		match=re.compile('WARNING: (.+?)\n',re.DOTALL).findall(msg)
+		for items in match:
+			if not "repeats" in items.lower():
+				msg=msg.replace(items, '[COLOR yellow]'+items+'[/COLOR]')
+
+		match2=re.compile('ERROR: (.+?)\n',re.DOTALL).findall(msg)
+		for items2 in match2:
+			if not "repeats" in items2.lower():
+				if not "exception" in items2.lower():
+					msg=msg.replace(items2, '[COLOR orange]'+items2+'[/COLOR]')
+				
+		match3=re.compile('ERROR: EXCEPTION(.+?)report<--',re.DOTALL).findall(msg)
+		for items3 in match3:
+			msg=msg.replace(items3, '[COLOR orangered]'+items3+'[/COLOR]')
+
+		msg = msg.replace(' ERROR: EXCEPTION', ' [COLOR orangered] ERROR:EXCEPTION[/COLOR] ') \
+			.replace(' ERROR: ', ' [COLOR orange] ERROR: [/COLOR] ') \
+			.replace(' WARNING: ', ' [COLOR yellow] WARNING: [/COLOR] ') \
+			.replace(' NOTICE: ', ' [COLOR lime] NOTICE: [/COLOR] ') \
+			.replace('report<--', ' [COLOR orangered]report<--[/COLOR] ')
+
+	if "error" in title.lower():
+
+		msg = msg.replace('[COLOR yellowgreen]','') \
+		.replace('[/COLOR]','') \
+		.replace('[B]','') \
+		.replace('[/B]','') \
+
+		match=re.compile('COLOR red](.+?)\n',re.DOTALL).findall(msg)
+		for items in match:
+			msg=msg.replace(items, '[B]'+items+'[/B][/COLOR]')
+			
+	if "ERRORS" in title:
+
+		try:
+			import traceback as tb
+			# start by logging the usual info to stderr
+			(etype, value, traceback) = sys.exc_info()
+			tb.print_exception(etype, value, traceback)
+			#this now contains the traceback information
+			error_traceback = tb.format_tb(traceback)
+			#this now contains the error type
+			error_type = str(etype)
+			#this now contains the error value
+			error_value =  str(value)
+			
+			xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
+			xbmc_builddate=xbmc.getInfoLabel('System.BuildDate')
+			xbmc_language=xbmc.getInfoLabel('System.Language')
+			python_version = sys.version
+			local_time = time.asctime( time.localtime(time.time()) )
+			version=float(xbmc_version[:4])
+			if version >= 11.0 and version <= 11.9:
+				codename = 'Eden'
+			elif version >= 12.0 and version <= 12.9:
+				codename = 'Frodo'
+			elif version >= 13.0 and version <= 13.9:
+				codename = 'Gotham'
+			elif version >= 14.0 and version <= 14.9:
+				codename = 'Helix'
+			elif version >= 15.0 and version <= 15.9:
+				codename = 'Isengard'
+			elif version >= 16.0 and version <= 16.9:
+				codename = 'Jarvis'
+			elif version >= 17.0 and version <= 17.9:
+				codename = 'Krypton'
+			else: codename = "Decline"
+
+			GET_VERSION         =  xbmc.translatePath('special://home/addons/plugin.program.echowizard/addon.xml')
+
+			a=open(GET_VERSION).read()
+			b=a.replace('\n',' ').replace('\r',' ')
+			match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+			for item in match:
+				addon_version = float(item)
+
+			msg = "\n[I]Kodi Information[/I]" + \
+			"\nLocal Time : " + local_time + \
+			"\nKodi " + codename + \
+			"\nVersion - " + str(version) + \
+			"\nBuild Date -  " + str(xbmc_builddate) + \
+			"\nLanguage - " + str(xbmc_language) + \
+			"\nPython - " + str(python_version) + \
+			"\nECHO Version - " + str(addon_version) + \
+			"\n\n" + \
+			"--------------------------------------------------------------------------------------------------------------------------------------------" \
+			"\n\n" + msg
+		except:
+			msg = "[I]Kodi Information[/I]" + \
+			"\nUnable to get information." \
+			"\n\n" + msg
+	tb = TextBoxes( "textboxerror.xml" , ADDON.getAddonInfo('path'), 'DefaultSkin', title=title, msg=msg)
+	tb.doModal()
+	del tb
+
+def TextBox(title, msg):
+	class TextBoxes(xbmcgui.WindowXMLDialog):
+		def onInit(self):
+			self.title      = 100
+			self.msg        = 101
+			self.okbutton   = 102
+			self.scrollbar  = 104
+
+			self.showdialog()
+
+		def showdialog(self):
+		
+			self.getControl(self.title).setLabel(title)
+			self.getControl(self.msg).setText(msg)
+			self.setFocusId(self.scrollbar)
+
+			
+		def onClick(self, controlId):
+			if (controlId == self.okbutton):
+				self.close()
+			elif (controlId == self.uploadbutton):
+				uploadlog.main(argv=None)	
+
+	tb = TextBoxes( "textboxnormal.xml" , ADDON.getAddonInfo('path'), 'DefaultSkin', title=title, msg=msg)
+	tb.doModal()
+	del tb
 
 def OPEN_URL(url):
 
@@ -718,6 +831,24 @@ def OPEN_URL_NORMAL(url):
 		link=response.read()
 		response.close()
 		return link
+
+def OPEN_URL_DIALOG(url):
+
+	try:
+		dp.create(AddonTitle,'[COLOR red][B]CONNECTING.....[/B][/COLOR]','[COLOR yellowgreen]Please wait...[/COLOR]')
+		if "https://" in url:
+			url = url.replace("https://","http://")
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
+		response = urllib2.urlopen(req)
+		link=response.read()
+		response.close()
+		dp.update(100,'[COLOR lime][B]CONNECTED.....[/B][/COLOR]',' ')
+		dp.close()
+	except:
+		dialog.ok(AddonTitle,'[COLOR yellowgreen]There was an error connecting to the url. Please try again later.[/COLOR]')
+		quit()
+	return link
 
 def OPEN_URL_BEAST(url):
 

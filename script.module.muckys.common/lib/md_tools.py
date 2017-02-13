@@ -30,6 +30,7 @@ class md:
 
 
 
+
 	def __init__(self, addon_id, argv=None):
 
 		self.addon = Addon(addon_id, sys.argv)
@@ -97,7 +98,23 @@ class md:
 
 
 
-	def numeric_select(self,header,default_no):
+	def sort_choice(self,data,name,value_name,value):
+
+                if len(data) > 1:
+                        ret = self.dialog_select(name,value_name)
+                        if ret == -1:
+                                return
+                        elif ret > -1:
+                                choice = value[ret]
+                else:
+                        choice = value[0]
+
+                return choice
+
+
+
+
+        def numeric_select(self,header,default_no):
 		dialog = xbmcgui.Dialog()
 		return dialog.numeric(0, header, default_no)
 
@@ -124,6 +141,18 @@ class md:
 		if (keyb.isConfirmed()):
 			search = keyb.getText().replace(' ',blank)
 		return search
+
+
+
+
+	def replace_space(self, data, space=''):
+		return re.sub(r'[\s+]', space, data)
+
+
+
+
+	def space_before_cap(self, data):
+		return re.sub(r'(\w)([A-Z])', r'\1 \2', data)
 
 
 
@@ -281,7 +310,6 @@ class md:
 				setView(self.addon_id, 'files', 'menu-view')
 
 			self.addon.end_of_directory()
-		
 
 
 
@@ -489,12 +517,10 @@ class md:
 
 
 
-	
-
 
 	def fetch_meta(self, content, infolabels, fan_art={}):
 
-                meta = {}
+		meta = {}
 
 		if 'year' in infolabels:
 			year = infolabels['year']
@@ -512,6 +538,9 @@ class md:
 			episode = infolabels['episode']
 		else:
 			episode = ''
+
+		season = re.sub('\D', '', season)
+		episode = re.sub('\D', '', episode)
 
 		if season.startswith('0'):
 			season = season[1:].strip()
@@ -534,11 +563,9 @@ class md:
 
 		if simpleyear == '':
 			simpleyear = year
+
+		simpleyear = re.sub('\D', '', simpleyear)
 			
-                season = re.sub('\D', '', season)
-                episode = re.sub('\D', '', episode)
-                simpleyear = re.sub('\D', '', simpleyear) 
-		
 		if content == 'movies':
 
 			if self.addon.get_setting('movie_meta') == 'true':
@@ -547,20 +574,17 @@ class md:
 				pass
 
 		elif content == 'tvshows':
-                        self.addon.log('################ssetvs= '+str(self.addon.get_setting('tv_show_meta')))
-                        if self.addon.get_setting('tv_show_meta') == 'true':
+
+			if self.addon.get_setting('tv_show_meta') == 'true':
 				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 			else:
 				pass
 
 		elif content == 'episodes':
-                        self.addon.log('################ssetepi= '+str(self.addon.get_setting('episode_meta')))
+
 			if self.addon.get_setting('episode_meta') == 'true':
-                                self.addon.log('################season= '+str(season))
-                                self.addon.log('################episode= '+str(episode))
-                                self.addon.log('################title= '+str(simplename))
 				try:
-                                        meta = metaget.get_episode_meta(simplename,code,season,episode)
+					meta = metaget.get_episode_meta(simplename,code,season,episode)
 				except:
 					meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 			else:
@@ -624,7 +648,7 @@ class md:
 						fanart['thumb'] = infolabels['cover_url']
 
 					#if infolabels['trailer_url'] == '':
-                                                #del infolabels['trailer_url']
+						#del infolabels['trailer_url']
 					
 			else:
 				pass
@@ -632,6 +656,7 @@ class md:
 			pass
 
 		queries['infolabels'] = infolabels
+		queries['fan_art'] = fan_art
 		s_args = self.addon.build_plugin_url(queries)
 		listitem=xbmcgui.ListItem(name, iconImage=fan_art['icon'], thumbnailImage=fan_art['icon']) #listItem iconimage and thumbnail no longer needed after kodi 15. setArt does it for you.
 		listitem.setInfo(item_type, infoLabels=infolabels)
@@ -647,27 +672,27 @@ class md:
 				listitem.setProperty(prop[0], prop[1])
 
 		if add_search:
-                        if not contextmenu_items:
+			if not contextmenu_items:
 				contextmenu_items = []
-                        contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
+			contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
 
 
 		if add_fav:
 			if not contextmenu_items:
 				contextmenu_items = []
 			
-                        try:
-                                baseurl = self.addon.get_setting('base_url')
-                        except:
-                                baseurl = ''
+			try:
+				baseurl = self.addon.get_setting('base_url')
+			except:
+				baseurl = ''
 
-                        contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
+			contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
 			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
 						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
 									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,
 									       'mode_id':queries['mode'], 'is_folder':is_folder})))
-                if contextmenu_items:
-                        listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
+		if contextmenu_items:
+			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
 
 		if playlist is not False:
 			self.addon.log_debug('adding item: %s - %s to playlist' % \
@@ -681,13 +706,14 @@ class md:
 
 
 
-	def resolved(self, url, name='', iconimage='', infolabels=''):
-                listitem = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-                listitem.setInfo(type='Video', infoLabels={'Title': name, 'Plot':infolabels})
-                listitem.setProperty("IsPlayable","true")
-                listitem.setPath(str(url))
-                ok = xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
-                return ok
+	def resolved(self, url, name='', fan_art='', infolabels='', item_type='video'):
+		listitem = xbmcgui.ListItem(name)
+		listitem.setInfo(item_type, infoLabels=infolabels)
+		listitem.setArt(fan_art)
+		listitem.setProperty('IsPlayable','true')
+		listitem.setPath(str(url))
+		ok = xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
+		return ok
 
 
 

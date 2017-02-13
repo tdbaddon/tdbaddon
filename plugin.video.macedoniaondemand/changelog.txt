@@ -1,3 +1,23 @@
+v2.4
+   - [mrt] fix for mrt and align with proxy version of the plugin
+
+v2.3
+   - [tvnova] fix for tvnova.mk
+
+v2.2
+   - [mrt] support reworked version of play.mrt.com.mk web
+
+v2.1
+   - [netraja] fix in netraja section
+   - [tvnovamk] tv nova mk added
+
+v2.0
+   - [24vesti.mk] trim youtube and dailymotion links
+   - [hrt] fix for hrt
+   - [netraja] fix for netraja
+   - volim.tv, serbiaplus and tvboxuzivo temporarily removed
+   - new structure for github
+
 v1.4.30
    - [volim.tv] fix for volim.tv section
    - [hrt] fix for hrt section
