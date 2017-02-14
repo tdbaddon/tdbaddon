@@ -1,3 +1,9 @@
+######## v1.2.1 ########
+ 
+- More work done to md_tools
+
+- Added Duck Hunt
+
 ######## v1.2.0 ########
  
 - More work done to md_tools

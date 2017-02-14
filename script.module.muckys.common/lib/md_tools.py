@@ -32,6 +32,7 @@ class md:
 
 
 	def __init__(self, addon_id, argv=None):
+		
 
 		self.addon = Addon(addon_id, sys.argv)
 		self.addon_name = '[COLOR white][B]%s[/B][/COLOR]' %self.addon.get_name()
@@ -100,21 +101,21 @@ class md:
 
 	def sort_choice(self,data,name,value_name,value):
 
-                if len(data) > 1:
-                        ret = self.dialog_select(name,value_name)
-                        if ret == -1:
-                                return
-                        elif ret > -1:
-                                choice = value[ret]
-                else:
-                        choice = value[0]
+		if len(data) > 1:
+			ret = self.dialog_select(name,value_name)
+			if ret == -1:
+				return
+			elif ret > -1:
+				choice = value[ret]
+		else:
+			choice = value[0]
 
-                return choice
-
-
+		return choice
 
 
-        def numeric_select(self,header,default_no):
+
+
+	def numeric_select(self,header,default_no):
 		dialog = xbmcgui.Dialog()
 		return dialog.numeric(0, header, default_no)
 
@@ -135,11 +136,55 @@ class md:
 
 
 
-	def search(self, blank='+'):
+	def addon_search(self,content,query, fan_art='', infolabels='', item_type='video'):
+
+                '''this function is still under construction and is for use by mucky ducks addons i dont mind
+                people modifiying the code for yourself but please make sure you link it to your own addons
+                if i find people using it in their addons to link to my addons i will send out code that removes it''' 
+
+		query = query.partition('(')[0]
+
+		if fan_art:
+			fan_art = ast.literal_eval(fan_art)
+		else:
+			fanart = {}
+		if infolabels:
+			infolabels = ast.literal_eval(infolabels)
+		else:
+			infolabels = {}
+
+		if content == 'movies':
+			match = ['123movies','m4u','pubfilm','niter','movievault','hdbox','afdah','watch32hd']
+		else:
+			match = ['123movies','m4u','pubfilm']
+
+		
+		for addon_title in match:
+
+			if addon_title not in self.addon_id:
+				title = '[COLOR white][COLOR red]Search[/COLOR] %s [COLOR red]For[/COLOR] %s[/COLOR]' %(addon_title,query)
+				listitem = xbmcgui.ListItem(title)
+				listitem.setInfo(item_type, infoLabels=infolabels)
+				listitem.setArt(fan_art)
+				url = 'plugin://plugin.video.md%s/?url=url&content=%s&mode=search&query=%s' %(addon_title,content,query)
+				xbmcplugin.addDirectoryItems(int(sys.argv[1]), [(url, listitem, True,)])
+
+		if content == 'movies':
+			setView(self.addon_id, 'movies', 'movie-view')
+		elif content == 'tvshows' or content == 'seasons' or content == 'episodes':
+			setView(self.addon_id, 'tvshows', 'show-view')
+
+		self.addon.end_of_directory()
+		
+
+
+
+
+	def search(self, space='+'):
 		keyb = xbmc.Keyboard('', 'Search')
 		keyb.doModal()
 		if (keyb.isConfirmed()):
-			search = keyb.getText().replace(' ',blank)
+			search = keyb.getText().replace(' ',space)
 		return search
 
 
@@ -608,6 +653,8 @@ class md:
 		infolabels = self.addon.unescape_dict(infolabels)
 		name = queries['name'].replace('()','')
 
+		sort_info = infolabels
+
 		if 'content' in queries:
 			content = queries['content']
 		else:
@@ -671,11 +718,21 @@ class md:
 			for prop in properties.items():
 				listitem.setProperty(prop[0], prop[1])
 
+
+		if 'sorttitle' in sort_info:
+			if not contextmenu_items:
+				contextmenu_items = []
+
+			contextmenu_items.append(('[B][COLOR gold]Duck Hunt[/COLOR][/B]', 'Container.Update(%s, True)' %
+						  self.addon.build_plugin_url({'mode': 'addon_search', 'url':'url', 'content':content,
+									       'query':sort_info['sorttitle'], 'fan_art':fan_art,
+									       'infolabels':infolabels, 'item_type':item_type})))
+
 		if add_search:
 			if not contextmenu_items:
 				contextmenu_items = []
-			contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
-
+			contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' %
+						  self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
 
 		if add_fav:
 			if not contextmenu_items:
@@ -686,7 +743,9 @@ class md:
 			except:
 				baseurl = ''
 
-			contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' % self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
+			contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' %
+						  self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
+
 			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
 						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
 									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,

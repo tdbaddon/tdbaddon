@@ -1617,7 +1617,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="2.0.5" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.0.6" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -3851,7 +3851,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.0" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.1" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

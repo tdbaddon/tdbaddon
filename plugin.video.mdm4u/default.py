@@ -2,7 +2,6 @@
 
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin
-from bs4 import BeautifulSoup as bs
 from md_request import open_url
 from md_view import setView
 from common import Addon
@@ -49,8 +48,8 @@ def MAIN():
 	if show_fav == 'true':
 		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR white][B]MY FAVOURITES[/B][/COLOR]', 'url':'url'})
 	if metaset == 'true':
-                if show_meta_set == 'true':
-                        md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
+		if show_meta_set == 'true':
+			md.addDir({'mode':'meta_settings', 'name':'[COLOR white][B]META SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
 	if show_add_set == 'true':
 		md.addDir({'mode':'addon_settings', 'name':'[COLOR white][B]ADDON SETTINGS[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
 	
@@ -226,7 +225,7 @@ def SEARCH(content, query):
 		if query:
 			search = query.replace(' ','-')
 		else:
-			search = md.search(blank='-')
+			search = md.search('-')
 			if search == '':
 				md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
 				return
@@ -234,70 +233,65 @@ def SEARCH(content, query):
 				pass
 
 		if content == 'movies':
-			url = baseurl+'/tag/'+search
+			url = '%s/tag/%s' %(baseurl,search)
 		elif content == 'tvshows':
-			url = baseurl+'/tagtvs/'+search
+			url = '%s/tagtvs/%s' %(baseurl,search)
 		INDEX(url,content)
 
 	except:
-		md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+		md.notification('[COLOR gold][B]Sorry No Results[/B][/COLOR]',icon)
 
 
 
 
 def RESOLVE(url,name,content,fan_art,infolabels):
 
-	link = open_url(url).content
-	
-	try:
-		soup = bs(link, "html.parser")
-		a = soup.find('h3',class_='h3-detail')
-		b = a.find('a', href=True)
-		request_url = str(b["href"])
-		link = open_url(request_url).content
-	except:
-		pass
+        link = open_url(url).content
 
+	if content == 'movies':
+                request_url = re.findall(r'<a  href="([^"]+)">Watch <b>', str(link), re.I|re.DOTALL)[0]
+		link = open_url(request_url).content
+		
 	value = []
 	max_url = []
 	final_url= ''
 
 	match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link), re.I|re.DOTALL)
 	for url,label in match:
-                value.append(int(re.sub('\D', '', label)))
-                max_url.append(url)
+		value.append(int(re.sub('\D', '', label)))
+		max_url.append(url)
 
-        try:
-                final_url =  max_url[md.get_max_value_index(value)[0]]
-        except:
-                pass
+	try:
+		final_url =  max_url[md.get_max_value_index(value)[0]]
+	except:
+		pass
 
-        if not final_url:
-                request_url = '%s/demo.php' %baseurl
-                try:
-                        params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 0</span>', str(link), re.I|re.DOTALL)[0]}
-                except:
-                        try:
-                                params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 1</span>', str(link), re.I|re.DOTALL)[0]}
-                        except:
-                                params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 2</span>', str(link), re.I|re.DOTALL)[0]}
-                
-                link2 = open_url(request_url, params=params).content
+	if not final_url:
+		request_url = '%s/demo.php' %baseurl
+		try:
+			params = {'v':re.findall(r'link="([^"]+)".*?>Server 0</span>', str(link), re.I|re.DOTALL)[0]}
+		except:
+			try:
+				params = {'v':re.findall(r'link="([^"]+)" >Server 1</span>', str(link), re.I|re.DOTALL)[0]}
+			except:
+				params = {'v':re.findall(r'link="([^"]+)" >Server 2</span>', str(link), re.I|re.DOTALL)[0]}
+		
+		link2 = open_url(request_url, params=params).content
 
-                try:
-                        final_url = re.findall(r'source.*?src="([^"]+)"', str(link2), re.I|re.DOTALL)[0]
-                except:
-                        match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link2), re.I|re.DOTALL)
-                        for url,label in match:
-                                value.append(int(re.sub('\D', '', label)))
-                                max_url.append(url)
+		try:
+			final_url = re.findall(r'source.*?src="([^"]+)"', str(link2), re.I|re.DOTALL)[0]
+		except:
+			match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link2), re.I|re.DOTALL)
+			for url,label in match:
+				value.append(int(re.sub('\D', '', label)))
+				max_url.append(url)
 
-                        try:
-                                final_url =  max_url[md.get_max_value_index(value)[0]]
-                        except:
-                                pass
+			try:
+				final_url =  max_url[md.get_max_value_index(value)[0]]
+			except:
+				pass
 
-        if 'google' in final_url:
+	if 'google' in final_url:
 		final_url = final_url
 	else:
 		if baseurl not in final_url:
@@ -355,6 +349,9 @@ elif mode == '7':
 
 elif mode == 'search':
 	SEARCH(content,query)
+
+elif mode == 'addon_search':
+	md.addon_search(content,query,fan_art,infolabels)
 
 elif mode == 'add_remove_fav':
 	md.add_remove_fav(name, url, infolabels, fan_art,
