@@ -245,7 +245,7 @@ def SEARCH(content, query):
 
 
 
-def RESOLVE(url,iconimage,content,infolabels):
+def RESOLVE(url,name,content,fan_art,infolabels):
 
 	link = open_url(url).content
 	
@@ -262,7 +262,7 @@ def RESOLVE(url,iconimage,content,infolabels):
 	max_url = []
 	final_url= ''
 
-	match = re.findall(r'"file":"(.*?)".*?"label":"(.*?)"', str(link), re.I|re.DOTALL)
+	match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link), re.I|re.DOTALL)
 	for url,label in match:
                 value.append(int(re.sub('\D', '', label)))
                 max_url.append(url)
@@ -275,11 +275,27 @@ def RESOLVE(url,iconimage,content,infolabels):
         if not final_url:
                 request_url = '%s/demo.php' %baseurl
                 try:
-                        params = {'v':re.findall(r'<span class="btn-eps " link="(.*?)" >Server 1</span>', str(link), re.I|re.DOTALL)[0]}
+                        params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 0</span>', str(link), re.I|re.DOTALL)[0]}
                 except:
-                        params = {'v':re.findall(r'<span class="btn-eps " link="(.*?)" >Server 2</span>', str(link), re.I|re.DOTALL)[0]}
+                        try:
+                                params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 1</span>', str(link), re.I|re.DOTALL)[0]}
+                        except:
+                                params = {'v':re.findall(r'<span class="btn-eps.*?" link="([^"]+)" >Server 2</span>', str(link), re.I|re.DOTALL)[0]}
+                
                 link2 = open_url(request_url, params=params).content
-                final_url = re.findall(r'source.*?src="(.*?)"', str(link2), re.I|re.DOTALL)[0]
+
+                try:
+                        final_url = re.findall(r'source.*?src="([^"]+)"', str(link2), re.I|re.DOTALL)[0]
+                except:
+                        match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link2), re.I|re.DOTALL)
+                        for url,label in match:
+                                value.append(int(re.sub('\D', '', label)))
+                                max_url.append(url)
+
+                        try:
+                                final_url =  max_url[md.get_max_value_index(value)[0]]
+                        except:
+                                pass
 
         if 'google' in final_url:
 		final_url = final_url
@@ -290,12 +306,7 @@ def RESOLVE(url,iconimage,content,infolabels):
 	final_url = final_url.replace('../view.php?','view.php?')
 	final_url = final_url.replace('./view.php?','view.php?')
 		
-	liz = xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-	liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": infolabels})
-	liz.setProperty("IsPlayable","true")
-	liz.setPath(final_url)
-	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-
+	md.resolved(final_url, name, fan_art, infolabels)
 	addon.end_of_directory()
 
 
@@ -340,7 +351,7 @@ elif mode == '6':
 	EPIS(title,url,iconimage,content)
 
 elif mode == '7':
-	RESOLVE(url,iconimage,content,infolabels)
+	RESOLVE(url,name,content,fan_art,infolabels)
 
 elif mode == 'search':
 	SEARCH(content,query)
