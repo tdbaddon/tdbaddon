@@ -209,7 +209,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	a = 0
 	b = 0
 
-	link = Common.OPEN_URL_CUSTOM(url,ua).replace('\n','').replace('\r','')
+	link = Common.OPEN_URL_CUSTOM(url,ua).replace('\n','').replace('\r','').replace(',','')
 	
 	link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>")
 	match= re.compile('<item>(.+?)</item>').findall(link)

@@ -66,6 +66,5 @@ def _pbhook(numblocks, blocksize, filesize, dp, start_time):
         if dp.iscanceled():
             dialog = xbmcgui.Dialog()
             dialog.ok(AddonTitle, 'The download was cancelled.')
-				
-            sys.exit()
             dp.close()
+            quit()

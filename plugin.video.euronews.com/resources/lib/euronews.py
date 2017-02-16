@@ -16,13 +16,9 @@
 '''
 
 
-import urllib,json,re
-
-from lamlib import cache
-from lamlib import client
-from lamlib import control
-from lamlib import directory
-from lamlib import workers
+import urllib, json
+# noinspection PyUnresolvedReferences
+from tulip import cache, client, control, directory, workers
 
 
 

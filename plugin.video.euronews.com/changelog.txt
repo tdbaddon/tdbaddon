@@ -1,3 +1,6 @@
+[B]1.1.1[/B]
+- Rebased to utilize tulip libraries
+
 [B]1.1.0[/B]
 - Tweaked sections
 - Added add-on screenshots

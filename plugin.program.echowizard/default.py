@@ -236,6 +236,29 @@ if os.path.isfile(NOTICE):
 
 def INDEX():
 
+
+	#######################################################################
+	#					GET API INFORMATION
+	#######################################################################
+
+	api_interval = plugintools.get_setting("api_interval")
+
+	if api_interval == "0":
+		mark = "60"
+	elif api_interval == "1":
+		mark = "50"
+	elif api_interval == "2":
+		mark = "40"
+	elif api_interval == "3":
+		mark = "30"
+	elif api_interval == "4":
+		mark = "20"
+	elif api_interval == "5":
+		mark = "10"
+	elif api_interval == "6":
+		mark = "5"
+	else: mark = "60"
+
 	#######################################################################
 	#	VERIABLES NEEDED IN THE LIST MENU
 	#######################################################################
@@ -311,34 +334,6 @@ def INDEX():
 
 	kodi_name = Common.GET_KODI_VERSION()
 	kodi_details = Common.GET_KODI_VERSION_DETAILS()
-
-	#######################################################################
-	#					GET API INFORMATION
-	#######################################################################
-
-	api_interval = plugintools.get_setting("api_interval")
-
-	if api_interval == "0":
-		mark = "60"
-	elif api_interval == "1":
-		mark = "50"
-	elif api_interval == "2":
-		mark = "40"
-	elif api_interval == "3":
-		mark = "30"
-	elif api_interval == "4":
-		mark = "20"
-	elif api_interval == "5":
-		mark = "10"
-	elif api_interval == "6":
-		mark = "5"
-	else: mark = "60"
-
-	#######################################################################
-	#					GET COUNTS FROM THE ECHO API
-	#######################################################################
-
-	GET_COUNTS()
 	
 	#######################################################################
 	#					START MAIN MENU
@@ -823,11 +818,15 @@ def GET_COUNTS():
 	if not os.path.exists(TEMP_FOLDER):
 		os.makedirs(TEMP_FOLDER)
 	if not os.path.isfile(TEMP_FILE):
-		open(TEMP_FILE, 'w')
+		text_file = open(TEMP_FILE, 'w')
+		text_file.close()
 	if not os.path.isfile(TEMP_ADDONS):
-		open(TEMP_ADDONS, 'w')
+		text_file = open(TEMP_ADDONS, 'w')
+		text_file.close()
 	if not os.path.isfile(KODIAPPS_FILE):
-		open(KODIAPPS_FILE, 'w')
+		text_file = open(KODIAPPS_FILE, 'w')
+		text_file.close()
+
 
 	api_interval = plugintools.get_setting("api_interval")
 
@@ -857,10 +856,13 @@ def GET_COUNTS():
 	
 	text_file = open(TEMP_FILE)
 	compfile = text_file.read()  
+	text_file.close()
 	text_file = open(TEMP_ADDONS)
 	compfile2 = text_file.read()  
+	text_file.close()
 	text_file = open(KODIAPPS_FILE)
 	compfile3 = text_file.read()
+	text_file.close()
 
 	if len(compfile) == 0:
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
@@ -1821,6 +1823,22 @@ try:
 except:
         pass
 
+#######################################################################
+#					GET COUNTS FROM THE ECHO API
+#######################################################################
+
+if not os.path.exists(TEMP_FOLDER):
+	GET_COUNTS()
+
+if not os.path.isfile(TEMP_FILE):
+	GET_COUNTS()
+
+if not os.path.isfile(TEMP_ADDONS):
+	GET_COUNTS()
+
+if not os.path.isfile(KODIAPPS_FILE):
+	GET_COUNTS()
+
 try:
 	if mode==None or url==None or len(url)<1:
 			INDEX()
@@ -2329,6 +2347,7 @@ try:
 #	xbmcgui.Dialog().ok(AddonTitle, str(error), '[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
 
 except:
+	
 		import traceback as tb
 		# start by logging the usual info to stderr
 		(etype, value, traceback) = sys.exc_info()
@@ -2339,7 +2358,15 @@ except:
 		error_type = str(etype)
 		#this now contains the error value
 		error_value =  str(value)
-		
+		if "quit" in str(error_traceback).lower():
+			pass
+			quit()
+		if "sys.exit" in str(error_traceback).lower():
+			pass
+			quit()
+			
+		if "ioerror" in error_type.lower():
+			GET_COUNTS()
 		xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
 		xbmc_builddate=xbmc.getInfoLabel('System.BuildDate')
 		xbmc_language=xbmc.getInfoLabel('System.Language')
@@ -2379,12 +2406,6 @@ except:
 		er_value   = error_value 
 		er_message = str(error_traceback)
 
-		if "quit" in str(error_traceback).lower():
-			pass
-			quit()
-		if "sys.exit" in str(error_traceback).lower():
-			pass
-			quit()
 		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhwP2FjdGlvbj1hZGQmbF90aW1lPQ==') + base64.b64encode(l_time) + \
 		'&k_name=' + base64.b64encode(k_name) + \
 		'&k_ver=' + base64.b64encode(k_ver) + \

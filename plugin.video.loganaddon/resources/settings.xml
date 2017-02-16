@@ -1,0 +1,27 @@
+﻿<settings>
+  <category label="General">
+    <setting id="save_location" type="folder"  label="Select a download location." default=""/>
+    <setting id="use_thumb" type="bool" label="Use Thumbnails as Fanart" default="false" />
+    <setting id="logo-folderPath" type="folder"  label="Select Directory for logo." default=""/>
+    <setting id="add_playlist" type="bool" label="Add items with multiple links as play lists" default="false"/>
+    <setting id="ask_playlist_items" type="bool" label="Ask playlist items to choose from dialog" default="false" />
+    <setting id="debug" type="bool" label="Enable Add-on Debugging" default="false"/>
+    <setting id="1080pquality" label="Play 1080p video ON demand if available (Not live)" type="bool" default=""/>
+    <setting id="genesisorpulsar" type="enum" values="Genesis|Pulsar" label="Play IMDBid with:" default="Pulsar"/>
+    <setting id="donotshowbychannels" label="Do Not show items under channel name" type="bool" default="false"/>
+    
+    <setting id="parentalblockedpin" label="Parental Block Pin" type="text"  option="hidden"  default=""/>
+    <setting id="parentalblocked" label="Is Parental Blocked Applied?" type="bool" default="false" enable="false"/>
+    
+  </category>
+
+
+  <category label=".xml Database">
+    <setting id="browse_xml_database" type="bool" label="Browse and play from .xml Database" default="false"/>
+    <setting type="action" label="Add .xml Database Sources" option="close" action="Container.Update(plugin://plugin.video.loganaddon/?mode=14)" />
+  </category>
+  <category label="Community Files">
+    <setting id="browse_community" type="bool" label="Browse and play from Community Files" default="false"/>
+    <setting type="action" label="Add Community File URL as Source" option="close" action="Container.Update(plugin://plugin.video.loganaddon/?mode=10)" />
+  </category>
+</settings>

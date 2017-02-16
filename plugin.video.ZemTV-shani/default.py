@@ -6273,7 +6273,8 @@ def PlayNetworkTVLink(url,progress=None):
             headers.append(('User-Agent',anduseragent))
             
         
-        authdata=getNetworkTVStringExtra(getUrl(posturl,headers=headers))
+        #authdata=getNetworkTVStringExtra(getUrl(posturl,headers=headers))
+        authdata=getUrl(posturl,headers=headers)
         defplayua=anduseragent
         playua=url["player_user_agent"]
         if playua and len(playua)>0:
@@ -6323,7 +6324,8 @@ def PlayNetworkTVLink(url,progress=None):
             headers.append(('User-Agent',anduseragent))
             
         
-        authdata=getNetworkTVStringExtra2(getUrl(posturl,headers=headers))
+        #authdata=getNetworkTVStringExtra2(getUrl(posturl,headers=headers))
+        authdata=getUrl(posturl,headers=headers)
         defplayua=anduseragent
         playua=url["player_user_agent"]
         if playua and len(playua)>0:

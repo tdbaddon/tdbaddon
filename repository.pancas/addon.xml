@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.pancas" name="Pancas repository" version="1.0.7" provider-name="Pancas">
+	<extension point="xbmc.addon.repository" name="Pancas Add-on Repository">
+		<info compressed="false">http://raw.github.com/Sup3Roque/Pancas/master/addons.xml</info>
+		<checksum>http://raw.github.com/Sup3Roque/Pancas/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/Sup3Roque/Pancas/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Pancas Repo</summary>
+		<description>TV para todos sempre ao melhor preço</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>

@@ -1290,7 +1290,8 @@ def GET_COUNTS():
 	else: mark = 60
 
 	if not os.path.isfile(TEMP_FILE):
-		open(TEMP_FILE, 'w')
+		text_file = open(TEMP_FILE, 'w')
+		text_file.close()
 
 	fileCreation = os.path.getmtime(TEMP_FILE)
 
@@ -1299,7 +1300,8 @@ def GET_COUNTS():
 	
 	text_file = open(TEMP_FILE)
 	compfile = text_file.read()  
-	
+	text_file.close()
+
 	if len(compfile) == 0:
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
 
