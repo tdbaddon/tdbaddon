@@ -1,3 +1,14 @@
+######## v1.2.3 ########
+ 
+- More work done to md_tools
+
+
+######## v1.2.2 ########
+ 
+- More work done to md_tools
+
+- Code clean up on fetch_favs now shows info and fanart when seleting episodes from a tv show
+
 ######## v1.2.1 ########
  
 - More work done to md_tools

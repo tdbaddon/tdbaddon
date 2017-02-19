@@ -24,6 +24,7 @@ from md_view import setView
 from common import Addon
 
 metaget = metahandlers.MetaData()
+dialog = xbmcgui.Dialog()
 
 
 class md:
@@ -92,8 +93,13 @@ class md:
 
 
 
+	def dialog_yesno(self,message,yes,no):
+                return dialog.yesno(self.addon_name, message, yeslabel=yes, nolabel=no)
+
+
+
+
 	def dialog_select(self,header,choice):
-		dialog = xbmcgui.Dialog()
 		return dialog.select(header,choice)
 
 
@@ -121,10 +127,26 @@ class md:
 
 
 
+	def text_return(self,header):
+		keyb = xbmc.Keyboard('', header)
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			data = keyb.getText()
+		return data
+
+
+
 
 	def notification(self, message, icon):
 		self.addon.show_small_popup(self.addon_name, message, 5000, icon)
 		return
+
+
+
+
+	def Exit(self):
+                xbmc.executebuiltin("XBMC.Container.Update(path,replace)")
+                xbmc.executebuiltin("XBMC.ActivateWindow(Home)")
 
 
 
@@ -138,9 +160,9 @@ class md:
 
 	def addon_search(self,content,query, fan_art='', infolabels='', item_type='video'):
 
-                '''this function is still under construction and is for use by mucky ducks addons i dont mind
-                people modifiying the code for yourself but please make sure you link it to your own addons
-                if i find people using it in their addons to link to my addons i will send out code that removes it''' 
+		'''this function is still under construction and is for use by mucky ducks addons i dont mind
+		people modifiying the code for yourself but please make sure you link it to your own addons
+		if i find people using it in their addons to link to my addons i will send out code that removes it''' 
 
 		query = query.partition('(')[0]
 
@@ -156,7 +178,7 @@ class md:
 		if content == 'movies':
 			match = ['123movies','m4u','pubfilm','niter','movievault','hdbox','afdah','watch32hd']
 		else:
-			match = ['123movies','m4u','pubfilm']
+			match = ['123movies','m4u','pubfilm','luckytv']
 
 		
 		for addon_title in match:
@@ -282,25 +304,16 @@ class md:
 					fav_menu.append(fav)
 					fav_path.append(self.get_fav_path(content))
 					
-
-			if len(onlyfiles) >1:
-				ret = dialog.select('Select Section',fav_menu)
-				if ret == -1:
-					return
-				elif ret > -1:
-					path_to_favs = fav_path[ret]
-			else:
-					path_to_favs = fav_path[0]
+			path_to_favs = self.sort_choice(onlyfiles,'Select Section',fav_menu,fav_path)
 
 			with open(path_to_favs, 'r') as f:
+
 				data = f.readlines()
-				#for i, l in enumerate(f):
-					#pass
-				#items = i + 1
-    
+				items = len(data)
 
 				for a in data:
-					b = ast.literal_eval(a)
+
+                                        b = ast.literal_eval(a)
 
 					if 'url' in b:
 						url = b['url']
@@ -314,35 +327,21 @@ class md:
 						infolabels = ast.literal_eval(b['infolabels'])
 					else:
 						infolabels = {}
-
-					if 'title' in b:
-						title = b['title']
-					else:
-						try:
-							title = infolabels['TVShowTitle']
-						except:
-							title = ''
 					if 'is_folder' in b:
 						is_folder = ast.literal_eval(b['is_folder'])
 					else:
 						is_folder = True
 
-					mode = b['mode']
-					name = b['name']
-					content = b['content']
-
-					if baseurl:
-						if baseurl not in url:
-							base = url.split('//')[1]
-							change = base.partition('/')[2]
-							url = '%s/%s' %(baseurl,change)
+					if baseurl and baseurl not in url and not url == 'url':
+						change = url.split('//')[1].partition('/')[2]
+						url = '%s/%s' %(baseurl,change)
 
 					if 'contextmenu_items' not in b:
 						contextmenu_items = []
-					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
 
-					self.addDir({'mode':mode, 'name':name, 'url':url, 'content':content, 'title':title},
-						    infolabels=infolabels, fan_art=fanart, is_folder=is_folder, contextmenu_items=contextmenu_items)
+					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
+					self.addDir(b, infolabels=infolabels, fan_art=fanart, is_folder=is_folder,
+						    contextmenu_items=contextmenu_items, item_count=items)
 			if content == 'movies':
 				setView(self.addon_id, 'movies', 'movie-view')
 			elif content == 'tvshows':
@@ -677,6 +676,7 @@ class md:
 
 				else:
 					infolabels = self.fetch_meta(content, infolabels, fan_art)
+					infolabels['sorttitle'] = sort_info['sorttitle']
 					if not contextmenu_items:
 						contextmenu_items = []
 					contextmenu_items.append(('[COLOR gold][B]Plot Information[/B][/COLOR]', 'XBMC.Action(Info)'))
@@ -718,26 +718,21 @@ class md:
 			for prop in properties.items():
 				listitem.setProperty(prop[0], prop[1])
 
+		if not contextmenu_items:
+			contextmenu_items = []
 
-		if 'sorttitle' in sort_info:
-			if not contextmenu_items:
-				contextmenu_items = []
 
+		if 'sorttitle' in infolabels:
 			contextmenu_items.append(('[B][COLOR gold]Duck Hunt[/COLOR][/B]', 'Container.Update(%s, True)' %
 						  self.addon.build_plugin_url({'mode': 'addon_search', 'url':'url', 'content':content,
 									       'query':sort_info['sorttitle'], 'fan_art':fan_art,
 									       'infolabels':infolabels, 'item_type':item_type})))
 
 		if add_search:
-			if not contextmenu_items:
-				contextmenu_items = []
 			contextmenu_items.append(('[B][COLOR gold]Search[/COLOR][/B]', 'Container.Update(%s, True)' %
 						  self.addon.build_plugin_url({'mode': 'search', 'url':'url', 'content':content})))
 
 		if add_fav:
-			if not contextmenu_items:
-				contextmenu_items = []
-			
 			try:
 				baseurl = self.addon.get_setting('base_url')
 			except:
@@ -745,18 +740,20 @@ class md:
 
 			contextmenu_items.append(('[B][COLOR gold]My Favourites[/COLOR][/B]', 'Container.Update(%s, True)' %
 						  self.addon.build_plugin_url({'mode': 'fetch_favs', 'url':baseurl, 'baseurl':baseurl})))
-
+			fq = queries
+			fq['mode_id'] = queries['mode']
+			fq['mode'] = 'add_remove_fav'
+			fq['is_folder'] = is_folder
+			
 			contextmenu_items.append(('[COLOR gold][B]Add/Remove Favourite[/B][/COLOR]', 'XBMC.RunPlugin(%s)'%
-						  self.addon.build_plugin_url({'mode': 'add_remove_fav', 'name':name, 'url':queries['url'],
-									       'infolabels':infolabels, 'fan_art':fan_art, 'content':content,
-									       'mode_id':queries['mode'], 'is_folder':is_folder})))
+						  self.addon.build_plugin_url(fq)))
 		if contextmenu_items:
 			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
 
 		if playlist is not False:
-			self.addon.log_debug('adding item: %s - %s to playlist' % \
-				       (name, s_args))
+			self.addon.log_debug('adding item: %s - %s to playlist' % (name, s_args))
 			ok=playlist.add(s_args, listitem)
+
 		else:
 			self.addon.log_debug('adding item: %s - %s' % (name, s_args))
 			ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=s_args,listitem=listitem,isFolder=is_folder,totalItems=int(item_count))

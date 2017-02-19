@@ -61,14 +61,14 @@ class sucuri:
 
 
 
-def open_url(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True):
+def open_url(url, method='get', headers=None, cookies=None, params=None, data=None, redirects=True, verify=True):
 
         if headers == None:
 
                 headers = {}
                 headers['User-Agent'] = User_Agent
 
-        link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
+        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
 
         try:
                 if link.headers['Server'] == 'Sucuri/Cloudproxy':
@@ -79,13 +79,13 @@ def open_url(url, method='get', headers=None, params=None, data=None, redirects=
                         if not url[-1] == '/':
                                 url = '%s/' %url
 
-                        link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
+                        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
         except:
                 pass
 
         if '_Incapsula_' in link.content:
 
-                link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
+                link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
                 link = crack(scraper, link)
 
         return link

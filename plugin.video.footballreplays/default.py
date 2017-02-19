@@ -37,11 +37,11 @@ def CATEGORIES():
     
 def CATEGORIES2():
     link=OPEN_URL('http://livefootballvideo.com/fullmatch')
-    r='<div class="cover"><a href="(.+?)" rel="bookmark" title="(.+?)">.+?<img src="(.+?)".+?<p class="postmetadata longdate" rel=".+?">(.+?)/(.+?)/(.+?)</p>'
+    r='<div class="cover"><a href="(.+?)" rel="bookmark" title="(.+?)".+?<img src="(.+?)".+? longdate" rel=".+?">(.+?)/(.+?)/(.+?)</p>'
     match=re.compile(r,re.DOTALL).findall(link)
-    print match
+  
     for url,name,iconimage,month,day,year in match:
-        _date='%s/%s/%s'%(day,month,year)  
+        _date='%s/%s/%s'%(day,month,year)
         _name='%s-[COLOR yellow][%s][/COLOR]'%(name,_date)    
         addDir(_name,url,1,iconimage,'')
     addDir('Next Page >>','url',2,'','1')
@@ -62,66 +62,84 @@ def NEXTPAGE(page):
     setView('movies', 'main') 
                                                                       
 def GETLINKS(name,url):#  cause mode is empty in this one it will go back to first directory
-    link=OPEN_URL(url)
-    if "proxy.link=lfv*" in link :
-        import base64
-        import decrypter
-        match = re.compile('proxy\.link=lfv\*(.+?)&').findall(link)
-        match = uniqueList(match)
-        match = [decrypter.decrypter(198,128).decrypt(i,base64.urlsafe_b64decode('Y0ZNSENPOUhQeHdXbkR4cWJQVlU='),'ECB').split('\0')[0] for i in match]
-        print match
-        for url in match:
+    links=OPEN_URL(url)
+    links= links.split("class='heading-more open'><span>")
+    for link in links:
+        try:
+            language=link.split('<')[0]
+            if len(language)>1:
+                addDir ('[COLOR green]%s[/COLOR]'%language, url , 200 , '', '' )
+            if "proxy.link=lfv*" in link :
+                import base64
+                import decrypter
+                match = re.compile('proxy\.link=lfv\*(.+?)&').findall(link)
+                match = uniqueList(match)
+                match = [decrypter.decrypter(198,128).decrypt(i,base64.urlsafe_b64decode('Y0ZNSENPOUhQeHdXbkR4cWJQVlU='),'ECB').split('\0')[0] for i in match]
+                print match
+                for url in match:
 
-            url = replaceHTMLCodes(url)
-            if url.startswith('//') : url = 'http:' + url
-            url = url.encode('utf-8')  
-            _name=url.split('://')[1] 
-            _name=_name.split('/')[0].upper()
-            addDir( name+' - [COLOR red]%s[/COLOR]'%_name , url , 200 , '' , '' )
-    if "www.youtube.com/embed/" in link :
-        r = 'youtube.com/embed/(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        yt= match[0]
-        iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % yt.replace('?rel=0','')
-        url = 'plugin://plugin.video.youtube/?path=root/video&action=play_video&videoid=%s' % yt.replace('?rel=0','')
-        addDir( name+' - [COLOR red]YOUTUBE[/COLOR]' , url , 200 , iconimage , '' )
-    if "dailymotion.com" in link :
-        r = 'src="http://www.dailymotion.com/embed/video/(.+?)\?.+?"></iframe>'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir ( name+' - [COLOR red]DAILYMOTION[/COLOR]' , url , 200 , GETTHUMB(url), '' )
-    if "http://videa" in link :
-        r = 'http://videa.+?v=(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]VIDEA[/COLOR]',url,200,'', '' )
-            
-    if "rutube.ru" in link :
-        r = 'ttp://rutube.ru/video/embed/(.+?)\?'
-        match = re.compile(r,re.DOTALL).findall(link)
-        print match
-        for url in match :
-            addDir (name+' - [COLOR red]RUTUBE[/COLOR]',url,200,'', '' )
-    if 'cdn.playwire.com' in link :
-        r = 'data-config="(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for vid in match :
-            if not 'http' in vid:
-                    vid='http:'+vid
-            url=vid.replace('zeus.json','manifest.f4m')
-            addDir (name+' - [COLOR red]PLAYWIRE[/COLOR]',url,200,'', '' )
-    if "vk.com" in link :
-        r = 'vk.com/(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]VK.COM[/COLOR]','http://vk.com/'+url,200,'', '' )
-    if "mail.ru" in link :
-        r = 'http://videoapi.my.mail.ru/videos/embed/(.+?)\.html'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]MAIL.RU[/COLOR]','http://videoapi.my.mail.ru/videos/%s.json'%url,200,'', '' )            
-           
-   
+                    url = replaceHTMLCodes(url)
+                    if url.startswith('//') : url = 'http:' + url
+                    url = url.encode('utf-8')  
+                    _name=url.split('://')[1] 
+                    _name=_name.split('/')[0].upper()
+                    addDir( name+' - [COLOR red]%s[/COLOR]'%_name , url , 200 , '' , '' )
+            if "www.youtube.com/embed/" in link :
+                r = 'youtube.com/embed/(.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                yt= match[0]
+                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % yt.replace('?rel=0','')
+                url = 'plugin://plugin.video.youtube/?path=root/video&action=play_video&videoid=%s' % yt.replace('?rel=0','')
+                addDir( name+' - [COLOR red]YOUTUBE[/COLOR]' , url , 200 , iconimage , '' )
+            if "dailymotion.com" in link :
+                r = 'src="http://www.dailymotion.com/embed/video/(.+?)\?.+?"></iframe>'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir ( name+' - [COLOR red]DAILYMOTION[/COLOR]' , url , 200 , GETTHUMB(url), '' )
+            if "http://videa" in link :
+                r = 'http://videa.+?v=(.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir (name+' - [COLOR red]VIDEA[/COLOR]',url,200,'', '' )
+                    
+            if "rutube.ru" in link :
+                r = 'ttp://rutube.ru/video/embed/(.+?)\?'
+                match = re.compile(r,re.DOTALL).findall(link)
+                print match
+                for url in match :
+                    addDir (name+' - [COLOR red]RUTUBE[/COLOR]',url,200,'', '' )
+            if 'cdn.playwire.com' in link :
+                r = 'data-config="(.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for vid in match :
+                    if not 'http' in vid:
+                            vid='http:'+vid
+                    url=vid.replace('zeus.json','manifest.f4m')
+                    addDir (name+' - [COLOR red]PLAYWIRE[/COLOR]',url,200,'', '' )
+            if "vk.com" in link :
+                r = 'vk.com/(.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir (name+' - [COLOR red]VK.COM[/COLOR]','http://vk.com/'+url,200,'', '' )
+            if "mail.ru" in link :
+                r = 'http://videoapi.my.mail.ru/videos/embed/(.+?)\.html'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir (name+' - [COLOR red]MAIL.RU[/COLOR]','http://videoapi.my.mail.ru/videos/%s.json'%url,200,'', '' )
+            if "//openload.co" in link :
+                r = 'src="(.+?//openload.co.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir (name+' - [COLOR red]OPENLOAD.CO[/COLOR]',url,200,'', '' )
+            if "//player.footballfullmatch" in link :
+                r = 'src="(.+?player.footballfullmatch.com.+?)"'
+                match = re.compile(r,re.DOTALL).findall(link)
+                for url in match :
+                    addDir (name+' - [COLOR red]FOOTBALLFULLMATCH.COM[/COLOR]',url,200,'', '' )
+        except:pass
+
+
+                
 def uniqueList(name):
     uniques = []
     for n in name:
@@ -183,50 +201,7 @@ def HIGHLIGHTS_NEXTPAGE( page ) :
     
     
 def HIGHLIGHTS_LINKS(name,url):
-    link = OPEN_URL( url )
-    if "www.youtube.com/embed/" in link :
-        r = 'youtube.com/embed/(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        yt= match[0]
-        iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % yt.replace('?rel=0','')
-        url = 'plugin://plugin.video.youtube/?path=root/video&action=play_video&videoid=%s' % yt.replace('?rel=0','')
-        addDir( name+' - [COLOR red]YOUTUBE[/COLOR]' , url , 200 , iconimage , '' )
-    if "dailymotion.com" in link :
-        r = 'src="http://www.dailymotion.com/embed/video/(.+?)\?.+?"></iframe>'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir ( name+' - [COLOR red]DAILYMOTION[/COLOR]' , url , 200 , GETTHUMB(url), '' )
-    if "http://videa" in link :
-        r = 'http://videa.+?v=(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]VIDEA[/COLOR]',url,200,'', '' )
-            
-    if "rutube.ru" in link :
-        r = 'rutube.ru/video/embed/(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]RUTUBE[/COLOR]',url,200,'', '' )
-            
-    if 'cdn.playwire.com' in link :
-        r = 'data-config="(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for vid in match :
-            if not 'http' in vid:
-                    vid='http:'+vid
-            url=vid.replace('zeus.json','manifest.f4m')
-            addDir (name+' - [COLOR red]PLAYWIRE[/COLOR]',url,200,'', '' )
-            
-    if "vk.com" in link :
-        r = 'vk.com/(.+?)"'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]VK.COM[/COLOR]','http://vk.com/'+url,200,'', '' )
-    if "mail.ru" in link :
-        r = 'http://videoapi.my.mail.ru/videos/embed/(.+?)\.html'
-        match = re.compile(r,re.DOTALL).findall(link)
-        for url in match :
-            addDir (name+' - [COLOR red]MAIL.RU[/COLOR]','http://videoapi.my.mail.ru/videos/%s.json'%url,200,'', '' )
+    GETLINKS(name,url)
 
             
 def Search():
@@ -482,6 +457,15 @@ def PLAYSTREAM(name,url,iconimage):
             except:
                 url = url
             link = getStreamUrl(url)
+            
+        elif 'FOOTBALLFULLMATCH.COM' in name:
+            link = OPEN_URL(url).replace("'",'"')
+            r = '"file": "(.+?)"'
+            link=  re.compile(r,re.DOTALL).findall(link)[0]
+  
+        else:
+            import urlresolver
+            link=urlresolver.resolve(str(url))
         try:
             liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
             liz.setInfo( type="Video", infoLabels={ "Title": name} )

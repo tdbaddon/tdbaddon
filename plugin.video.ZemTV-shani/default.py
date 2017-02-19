@@ -177,6 +177,8 @@ def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None,jsonpost=Fals
         url,header_in_page=url.split('|')
     req = urllib2.Request(url)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
+    req.add_header('Accept-Encoding','gzip')
+
     if headers:
         for h,hv in headers:
             req.add_header(h,hv)
