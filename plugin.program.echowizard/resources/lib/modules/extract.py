@@ -45,26 +45,46 @@ def allNoProgress(_in, _out):
 
 
 def allWithProgress(_in, _out, dp):
-    zin    = zipfile.ZipFile(_in,  'r')
-    nFiles = float(len(zin.infolist()))
-    count  = 0
 
-    try:
-        for item in zin.infolist():
-            count += 1
-            update = count / nFiles * 100
-            dp.update(int(update),'','','[COLOR dodgerblue][B]' + str(item.filename) + '[/B][/COLOR]')
-            try:
-                zin.extract(item, _out)
-            except Exception, e:
-                print str(e)
+	try:
+		zin    = zipfile.ZipFile(_in,  'r')
+	except:
+		dialog = xbmcgui.Dialog()
+		import traceback as tb
+		(etype, value, traceback) = sys.exc_info() 
+		tb.print_exception(etype, value, traceback)
+		error_traceback = tb.format_tb(traceback)
+		if "bytes" in str(error_traceback).lower():
+			dialog.ok(AddonTitle, 'Sorry, your connection to the download was lost before the file could be downloaded. Please try again.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
+		elif "file is not a zip file" in str(error_traceback).lower():
+			dialog.ok(AddonTitle, 'Sorry, the file is not a zip file.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
+		else:
+			dialog.ok(AddonTitle, 'Sorry, there was a problem extracting the file.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
+	nFiles = float(len(zin.infolist()))
+	count  = 0
+
+	try:
+		for item in zin.infolist():
+			count += 1
+			update = count / nFiles * 100
+			dp.update(int(update),'','','[COLOR dodgerblue][B]' + str(item.filename) + '[/B][/COLOR]')
+			try:
+				zin.extract(item, _out)
+			except Exception, e:
+				print str(e)
 
     
-    except Exception, e:
-        print str(e)
-        return False
+	except Exception, e:
+		print str(e)
+		return False
 
-    return True
+	return True
 
 def allWithProgress_update(_in, _out, dp):
 	zin    = zipfile.ZipFile(_in,  'r')

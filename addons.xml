@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.80"
+	     version="1.81"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -1399,7 +1399,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.icefilms"
        name="Icefilms"
-       version="1.99.50"
+       version="1.99.60"
        provider-name="Eldorado">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -2842,7 +2842,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.3.6"
+       version="6.3.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

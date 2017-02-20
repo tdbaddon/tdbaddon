@@ -27,6 +27,7 @@ myopener = MyOpener()
 urlretrieve = MyOpener().retrieve
 urlopen = MyOpener().open
 AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+dialog = xbmcgui.Dialog()
 
 def download(url, dest, dp = None):
     if not dp:
@@ -45,7 +46,7 @@ def _pbhookauto(numblocks, blocksize, filesize, url, dp):
 	none = 0
 
 def _pbhook(numblocks, blocksize, filesize, dp, start_time):
-        try: 
+        try:
             percent = min(numblocks * blocksize * 100 / filesize, 100) 
             currently_downloaded = float(numblocks) * blocksize / (1024 * 1024) 
             kbps_speed = numblocks * blocksize / (time.time() - start_time) 
@@ -60,11 +61,10 @@ def _pbhook(numblocks, blocksize, filesize, dp, start_time):
             e = '[COLOR white][B]Speed: [/B][/COLOR][COLOR lightskyblue]%.02f Mb/s ' % mbps_speed  + '[/COLOR]'
             e += '[COLOR white][B]ETA: [/B][/COLOR][COLOR lightskyblue]%02d:%02d' % divmod(eta, 60)  + '[/COLOR]'
             dp.update(percent, mbs, e)
-        except: 
+        except:
             percent = 100 
             dp.update(percent) 
         if dp.iscanceled():
-            dialog = xbmcgui.Dialog()
             dialog.ok(AddonTitle, 'The download was cancelled.')
             dp.close()
             quit()

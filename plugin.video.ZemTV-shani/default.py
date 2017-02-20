@@ -4254,7 +4254,7 @@ def getAPIToken( url,  username):
     return hashlib.md5(s).hexdigest()
 
 def getMonaKey():
-    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2FwaV9rZXk="),headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)')])
+    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9hcGlfa2V5"),headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)')])
     return json.loads(s)["LIVETV"][0]["key"]
     
 def getMonaPage(cat):
@@ -4269,9 +4269,9 @@ def getMonaPage(cat):
         traceback.print_exc(file=sys.stdout)
     
     if cat=="":
-        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2tleT0lcw==')%(getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9rZXk9JXMmYWRtb2JfaWQ9Y2EtYXBwLXB1Yi0xNjI0MjgwNzMxMjE3NzE0LzYyNjMwNTUxODU=')%(getMonaKey())
     else:
-        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2NhdF9pZD0lcyZrZXk9JXM=')%(cat,getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9jYXRfaWQ9JXMma2V5PSVzJmFkbW9iX2lkPWNhLWFwcC1wdWItMTYyNDI4MDczMTIxNzcxNC82MjYzMDU1MTg1')%(cat,getMonaKey())
     print url
     headers=[('User-Agent','Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X)')]
     jsondata=getUrl(url,headers=headers)
@@ -5094,10 +5094,10 @@ def get_dag_url(page_data):
     return final_url
 
 def getPTCAuth():
-    req = urllib2.Request( base64.b64decode("aHR0cDovL3N0cmVhbWZsYXJlLmNvbS9pb3MvaWFwcC5waHA="))
+    req = urllib2.Request( base64.b64decode("aHR0cDovLzgwLjI0My4xODkuMjYvdG9rZW4vb2F1dGgucGhw"))
     req.add_header('Authorization', "Basic %s"%base64.b64decode('WVhWMGFIVnpaWEk2ZW1OVFpUSjNaWEk9')) 
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuMyBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
-    response = urllib2.urlopen(req)
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuNCBDRk5ldHdvcmsvODA4LjIuMTYgRGFyd2luLzE2LjMuMA==")) 
+    response = urllib2.urlopen(req,data="")
     link=response.read()
     return link
 

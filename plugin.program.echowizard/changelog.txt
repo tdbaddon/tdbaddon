@@ -1,3 +1,10 @@
+[COLOR yellowgreen]1.81: 20th February 2017[/COLOR]
+[COLOR white][B]- Fix for API not refreshing.[/B][/COLOR]
+[COLOR white][B]- Fix for SPMC issues.[/B][/COLOR]
+
+[COLOR yellowgreen]1.80: 15th February 2017[/COLOR]
+[COLOR white][B]- Readying for 1.81.[/B][/COLOR]
+
 [COLOR yellowgreen]1.79: 15th February 2017[/COLOR]
 [COLOR white][B]- Attempted fix for IO errors on some devices.[/B][/COLOR]
 

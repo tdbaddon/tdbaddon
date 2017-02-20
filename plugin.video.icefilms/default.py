@@ -101,6 +101,15 @@ sys.path.append( os.path.join( icepath, 'resources', 'lib' ) )
 import container_urls,clean_dirs,htmlcleaner
 import debridroutines
 
+
+#Check for DB in old location (cache folder), move it to addon profile if exists
+special_db = os.path.join(xbmc.translatePath('special://temp/'), 'ice_cache.db')
+if xbmcvfs.exists(special_db):
+    if not xbmcvfs.copy(special_db, xbmc.translatePath(os.path.join(datapath, 'ice_cache.db'))):
+        addon.log_error("copy error")
+    else:
+        xbmcvfs.rename(special_db, os.path.join(xbmc.translatePath('special://temp/'), 'ice_cache_old.db'))
+
 #Database utilities
 from db_utils import DB_Connection
 db_connection = DB_Connection(addon)
@@ -241,17 +250,12 @@ def appendfile(filename,contents):
 
 def Startup_Routines():
      
+     addon.log("startup")
      # avoid error on first run if no paths exists, by creating paths
      if not xbmcvfs.exists(datapath): xbmcvfs.mkdir(datapath)
      if not xbmcvfs.exists(downinfopath): xbmcvfs.mkdir(downinfopath)
      if not xbmcvfs.exists(cookie_path): xbmcvfs.mkdir(cookie_path)
-     
-     #Check for DB in old location (cache folder), move it to addon profile if exists
-     special_db = os.path.join(xbmc.translatePath('special://temp/'), 'ice_cache.db')
-     if xbmcvfs.exists(special_db):
-        xbmcvfs.copy(special_db, os.path.join(datapath, 'ice_cache.db'))
-        xbmcvfs.delete(special_db)
-            
+              
      # Run the startup routines for special download directory structure 
      DLDirStartup()
 

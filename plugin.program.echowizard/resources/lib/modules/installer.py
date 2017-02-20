@@ -787,8 +787,26 @@ def INSTALLLIB(name,url,description):
 
 def unzip(_in, _out, dp):
 
-	__in = zipfile.ZipFile(_in,  'r')
-	
+	try:
+		__in = zipfile.ZipFile(_in,  'r')
+	except:
+		dialog = xbmcgui.Dialog()
+		import traceback as tb
+		(etype, value, traceback) = sys.exc_info() 
+		tb.print_exception(etype, value, traceback)
+		error_traceback = tb.format_tb(traceback)
+		if "bytes" in str(error_traceback).lower():
+			dialog.ok(AddonTitle, 'Sorry, your connection to the download was lost before the file could be downloaded. Please try again.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
+		elif "file is not a zip file" in str(error_traceback).lower():
+			dialog.ok(AddonTitle, 'Sorry, the file is not a zip file.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
+		else:
+			dialog.ok(AddonTitle, 'Sorry, there was a problem extracting the file.','If problems persist please contact @EchoCoder or if you are downloading a Community Build please contact them with this.')
+			dp.close()
+			quit()
 	nofiles = float(len(__in.infolist()))
 	count   = 0
 

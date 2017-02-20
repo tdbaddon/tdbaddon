@@ -182,8 +182,10 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	v = str(version)
 	vv = v.split(".")[0]
 	vvv = vv + ".9"
-	version_end = float(vvv)
-			
+	www = vv + ".0"
+	version_start = float(www)
+	version_end   = float(vvv)
+
 	if 'endlessflix' in url:
 		protected_wizards.Endless_Install()
 
@@ -271,7 +273,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		if build_version.lower() == "null":
 			name = "[COLOR silver][B]" + name.title() + "[/B][/COLOR]"
 		else: name = "[COLOR silver][B]" + name.title() + "[/COLOR] - [COLOR yellowgreen]Ver: " + build_version + "[/B][/COLOR] "
-		if platform >= version and platform < version_end:
+		if platform >= version_start and platform < version_end:
 			namelist.append(name)
 			urllist.append(url)
 			countlist.append(str(Common.count(name2,TEMP_FILE)))
@@ -292,7 +294,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 		name = name.lower()
 		name=name.replace('(krypton)','').replace('(jarvis)','').replace('jarvis ','').replace('krypton ','')
 		name = "[COLOR silver][B]" + name.title() + "[/B][/COLOR]"
-		
+
 		if codename.lower() == "jarvis":
 			if not "krypton" in name2.lower():
 				namelist.append(name)

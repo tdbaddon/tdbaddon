@@ -431,7 +431,9 @@ def BUILDMENU():
 	v = str(version)
 	vv = v.split(".")[0]
 	vvv = vv + ".9"
-	version_end = float(vvv)
+	www = vv + ".0"
+	version_start = float(www)
+	version_end   = float(vvv)
 
 	namelist      = []
 	urllist       = []
@@ -492,7 +494,7 @@ def BUILDMENU():
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		
-		if platform >= version and platform < version_end:
+		if platform >= version_start and platform < version_end:
 			description = str(notice + "," + hash + "," + "1" + "," + youtube_id + "," + "null" + "," + build_image)
 			namelist.append(name)
 			urllist.append(url)
@@ -814,19 +816,24 @@ def SPEEDTEST():
 	xbmc.executebuiltin(view_mode)
 
 def GET_COUNTS():
+
+	get_now = 0
 	
 	if not os.path.exists(TEMP_FOLDER):
 		os.makedirs(TEMP_FOLDER)
+		get_now = 1
 	if not os.path.isfile(TEMP_FILE):
 		text_file = open(TEMP_FILE, 'w')
 		text_file.close()
+		get_now = 1
 	if not os.path.isfile(TEMP_ADDONS):
 		text_file = open(TEMP_ADDONS, 'w')
 		text_file.close()
+		get_now = 1
 	if not os.path.isfile(KODIAPPS_FILE):
 		text_file = open(KODIAPPS_FILE, 'w')
 		text_file.close()
-
+		get_now = 1
 
 	api_interval = plugintools.get_setting("api_interval")
 
@@ -851,20 +858,9 @@ def GET_COUNTS():
 	fileCreation3 = os.path.getmtime(KODIAPPS_FILE)
 
 	now = time.time()
-
 	check = now - 60*mark
-	
-	text_file = open(TEMP_FILE)
-	compfile = text_file.read()  
-	text_file.close()
-	text_file = open(TEMP_ADDONS)
-	compfile2 = text_file.read()  
-	text_file.close()
-	text_file = open(KODIAPPS_FILE)
-	compfile3 = text_file.read()
-	text_file.close()
 
-	if len(compfile) == 0:
+	if get_now == 1:
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
 
 		text_file = open(TEMP_FILE, "w")
@@ -872,14 +868,13 @@ def GET_COUNTS():
 		text_file.close()
 
 	elif fileCreation < check:
-
 		counts=Common.OPEN_URL_NORMAL(ECHO_API)
 
 		text_file = open(TEMP_FILE, "w")
 		text_file.write(counts)
 		text_file.close()
 
-	if len(compfile2) == 0:
+	if get_now == 1:
 		counts=Common.OPEN_URL_NORMAL(ADDONS_API)
 
 		text_file = open(TEMP_ADDONS, "w")
@@ -893,7 +888,7 @@ def GET_COUNTS():
 		text_file.write(counts)
 		text_file.close()
 		
-	if len(compfile3) == 0:
+	if get_now == 1:
 		counts=Common.OPEN_URL_NORMAL(KODIAPPS_API)
 
 		text_file = open(KODIAPPS_FILE, "w")
@@ -1827,17 +1822,7 @@ except:
 #					GET COUNTS FROM THE ECHO API
 #######################################################################
 
-if not os.path.exists(TEMP_FOLDER):
-	GET_COUNTS()
-
-if not os.path.isfile(TEMP_FILE):
-	GET_COUNTS()
-
-if not os.path.isfile(TEMP_ADDONS):
-	GET_COUNTS()
-
-if not os.path.isfile(KODIAPPS_FILE):
-	GET_COUNTS()
+GET_COUNTS()
 
 try:
 	if mode==None or url==None or len(url)<1:
@@ -2434,4 +2419,4 @@ except:
 		"\nError Value:"  + error_value  + \
 		"\n\nError Content:" + str(error_traceback)
 		
-		Common.TextBoxError("Error Encountered - Please Report to @EchoCoder",  str(msg) + '\n[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
+		#Common.TextBoxError("Error Encountered - Please Report to @EchoCoder",  str(msg) + '\n[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
