@@ -1,3 +1,6 @@
+[COLOR yellowgreen]1.82: 21st February 2017[/COLOR]
+[COLOR white][B]- Implimentation for more ECHO Team Builds.[/B][/COLOR]
+
 [COLOR yellowgreen]1.81: 20th February 2017[/COLOR]
 [COLOR white][B]- Fix for API not refreshing.[/B][/COLOR]
 [COLOR white][B]- Fix for SPMC issues.[/B][/COLOR]

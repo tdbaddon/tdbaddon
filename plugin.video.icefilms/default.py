@@ -3157,18 +3157,18 @@ def SearchForTrailer(search, imdb_id, type, manual=False):
     if manual:
         results = SearchGoogle(search)
         for res in results:
-            if res.url.encode('utf8').startswith('http://www.youtube.com/watch'):
+            if res.url.encode('utf8').startswith('https://www.youtube.com/watch'):
                 res_name.append(res.title.encode('utf8'))
                 res_url.append(res.url.encode('utf8'))
     else:
         results = SearchGoogle(search+' official trailer')
         for res in results:
-            if res.url.encode('utf8').startswith('http://www.youtube.com/watch'):
+            if res.url.encode('utf8').startswith('https://www.youtube.com/watch'):
                 res_name.append(res.title.encode('utf8'))
                 res_url.append(res.url.encode('utf8'))
         results = SearchGoogle(search[:(len(search)-7)]+' official trailer')
         for res in results:
-            if res.url.encode('utf8').startswith('http://www.youtube.com/watch') and res.url.encode('utf8') not in res_url:
+            if res.url.encode('utf8').startswith('https://www.youtube.com/watch') and res.url.encode('utf8') not in res_url:
                 res_name.append(res.title.encode('utf8'))
                 res_url.append(res.url.encode('utf8'))
             
@@ -3192,7 +3192,7 @@ def SearchForTrailer(search, imdb_id, type, manual=False):
             SearchForTrailer(result, imdb_id, type, manual=True) 
     # Found trailers
     elif ret > 0:
-        trailer_url = res_url[ret - 2]
+        trailer_url = res_url[ret - 1]
         xbmc.executebuiltin(
             "PlayMedia(plugin://plugin.video.youtube/?action=play_video&videoid=%s&quality=720p)" 
             % str(trailer_url)[str(trailer_url).rfind("v=")+2:] )

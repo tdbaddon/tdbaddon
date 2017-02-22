@@ -126,7 +126,8 @@ ADD_COMMUNITY       = BASEURL + base64.b64decode(b'b3RoZXIvYWRkX2NvbW11bml0eS50e
 ADDONS_API          = BASEURL + base64.b64decode(b'YXBpL2FwaS5waHA/c2VydmljZT1hZGRvbnMmYWN0aW9uPWNvdW50')
 ECHO_API            = BASEURL + base64.b64decode(b"YXBpL2FwaS5waHA/c2VydmljZT1idWlsZHMmYWN0aW9uPWNvdW50")
 ECHO_CHANNEL        = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20veW91dHViZS95b3V0dWJlLnBocD9pZD1VQ29ZVkVRd3psU3VFLU4yQ3VLdlFKNHc=")
-ECHO_BUILDS         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZC54bWw=")
+ECHO_BUILDS         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZC54bWw=") + "|SPLIT|yellowgreen"
+ECHO_BLUE_BUILDS    = BASEURL + base64.b64decode(b"YnVpbGRzL2VjaG9fYmx1ZS93aXphcmQueG1s") + "|SPLIT|dodgerblue"
 youtubelink         = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")
 FANRIFFIC_URL_NEW   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lcy50eHQ=')
 FANRIFFIC_URL_OLD   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lc29sZC50eHQ=')
@@ -444,79 +445,89 @@ def BUILDMENU():
 	fanartlist    = []
 	combinedlists = []
 
-	link = Common.OPEN_URL(ECHO_BUILDS).replace('\n','').replace('\r','')
-	link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>").replace("<hash></hash>","<hash>null</hash>")
-	match= re.compile('<item>(.+?)</item>').findall(link)
-	dis_links = len(match)
-	for item in match:
-		name=re.compile('<title>(.+?)</title>').findall(item)[0]
-		url=re.compile('<link>(.+?)</link>').findall(item)[0]
-		try:
-			build_version=re.compile('<version>(.+?)</version>').findall(item)[0]
-		except: build_version = "null"
-		try:
-			notice=re.compile('<notice>(.+?)</notice>').findall(item)[0]
-		except: notice = "null"
-		try:
-			platform=re.compile('<platform>(.+?)</platform>').findall(item)[0]
-		except: platform = "16.1"
-		tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
-		if len(tubes) > 1:
-			youtube_id = "multi"
-		else:
-			try:
-				youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
-			except: youtube_id = "null"
-		try:
-			iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
-		except: iconimage = ICON
-		try:
-			fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
-		except: fanart = FANART
-		try:
-			build_image=re.compile('<build_image>(.+?)</build_image>').findall(item)[0]
-		except: build_image = "null"
-		try:
-			hash=re.compile('<hash>(.+?)</hash>').findall(item)[0]
-		except: hash = "null"
-		if iconimage.lower() == "null":
-			iconimage = ICON
-		if fanart.lower() == "null":
-			fanart = FANART
-		if not "." in platform:
-			platform = platform + ".0"
-			platform = float(platform)
-		else: platform = float(platform)
+	LINKS = [ECHO_BUILDS,ECHO_BLUE_BUILDS]
 
-		skin = 'null'
-		i = i + 1
-		dis_count = str(i)
-		progress = 100 * int(i)/int(dis_links)
-		dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-		
-		if platform >= version_start and platform < version_end:
-			description = str(notice + "," + hash + "," + "1" + "," + youtube_id + "," + "null" + "," + build_image)
-			namelist.append(name)
-			urllist.append(url)
-			deslist.append(description)
-			countlist.append(str(Common.count(name,TEMP_FILE)))  
-			totallist.append(str(Common.count(name+"TOTAL_COUNT",TEMP_FILE)))     
-			iconlist.append(iconimage)
-			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
+	for BUILD_LINK in LINKS:
+		BUILD_LINK,COLOR_CODE = BUILD_LINK.split('|SPLIT|')
+		link = Common.OPEN_URL(BUILD_LINK).replace('\n','').replace('\r','').replace(',','')
+		link = link.replace("<notice></notice>","<notice>null</notice>").replace("<platform></platform>","<platform>16.1</platform>").replace("<youtube></youtube>","<youtube>null</youtube>").replace("<thumbnail></thumbnail>","<thumbnail>null</thumbnail>").replace("<fanart></fanart>","<fanart>null</fanart>").replace("<version></version>","<version>null</version>").replace("<build_image></build_image>","<build_image>null</build_image>").replace("<hash></hash>","<hash>null</hash>")
+		match= re.compile('<item>(.+?)</item>').findall(link)
+		dis_links = len(match)
+
+		for item in match:
+			name=re.compile('<title>(.+?)</title>').findall(item)[0]
+			url=re.compile('<link>(.+?)</link>').findall(item)[0]
+			try:
+				build_version=re.compile('<version>(.+?)</version>').findall(item)[0]
+			except: build_version = "null"
+			try:
+				notice=re.compile('<notice>(.+?)</notice>').findall(item)[0]
+			except: notice = "null"
+			try:
+				platform=re.compile('<platform>(.+?)</platform>').findall(item)[0]
+			except: platform = "16.1"
+			tubes=re.compile('<youtube>(.+?)</youtube>').findall(item)
+			if len(tubes) > 1:
+				youtube_id = "multi"
+			else:
+				try:
+					youtube_id=re.compile('<youtube>(.+?)</youtube>').findall(item)[0]
+				except: youtube_id = "null"
+			try:
+				iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+			except: iconimage = ICON
+			try:
+				fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+			except: fanart = FANART
+			try:
+				build_image=re.compile('<build_image>(.+?)</build_image>').findall(item)[0]
+			except: build_image = "null"
+			try:
+				hash=re.compile('<hash>(.+?)</hash>').findall(item)[0]
+			except: hash = "null"
+			if iconimage.lower() == "null":
+				iconimage = ICON
+			if fanart.lower() == "null":
+				fanart = FANART
+			if not "." in platform:
+				platform = platform + ".0"
+				platform = float(platform)
+			else: platform = float(platform)
+
+			skin = 'null'
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			
+			if platform >= version_start and platform < version_end:
+				countlist.append(str(Common.count(name,TEMP_FILE)))  
+				totallist.append(str(Common.count(name+"TOTAL_COUNT",TEMP_FILE)))    
+				description = str(notice + "," + hash + "," + "1" + "," + youtube_id + "," + "null" + "," + build_image)
+				name = name + "|SPLIT|" + COLOR_CODE + "|SPLIT|" + BUILD_LINK
+				namelist.append(name)
+				urllist.append(url)
+				deslist.append(description) 
+				iconlist.append(iconimage)
+				fanartlist.append(fanart)
+				combinedlists = list(zip(countlist,totallist,namelist,urllist,deslist,iconlist,fanartlist))
 	
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 	dp.close()
 	for count,total,name,url,description,iconimage,fanart in tup:
-		url = name + "," + url + "," + ECHO_BUILDS
+		name,COLOR_CODE,BUILD_LINK = name.split('|SPLIT|')
+		url = name + "," + url + "," + BUILD_LINK
 		countfail = count
 		try:
 			count2 = int(count)
 			count3 = "{:,}".format(count2)
 			count = str(count3)
-		except: count = countfail	
+		except: count = countfail
 		bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen][B] " + total + "[/B][/COLOR]"
-		title = "[COLOR dodgerblue][B]" + name + "[/B][/COLOR]" + bname
+		if COLOR_CODE == "dodgerblue":
+			title = "[COLOR "+COLOR_CODE+"][B]" + name.upper() + " - BY ECHO BLUE[/B][/COLOR]" + bname
+		else: title = "[COLOR "+COLOR_CODE+"][B]" + name.upper() + " - BY ECHO CODER[/B][/COLOR]" + bname
+
 		Common.addDir(title,url,83,iconimage,fanart,description)
 
 #######################################################################
@@ -2316,7 +2327,7 @@ try:
 	elif mode==187:
 			get_addons.GET_ADDON_DESCRIPTION(name,url,iconimage)
 
-	xbmcplugin.endOfDirectory(int(sys.argv[1]))
+	xbmcplugin.endOfDirectory(int(sys.argv[1]),cacheToDisc=False)
 
 #except Exception as e:
 #
