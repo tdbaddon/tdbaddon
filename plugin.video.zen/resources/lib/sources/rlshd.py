@@ -25,6 +25,7 @@ from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 # if not debridstatus == 'true': raise Exception()
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -40,17 +41,18 @@ class source:
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
 			query = "http://www.rlshd.net/?s=%s+%s" % (urllib.quote_plus(title),year)
-			
+			titlecheck = cleanmovie+year
 			link = client.request(query, timeout="10")
 			
 			match = re.compile('<h2 class="entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
 			for movielink,title in match:
 				# print "RLSHD MOVIELINKS %s %s" % (movielink,title)
-				title = cleantitle.get(title)
-				if cleanmovie in title:
-						if year in title:
+				c_title = cleantitle_get_2(title)
+				
+				if titlecheck in c_title:
+
 							# print "RLSHD MOVIES PASSED %s %s" % (movielink,title)
-							self.zen_url.append([movielink,title])
+							self.zen_url.append([movielink,c_title])
 			return self.zen_url
         except:
             return
@@ -77,14 +79,15 @@ class source:
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = str(episodecheck)
 			episodecheck = episodecheck.lower()
+			titlecheck = cleanmovie+episodecheck
 			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
 			movielink = self.search_link + query
 			link = client.request(movielink, timeout="10")
 			match = re.compile('<h2 class="entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
 			for movielink,title2 in match:
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title: self.zen_url.append([movielink,title])
+				c_title = cleantitle.get(title2)
+				if titlecheck in c_title:
+					self.zen_url.append([movielink,title])
 			return self.zen_url
         except:
             return

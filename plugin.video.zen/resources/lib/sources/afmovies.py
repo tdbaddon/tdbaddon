@@ -21,7 +21,8 @@ from resources.lib.modules import client
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules.common import  random_agent, quality_tag
 rq = requests.session()
-
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+from schism_net import OPEN_URL
 
 class source:
     def __init__(self):
@@ -38,14 +39,14 @@ class source:
 			title = cleantitle.getsearch(title)
 			headers = {'User-Agent': random_agent(), 'X-Requested-With':'XMLHttpRequest'}
 			search_url = urlparse.urljoin(self.base_link, '/wp-content/themes/afdah/ajax-search.php')
-			data = {'search': title, 'type': 'title'}
-			# print("AFMOVIE query", search_url)
+			data = {'yreuq': title, 'meti': 'title'}
+
 			moviesearch = requests.post(search_url, headers=headers, data=data)
 			moviesearch = moviesearch.content
 			match = re.compile('<li><a href="(.+?)">(.+?)</a></li>').findall(moviesearch)
 			for href, movietitle in match:
 				if year in movietitle and cleanmovie == cleantitle.get(movietitle):
-					# print("AFMOVIE FOUND MATCH moviesearch", href, movietitle)
+					
 					url = href.encode('utf-8')
 					if not "http" in url: url = urlparse.urljoin(self.base_link, url)
 					return url
@@ -58,82 +59,25 @@ class source:
         try:
 			sources = []
 			
-			try:
-				headers = {'User-Agent': random_agent()}
-				html = rq.get(url, headers=headers, timeout=10).text				
-				try:
+			headers = {'User-Agent': random_agent()}
+			html = OPEN_URL(url)
+			r = BeautifulSoup(html.content)
+			r = r.findAll('tr')
+			for items in r:
+				href = items.findAll('a')[0]['href'].encode('utf-8')
+				print ("AFMOVIE R2", href)
+				try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(href.strip().lower()).netloc)[0]
+				except: host = 'Afmovies'
+				if not host in hostDict: continue
+				sources.append({'source': host, 'quality': 'SD', 'provider': 'Afmovies', 'url': href,  'direct': False, 'debridonly': False})
 
-					for match in re.finditer('href="([^"]+/embed\d*/[^"]+)', html):
-						iframe = match.group(1)
-						# print ("AFMOVIES match", url)
-						iframe = iframe.encode('utf-8')
-						embed_html = client.request(iframe)
-						r = re.search('salt\("([^"]+)', embed_html)						
-						if r:
-							# print ("AFMOVIES FOUND SALT", r)
-							plaintext = self.__caesar(self.__get_f(self.__caesar(r.group(1), 13)), 13)
-							# print ("AFMOVIES PLAINTEXT", plaintext)
-							match = re.search('sources\s*:\s*\[(.*?)\]', plaintext, re.DOTALL)
-							if not match:
-								match = re.search('sources\s*:\s*\{(.*?)\}', plaintext, re.DOTALL)
-							if match:
-								for match in re.finditer('''['"]?file['"]?\s*:\s*['"]([^'"]+)['"][^}]*['"]?label['"]?\s*:\s*['"]([^'"]*)''', match.group(1), re.DOTALL):
-									stream_url, label = match.groups()
-									stream_url = stream_url.replace('\/', '/')
-									# print ("AFMOVIES stream_url", stream_url)
-									quality = quality_tag(label)
-									stream_url = "gvideo_link" + stream_url
-									sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Afmovies', 'url': stream_url,  'direct': True, 'debridonly': False})
-				except:
-					pass
-				try:
-					pattern = 'href="([^"]+)[^>]*>\s*<[^>]+play_video.gif'
-					for match in re.finditer(pattern, html, re.I):
-						stream_url = match.group(1)
-						try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(stream_url.strip().lower()).netloc)[0]
-						except: host = 'Afmovies'
-						host = client.replaceHTMLCodes(host)
-						host = host.encode('utf-8')		
-						if not host in hostDict: continue
-						sources.append({'source': host, 'quality': 'SD', 'provider': 'Afmovies', 'url': stream_url,  'direct': True, 'debridonly': False})
-				except:
-					pass
-			except:
-				pass
 			return sources
         except:
             return sources
 
 
     def resolve(self, url):
-		if "gvideo_link" in url:
-			url = url.replace('gvideo_link','')
-			if not "google" in url: url = client.request(url, output='geturl', timeout='10')
 		return url
 		
 		
-    def __caesar(self, plaintext, shift):
-        lower = string.ascii_lowercase
-        lower_trans = lower[shift:] + lower[:shift]
-        alphabet = lower + lower.upper()
-        shifted = lower_trans + lower_trans.upper()
-        return plaintext.translate(string.maketrans(alphabet, shifted))
-
-    def __get_f(self, s):
-        i = 0
-        t = ''
-        l = string.ascii_uppercase + string.ascii_lowercase + string.digits + '+/'
-        while i < len(s):
-            try:
-                c1 = l.index(s[i])
-                c2 = l.index(s[i + 1])
-                t += chr(c1 << 2 & 255 | c2 >> 4)
-                c3 = l.index(s[i + 2])
-                t += chr(c2 << 4 & 255 | c3 >> 2)
-                c4 = l.index(s[i + 3])
-                t += chr(c3 << 6 & 255 | c4)
-                i += 4
-            except:
-                break
-    
-        return t
+ 

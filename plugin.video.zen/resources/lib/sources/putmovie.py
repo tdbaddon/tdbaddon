@@ -27,19 +27,20 @@ from resources.lib.modules import directstream
 from resources.lib.modules.common import  random_agent
 import requests
 from BeautifulSoup import BeautifulSoup
-
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+from schism_net import OPEN_URL
 
 class source:
     def __init__(self):
         self.domains = ['http://putmv.com']
         self.base_link = 'http://putmv.com'
-        self.search_link = '/search/%s.html'
+        self.search_link = '/search-movies/%s.html'
 
 
     def movie(self, imdb, title, year):
         self.zen_url = []
         try:
-            headers = {'User-Agent': random_agent()}	
+            
             self.zen_url = []
             cleanmovie = cleantitle.get(title)
             title = cleantitle.getsearch(title)
@@ -47,16 +48,18 @@ class source:
             query = "%s+%s" % (urllib.quote_plus(title),year)
             query = self.search_link %query
             query = urlparse.urljoin(self.base_link, query)
-            # print ("PUTMV query", query)
-            html = requests.get(query, headers=headers, timeout=15).text
+            print ("PUTMOVIE query", query)
+            html = OPEN_URL(query).content
+            html = BeautifulSoup(html)
+            r = html.findAll('div', attrs={'class': 'movie_pic'})
             
-            containers = re.compile('<h5 class="movie-name"><a href="(.+?)">(.+?)</a></h5>').findall(html)
-            for r_href,r_title in containers:
-                if cleanmovie == cleantitle.get(r_title):
-						if year in r_href:
-							# print ("PUTMV PLAY URL", r_href)
-							url = r_href
-							return url
+            for s in r:
+                print ("PUTMOVIE RESULTS", s)
+                t = s.findAll('img')[0]['alt'].encode('utf-8')
+                h = s.findAll('a')[0]['href'].encode('utf-8')
+                url = h
+                if year in t and cleanmovie == cleantitle.get(t): return url
+					
         except:
             return	
 
@@ -67,54 +70,12 @@ class source:
 
             if url == None: return sources
 
-            referer = url
-
-            for i in range(3):
-                u = requests.get(referer).text
-                if not u == None: break
-
-
-            links = []
-
-            try:
-
-
-                    headers = {'User-Agent': random_agent(), 'X-Requested-With': 'XMLHttpRequest', 'Referer': referer}
-
-                    url = urlparse.urljoin(self.base_link, '/ip.file/swf/plugins/ipplugins.php')
-
-                    iframe = re.compile('<a data-film="(.+?)" data-name="(.+?)" data-server="(.+?)"').findall(u)
-                    for p1, p2, p3 in iframe:
-						try:
-							post = {'ipplugins': '1', 'ip_film': p1, 'ip_name': p2 , 'ip_server': p3}
-							# post = urllib.urlencode(post)
-							# print ("PUTMV URL", post)
-
-							for i in range(3):
-								req = requests.post(url, data=post, headers=headers).content
-							# print ("PUTMV req1", req)
-
-							result = json.loads(req)
-							token = result['s'].encode('utf-8')
-							server = result['v'].encode('utf-8')
-		  
-							# print ("PUTMV server", token,server)
-							
-							url = urlparse.urljoin(self.base_link, '/ip.file/swf/ipplayer/ipplayer.php')
-
-							post = {'u': token, 'w': '100%', 'h': '500' , 's': server, 'n':'0'}
-							req_player = requests.post(url, data=post, headers=headers).content
-							# print ("PUTMV req_player", req_player)
-							result = json.loads(req_player)['data']
-							result = [i['files'] for i in result]
-
-							for i in result:
-								try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Putmovie', 'url': i, 'direct': True, 'debridonly': False})
-								except: pass
-						except:
-							pass
-            except:
-                pass
+            r = requests.get(url).text
+            r = re.compile('<a target="_blank"  href="(.+?)" class="buttonlink" title="(.+?)"').findall(r)
+            for h,t in r:
+				quality = "SD"
+				t = t.replace("Server ", "")
+				sources.append({'source': t, 'quality': 'SD', 'provider': 'Putmovie', 'url': h, 'direct': False, 'debridonly': False})
 
             return sources
         except:
@@ -123,8 +84,11 @@ class source:
 
     def resolve(self, url):
 
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
+            r = OPEN_URL(url, timeout='3').content
+            r = BeautifulSoup(r)
+
+            url = r.findAll('iframe')[0]['src'].encode('utf-8')
+   
             return url
 
 

@@ -26,6 +26,7 @@ from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 # if not debridstatus == 'true': raise Exception()
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -41,14 +42,17 @@ class source:
 			if not debridstatus == 'true': raise Exception()
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
+			titlecheck = cleanmovie+year
 			query = "http://allrls.net/?s=%s+%s&go=Search" % (urllib.quote_plus(title),year)
 			link = client.request(query)
 
 			match = re.compile('<h2 class="entry-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a>').findall(link)
 		
 			for movielink,title in match:
-				title = cleantitle.get(title)
-				self.zen_url.append([movielink,title])
+				if year in title:
+					title = cleantitle_get_2(title)
+					if titlecheck in title:
+						self.zen_url.append([movielink,title])
 	 
 
 			return self.zen_url

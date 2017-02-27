@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,21 +18,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 import re,urllib,urlparse,random
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 
 class source:
     def __init__(self):
-        self.domains = ['fmovie.co', 'afdah.org', 'xmovies8.org', 'putlockerhd.co']
-        self.base_link = 'https://fmovie.co'
+        self.domains = ['watch32hd.co']
+        self.base_link = 'https://afdah.org'
         self.search_link = '/results?q=%s'
-
+        self.priority = 10        
 
     def movie(self, imdb, title, year):
+        self.super_url = []	
         try:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)

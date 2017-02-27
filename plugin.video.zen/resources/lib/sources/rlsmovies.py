@@ -26,6 +26,7 @@ from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 # if not debridstatus == 'true': raise Exception()
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -41,14 +42,15 @@ class source:
 			self.zen_url = []
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
+			titlecheck = cleanmovie+year
 			query = "http://www.rls-movies.com/?s=%s+%s" % (urllib.quote_plus(title),year)
 			link = client.request(query, timeout="10")
 			match = re.compile('<h2 class="post-box-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a></h2>').findall(link)
 		
 			for movielink,title in match:
 				
-				title = cleantitle.get(title)
-				if cleanmovie in title:
+				c_title = cleantitle_get_2(title)
+				if titlecheck in c_title:
 					self.zen_url.append([movielink,title])
 			return self.zen_url
         except:
@@ -76,14 +78,15 @@ class source:
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = str(episodecheck)
 			episodecheck = episodecheck.lower()
+			titlecheck = cleanmovie+episodecheck
 			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
 			movielink = self.search_link + str(query)
 			link = client.request(movielink, timeout="10")
 			match = re.compile('<h2 class="post-box-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a></h2>').findall(link)
 			for movielink,title2 in match:
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title: self.zen_url.append([movielink,title])
+				c_title = cleantitle.get(title2)
+				if titlecheck in c_title:
+					self.zen_url.append([movielink,title])
 			return self.zen_url
         except:
             return		

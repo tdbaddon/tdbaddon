@@ -502,6 +502,35 @@ class movies:
 
 
 		
+		
+    def in_progress(self):
+        try:
+            items = favourites.getProgress('movies')
+            self.list = [i[1] for i in items]
+
+            for i in self.list:
+                if not 'name' in i: i['name'] = '%s (%s)' % (i['title'], i['year'])
+                try: i['title'] = i['title'].encode('utf-8')
+                except: pass
+                try: i['name'] = i['name'].encode('utf-8')
+                except: pass
+                if not 'duration' in i: i['duration'] = '0'
+                if not 'imdb' in i: i['imdb'] = '0'
+                if not 'tmdb' in i: i['tmdb'] = '0'
+                if not 'tvdb' in i: i['tvdb'] = '0'
+                if not 'tvrage' in i: i['tvrage'] = '0'
+                if not 'poster' in i: i['poster'] = '0'
+                if not 'banner' in i: i['banner'] = '0'
+                if not 'fanart' in i: i['fanart'] = '0'
+				
+
+            self.worker()
+            
+            self.movieDirectory(self.list)
+        except:
+            return
+			
+		
     def favourites(self):
         try:
             items = favourites.getFavourites('movies')
@@ -1171,6 +1200,7 @@ class movies:
 
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
+                url_alt = '%s?action=play_alter&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, sysmeta, self.systime)
 
                 url = '%s?action=play&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
@@ -1182,10 +1212,13 @@ class movies:
 
                 # cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
                 cm.append(('Trailer', 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, urllib.quote_plus(url_alt), sysmeta)))
                 if not action == 'movieFavourites':cm.append(('Add to Watchlist', 'RunPlugin(%s?action=addFavourite&meta=%s&content=movies)' % (sysaddon, sysmeta)))
                 if action == 'movieFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=movies)' % (sysaddon, sysmeta)))
+                if action == 'movieProgress': cm.append(('Remove From Progress', 'RunPlugin(%s?action=deleteProgress&meta=%s&content=movies)' % (sysaddon, sysmeta)))
 
+		
+				
                 try:
                     overlay = int(playcount.getMovieOverlay(indicators, imdb))
                     if overlay == 7:

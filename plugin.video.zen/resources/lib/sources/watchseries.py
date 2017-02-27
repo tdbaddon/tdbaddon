@@ -17,16 +17,19 @@
 
 
 import re,urllib,urlparse,json
-
+from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import proxy
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 
 class source:
     def __init__(self):
         self.domains = ['onwatchseries.to']
-        self.base_link = 'http://onwatchseries.to'
+        self.base_link = control.setting('watchseries_base')
+        if self.base_link == '' or self.base_link == None:self.base_link = 'http://onwatchseries.to'
+		
         self.search_link = 'http://onwatchseries.to/show/search-shows-json'
         self.search_link_2 = 'http://onwatchseries.to/search/%s'
 
@@ -42,20 +45,15 @@ class source:
             r = client.request(self.search_link, post=p, headers=h)
             try: r = json.loads(r)
             except: r = None
-
-            if r:
-                r = [(i['seo_url'], i['value'], i['label']) for i in r if 'value' in i and 'label' in i and 'seo_url' in i]
-            else:
-                r = proxy.request(self.search_link_2 % q, '/search/')
-                r = client.parseDOM(r, 'div', attrs = {'valign': '.+?'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), client.parseDOM(i, 'a')) for i in r]
-                r = [(i[0][0], i[1][0], i[2][0]) for i in r if i[0] and i[1] and i[2]]
+            print ("WATCHSERIES RESULT", r)
+            r = [(i['seo_url'], i['value'], i['label']) for i in r if 'value' in i and 'label' in i and 'seo_url' in i]
 
             r = [(i[0], i[1], re.findall('(\d{4})', i[2])) for i in r]
             r = [(i[0], i[1], i[2][-1]) for i in r if i[2]]
             r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
-
+            print ("WATCHSERIES RESULT 4", r, year)
             url = r[0][0]
+            print ("WATCHSERIES RESULT 5", r, url)
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
             except: pass
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
@@ -74,7 +72,7 @@ class source:
 
             url = '%s/serie/%s' % (self.base_link, url)
 
-            r = proxy.request(url, 'fa-link')
+            r = client.request(url)
             r = client.parseDOM(r, 'li', attrs = {'itemprop': 'episode'})
 
             t = cleantitle.get(title)
@@ -111,12 +109,13 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            r = proxy.request(url, 'fa-link')
+            r = client.request(url)
 
             links = client.parseDOM(r, 'a', ret='href', attrs = {'target': '.+?'})
             links = [x for y,x in enumerate(links) if x not in links[:y]]
 
             for i in links:
+                print ("WATCHSERIES LINKS", i)
                 try:
                     url = i
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]

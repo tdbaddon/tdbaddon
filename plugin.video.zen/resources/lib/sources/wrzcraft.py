@@ -27,6 +27,7 @@ from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
 from resources.lib.modules.common import  random_agent, quality_tag
 from BeautifulSoup import BeautifulSoup
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -40,6 +41,7 @@ class source:
 			if not debridstatus == 'true': raise Exception()			
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
+			titlecheck = cleanmovie+year
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
 			print ("WRZCRAFT QUERY", query)
@@ -50,7 +52,8 @@ class source:
 				try:
 					t = client.parseDOM(post, 'title')[0]
 					t = t.encode('utf-8')
-					if not cleanmovie in cleantitle.get(t) and year in t: continue
+					check = cleantitle_get_2(t)
+					if not titlecheck in check: continue
 					c = client.parseDOM(post, 'content.+?')[0]
 					u = client.parseDOM(c, 'p')
 					u = [client.parseDOM(i, 'a', ret='href') for i in u]
@@ -92,6 +95,7 @@ class source:
 			data['season'], data['episode'] = season, episode
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = episodecheck.lower()
+			titlecheck = cleanmovie+episodecheck
 			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			query = self.search_link % (urllib.quote_plus(title),query)
 			query = urlparse.urljoin(self.base_link, query)
@@ -103,7 +107,8 @@ class source:
 				try:
 					t = client.parseDOM(post, 'title')[0]
 					t = t.encode('utf-8')
-					if not cleanmovie in cleantitle.get(t) and episodecheck in t.lower(): continue
+					check = cleantitle.get(t)
+					if not titlecheck in check: continue
 					c = client.parseDOM(post, 'content.+?')[0]
 					u = client.parseDOM(c, 'p')
 					u = [client.parseDOM(i, 'a', ret='href') for i in u]

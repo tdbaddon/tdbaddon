@@ -28,6 +28,7 @@ debridstatus = control.setting('debridsources')
 from resources.lib.modules.common import  random_agent
 import requests
 from BeautifulSoup import BeautifulSoup
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -44,6 +45,8 @@ class source:
            
             cleanmovie = cleantitle.get(title)
             title = cleantitle.getsearch(title)
+            titlecheck = cleanmovie+year
+			
             query = self.search_link % (urllib.quote_plus(title),year)
             query = urlparse.urljoin(self.base_link, query)
             query = query + "&x=0&y=0"
@@ -58,9 +61,10 @@ class source:
                 # print ("MOVIEXK r2", r_href)
 				r_title = r.findAll('a')[0]["title"]
                 # print ("MOVIEXK r3", r_title)
-				r_title = r_title.encode('utf-8')			
+				r_title = r_title.encode('utf-8')
+				c_title = cleantitle_get_2(r_title)		
 				if year in r_title:
-					if cleanmovie in cleantitle.get(r_title):
+					if titlecheck in c_title:
 						self.zen_url.append([r_href,r_title])
 						# print "SCNSRC MOVIES %s %s" % (r_title , r_href)
             return self.zen_url
@@ -90,6 +94,7 @@ class source:
 			
             episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
             episodecheck = str(episodecheck).lower()
+            titlecheck = cleanmovie+episodecheck
             query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
             query = self.search_link % (urllib.quote_plus(title),query)
             query = urlparse.urljoin(self.base_link, query)
@@ -105,10 +110,10 @@ class source:
                 # print ("MOVIEXK r2", r_href)
 				r_title = r.findAll('a')[0]["title"]
                 # print ("MOVIEXK r3", r_title)
-				r_title = r_title.encode('utf-8')			
-				if episodecheck in r_title.lower():
-					if cleanmovie in cleantitle.get(r_title):
-						self.zen_url.append([r_href,r_title])
+				r_title = r_title.encode('utf-8')	
+				c_title = cleantitle.get(r_title)				
+				if titlecheck in c_title:
+					self.zen_url.append([r_href,r_title])
             return self.zen_url
         except:
             return			

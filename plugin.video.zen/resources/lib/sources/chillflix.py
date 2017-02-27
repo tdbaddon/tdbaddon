@@ -25,7 +25,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 from schism_net import OPEN_URL, OPEN_CF
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_query
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 
 class source:
@@ -96,8 +96,10 @@ class source:
             for u in s:
                 try:
                     quality = google_tag(u)
+                    
                     url = u.encode('utf-8')
-
+                    if quality == 'ND': quality = "SD"
+                    # if ".vtt" in url: raise Exception()
 
 
                    

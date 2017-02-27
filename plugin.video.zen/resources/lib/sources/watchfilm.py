@@ -25,11 +25,11 @@ from BeautifulSoup import BeautifulSoup
 from resources.lib.modules import jsunpack
 
 from schism_net import OPEN_URL
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_query
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
 	def __init__(self):
-		self.base_link = 'http://watchfilm.to'
+		self.base_link = 'http://rs333.watchfilm.me'
 		self.movie_link = '/movies/%s/'
 		self.ep_link = '/episode/%s/'
 
@@ -83,45 +83,70 @@ class source:
 			
 			if url == None: return
 			try:
-					
+				referer = url
 				link = OPEN_URL(url, timeout='10')
 				print("Watchfilm link", link.content)
 				html = link.content
-					
+				headers = {'Referer': referer}	
 				r = re.compile('<a href="(.+?)" target="streamplayer">').findall(html)
 				for result in r:
 					print("Watchfilm SOURCES", result)
 					result = result.encode('utf-8')
-					
 					if result.startswith("//"): result = "http:" + result
 						
 					if "player.watchfilm.to" in result:
 						try:
-							s = OPEN_URL(result, timeout='10')
-							s = s.content
-							match = re.compile('file:\s*"(.+?)",label:"(.+?)",').findall(s)
-							for href, quality in match:
-								quality = google_tag(href)
-								print("WONLINE SCRIPTS", href,quality)
-								sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Watchfilm', 'url': href, 'direct': True, 'debridonly': False})
-						except:
-							pass
-						try:
-							s = OPEN_URL(result, timeout='10')
-							s = s.content
-
-							match = re.compile('var ff =\s*"(.+?)";').findall(s)
-							for href in match:
-								
-								quality = "SD"
-								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(href.strip().lower()).netloc)[0]
 							
-								except: host = 'none'
-								url = replaceHTMLCodes(href)
-								url = url.encode('utf-8')
-								if host in hostDict: sources.append({'source': host, 'quality':quality, 'provider': 'Watchfilm', 'url': href, 'direct': False, 'debridonly': False})
+							s = OPEN_URL(result, headers=headers)
+							s = s.content
+							print ("WATCHFILM RESULT", s)
+							check1 = re.findall("abouttext:\s*'(.+?)',", s)[0]
+							check2 = re.compile('file:\s*"(.+?)",label:"(.+?)",').findall(s)
+							check3 = re.compile('file":"(.+?)","res":"(.+?)"').findall(s)
+														
+							if check1:
+								try:
+									print ("WATCHFILM FOUND CHECK 1")
+									quality = quality_tag(check1)
+									h = re.findall("aboutlink:\s*'(.+?)'," , s)[0]
+									if h:
+										h = h.encode('utf-8')
+										sources.append({'source': 'cdn', 'quality':quality, 'provider': 'Watchfilm', 'url': h, 'direct': True, 'debridonly': False})
+								except:
+									pass
+								h2 = re.findall('var ff =\s*"(.+?)";', s)[0]
+								if h2:
+									try:
+										h2 = h2.encode('utf-8')
+										host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(h2.strip().lower()).netloc)[0]
+										if host in hostDict: sources.append({'source': host, 'quality':quality, 'provider': 'Watchfilm', 'url': h2, 'direct': False, 'debridonly': True})
+									except:
+										pass
+							if check2:
+								print ("WATCHFILM FOUND CHECK 2")
+								try:
+									for href, quality in check2:
+										href = href.encode('utf-8')
+										quality = quality_tag(quality)
+										
+										sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Watchfilm', 'url': href, 'direct': True, 'debridonly': False})
+								except:
+									pass
+									
+							if check3:
+								print ("WATCHFILM FOUND CHECK 3")
+								try:
+									for href, quality in check3:
+										href = href.encode('utf-8')
+										quality = quality_tag(quality)
+										sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Watchfilm', 'url': href, 'direct': True, 'debridonly': False})
+								except:
+									pass
+
 						except:
 							pass
+							
+
 
 			except:
 				pass

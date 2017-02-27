@@ -20,6 +20,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules.common import  random_agent
 import requests
 from BeautifulSoup import BeautifulSoup
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -140,7 +141,8 @@ class source:
 				r = html.findAll('source')
 				for r_source in r:
 					url = r_source['src'].encode('utf-8')
-					quality = r_source['data-res'].encode('utf-8')
+					try: quality = r_source['data-res'].encode('utf-8')
+					except: quality = "SD"
 					if "1080" in quality: quality = "1080p"
 					elif "720" in quality: quality = "HD"
 					else: quality = "SD"

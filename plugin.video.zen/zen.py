@@ -20,7 +20,8 @@
 
 
 import urlparse,sys
-
+import xbmc,os,zipfile,ntpath,xbmcgui
+dialog = xbmcgui.Dialog()
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 action = params.get('action')
@@ -284,8 +285,22 @@ elif action == 'download':
     except: pass
 
 elif action == 'play':
-    from resources.lib.sources import sources
-    sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+    from resources.lib.modules import control
+    select = control.setting('hosts.mode')
+    if select == '3' and 'plugin' in control.infoLabel('Container.PluginName'):
+		from resources.lib.sources import sources
+		sources().play_dialog(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+    elif select == '4' and 'plugin' in control.infoLabel('Container.PluginName'):
+		from resources.lib.sources import sources
+		sources().play_dialog_list(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+    else:
+		from resources.lib.sources import sources
+		sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+		
+elif action == 'play_alter':
+		from resources.lib.sources import sources
+		sources().play_alter(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta)
+
 elif action == 'play_library':
     from resources.lib.sources import sources
     sources().play_library(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
@@ -297,6 +312,19 @@ elif action == 'addItem':
 elif action == 'movieFavourites':
     from resources.lib.indexers import movies
     movies.movies().favourites()
+	
+elif action == 'movieProgress':
+    from resources.lib.indexers import movies
+    movies.movies().in_progress()
+	
+elif action == 'showsProgress':
+    from resources.lib.indexers import episodes
+    episodes.episodes().in_progress()
+	
+elif action == 'deleteProgress':
+    from resources.lib.modules import favourites
+    favourites.deleteProgress(meta, content)
+	
 elif action == 'tvFavourites':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().favourites()
@@ -319,6 +347,23 @@ elif action == 'alterSources':
 elif action == 'clearSources':
     from resources.lib.sources import sources
     sources().clearSources()
+	
+elif action == 'clearProgress':
+    from resources.lib.modules import control
+    import os,xbmc,xbmcaddon,xbmcgui
+    dialog = xbmcgui.Dialog()
+    addonInfo = xbmcaddon.Addon().getAddonInfo
+    dataPath = xbmc.translatePath(addonInfo('profile')).decode('utf-8')
+    favouritesFile = os.path.join(dataPath, 'favourites.db')
+    progressFile = os.path.join(dataPath, 'progress.db')
+    yes = control.yesnoDialog(control.lang(32056).encode('utf-8'), '', '')
+    if yes:
+		try: 
+			os.remove(progressFile)
+			dialog.ok('Clear Progress','Clear Progress Complete','','')
+		except:
+			dialog.ok('Clear Progress','There was an error Deleting the Database','','')		
+		
 	
 elif action == 'urlresolversettings':
     import urlresolver

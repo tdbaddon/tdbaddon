@@ -5,6 +5,12 @@
 		<setting id="appearance.1" type="select" label="32311" values="-|Zen" default="Zen" visible="System.HasAddon(script.zen.artwork)" />
 		<setting id="scrapers.timeout.1" type="slider" label="32312" default="45" range="10,60" option="int" />
 		<setting id="trakt.user" type="text" default="" visible="false" />
+		<setting id="inprogress_db" type="bool" label="Enable In Progress Database" default="true" />
+		<setting id="inprogress_limit" type="slider" label="In Progress Items" default="100" range="5,200" option="int" visible="!eq(-1,false)" />
+
+		
+		
+		
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="false" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
@@ -18,12 +24,10 @@
 		<setting type="lsep" label="32319" />
 		<setting id="movie.widget" type="enum" label="Spotlight Content" values="None|New Movies|Trending|Populars|In Theaters|Top Rated" default="2" />
 		<setting id="cachesources" type="bool" label="Cache Sources" default="true" />
-		<setting type="lsep" label="TMDB API KEY (use it if you want to use your personal api key for TMDB)" />
-		<setting id="tmdb_apikey" type="text" label="api key" default="" visible="true" />
 
 	</category>
 	<category label="32330">
-		<setting id="hosts.mode" type="enum" label="32331" values="Dialog|Directory|Autoplay" default="1" />
+		<setting id="hosts.mode" type="enum" label="32331" values="Dialog|Directory|Autoplay|Real Time|Dialog+" default="4" />
 		<setting id="progress.dialog" type="enum" label="32335" lvalues="32336|32337" default="0" />
 		<setting type="lsep" label="32338" />
 		<setting id="hosts.quality" type="enum" label="32339" values="1080p|720p|480p" default="0" />
@@ -33,14 +37,16 @@
 		<setting id="bookmarks" type="bool" label="32344" default="true" />
 	</category>
 	<category id="general" label="Accounts">
-		<setting type="lsep" label="Alluc" />
+		<setting type="lsep" label="Alluc -  Username and Password are Case Sensitive" />
 		<setting id="enable_alluc" type="bool" label="Enable Alluc Sources" default="false" />
-		<setting type="lsep" label="NOTE: Username and Password are Case Sensitive" />
 		<setting id="alluc_username"  type="text" label="Username" default="" visible="!eq(-1,false)" />
 		<setting id="alluc_password"  type="text" label="Password" default="" visible="!eq(-2,false)" />
-		
 		<setting id="alluc_debrid" type="bool" label="Enable Alluc Debrid Sources" visible="!eq(-3,false)" />
 		<setting id="alluc_max_results" type="slider" label="Max Results for Search" default="100" range="5,200" option="int" visible="!eq(-4,false)" />
+		
+		<setting type="lsep" label="TMDB API KEY" />
+		<setting id="tmdb_apikey" type="text" label="api key" default="" visible="true" />
+		
 	</category>
 	
 	
@@ -72,8 +78,10 @@
 		<setting id="provider.moviezone" type="bool" label="Moviezone" default="true" />
 		<setting id="provider.moviexk" type="bool" label="Moviexk" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
-		<setting id="provider.moviegee" type="bool" label="Moviegee" default="true" />
+		
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
+		<setting id="provider.movies25" type="bool" label="Movies25" default="true" />
+
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 	
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
@@ -82,8 +90,9 @@
 		<setting id="provider.putmovie" type="bool" label="Putmovie" default="true" />
 		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
 		<setting id="provider.pelispedia" type="bool" label="Pelispedia" default="true" />
-		<setting id="provider.pftv" type="bool" label="Pftv" default="true" />
+		<setting id="provider.projectfree" type="bool" label="Projectfree" default="true" />
 		<setting id="provider.primewire" type="bool" label="Primewire" default="true" />
+		<setting id="primewire_base"  type="text" label=" - Base Url" default="http://www.primewire.ag" visible="!eq(-1,false)" />
 
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
@@ -96,6 +105,10 @@
 		<setting id="provider.watch32" type="bool" label="Watch32" default="true" />
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
+		<setting id="watchfree_base"  type="text" label=" - Base Url" default="http://www.watchfree.to" visible="!eq(-1,false)" />
+		<setting id="provider.watchfrees" type="bool" label="Watchfrees" default="true" />
+			
+			
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
 		<setting id="watchepisodes_base"  type="text" label=" - Base Url" default="http://www.watchepisodes4.com" visible="!eq(-1,false)" />
 				

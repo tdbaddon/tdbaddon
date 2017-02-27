@@ -27,6 +27,7 @@ from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
 from resources.lib.modules.common import  random_agent, quality_tag
 from BeautifulSoup import BeautifulSoup
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):

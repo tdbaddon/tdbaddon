@@ -26,9 +26,9 @@ from resources.lib.modules import client
 class source:
     def __init__(self):
         self.domains = ['genvideos.org']
-        self.base_link = 'http://genvideos.org'
+        self.base_link = 'http://genvideos.com'
         self.search_link = '/results?q=%s'
-
+        self.priority = 10        
 
     def movie(self, imdb, title, year):
         try:
@@ -49,6 +49,7 @@ class source:
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
+            print ("GENVIDEO PASSED URL", url)
             return url
         except:
             return
@@ -59,15 +60,19 @@ class source:
             sources = []
 
             if url == None: return sources
+            post = url.split('#')[0]
+            if post.startswith('/') : post = post.replace('/','')
+            post = post.replace('watch_','')
+            post = post.replace('.html','')
 
             referer = urlparse.urljoin(self.base_link, url)
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            # post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
             post = urllib.urlencode({'v': post})
-
-            url = urlparse.urljoin(self.base_link, '/video_info/iframe')
+            print ("GENVIDEO post URL", post)
+            url = urlparse.urljoin(self.base_link, '/video_info/frame')
 
             r = client.request(url, post=post, headers=headers, referer=referer)
 

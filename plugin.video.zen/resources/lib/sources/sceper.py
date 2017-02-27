@@ -23,12 +23,13 @@ from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 # if not debridstatus == 'true': raise Exception()
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
         self.domains = ['sceper.ws']
-        self.base_link = 'sceper.ws'
-        self.search_link = '/?s=%s'
+        self.base_link = 'http://sceper.ws'
+        self.search_link = '/?s=%s+%s'
 
 
     def movie(self, imdb, title, year):
@@ -39,21 +40,25 @@ class source:
 			self.zen_url = []
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
-			query = "http://sceper.ws/?s=%s+%s" % (urllib.quote_plus(title),year)
+			titlecheck = cleanmovie+year
+			query = self.search_link % (urllib.quote_plus(title),year)
+			query = urlparse.urljoin(self.base_link, query)
 			link = client.request(query)
 			for item in parse_dom(link, 'div', {'class': 'entry clearfix'}):
 				match = re.compile('<h2 class="title"><a href="(.+?)">(.+?)</a></h2>').findall(item)
 				for movielink,title2 in match:
 					
-					title = cleantitle.get(title2)
-					if cleanmovie in title:
-						if year in title:
+					title = cleantitle_get_2(title2)
+					if year in title2:
+						if titlecheck in title:
 							for item2 in parse_dom(item, 'div', {'class': 'entry-content clearfix'}):
 								match2 = re.compile('href="([^"]+)').findall(item2)
 								for movielink in match2:
+									quality = "SD"
 									if "1080" in title: quality = "1080p"
 									elif "720" in title: quality = "HD"				
-									else: quality = "SD"							
+									if "1080" in movielink: quality = "1080p"						
+									elif "720" in movielink: quality = "HD"								
 									
 							
 									self.zen_url.append([movielink,quality])
@@ -85,9 +90,14 @@ class source:
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = str(episodecheck)
 			episodecheck = episodecheck.lower()
-			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
-			movielink = "http://sceper.ws/?s=" + str(query)
-			link = client.request(movielink)
+			titlecheck = cleanmovie+episodecheck
+			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
+			
+			query = self.search_link % (urllib.quote_plus(title),query)
+			query = urlparse.urljoin(self.base_link, query)
+			
+
+			link = client.request(query)
 			cleanmovie = cleantitle.get(title)
 			
 			for item in parse_dom(link, 'div', {'class': 'entry clearfix'}):
@@ -95,14 +105,15 @@ class source:
 				for movielink,title2 in match:
 					
 					title = cleantitle.get(title2)
-					if cleanmovie in title:
-						if episodecheck in title:
+					if titlecheck in title:
 							for item2 in parse_dom(item, 'div', {'class': 'entry-content clearfix'}):
 								match2 = re.compile('href="([^"]+)').findall(item2)
 								for movielink in match2:
+									quality = "SD"
 									if "1080" in title: quality = "1080p"
 									elif "720" in title: quality = "HD"				
-									else: quality = "SD"							
+									if "1080" in movielink: quality = "1080p"						
+									elif "720" in movielink: quality = "HD"				
 									
 							
 									self.zen_url.append([movielink,quality])
@@ -127,7 +138,7 @@ class source:
 							url = client.replaceHTMLCodes(url)
 							url = url.encode('utf-8')														
 							try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-							except: host = 'Videomega'
+							except: host = 'Sceper'
 								
 							sources.append({'source': host, 'quality': quality, 'provider': 'Sceper', 'url': url, 'direct': False, 'debridonly': True})
 

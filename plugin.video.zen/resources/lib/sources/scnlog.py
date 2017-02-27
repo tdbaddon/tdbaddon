@@ -24,7 +24,8 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
-# if not debridstatus == 'true': raise Exception()
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+
 class source:
     def __init__(self):
         self.domains = ['scnlog.eu']
@@ -38,15 +39,15 @@ class source:
 			if not debridstatus == 'true': raise Exception()
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
+			titlecheck = cleanmovie+year
 			query = "http://scnlog.eu/movies/?s=%s+%s" % (urllib.quote_plus(title),year)
 			link = client.request(query)
 			posts = client.parseDOM(link, 'div', attrs = {'class': 'title'})
 			for items in posts:
 				match = re.compile('<a href="(.+?)" rel="bookmark" title=".+?">(.+?)</a>').findall(items)
 				for movielink,title in match:
-					title = cleantitle.get(title)
-					if cleanmovie in title:
-						if year in title:
+					title = cleantitle_get_2(title)
+					if titlecheck in title:
 							
 							self.zen_url.append([movielink,title])
 			return self.zen_url
@@ -75,14 +76,15 @@ class source:
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = str(episodecheck)
 			episodecheck = episodecheck.lower()
+			titlecheck = cleanmovie+episodecheck
 			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
 			movielink = "http://scnlog.eu/tv-shows/?s=" + str(query)
 			link = client.request(movielink)
 			match = re.compile('<a href="(.+?)" rel="bookmark" title="(.+?)">').findall(link)
 			for movielink,title2 in match:
 				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title: self.zen_url.append([movielink,title])
+				if titlecheck in title:
+					self.zen_url.append([movielink,title])
 			return self.zen_url
         except:
             return

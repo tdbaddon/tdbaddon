@@ -29,7 +29,7 @@ class source:
         self.domains = ['watch32hd.co']
         self.base_link = 'https://watch32hd.co'
         self.search_link = '/results?q=%s'
-
+        self.priority = 10        
 
     def movie(self, imdb, title, year):
         self.super_url = []	

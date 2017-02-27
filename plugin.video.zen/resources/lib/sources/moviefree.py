@@ -28,9 +28,11 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.priority = 1
+        self.language = ['en']
         self.domains = ['moviefree.to']
         self.base_link = 'http://moviefree.to'
-        self.search_link = '/watch/%s-%s-online.html'
+        self.search_link = '/watch/%s-%s.html'
 
 
     def movie(self, imdb, title, year):
@@ -58,11 +60,13 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
+            url = url.replace('-online.html', '.html')
+
             r = client.request(url)
 
             s = re.findall('data-film\s*=\s*"(.+?)"\s+data-name\s*=\s*"(.+?)"\s+data-server\s*=\s*"(.+?)"', r)
 
-            h = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
+            ref = url
 
             for u in s:
                 try:
@@ -72,7 +76,7 @@ class source:
                     post = {'ipplugins': '1', 'ip_film': u[0], 'ip_name': u[1] , 'ip_server': u[2]}
                     post = urllib.urlencode(post)
 
-                    r = client.request(url, post=post, headers=h)
+                    r = client.request(url, post=post, XHR=True, referer=ref)
                     r = json.loads(r)
 
                     url = urlparse.urljoin(self.base_link, '/ip.file/swf/ipplayer/ipplayer.php')
@@ -80,7 +84,7 @@ class source:
                     post = {'u': r['s'], 'w': '100%', 'h': '500' , 's': r['v'], 'n':'0'}
                     post = urllib.urlencode(post)
 
-                    r = client.request(url, post=post, headers=h)
+                    r = client.request(url, post=post, XHR=True, referer=ref)
                     r = json.loads(r)
 
                     try: url = [i['files'] for i in r['data']]
@@ -102,3 +106,5 @@ class source:
 
     def resolve(self, url):
         return directstream.googlepass(url)
+
+

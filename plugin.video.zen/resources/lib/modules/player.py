@@ -19,7 +19,7 @@
 '''
 
 
-import re,sys,json,time,xbmc
+import re,sys,json,time,xbmc,urllib,xbmcaddon
 import hashlib,os,zlib,base64,codecs,xmlrpclib
 
 try: from sqlite3 import dbapi2 as database
@@ -27,8 +27,12 @@ except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import control
 from resources.lib.modules import playcount
-
-
+from resources.lib.modules import favourites
+inprogress_limit = control.setting('inprogress_limit')
+inprogress_db = control.setting('inprogress_db')
+addonInfo = xbmcaddon.Addon().getAddonInfo
+dataPath = xbmc.translatePath(addonInfo('profile')).decode('utf-8')
+progressFile = os.path.join(dataPath, 'progress.db')
 
 class player(xbmc.Player):
     def __init__ (self):
@@ -40,9 +44,8 @@ class player(xbmc.Player):
             control.sleep(200)
 
             self.totalTime = 0 ; self.currentTime = 0
-
+            self.original_meta = meta
             self.content = 'movie' if season == None or episode == None else 'episode'
-
             self.title = title ; self.year = year
             self.name = '%s (%s)' % (title, year) if self.content == 'movie' else '%s S%02dE%02d' % (title, int(season), int(episode))
             self.season = '%01d' % int(season) if self.content == 'episode' else None
@@ -54,6 +57,8 @@ class player(xbmc.Player):
             self.ids = dict((k,v) for k, v in self.ids.iteritems() if not v == '0')
 
             self.offset = bookmarks().get(self.name, self.year)
+
+
 
             poster, thumb, meta = self.getMeta(meta)
             item = control.item(path=url)
@@ -86,7 +91,110 @@ class player(xbmc.Player):
         except:
             poster, thumb, meta = '', '', {'title': self.name}
             return (poster, thumb, meta)
+			
+			
+    def remove_progress_movies(self, meta):
+        content = 'movies'
+			
+        try:
+            dbcon = database.connect(progressFile)
+            dbcur = dbcon.cursor()
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['imdb']))
+            except: pass
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['tvdb']))
+            except: pass
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['tmdb']))
+            except: pass
+            dbcon.commit()
+        except:
+            pass
 
+    def remove_progress_episodes(self, meta):
+        content = "episode"
+			
+        try:
+            dbcon = database.connect(progressFile)
+            dbcur = dbcon.cursor()
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['imdb']))
+            except: pass
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['tvdb']))
+            except: pass
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['tmdb']))
+            except: pass
+            dbcon.commit()
+        except:
+            pass
+
+
+			
+    def add_progress_movies(self, meta):
+		try:
+			
+			item = dict()
+			typeofcontent = 'movies'
+			print ("META DUMP FAVOURITES 3" , meta, typeofcontent)
+
+			try: id = meta['imdb']
+			except: id = meta['tvdb']
+			
+			if 'title' in meta: title = item['title'] = meta['title']
+			if 'tvshowtitle' in meta: title = item['title'] = meta['tvshowtitle']
+			if 'year' in meta: item['year'] = meta['year']
+			if 'poster' in meta: item['poster'] = meta['poster']
+			if 'fanart' in meta: item['fanart'] = meta['fanart']
+			if 'imdb' in meta: item['imdb'] = meta['imdb']
+			if 'tmdb' in meta: item['tmdb'] = meta['tmdb']
+			if 'tvdb' in meta: item['tvdb'] = meta['tvdb']
+			if 'tvrage' in meta: item['tvrage'] = meta['tvrage']
+			
+			
+
+			control.makeFile(dataPath)
+			dbcon = database.connect(progressFile)
+			dbcur = dbcon.cursor()
+			dbcur.execute("CREATE TABLE IF NOT EXISTS %s (""id TEXT, ""items TEXT, ""UNIQUE(id)"");" % typeofcontent)
+			dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (typeofcontent, id))
+			dbcur.execute("INSERT INTO %s Values (?, ?)" % typeofcontent, (id, repr(item)))
+			dbcon.commit()
+
+			# control.refresh()
+			# control.infoDialog('Added to Watchlist', heading=title)
+		except:
+			return
+		
+    def add_progress_episodes(self, meta):
+		try:
+
+			item = dict()
+			typeofcontent = 'episode'
+
+			id = meta['tvdb']
+			
+			if 'title' in meta: title = item['title'] = meta['title']
+			if 'tvshowtitle' in meta: item['tvshowtitle'] = meta['tvshowtitle']
+			if 'year' in meta: item['year'] = meta['year']
+			if 'poster' in meta: item['poster'] = meta['poster']
+			if 'fanart' in meta: item['fanart'] = meta['fanart']
+			if 'imdb' in meta: item['imdb'] = meta['imdb']
+			if 'tmdb' in meta: item['tmdb'] = meta['tmdb']
+			if 'tvdb' in meta: item['tvdb'] = meta['tvdb']
+			if 'tvrage' in meta: item['tvrage'] = meta['tvrage']
+			if 'episode' in meta: item['episode'] = meta['episode']
+			if 'season' in meta: item['season'] = meta['season']
+			if 'premiered' in meta: item['premiered'] = meta['premiered']
+			if 'original_year' in meta: item['original_year'] = meta['original_year']
+
+
+			control.makeFile(dataPath)
+			dbcon = database.connect(progressFile)
+			dbcur = dbcon.cursor()
+			dbcur.execute("CREATE TABLE IF NOT EXISTS %s (""id TEXT, ""items TEXT, ""UNIQUE(id)"");" % typeofcontent)
+			dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (typeofcontent, id))
+			dbcur.execute("INSERT INTO %s Values (?, ?)" % typeofcontent, (id, repr(item)))
+			dbcon.commit()
+
+		except:
+			return
 
     def keepPlaybackAlive(self):
         pname = '%s.player.overlay' % control.addonInfo('id')
@@ -147,10 +255,11 @@ class player(xbmc.Player):
                 try:
                     self.totalTime = self.getTotalTime()
                     self.currentTime = self.getTime()
-
+                   	
                     watcher = (self.currentTime / self.totalTime >= .9)
                     property = control.window.getProperty(pname)
-
+					
+					
                     if watcher == True and not property == '7':
                         control.window.setProperty(pname, '7')
                         playcount.markEpisodeDuringPlayback(self.imdb, self.tvdb, self.season, self.episode, '7')
@@ -181,8 +290,26 @@ class player(xbmc.Player):
 
     def onPlayBackStopped(self):
         bookmarks().reset(self.currentTime, self.totalTime, self.name, self.year)
-
-
+		
+        try:
+			self.progress_tot_items = 0
+			try:
+				if self.content == 'movie': self.progress_tot_items = len(favourites.getProgress('movies'))
+				elif self.content == 'episode': self.progress_tot_items = len(favourites.getProgress('episode'))
+			except:
+				self.progress_tot_items = 0
+			if not int(self.progress_tot_items) > int(inprogress_limit):
+				if inprogress_db == 'true':
+					watch_progress =  self.currentTime / self.totalTime >= .0020
+					ended_progress =  self.currentTime / self.totalTime >= .85
+					if watch_progress:
+						if self.content == 'movie': self.add_progress_movies(self.original_meta)
+						elif self.content == 'episode': self.add_progress_episodes(self.original_meta)
+					if ended_progress:
+						if self.content == 'movie': self.remove_progress_movies(self.original_meta)
+						# elif self.content == 'episode': self.remove_progress_episodes(self.original_meta)
+        except:
+				pass
     def onPlayBackEnded(self):
         self.onPlayBackStopped()
 

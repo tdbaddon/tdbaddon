@@ -25,6 +25,8 @@ from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+
 class source:
     def __init__(self):
         self.domains = ['rlsbb.online']
@@ -42,7 +44,7 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			# print ("RLSBBONLINE query", query)
+			titlecheck = cleanmovie+year
 			link = client.request(query)
 			r = client.parseDOM(link, 'h2', attrs = {'class': 'postTitle'})
 			# print ("RLSBBONLINE r", r)
@@ -51,8 +53,9 @@ class source:
 				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
 				href = href.encode('utf-8')
 				item_title = item_title.encode('utf-8')
+				c_title = cleantitle_get_2(item_title)
 				if year in item_title:
-					if cleanmovie in cleantitle.get(item_title):
+					if titlecheck in c_title:
 						self.zen_url.append([href,item_title])
 						# print "RLSBBONLINE MOVIES %s %s" % (item_title , href)
 			return self.zen_url
@@ -85,14 +88,14 @@ class source:
 			mylink = urlparse.urljoin(self.base_link, query)
 			link = client.request(mylink)
 			r = client.parseDOM(link, 'h2', attrs = {'class': 'postTitle'})
-			# print ("RLSBBONLINE TV r", r)
+			titlecheck = cleanmovie+episodecheck
 			for item in r:
 				href = client.parseDOM(item, 'a', ret = 'href')[0]
 				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
 				href = href.encode('utf-8')
 				item_title = item_title.encode('utf-8')
-				if cleanmovie in cleantitle.get(item_title):
-					if episodecheck in cleantitle.get(item_title):
+				c_title = cleantitle.get(item_title)
+				if titlecheck in c_title:
 						self.zen_url.append([href,item_title])
 						# print ("RLSBBONLINE TV PASSED", self.zen_url)
 							

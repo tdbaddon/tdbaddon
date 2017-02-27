@@ -28,6 +28,7 @@ debridstatus = control.setting('debridsources')
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules.common import  random_agent, quality_tag
 import requests
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
@@ -44,6 +45,7 @@ class source:
 			
 			cleanmovie = cleantitle.get(title)
 			title = cleantitle.getsearch(title)
+			titlecheck = cleanmovie+year
 			query = self.search_link % (urllib.quote_plus(title), year)
 			query = urlparse.urljoin(self.base_link, query)
 		
@@ -58,8 +60,10 @@ class source:
 				r_href = result.findAll('a')[0]["href"]
 				r_href = r_href.encode('utf-8')
 				r_title = r_title.encode('utf-8')
-				if cleanmovie in cleantitle.get(r_title) and year in r_title:
-					self.zen_url.append([movielink,title])
+				
+				r_title2 = cleantitle_get_2(r_title)
+				if titlecheck in r_title2:
+					self.zen_url.append([movielink,r_title])
 			return self.zen_url
         except:
             return
@@ -87,7 +91,7 @@ class source:
 			episodecheck = str(ep_search).lower()
 			query = self.search_link % (urllib.quote_plus(title), ep_search)
 			query = urlparse.urljoin(self.base_link, query)
-			
+			titlecheck = cleanmovie + episodecheck
 			html = BeautifulSoup(requests.get(query, headers=headers, timeout=10).content)
 			
 			containers = html.findAll('h1', attrs={'class': 'entry-title'})
@@ -99,8 +103,8 @@ class source:
 				r_href = result.findAll('a')[0]["href"]
 				r_href = r_href.encode('utf-8')
 				r_title = r_title.encode('utf-8')
-				
-				if cleanmovie in cleantitle.get(r_title) and episodecheck in cleantitle.get(r_title):
+				r_title = cleantitle.get(r_title)
+				if titlecheck in r_title:
 					self.zen_url.append([r_href,r_title])
 					
 			return self.url

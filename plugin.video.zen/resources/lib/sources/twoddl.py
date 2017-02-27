@@ -27,11 +27,12 @@ from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
 from resources.lib.modules.common import  random_agent, quality_tag
 from BeautifulSoup import BeautifulSoup
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
     def __init__(self):
         self.domains = ['2ddl.one']
-        self.base_link = 'http://2ddl.one'
+        self.base_link = client.request('http://2ddl.org', output='geturl')
         self.search_link = '/search/%s+%s/feed/rss2/'
 			
     def movie(self, imdb, title, year):

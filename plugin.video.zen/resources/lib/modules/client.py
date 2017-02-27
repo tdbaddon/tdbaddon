@@ -310,6 +310,8 @@ def replaceHTMLCodes(txt):
     txt = HTMLParser.HTMLParser().unescape(txt)
     txt = txt.replace("&quot;", "\"")
     txt = txt.replace("&amp;", "&")
+    txt = txt.replace("\/", "/")
+    txt = txt.replace("\\", "")
     txt = txt.strip()
     return txt
 

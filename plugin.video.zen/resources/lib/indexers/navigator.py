@@ -23,7 +23,7 @@ import os,sys,urlparse
 
 from resources.lib.modules import control
 from resources.lib.modules import trakt
-
+inprogress_db = control.setting('inprogress_db')
 
 sysaddon = sys.argv[0]
 
@@ -65,7 +65,7 @@ tvlist10 = control.setting('tmdb.tvlist_name10')
 class navigator:
     def root(self):
         # self.addDirectoryItem('Merry Christmas!', 'movies&url=tmdbxmas', 'xmas.png', 'DefaultMovies.png')
- 
+
         self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvNavigator', 'channels.png', 'DefaultTVShows.png')
         if not control.setting('movie.widget') == '0': self.addDirectoryItem('Spotlight', 'movieWidget', 'latest-movies.png', 'DefaultRecentlyAddedMovies.png')
@@ -85,6 +85,8 @@ class navigator:
         self.endDirectory()
 
     def movies(self, lite=False):
+        if inprogress_db == 'true': self.addDirectoryItem("In Progress", 'movieProgress', 'trending.png', 'DefaultMovies.png')
+
         self.addDirectoryItem('Featured', 'movies&url=featured', 'featured.png', 'DefaultRecentlyAddedMovies.png')
         self.addDirectoryItem('Trending', 'movies&url=trending', 'trending.png', 'DefaultRecentlyAddedMovies.png')
         self.addDirectoryItem('Populars', 'movies&url=popular', 'populars.png', 'DefaultMovies.png')
@@ -136,6 +138,7 @@ class navigator:
         self.endDirectory()
 
     def tvshows(self, lite=False):
+        if inprogress_db == 'true': self.addDirectoryItem("In Progress", 'showsProgress', 'trending.png', 'DefaultMovies.png')
 
         self.addDirectoryItem('Featured', 'tvshows&url=featured', 'populars.png', 'DefaultRecentlyAddedEpisodes.png')
         self.addDirectoryItem('Populars', 'tvshows&url=popular', 'most-viewed.png', 'DefaultTVShows.png')
@@ -173,7 +176,10 @@ class navigator:
         self.addDirectoryItem('[B]ZEN[/B]: Clear Cache', 'clearCache', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]BACKUP[/B]: Watchlist', 'backupwatchlist', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]RESTORE[/B]: Watchlist', 'restorewatchlist', 'tools.png', 'DefaultAddonProgram.png')
-
+        self.addDirectoryItem('[B]ZEN[/B]: Clear Progress Database', 'clearProgress', 'tools.png', 'DefaultAddonProgram.png')
+ 
+	
+		
         self.endDirectory()
 
 

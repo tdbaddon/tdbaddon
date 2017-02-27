@@ -24,7 +24,8 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
-# if not debridstatus == 'true': raise Exception() 
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+
 class source:
     def __init__(self):
         self.domains = ['ddlvalley2.cool']
@@ -42,15 +43,15 @@ class source:
 			query =  self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
 			link = client.request(query)
-			
+			titlecheck = cleanmovie+year
 			match = re.compile('<h2><a href="(.+?)" rel=".+?" title=".+?" data-wpel-link="internal">(.+?)</a></h2>').findall(link)
 
 			
-			for movielink,title in match:
-				
-				title = cleantitle.get(title)
-				if cleanmovie in title:
-					self.zen_url.append([movielink,title])
+			for movielink,r_title in match:
+				if year in r_title:
+					r_title = cleantitle_get_2(r_title)
+					if titlecheck in r_title:
+						self.zen_url.append([movielink,r_title])
 
 
 	 
@@ -80,15 +81,16 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = episodecheck.lower()
+			titlecheck = cleanmovie+episodecheck
 			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			query =  self.search_link % (urllib.quote_plus(title),query)
 			query = urlparse.urljoin(self.base_link, query)
 			link = client.request(query)
 			match = re.compile('<h2><a href="(.+?)" rel=".+?" title=".+?" data-wpel-link="internal">(.+?)</a></h2>').findall(link)
 			for movielink,title2 in match:
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title: self.zen_url.append([movielink,title])
+				r_title = cleantitle.get(title2)
+				if titlecheck in r_title:
+					self.zen_url.append([movielink,r_title])
 			return self.zen_url
         except:
             return

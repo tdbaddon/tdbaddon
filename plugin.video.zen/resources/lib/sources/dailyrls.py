@@ -25,6 +25,8 @@ from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+
 class source:
     def __init__(self):
         self.domains = ['dailyreleases.net']
@@ -42,7 +44,7 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			# print ("DAILYRLS query", query)
+			titlecheck = cleanmovie+year
 			link = client.request(query)
 			r = client.parseDOM(link, 'div', attrs = {'id': 'post-.+?'})
 			for item in r:
@@ -50,9 +52,10 @@ class source:
 				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
 				href = href.encode('utf-8')
 				item_title = item_title.encode('utf-8')
-				# print ("DAILYRLS item", item_title,href)				
+						
 				if year in item_title:
-					if cleanmovie in cleantitle.get(item_title):
+					item_title = cleantitle.get(item_title)
+					if cleanmovie in item_title:
 						self.zen_url.append([href,item_title])
 						# print "DAILYRLS MOVIES %s %s" % (item_title , href)
 			return self.zen_url
@@ -80,6 +83,7 @@ class source:
 			data['season'], data['episode'] = season, episode
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			episodecheck = str(episodecheck).lower()
+			titlecheck = cleanmovie+episodecheck
 			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			query = self.search_link % (urllib.quote_plus(title),query)
 			mylink = urlparse.urljoin(self.base_link, query)
@@ -90,10 +94,10 @@ class source:
 				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
 				href = href.encode('utf-8')
 				item_title = item_title.encode('utf-8')
-				if cleanmovie in cleantitle.get(item_title):
-					if episodecheck in cleantitle.get(item_title):
-						item_title = item_title + "=episode"
-						self.zen_url.append([href,item_title])
+				item_title = cleantitle.get(item_title)
+				if titlecheck in item_title:
+					item_title = item_title + "=episode"
+					self.zen_url.append([href,item_title])
 						# print "DAILYRLS TV SHOWS %s %s" % (item_title , href)
 							
 			return self.zen_url

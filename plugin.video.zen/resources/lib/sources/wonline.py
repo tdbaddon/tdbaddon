@@ -24,8 +24,8 @@ from resources.lib.modules import directstream
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules import jsunpack
 
-from schism_net import OPEN_URL
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_query
+from schism_net import OPEN_URL, OPEN_CF
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
 	def __init__(self):
@@ -42,9 +42,9 @@ class source:
 			cleanmovie = cleantitle_get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			print ("WONLINE query",  query)
+			
 			r = OPEN_URL(query, timeout='15')
-			print ("WONLINE r",  r.content)
+			
 			html = BeautifulSoup(r.content)
 			print ("WONLINE BeautifulSoup", html)
 			r = html.findAll('div', attrs={'class': 'resultado'})

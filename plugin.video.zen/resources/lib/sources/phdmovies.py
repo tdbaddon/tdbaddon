@@ -19,6 +19,7 @@
 '''
 
 
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 import re,urllib,urlparse,random
 from resources.lib.modules import control
