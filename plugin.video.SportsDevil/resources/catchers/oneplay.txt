@@ -17,26 +17,24 @@ item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*?[\W]["']([^"']{2000,10000})["']','@REFERER@')
 item_info_convert=replace('%s','\\x','\x')
 item_info_convert=unicode_escape
-item_info_convert=debug
 item_info_build=%s
 
 item_info_name=key
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?[\W]["'](?!\\\\x72\\\\x65)([^"']{25})["']','@REFERER@')
+item_info_convert=getInfo('%s','.*?[\W]["']([^"']{160})["']','@REFERER@')
 item_info_convert=replace('%s','\\x','\x')
 item_info_convert=unicode_escape
-item_info_convert=debug
 item_info_build=%s
 
 item_info_name=page
 item_info_from=cTxt
 item_info_convert=gAesDec(key)
+item_info_convert=debug
 item_info_build=%s
 
 item_info_name=token
-item_info_from=page
-item_info_convert=parseText('%s','.*name="token"\s*value="([^"]+)"')
-item_info_convert=debug
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*"token"\).value='([^']+)'','@REFERER@')
 item_info_build=%s
 
 item_info_name=postData
@@ -79,5 +77,5 @@ item_info_convert=getCookies(OPSESSID)
 item_info_build=%s
 
 item_info_name=url
-item_info_from=m3u8+'|Referer='+ref+'&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.100 Safari/537.36&Cookie=OPSESSID='+cookie
+item_info_from=m3u8+'|Referer='+ref+'&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36&Cookie=OPSESSID='+cookie
 item_info_build=%s

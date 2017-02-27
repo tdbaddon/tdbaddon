@@ -2,8 +2,7 @@ import logging
 import os
 import tempfile
 import shutil
-try: import json
-except ImportError: import simplejson as json
+import json
 from subprocess import check_call
 
 from dateutil.zoneinfo import tar_open, METADATA_FN, ZONEFILENAME

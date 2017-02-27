@@ -158,7 +158,7 @@ def findContentRefreshLink(page, data):
         return links[0]
     
     #hd**ee.fv/cr**hd.fv/sp**ts4u.tv
-    regex = '<a\s*href="([^"]+)"\s*target="_blank"><img\s*(?:src="[^"]+"\s*height="\d+"\s*width="\d+"\s*longdesc="[^"]+"|class="alignnone"\s*src="[^"]*"\s*alt="[^"]*"\s*width="\d\d\d"\s*height="\d\d\d")'
+    regex = '<a\s*href="((?![^"]+HDlivestream)[^"]+)"\s*target="_blank"><img\s*(?:src="[^"]+"\s*height="\d+"\s*width="\d+"\s*longdesc="[^"]+"|class="alignnone"\s*src="[^"]*"\s*alt="[^"]*"\s*width="\d\d\d"\s*height="\d\d\d")'
     links = regexUtils.findall(data, regex)
     if links:
         return urlparse.urljoin(urllib.unquote(page), links[0]).strip()

@@ -20,81 +20,52 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 """
 
+import xbmc
 import base64
-import re
 import urlparse
 import sys
-import traceback
 import socket
-import random
 from SocketServer import ThreadingMixIn
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from livestreamer import Livestreamer, StreamError, PluginError, NoPluginError
+from livestreamer import Livestreamer
 
-s = [   '185.39.11.42',
-        '185.39.9.34',
-        '185.39.9.130',
-        '185.39.11.50',
-        '185.39.11.34',
-        '185.39.9.2',
-        '185.39.11.10',
-        '185.39.11.26',
-        '185.39.9.98',
-        '185.39.9.162',
-        '185.39.11.2',
-        '185.39.11.58',
-        '185.39.11.66']
 
 class MyHandler(BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        pass
+
     """
     Serves a HEAD request
     """
     def do_HEAD(self):
-        #print "XBMCLocalProxy: Serving HEAD request..."
         self.answer_request(0)
 
     """
     Serves a GET request.
     """
     def do_GET(self):
-        #print "XBMCLocalProxy: Serving GET request..."
         self.answer_request(1)
 
     def answer_request(self, sendData):
         try:
             request_path = self.path[1:]
-            #print 'request_path: ' + request_path
-            extensions = ['.Vprj', '.edl', '.txt', '.chapters.xml']
-            for extension in extensions:
-                if request_path.endswith(extension):
-                    self.send_response(404)
-                    request_path = ''      
-            request_path = re.sub(r"\?.*", "", request_path)
             if request_path == "stop":
                 sys.exit()
             elif request_path == "version":
                 self.send_response(200)
                 self.end_headers()
                 self.wfile.write("Proxy: Running\r\n")
-                self.wfile.write("Version: 0.1")
+                self.wfile.write("Version: 0.1\r\n")
             elif request_path[0:13] == "livestreamer/":
                 realpath = request_path[13:]
-                #print 'realpath: ' + realpath
                 fURL = base64.b64decode(realpath)
-                #print 'fURL: ' + fURL
                 self.serveFile(fURL, sendData)
             else:
                 self.send_response(403)
-        except:
-                traceback.print_exc()
-                self.wfile.close()
+                self.end_headers()
+        finally:
                 return
-        try:
-            self.wfile.close()
-        except:
-            pass
 
-            
     """
     Sends the requested file and add additional headers.
     """
@@ -104,55 +75,22 @@ class MyHandler(BaseHTTPRequestHandler):
                 sp = fURL.split('|')
                 fURL = sp[0]
                 headers = dict(urlparse.parse_qsl(sp[1]))
-                if 'cdn.sstream.pw' in fURL:
-                    fURL = fURL.replace('cdn.sstream.pw',random.choice(s))
-                    headers['Host'] = '6b6473616a6b6c647361646a7361643737353637647361393973616768647368686464732e736974656e6f772e6d65'.decode('hex')
                 session.set_option("http-headers", headers)
-                session.set_option("http-ssl-verify",False)
-                session.set_option("hls-segment-threads",3)
+                session.set_option("http-ssl-verify", False)
         try:
             streams = session.streams(fURL)
+            self.send_response(200)
         except:
-            traceback.print_exc(file=sys.stdout)
             self.send_response(403)
-        self.send_response(200)
-        #print "XBMCLocalProxy: Sending headers..."
-        self.end_headers()
-        
+        finally:
+            self.end_headers()
+
         if (sendData):
-            #print "XBMCLocalProxy: Sending data..."
-            fileout = self.wfile
-            try:
-                stream = streams["best"]
-                try:
-                    response = stream.open()
-                    buf = 'INIT'
-                    while (buf != None and len(buf) > 0):
-                        buf = response.read(200 * 1024)
-                        fileout.write(buf)
-                        fileout.flush()
-                    response.close()
-                    fileout.close()
-                    #print time.asctime(), "Closing connection"
-                except socket.error, e:
-                    #print time.asctime(), "Client Closed the connection."
-                    try:
-                        response.close()
-                        fileout.close()
-                    except Exception, e:
-                        return
-                except Exception, e:
-                    traceback.print_exc(file=sys.stdout)
-                    response.close()
-                    fileout.close()
-            except:
-                traceback.print_exc()
-                self.wfile.close()
-                return
-        try:
-            self.wfile.close()
-        except:
-            pass
+            with streams["best"].open() as stream:
+                buf = 'INIT'
+                while (len(buf) > 0):
+                    buf = stream.read(500 * 1024)
+                    self.wfile.write(buf)
 
 
 class Server(HTTPServer):
@@ -170,18 +108,18 @@ class Server(HTTPServer):
         result[0].settimeout(1000)
         return result
 
+
 class ThreadedHTTPServer(ThreadingMixIn, Server):
     """Handle requests in a separate thread."""
+
 
 HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 19000
 
 if __name__ == '__main__':
-    socket.setdefaulttimeout(10)
+    sys.stderr = sys.stdout
     server_class = ThreadedHTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)
-    #print "XBMCLocalProxy Starts - %s:%s" % (HOST_NAME, PORT_NUMBER)
-    while(True):
+    while not xbmc.abortRequested:
         httpd.handle_request()
     httpd.server_close()
-    #print "XBMCLocalProxy Stops %s:%s" % (HOST_NAME, PORT_NUMBER)

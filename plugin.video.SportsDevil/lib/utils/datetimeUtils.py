@@ -3,26 +3,25 @@
 import time, datetime
 import re
 import sys, traceback
-
+import xbmc
+try: import json
+except ImportError: import simplejson as json
+from dateutil.parser import parse
+from dateutil.tz import gettz
+from dateutil.tz import tzlocal
 
 #######################################
 # Time and Date Helpers
 #######################################
+try:
+    local_tzinfo = tzlocal()
+    locale_timezone = json.loads(xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Settings.GetSettingValue", "params": {"setting": "locale.timezone"}, "id": 1}'))
+    if locale_timezone['result']['value']:
+        local_tzinfo = gettz(locale_timezone['result']['value'])
+except:
+    pass
 
 def convDateUtil(timestring, newfrmt='default', in_zone='UTC'):
-    import xbmc
-    try: import json
-    except ImportError: import simplejson as json
-    from dateutil.parser import parse
-    from dateutil.tz import gettz
-    try:
-        locale_timezone = json.loads(xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Settings.GetSettingValue", "params": {"setting": "locale.timezone"}, "id": 1}'))
-        local_tzinfo = gettz(locale_timezone['result']['value'])
-        if local_tzinfo == None:
-            raise ValueError()
-    except ValueError, KeyError:
-        from dateutil.tz import tzlocal
-        local_tzinfo = tzlocal()
     if newfrmt == 'default':
         newfrmt = xbmc.getRegion('time').replace(':%S','')
     try:
@@ -30,9 +29,8 @@ def convDateUtil(timestring, newfrmt='default', in_zone='UTC'):
         in_time_with_timezone = in_time.replace(tzinfo=gettz(in_zone))
         local_time = in_time_with_timezone.astimezone(local_tzinfo)
         return local_time.strftime(newfrmt)
-    except ValueError:
-        traceback.print_exc(file = sys.stdout)
-        return ''
+    except:
+        return timestring
 
 def timediff(mytime, unit='seconds'):
     dtNow = datetime.datetime.utcnow()
