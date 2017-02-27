@@ -616,7 +616,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.bob" name="Bob" version="1.3.7" provider-name="Team Bob">
+<addon id="plugin.video.bob" name="Bob" version="1.3.8" provider-name="Team Bob">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" />

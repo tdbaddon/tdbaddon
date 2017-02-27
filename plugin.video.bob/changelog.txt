@@ -2,6 +2,9 @@ Visit WWW.NOOBSANDNERDS.COM for your all Kodi needs.
 No fighting, no censorship, no agenda.
 We just concentrate on exciting new features.
 
+v1.3.8
+- fixed acestreams
+
 v1.3.7
 - added secondary caching layer to reduce server load
 - backported reloaded's improved caching to bob

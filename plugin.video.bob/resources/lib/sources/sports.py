@@ -14,6 +14,7 @@ get listings from acespoplisting.in
     :return: listing from website in bob list xml format
     :rtype: str
     """
+    import xbmc
     xml = "<fanart>https://www.dropbox.com/s/x3zg9ovot6vipjh/smoke_men-wallpaper-1920x1080.jpg?raw=true</fanart>\n\n\n" \
           "<item>\n" \
           "\t<title>[COLORred]Will require Plexus addon to watch Acestream links.[/COLOR]</title>\n" \
@@ -55,6 +56,8 @@ get listings from acespoplisting.in
                               "\t<thumbnail></thumbnail>\n" \
                               "</item>\n" % date
             elif is_today:
+                if len(cells) < 5:
+                    continue
                 event_time = cells[0].text.strip()
                 split_time = event_time.split(":")
                 event_hours = int(split_time[0])

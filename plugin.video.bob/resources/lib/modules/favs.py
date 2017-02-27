@@ -93,7 +93,7 @@ def get_favorites(fav_type, url):
         indexer.add_directory(indexer.list, parent_url=url)
 
     except:
-        pass
+        return []
 
 
 def get_favorites_menu(url):
