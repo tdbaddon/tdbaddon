@@ -31,8 +31,11 @@ def quality_tag(txt):
 def google_tag(url):
     quality = re.compile('itag=(\d*)').findall(url)
     quality += re.compile('=m(\d*)$').findall(url)
-    try: quality = quality[0]
-    except: return []
+    try: 
+		quality = quality[0]
+    except:
+		quality = "ND"
+		return quality
 
     if quality in ['37', '137', '299', '96', '248', '303', '46']:
         quality = "1080p"
@@ -50,7 +53,8 @@ def google_tag(url):
         quality = "SD"
         return quality
     else:
-        return []
+        quality = "SD"
+        return quality
 		
 def parseDOM(html, name=u"", attrs={}, ret=False):
     # Copyright (C) 2010-2011 Tobias Ussing And Henrik Mosgaard Jensen
@@ -159,6 +163,9 @@ def replaceHTMLCodes(txt):
     txt = HTMLParser.HTMLParser().unescape(txt)
     txt = txt.replace("&quot;", "\"")
     txt = txt.replace("&amp;", "&")
+    txt = txt.replace("\/", "/")
+    txt = txt.replace("\\", "")
+    txt = txt.strip()
     return txt
 
 
@@ -166,14 +173,53 @@ def replaceHTMLCodes(txt):
 
 import re,unicodedata
 
+
+def get_size(txt):
+	try:
+		txt = re.findall('(\d+(?:\.|/,|)?\d+(?:\s+|)(?:GB|GiB|MB|MiB))', txt)
+		txt = txt[0].encode('utf-8')
+	except:
+		txt = ''
+	return txt
+
+	
+
+
+
 def cleantitle_get(title):
     if title == None: return
     title = title.lower()
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = re.sub(r'\<[^>]*\>','', title)
+    title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\(|\)|\[|\]|\{|\}|\s', '', title).lower()
     return title
+	
+	
+def cleantitle_get_2(title):
+   # #### KEEPS ROUND PARENTHESES CONTENT #####
+    if title == None: return
+    title = title.lower()
+    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+    title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub(r'\<[^>]*\>','', title)
+    title = re.sub('\n|([[].+?[]])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\(|\)|\[|\]|\{|\}|\s', '', title).lower()
+    return title
+	
+	
+def cleantitle_get_full(title):
+    if title == None: return
+    title = title.lower()
+    title = re.sub('(\d{4})', '', title)
+    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+    title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub(r'\<[^>]*\>','', title)
+    title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    return title
+	
 	
 def cleantitle_geturl(title):
     if title == None: return
@@ -191,6 +237,7 @@ def cleantitle_get_simple(title):
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub(r'\<[^>]*\>','', title)
     title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
 	
@@ -201,7 +248,19 @@ def cleantitle_query(title):
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub('\\\|/|\(|\)|\[|\]|\{|\}|-|:|;|\*|\?|"|\'|<|>|\_|\.|\?', '', title).lower()
+    title = re.sub('\\\|/|\(|\)|\[|\]|\{|\}|-|:|;|\*|\?|"|\'|<|>|\_|\.|\?', ' ', title).lower()
+    title = ' '.join(title.split())
+    return title
+	
+	
+def getsearch(title):
+    if title == None: return
+    title = title.lower()
+    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+    title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub('\\\|/|\(|\)|\[|\]|\{|\}|-|:|;|\*|\?|"|\'|<|>|\_|\.|\?', ' ', title).lower()
+    title = ' '.join(title.split())
     return title
 	
 def cleantitle_normalize(title):

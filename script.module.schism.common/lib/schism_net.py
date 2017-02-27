@@ -22,7 +22,9 @@ from incapsula import crack
 import requests
 User_Agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2"'
 scraper = cfscrape.create_scraper()
+
 session = requests.Session()
+
 class sucuri:
 
         def __init__(self):
@@ -54,7 +56,7 @@ class sucuri:
 
 
 def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, timeout=None):
-
+        if timeout == None: timeout= '30'	
         if headers == None:
 
                 headers = {}
@@ -87,7 +89,8 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
 
         if '_Incapsula_' in link.content:
                 print ("DETECTED _Incapsula_", url)
-                link = crack(session, link)
+                response = session.get(url)  # url is blocked by incapsula
+                link = crack(session, response)
                
 
         return link

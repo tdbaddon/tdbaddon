@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<!--suppress ALL -->
-<addon id="context.salts.tools" version="1.0.6" name="SALTS Context Tools" provider-name="tknorris">
-    <requires>
-        <import addon="xbmc.python" version="2.2.0"/>
-        <import addon="plugin.video.salts" version="1.0.65"/>
-        <import addon="script.module.tknorris.shared" version="0.0.1"/>
-    </requires>
-    <extension point="kodi.context.item" library="default.py">
-      <item>
-        <label>SALTS Tools...</label>
-        <visible>!StringCompare(ListItem.dbid,)+[StringCompare(ListItem.dbtype,movie)|StringCompare(ListItem.dbtype,tvshow)|StringCompare(ListItem.dbtype,season)|StringCompare(ListItem.dbtype,episode)]</visible>
-      </item>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Library Context Menu Tools for SALTS</summary>
-        <description>This addon provides context menu items for the SALTS addon</description>
-        <platform>all</platform>
-        <website>http://tvaddons.ag/</website>
-		<forum>http://forums.tvaddons.ag/forums/180-TKNORRIS-RELEASE-REPOSITORY</forum>
-	</extension>
-</addon>
-
 <addon id="plugin.audio.dipremium" name="DI Premium" version="2.0" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3363,7 +3341,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.17" provider-name="Goliath">
+<addon id="repository.MatsBuilds" name="Goliaths Unofficial Add-ons repository" version="1.0.18" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -3375,8 +3353,8 @@ Enjoy!</description>
 		<datadir zip="true">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from Goliath</summary>
-		<description>Download and install Add-ons from Goliaths repository</description>
+		<summary>Home of the unofficial 3rd party Addon Evolve</summary>
+		<description>Download and install all unofficial Add-ons from Goliath</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4088,7 +4066,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     </extension>
 </addon>
 
-<addon id="script.module.schism.common" name="SchisM Common Libraries" version="1.4" provider-name="SchisM">
+<addon id="script.module.schism.common" name="SchisM Common Libraries" version="1.9.0" provider-name="SchisM">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />

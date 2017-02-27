@@ -1,5 +1,5 @@
 <?xml version="1.0.1" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.17" provider-name="Goliath">
+<addon id="repository.MatsBuilds" name="Goliaths Unofficial Add-ons repository" version="1.0.18" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -11,8 +11,8 @@
 		<datadir zip="true">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from Goliath</summary>
-		<description>Download and install Add-ons from Goliaths repository</description>
+		<summary>Home of the unofficial 3rd party Addon Evolve</summary>
+		<description>Download and install all unofficial Add-ons from Goliath</description>
 		<platform>all</platform>
 	</extension>
 </addon>
