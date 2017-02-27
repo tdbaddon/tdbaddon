@@ -98,10 +98,13 @@
     </category>
 
     <category label="30723">
+        <setting type="lsep" label="30730"/>
+        <setting id="proxy_enable" type="bool" label="30731" default="false"/>
+        <setting id="proxy_port" type="number" label="30732" default=""/>
         <setting type="lsep" label="30725"/>
         <setting id="bg_enable" label="30719" type="bool" default="true"/>
         <setting id="poster_enable" label="30720" type="bool" default="true"/>
-        <setting id="gif_enable" label="30726" type="bool" default="false" visible="eq(-1,true)"/>
+        <setting id="gif_enable" label="30726" type="bool" default="false" visible="eq(-1,true)" enable="!eq(-5,true)"/>
         <setting id="banner_enable" label="30721" type="bool" default="true"/>
         <setting id="clearart_enable" label="30722" type="bool" default="true"/>
         <setting id="thumb_enable" label="30724" type="bool" default="true"/>
@@ -152,6 +155,7 @@
         <setting id="source_results" type="number" label="30579" default="0"/>
         <setting id="filter_unusable" type="bool" label="30580" default="true"/>
         <setting id="show_debrid" type="bool" label="30652" default="true"/>
+        <setting id="debrid_color" type="text" label="30729" default="green" visible="eq(-1,true)"/>
         <setting id="filter_direct" type="bool" label="30551" default="false"/>
         <setting id="cf_captcha" type="bool" label="30690" visible="true" default="false"/>
         <setting id="excl_list" type="text" label="30581" default=""/>
@@ -195,7 +199,7 @@
     
     <category label="Scrapers 1">
          <setting id="2DDL-enable" type="bool" label="2DDL Enabled" default="true" visible="true"/>
-         <setting id="2DDL-base_url" type="text" label="    Base Url" default="http://2ddl.one" visible="eq(-1,true)"/>
+         <setting id="2DDL-base_url" type="text" label="    Base Url" default="http://2ddl.org" visible="eq(-1,true)"/>
          <setting id="2DDL-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="2DDL_last_results" type="number" default="0" visible="false"/>
          <setting id="2DDL-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="60" visible="eq(-4,true)"/>
@@ -204,7 +208,7 @@
          <setting id="afdah-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="afdah_last_results" type="number" default="0" visible="false"/>
          <setting id="afdah.org-enable" type="bool" label="afdah.org Enabled" default="true" visible="true"/>
-         <setting id="afdah.org-base_url" type="text" label="    Base Url" default="https://afdah.org" visible="eq(-1,true)"/>
+         <setting id="afdah.org-base_url" type="text" label="    Base Url" default="https://watch32hd.co" visible="eq(-1,true)"/>
          <setting id="afdah.org-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="afdah.org_last_results" type="number" default="0" visible="false"/>
          <setting id="afdah.org-default_url" type="text" visible="false"/>
@@ -214,6 +218,12 @@
          <setting id="alluc.com_last_results" type="number" default="0" visible="false"/>
          <setting id="alluc.com-username" type="text" label="     Username" default="" visible="eq(-4,true)"/>
          <setting id="alluc.com-password" type="text" label="     Password" option="hidden" default="" visible="eq(-5,true)"/>
+         <setting id="BestMoviez-enable" type="bool" label="BestMoviez Enabled" default="true" visible="true"/>
+         <setting id="BestMoviez-base_url" type="text" label="    Base Url" default="http://www.best-moviez.ws" visible="eq(-1,true)"/>
+         <setting id="BestMoviez-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
+         <setting id="BestMoviez_last_results" type="number" default="0" visible="false"/>
+         <setting id="BestMoviez-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-4,true)"/>
+         <setting id="BestMoviez-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>
          <setting id="CinemaMKV-enable" type="bool" label="CinemaMKV Enabled" default="true" visible="true"/>
          <setting id="CinemaMKV-base_url" type="text" label="    Base Url" default="http://cinemamkv.com" visible="eq(-1,true)"/>
          <setting id="CinemaMKV-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -226,12 +236,6 @@
          <setting id="CouchTunerV1-base_url" type="text" label="    Base Url" default="http://www.couch-tuner.ag" visible="eq(-1,true)"/>
          <setting id="CouchTunerV1-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="CouchTunerV1_last_results" type="number" default="0" visible="false"/>
-         <setting id="DailyReleases-enable" type="bool" label="DailyReleases Enabled" default="true" visible="true"/>
-         <setting id="DailyReleases-base_url" type="text" label="    Base Url" default="http://dailyreleases.net" visible="eq(-1,true)"/>
-         <setting id="DailyReleases-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
-         <setting id="DailyReleases_last_results" type="number" default="0" visible="false"/>
-         <setting id="DailyReleases-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-4,true)"/>
-         <setting id="DailyReleases-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>
          <setting id="DayT.se-enable" type="bool" label="DayT.se Enabled" default="true" visible="true"/>
          <setting id="DayT.se-base_url" type="text" label="    Base Url" default="http://cyro.se" visible="eq(-1,true)"/>
          <setting id="DayT.se-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -254,11 +258,11 @@
          <setting id="Diziay-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Diziay_last_results" type="number" default="0" visible="false"/>
          <setting id="Dizibox-enable" type="bool" label="Dizibox Enabled" default="true" visible="true"/>
-         <setting id="Dizibox-base_url" type="text" label="    Base Url" default="http://www.dizibox.com" visible="eq(-1,true)"/>
+         <setting id="Dizibox-base_url" type="text" label="    Base Url" default="http://www.dizibox1.com" visible="eq(-1,true)"/>
          <setting id="Dizibox-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizibox_last_results" type="number" default="0" visible="false"/>
          <setting id="Dizigold-enable" type="bool" label="Dizigold Enabled" default="true" visible="true"/>
-         <setting id="Dizigold-base_url" type="text" label="    Base Url" default="http://www.dizigold.net" visible="eq(-1,true)"/>
+         <setting id="Dizigold-base_url" type="text" label="    Base Url" default="http://www.dizigold.org" visible="eq(-1,true)"/>
          <setting id="Dizigold-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizigold_last_results" type="number" default="0" visible="false"/>
          <setting id="Dizilab-enable" type="bool" label="Dizilab Enabled" default="true" visible="true"/>
@@ -266,7 +270,7 @@
          <setting id="Dizilab-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizilab_last_results" type="number" default="0" visible="false"/>
          <setting id="Dizimag-enable" type="bool" label="Dizimag Enabled" default="true" visible="true"/>
-         <setting id="Dizimag-base_url" type="text" label="    Base Url" default="http://dizimag.co" visible="eq(-1,true)"/>
+         <setting id="Dizimag-base_url" type="text" label="    Base Url" default="http://dizimag1.co" visible="eq(-1,true)"/>
          <setting id="Dizimag-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizimag_last_results" type="number" default="0" visible="false"/>
          <setting id="Dizipas-enable" type="bool" label="Dizipas Enabled" default="true" visible="true"/>
@@ -436,8 +440,13 @@
          <setting id="MovyTvy-base_url" type="text" label="    Base Url" default="http://movytvy.com" visible="eq(-1,true)"/>
          <setting id="MovyTvy-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="MovyTvy_last_results" type="number" default="0" visible="false"/>
+         <setting id="MyDDL-enable" type="bool" label="MyDDL Enabled" default="true" visible="true"/>
+         <setting id="MyDDL-base_url" type="text" label="    Base Url" default="http://myddl.pw" visible="eq(-1,true)"/>
+         <setting id="MyDDL-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
+         <setting id="MyDDL_last_results" type="number" default="0" visible="false"/>
+         <setting id="MyDDL-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="60" visible="eq(-4,true)"/>
          <setting id="MyVideoLinks.eu-enable" type="bool" label="MyVideoLinks.eu Enabled" default="true" visible="true"/>
-         <setting id="MyVideoLinks.eu-base_url" type="text" label="    Base Url" default="http://newmyvideolink.xyz/dl" visible="eq(-1,true)"/>
+         <setting id="MyVideoLinks.eu-base_url" type="text" label="    Base Url" default="http://myvideolinks.xyz" visible="eq(-1,true)"/>
          <setting id="MyVideoLinks.eu-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="MyVideoLinks.eu_last_results" type="number" default="0" visible="false"/>
          <setting id="MyVideoLinks.eu-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-4,true)"/>
@@ -473,15 +482,15 @@
          <setting id="ororo.tv_last_results" type="number" default="0" visible="false"/>
          <setting id="ororo.tv-username" type="text" label="     Username" default="" visible="eq(-4,true)"/>
          <setting id="ororo.tv-password" type="text" label="     Password" option="hidden" default="" visible="eq(-5,true)"/>
+    </category>
+    
+    <category label="Scrapers 4">
          <setting id="PelisPedia-enable" type="bool" label="PelisPedia Enabled" default="true" visible="true"/>
          <setting id="PelisPedia-base_url" type="text" label="    Base Url" default="http://www.pelispedia.tv" visible="eq(-1,true)"/>
          <setting id="PelisPedia-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="PelisPedia_last_results" type="number" default="0" visible="false"/>
-    </category>
-    
-    <category label="Scrapers 4">
          <setting id="pftv-enable" type="bool" label="pftv Enabled" default="true" visible="true"/>
-         <setting id="pftv-base_url" type="text" label="    Base Url" default="http://project-free-tv.ch" visible="eq(-1,true)"/>
+         <setting id="pftv-base_url" type="text" label="    Base Url" default="http://project-free-tv.im" visible="eq(-1,true)"/>
          <setting id="pftv-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="pftv_last_results" type="number" default="0" visible="false"/>
          <setting id="PirateJunkies-enable" type="bool" label="PirateJunkies Enabled" default="true" visible="true"/>
@@ -506,10 +515,9 @@
          <setting id="PrimeWire-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="PrimeWire_last_results" type="number" default="0" visible="false"/>
          <setting id="pubfilm-enable" type="bool" label="pubfilm Enabled" default="true" visible="true"/>
-         <setting id="pubfilm-base_url" type="text" label="    Base Url" default="http://pidtv.com" visible="eq(-1,true)"/>
+         <setting id="pubfilm-base_url" type="text" label="    Base Url" default="http://pubfilm.cc" visible="eq(-1,true)"/>
          <setting id="pubfilm-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="pubfilm_last_results" type="number" default="0" visible="false"/>
-         <setting id="pubfilm-default_url" type="text" visible="false"/>
          <setting id="Putlocker-enable" type="bool" label="Putlocker Enabled" default="true" visible="true"/>
          <setting id="Putlocker-base_url" type="text" label="    Base Url" default="http://putlocker9.co" visible="eq(-1,true)"/>
          <setting id="Putlocker-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -527,7 +535,7 @@
          <setting id="RealMovies-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="RealMovies_last_results" type="number" default="0" visible="false"/>
          <setting id="ReleaseBB-enable" type="bool" label="ReleaseBB Enabled" default="true" visible="true"/>
-         <setting id="ReleaseBB-base_url" type="text" label="    Base Url" default="http://rlsbb.com" visible="eq(-1,true)"/>
+         <setting id="ReleaseBB-base_url" type="text" label="    Base Url" default="http://rlsbb.ru" visible="eq(-1,true)"/>
          <setting id="ReleaseBB-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="ReleaseBB_last_results" type="number" default="0" visible="false"/>
          <setting id="ReleaseBB-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="60" visible="eq(-4,true)"/>
@@ -539,10 +547,6 @@
          <setting id="rls-movies_last_results" type="number" default="0" visible="false"/>
          <setting id="rls-movies-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-4,true)"/>
          <setting id="rls-movies-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>
-         <setting id="RLSeries-enable" type="bool" label="RLSeries Enabled" default="true" visible="true"/>
-         <setting id="RLSeries-base_url" type="text" label="    Base Url" default="http://rlseries.com" visible="eq(-1,true)"/>
-         <setting id="RLSeries-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
-         <setting id="RLSeries_last_results" type="number" default="0" visible="false"/>
          <setting id="RLSHD-enable" type="bool" label="RLSHD Enabled" default="true" visible="true"/>
          <setting id="RLSHD-base_url" type="text" label="    Base Url" default="http://www.rlshd.net" visible="eq(-1,true)"/>
          <setting id="RLSHD-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
@@ -565,17 +569,23 @@
          <setting id="SceneDown-base_url" type="text" label="    Base Url" default="http://scenedown.in" visible="eq(-1,true)"/>
          <setting id="SceneDown-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="SceneDown_last_results" type="number" default="0" visible="false"/>
+         <setting id="SceneHDTV-enable" type="bool" label="SceneHDTV Enabled" default="true" visible="true"/>
+         <setting id="SceneHDTV-base_url" type="text" label="    Base Url" default="http://scenehdtv.download" visible="eq(-1,true)"/>
+         <setting id="SceneHDTV-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
+         <setting id="SceneHDTV_last_results" type="number" default="0" visible="false"/>
+         <setting id="SceneHDTV-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="60" visible="eq(-4,true)"/>
+         <setting id="SceneHDTV-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>
          <setting id="SeeHD-enable" type="bool" label="SeeHD Enabled" default="true" visible="true"/>
          <setting id="SeeHD-base_url" type="text" label="    Base Url" default="http://www.seehd.se" visible="eq(-1,true)"/>
          <setting id="SeeHD-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="SeeHD_last_results" type="number" default="0" visible="false"/>
+    </category>
+
+    <category label="Scrapers 5">
          <setting id="SeriesCoco-enable" type="bool" label="SeriesCoco Enabled" default="true" visible="true"/>
          <setting id="SeriesCoco-base_url" type="text" label="    Base Url" default="http://www.seriescoco.me" visible="eq(-1,true)"/>
          <setting id="SeriesCoco-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="SeriesCoco_last_results" type="number" default="0" visible="false"/>
-    </category>
-
-    <category label="Scrapers 5">
          <setting id="SeriesWatch-enable" type="bool" label="SeriesWatch Enabled" default="true" visible="true"/>
          <setting id="SeriesWatch-base_url" type="text" label="    Base Url" default="http://dl.hastidownload.biz/2" visible="eq(-1,true)"/>
          <setting id="SeriesWatch-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -651,10 +661,6 @@
          <setting id="Vebup-base_url" type="text" label="    Base Url" default="http://vebup.com" visible="eq(-1,true)"/>
          <setting id="Vebup-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Vebup_last_results" type="number" default="0" visible="false"/>
-         <setting id="Ventures-enable" type="bool" label="Ventures Enabled" default="true" visible="true"/>
-         <setting id="Ventures-base_url" type="text" label="    Base Url" default="http://onad.ventures/files/tv" visible="eq(-1,true)"/>
-         <setting id="Ventures-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
-         <setting id="Ventures_last_results" type="number" default="0" visible="false"/>
          <setting id="VeoCube-enable" type="bool" label="VeoCube Enabled" default="true" visible="true"/>
          <setting id="VeoCube-base_url" type="text" label="    Base Url" default="http://veocube.cf" visible="eq(-1,true)"/>
          <setting id="VeoCube-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -694,6 +700,10 @@
          <setting id="WatchEpisodes-base_url" type="text" label="    Base Url" default="http://www.watchepisodes.com" visible="eq(-1,true)"/>
          <setting id="WatchEpisodes-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="WatchEpisodes_last_results" type="number" default="0" visible="false"/>
+         <setting id="WatchFilm-enable" type="bool" label="WatchFilm Enabled" default="true" visible="true"/>
+         <setting id="WatchFilm-base_url" type="text" label="    Base Url" default="http://watchfilm.to" visible="eq(-1,true)"/>
+         <setting id="WatchFilm-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
+         <setting id="WatchFilm_last_results" type="number" default="0" visible="false"/>
          <setting id="WatchFree.to-enable" type="bool" label="WatchFree.to Enabled" default="true" visible="true"/>
          <setting id="WatchFree.to-base_url" type="text" label="    Base Url" default="http://www.watchfree.to" visible="eq(-1,true)"/>
          <setting id="WatchFree.to-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -715,11 +725,11 @@
          <setting id="wmo.ch-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="wmo.ch_last_results" type="number" default="0" visible="false"/>
          <setting id="wso.ch-enable" type="bool" label="wso.ch Enabled" default="true" visible="true"/>
-         <setting id="wso.ch-base_url" type="text" label="    Base Url" default="http://watchseries-online.nl" visible="eq(-1,true)"/>
+         <setting id="wso.ch-base_url" type="text" label="    Base Url" default="http://watchseries-online.pl" visible="eq(-1,true)"/>
          <setting id="wso.ch-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="wso.ch_last_results" type="number" default="0" visible="false"/>
          <setting id="xmovies8-enable" type="bool" label="xmovies8 Enabled" default="true" visible="true"/>
-         <setting id="xmovies8-base_url" type="text" label="    Base Url" default="https://putlockerhd.co" visible="eq(-1,true)"/>
+         <setting id="xmovies8-base_url" type="text" label="    Base Url" default="https://xmovies8.org" visible="eq(-1,true)"/>
          <setting id="xmovies8-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="xmovies8_last_results" type="number" default="0" visible="false"/>
          <setting id="xmovies8-default_url" type="text" visible="false"/>

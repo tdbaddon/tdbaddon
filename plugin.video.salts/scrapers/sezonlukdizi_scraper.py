@@ -26,10 +26,11 @@ import dom_parser
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
+from salts_lib.constants import QUALITIES
 import scraper
 
 BASE_URL = 'http://sezonlukdizi.net'
-SEARCH_URL = '/js/dizi.js'
+SEARCH_URL = '/js/dizi1.js'
 SEASON_URL = '/ajax/dataDizi.asp'
 EMBED_URL = '/ajax/dataEmbed.asp'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
@@ -83,19 +84,20 @@ class Scraper(scraper.Scraper):
                         if urlparse.urlparse(self.base_url).hostname in iframe_url:
                             sources += self.__get_direct_links(iframe_url, page_url)
                         else:
-                            sources += [{'stream_url': iframe_url, 'subs': 'Turkish subtitles', 'height': 480, 'direct': False}]
+                            sources += [{'stream_url': iframe_url, 'subs': 'Turkish subtitles', 'quality': QUALITIES.HIGH, 'direct': False}]
                             
             for source in sources:
-                stream_url = source['stream_url'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
                 if source['direct']:
+                    stream_url = source['stream_url'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
                     host = self._get_direct_hostname(stream_url)
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(stream_url)
                     else:
-                        quality = scraper_utils.height_get_quality(source['height'])
+                        quality = sources[source]['quality']
                 else:
-                    host = urlparse.urlparse(source['stream_url']).hostname
-                    quality = scraper_utils.height_get_quality(source['height'])
+                    stream_url = source['stream_url']
+                    host = urlparse.urlparse(stream_url).hostname
+                    quality = source['quality']
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': source['direct'], 'subs': source['subs']}
                 hosters.append(hoster)
         return hosters
@@ -108,34 +110,22 @@ class Scraper(scraper.Scraper):
         # if captions exist, then they aren't hardcoded
         subs = '' if re.search('kind\s*:\s*"captions"', html) else 'Turkish subtitles'
          
-        for match in re.finditer('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', html):
-            stream_url, height = match.groups()
+        streams = self._parse_sources_list(html, key='VideoSources')
+        streams.update(self._parse_sources_list(html, var='video'))
+        for stream_url in streams:
+            quality = streams[stream_url]['quality']
             if 'v.asp' in stream_url:
                 stream_redirect = self._http_get(stream_url, allow_redirect=False, method='HEAD', cache_limit=0)
-                if stream_redirect: stream_url = stream_redirect
-            sources.append({'stream_url': stream_url, 'subs': subs, 'height': height, 'direct': True})
+                if stream_redirect:
+                    stream_url = stream_redirect
+
+            sources.append({'stream_url': stream_url, 'subs': subs, 'quality': quality, 'direct': True})
         
         if not sources:
-            sources = self.__get_cloud_links(html, iframe_url, subs)
-            
-        return sources
-                    
-    def __get_cloud_links(self, html, iframe_url, subs):
-        sources = []
-        match = re.search("url\s*:\s*'([^']+)", html)
-        if match:
-            url = match.group(1)
-            headers = {'Referer': iframe_url}
-            headers.update(XHR)
-            html = self._http_get(url, headers=headers, cache_limit=.5)
-            js_data = scraper_utils.parse_json(html, url)
-            if 'variants' in js_data:
-                for variant in js_data['variants']:
-                    if 'hosts' in variant and variant['hosts']:
-                        host = variant['hosts'][0]
-                        stream_url = 'https://%s%s' % (host, variant['path'])
-                        sources.append({'stream_url': stream_url, 'subs': subs, 'height': variant.get('height', 480), 'direct': True})
-                    
+            iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+            if iframe_url:
+                sources.append({'stream_url': iframe_url[0], 'subs': subs, 'quality': QUALITIES.HD720, 'direct': False})
+                
         return sources
     
     def _get_episode_url(self, show_url, video):

@@ -4,13 +4,14 @@
 # Translators:
 # Ante Ruić, 2015-2016
 # Anton G, 2016
+# BHnetTV, 2017
 # natko1412, 2016
 # natko1412, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-12-09 16:37+0000\n"
+"PO-Revision-Date: 2017-02-07 04:04+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/salts/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -857,6 +858,10 @@ msgctxt "#30219"
 msgid "Requested Sources from: %s"
 msgstr "Traženi Izvori iz: %s"
 
+msgctxt "#30220"
+msgid "Received Sources: (%s / %s) from %s"
+msgstr "Primljeni izvori: (%s / %s) iz %s"
+
 msgctxt "#30221"
 msgid "Applying Source Filters"
 msgstr "Primjena Filtera Izvora"
@@ -928,10 +933,6 @@ msgstr "Uklanjanje izbrisanih izravnih izvora iz rezultata"
 msgctxt "#30238"
 msgid "Remove Unusable Indirect sources from results"
 msgstr "Uklanjanje neupotrebljivih neizravnih izvora iz rezultata"
-
-msgctxt "#30239"
-msgid "Show Debrid sources in Green"
-msgstr "Pokaži Debrid izvore u zeleno"
 
 msgctxt "#30240"
 msgid "No Limit on Maximum Source Results"
@@ -1118,6 +1119,78 @@ msgctxt "#30285"
 msgid "Genres"
 msgstr "Žanrovi"
 
+msgctxt "#30286"
+msgid "Retrieving Collection"
+msgstr "Dohvatam kolekciju"
+
+msgctxt "#30287"
+msgid "Adding Items to Directory"
+msgstr "Dodajem artikle u popis"
+
+msgctxt "#30288"
+msgid "Working..."
+msgstr "Radim..."
+
+msgctxt "#30289"
+msgid "Re-Scrape All"
+msgstr "Ponovo izvuci sve informacije"
+
+msgctxt "#30290"
+msgid "Manual Search (All Unmatched Only)"
+msgstr "Ručno traženje (samo neodgovarajući)"
+
+msgctxt "#30291"
+msgid "Torba Account Authorization"
+msgstr "Autorizacija Torba računa"
+
+msgctxt "#30292"
+msgid "Torba Authorization Complete"
+msgstr "Torba Autorizacija završena"
+
+msgctxt "#30293"
+msgid "Torba Authorization Failed"
+msgstr "Torba autorizacija nije uspjela"
+
+msgctxt "#30294"
+msgid "Authorize SALTS to access my torba account"
+msgstr "Autoriziraj SALTS za pristup mojem torba računu"
+
+msgctxt "#30295"
+msgid "and login when prompted"
+msgstr "i prijaviti kada se to zatraži"
+
+msgctxt "#30296"
+msgid "Flush Image Cache"
+msgstr "Isprazni predmemoriju slika..."
+
+msgctxt "#30297"
+msgid "Are you sure you want to clear the image metadata cache?"
+msgstr "Jeste li sigurni da želite izbrisati predmemoriju metapodataka slika?"
+
+msgctxt "#30298"
+msgid "The addon will be significantly slower until is is re-cached."
+msgstr "Proširenje će biti znatno sporije dok se ponovno ne učita."
+
+msgctxt "#30299"
+msgid "Flush Complete"
+msgstr "Pražnjenje završeno"
+
+msgctxt "#30300"
+msgid "Refresh Images"
+msgstr "Osvježi slike"
+
+msgctxt "#30301"
+msgid "Private Scraper Updated: "
+msgstr "Privatni izvori ažurirani:"
+
+msgctxt "#30302"
+msgid "Reset Torba Authorization"
+msgstr "Poništi Torba autorizaciju"
+
+msgctxt "#30303"
+msgid "Torba Authorization Reset"
+msgstr "Torba autorizacija poništena"
+
 msgctxt "#30500"
 msgid "Addon Theme"
 msgstr "Tema dodatka"
@@ -1189,6 +1262,10 @@ msgstr "Naslov"
 msgctxt "#30517"
 msgid "Year"
 msgstr "Godina"
+
+msgctxt "#30518"
+msgid "Recent Activity"
+msgstr "Nedavne aktivnosti"
 
 msgctxt "#30519"
 msgid "Title"
@@ -1454,17 +1531,101 @@ msgctxt "#30586"
 msgid "Automatically disable ineffective scrapers"
 msgstr "Automatski onemogući neefikasne stranice"
 
+msgctxt "#30587"
+msgid "    Check Frequency (requests)"
+msgstr "Frekvencija provjere (zahtjeva)"
+
+msgctxt "#30588"
+msgid "    Minimum Allowed Success Percentage"
+msgstr "Minimalni dozvoljeni postotak uspjeha"
+
 msgctxt "#30589"
 msgid "Window"
 msgstr "Prozor"
+
+msgctxt "#30590"
+msgid "Background"
+msgstr "Pozadina"
+
+msgctxt "#30591"
+msgid "Source Sorting"
+msgstr "Sortiranje izvora"
+
+msgctxt "#30592"
+msgid "Sort Sources"
+msgstr "Posloži izvore"
+
+msgctxt "#30594"
+msgid "1st Sort Key"
+msgstr "1. Ključ sortiranja"
+
+msgctxt "#30595"
+msgid "1st Sort Key Order"
+msgstr "1. Redosljed ključa sortiranja"
+
+msgctxt "#30596"
+msgid "2nd Sort Key"
+msgstr "2. Ključ sortiranja"
+
+msgctxt "#30597"
+msgid "2nd Sort Key Order"
+msgstr "2. Redosljed ključa sortiranja"
+
+msgctxt "#30598"
+msgid "3rd Sort Key"
+msgstr "3. Ključ sortiranja"
+
+msgctxt "#30599"
+msgid "3rd Sort Key Order"
+msgstr "3. Redosljed ključa sortiranja"
+
+msgctxt "#30600"
+msgid "4th Sort Key"
+msgstr "4. Ključ sortiranja"
+
+msgctxt "#30601"
+msgid "4th Sort Key Order"
+msgstr "4. Redosljed ključa sortiranja"
+
+msgctxt "#30602"
+msgid "5th Sort Key"
+msgstr "5. Ključ sortiranja"
+
+msgctxt "#30603"
+msgid "5th Sort Key Order"
+msgstr "5. Redosljed ključa sortiranja"
+
+msgctxt "#30604"
+msgid "None"
+msgstr "Nijedan"
 
 msgctxt "#30605"
 msgid "Source"
 msgstr "Izvor"
 
+msgctxt "#30606"
+msgid "Quality"
+msgstr "Kvaliteta"
+
+msgctxt "#30607"
+msgid "Views"
+msgstr "Prikazi"
+
 msgctxt "#30608"
 msgid "Rating"
 msgstr "Ocijena"
+
+msgctxt "#30609"
+msgid "Direct"
+msgstr "Direktno"
+
+msgctxt "#30610"
+msgid "Best to Worst"
+msgstr "Od najboljeg ka najgorem"
+
+msgctxt "#30611"
+msgid "Worst to Best"
+msgstr "Od najgoreg ka najboljem"
 
 msgctxt "#30612"
 msgid "Base Url"
@@ -1474,17 +1635,45 @@ msgctxt "#30613"
 msgid "Include in Page Existence checks?"
 msgstr "Uključiti u provjeru postojanja stranice"
 
+msgctxt "#30614"
+msgid "Subtitles work only for TV Shows currently"
+msgstr "Podnapisi rade samo za trenutne TV emisije"
+
 msgctxt "#30615"
 msgid "Enable Subtitles"
 msgstr "Omogući podnapise"
+
+msgctxt "#30616"
+msgid "Show subtitle indicators"
+msgstr "Prikaži podnapis indikatore"
 
 msgctxt "#30617"
 msgid "Subtitle Language"
 msgstr "Jezik podnaslova"
 
+msgctxt "#30618"
+msgid "Require Hearing Impaired"
+msgstr "Zahtijevaj za nagluhe osobe"
+
 msgctxt "#30619"
 msgid "Require HD"
 msgstr "Zahtjevanje HD"
+
+msgctxt "#30620"
+msgid "Download Subtitles on playback"
+msgstr "Preuzimanje podnapisa pri reprodukciji"
+
+msgctxt "#30621"
+msgid "Subtitle Download Folder"
+msgstr "Direktorij preuzimanja podnapisa"
+
+msgctxt "#30622"
+msgid "Show Subtitles on Playback"
+msgstr "Prikaz podnapisa pri reprodukciji"
+
+msgctxt "#30623"
+msgid "Use a MySQL DB"
+msgstr "Koristi MySQL DB"
 
 msgctxt "#30624"
 msgid "    Address"
@@ -1494,9 +1683,37 @@ msgctxt "#30625"
 msgid "    Port"
 msgstr "Port"
 
+msgctxt "#30626"
+msgid "    Username"
+msgstr "Korisničko ime"
+
 msgctxt "#30627"
 msgid "    Password"
 msgstr "Lozinka"
+
+msgctxt "#30628"
+msgid "    Database"
+msgstr "Baza podataka"
+
+msgctxt "#30629"
+msgid "    Upgrade DB during XBMC startup"
+msgstr "Nadogradi DB tijekom pokretanja XBMC"
+
+msgctxt "#30630"
+msgid "Flush webpage cache..."
+msgstr "Isprazni predmemoriju web stranice..."
+
+msgctxt "#30631"
+msgid "Reset SALTS DB ([COLOR red]SQLITE Only[/COLOR])"
+msgstr "Resetuj SALTS DB ([COLOR red]Samo SQLITE[/COLOR])"
+
+msgctxt "#30632"
+msgid "Export data from SALTS DB"
+msgstr "Izvoz podataka iz SALTS DB"
+
+msgctxt "#30633"
+msgid "Import data into SALTS DB"
+msgstr "Uvoz podataka iz SALTS DB"
 
 msgctxt "#30634"
 msgid "Subtitles"
@@ -1514,21 +1731,117 @@ msgctxt "#30637"
 msgid "Highest Quality"
 msgstr "Maksimalna kvaliteta"
 
+msgctxt "#30638"
+msgid "Prompt"
+msgstr "Upit"
+
+msgctxt "#30639"
+msgid "On"
+msgstr "Uključen"
+
+msgctxt "#30640"
+msgid "Show Liked Lists"
+msgstr "Prikaži pozitivno ocijenjene popise"
+
 msgctxt "#30641"
 msgid "Show Mosts"
 msgstr "Pokaži naj"
+
+msgctxt "#30642"
+msgid "Watchlist Sort Order"
+msgstr "Redoslijed Popisa praćenja"
 
 msgctxt "#30643"
 msgid "Recently Added"
 msgstr "Nedavno dodano"
 
+msgctxt "#30644"
+msgid "Previously Added"
+msgstr "Prije dodani"
+
+msgctxt "#30645"
+msgid "Skip movies/episodes that exist locally"
+msgstr "Preskoči filmove/epizode koje postoje na lokalnoj razini"
+
 msgctxt "#30646"
 msgid "Include Watchlist in My Next Episodes"
 msgstr "Uključi Listu gledanja u Moje sljedeće Epizode"
 
+msgctxt "#30647"
+msgid "Show Trakt On Deck"
+msgstr "Prikaži Trakt On Deck"
+
+msgctxt "#30648"
+msgid "Show Custom Progress Dialog from Library"
+msgstr "Prikaži prilagođeni Progress Dialog od biblioteke"
+
+msgctxt "#30649"
+msgid "Create tvshow/movie nfo file for?"
+msgstr "Napravi serija/film nfo datoteku za?"
+
+msgctxt "#30650"
+msgid "Won't scrape"
+msgstr "Neće izvuči informacije"
+
 msgctxt "#30651"
 msgid "All"
 msgstr "Sve"
+
+msgctxt "#30653"
+msgid "6th Sort Key"
+msgstr "6. Ključ sortiranja"
+
+msgctxt "#30654"
+msgid "6th Sort Key Order"
+msgstr "6. Redosljed ključa sortiranja"
+
+msgctxt "#30655"
+msgid "Debrid"
+msgstr "Debrid"
+
+msgctxt "#30656"
+msgid "Show My Watched History"
+msgstr "Prikaži Moja Povijest Gledanja"
+
+msgctxt "#30657"
+msgid "    Consecutive Failure Level Limit"
+msgstr "Ograničenje uzastopni neuspjeha"
+
+msgctxt "#30658"
+msgid "Mute Notifications"
+msgstr "Isključi zvuk na obavijesti"
+
+msgctxt "#30659"
+msgid "Exclude Completed, Ended Shows from My Next Episodes"
+msgstr "Isključi završene emisije iz Moje sljedeće Epizode"
+
+msgctxt "#30660"
+msgid "HD1080"
+msgstr "HD1080"
+
+msgctxt "#30661"
+msgid "HD720"
+msgstr "HD720"
+
+msgctxt "#30662"
+msgid "High"
+msgstr "Visok"
+
+msgctxt "#30663"
+msgid "Medium"
+msgstr "Srednji"
+
+msgctxt "#30664"
+msgid "Low"
+msgstr "Nizak"
+
+msgctxt "#30665"
+msgid "Automatically pick first matching subtitle"
+msgstr "Automatski odaberete prvi odgovarajući podnapis"
+
+msgctxt "#30666"
+msgid "SALTS Auto Configuration"
+msgstr "SALTS Automatska Konfiguracija"
 
 msgctxt "#30667"
 msgid "Continue"
@@ -1538,9 +1851,105 @@ msgctxt "#30668"
 msgid "Cancel"
 msgstr "Odustani"
 
+msgctxt "#30669"
+msgid "Select this item to Install the SALTS Themepak"
+msgstr "Odaberite ovu opciju za instalaciju SALTS Themepak"
+
+msgctxt "#30670"
+msgid "Show Settings"
+msgstr "Prikaži postavke"
+
+msgctxt "#30671"
+msgid "Show Anticipated"
+msgstr "Prikaži očekivano"
+
+msgctxt "#30672"
+msgid "Default Sources View (0 = None)"
+msgstr "Zadani pregled - Izvori (0 = Ništa)"
+
+msgctxt "#30673"
+msgid "Scraper Last Update"
+msgstr "Posljednje ažuriranje izvora"
+
+msgctxt "#30674"
+msgid "Trakt API Offline Mode"
+msgstr "Trakt izvanmrežni način rada"
+
+msgctxt "#30675"
+msgid "Torba IP Authorization"
+msgstr "Torba IP Autorizacija"
+
+msgctxt "#30676"
+msgid "Machine Speed"
+msgstr "Brzina uređaja"
+
+msgctxt "#30677"
+msgid "Automatic"
+msgstr "Automatski"
+
+msgctxt "#30678"
+msgid "Very Slow"
+msgstr "Veoma sporo"
+
+msgctxt "#30679"
+msgid "Slow"
+msgstr "Sporo"
+
+msgctxt "#30680"
+msgid "Medium"
+msgstr "Srednje"
+
+msgctxt "#30681"
+msgid "Fast"
+msgstr "Brzo"
+
+msgctxt "#30682"
+msgid "Very Fast"
+msgstr "Veoma brzo"
+
+msgctxt "#30683"
+msgid "Show Watch It Again"
+msgstr "Prikaži Pogledaj opet"
+
+msgctxt "#30684"
+msgid "Show air time in MNE"
+msgstr "Pokaži vremena emitiranja Moje sljedeće Epizode"
+
+msgctxt "#30686"
+msgid "Show Next Episode Notification"
+msgstr "Pokaži Moje sljedeće epizode"
+
+msgctxt "#30687"
+msgid "    Next Episode Delay (secs)"
+msgstr "Sljedeća epizoda odgoda (sek)"
+
+msgctxt "#30688"
+msgid "    Show Next Episode on Unwatched"
+msgstr "Pokaži Moje sljedeće epizode u Nepogledano"
+
+msgctxt "#30689"
+msgid "    Show air time in Next Episode"
+msgstr "Prikaži vrijeme prikazivanja u \"Moje sljedeće epizode\""
+
+msgctxt "#30690"
+msgid "Show CF Site Protection Captchas"
+msgstr "Prikaži Cloudflare captcha slike"
+
+msgctxt "#30691"
+msgid "    Next Episode Duration (secs)"
+msgstr "Sljedeća epizoda trajanje (sek)"
+
 msgctxt "#30692"
 msgid "Show Genres"
 msgstr "Pokaže žanrove"
+
+msgctxt "#30693"
+msgid "Movie Genre List"
+msgstr "Lista film žanrova"
+
+msgctxt "#30694"
+msgid "TV Genre List"
+msgstr "Lista emisija žanrova"
 
 msgctxt "#30695"
 msgid "Trending"
@@ -1549,6 +1958,10 @@ msgstr "U trendu"
 msgctxt "#30696"
 msgid "Popular"
 msgstr "Popularno"
+
+msgctxt "#30697"
+msgid "Anticipated"
+msgstr "Očekivano"
 
 msgctxt "#30698"
 msgid "Most Watched (Week)"
@@ -1562,7 +1975,115 @@ msgctxt "#30700"
 msgid "Most Watched (All)"
 msgstr "Najgledanije svih vremena"
 
+msgctxt "#30701"
+msgid "Most Played (Week)"
+msgstr "Najčešće reproduciranih (tjedano)"
+
+msgctxt "#30702"
+msgid "Most Played (Month)"
+msgstr "Najčešće reproduciranih (mjesec)"
+
 msgctxt "#30703"
 msgid "Most Played (All)"
 msgstr "Najčešće reproduciranih svih vremena"
+
+msgctxt "#30704"
+msgid "Most Collected (Week)"
+msgstr "Najviše Prikupljani (tjedan)"
+
+msgctxt "#30705"
+msgid "Most Collected (Month)"
+msgstr "Najviše prikupljenih (Mjesec)"
+
+msgctxt "#30706"
+msgid "Most Collected (All)"
+msgstr "Najviše prikupljenih (Svi)"
+
+msgctxt "#30707"
+msgid "Date Format"
+msgstr "Format datuma"
+
+msgctxt "#30708"
+msgid "Past Activity"
+msgstr "Prijašnje aktivnosti"
+
+msgctxt "#30709"
+msgid "Always Show Custom Progress Dialogs"
+msgstr "Uvijek prikaži prilagođeni Progress Dialog"
+
+msgctxt "#30710"
+msgid "Image Metadata API Keys"
+msgstr "API ključevi za metapodatke slika"
+
+msgctxt "#30711"
+msgid "Fanart.tv API Key (Blank = Disable)"
+msgstr "Fanart.tv osobni API ključ (Prazno = Onemogućeno)"
+
+msgctxt "#30712"
+msgid "TMDB API Key (Blank = Disable)"
+msgstr "TMDB osobni API ključ (Prazno = Onemogućeno)"
+
+msgctxt "#30713"
+msgid "TVDB API Key (Blank = Disable)"
+msgstr "TVDB osobni API ključ (Prazno = Onemogućeno)"
+
+msgctxt "#30714"
+msgid "Enable OMDB Images"
+msgstr "Omogući slike sa OMDB"
+
+msgctxt "#30715"
+msgid "Enable TVMaze Images"
+msgstr "Omogući slike sa TVMaze"
+
+msgctxt "#30716"
+msgid "Flush Image Cache..."
+msgstr "Isprazni predmemoriju slika..."
+
+msgctxt "#30717"
+msgid "Enable Fanart.tv Images"
+msgstr "Omogući slike sa Fanart.tv"
+
+msgctxt "#30718"
+msgid "Fanart.tv Personal API Key"
+msgstr "Fanart.tv osobni API ključ"
+
+msgctxt "#30719"
+msgid "Enable Backgrounds/Fanart"
+msgstr "Omogući pozadine/fanart"
+
+msgctxt "#30720"
+msgid "Enable Posters"
+msgstr "Omogući postere"
+
+msgctxt "#30721"
+msgid "Enable Banners"
+msgstr "Omogući banere"
+
+msgctxt "#30722"
+msgid "Enable Clearart"
+msgstr "Omogući clearart"
+
+msgctxt "#30723"
+msgid "Artwork Scraping"
+msgstr "Izvuči informacije Ilustracija"
+
+msgctxt "#30724"
+msgid "Enable Thumbnails"
+msgstr "Omogući minijature"
+
+msgctxt "#30725"
+msgid "Artwork Types"
+msgstr "Vrste Ilustracije"
+
+msgctxt "#30726"
+msgid "    Use animated posters when available"
+msgstr "Koristi animirane plakati kada su dostupni"
+
+msgctxt "#30727"
+msgid "Enable Cast Thumbnails"
+msgstr "Omogući minijature glumaca"
+
+msgctxt "#30728"
+msgid "    *** Install TMDB API Cache ***"
+msgstr "*** Instalirajte TMDB API predmemoriju ***"
 

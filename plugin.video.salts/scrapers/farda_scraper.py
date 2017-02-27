@@ -92,7 +92,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         norm_title = scraper_utils.normalize_title(title)
-        html = self._http_get(self.base_url, cache_limit=24 * 7)
+        html = self._http_get(self.base_url + '/', cache_limit=24 * 7)
         for item in self._parse_directory(html):
             if norm_title in scraper_utils.normalize_title(item['title']) and item['directory']:
                 result = {'url': scraper_utils.pathify_url(item['link']), 'title': scraper_utils.cleanse_title(item['title']), 'year': ''}

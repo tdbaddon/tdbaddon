@@ -134,7 +134,7 @@ def OOoo0O0 ( name , url , iconimage , fanart ) :
   if 54 - 54: iii1I1 - II1iI + OoooooooOO
 def Oo0OO ( ) :
  oo0o0O00 = 'http://www.hergundizi.net'
- i1iiIIiiI111 ( 'Yerli Yeni Eklenenler Diziler' , oo0o0O00 , 21 , oO , O0O , description = '' )
+ i1iiIIiiI111 ( '[COLOR gold]**** Yerli Yeni Eklenenler Diziler ****[/COLOR]' , oo0o0O00 , 21 , oO , O0O , description = '' )
  if 70 - 70: ii1I11II1ii1i / o0O0 . I1i1iii % i1iIii1Ii1II
 def OOoOO00OOO0OO ( url ) :
  iI1I111Ii111i = hergundizi . TVShows ( url )
@@ -510,7 +510,7 @@ def O0o0O00Oo0o0 ( name , url , iconimage ) :
   elif liveresolver . isValid ( url ) == True :
    url = liveresolver . resolve ( url )
    ooOoO00 ( name , url , iconimage )
-  else : ooOoO00 ( name , url , iconimage )
+  else : Iii1I1111ii ( name , url , iconimage )
  except :
   Ii1IIiI1i ( 'UKTurk' , 'Stream Unavailable' , '3000' , I1ii11iIi11i )
   if 78 - 78: o0o00ooo0

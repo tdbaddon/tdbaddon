@@ -54,7 +54,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
             sources = self.__get_post_links(html)
             for source in sources:
-                if re.search('\.part\.?\d+', source) or '.rar' in source or 'sample' in source or source.endswith('.nfo'): continue
+                if scraper_utils.excluded_link(source): continue
                 host = urlparse.urlparse(source).hostname
                 quality = scraper_utils.blog_get_quality(video, sources[source]['release'], host)
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}

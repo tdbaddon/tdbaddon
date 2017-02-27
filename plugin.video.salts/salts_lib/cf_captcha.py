@@ -77,9 +77,11 @@ def solve(url, cj, user_agent=None, name=None):
                         cj.add_cookie_header(request)
                         
                     response = urllib2.urlopen(request)
+
                 final = response.read()
                 if cj is not None:
-                    cj.save()
+                    cj.extract_cookies(response, request)
+                    cj.save(ignore_discard=True)
                     
                 return final
             except urllib2.HTTPError as e:

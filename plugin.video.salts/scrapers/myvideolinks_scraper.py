@@ -27,7 +27,7 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'http://newmyvideolink.xyz/dl'
+BASE_URL = 'http://myvideolinks.xyz'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -77,7 +77,7 @@ class Scraper(scraper.Scraper):
         return self.__get_links(video, views, fragment, q_str)
 
     def __get_episode_links(self, video, views, html):
-        pattern = '<h1>(.*?)</h1>\s*<ul>(.*?)</ul>'
+        pattern = '<h4>(.*?)</h4>\s*<ul>(.*?)</ul>'
         hosters = []
         for match in re.finditer(pattern, html, re.DOTALL):
             q_str, fragment = match.groups()
@@ -97,12 +97,19 @@ class Scraper(scraper.Scraper):
 
     def __check_base(self):
         try:
-            html = self._http_get(self.base_url, cache_limit=24)
+            html = self._http_get(self.base_url, cache_limit=12)
             fragment = dom_parser.parse_dom(html, 'meta', {'http-equiv': 'refresh'}, ret='content')
-            match = re.search('''URL\s*=\s*['"]([^"'])''', fragment[0])
+            match = re.search('''URL\s*=\s*['"]([^"']+)''', fragment[0])
             base_url = match.group(1)
         except:
-            base_url = self.base_url
+            try:
+                fragment = dom_parser.parse_dom(html, 'div', {'class': 'post'})
+                base_url = fragment[0]
+            except:
+                base_url = self.base_url
+                
+        if not base_url.startswith('http'):
+            base_url = 'http://' + base_url
         return base_url
         
     def get_url(self, video):

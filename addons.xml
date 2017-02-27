@@ -78,7 +78,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.audio.mp3streams"
        name="MP3 Streams"
-       version="1.2.2"
+       version="1.2.4"
        provider-name="kinkin, art by Marquerite">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.82"
+	     version="1.83"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -663,7 +663,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.25" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.29" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -2104,7 +2104,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.142" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.150" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2252,6 +2252,20 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<description lang="en">Plays US and UK Live TV Channels from various reliable sources</description>
 		<disclaimer lang="en">ImReallyShiny and this Addon is not affiliated with any TV Stations shown. I have no ownership or responsiblity over said video streams.</disclaimer>
     </extension>
+</addon>
+
+<addon id="plugin.video.TDBBACKUP" name="TDB BACKUP" version="1013" provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Backup and restore your Kodi database and configuration files in the event of a crash or file corruption.</summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.TDBEUROTV"
@@ -2622,7 +2636,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.26" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.27" provider-name="MetalKettle">
 
   <requires>
 
@@ -3017,12 +3031,17 @@ Enjoy!</description>
 </extension>
 </addon>
 
-<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.9.0" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.9.1" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+	 <dir>
+	     <info compressed="false">http://simtech.net16.net/plugins/addons.xml</info>
+		 <checksum>http://simtech.net16.net/plugins/addons.xml.md5</checksum>
+		 <datadir zip="true">http://simtech.net16.net/plugins/</datadir>
 	</dir>
 		<info compressed="false">http://thecommunityrepo.netai.net/RepoPlugins/addons.xml</info>
 		<checksum>http://thecommunityrepo.netai.net/RepoPlugins/addons.xml.md5</checksum>
@@ -3284,14 +3303,25 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.0" provider-name="KodiTips.com">
+    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.1" provider-name="KodiTips.com">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="KodiTips.com Repository">
-            <info compressed="false">https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/koditips/repo/master/_repo/</datadir>
+            <dir>
+   <info compressed="false">
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml
+   </info>
+   <checksum>
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5
+   </checksum>
+   <datadir zip="true">
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/
+   </datadir>
+  </dir>
+            <info compressed="false">http://raw.github.com/koditips/repo/master/_repo/addons.xml</info>
+            <checksum>http://raw.github.com/koditips/repo/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">http://raw.github.com/koditips/repo/master/_repo/</datadir>
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">
@@ -4025,7 +4055,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.13" provider-name="tknorris">
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.14" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -4131,32 +4161,6 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <platform>all</platform>
     <summary lang="en">Proxy for f4m</summary>
     <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
-  </extension>
-</addon>
-
-<addon id="script.xbmcbackup"
-    name="TDB-Backup" version="1012" provider-name="TDB">
-  <requires>
-	<!-- jarvis -->
-    <import addon="xbmc.python" version="2.24.0"/>
-    <import addon="script.module.httplib2" version="0.8.0" />
-    <import addon="script.module.oauth2client" version="1.4.7" />
-    <import addon="script.module.uritemplate" version="0.6" />
-    <import addon="script.module.yaml" version="3.11"/>
-    <import addon="script.module.googleapi" version="1.4.2" />
-	<import addon="script.module.requests" version="2.9.1" />
-  </requires>
-  <extension point="xbmc.python.script" library="default.py">
-     <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.service" library="scheduler.py" start="startup" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Backup and restore your Kodi database and configuration files in the event of a crash or file corruption.</summary>
-    <language></language>
-    <platform>all</platform>
-    <license></license>
-    <forum></forum>
-    <source></source>
   </extension>
 </addon>
 

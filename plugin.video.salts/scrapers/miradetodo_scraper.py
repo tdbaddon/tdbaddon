@@ -83,15 +83,9 @@ class Scraper(scraper.Scraper):
                         
                     for source in sources:
                         stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
-                        host = self._get_direct_hostname(source)
-                        if direct:
-                            if host == 'gvideo':
-                                quality = scraper_utils.gv_get_quality(source)
-                            else:
-                                quality = sources[source]
-                        else:
-                            quality = sources[source]
-                            host = urlparse.urlparse(source).hostname
+                        direct = sources[source]['direct']
+                        quality = sources[source]['quality']
+                        host = self._get_direct_hostname(source) if direct else urlparse.urlparse(source).hostname
                             
                         hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct}
                         hosters.append(hoster)
@@ -103,7 +97,7 @@ class Scraper(scraper.Scraper):
         if match:
             html = self._http_get(match.group(1), allow_redirect=False, method='HEAD', cache_limit=0)
             if html.startswith('http'):
-                sources = {html: QUALITIES.HD720}
+                sources = {html: {'quality': QUALITIES.HD720, 'direct': True}}
         return sources
     
     def __get_gk_links2(self, html):
@@ -119,7 +113,7 @@ class Scraper(scraper.Scraper):
             
             if self._get_direct_hostname(vid_url) == 'gvideo':
                 for source in self._parse_gdocs(vid_url):
-                    sources[source] = scraper_utils.gv_get_quality(source)
+                    sources[source] = {'quality': scraper_utils.gv_get_quality(source), 'direct': True}
         return sources
         
     def __get_gk_links(self, html):
@@ -139,11 +133,14 @@ class Scraper(scraper.Scraper):
                 stream_url = link['link']
                 if self._get_direct_hostname(stream_url) == 'gvideo':
                     quality = scraper_utils.gv_get_quality(stream_url)
+                    direct = True
                 elif 'label' in link:
                     quality = scraper_utils.height_get_quality(link['label'])
+                    direct = True
                 else:
                     quality = QUALITIES.HIGH
-                sources[stream_url] = quality
+                    direct = False
+                sources[stream_url] = {'quality': quality, 'direct': direct}
         return sources
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

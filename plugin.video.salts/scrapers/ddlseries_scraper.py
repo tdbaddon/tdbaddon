@@ -28,7 +28,8 @@ from salts_lib.constants import Q_ORDER
 import scraper
 
 BASE_URL = 'http://www.ddlseries.me'
-QUALITY_MAP = {'SDXVID': QUALITIES.MEDIUM, 'DVD9': QUALITIES.HIGH, 'SDX264': QUALITIES.HIGH, 'HD720P': QUALITIES.HD720, 'HD1080P': QUALITIES.HD1080}
+QUALITY_MAP = {'SD-XVID': QUALITIES.MEDIUM, 'DVD9': QUALITIES.HIGH, 'SD-X264': QUALITIES.HIGH,
+               'HD-720P': QUALITIES.HD720, 'HD-1080P': QUALITIES.HD1080}
 HEADER_MAP = {'ul.png': 'uploaded.net', 'tb.png': 'turbobit.net', 'utb.png': 'uptobox.com'}
 
 class Scraper(scraper.Scraper):
@@ -60,9 +61,10 @@ class Scraper(scraper.Scraper):
     
     def get_sources(self, video):
         source_url = self.get_url(video)
-        hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
             hosters = self.__get_sources(source_url, video)
+        else:
+            hosters = []
                 
         return hosters
 
@@ -70,23 +72,8 @@ class Scraper(scraper.Scraper):
         hosters = []
         url = urlparse.urljoin(self.base_url, season_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
-        quality = QUALITIES.HIGH
-        titles = dom_parser.parse_dom(html, 'span', {'itemprop': 'title'})
-        for title in titles:
-            title = title.replace(' ', '').upper()
-            quality = QUALITY_MAP.get(title)
-            if quality is not None:
-                break
-        else:
-            page_title = dom_parser.parse_dom(html, 'title')
-            if page_title:
-                _title, _season, q_str, _is_pack = self.__get_title_parts(page_title[0])
-                for key in QUALITY_MAP:
-                    if key in q_str:
-                        quality = QUALITY_MAP[key]
-                        break
-        
-        pattern = '<img[^>]+src="([^"]+)[^>]+alt="[^"]+Download Links">(.*?)(?=<img|</div>)'
+        _part, quality = self.__get_quality(url)
+        pattern = '<img[^>]+src="([^"]+)[^>]+alt="[^"]+Download Links"[^>]*>(.*?)(?=<img|</div>)'
         for match in re.finditer(pattern, html, re.I | re.DOTALL):
             image, fragment = match.groups()
             image = image.split('/')[-1]
@@ -114,37 +101,33 @@ class Scraper(scraper.Scraper):
         results = []
         try: season = int(season)
         except: season = 0
-        if video_type == VIDEO_TYPES.SEASON and title:
-            url = urlparse.urljoin(self.base_url, '/tv-series-list.html')
-            html = self._http_get(url, require_debrid=True, cache_limit=24)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'downpara-list'})
-            norm_title = scraper_utils.normalize_title(title)
-            if fragment:
-                for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', fragment[0]):
-                    match_url, match_title_extra = match.groups()
-                    match_title, match_season, q_str, is_pack = self.__get_title_parts(match_title_extra)
-                    if is_pack: continue
-                    
-                    if norm_title in scraper_utils.normalize_title(match_title) and (not season or season == int(match_season)):
-                        quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
+        query = '%s season %s' % (title, season)
+        data = {'story': query, 'do': 'search', 'subaction': 'search'}
+        html = self._http_get(self.base_url + '/', data=data, require_debrid=True, cache_limit=8)
+        for div in dom_parser.parse_dom(html, 'div', {'class': 'box-title'}):
+            for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', div):
+                match_url, match_title = match.groups()
+                if '/tv-pack/' in match_url: continue
+                
+                match_title = re.sub('</?span[^>]*>', '', match_title)
+                match_season = re.search('Season\s+(\d+)', match_title, re.I)
+                if match_season:
+                    match_season = int(match_season.group(1))
+                    if not season or season == match_season:
+                        q_str, quality = self.__get_quality(match_url)
                         if Q_ORDER[quality] <= self.max_qorder:
-                            match_title = '%s - Season %s [%s]' % (match_title, match_season, q_str)
+                            match_title = '%s [%s]' % (match_title, q_str)
                             result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality}
                             results.append(result)
         
         results.sort(key=lambda x: Q_ORDER[x['quality']], reverse=True)
         return results
 
-    def __get_title_parts(self, title):
-        title = re.sub('</?span[^>]*>', '', title)
-        title = title.replace('&nbsp;', ' ')
-        match = re.search('(.*?)\s*-?\s*Season\s+(\d+)\s*(.*)', title)
-        if match:
-            match_title, match_season, extra = match.groups()
-            extra = extra.replace(' ', '').upper()
-            is_pack = True if '(PACK)' in extra else False
-            for s in ('[', ']', '(PACK)', 'EPISODES'):
-                extra = extra.replace(s, '')
-            return match_title, match_season, extra, is_pack
-        else:
-            return title, 0, '', False
+    def __get_quality(self, match_url):
+        for part in match_url.split('/'):
+            part = part.upper()
+            if part in QUALITY_MAP:
+                return part, QUALITY_MAP[part]
+        
+        return '', QUALITIES.HIGH
+    

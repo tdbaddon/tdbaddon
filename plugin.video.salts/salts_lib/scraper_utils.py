@@ -235,7 +235,7 @@ def parse_episode_link(link):
         '(?P<title>.*?){delim}SEASON{delim}*(?P<season>\d+){delim}*EPISODE{delim}*(?P<episode>\d+).*?{delim}(?P<height>\d+)p{delim}?(?P<extra>.*)',
         '(?P<title>.*?){delim}\[S(?P<season>\d+)\]{delim}*\[E(?P<episode>\d+)(?:E\d+)*\].*?{delim}(?P<height>\d+)p{delim}?(?P<extra>.*)',
         '(?P<title>.*?){delim}S(?P<season>\d+){delim}*EP(?P<episode>\d+)(?:EP\d+)*.*?{delim}(?P<height>\d+)p{delim}?(?P<extra>.*)',
-        '(?P<title>.*?){delim}(?P<airdate>\d{{4}}{delim}\d{{1,2}}{delim}\d{{1,2}}).*?{delim}(?P<height>\d+)p{delim}?(?P<extra>.*)',
+        '(?P<title>.*?){delim}\(?(?P<airdate>\d{{4}}{delim}\d{{1,2}}{delim}\d{{1,2}})\)?.*?{delim}(?P<height>\d+)p{delim}?(?P<extra>.*)',
 
         # episode with sxe or airdate not height
         '(?P<title>.*?){delim}S(?P<season>\d+){delim}*E(?P<episode>\d+)(?:E\d+)*{delim}?(?P<extra>.*)',
@@ -243,7 +243,7 @@ def parse_episode_link(link):
         '(?P<title>.*?){delim}SEASON{delim}*(?P<season>\d+){delim}*EPISODE{delim}*(?P<episode>\d+){delim}?(?P<extra>.*)',
         '(?P<title>.*?){delim}\[S(?P<season>\d+)\]{delim}*\[E(?P<episode>\d+)(?:E\d+)*\]{delim}?(?P<extra>.*)',
         '(?P<title>.*?){delim}S(?P<season>\d+){delim}*EP(?P<episode>\d+)(?:E\d+)*{delim}?(?P<extra>.*)',
-        '(?P<title>.*?){delim}(?P<airdate>\d{{4}}{delim}\d{{1,2}}{delim}\d{{1,2}}){delim}?(?P<extra>.*)',
+        '(?P<title>.*?){delim}\(?(?P<airdate>\d{{4}}{delim}\d{{1,2}}{delim}\d{{1,2}})\)?{delim}?(?P<extra>.*)',
         
         '(?P<title>.*?){delim}(?P<height>\d{{3,}})p{delim}?(?P<extra>.*)',  # episode with height only
         '(?P<title>.*)'  # title only
@@ -264,7 +264,7 @@ def parse_movie_link(link):
 
 def parse_link(link, item, patterns):
     delim = '[._ -]'
-    link = urllib.unquote(link)
+    link = cleanse_title(urllib.unquote(link))
     file_name = link.split('/')[-1]
     for pattern in patterns:
         pattern = pattern.format(delim=delim)
@@ -344,6 +344,7 @@ def parse_json(html, url=''):
                     html = html[3:]
                 elif html.startswith('\xfe\xff'):
                     html = html[2:]
+                html = html.decode('utf-8')
                 
             js_data = json.loads(html)
             if js_data is None:
@@ -435,3 +436,6 @@ def get_token(hash_len=16):
 
 def append_headers(headers):
     return '|%s' % '&'.join(['%s=%s' % (key, urllib.quote_plus(headers[key])) for key in headers])
+
+def excluded_link(stream_url):
+    return re.search('\.part\.?\d+', stream_url) or '.rar' in stream_url or 'sample' in stream_url or stream_url.endswith('.nfo')

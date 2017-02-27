@@ -30,9 +30,9 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'http://rlsbb.com'
-OLD_BASE_URL = 'http://old.rlsbb.com'
-SEARCH_BASE_URL = 'http://search.rlsbb.com'
+BASE_URL = 'http://rlsbb.ru'
+OLD_BASE_URL = 'http://old.rlsbb.ru'
+SEARCH_BASE_URL = 'http://search.rlsbb.ru'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/"', VIDEO_TYPES.EPISODE: '/category/tv-shows/"'}
 
 class Scraper(scraper.Scraper):
@@ -68,7 +68,7 @@ class Scraper(scraper.Scraper):
                     sources.update(self.__get_comment_links(comment, video))
 
         for source in sources:
-            if re.search('\.part\.?\d+', source) or '.rar' in source or 'sample' in source or source.endswith('.nfo'): continue
+            if scraper_utils.excluded_link(source): continue
             host = urlparse.urlparse(source).hostname
             hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': sources[source], 'direct': False}
             hosters.append(hoster)

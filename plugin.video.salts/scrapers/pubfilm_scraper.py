@@ -26,14 +26,15 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import USER_AGENT
+from salts_lib.constants import XHR
 import scraper
 
-GK_URL = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
-XHR = {'X-Requested-With': 'XMLHttpRequest'}
+BASE_URL = 'http://pubfilm.cc'
+GK_URL = 'http://player.pubfilm.cc/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
 
 class Scraper(scraper.Scraper):
-    OPTIONS = ['http://pubfilm.com', 'http://pidtv.com']
-    
+    base_url = BASE_URL
+
     def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
         self.timeout = timeout
         self.base_url = kodi.get_setting('%s-base_url' % (self.get_name()))
@@ -156,18 +157,10 @@ class Scraper(scraper.Scraper):
                             continue
                     else:
                         match_title, match_year = scraper_utils.extra_year(match_title_year)
-                        match_norm_title = scraper_utils.normalize_title(match_title)
-                        if (norm_title not in match_norm_title) and (match_norm_title not in norm_title): continue
-        
-                    if not year or not match_year or year == match_year:
+
+                    match_norm_title = scraper_utils.normalize_title(match_title)
+                    title_match = (norm_title in match_norm_title) or (match_norm_title in norm_title)
+                    if title_match and (not year or not match_year or year == match_year):
                         result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                         results.append(result)
         return results
-
-    @classmethod
-    def get_settings(cls):
-        settings = super(cls, cls).get_settings()
-        settings.append('         <setting id="%s-default_url" type="text" visible="false"/>' % (cls.get_name()))
-        return settings
-
-scraper_utils.set_default_url(Scraper)

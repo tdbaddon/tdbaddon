@@ -29,7 +29,7 @@ from salts_lib.constants import SHORT_MONS
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://2ddl.one'
+BASE_URL = 'http://2ddl.org'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
 EXCLUDE_LINKS = ['adf.ly', urlparse.urlparse(BASE_URL).hostname]
 
@@ -124,52 +124,46 @@ class Scraper(scraper.Scraper):
         if video_type == VIDEO_TYPES.TVSHOW:
             seen_urls = {}
             for post in dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'}):
-                if CATEGORIES[video_type] in post:
-                    match = re.search('<span>\s*TAGS:\s*</span>\s*<a\s+href="([^"]+)[^>]+>([^<]+)', post, re.I)
-                    if match:
-                        show_url, match_title = match.groups()
-                        if show_url not in seen_urls:
-                            result = {'url': scraper_utils.pathify_url(show_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
-                            seen_urls[show_url] = result
-                            results.append(result)
+                if CATEGORIES[video_type] not in post: continue
+                match = re.search('<span>\s*TAGS:\s*</span>\s*<a\s+href="([^"]+)[^>]+>([^<]+)', post, re.I)
+                if match:
+                    show_url, match_title = match.groups()
+                    if show_url in seen_urls: continue
+                    result = {'url': scraper_utils.pathify_url(show_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                    seen_urls[show_url] = result
+                    results.append(result)
         elif video_type == VIDEO_TYPES.MOVIE:
             headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
             posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
             norm_title = scraper_utils.normalize_title(title)
             for heading, post in zip(headings, posts):
-                if CATEGORIES[video_type] in post and not self.__too_old(post):
-                    post_url, post_title = heading
-                    match = re.search('(.*?)\s*[.\[(]?(\d{4})[.)\]]?\s*(.*)', post_title)
-                    if match:
-                        match_title, match_year, extra_title = match.groups()
-                        full_title = '%s [%s]' % (match_title, extra_title)
-                    else:
-                        full_title = match_title = post_title
-                        match_year = ''
-                    
-                    match_norm_title = scraper_utils.normalize_title(match_title)
-                    if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):
-                        result = {'url': scraper_utils.pathify_url(post_url), 'title': scraper_utils.cleanse_title(full_title), 'year': match_year}
-                        results.append(result)
+                if CATEGORIES[video_type] not in post or self.__too_old(post): continue
+                post_url, post_title = heading
+                meta = scraper_utils.parse_movie_link(post_title)
+                full_title = '%s [%s] (%sp)' % (meta['title'], meta['extra'], meta['height'])
+                match_year = meta['year']
+                
+                match_norm_title = scraper_utils.normalize_title(meta['title'])
+                if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):
+                    result = {'url': scraper_utils.pathify_url(post_url), 'title': scraper_utils.cleanse_title(full_title), 'year': match_year}
+                    results.append(result)
         
         return results
 
     def __too_old(self, post):
-        filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
-        if filter_days:
-            today = datetime.date.today()
-            match = re.search('<a[^>]+title="posting time[^"]*">(.*?)\s+(\d+)\s*(\d{2,4})<', post)
-            if match:
-                try:
-                    mon_name, post_day, post_year = match.groups()
-                    post_year = int(post_year)
-                    if post_year < 2000:
-                        post_year += 2000
-                    post_month = SHORT_MONS.index(mon_name) + 1
-                    post_date = datetime.date(post_year, post_month, int(post_day))
-                    if today - post_date > filter_days:
-                        return True
-                except ValueError:
-                    return False
+        try:
+            filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
+            if filter_days:
+                today = datetime.date.today()
+                match = re.search('<a[^>]+title="posting time[^"]*">(.*?)\s+(\d+)\s*(\d{2,4})<', post)
+                mon_name, post_day, post_year = match.groups()
+                post_year = int(post_year)
+                if post_year < 2000: post_year += 2000
+                post_month = SHORT_MONS.index(mon_name) + 1
+                post_date = datetime.date(post_year, post_month, int(post_day))
+                if today - post_date > filter_days:
+                    return True
+        except ValueError:
+            return False
         
         return False

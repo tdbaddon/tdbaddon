@@ -1,3 +1,6 @@
+[COLOR yellowgreen]1.83: 26th February 2017[/COLOR]
+[COLOR white][B]- Added option to exclude XXX addons from Top 14 in Addon Installer.[/B][/COLOR]
+
 [COLOR yellowgreen]1.82: 21st February 2017[/COLOR]
 [COLOR white][B]- Implimentation for more ECHO Team Builds.[/B][/COLOR]
 

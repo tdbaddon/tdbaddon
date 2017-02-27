@@ -157,6 +157,7 @@ class Scraper(scraper.Scraper):
         results = []
         fragment = dom_parser.parse_dom(html, 'div', {'class': 'movie'})
         if fragment:
+            norm_title = scraper_utils.normalize_title(title)
             for item in dom_parser.parse_dom(fragment[0], 'li'):
                 match_url = dom_parser.parse_dom(item, 'a', ret='href')
                 match_title = dom_parser.parse_dom(item, 'span', {'class': 'text'})
@@ -176,7 +177,9 @@ class Scraper(scraper.Scraper):
                                 continue
                             match_year = ''
                     
-                        if not year or not match_year or year == match_year:
+                        match_norm_title = scraper_utils.normalize_title(match_title)
+                        title_match = (norm_title in match_norm_title) or (match_norm_title in norm_title)
+                        if title_match and (not year or not match_year or year == match_year):
                             result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                             results.append(result)
         return results

@@ -1,3 +1,7 @@
+[B]Version 0.0.14[/B]
+- Fix cancel button for Leia
+- Allow download media to override progress setting
+
 [B]Version 0.0.13[/B]
 - Add get_kodi_version
 - Reduce logging

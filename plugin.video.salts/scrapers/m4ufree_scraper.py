@@ -114,9 +114,11 @@ class Scraper(scraper.Scraper):
                 redir_url = self._http_get(stream_url, allow_redirect=False, method='HEAD')
                 if redir_url.startswith('http'):
                     sources2[redir_url] = sources[source]
+                    if self._get_direct_hostname(redir_url) == 'gvideo':
+                        sources2[redir_url]['direct'] = True
             else:
                 sources2[stream_url] = sources[source]
-                    
+            
         return sources2
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

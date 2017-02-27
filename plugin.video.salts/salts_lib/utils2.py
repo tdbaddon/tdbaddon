@@ -373,10 +373,12 @@ def format_sub_label(sub):
     return label
 
 def format_source_label(item):
+    color = kodi.get_setting('debrid_color') or 'green'
     label = item['class'].format_source_label(item)
     label = '[%s] %s' % (item['class'].get_name(), label)
     if kodi.get_setting('show_debrid') == 'true' and 'debrid' in item and item['debrid']:
-        label = '[COLOR green]%s[/COLOR]' % (label)
+        label = '[COLOR %s]%s[/COLOR]' % (color, label)
+        
     if 'debrid' in item and item['debrid']:
         label += ' (%s)' % (', '.join(item['debrid']))
     item['label'] = label

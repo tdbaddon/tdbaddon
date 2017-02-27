@@ -1,3 +1,15 @@
+[B]Version 2.0.149[/B]
+- Add **EXPERIMENTAL** Image Proxy
+- Add setting to set Debrid Highlight color (Green is unreadable on Estuary)
+- Add SceneHDTV
+- Add Best-Moviez
+- Add MyDDL
+- 30 or so scrapers fixed/improved
+- Remove DailyReleases
+- Remove ventures 
+- Remove OCW
+- Remove RLSeries
+
 [B]Version 2.0.142[/B]
 - Add option to force fresh on Personal Lists and My Subscriptions
 - Switch trakt API to new host

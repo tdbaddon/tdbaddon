@@ -114,12 +114,15 @@ def _byteify(data, ignore_dicts=False):
         return dict([(_byteify(key, ignore_dicts=True), _byteify(value, ignore_dicts=True)) for key, value in data.iteritems()])
     return data
 
-def download_media(url, path, file_name, translations):
+def download_media(url, path, file_name, translations, progress=None):
     try:
+        if progress is None:
+            progress = int(kodi.get_setting('down_progress'))
+            
         i18n = translations.i18n
-        progress = int(kodi.get_setting('down_progress'))
         active = not progress == PROGRESS.OFF
         background = progress == PROGRESS.BACKGROUND
+            
         with kodi.ProgressDialog(kodi.get_name(), i18n('downloading') % (file_name), background=background, active=active) as pd:
             try:
                 headers = dict([item.split('=') for item in (url.split('|')[1]).split('&')])

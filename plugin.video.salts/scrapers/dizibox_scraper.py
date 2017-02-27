@@ -30,8 +30,8 @@ from salts_lib.constants import XHR
 import scraper
 
 
-BASE_URL = 'http://www.dizibox.com'
-KING_URL = 'http://play.dizibox.net/king/king.php?p=GetVideoSources'
+BASE_URL = 'http://www.dizibox1.com'
+LINKS = ['king.php', 'zeus.php', 'hades.php', 'juliet.php']
 QUALITY_MAP = {'HD': QUALITIES.HD720}
 
 class Scraper(scraper.Scraper):
@@ -71,7 +71,7 @@ class Scraper(scraper.Scraper):
             iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
             if iframe_url:
                 iframe_url = iframe_url[0]
-                if 'king.php' in iframe_url or 'zeus.php' in iframe_url or 'hades.php' in iframe_url:
+                if any([link for link in LINKS if link in iframe_url]):
                     hosters += self.__get_king_links(iframe_url)
                 else:
                     html = self._http_get(iframe_url, cache_limit=.5)
@@ -98,7 +98,7 @@ class Scraper(scraper.Scraper):
                     label = source.get('label', '')
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(source['file'])
-                    elif label.isdigit():
+                    elif re.search('\d+p?', label):
                         quality = scraper_utils.height_get_quality(label)
                     else:
                         quality = QUALITY_MAP.get(label, QUALITIES.HIGH)
@@ -111,19 +111,12 @@ class Scraper(scraper.Scraper):
     
     def __get_embed_links(self, html):
         hosters = []
-        seen_urls = {}
-        for match in re.finditer('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', html):
-            stream_url, height = match.groups()
-            if stream_url not in seen_urls:
-                seen_urls[stream_url] = True
-                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                host = self._get_direct_hostname(stream_url)
-                if host == 'gvideo':
-                    quality = scraper_utils.gv_get_quality(stream_url)
-                else:
-                    quality = scraper_utils.height_get_quality(height)
-                hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish Subtitles'}
-                hosters.append(hoster)
+        sources = self._parse_sources_list(html)
+        for source in sources:
+            quality = source['quality']
+            stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+            hoster = {'multi-part': False, 'host': self._get_direct_hostname(source), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish Subtitles'}
+            hosters.append(hoster)
         return hosters
         
     def __get_ok(self, link):

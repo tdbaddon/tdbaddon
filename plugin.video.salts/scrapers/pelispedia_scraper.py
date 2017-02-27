@@ -24,6 +24,7 @@ import kodi
 import log_utils  # @UnusedImport
 import dom_parser
 from salts_lib import scraper_utils
+from salts_lib import jsunpack
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -65,7 +66,7 @@ class Scraper(scraper.Scraper):
                     if fragment:
                         for media_url in dom_parser.parse_dom(fragment[0], 'a', ret='href'):
                             media_url = media_url.replace(' ', '')
-                            if any([media_url for u in (self.base_url, 'pelispedia.biz', 'pelispedia.vip') if u in media_url]):
+                            if any([media_url for u in (self.base_url, 'pelispedia.biz', 'pelispedia.vip', 'pelispedia.co') if u in media_url]):
                                 headers = {'Referer': iframe_url[0]}
                                 html = self._http_get(media_url, headers=headers, cache_limit=.5)
                                 hosters += self.__get_page_links(html)
@@ -80,6 +81,11 @@ class Scraper(scraper.Scraper):
 
     def __get_page_links(self, html):
         hosters = []
+        for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
+            js_data = jsunpack.unpack(match.group(1))
+            js_data = js_data.replace('\\', '')
+            html += js_data
+
         sources = self._parse_sources_list(html)
         for source in sources:
             quality = sources[source]['quality']

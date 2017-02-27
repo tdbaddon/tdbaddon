@@ -26,7 +26,7 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://dizimag.co'
+BASE_URL = 'http://dizimag1.co'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class Scraper(scraper.Scraper):
@@ -83,22 +83,50 @@ class Scraper(scraper.Scraper):
                 headers = {'Referer': page_url}
                 headers.update(XHR)
                 result = self._http_get(url, data=data, headers=headers, cache_limit=.5)
-                for match in re.finditer('"videolink\d*"\s*:\s*"([^"]+)","videokalite\d*"\s*:\s*"?(\d+)p?', result):
-                    stream_url, height = match.groups()
-                    hoster = self.__create_source(stream_url, height, page_url)
-                    hosters.append(hoster)
+                js_data = scraper_utils.parse_json(result, url)
+                if 'iframe' in js_data:
+                    hosters += self.__get_iframe_sources(js_data['iframe'], page_url)
+                else:
+                    hosters += self.__get_js_sources(js_data, page_url)
+                    pass
+                    
         return hosters
         
-    def __create_source(self, stream_url, height, page_url):
+    def __get_iframe_sources(self, iframe_url, page_url):
+        hosters = []
+        headers = {'Referer': page_url}
+        html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
+        sources = dom_parser.parse_dom(html, 'div', {'class': 'dzst-player'}, ret='data-dzst-player')
+        if sources:
+            sources = sources[0].replace('&#x3D;', '=')
+            js_data = scraper_utils.parse_json(scraper_utils.cleanse_title(sources), iframe_url)
+            sources = js_data.get('tr', {})
+            for key in sources:
+                hosters.append(self.__create_source(sources[key], key, page_url, subs=True))
+            
+        return hosters
+    
+    def __get_js_sources(self, js_data, page_url):
+        hosters = []
+        for key in js_data:
+            if 'videolink' in key:
+                stream_url = js_data[key]
+                if self._get_direct_hostname(stream_url) == 'gvideo':
+                    hosters.append(self.__create_source(stream_url, 480, page_url))
+        return hosters
+        
+    def __create_source(self, stream_url, height, page_url, subs=False):
         stream_url = stream_url.replace('\\/', '/')
-        if self._get_direct_hostname(stream_url) != 'gvideo':
+        if self.get_name().lower() in stream_url:
             headers = {'Referer': page_url}
-            redir_url = self._http_get(stream_url, headers=headers, allow_redirect=False, cache_limit=.25)
+            redir_url = self._http_get(stream_url, headers=headers, method='HEAD', allow_redirect=False, cache_limit=.25)
             if redir_url.startswith('http'):
                 stream_url = redir_url
                 stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
             else:
                 stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url, 'Cookie': self._get_stream_cookies()})
+        else:
+            stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
 
         host = self._get_direct_hostname(stream_url)
         if host == 'gvideo':
@@ -106,6 +134,7 @@ class Scraper(scraper.Scraper):
         else:
             quality = scraper_utils.height_get_quality(height)
         hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+        if subs: hoster['subs'] = 'Turkish Subtitles'
         return hoster
         
     def _get_episode_url(self, show_url, video):

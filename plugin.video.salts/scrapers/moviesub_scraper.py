@@ -136,6 +136,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=1)
         fragment = dom_parser.parse_dom(html, 'ul', {'class': 'cfv'})
         if fragment:
+            norm_title = scraper_utils.normalize_title(title)
             for item in dom_parser.parse_dom(fragment[0], 'li'):
                 is_season = dom_parser.parse_dom(item, 'div', {'class': 'status'})
                 if (not is_season and video_type == VIDEO_TYPES.MOVIE) or (is_season and video_type == VIDEO_TYPES.SEASON):
@@ -153,7 +154,9 @@ class Scraper(scraper.Scraper):
                             if match:
                                 match_year = match.group(1)
                         
-                        if not year or not match_year or year == match_year:
+                        match_norm_title = scraper_utils.normalize_title(match_title)
+                        title_match = (norm_title in match_norm_title) or (match_norm_title in norm_title)
+                        if title_match and (not year or not match_year or year == match_year):
                             result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                             results.append(result)
 

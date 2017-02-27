@@ -128,15 +128,11 @@ class Scraper(scraper.Scraper):
                 if not re.search('[._ -]S\d+E\d+[._ -]', heading[1], re.I) and not self.__too_old(post):
                     post_url, post_title = heading
                     post_title = re.sub('<[^>]*>', '', post_title)
-                    match = re.search('(.*?)\s*[.\[(]?(\d{4})[.)\]]?\s*(.*)', post_title)
-                    if match:
-                        match_title, match_year, extra_title = match.groups()
-                        full_title = '%s [%s]' % (match_title, extra_title)
-                    else:
-                        full_title = match_title = post_title
-                        match_year = ''
+                    meta = scraper_utils.parse_movie_link(post_title)
+                    full_title = '%s [%s] (%sp)' % (meta['title'], meta['extra'], meta['height'])
+                    match_year = meta['year']
                     
-                    match_norm_title = scraper_utils.normalize_title(match_title)
+                    match_norm_title = scraper_utils.normalize_title(meta['title'])
                     if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):
                         result = {'url': scraper_utils.pathify_url(post_url), 'title': scraper_utils.cleanse_title(full_title), 'year': match_year}
                         results.append(result)
@@ -151,18 +147,17 @@ class Scraper(scraper.Scraper):
         return slug
         
     def __too_old(self, post):
-        filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
-        if filter_days:
-            today = datetime.date.today()
-            match = re.search('<span\s+class="date">(.*?)\s+(\d+)[^<]+(\d{4})<', post)
-            if match:
-                try:
-                    mon_name, post_day, post_year = match.groups()
-                    post_month = SHORT_MONS.index(mon_name) + 1
-                    post_date = datetime.date(int(post_year), post_month, int(post_day))
-                    if today - post_date > filter_days:
-                        return True
-                except ValueError:
-                    return False
+        try:
+            filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
+            if filter_days:
+                today = datetime.date.today()
+                match = re.search('<span\s+class="date">(.*?)\s+(\d+)[^<]+(\d{4})<', post)
+                mon_name, post_day, post_year = match.groups()
+                post_month = SHORT_MONS.index(mon_name) + 1
+                post_date = datetime.date(int(post_year), post_month, int(post_day))
+                if today - post_date > filter_days:
+                    return True
+        except ValueError:
+            return False
         
         return False

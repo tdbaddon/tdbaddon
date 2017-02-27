@@ -2,12 +2,12 @@
 # Addon id: plugin.video.salts
 # Addon Provider: TV Addons
 # Translators:
-# tknorris, 2015-2016
+# tknorris, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-12-14 01:03+0000\n"
+"PO-Revision-Date: 2017-02-07 04:05+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: English (United States) (http://www.transifex.com/tv-addons/salts/language/en_US/)\n"
 "MIME-Version: 1.0\n"
@@ -931,8 +931,8 @@ msgid "Remove Unusable Indirect sources from results"
 msgstr "Remove Unusable Indirect sources from results"
 
 msgctxt "#30239"
-msgid "Show Debrid sources in Green"
-msgstr "Show Debrid sources in Green"
+msgid "Highlight Debrid Sources in results"
+msgstr "Highlight Debrid Sources in results"
 
 msgctxt "#30240"
 msgid "No Limit on Maximum Source Results"
@@ -1788,8 +1788,8 @@ msgid "All"
 msgstr "All"
 
 msgctxt "#30652"
-msgid "Show Debrid Supported Sources in Green"
-msgstr "Show Debrid Supported Sources in Green"
+msgid "Show Debrid Supported Sources in ..."
+msgstr "Show Debrid Supported Sources in ..."
 
 msgctxt "#30653"
 msgid "6th Sort Key"
@@ -2090,4 +2090,8 @@ msgstr "Enable Cast Thumbnails"
 msgctxt "#30728"
 msgid "    *** Install TMDB API Cache ***"
 msgstr "    *** Install TMDB API Cache ***"
+
+msgctxt "#30729"
+msgid "    Debrid Highlight Color"
+msgstr "    Debrid Highlight Color"
 

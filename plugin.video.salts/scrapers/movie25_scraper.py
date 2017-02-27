@@ -77,7 +77,6 @@ class Scraper(scraper.Scraper):
                         stream_url = stream_url[0]
                         host = host[-1]
                         hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': scraper_utils.get_quality(video, host, quality), 'rating': None, 'views': None, 'direct': False}
-                        log_utils.log(hoster)
                         hosters.append(hoster)
         return hosters
 

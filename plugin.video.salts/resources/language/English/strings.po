@@ -927,7 +927,7 @@ msgid "Remove Unusable Indirect sources from results"
 msgstr ""
 
 msgctxt "#30239"
-msgid "Show Debrid sources in Green"
+msgid "Highlight Debrid Sources in results"
 msgstr ""
 
 msgctxt "#30240"
@@ -1805,7 +1805,7 @@ msgid "All"
 msgstr ""
 
 msgctxt "#30652"
-msgid "Show Debrid Supported Sources in Green"
+msgid "Show Debrid Supported Sources in ..."
 msgstr ""
 
 msgctxt "#30653"
@@ -2109,5 +2109,21 @@ msgstr ""
 
 msgctxt "#30728"
 msgid "    *** Install TMDB API Cache ***"
+msgstr ""
+
+msgctxt "#30729"
+msgid "    Debrid Highlight Color"
+msgstr ""
+
+msgctxt "#30730"
+msgid "Image Proxy [COLOR red][B](Experimental)[/B][/COLOR]"
+msgstr ""
+
+msgctxt "#30731"
+msgid "Enable Image Proxy"
+msgstr ""
+
+msgctxt "#30732"
+msgid "Image Proxy Port"
 msgstr ""
 

@@ -67,13 +67,13 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="([^"]*/[Ss]0*%s/[Ee]0*%s)"' % (video.season, video.episode)
+        episode_pattern = 'href="([^"]*[Ss]0*%s[Ee]0*%s(?!\d)[^"]*)"' % (video.season, video.episode)
         return self._default_get_episode_url(show_url, video, episode_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         page_url = urlparse.urljoin(self.base_url, '/tvseries/search.php')
-        html = self._http_get(page_url, params={'dayt': title}, cache_limit=48)
+        html = self._http_get(page_url, params={'dayq': title}, cache_limit=48)
         html = re.sub('<!--.*?-->', '', html)
         norm_title = scraper_utils.normalize_title(title)
         for td in dom_parser.parse_dom(html, 'td', {'class': 'topic_content'}):

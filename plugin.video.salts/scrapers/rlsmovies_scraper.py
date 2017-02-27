@@ -52,6 +52,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
             sources = self.__get_post_links(html)
             for source in sources:
+                if re.search('\.part\.?\d+', source) or '.rar' in source or 'sample' in source: continue
                 release = sources[source]['release']
                 host = urlparse.urlparse(source).hostname
                 quality = scraper_utils.blog_get_quality(video, release, host)
@@ -67,8 +68,13 @@ class Scraper(scraper.Scraper):
         release = release[0] if release else ''
         fragment = dom_parser.parse_dom(html, 'div', {'class': 'entry'})
         if fragment:
-            for match in re.finditer('<p>\s*(http.*?)</p>', fragment[0]):
-                sources[match.group(1)] = {'release': release}
+            streams = re.findall('href="([^"]+)[^>]*>(.*?)</a>', fragment[0])
+            streams += [(stream_url, '') for stream_url in re.findall('<p[^>]*>(http.*?)</p>', fragment[0])]
+            for stream_url, label in streams:
+                if not label or re.search('single\s+link', label, re.I):
+                    sources[stream_url] = {'release': release}
+                elif any([ext for ext in ['.mp4', '.mkv', '.avi'] if ext in label]):
+                    sources[stream_url] = {'release': label}
         return sources
         
     def get_url(self, video):

@@ -58,7 +58,7 @@ class Scraper(scraper.Scraper):
             fragment = dom_parser.parse_dom(html, 'p', {'class': 'download_message'})
             if fragment:
                 for source in dom_parser.parse_dom(fragment[0], 'a', ret='href'):
-                    if re.search('\.part\.?\d+', source) or '.rar' in source or 'sample' in source or source.endswith('.nfo'): continue
+                    if scraper_utils.excluded_link(source): continue
                     host = urlparse.urlparse(source).hostname
                     quality = scraper_utils.height_get_quality(meta.get('height', 480))
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}

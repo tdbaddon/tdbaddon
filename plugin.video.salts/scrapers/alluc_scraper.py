@@ -94,7 +94,7 @@ class Scraper(scraper.Scraper):
                                 host = urlparse.urlsplit(stream_url).hostname
                                 quality = scraper_utils.get_quality(video, host, self._get_title_quality(result['title']))
                                 hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': False}
-                                hoster['extra'] = result['title']
+                                hoster['extra'] = scraper_utils.cleanse_title(result['title'])
                                 hosters.append(hoster)
                                 seen_urls.add(stream_url)
                 else:

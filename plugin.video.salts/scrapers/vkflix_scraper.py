@@ -17,7 +17,6 @@
 """
 import re
 import urlparse
-import urllib
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser
@@ -122,7 +121,7 @@ class Scraper(scraper.Scraper):
                     match = re.search('href="([^"]+)[^>]+>([^<]+)', fragment[0])
                     if match:
                         match_url, match_title = match.groups()
-                        if re.search('/\d{7,}/', match_url): continue
+                        if re.search('/-?\d{7,}/', match_url): continue
                         
                         match_norm_title = scraper_utils.normalize_title(match_title)
                         if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):

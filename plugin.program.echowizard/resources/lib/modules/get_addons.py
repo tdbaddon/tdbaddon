@@ -93,11 +93,10 @@ def MENU_MAIN():
 	number_of_addons = Common.count("NUMBER_OF_ADDONS",TEMP_FILE)
 	total_addons_week = Common.count("TOTAL_ADDONS_WEEK",TEMP_FILE)
 	total_addons_alltime = Common.count("TOTAL_ADDONS_ALLTIME",TEMP_FILE)
-	Common.addDir("[COLOR white][B]Addons Available In Addon Installer  - [/COLOR][COLOR yellowgreen]" + str(number_of_addons) + " Addons[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
 	Common.addDir("[COLOR white][B]Addons Downloaded (Week)  - [/COLOR][COLOR yellowgreen]" + str(total_addons_week) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
 	Common.addDir("[COLOR white][B]Addons Downloaded (Total) - [/COLOR][COLOR yellowgreen]" + str(total_addons_alltime) + "[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
-	
-	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+	Common.addDir("[COLOR white][B]Addons Available In Addon Installer  - [/COLOR][COLOR yellowgreen]" + str(number_of_addons) + " Addons[/B][/COLOR]",BASEURL,121,ICON,FANART,'')
+	Common.addDir("[COLOR yellowgreen][B]--------------------------------------------------------------------------------------------------[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
 	Common.addDir("[COLOR white][B]File Manager Sources[/B][/COLOR]",BASEURL,177,REPO_ICON,FANART,description='')
@@ -189,7 +188,13 @@ def GET_LIST(description):
 			else:
 				Common.addDir("[COLOR yellowgreen][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
-	elif matcher == "top":
+	elif "top" in matcher:
+		if not "xxx" in matcher:
+			Common.addDir("[COLOR yellowgreen][B]Exclude XXX Addons From The List[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top-xxx')
+			Common.addItem("--------------------------------------------------------------------------------------------------",BASEURL,999,TOP_ICON,FANART,'')
+		else:
+			Common.addDir("[COLOR yellowgreen][B]Include XXX Addons In The List[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
+			Common.addItem("--------------------------------------------------------------------------------------------------",BASEURL,999,TOP_ICON,FANART,'')
 		namelist=[]
 		countlist=[]
 		totallist=[]
@@ -226,13 +231,23 @@ def GET_LIST(description):
 						except: youtube_id = "null"
 					addon_path2 = addon_path
 					addon_path = addon_path + "|SPLIT|" + youtube_id
-					namelist.append(name)
-					countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
-					totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
-					iconlist.append(iconimage)
-					fanartlist.append(fanart)
-					addonlist.append(addon_path)
-					repolist.append(repo_path)
+					if matcher == "top-xxx":
+						if not "xxx" in name.lower():
+							namelist.append(name)
+							countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+							totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
+							iconlist.append(iconimage)
+							fanartlist.append(fanart)
+							addonlist.append(addon_path)
+							repolist.append(repo_path)
+					else:
+						namelist.append(name)
+						countlist.append(str(Common.count(addon_path2+"ADDON_INSTALLER",TEMP_FILE)))
+						totallist.append(str(Common.count(addon_path2+"ADDON_TOTAL",TEMP_FILE)))
+						iconlist.append(iconimage)
+						fanartlist.append(fanart)
+						addonlist.append(addon_path)
+						repolist.append(repo_path)
 					combinedlists = list(zip(countlist,totallist,namelist,iconlist,fanartlist,addonlist,repolist))
 		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 		check = 1
@@ -264,10 +279,10 @@ def GET_LIST(description):
 					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR orange] " + count + "[/B][/COLOR][COLOR orange][B] - Total:[/COLOR][COLOR orange] " + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+						Common.addItem("--------------------------------------------------------------------------------------------------",BASEURL,999,TOP_ICON,FANART,'')
 					else:
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR white]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
+						Common.addItem("--------------------------------------------------------------------------------------------------",BASEURL,999,TOP_ICON,FANART,'')
 				else:
 					bname = " | [COLOR white] This Week:[/COLOR][COLOR yellowgreen][B] " + count + "[/B][/COLOR][COLOR white] - Total:[/COLOR][COLOR yellowgreen] [B]" + total + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):

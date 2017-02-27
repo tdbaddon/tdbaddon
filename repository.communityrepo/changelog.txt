@@ -1,3 +1,1 @@
-[B]Version 1.7[/B]
-- Initial version
-- repo update test 
+Thanks for Installing Our Repo

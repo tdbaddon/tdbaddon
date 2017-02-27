@@ -88,7 +88,7 @@ class Scraper(scraper.Scraper):
 
     def __get_sources(self, html, page_url):
         sources = {}
-        subs = False if 'ngilizce' in page_url else True
+        subs = re.search('''"?kind"?\s*:\s*"?captions"?''', html) or 'ngilizce' in page_url
         for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
             js_data = jsunpack.unpack(match.group(1))
             js_data = js_data.replace('\\', '')

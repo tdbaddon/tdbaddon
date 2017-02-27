@@ -62,7 +62,6 @@ class Scraper(scraper.Scraper):
                     else:
                         links = self.__get_links(iframe_src, url)
 
-                    log_utils.log(links)
                     for link in links:
                         direct = links[link]['direct']
                         quality = links[link]['quality']

@@ -1332,7 +1332,7 @@ def apply_urlresolver(hosters):
                     known_hosts[host] += 1
                     filtered_hosters.append(hoster)
                 else:
-                    hmf = urlresolver.HostedMediaFile(host=host, media_id='dummy')  # use dummy media_id to force host validation
+                    hmf = urlresolver.HostedMediaFile(host=host, media_id='1337')  # use dummy media_id to force host validation
                     if hmf:
                         # log_utils.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                         known_hosts[host] = known_hosts.get(host, 0) + 1
@@ -2587,6 +2587,7 @@ def make_item(section_params, show, menu_items=None, images=True):
     show['title'] = re.sub(' \(\d{4}\)$', '', show['title'])
     label = '%s (%s)' % (show['title'], show['year'])
     trakt_id = show['ids']['trakt']
+    if kodi.get_setting('proxy_enable'): images = True  # force images on if proxy is enabled
     art = image_scraper.get_images(section_params['video_type'], show['ids'], cache_only=not images)
     if kodi.get_setting('include_people') == 'true':
         people = trakt_api.get_people(section_params['section'], trakt_id)

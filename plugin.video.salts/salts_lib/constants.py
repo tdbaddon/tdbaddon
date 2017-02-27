@@ -63,6 +63,7 @@ CHUNK_SIZE = 512 * 1024
 PROGRESS = __enum(OFF=0, WINDOW=1, BACKGROUND=2)
 FORCE_NO_MATCH = '***FORCE_NO_MATCH***'
 SHORT_MONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 ACTIONS = __enum(ADD='add', REMOVE='remove')
 TRIG_DB_UPG = False
 

@@ -1,3 +1,6 @@
+1.2.4
+Different play method for 17.0. Older Kodi versions use pre-cache function.
+
 1.2.1
 Fixed playback
 

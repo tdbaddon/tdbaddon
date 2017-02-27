@@ -26,7 +26,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://www.dizigold.net'
+BASE_URL = 'http://www.dizigold.org'
 AJAX_URL = '/sistem/ajax.php'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 

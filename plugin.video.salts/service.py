@@ -23,6 +23,7 @@ import kodi
 import log_utils
 import utils
 from salts_lib import salts_utils
+from salts_lib import image_proxy
 from salts_lib import utils2
 from salts_lib.utils2 import i18n
 from salts_lib.constants import MODES
@@ -206,8 +207,15 @@ def show_next_up():
     else:
         last_label = ''
 
+def manage_proxy():
+    if kodi.get_setting('proxy_enable') == 'true' and not image_proxy.RUNNING:
+        reload(image_proxy)
+        image_proxy.run()
+    image_proxy.manage_proxy()
+    
 errors = 0
-while not xbmc.abortRequested:
+monitor = xbmc.Monitor()
+while not monitor.abortRequested():
     try:
         isPlaying = service.isPlaying()
         salts_utils.do_scheduled_task(MODES.UPDATE_SUBS, isPlaying)
@@ -217,6 +225,7 @@ while not xbmc.abortRequested:
 
         disable_global_cx()
         check_cooldown()
+        manage_proxy()
         if kodi.get_setting('show_next_up') == 'true':
             show_next_up()
     except Exception as e:
@@ -229,6 +238,8 @@ while not xbmc.abortRequested:
     else:
         errors = 0
 
-    kodi.sleep(500)
+    if monitor.waitForAbort(.5):
+        break
     
+image_proxy.stop_proxy()
 log_utils.log('Service: shutting down...', log_utils.LOGNOTICE, COMPONENT)

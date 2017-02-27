@@ -34,7 +34,7 @@ urllist = xbmc.translatePath(os.path.join('special://home/addons/plugin.audio.mp
 audio_fanart = ""
 iconart = xbmc.translatePath(os.path.join('special://home/addons/plugin.audio.mp3streams',  'icon.png'))
 download_lock = os.path.join(MUSIC_DIR,  'downloading.txt')
-
+xbmc_version=xbmc.getInfoLabel("System.BuildVersion")[:4]
 
 GOTHAM_FIX_2 = ADDON.getSetting('gotham_fix_2') == 'true'
 if GOTHAM_FIX_2:
@@ -43,7 +43,7 @@ if GOTHAM_FIX_2:
 
 def newPlay(pl, clear):
     if clear or (not xbmc.Player().isPlayingAudio()):
-        xbmc.Player(xbmc.PLAYER_CORE_DVDPLAYER).play(pl)
+        xbmc.Player().play(pl)
 
 def open_url(url):
     req = urllib2.Request(url)
@@ -523,8 +523,13 @@ def play_album(name, url, iconimage,mix,clear):
         #if pl.size() > 3:
         #    break
 
+    
     dp.close()
-    newPlay(pl, clear)  
+    if float(xbmc_version) < 17:
+        newPlay(pl, clear) 
+    else: 
+        if clear or (not xbmc.Player().isPlayingAudio()):
+            xbmc.Player().play(pl)	
 			
 			
 def play_song(url, name, songname, artist, album, iconimage, dur, clear):
@@ -546,6 +551,15 @@ def play_song(url, name, songname, artist, album, iconimage, dur, clear):
     pl = get_XBMCPlaylist(clear)
     pl.add(url, liz)
 
+    if float(xbmc_version) < 17:
+        newPlay(pl, clear) 
+    else: 
+        if clear or (not xbmc.Player().isPlayingAudio()):
+            xbmc.Player().play(pl)
+			
+    #if clear or (not xbmc.Player().isPlayingAudio()):
+        #xbmc.Player().play(pl)
+
     #playlist.append((newurl, liz))
     #for blob ,liz in playlist:
     #    try:
@@ -554,7 +568,7 @@ def play_song(url, name, songname, artist, album, iconimage, dur, clear):
     #    except:
     #        pass
 
-    newPlay(pl, clear)
+    #newPlay(pl, clear)
 		
 def download_song(url,name,songname,artist,album,iconimage):
     track = songname[:songname.find('.')]
