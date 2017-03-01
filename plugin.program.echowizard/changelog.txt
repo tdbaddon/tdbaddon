@@ -1,3 +1,19 @@
+[COLOR yellowgreen]1.88: 28th February 2017[/COLOR]
+[COLOR white][B]- Fix for trakt restore issues on some devices.[/B][/COLOR]
+
+[COLOR yellowgreen]1.87: 28th February 2017[/COLOR]
+[COLOR white][B]- Fix for speedtest issues on some devices.[/B][/COLOR]
+
+[COLOR yellowgreen]1.86: 28th February 2017[/COLOR]
+[COLOR white][B]- Additions to cather.[/B][/COLOR]
+
+[COLOR yellowgreen]1.85: 28th February 2017[/COLOR]
+[COLOR white][B]- Changes to the error reporting function.[/B][/COLOR]
+
+[COLOR yellowgreen]1.84: 28th February 2017[/COLOR]
+[COLOR white][B]- Error reporting API added (Massive thanks to Rob @MBOX_HD_IPTV).[/B][/COLOR]
+[COLOR white][B]- 10 second timeout added to all urllib2 requests.[/B][/COLOR]
+
 [COLOR yellowgreen]1.83: 26th February 2017[/COLOR]
 [COLOR white][B]- Added option to exclude XXX addons from Top 14 in Addon Installer.[/B][/COLOR]
 

@@ -105,11 +105,22 @@ def GetEpochStr():
     return epoch_str
 #-----------------------------------------------------------------------------------------------------------------
 def runtest(url):
-    addon_profile_path = xbmc.translatePath(ADDON.getAddonInfo('profile'))
-    speed_test_files_dir = make_dir(addon_profile_path, 'speedtestfiles')
-    speed_test_download_file = os.path.join(speed_test_files_dir, GetEpochStr() + '.speedtest')
+
+    FOLDER =  xbmc.translatePath('special://home/userdata/addon_data/plugin.program.echowizard')
+    try:
+        if not os.path.exists(FOLDER):
+            os.makedirs(FOLDER)
+    except:
+        xbmcgui.Dialog().ok(AddonTitle, "There was an error creating the speedtest folder.")
+        quit()
+    speed_test_download_file = os.path.join(FOLDER, GetEpochStr() + '.st')
+    try:
+        os.remove(speed_test_download_file)
+    except: pass
     timetaken = download(url, speed_test_download_file)
-    os.remove(speed_test_download_file)
+    try:
+        os.remove(speed_test_download_file)
+    except: pass
     avgspeed = ((currently_downloaded_bytes / timetaken) * 8 / ( 1024 * 1024 ))
     maxspeed = (max_Bps * 8/(1024*1024))
     if avgspeed < 2:
@@ -143,5 +154,5 @@ def runtest(url):
     '[COLOR lightsteelblue][B]Your Result:[/COLOR][/B] ' + rating,
     '[COLOR lightsteelblue][B]Live Streams:[/COLOR][/B] ' + livestreams,
     '[COLOR lightsteelblue][B]Movie Streams:[/COLOR][/B] ' + onlinevids,
-	'[COLOR lightsteelblue][B]Duration:[/COLOR][/B] %.02f secs ' % timetaken + '[COLOR lightsteelblue][B]Average Speed:[/B][/COLOR] %.02f Mb/s ' % avgspeed + '[COLOR lightsteelblue][B]Max Speed:[/B][/COLOR] %.02f Mb/s ' % maxspeed,
+    '[COLOR lightsteelblue][B]Duration:[/COLOR][/B] %.02f secs ' % timetaken + '[COLOR lightsteelblue][B]Average Speed:[/B][/COLOR] %.02f Mb/s ' % avgspeed + '[COLOR lightsteelblue][B]Max Speed:[/B][/COLOR] %.02f Mb/s ' % maxspeed,
     )

@@ -127,8 +127,8 @@ class source:
 
             dupes = []
             links = re.findall('\'(.+?)\'', result) + re.findall('\"(.+?)\"', result)
+            links = ['http:' + i if not i.startswith('http') else i for i in links]
             links = [proxy.parse(i) for i in links]
-            links = [i for i in links if i.startswith('http')]
             links = [x for y,x in enumerate(links) if x not in links[:y]]
 
             for i in links:

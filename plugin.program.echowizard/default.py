@@ -89,6 +89,7 @@ string              = ""
 dialog              = xbmcgui.Dialog()
 THE_TIME 			= time.strftime("%H:%M %p")
 THE_DATE 			= time.strftime("%A %B %d %Y")
+DEFAULT_HEADERS = [["User-Agent","echo-wizard"]]
 
 #######################################################################
 #					ADDON SETTINGS
@@ -2327,7 +2328,9 @@ try:
 	elif mode==187:
 			get_addons.GET_ADDON_DESCRIPTION(name,url,iconimage)
 
-	xbmcplugin.endOfDirectory(int(sys.argv[1]),cacheToDisc=False)
+	if mode==None or url==None or len(url)<1:
+		xbmcplugin.endOfDirectory(int(sys.argv[1]),cacheToDisc=False)
+	else: xbmcplugin.endOfDirectory(int(sys.argv[1]),cacheToDisc=True)
 
 #except Exception as e:
 #
@@ -2343,7 +2346,7 @@ try:
 #	xbmcgui.Dialog().ok(AddonTitle, str(error), '[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
 
 except:
-	
+	try:
 		import traceback as tb
 		# start by logging the usual info to stderr
 		(etype, value, traceback) = sys.exc_info()
@@ -2387,9 +2390,28 @@ except:
 		
 		a=open(GET_VERSION).read()
 		b=a.replace('\n',' ').replace('\r',' ')
-		match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
-		for item in match:
-			addon_version = float(item)
+		match=re.compile('addon id="(.+?)".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+		for name,ver in match:
+			addon_version = ver
+			addon_name  =  name
+
+		LOG = xbmc.translatePath('special://logpath/')
+		logfilepath = os.listdir(LOG)
+
+		for item in logfilepath:
+			if not item.endswith('.old.log'):
+				if item.endswith('.log'):
+					file = os.path.join(LOG, item)
+					filename    = open(file, 'r')
+					logtext     = filename.read()
+					filename.close()
+					running_on = re.compile('Running on (.+?)\n').findall(logtext)[0]
+
+		f = urllib.urlopen("http://www.canyouseeme.org/")
+		html_doc = f.read()
+		f.close()
+		m = re.search('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)',html_doc)
+		ip = m.group(0)
 
 		l_time     = local_time
 		k_name     = codename
@@ -2401,17 +2423,60 @@ except:
 		er_type    = error_type
 		er_value   = error_value 
 		er_message = str(error_traceback)
+		ad_name    = str(addon_name)
+		run        = str(running_on)
+		i_p        = str(ip)
 
-		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhwP2FjdGlvbj1hZGQmbF90aW1lPQ==') + base64.b64encode(l_time) + \
-		'&k_name=' + base64.b64encode(k_name) + \
-		'&k_ver=' + base64.b64encode(k_ver) + \
-		'&k_date=' + base64.b64encode(k_date) + \
-		'&k_lan=' + base64.b64encode(k_lan) + \
-		'&p_ver=' + base64.b64encode(p_ver) + \
-		'&e_ver=' + base64.b64encode(e_ver) + \
-		'&er_type=' + base64.b64encode(er_type) + \
-		'&er_value=' + base64.b64encode(er_value) + \
-		'&er_message=' + base64.b64encode(er_message)
+		if "bytes" in er_value.lower():
+			dialog.ok(AddonTitle, "An error was encountered because the file downloaded is incomplete. Please try again.")
+			quit()
+		if "build.zip" in er_value.lower():
+			dialog.ok(AddonTitle, "An error was encountered because the file could not be downloaded. Please contact the maker of this build/addon.")
+			quit()
+		if "timed out" in er_value.lower():
+			dialog.ok(AddonTitle, "An error was encountered because the connection timed out. Please try again.")
+			quit()
+		if "device or resource busy" in er_value.lower():
+			dialog.ok(AddonTitle, "An error was encountered because a folder/file we needed to access is currently busy. Please try again.")
+			quit()
+		if "exceptions.systemexit" in er_type.lower():
+			quit()
+		if "urllib2.urlerro" in er_type.lower():
+			dialog.ok(AddonTitle, "An error was encountered connecting to the requested URL. Please try again.")
+			quit()
+		if "permission denied" in er_value.lower():
+			dialog.ok(AddonTitle, "Sorry, permission was denied to access the requested file.")
+			quit()
+		if "failed to respond" in er_value.lower():
+			dialog.ok(AddonTitle, "The host failed to respond to the request. Please try again.")
+			quit()
+		if "connection reset by peer" in er_value.lower():
+			dialog.ok(AddonTitle, "The connection was reset by the peer. Please try again.")
+			quit()
+		if "target machine actively refused it" in er_value.lower():
+			dialog.ok(AddonTitle, "The connection could not be made because the target machine actively refused it. Please try again.")
+			quit()
+
+		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhw')
+		parameters={}
+		parameters["action"]  = "add"
+		parameters["l-time"]  = base64.b64encode(l_time)
+		parameters["k-name"]  = base64.b64encode(k_name)
+		parameters["k-name"]  = base64.b64encode(k_name)
+		parameters["k-ver"]   = base64.b64encode(k_ver)
+		parameters["k-date"]  = base64.b64encode(k_date)
+		parameters["k-lan"]   = base64.b64encode(k_lan)
+		parameters["p-ver"]   = base64.b64encode(p_ver)
+		parameters["e-ver"]   = base64.b64encode(e_ver)
+		parameters["er-type"] = base64.b64encode(er_type)
+		parameters["er-val"]  = base64.b64encode(er_value)
+		parameters["er-msg"]  = base64.b64encode(er_message)
+		parameters["ad-name"] = base64.b64encode(ad_name)
+		parameters["run-on"]  = base64.b64encode(run)
+		parameters["ip"]  = base64.b64encode(i_p)
+		headers = DEFAULT_HEADERS
+		post = urllib.urlencode(parameters)
+		response_body,response_headers = plugintools.read_body_and_headers(service_url,post,headers)
 
 		#body =urllib2.urlopen(service_url).read()
 
@@ -2430,4 +2495,6 @@ except:
 		"\nError Value:"  + error_value  + \
 		"\n\nError Content:" + str(error_traceback)
 		
+		dialog.ok(AddonTitle, "Sorry! An error was encountered and has been submitted to Echo for review.")
 		#Common.TextBoxError("Error Encountered - Please Report to @EchoCoder",  str(msg) + '\n[COLOR yellowgreen]Please report to @EchoCoder on Twitter.[/COLOR]')
+	except: pass

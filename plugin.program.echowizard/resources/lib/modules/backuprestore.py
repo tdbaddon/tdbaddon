@@ -371,18 +371,20 @@ def AUTO_READ_ZIP_TRAKT(url):
 	dp.create(AddonTitle,"Restoring File:",_in,'')
 	unzip(_in, _out, dp)
 	name = "[COLOR ghostwhite][B]RESTORE[/B][/COLOR]"
-	link=Common.OPEN_URL('http://pastebin.com/raw/CU2PSGze')
+	link=Common.OPEN_URL('http://echocoder.com/other/rd_trakt.xml')
 	plugins=re.compile('<plugin>(.+?)</plugin>').findall(link)
 	for match in plugins:
 		ADDONPATH = xbmc.translatePath(os.path.join(ADDON_DATA,match))
 		ADDONSETTINGS = xbmc.translatePath(os.path.join(ADDONPATH,'settings.xml'))
 		EXCLUDEMOVE = xbmc.translatePath(os.path.join(_out,match+'_settings.xml'))
-		if os.path.exists(EXCLUDEMOVE):
+		if os.path.isfile(EXCLUDEMOVE):
 			if not os.path.exists(ADDONPATH):
 				os.makedirs(ADDONPATH)
 			if os.path.isfile(ADDONSETTINGS):
 				os.remove(ADDONSETTINGS)
-			os.rename(EXCLUDEMOVE, ADDONSETTINGS)
+			try:
+				os.rename(EXCLUDEMOVE, ADDONSETTINGS)
+			except: pass
 			try:
 				os.remove(EXCLUDEMOVE)
 			except: pass

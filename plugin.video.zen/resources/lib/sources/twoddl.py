@@ -32,7 +32,9 @@ from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,
 class source:
     def __init__(self):
         self.domains = ['2ddl.one']
-        self.base_link = client.request('http://2ddl.org', output='geturl')
+        self.base_link = control.setting('twoddl_base')
+        if self.base_link == '' or self.base_link == None:self.base_link = 'http://iiddl.com'
+
         self.search_link = '/search/%s+%s/feed/rss2/'
 			
     def movie(self, imdb, title, year):

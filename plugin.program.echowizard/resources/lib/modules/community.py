@@ -74,6 +74,7 @@ def COMMUNITY():
 		progress = 100 * int(i)/int(dis_links)
 		dp.update(progress,"Getting details of developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
 		developer = str(name.replace('[COLOR white][B]','').replace('[/B][/COLOR]','').replace('[/B][/COLOR]','').replace(' BUILDS',''))
+		developer = developer.upper()
 		description = str(developer + "," + hidden + "," + contact)
 		namelist.append(name)
 		urllist.append(url)
@@ -149,8 +150,12 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	except:
 		passed = 0
 
-		hidden,url,ua = url.split("|SPLIT|")
-			
+		try:
+			hidden,url,ua = url.split("|SPLIT|")
+		except:
+			dialog.ok(AddonTitle, 'An error was encountered. Please contact @EchoCoder on Twitter and quote "split error"')
+			quit()
+		
 		vq = Common._get_keyboard( heading="Please Enter Your Password" )
 		title = vq
 

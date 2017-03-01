@@ -805,7 +805,11 @@ def OPEN_URL(url):
 			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', base64.b64decode(b'VGhlV2l6YXJkSXNIZXJl'))
-		response = urllib2.urlopen(req)
+		try:
+			response = urllib2.urlopen(req, timeout = 10)
+		except urllib2.URLError, e:
+			dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
+			quit()
 		link=response.read()
 		response.close()
 		return link
@@ -816,7 +820,11 @@ def OPEN_URL_CUSTOM(url,ua):
 			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', ua)
-		response = urllib2.urlopen(req)
+		try:
+			response = urllib2.urlopen(req, timeout = 10)
+		except urllib2.URLError, e:
+			dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
+			quit()
 		link=response.read()
 		response.close()
 		return link
@@ -827,27 +835,31 @@ def OPEN_URL_NORMAL(url):
 			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
-		response = urllib2.urlopen(req)
+		try:
+			response = urllib2.urlopen(req, timeout = 10)
+		except urllib2.URLError, e:
+			dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
+			quit()
 		link=response.read()
 		response.close()
 		return link
 
 def OPEN_URL_DIALOG(url):
 
+	dp.create(AddonTitle,'[COLOR red][B]CONNECTING.....[/B][/COLOR]','[COLOR yellowgreen]Please wait...[/COLOR]')
+	if "https://" in url:
+		url = url.replace("https://","http://")
+	req = urllib2.Request(url)
+	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
 	try:
-		dp.create(AddonTitle,'[COLOR red][B]CONNECTING.....[/B][/COLOR]','[COLOR yellowgreen]Please wait...[/COLOR]')
-		if "https://" in url:
-			url = url.replace("https://","http://")
-		req = urllib2.Request(url)
-		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
-		response = urllib2.urlopen(req)
-		link=response.read()
-		response.close()
-		dp.update(100,'[COLOR lime][B]CONNECTED.....[/B][/COLOR]',' ')
-		dp.close()
-	except:
-		dialog.ok(AddonTitle,'[COLOR yellowgreen]There was an error connecting to the url. Please try again later.[/COLOR]')
+		response = urllib2.urlopen(req, timeout = 10)
+	except urllib2.URLError, e:
+		dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
 		quit()
+	link=response.read()
+	response.close()
+	dp.update(100,'[COLOR lime][B]CONNECTED.....[/B][/COLOR]',' ')
+	dp.close()
 	return link
 
 def OPEN_URL_BEAST(url):
@@ -856,7 +868,11 @@ def OPEN_URL_BEAST(url):
 			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 ReplicantWizard/1.0.0')
-		response = urllib2.urlopen(req)
+		try:
+			response = urllib2.urlopen(req, timeout = 10)
+		except urllib2.URLError, e:
+			dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
+			quit()
 		link=response.read()
 		response.close()
 		return link

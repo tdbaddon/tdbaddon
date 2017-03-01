@@ -148,6 +148,8 @@
 		<setting id="provider.scnsrc" type="bool" label="Scnsrc" default="true" />		
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
 		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
+		<setting id="twoddl_base"  type="text" label=" - Base Url" default="http://iiddl.com" visible="!eq(-1,false)" />
+
 		<setting id="provider.threemovies" type="bool" label="Threemovies" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
 	

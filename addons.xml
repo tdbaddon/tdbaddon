@@ -395,7 +395,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.83"
+	     version="1.88"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -1990,7 +1990,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.2.2" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.2.3" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2015,7 +2015,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Tweaks</news>
+		<news>Updated Providers</news>
 	</extension>
 </addon>
 
@@ -2481,7 +2481,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.1.9" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.0" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>
@@ -2865,7 +2865,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.02.26" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.02.28" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2886,7 +2886,7 @@ Enjoy!</description>
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Providers - Hotfixes - Added In Progress Netflix Style - Better Match Results</news>
+		<news>Update Providers - Hotfixes</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>

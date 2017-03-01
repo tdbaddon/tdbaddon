@@ -766,41 +766,33 @@ class sources:
 		
 
     def getMovieSource(self, title, year, imdb, source, call):
+        source = cleantitle_get(str(source))
+        type = "movie"
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_url (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""rel_url TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
         except:
             pass
 
         try:
             sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
+            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title),year, imdb))
             match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[5])))
+            t1 = int(re.sub('[^0-9]', '', str(match[8])))
             t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
             update = abs(t2 - t1) > 60
             if update == False:
-                sources = json.loads(match[4])
+                sources = json.loads(match[7])
                 return self.sources.extend(sources)
         except:
             pass
 
-        try:
-            url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            url = dbcur.fetchone()
-            url = url[4]
-        except:
-            pass
 
         try:
+            url = None
             if url == None: url = call.movie(imdb, title, year)
             if url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
-            dbcon.commit()
         except:
             pass
 
@@ -809,67 +801,47 @@ class sources:
             sources = call.sources(url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title), year, imdb))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
 
 
     def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, source, call):
+
+        source = cleantitle_get(str(source))
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_url (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""rel_url TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
         except:
             pass
-
+			
+        type = "episode"
         try:
             sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
+            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
             match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[5])))
+            t1 = int(re.sub('[^0-9]', '', str(match[8])))
             t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
             update = abs(t2 - t1) > 60
             if update == False:
-                sources = json.loads(match[4])
+                sources = json.loads(match[7])
                 return self.sources.extend(sources)
         except:
             pass
-
         try:
             url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            url = dbcur.fetchone()
-            url = url[4]
-        except:
-            pass
-
-        try:
             if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, year)
             if url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
-            dbcon.commit()
         except:
             pass
-
         try:
             ep_url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            ep_url = dbcur.fetchone()
-            ep_url = ep_url[4]
-        except:
-            pass
-
-        try:
             if url == None: raise Exception()
             if ep_url == None: ep_url = call.episode(url, imdb, tvdb, title, premiered, season, episode)
             if ep_url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, season, episode, ep_url))
-            dbcon.commit()
         except:
             pass
 
@@ -878,8 +850,8 @@ class sources:
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, tvdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
@@ -894,33 +866,35 @@ class sources:
         if r:
 			source = r
         else: source = "zen"
-        print ("ZEN MOVIESOURCES NEW ", title,year,imdb,source,call)
+       
 		
+        type = "movie"
+
         try:
-            control.makeFile(control.dataPath)
-            sourceFile = control.providercacheFile
-            dbcon = database.connect(sourceFile)
+            dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_url (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""rel_url TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
+        except:
+            pass
+
+        try:
+            sources = []
+            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title),year, imdb))
+            match = dbcur.fetchone()
+            t1 = int(re.sub('[^0-9]', '', str(match[8])))
+            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
+            update = abs(t2 - t1) > 60
+            if update == False:
+                sources = json.loads(match[7])
+                return self.sources.extend(sources)
         except:
             pass
 
 
         try:
             url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            url = dbcur.fetchone()
-            url = url[4]
-        except:
-            pass
-
-        try:
             if url == None: url = call.movie(imdb, title, year)
             if url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
-            dbcon.commit()
         except:
             pass
 
@@ -929,11 +903,17 @@ class sources:
             sources = call.sources(url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title), year, imdb))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
+		
+		
+		
+		
+		
+		
         return sources
 		
 
@@ -946,51 +926,39 @@ class sources:
         if r:
 			source = r
         else: source = "zen"
-        print ("ZEN MOVIESOURCES NEW ", title,year,imdb,source,call)
-		
+       
 		
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_url (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""rel_url TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
         except:
             pass
-
-
-
+			
+        type = "episode"
+        try:
+            sources = []
+            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
+            match = dbcur.fetchone()
+            t1 = int(re.sub('[^0-9]', '', str(match[8])))
+            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
+            update = abs(t2 - t1) > 60
+            if update == False:
+                sources = json.loads(match[7])
+                return self.sources.extend(sources)
+        except:
+            pass
         try:
             url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            url = dbcur.fetchone()
-            url = url[4]
-        except:
-            pass
-
-        try:
             if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, year)
             if url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
-            dbcon.commit()
         except:
             pass
-
         try:
             ep_url = None
-            dbcur.execute("SELECT * FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            ep_url = dbcur.fetchone()
-            ep_url = ep_url[4]
-        except:
-            pass
-
-        try:
             if url == None: raise Exception()
             if ep_url == None: ep_url = call.episode(url, imdb, tvdb, title, premiered, season, episode)
             if ep_url == None: raise Exception()
-            dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, season, episode, ep_url))
-            dbcon.commit()
         except:
             pass
 
@@ -999,12 +967,19 @@ class sources:
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
+            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, tvdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
         except:
             pass
-			
+
+
+
+
+		
+		
+		
+		
         return sources
 	
 

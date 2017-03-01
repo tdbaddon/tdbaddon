@@ -26,7 +26,7 @@ from resources.lib.modules import client,control,cache
 
 
 action              = None
-metaget             = metahandlers.MetaData(preparezip=False)
+#metaget             = metahandlers.MetaData(preparezip=False)
 language            = xbmcaddon.Addon().getLocalizedString
 setSetting          = xbmcaddon.Addon().setSetting
 getSetting          = xbmcaddon.Addon().getSetting
@@ -50,6 +50,9 @@ viewData            = os.path.join(dataPath,'views.cfg')
 offData             = os.path.join(dataPath,'offset.cfg')
 favData             = os.path.join(dataPath,'favourites.cfg')
 exodusName          = 'plugin.video.exodus'
+tmdb_api_key        = re.sub(r'[^a-zA-Z0-9]', '', getSetting("tmdb_api_key"))
+if not tmdb_api_key == "": metaget = metahandlers.MetaData(preparezip=False, tmdb_api_key=tmdb_api_key)
+else: metaget = metahandlers.MetaData(preparezip=False)
 
 
 class main:
@@ -960,7 +963,7 @@ class root:
         rootList.append({'name': 30517, 'image': 'People.png', 'action': 'people_movies'})
         #rootList.append({'name': 30509, 'image': 'Languages.png', 'action': 'languages_movies'})
         rootList.append({'name': 30510, 'image': 'Favourites.png', 'action': 'movies_favourites'})
-        rootList.append({'name': 30511, 'image': 'Search.png', 'action': 'movies_search'})
+        #rootList.append({'name': 30511, 'image': 'Search.png', 'action': 'movies_search'})
         index().rootList(rootList)
         index().downloadList()
 
@@ -1351,11 +1354,13 @@ class movies:
 
                 url = client.parseDOM(movie, "a", ret="href")[0]
                 url = client.replaceHTMLCodes(url)
+                if url.startswith("//"): url = "http:%s" % url
                 url = url.encode('utf-8')
                 #print url
 
                 image = client.parseDOM(movie, "img", ret="src")[0]
                 image = client.replaceHTMLCodes(image)
+                if image.startswith("//"): image = "http:%s" % image
                 image = image.encode('utf-8')
                 #print image
 
@@ -1371,13 +1376,13 @@ class movies:
                     genre = ''
 
                 '''try:
-                    plot = movie['post_content']
+                    plot = client.parseDOM(movie, "div", attrs = { "class": "plot" })[0]
                     plot = client.replaceHTMLCodes(plot)
                     plot = plot.encode('utf-8')
+                    print ":::plot:::", plot
                 except:
-                    plot = ''
-                    '''
-                plot = ''    
+                    plot = '''
+                plot = ''
 
                 self.list.append({'name': name, 'url': url, 'image': image, 'title': title, 'year': year, 'imdb': '0', 'genre': genre, 'plot': plot, 'next': next})
             except:
@@ -1423,10 +1428,12 @@ class movies:
 
                 url = movie['url']
                 url = client.replaceHTMLCodes(url)
+                if url.startswith("//"): url = "http:%s" % url
                 url = url.encode('utf-8')
 
                 image = client.parseDOM(r1, "meta", ret="content", attrs = { "itemprop": "thumbnail" })[0]
                 image = client.replaceHTMLCodes(image)
+                if image.startswith("//"): image = "http:%s" % image
                 image = image.encode('utf-8')
 
                 try:
@@ -1615,6 +1622,7 @@ class resolver:
         return url
         
     def tinkle(self, url, name):
+        #if url.startswith("//"): url = "http:%s" % url
         referer = url
 
         try:
