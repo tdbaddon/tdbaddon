@@ -56,7 +56,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.audio.mp3streams"
        name="MP3 Streams"
-       version="1.2.4"
+       version="1.2.4a"
        provider-name="kinkin, art by Marquerite">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -2082,7 +2082,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.150" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.151" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2834,7 +2834,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.3.7"
+       version="6.3.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3648,7 +3648,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-    <addon id="repository.thgiliwt" name="Thgiliwt Addon Repository" version="1.0.2" provider-name="Twilight0">
+    <addon id="repository.thgiliwt" name="Thgiliwt Addon Repository" version="1.0.3" provider-name="Thgiliwt">
         <extension point="xbmc.addon.repository" name="Thgiliwt Addon Repository">
             <dir>
                 <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -4114,7 +4114,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.14" provider-name="tknorris">
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.15" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

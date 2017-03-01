@@ -104,19 +104,18 @@ class Scraper(scraper.Scraper):
         query = '%s season %s' % (title, season)
         data = {'story': query, 'do': 'search', 'subaction': 'search'}
         html = self._http_get(self.base_url + '/', data=data, require_debrid=True, cache_limit=8)
-        for div in dom_parser.parse_dom(html, 'div', {'class': 'box-title'}):
+        for div in dom_parser.parse_dom(html, 'div', {'class': 'cover_infos_title'}):
             for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', div):
                 match_url, match_title = match.groups()
                 if '/tv-pack/' in match_url: continue
                 
-                match_title = re.sub('</?span[^>]*>', '', match_title)
+                match_title = re.sub('(</?span[^>]*>|</?b>)', '', match_title)
                 match_season = re.search('Season\s+(\d+)', match_title, re.I)
                 if match_season:
                     match_season = int(match_season.group(1))
                     if not season or season == match_season:
-                        q_str, quality = self.__get_quality(match_url)
+                        _q_str, quality = self.__get_quality(match_url)
                         if Q_ORDER[quality] <= self.max_qorder:
-                            match_title = '%s [%s]' % (match_title, q_str)
                             result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality}
                             results.append(result)
         

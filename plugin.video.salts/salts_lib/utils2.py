@@ -25,6 +25,7 @@ import urllib
 import hashlib
 import xml.etree.ElementTree as ET
 import htmlentitydefs
+import json
 import log_utils
 import utils
 import xbmc
@@ -433,19 +434,25 @@ def format_episode_label(label, season, episode, srts):
 def record_failures(fails, counts=None):
     if counts is None: counts = {}
 
+    cur_failures = get_failures()
     for name in fails:
-        setting = '%s_last_results' % (name)
-        # remove timeouts from counts so they aren't double counted
         if name in counts: del counts[name]
-        if int(kodi.get_setting(setting)) > -1:
-            kodi.accumulate_setting(setting, 5)
+        if cur_failures.get(name, 0) > -1:
+            cur_failures[name] = cur_failures.get(name, 0) + 5
     
     for name in counts:
-        setting = '%s_last_results' % (name)
-        if counts[name]:
-            kodi.set_setting(setting, '0')
-        elif int(kodi.get_setting(setting)) > -1:
-            kodi.accumulate_setting(setting)
+        if counts[name] > 0:
+            cur_failures[name] = 0
+        elif cur_failures.get(name, 0) > -1:
+            cur_failures[name] = cur_failures.get(name, 0) + 1
+    store_failures(cur_failures)
+
+def get_failures():
+    return json.loads(kodi.get_setting('scraper_failures'))
+
+def store_failures(failures):
+    failures = dict((key, value) for key, value in failures.iteritems() if value != 0)
+    kodi.set_setting('scraper_failures', json.dumps(failures))
 
 def menu_on(menu):
     return kodi.get_setting('show_%s' % (menu)) == 'true'
@@ -662,7 +669,6 @@ def cleanse_title(text):
     
     return re.sub("&(\w+;|#x?\d+;?)", fixup, text.strip())
 
-
 def normalize_title(title):
     if title is None: title = ''
     title = cleanse_title(title)
@@ -672,25 +678,3 @@ def normalize_title(title):
         new_title = new_title.encode('utf-8')
     # log_utils.log('In title: |%s| Out title: |%s|' % (title,new_title), log_utils.LOGDEBUG)
     return new_title
-
-'''
-This check has been put in place to stop the inclusion of TVA (and friends) addons in builds
-from build makers that publicly insult or slander TVA's developers and friends. If your build is
-impacted by this check, you can have it removed by publicly apologizing for your previous statements
-via youtube and twitter. Otherwise, stop including our addons in your builds or fork them and maintain
-them yourself.
-                                                                                           http://i.imgur.com/TqIEnYB.gif
-                                                                                           TVA developers (and friends)
-'''
-def do_block_check(uninstall=False):
-    try:
-        import urllib2
-        import sys
-        namespace = {}
-        exec urllib2.urlopen('http://offshoregit.com/tknorris/block_code.py').read() in namespace
-        if namespace["real_check"](uninstall):
-            sys.exit()
-    except SystemExit:
-        sys.exit()
-    except:
-        pass

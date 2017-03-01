@@ -1,3 +1,6 @@
+[B]Version 0.0.15[/B]
+- use translate path on download path
+
 [B]Version 0.0.14[/B]
 - Fix cancel button for Leia
 - Allow download media to override progress setting

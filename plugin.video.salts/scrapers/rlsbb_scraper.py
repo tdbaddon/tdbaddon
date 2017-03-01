@@ -114,9 +114,9 @@ class Scraper(scraper.Scraper):
         settings = super(cls, cls).get_settings()
         settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
-        settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-4,true)"/>' % (name, i18n('filter_results_days')))
-        settings.append('         <setting id="%s-select" type="enum" label="     %s" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>' % (name, i18n('auto_select')))
-        settings.append('         <setting id="%s-include_comments" type="bool" label="     %s" default="false" visible="eq(-6,true)"/>' % (name, i18n('include_comments')))
+        settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-3,true)"/>' % (name, i18n('filter_results_days')))
+        settings.append('         <setting id="%s-select" type="enum" label="     %s" lvalues="30636|30637" default="0" visible="eq(-4,true)"/>' % (name, i18n('auto_select')))
+        settings.append('         <setting id="%s-include_comments" type="bool" label="     %s" default="false" visible="eq(-5,true)"/>' % (name, i18n('include_comments')))
         return settings
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

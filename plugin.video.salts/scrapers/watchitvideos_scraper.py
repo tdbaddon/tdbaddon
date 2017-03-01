@@ -28,7 +28,7 @@ from salts_lib.constants import Q_ORDER
 from salts_lib.constants import XHR
 import scraper
 
-BASE_URL = 'http://watchitvideos.co'
+BASE_URL = 'http://watchitvideos.info'
 Q_MAP = {'1080P HD': QUALITIES.HD1080, '720P HD': QUALITIES.HD720, 'HD': QUALITIES.HD720, 'DVD': QUALITIES.HIGH}
 
 class Scraper(scraper.Scraper):

@@ -30,7 +30,7 @@ import scraper
 VIDEO_URL = '/video_info/iframe'
 
 class Scraper(scraper.Scraper):
-    OPTIONS = ['https://xmovies8.org', 'http://genvideos.org', 'https://putlockerhd.co']
+    OPTIONS = ['https://xmovies8.org', 'https://putlockerhd.co']
     
     def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
         self.timeout = timeout
@@ -82,7 +82,14 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         search_url = urlparse.urljoin(self.base_url, '/results')
-        html = self._http_get(search_url, params={'q': title}, cache_limit=1)
+        params = {'q': title}
+        referer = search_url + '?' + urllib.urlencode(params)
+        headers = {'Referer': referer}
+        headers.update(XHR)
+        _html = self._http_get(urlparse.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=1)
+
+        cookies = {'begin_referer': referer}
+        html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=1)
         results = []
         for result in dom_parser.parse_dom(html, 'div', {'class': 'cell'}):
             match = re.search('class="video_title".*?href="([^"]+)"[^>]*>\s*([^<]+)', result, re.DOTALL)

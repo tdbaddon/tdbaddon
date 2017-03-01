@@ -37,7 +37,7 @@ MODES = __enum(
     RESET_FAILS='reset_failures', MANAGE_PROGRESS='toggle_progress', AUTOPLAY='autoplay', INSTALL_THEMES='install_themes', RESET_REL_URLS='reset_rel_urls',
     ANTICIPATED='anticipated', SHOW_REWATCH='show_rewatch', PICK_REWATCH_LIST='pick_rewatch_list', SET_REWATCH_LIST='set_rewatch_list', MANAGE_REWATCH='manage_rewatch',
     BUILD_SOURCE_DIR='build_source_dir', GENRES='genres', SHOW_GENRE='show_genre', PRUNE_CACHE='prune_cache', AUTH_TORBA='auth_torba', FLUSH_IMAGES='flush_images',
-    REFRESH_IMAGES='refresh_images', RESET_TORBA='reset_torba', INSTALL_CACHE='install_cache')
+    REFRESH_IMAGES='refresh_images', RESET_TORBA='reset_torba', INSTALL_CACHE='install_cache', REPAIR_URLRESOLVER='repair_urlresolver')
 SECTIONS = __enum(TV='TV', MOVIES='Movies')
 VIDEO_TYPES = __enum(TVSHOW='TV Show', MOVIE='Movie', EPISODE='Episode', SEASON='Season')
 CONTENT_TYPES = __enum(TVSHOWS='tvshows', MOVIES='movies', SEASONS='seasons', EPISODES='episodes', FILES='files', ADDONS='addons')

@@ -309,5 +309,8 @@ STRINGS = {
     'refresh_images': 30300,
     'scraper_updated': 30301,
     'reset_torba': 30302,
-    'torba_auth_reset': 30303
+    'torba_auth_reset': 30303,
+    'repair_urlresolver': 30304,
+    'repair_line_1': 30305,
+    'smu_failed': 30306
 }

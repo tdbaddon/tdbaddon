@@ -1186,6 +1186,18 @@ msgctxt "#30303"
 msgid "Torba Authorization Reset"
 msgstr ""
 
+msgctxt "#30304"
+msgid "Repair URLResolver"
+msgstr ""
+
+msgctxt "#30305"
+msgid "Restart Kodi and then Run Repair URLResolver again"
+msgstr ""
+
+msgctxt "#30306"
+msgid "URLResolver failed to load. Try Settings->Repair URLResolver"
+msgstr ""
+
 msgctxt "#30500"
 msgid "Addon Theme"
 msgstr ""

@@ -1,3 +1,6 @@
+### [B]1.0.3[/B] - 27-Feb-2017
+- Corrected author name
+
 ### [B]1.0.2[/B] - 03-Sep-2016
 - Fix for error in addon.xml
 

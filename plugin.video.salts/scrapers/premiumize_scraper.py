@@ -276,12 +276,12 @@ class Scraper(scraper.Scraper):
         settings = super(cls, cls).get_settings()
         settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
-        settings.append('         <setting id="%s-use_https" type="bool" label="     %s" default="false" visible="eq(-4,true)"/>' % (name, i18n('use_https')))
-        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-5,true)"/>' % (name, i18n('username')))
-        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-6,true)"/>' % (name, i18n('password')))
-        settings.append('         <setting id="%s-base_url2" type="text" label="     %s %s" default="%s" visible="eq(-7,true)"/>' % (name, i18n('movies'), i18n('base_url'), cls.movie_base_url))
-        settings.append('         <setting id="%s-base_url3" type="text" label="     %s %s" default="%s" visible="eq(-8,true)"/>' % (name, i18n('tv_shows'), i18n('base_url'), cls.tv_base_url))
-        settings.append('         <setting id="%s-include_trans" type="bool" label="     %s" default="true" visible="eq(-9,true)"/>' % (name, i18n('include_transcodes')))
+        settings.append('         <setting id="%s-use_https" type="bool" label="     %s" default="false" visible="eq(-3,true)"/>' % (name, i18n('use_https')))
+        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
+        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
+        settings.append('         <setting id="%s-base_url2" type="text" label="     %s %s" default="%s" visible="eq(-6,true)"/>' % (name, i18n('movies'), i18n('base_url'), cls.movie_base_url))
+        settings.append('         <setting id="%s-base_url3" type="text" label="     %s %s" default="%s" visible="eq(-7,true)"/>' % (name, i18n('tv_shows'), i18n('base_url'), cls.tv_base_url))
+        settings.append('         <setting id="%s-include_trans" type="bool" label="     %s" default="true" visible="eq(-8,true)"/>' % (name, i18n('include_transcodes')))
         return settings
 
     def _json_get(self, url, params=None, data=None, allow_redirect=True, cache_limit=8):

@@ -29,7 +29,7 @@ from salts_lib.constants import SHORT_MONS
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://2ddl.org'
+BASE_URL = 'http://iiddl.com'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
 EXCLUDE_LINKS = ['adf.ly', urlparse.urlparse(BASE_URL).hostname]
 
@@ -84,7 +84,7 @@ class Scraper(scraper.Scraper):
         settings = super(cls, cls).get_settings()
         settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
-        settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-4,true)"/>' % (name, i18n('filter_results_days')))
+        settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-3,true)"/>' % (name, i18n('filter_results_days')))
         return settings
 
     def _get_episode_url(self, show_url, video):

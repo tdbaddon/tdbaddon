@@ -141,7 +141,7 @@ def download_media(url, path, file_name, translations, progress=None):
             full_path = os.path.join(path, file_name)
             log_utils.log('Downloading: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
     
-            path = xbmc.makeLegalFilename(path)
+            path = kodi.translate_path(xbmc.makeLegalFilename(path))
             try:
                 try: xbmcvfs.mkdirs(path)
                 except: os.makedirs(path)

@@ -62,9 +62,9 @@ def perform_auto_conf(responses):
                      ['vivo.to', 'IceFilms', 'Flixanity', 'Watch5s', 'WatchEpisodes', 'WatchItVideos', 'PrimeWire', 'alluc.com', 'tvonline', 'SolarMovie', 'SantaSeries'],
                      ['Vebup', 'MoviePool', 'WatchSeries', 'Putlocker', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K'],
                      ['MovieZone', 'MovieHubs', 'tvrush', 'afdah', 'MiraDeTodo', 'Filmovizija', 'wso.ch', 'MovieSub', 'MovieHut', 'CouchTunerV1', 'Watch8Now', 'SnagFilms'],
-                     ['WatchFilm', 'treasureen', 'MoviePool', 'yshows', 'iWatchOnline', 'vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac'],
+                     ['WatchFilm', 'treasureen', 'MoviePool', 'iWatchOnline', 'vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac'],
                      ['SpaceMov', 'LosMovies', 'wmo.ch', 'stream-tv.co', 'MintMovies', 'MovieNight', 'cmz', 'SeriesCoco', 'filmikz.ch', 'clickplay.to'],
-                     ['MovieTube', 'FilmStreaming.in']]
+                     ['MovieTube']]
         
             sso = []
             random_sso = kodi.get_setting('random_sso') == 'true'

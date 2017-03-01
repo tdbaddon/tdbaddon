@@ -174,10 +174,10 @@ class Scraper(scraper.Scraper):
         settings = super(cls, cls).get_settings()
         settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
-        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
-        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
-        settings.append('         <setting id="%s-result_limit" label="     %s" type="slider" default="10" range="10,100" option="int" visible="eq(-6,true)"/>' % (name, i18n('result_limit')))
-        settings.append('         <setting id="%s-size_limit" label="     %s" type="slider" default="0" range="0,50" option="int" visible="eq(-7,true)"/>' % (name, i18n('size_limit')))
+        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-3,true)"/>' % (name, i18n('username')))
+        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-4,true)"/>' % (name, i18n('password')))
+        settings.append('         <setting id="%s-result_limit" label="     %s" type="slider" default="10" range="10,100" option="int" visible="eq(-5,true)"/>' % (name, i18n('result_limit')))
+        settings.append('         <setting id="%s-size_limit" label="     %s" type="slider" default="0" range="0,50" option="int" visible="eq(-6,true)"/>' % (name, i18n('size_limit')))
         return settings
 
     def _http_get(self, url, data=None, retry=True, allow_redirect=True, cache_limit=8):

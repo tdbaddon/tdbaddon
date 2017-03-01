@@ -225,7 +225,6 @@ class Scraper(scraper.Scraper):
         settings = [
             '         <setting id="%s-enable" type="bool" label="%s %s" default="true" visible="true"/>' % (name, name, i18n('enabled')),
             '         <setting id="%s-sub_check" type="bool" label="    %s" default="false" visible="eq(-1,true)"/>' % (name, i18n('page_existence')),
-            '         <setting id="%s_last_results" type="number" default="0" visible="false"/>' % (name)
         ]
         return settings
 

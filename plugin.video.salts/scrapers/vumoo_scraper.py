@@ -112,17 +112,18 @@ class Scraper(scraper.Scraper):
 
     def __episode_match(self, video, show_url):
         show_url = urlparse.urljoin(self.base_url, show_url)
-        html = self._http_get(show_url, require_debrid=True, cache_limit=2)
+        html = self._http_get(show_url, cache_limit=2)
         force_title = scraper_utils.force_title(video)
 
         if not force_title:
-            items = dom_parser.parse_dom(html, 'li', {'id': 'season%s-%s' % (video.season, video.episode)})
-            if items:
-                return items[0]
+            pattern = '''<li\s+id=['"]?season%s-%s['"]?>.*?</ul>''' % (video.season, video.episode)
+            match = re.search(pattern, html, re.DOTALL)
+            if match:
+                return match.group(0)
             
         if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
             norm_title = scraper_utils.normalize_title(video.ep_title)
-            for episode in dom_parser.parse_dom(html, 'li', {'id': 'season\d+-\d+'}):
+            for episode in re.finditer('''<li\s+id=['"]?season\d+-\d+['"]?>.*?</ul>''', html, re.DOTALL):
                 ep_title = dom_parser.parse_dom(episode, 'h2')
                 if ep_title and norm_title == scraper_utils.normalize_title(ep_title[0]):
                     return episode

@@ -121,22 +121,21 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        if title:
-            norm_title = scraper_utils.normalize_title(title)
-            page = '/tv-show' if video_type == VIDEO_TYPES.TVSHOW else '/movies'
-            for sort in ['featured', 'popular']:
-                search_url = '%s?sort=%s&startwith=%s' % (page, sort, title[0])
-                search_url = urlparse.urljoin(self.base_url, search_url)
-                html = self._http_get(search_url, cache_limit=8)
-                fragment = dom_parser.parse_dom(html, 'ul', {'class': 'thumbnails'})
-                if fragment:
-                    links = dom_parser.parse_dom(fragment[0], 'a', {'class': 'thumbnail'}, ret='href')
-                    titles = dom_parser.parse_dom(fragment[0], 'div', {'class': 'title hide'})
-                    for match_url, match_title_year in zip(links, titles):
-                        match_title, match_year = scraper_utils.extra_year(match_title_year)
-                        if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                            result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                            results.append(result)
+        search_in = 'm' if video_type == VIDEO_TYPES.MOVIE else 't'
+        search_url = urlparse.urljoin(self.base_url, '/search')
+        html = self._http_get(search_url, data={'searchquery': title, 'searchin': search_in}, cache_limit=8)
+        try:
+            fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*search-page[^"]*'})
+            fragment = dom_parser.parse_dom(fragment[0], 'table')
+            for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', fragment[0]):
+                match_url, match_title_year = match.groups()
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
+                if not year or not match_year or year == match_year:
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                    results.append(result)
+        except:
+            pass
+        
         return results
 
     def _get_episode_url(self, show_url, video):

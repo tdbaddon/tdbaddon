@@ -9,7 +9,7 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 
 __all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'watchseries_scraper', 'movie25_scraper', 'nitertv_scraper',
-           'filmovizjia_scraper', 'icefilms_scraper', 'viooz_scraper', 'filmstreaming_scraper', 'myvideolinks_scraper',
+           'filmovizjia_scraper', 'icefilms_scraper', 'viooz_scraper', 'myvideolinks_scraper',
            'filmikz_scraper', 'vidnow4k_proxy', 'downloadtube_scraper', 'iwatch_scraper', 'ororotv_scraper', 'vidics_scraper',
            'losmovies_scraper', 'movie4k_scraper', 'easynews_scraper', 'moviepool_scraper', 'noobroom_scraper',
            'directdl_scraper', 'streamallthis_scraper', 'afdah_scraper', 'dizibox_scraper', 'torba_scraper', 'yesmovies_scraper',
@@ -19,7 +19,7 @@ __all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'watchseries_scrap
            'couchtunerv1_scraper', 'ddlvalley_scraper', 'pelispedia_scraper', 'spacemov_scraper', 'putmv_scraper',
            'watch8now_scraper', 'dizilab_scraper', 'dizimag_scraper', 'moviehut_scraper', 'serieswatch_scraper', 'dizist_scraper',
            'dizigold_scraper', 'onlinemoviespro_scraper', 'emoviespro_scraper', 'one23movies_proxy', 'rlsbb_scraper',
-           'sezonlukdizi_scraper', 'movietube_scraper', 'putlocker_scraper', 'yshows_scraper', 'diziay_scraper', 'scenehdtv_scraper',
+           'sezonlukdizi_scraper', 'movietube_scraper', 'putlocker_scraper', 'diziay_scraper', 'scenehdtv_scraper',
            'furk_scraper', 'hevcbluray_scraper', 'ninemovies_proxy', 'miradetodo_scraper', 'dizipas_scraper', 'xmovies8v2_scraper',
            'moviesplanet_scraper', 'premiumize_scraper', 'tvonline_scraper', 'farda_scraper', 'watchitvideos_scraper', 'watchfilm_scraper',
            'ddlseries_scraper', 'fmovie_scraper', 'seriescoco_scraper', 'veocube_scraper', 'solar_scraper', 'piratejunkies_scraper',

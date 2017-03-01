@@ -74,7 +74,7 @@ class Scraper(scraper.Scraper):
 
     def __get_links(self, html):
         hosters = []
-        r = re.search('salt\("([^"]+)', html)
+        r = re.search('tlas\("([^"]+)', html)
         if r:
             plaintext = self.__caesar(self.__get_f(self.__caesar(r.group(1), 13)), 13)
             sources = self._parse_sources_list(plaintext)
@@ -114,8 +114,9 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         search_url = urlparse.urljoin(self.base_url, '/wp-content/themes/afdah/ajax-search.php')
-        data = {'search': title, 'type': 'title'}
+        data = {'yreuq': title, 'meti': 'title'}
         html = self._http_get(search_url, data=data, headers=XHR, cache_limit=1)
+        log_utils.log(html)
         for item in dom_parser.parse_dom(html, 'li'):
             match_url = dom_parser.parse_dom(item, 'a', ret='href')
             match_title_year = dom_parser.parse_dom(item, 'a')

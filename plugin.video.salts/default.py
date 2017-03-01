@@ -20,12 +20,12 @@ import os
 import re
 import datetime
 import time
+import shutil
 import xbmcplugin
 import xbmcgui
 import xbmc
 import xbmcvfs
 import json
-import urlresolver
 import kodi
 import log_utils
 import utils
@@ -43,6 +43,11 @@ from salts_lib.constants import *  # @UnusedWildImport
 from salts_lib.utils2 import i18n
 from scrapers import *  # import all scrapers into this namespace @UnusedWildImport
 from scrapers import ScraperVideo
+
+try:
+    import urlresolver
+except:
+    kodi.notify(msg=i18n('smu_failed'), duration=5000)
 
 TOKEN = kodi.get_setting('trakt_oauth_token')
 use_https = kodi.get_setting('use_https') == 'true'
@@ -81,6 +86,7 @@ def settings_menu():
     kodi.create_item({'mode': MODES.AUTO_CONF}, i18n('auto_config'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'), is_folder=False, is_playable=False)
     kodi.create_item({'mode': MODES.RESET_BASE_URL}, i18n('reset_base_url'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'), is_folder=False, is_playable=False)
     kodi.create_item({'mode': MODES.AUTH_TRAKT}, i18n('auth_salts'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'), is_folder=False, is_playable=False)
+    kodi.create_item({'mode': MODES.REPAIR_URLRESOLVER}, i18n('repair_urlresolver'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'))
     kodi.create_item({'mode': MODES.SHOW_VIEWS}, i18n('set_default_views'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'))
     kodi.create_item({'mode': MODES.BROWSE_URLS}, i18n('remove_cached_urls'), thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'))
     kodi.create_item({'mode': MODES.SETTINGS}, 'This addon developed and supported at www.tvaddons.ag', thumb=utils2.art('settings.png'), fanart=utils2.art('fanart.jpg'))
@@ -263,6 +269,16 @@ def install_themepak():
 def install_cache():
     xbmc.executebuiltin('RunPlugin(plugin://script.module.image_cache)')
 
+@url_dispatcher.register(MODES.REPAIR_URLRESOLVER)
+def repair_urlresolver():
+    try:
+        path = os.path.join(kodi.translate_path('special://home'), 'addons', 'script.module.urlresolver')
+        shutil.rmtree(path)
+        dlg = xbmcgui.Dialog()
+        dlg.ok(i18n('repair_urlresolver'), i18n('repair_line_1'))
+    except:
+        xbmc.executebuiltin('RunPlugin(plugin://script.module.urlresolver)')
+
 @url_dispatcher.register(MODES.RESET_BASE_URL)
 def reset_base_url():
     with kodi.WorkingDialog():
@@ -379,7 +395,7 @@ def scraper_settings():
     kodi.create_item({'mode': MODES.TOGGLE_ALL}, label, thumb=utils2.art('scraper.png'), fanart=utils2.art('fanart.jpg'), is_folder=False, is_playable=False)
     COLORS = ['green', 'limegreen', 'greenyellow', 'yellowgreen', 'yellow', 'orange', 'darkorange', 'orangered', 'red', 'darkred']
     fail_limit = int(kodi.get_setting('disable-limit'))
-    
+    cur_failures = utils2.get_failures()
     for i, cls in enumerate(scrapers):
         name = cls.get_name()
         label = '%s (Provides: %s)' % (name, str(list(cls.provides())).replace("'", ""))
@@ -388,11 +404,8 @@ def scraper_settings():
             toggle_label = i18n('enable_scraper')
         else:
             toggle_label = i18n('disable_scraper')
-        failures = kodi.get_setting('%s_last_results' % (name))
-        if not failures:
-            failures = 0
-            
-        if failures == '-1':
+        failures = cur_failures.get(cls.get_name(), 0)
+        if failures == -1:
             failures = 'N/A'
             index = 0
         else:
@@ -429,7 +442,9 @@ def reset_rel_urls(name):
     
 @url_dispatcher.register(MODES.RESET_FAILS, ['name'])
 def reset_fails(name):
-    kodi.set_setting('%s_last_results' % (name), '0')
+    failures = utils2.get_failures()
+    failures[name] = 0
+    utils2.store_failures(failures)
     kodi.refresh_container()
 
 @url_dispatcher.register(MODES.MOVE_TO, ['name'])

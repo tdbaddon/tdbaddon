@@ -5498,12 +5498,14 @@ def getNetworkTVPage():
     for chmain in jsondata[chlist]:
         v=0
         single=False
+        #print chmain
         if len(chmain[steamlist])<=1:
             single=True
         for chlist in chmain[steamlist]:
             v+=1
+            
             tt=chlist[token][:-1].decode("base64")
-
+            #print chmain[cname ][:-1].decode("base64"),tt,chlist
             if tt in tokentype:
                 tokentype[tt]+=1
             else:
@@ -5961,7 +5963,7 @@ def getPV2PlayAuth():
                 s[ind]=''
     return ''.join(s)
     
-def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None):    
+def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None, timetowait=None):    
     import  CustomPlayer,time
 
     localobject=aliveobject
@@ -5976,6 +5978,7 @@ def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None):
         if player.urlplayed and not keepactive:
             print 'yes played'
             return True
+        if timetowait and (time.time() -start)>timetowait: return False
         xbmc.sleep(1000)
     
     try:
@@ -6275,14 +6278,21 @@ def PlayNetworkTVLink(url,progress=None):
             headers.append(('User-Agent',anduseragent))
             
         
-        #authdata=getNetworkTVStringExtra(getUrl(posturl,headers=headers))
-        authdata=getUrl(posturl,headers=headers)
+        authdata2=getUrl(posturl,headers=headers)
+        authdata=getNetworkTVStringExtra(authdata2)
+        
         defplayua=anduseragent
         playua=url["player_user_agent"]
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
-        
+        finalurl2=url["streamurl"]+authdata2+"|User-Agent="+defplayua
+        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+        listitem.setMimeType("flv-application/octet-stream");
+        listitem.setContentLookup(False)
+        if not tryplay( finalurl , listitem,pdialogue= progress, timetowait=12):
+            tryplay( finalurl2 , listitem,pdialogue= progress, timetowait=12)
+        return
     elif token=="18":
         netData=getNetworkTVData()["data"][0]        
         posturl=url["streamurl"]
@@ -6325,14 +6335,23 @@ def PlayNetworkTVLink(url,progress=None):
         else:
             headers.append(('User-Agent',anduseragent))
             
+        authdata2=getUrl(posturl,headers=headers)
+        authdata=getNetworkTVStringExtra2(authdata2)
         
-        #authdata=getNetworkTVStringExtra2(getUrl(posturl,headers=headers))
-        authdata=getUrl(posturl,headers=headers)
         defplayua=anduseragent
         playua=url["player_user_agent"]
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
+        finalurl2=url["streamurl"]+authdata2+"|User-Agent="+defplayua
+        
+        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+        listitem.setMimeType("flv-application/octet-stream");
+        listitem.setContentLookup(False)
+        if not tryplay( finalurl , listitem,pdialogue= progress, timetowait=12):
+            tryplay( finalurl2 , listitem,pdialogue= progress, timetowait=12)
+        return
+        
     elif token in ["24","25","28","29","30","31","32"]:
         mapping={"24":   ["YW1pX2NoYmlz","TWVuX2Nob2Jpc18w","",0],
                 "25":["aXRob2toZW5pX3BhaHMw","QmVuX3BhaGlz","",0],

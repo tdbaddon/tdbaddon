@@ -226,9 +226,9 @@ class Scraper(scraper.Scraper):
     def get_settings(cls):
         settings = super(cls, cls).get_settings()
         name = cls.get_name()
-        settings.append('         <setting id="%s-get_token" label="    %s" type="action" action="RunPlugin(plugin://plugin.video.salts/?mode=auth_torba)" visible="eq(-4,true)"/>'
+        settings.append('         <setting id="%s-get_token" label="    %s" type="action" action="RunPlugin(plugin://plugin.video.salts/?mode=auth_torba)" visible="eq(-3,true)"/>'
                         % (name, i18n('torba_auth')))
-        settings.append('         <setting id="%s-reset_token" label="    %s" type="action" action="RunPlugin(plugin://plugin.video.salts/?mode=reset_torba)" visible="eq(-5,true)"/>'
+        settings.append('         <setting id="%s-reset_token" label="    %s" type="action" action="RunPlugin(plugin://plugin.video.salts/?mode=reset_torba)" visible="eq(-4,true)"/>'
                         % (name, i18n('reset_torba')))
         settings.append('         <setting id="%s-token" type="text" default="" visible="false"/>' % (name))
         settings.append('         <setting id="%s-refresh" type="text" default="" visible="false"/>' % (name))

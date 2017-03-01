@@ -208,13 +208,14 @@ def show_next_up():
         last_label = ''
 
 def manage_proxy():
-    if kodi.get_setting('proxy_enable') == 'true' and not image_proxy.RUNNING:
+    if kodi.get_setting('proxy_enable') == 'true' and not proxy.running:
         reload(image_proxy)
-        image_proxy.run()
-    image_proxy.manage_proxy()
+        proxy.run()
+    proxy.manage_proxy()
     
 errors = 0
 monitor = xbmc.Monitor()
+proxy = image_proxy.ImageProxy()
 while not monitor.abortRequested():
     try:
         isPlaying = service.isPlaying()
@@ -241,5 +242,5 @@ while not monitor.abortRequested():
     if monitor.waitForAbort(.5):
         break
     
-image_proxy.stop_proxy()
+proxy.stop_proxy()
 log_utils.log('Service: shutting down...', log_utils.LOGNOTICE, COMPONENT)

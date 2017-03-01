@@ -73,7 +73,13 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         search_url = urlparse.urljoin(self.base_url, '/results')
         params = {'q': title}
-        html = self._http_get(search_url, params=params, cache_limit=1)
+        referer = search_url + '?' + urllib.urlencode(params)
+        headers = {'Referer': referer}
+        headers.update(XHR)
+        _html = self._http_get(urlparse.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=1)
+
+        cookies = {'begin_referer': referer}
+        html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=1)
         results = []
         pattern = 'class="video_title".*?href="([^"]+)">([^<]+).*?Year</b>:\s*(\d*)'
         for match in re.finditer(pattern, html, re.DOTALL):

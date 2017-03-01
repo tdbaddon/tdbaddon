@@ -26,7 +26,6 @@ import urllib
 import urllib2
 import urlparse
 import xbmcgui
-import urlresolver
 from salts_lib import cloudflare
 from salts_lib import cf_captcha
 import kodi
@@ -39,6 +38,11 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 from salts_lib.db_utils import DB_Connection
 from salts_lib.utils2 import i18n
+
+try:
+    import urlresolver
+except:
+    kodi.notify(msg=i18n('smu_failed'), duration=5000)
 
 BASE_URL = ''
 CAPTCHA_BASE_URL = 'http://www.google.com/recaptcha/api'
@@ -216,7 +220,6 @@ class Scraper(object):
             '         <setting id="%s-enable" type="bool" label="%s %s" default="true" visible="true"/>' % (name, name, i18n('enabled')),
             '         <setting id="%s-base_url" type="text" label="    %s" default="%s" visible="eq(-1,true)"/>' % (name, i18n('base_url'), cls.base_url),
             '         <setting id="%s-sub_check" type="bool" label="    %s" default="true" visible="eq(-2,true)"/>' % (name, i18n('page_existence')),
-            '         <setting id="%s_last_results" type="number" default="0" visible="false"/>' % (name),
         ]
 
     @classmethod

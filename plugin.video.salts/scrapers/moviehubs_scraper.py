@@ -28,9 +28,9 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 
-BASE_URL = 'http://moviehubs.net'
+BASE_URL = 'http://putlockers.mn'
 GK_URL = BASE_URL + '/media/plugins/gkpluginsphp.php'
-HOST_SUB = {'dailymotion': 'idowatch.net', 'other': 'watchers.to', 'veoh': 'entervideo.net'}
+HOST_SUB = {'dailymotion': 'idowatch.net', 'other': 'watchers.to', 'veoh': 'entervideo.net', 'mega': 'entervideo.net'}
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -50,22 +50,27 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         if self.base_url in link:
             html = self._http_get(link, cache_limit=.25)
-            html = self.__decode_link(html)
-            iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
-            if iframe_url:
-                return iframe_url[0]
-        else:
-            return link
+            fragment = dom_parser.parse_dom(html, 'div', {'id': 'media-player'})
+            if fragment:
+                decode = self.__decode_link(fragment[0])
+                iframe_url = dom_parser.parse_dom(decode, 'iframe', ret='src')
+                if iframe_url:
+                    return iframe_url[0]
+                
+                href = dom_parser.parse_dom(fragment[0], 'a', {'target': '_blank'}, ret='href')
+                if href:
+                    return href[0]
+
+        return link
     
     def __decode_link(self, html):
         try:
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'player'})
-            match = re.search('decode\("([^"]+)', fragment[0])
+            match = re.search('decode\("([^"]+)', html)
             html = base64.b64decode(match.group(1))
             return html
         except Exception as e:
             log_utils.log('MovieHubs Resolve Exception: (%s) - %s' % (e, html), log_utils.LOGDEBUG)
-            return None
+            return ''
         
     def get_sources(self, video):
         source_url = self.get_url(video)
@@ -121,18 +126,18 @@ class Scraper(scraper.Scraper):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search-movies/%s.html' % (urllib.quote_plus(title)))
         html = self._http_get(search_url, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'thumb'}):
+        for item in dom_parser.parse_dom(html, 'div', {'class': 'ml-item'}):
             match_url = dom_parser.parse_dom(item, 'a', ret='href')
             match_title_year = re.search('onmouseover="([^"]+)', item)
-            year_frag = dom_parser.parse_dom(item, 'div', {'class': '[^"]*status-year[^"]*'})
             if match_url and match_title_year:
                 match_url = match_url[0]
                 match_title_year = match_title_year.group(1)
-                match = re.search('<b>\s*(.*)\s*</b>', match_title_year)
+                match = re.search('<b>(?:<i>)?\s*(.*?)\s*(?:</i>)?</b>', match_title_year)
                 if match: match_title_year = match.group(1)
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
-                if not match_year and year_frag:
-                    match_year = year_frag[0]
+                if not match_year:
+                    match_year = re.search('>Release:\s*(\d{4})', item)
+                    match_year = match_year.group(1) if match_year else ''
                                     
                 if not year or not match_year or year == match_year:
                     result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}

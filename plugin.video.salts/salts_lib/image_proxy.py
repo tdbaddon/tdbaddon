@@ -28,32 +28,70 @@ import image_scraper
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from BaseHTTPServer import HTTPServer
 
-RUNNING = False
-STOP_SERVER = False
-HOST = '127.0.0.1'
-SVR_THREAD = None
-PROXY_CACHE = {}
-LOG_FILE = kodi.translate_path(os.path.join(kodi.get_profile(), 'proxy.log'))
-
-REQ = {
-    'Movie': ['image_type', 'trakt_id', 'video_ids'],
-    'TV Show': ['image_type', 'trakt_id', 'video_ids'],
-    'Season': ['image_type', 'trakt_id', 'video_ids', 'season'],
-    'Episode': ['image_type', 'trakt_id', 'video_ids', 'season', 'episode'],
-    'person': ['image_type', 'trakt_id', 'video_ids', 'name', 'person_ids']
-}
-
 class ValidationError(Exception):
     pass
+
+class ImageProxy(object):
+    def __init__(self):
+        self.running = False
+        self.stop_server = False
+        self.svr_thread = None
+        self.host = '127.0.0.1'
+    
+    def run(self):
+        self.svr_thread = threading.Thread(target=self.start_proxy)
+        self.svr_thread.daemon = True
+        self.svr_thread.start()
+
+    def active(self):
+        return kodi.get_setting('proxy_enable') == 'true' and not self.stop_server
+     
+    def start_proxy(self):
+        port = int(kodi.get_setting('proxy_port') or self.get_port())
+        server_address = (self.host, port)
+        log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        httpd = MyHTTPServer(server_address, MyRequestHandler)
+        httpd.timeout = .5
+        while self.active():
+            self.running = True
+            httpd.handle_request()
+        log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        httpd.server_close()
+        self.running = False
+
+    def stop_proxy(self):
+        self.stop_server = True
+    
+    def manage_proxy(self):
+        if self.svr_thread is not None and not self.svr_thread.is_alive():
+            log_utils.log('Reaping proxy thread: %s' % (self.svr_thread))
+            self.svr_thread.join()
+            self.svr_thread = None
+
+    @staticmethod
+    def get_port():
+        port = random.randint(10000, 65535)
+        kodi.set_setting('proxy_port', port)
+        return port
 
 class MyHTTPServer(HTTPServer):
     def process_request(self, request, client_address):
         try: HTTPServer.process_request(self, request, client_address)
-        except IOError as e: log_utils.log('(%s) %s Error: %s' % (request.path, type(e), e), log_utils.LOGDEBUG)
+        except IOError as e: log_utils.log('Image Proxy Error: %s - %s' % (type(e), e), log_utils.LOGDEBUG)
         
 class MyRequestHandler(SimpleHTTPRequestHandler):
-    try: log_file = open(LOG_FILE, 'w')
-    except: log_file = None
+    proxy_cache = {}
+    LOG_FILE = kodi.translate_path(os.path.join(kodi.get_profile(), 'proxy.log'))
+    try: log_fd = open(LOG_FILE, 'w')
+    except: log_fd = None
+    base_req = ['image_type', 'trakt_id', 'video_ids']
+    required = {
+        'Movie': base_req,
+        'TV Show': base_req,
+        'Season': base_req + ['season'],
+        'Episode': base_req + ['season', 'episode'],
+        'person': base_req + ['name', 'person_ids']
+    }
     
     def _set_headers(self, code=200):
         self.send_response(code)
@@ -65,8 +103,8 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         
     def log_message(self, format, *args):
-        if self.log_file is not None:
-            self.log_file.write('[%s] %s\n' % (self.log_date_time_string(), format % (args)))
+        if self.log_fd is not None:
+            self.log_fd.write('[%s] %s\n' % (self.log_date_time_string(), format % (args)))
         
     def do_HEAD(self):
         return self.do_GET()
@@ -76,11 +114,10 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     
     def do_GET(self):
         try:
-            global PROXY_CACHE
-            fields = self.__validate(parse_query(self.path))
+            fields = self.__validate(self.parse_query(self.path))
             key = (fields['video_type'], fields['trakt_id'], fields.get('season', ''), fields.get('episode', ''))
-            if key in PROXY_CACHE:
-                images = PROXY_CACHE[key]
+            if key in self.proxy_cache:
+                images = self.proxy_cache[key]
             else:
                 video_ids = json.loads(fields['video_ids'])
                 if fields['video_type'] == image_scraper.OBJ_PERSON:
@@ -89,7 +126,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                     images = image_scraper.scrape_person_images(video_ids, person)
                 else:
                     images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''), screenshots=True)
-                PROXY_CACHE[key] = images
+                self.proxy_cache[key] = images
             image_url = images[fields['image_type']]
             if image_url is None:
                 self._set_headers()
@@ -107,11 +144,11 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
             raise ValidationError('Missing Video Type')
         
         video_type = params['video_type']
-        if video_type not in REQ:
+        if video_type not in self.required:
             raise ValidationError('Unrecognized Video Type')
         
-        required = REQ[video_type][:]
-        for key in REQ[video_type]:
+        required = self.required[video_type][:]
+        for key in self.required[video_type]:
             if key in params: required.remove(key)
         
         if required:
@@ -122,53 +159,15 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     def __send_error(self, msg):
         self.send_error(400, str(msg))
 
-def parse_query(path):
-    q = {}
-    query = urlparse.urlparse(path).query
-    if query.startswith('?'): query = query[1:]
-    queries = urlparse.parse_qs(query)
-    for key in queries:
-        if len(queries[key]) == 1:
-            q[key] = urllib.unquote(queries[key][0])
-        else:
-            q[key] = queries[key]
-    return q
-
-def get_port():
-    port = random.randint(10000, 65535)
-    kodi.set_setting('proxy_port', port)
-    return port
-
-def active():
-    return kodi.get_setting('proxy_enable') == 'true' and not STOP_SERVER
-
-def start_proxy():
-    global RUNNING
-    port = int(kodi.get_setting('proxy_port') or get_port())
-    server_address = (HOST, port)
-    log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
-    httpd = MyHTTPServer(server_address, MyRequestHandler)
-    httpd.timeout = .5
-    while active():
-        RUNNING = True
-        httpd.handle_request()
-    log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
-    RUNNING = False
-    httpd.server_close()
-
-def stop_proxy():
-    global STOP_SERVER
-    STOP_SERVER = True
-    
-def manage_proxy():
-    global SVR_THREAD
-    if SVR_THREAD is not None and not SVR_THREAD.is_alive():
-        log_utils.log('Reaping proxy thread: %s' % (SVR_THREAD))
-        SVR_THREAD.join()
-        SVR_THREAD = None
-    
-def run():
-    global SVR_THREAD
-    SVR_THREAD = threading.Thread(target=start_proxy)
-    SVR_THREAD.daemon = True
-    SVR_THREAD.start()
+    @staticmethod
+    def parse_query(path):
+        q = {}
+        query = urlparse.urlparse(path).query
+        if query.startswith('?'): query = query[1:]
+        queries = urlparse.parse_qs(query)
+        for key in queries:
+            if len(queries[key]) == 1:
+                q[key] = urllib.unquote(queries[key][0])
+            else:
+                q[key] = queries[key]
+        return q

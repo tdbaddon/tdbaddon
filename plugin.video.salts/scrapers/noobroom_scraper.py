@@ -125,9 +125,9 @@ class Scraper(scraper.Scraper):
     def get_settings(cls):
         settings = super(cls, cls).get_settings()
         name = cls.get_name()
-        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
-        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
-        settings.append('         <setting id="%s-include_premium" type="bool" label="     %s" default="false" visible="eq(-6,true)"/>' % (name, i18n('include_premium')))
+        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-3,true)"/>' % (name, i18n('username')))
+        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-4,true)"/>' % (name, i18n('password')))
+        settings.append('         <setting id="%s-include_premium" type="bool" label="     %s" default="false" visible="eq(-5,true)"/>' % (name, i18n('include_premium')))
         return settings
 
     def _http_get(self, url, params=None, data=None, headers=None, method=None, cache_limit=8):
