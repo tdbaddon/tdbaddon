@@ -378,8 +378,8 @@ def INDEX():
 	Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]KODIAPPS ADDON CHART[/B][/COLOR]',BASEURL,185,KODIAPPS_ICON,KODIAPPS_FANART,'')
 	Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
-	Common.addDir('[COLOR ghostwhite][B]SOURCE AND REPOSITORY CHECKER[/COLOR][/B]',BASEURL,184,KODIAPPS_ICON,KODIAPPS_FANART,'Information brought to you by kodiapps.com')
+	#Common.addItem('[COLOR ghostwhite][B]RUN THE ECHO SECURITY CHECK[/COLOR][/B]',BASEURL,181,TOOLS_ICON,FANART,'')
+	Common.addDir('[COLOR ghostwhite][B]SOURCE AND REPOSITORY STATUS CHECKER[/COLOR][/B]',BASEURL,184,KODIAPPS_ICON,KODIAPPS_FANART,'Information brought to you by kodiapps.com')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
@@ -1151,6 +1151,8 @@ def LATEST_ANDROID():
 
 def INSTALLER_APKS():
 
+	dialog.ok(AddonTitle, "This function is no longer supported in ECHO Wizard")
+	quit()
 	#FOR ADDON INSTALLER
 	if not xbmc.getCondVisibility('system.platform.android'):
 		dialog = xbmcgui.Dialog()
@@ -2455,6 +2457,9 @@ except:
 			quit()
 		if "target machine actively refused it" in er_value.lower():
 			dialog.ok(AddonTitle, "The connection could not be made because the target machine actively refused it. Please try again.")
+			quit()
+		if "socket.erro" in er_type.lower():
+			dialog.ok(AddonTitle, "The connection could not be made to the requested URL. Please try again.")
 			quit()
 
 		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhw')

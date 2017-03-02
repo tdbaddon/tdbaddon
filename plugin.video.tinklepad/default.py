@@ -109,6 +109,7 @@ class main:
         elif action == 'trailer':                   contextMenu().trailer(name, url)
         elif action == 'movies':                    movies().get(url, hd)
         elif action == 'movies_hd':                 movies().hd_movies()
+        elif action == 'movies_ts':                 movies().ts_movies()
         elif action == 'titles_movies':             titles().get()
         elif action == 'movies_release':            movies().release()
         elif action == 'movies_imdb':               movies().imdb()
@@ -568,11 +569,12 @@ class index:
                     cm.append((language(30411).encode("utf-8"), 'RunPlugin(%s?action=addon_home)' % (sys.argv[0])))
 
                 item = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=poster)
-                item.setInfo( type="Video", infoLabels = meta )
+                item.setInfo(type="Video", infoLabels = meta)
                 item.setProperty("IsPlayable", setPlayable)
                 item.setProperty("Video", "true")
                 item.setProperty("art(poster)", poster)
                 item.setProperty("Fanart_Image", fanart)
+                item.setArt({'poster': poster})
                 item.addContextMenuItems(cm, replaceItems=True)
                 xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=item,totalItems=total,isFolder=False)
             except:
@@ -950,6 +952,7 @@ class root:
         '''if showHD:
             rootList.append({'name': 30500, 'image': 'hd.png', 'action': 'movies_hd'})'''
         rootList.append({'name': 30500, 'image': 'hd.png', 'action': 'movies_hd'})
+        rootList.append({'name': 30520, 'image': 'ts.png', 'action': 'movies_ts'})
         rootList.append({'name': 30501, 'image': 'Title.png', 'action': 'titles_movies'})
         #rootList.append({'name': 30502, 'image': 'IMDb.png', 'action': 'movies_imdb'})
         rootList.append({'name': 30503, 'image': 'Release.png', 'action': 'movies_release'})
@@ -971,6 +974,7 @@ class link:
     def __init__(self):
         self.tinkle_base = 'http://tinklepad.ag'
         self.tinkle_hd = 'http://tinklepad.ag/latest-hd'
+        self.tinkle_ts = 'http://tinklepad.ag/latest-ts'
         #self.tinkle_ajax = 'http://tinklepad.ag/wp-admin/admin-ajax.php'
         #self.tinkle_post = '?meta_key=imdbRating&orderby=meta_value&order=desc'
         self.tinkle_title = self.tinkle_base
@@ -1250,6 +1254,12 @@ class movies:
         self.list = cache.get(self.tinkle_list, 1, link().tinkle_hd)
         index().movieList(self.list, hd)
         index().nextList(self.list, hd)
+        
+    def ts_movies(self):
+        #self.list = self.tinkle_list(link().tinkle_ts)
+        self.list = cache.get(self.tinkle_list, 1, link().tinkle_ts)
+        index().movieList(self.list)
+        index().nextList(self.list)
 
     def title(self):
         #self.list = self.tinkle_list(link().tinkle_title)

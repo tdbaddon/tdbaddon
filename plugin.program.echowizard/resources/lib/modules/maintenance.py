@@ -635,10 +635,12 @@ def purgePackages():
             file_count = 0
             file_count += len(files)
             if file_count > 0:            
-                for f in files:
-                    os.unlink(os.path.join(root, f))
-                for d in dirs:
-                    shutil.rmtree(os.path.join(root, d))
+                try:
+                    for f in files:
+                        os.unlink(os.path.join(root, f))
+                    for d in dirs:
+                        shutil.rmtree(os.path.join(root, d))
+                except: pass
                 dialog = xbmcgui.Dialog()
                 dialog.ok(MaintTitle, "Deleting Packages all done")
             else:
@@ -657,15 +659,17 @@ def Fix_Special(url):
     dialog = xbmcgui.Dialog()
     dp.create(AddonTitle,"Renaming paths...",'', '')
     url = xbmc.translatePath('special://userdata')
-    for root, dirs, files in os.walk(url):
-        for file in files:
-            if file.endswith(".xml"):
-                 dp.update(0,"Fixing","[COLOR yellowgreen]" + file + "[/COLOR]", "Please wait.....")
-                 a=open((os.path.join(root, file))).read()
-                 b=a.replace(HOME, 'special://home/')
-                 f= open((os.path.join(root, file)), mode='w')
-                 f.write(str(b))
-                 f.close()
+    try:
+        for root, dirs, files in os.walk(url):
+            for file in files:
+                if file.endswith(".xml"):
+                     dp.update(0,"Fixing","[COLOR yellowgreen]" + file + "[/COLOR]", "Please wait.....")
+                     a=open((os.path.join(root, file))).read()
+                     b=a.replace(HOME, 'special://home/')
+                     f= open((os.path.join(root, file)), mode='w')
+                     f.write(str(b))
+                     f.close()
+    except: pass
 
     dialog.ok(MaintTitle, "All physical paths have been converted to special","To complete this process you must force close Kodi now!")
     Common.KillKodi()
@@ -1305,11 +1309,13 @@ def AUTO_CLEAR_PACKAGES_MB():
     for root, dirs, files in os.walk(purgePath):
             file_count = 0
             file_count += len(files)
-            if file_count > 0:            
-                for f in files:
-                    os.unlink(os.path.join(root, f))
-                for d in dirs:
-                    shutil.rmtree(os.path.join(root, d))
+            if file_count > 0:
+                try:
+                    for f in files:
+                        os.unlink(os.path.join(root, f))
+                    for d in dirs:
+                        shutil.rmtree(os.path.join(root, d))
+                except: pass
 
 def AUTO_CLEAR_THUMBS_MB():
 
@@ -1486,10 +1492,12 @@ def AutoPackages():
             file_count = 0
             file_count += len(files)
             if file_count > 0:            
-                for f in files:
-                    os.unlink(os.path.join(root, f))
-                for d in dirs:
-                    shutil.rmtree(os.path.join(root, d))
+                try:
+                    for f in files:
+                        os.unlink(os.path.join(root, f))
+                    for d in dirs:
+                        shutil.rmtree(os.path.join(root, d))
+                except: pass
 
 def AutoCrash():  
 

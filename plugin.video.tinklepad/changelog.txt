@@ -1,4 +1,16 @@
 ------------------------
+TinklePad v1.2.1 (01 Mar-17)
+
+- Added Latest TS list
+
+------------------------
+TinklePad v1.2.0 (28 Feb-17)
+
+- Fixes
+- Removed Search list
+- Use your own TMDB API Key
+
+------------------------
 TinklePad v1.1.9 (30 Nov-16)
 
 - Updated domain name

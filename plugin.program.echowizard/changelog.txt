@@ -1,3 +1,6 @@
+[COLOR yellowgreen]1.89: 2nd March 2017[/COLOR]
+[COLOR white][B]- Better error catching.[/B][/COLOR]
+
 [COLOR yellowgreen]1.88: 28th February 2017[/COLOR]
 [COLOR white][B]- Fix for trakt restore issues on some devices.[/B][/COLOR]
 

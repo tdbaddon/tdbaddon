@@ -395,7 +395,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.88"
+	     version="1.89"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -1890,7 +1890,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.nhklive"
        name="NHK Live"
-       version="3.0.6"
+       version="3.0.7"
        provider-name="t1m">
   <requires>
     <import addon="xbmc.python" version="2.20.0"/>
@@ -1911,6 +1911,39 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <website>http://www3.nhk.or.jp/</website>
     <email></email>
     <source>https://github.com/learningit/Kodi-plugins-source</source>
+  </extension>
+</addon>
+
+<addon id="plugin.video.nhlgcl" name="NHL TV™" version="2017.2.24" provider-name="eracknaphobia">
+  <requires>
+   <import addon="xbmc.python" version="2.24.0"/>
+   <import addon="script.module.simplejson" version="3.3.0"/>
+   <import addon="script.module.pytz" version="2014.2" />
+   <import addon="script.module.beautifulsoup4" version="4.3.1" />
+   <import addon="script.module.pil" version="1.1.7" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Watch out-of-market games from around the League on Kodi, with HD quality streaming</summary>
+    <description lang="en">With NHL.TV you can access revolutionary 60fps (frames per second) video through Kodi</description>
+    <disclaimer lang="en"></disclaimer>
+    <news>
+- Added Classic Games Section under Featured Videos
+- Renamed "No Spoilers" to "Hide Scores"
+- Bumped the xbmc.python version
+- Restructered the addon as per the Kodi wiki
+- Patched bug released in previous version that affected Kodi 16.x users
+    </news>
+    <language>en</language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.kodi.tv/showthread.php?tid=243756</forum>
+    <website></website>
+    <email></email>
+    <source>https://github.com/eracknaphobia/plugin.video.nhlgcl</source>
   </extension>
 </addon>
 
@@ -2481,7 +2514,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.0" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.1" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>
@@ -4064,6 +4097,25 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
         </description>
         <license>GPL v3</license>
     </extension>
+</addon>
+
+<addon id="script.module.pytz" name="pytz" version="2014.2" provider-name="Stuart Bishop, Paul Backhouse">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib"/>
+	<extension point="xbmc.addon.metadata">
+	    <summary lang="en">World Timezone Definitions for Python.</summary>
+	    <description lang="en">pytz brings the Olson tz database into Python. This library allows accurate and cross platform timezone calculations using Python 2.4 or higher. It also solves the issue of ambiguous times at the end of daylight saving time, which you can read more about in the Python Library Reference (datetime.tzinfo).</description>
+	    <platform>all</platform>
+	    <language></language>
+	    <license>MIT</license>
+	    <forum></forum>
+	    <website>https://pypi.python.org/pypi/pytz/</website>
+	    <source>https://github.com/powlo/script.module.pytz</source>
+	    <email></email>
+	    <disclaimer lang="en">Use at your own risk. The authors accept no liability. May cause permanent and/or catastrophic damage. Side effects include, but are not limited to loss of memory, seizures, sudden fits of rage, sudden fits of melancholy, inability to recall prominent capital cities, lack of respect for authority, fear of cats, temporary and/or permanent black outs. Avoid inhalation. Use in a well ventilated space. Keep away from small children.</disclaimer>
+	</extension>
 </addon>
 
 <addon id="script.module.schism.common" name="SchisM Common Libraries" version="1.9.0" provider-name="SchisM">
