@@ -2,20 +2,14 @@ import os
 import urllib, urllib2
 import urlparse
 
-from t0mm0.common.net import Net
+import requests
 
-def http_get(url, cookie_file='',username='', password =''):
-    if (username != '' and password != ''):
-        form_data = {}
-        form_data['username'] = username
-        form_data['password'] = password
-        login_url = 'http://www.einthusan.com/etc/login.php'
-        http_post(login_url, postData=form_data)
-        
+headers = {'User-Agent':'AppleCoreMedia/1.0.0.12B411 (iPhone; U; CPU OS 8_1 like Mac OS X; en_gb)'}
+
+def http_get(url, headers=None, cook=None):
     try:
-        header = {'Referer':'http://www.einthusan.com/',
-                  'Origin':'http://www.einthusan.com/'}
-        return Net().http_GET(url,header).content
+        r = requests.get(url, headers=headers, cookies=cook).content
+        return r
     except urllib2.URLError, e:
         return ''
 
