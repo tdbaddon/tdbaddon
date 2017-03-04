@@ -2327,19 +2327,33 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBM3U"
        name="TDB M3U"
-       version="1004"
+       version="1005"
        provider-name="TDB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>video</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>TDB M3U</summary>
-<description></description>
-<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+	<import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
