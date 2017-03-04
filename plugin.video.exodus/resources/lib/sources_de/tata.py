@@ -84,7 +84,7 @@ class source:
             return
 
     def resolve(self, url):
-        return directstream.googlepass(url)
+        return url
 
     def __search_movie(self, imdb, year):
         try:

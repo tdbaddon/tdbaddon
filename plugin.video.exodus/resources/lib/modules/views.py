@@ -19,8 +19,6 @@
 '''
 
 
-import re,os
-
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
 
@@ -30,24 +28,7 @@ from resources.lib.modules import control
 def addView(content):
     try:
         skin = control.skin
-        skinPath = control.skinPath
-        xml = os.path.join(skinPath,'addon.xml')
-        file = control.openFile(xml)
-        read = file.read().replace('\n','')
-        file.close()
-        try: src = re.compile('defaultresolution="(.+?)"').findall(read)[0]
-        except: src = re.compile('<res.+?folder="(.+?)"').findall(read)[0]
-        src = os.path.join(skinPath, src)
-        src = os.path.join(src, 'MyVideoNav.xml')
-        file = control.openFile(src)
-        read = file.read().replace('\n','')
-        file.close()
-        views = re.compile('<views>(.+?)</views>').findall(read)[0]
-        views = [int(x) for x in views.split(',')]
-        for view in views:
-            label = control.infoLabel('Control.GetLabel(%s)' % (view))
-            if not (label == '' or label == None): break
-        record = (skin, content, str(view))
+        record = (skin, content, str(control.getCurrentViewId()))
         control.makeFile(control.dataPath)
         dbcon = database.connect(control.viewsFile)
         dbcur = dbcon.cursor()

@@ -1151,11 +1151,11 @@ def LATEST_ANDROID():
 
 def INSTALLER_APKS():
 
+	dialog = xbmcgui.Dialog()
 	dialog.ok(AddonTitle, "This function is no longer supported in ECHO Wizard")
 	quit()
 	#FOR ADDON INSTALLER
 	if not xbmc.getCondVisibility('system.platform.android'):
-		dialog = xbmcgui.Dialog()
 		dialog.ok(AddonTitle + " - Android", "[B][COLOR white]Sorry, this function is only available for Android devices[/COLOR][/B]",'[COLOR white]Thank you for using ECHO Wizard[/COLOR]')
 		sys.exit(1)
 	else:
@@ -1493,8 +1493,14 @@ def GET_KODIAPPS_INFORMATION(name,url,iconimage):
 	elif choice == 1:
 
 		SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
-
-		source_test = open(SOURCES).read().replace('/','')
+		
+		try:
+			if not os.path.isfile(SOURCES):
+				open(SOURCES, 'w')
+			source_test = open(SOURCES).read().replace('/','')
+		except:
+			dialog.ok(AddonTitle, "Sorry, we could not access your sources.xml file.")
+			quit()   
 		url_test    = url2.replace('/','')
 
 		if url_test in source_test:
@@ -2458,8 +2464,23 @@ except:
 		if "target machine actively refused it" in er_value.lower():
 			dialog.ok(AddonTitle, "The connection could not be made because the target machine actively refused it. Please try again.")
 			quit()
-		if "socket.erro" in er_type.lower():
+		if "socket" in er_value.lower():
 			dialog.ok(AddonTitle, "The connection could not be made to the requested URL. Please try again.")
+			quit()
+		if "socket" in er_type.lower():
+			dialog.ok(AddonTitle, "The connection could not be made to the requested URL. Please try again.")
+			quit()
+		if "no space" in er_type.lower():
+			dialog.ok(AddonTitle, "Your device does not have enough space left to complete the task. Please free up space and try again.")
+			quit()
+		if "no space" in er_value.lower():
+			dialog.ok(AddonTitle, "Your device does not have enough space left to complete the task. Please free up space and try again.")
+			quit()
+		if "unpack" in er_type.lower():
+			dialog.ok(AddonTitle, "There was an error encountered, if you came from a shortcut please try again via the Wizard main menu.")
+			quit()
+		if "unpack" in er_value.lower():
+			dialog.ok(AddonTitle, "There was an error encountered, if you came from a shortcut please try again via the Wizard main menu.")
 			quit()
 
 		service_url = BASEURL + base64.b64decode(b'YXBpL3J1bnRpbWVfZXJyb3IucGhw')

@@ -1,3 +1,7 @@
+[B]Version 0.0.16[/B]
+- Add profiler
+- Add better get_current_view code
+
 [B]Version 0.0.15[/B]
 - use translate path on download path
 

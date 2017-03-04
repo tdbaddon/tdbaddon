@@ -190,7 +190,7 @@ class DB_Connection():
             age = now - created
             if age < limit:
                 html = rows[0][1]
-        log_utils.log('DB Cache: Url: %s, Data: %s, Cache Hit: %s, created: %s, age: %.2fs (%.2fh), limit: %ss' % (url, data, bool(html), created, age, age / (60 * 60), limit), log_utils.LOGDEBUG, COMPONENT)
+        log_utils.log('DB Cache: Url: %s, Data: %s, Cache Hit: %s, created: %s, age: %.2fs (%.2fh), limit: %.2fs (%.2fh)' % (url, data, bool(html), created, age, age / (60 * 60), limit, limit / (60 * 60)), log_utils.LOGDEBUG, COMPONENT)
         return created, res_header, str(html)
 
     def get_all_urls(self, include_response=False, order_matters=False):

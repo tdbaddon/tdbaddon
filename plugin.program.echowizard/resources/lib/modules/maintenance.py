@@ -429,112 +429,115 @@ def CHECK_BROKEN_SOURCES():
 	b=a.replace('\n','U').replace('\r','F')
 	match=re.compile('<source>(.+?)</source>').findall(str(b))
 	counter = 0
-	for item in match:
-		name=re.compile('<name>(.+?)</name>').findall(item)[0]
-		checker=re.compile('<path pathversion="1">(.+?)</path>').findall(item)[0]
-		if "http" in str(checker):
-			dp.update(0,"","[COLOR yellowgreen][B]Checking: " + name + "[/B][/COLOR]", "")
-			try:
-				checkme = requests.get(checker)
-			except:
-				checkme = "null"
-				pass
-			try:
-				error_out = 0
-				if not "this does not matter its just a test" in ("%s" % checkme.text):
+	try:
+		for item in match:
+			name=re.compile('<name>(.+?)</name>').findall(item)[0]
+			checker=re.compile('<path pathversion="1">(.+?)</path>').findall(item)[0]
+			if "http" in str(checker):
+				dp.update(0,"","[COLOR yellowgreen][B]Checking: " + name + "[/B][/COLOR]", "")
+				try:
+					checkme = requests.get(checker)
+				except:
+					checkme = "null"
+					pass
+				try:
 					error_out = 0
-			except:
-				error_out = 1
+					if not "this does not matter its just a test" in ("%s" % checkme.text):
+						error_out = 0
+				except:
+					error_out = 1
 
-			if error_out == 0:
-				if not ".zip" in ("%s" % checkme.text):		
-					if not "repo" in ("%s" % checkme.text):
-						if not "<title>Index of /</title>" in ("%s" % checkme.text):
-							choice = dialog.select("[COLOR red][B]Error connecting to " + name + " (" + checker + ")[/B][/COLOR]", ['[COLOR lightskyblue][B]Edit the source URL.[/B][/COLOR]','[COLOR lightskyblue][B]Remove the source.[/B][/COLOR]','[COLOR lightskyblue][B]Do Nothing (Leave the source)[/B][/COLOR]'])
-							if choice == 0:
-								found = 1
-								counter = counter + 1
-								string =''
-								keyboard = xbmc.Keyboard(string, 'Enter New Source URL')
-								keyboard.doModal()
-								if keyboard.isConfirmed():
-									string = keyboard.getText().replace(' ','')
-								if len(string)>1:
-									if not "http://" in string:
-										if not "htts://" in string:
-											string = "http://" + string
+				if error_out == 0:
+					if not ".zip" in ("%s" % checkme.text):		
+						if not "repo" in ("%s" % checkme.text):
+							if not "<title>Index of /</title>" in ("%s" % checkme.text):
+								choice = dialog.select("[COLOR red][B]Error connecting to " + name + " (" + checker + ")[/B][/COLOR]", ['[COLOR lightskyblue][B]Edit the source URL.[/B][/COLOR]','[COLOR lightskyblue][B]Remove the source.[/B][/COLOR]','[COLOR lightskyblue][B]Do Nothing (Leave the source)[/B][/COLOR]'])
+								if choice == 0:
+									found = 1
+									counter = counter + 1
+									string =''
+									keyboard = xbmc.Keyboard(string, 'Enter New Source URL')
+									keyboard.doModal()
+									if keyboard.isConfirmed():
+										string = keyboard.getText().replace(' ','')
+									if len(string)>1:
+										if not "http://" in string:
+											if not "htts://" in string:
+												string = "http://" + string
+										h=open(SOURCES_FILE).read()
+										i=h.replace('\n','U').replace('\r','F')
+										j=i.replace(str(checker), str(string))
+										k=j.replace('U','\n').replace('F','\r')
+										f= open(SOURCES_FILE, mode='w')
+										f.write(k)
+										f.close()
+									else: quit()
+								elif choice == 1:
+									found = 1
+									counter = counter + 1
 									h=open(SOURCES_FILE).read()
 									i=h.replace('\n','U').replace('\r','F')
-									j=i.replace(str(checker), str(string))
+									j=i.replace(str(item), '')
 									k=j.replace('U','\n').replace('F','\r')
+									l=k.replace('<source></source>','').replace('        \n','')
 									f= open(SOURCES_FILE, mode='w')
-									f.write(k)
+									f.write(l)
 									f.close()
-								else: quit()
-							elif choice == 1:
-								found = 1
-								counter = counter + 1
-								h=open(SOURCES_FILE).read()
-								i=h.replace('\n','U').replace('\r','F')
-								j=i.replace(str(item), '')
-								k=j.replace('U','\n').replace('F','\r')
-								l=k.replace('<source></source>','').replace('        \n','')
-								f= open(SOURCES_FILE, mode='w')
-								f.write(l)
-								f.close()
+								else:
+									found = 1
+									counter = counter + 1
 							else:
-								found = 1
-								counter = counter + 1
+								passed = passed + 1
 						else:
 							passed = passed + 1
 					else:
 						passed = passed + 1
 				else:
-					passed = passed + 1
-			else:
-				choice = dialog.select("[COLOR red][B]Error connecting to " + name + " (" + checker + ")[/B][/COLOR]", ['[COLOR lightskyblue][B]Edit the source URL.[/B][/COLOR]','[COLOR lightskyblue][B]Remove the source.[/B][/COLOR]','[COLOR lightskyblue][B]Do Nothing (Leave the source)[/B][/COLOR]'])
-				if choice == 0:
-					found = 1
-					counter = counter + 1
-					string =''
-					keyboard = xbmc.Keyboard(string, 'Enter New Source URL')
-					keyboard.doModal()
-					if keyboard.isConfirmed():
-						string = keyboard.getText().replace(' ','')
-					if len(string)>1:
-						if not "http://" in string:
-							if not "htts://" in string:
-								string = "http://" + string
+					choice = dialog.select("[COLOR red][B]Error connecting to " + name + " (" + checker + ")[/B][/COLOR]", ['[COLOR lightskyblue][B]Edit the source URL.[/B][/COLOR]','[COLOR lightskyblue][B]Remove the source.[/B][/COLOR]','[COLOR lightskyblue][B]Do Nothing (Leave the source)[/B][/COLOR]'])
+					if choice == 0:
+						found = 1
+						counter = counter + 1
+						string =''
+						keyboard = xbmc.Keyboard(string, 'Enter New Source URL')
+						keyboard.doModal()
+						if keyboard.isConfirmed():
+							string = keyboard.getText().replace(' ','')
+						if len(string)>1:
+							if not "http://" in string:
+								if not "htts://" in string:
+									string = "http://" + string
+							h=open(SOURCES_FILE).read()
+							i=h.replace('\n','U').replace('\r','F')
+							j=i.replace(str(checker), str(string))
+							k=j.replace('U','\n').replace('F','\r')
+							f= open(SOURCES_FILE, mode='w')
+							f.write(k)
+							f.close()
+						else: quit()
+					elif choice == 1:
+						found = 1
+						counter = counter + 1
 						h=open(SOURCES_FILE).read()
 						i=h.replace('\n','U').replace('\r','F')
-						j=i.replace(str(checker), str(string))
+						j=i.replace(str(item), '')
 						k=j.replace('U','\n').replace('F','\r')
+						l=k.replace('<source></source>','').replace('        \n','')
 						f= open(SOURCES_FILE, mode='w')
-						f.write(k)
+						f.write(l)
 						f.close()
-					else: quit()
-				elif choice == 1:
-					found = 1
-					counter = counter + 1
-					h=open(SOURCES_FILE).read()
-					i=h.replace('\n','U').replace('\r','F')
-					j=i.replace(str(item), '')
-					k=j.replace('U','\n').replace('F','\r')
-					l=k.replace('<source></source>','').replace('        \n','')
-					f= open(SOURCES_FILE, mode='w')
-					f.write(l)
-					f.close()
-				else:
-					found = 1
-					counter = counter + 1
-
+					else:
+						found = 1
+						counter = counter + 1
+			dp.update(0,"","","[COLOR blue][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(counter) + "[/B][/COLOR]")
 			if dp.iscanceled():
-				dialog = xbmcgui.Dialog()
 				dialog.ok(AddonTitle, 'The source check was cancelled')
 				dp.close()
-				sys.exit()
+				quit()
+	except:
+		dialog.ok(AddonTitle, "Sorry we could not perform this test on your device.")
+		dp.close()
+		quit()
 
-			dp.update(0,"","","[COLOR yellowgreen][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(counter) + "[/B][/COLOR]")
 
 	dialog.ok(AddonTitle,'[COLOR white]We have checked your sources and found:[/COLOR]', '[COLOR yellowgreen][B]WORKING SOURCES: ' + str(passed) + ' [/B][/COLOR]','[COLOR red][B]DEAD SOURCES: ' + str(counter) + ' [/B][/COLOR]')
 

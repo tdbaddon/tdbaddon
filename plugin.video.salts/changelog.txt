@@ -1,3 +1,33 @@
+[B]Version 2.0.155[/B]
+- Improve service code to reduce globals
+- Improve DB upgrade handling since it depends on DB Recovery now
+- Fix several bugs in image proxy that caused occasional crashes
+- Improve Hidden List caching
+- Fix RLSBB
+- Fix Vumoo 
+
+[B]Version 2.0.152[/B]
+- Improve Image Proxy
+- Move FL to single addon settings
+- Add Settings item to Repair Corrupt URLResolver
+- Improve Vumoo
+- Fix DDLSeries
+- Fix Afdah.org
+- Fix Xmovies8
+- Fix 2DDL
+- Fix WatchItVideos
+- Fix Afdah
+- Fix MovieHut
+- Fix IWatchOnline
+- Fix CMZ
+- Fix Putlocker
+- Fix MovieHubs
+- Fix MovieWatcher
+- Fix Pubfilm
+- Remove Filmstreaming.in
+- Remove Yshows
+- Remove MVL
+
 [B]Version 2.0.149[/B]
 - Add **EXPERIMENTAL** Image Proxy
 - Add setting to set Debrid Highlight color (Green is unreadable on Estuary)

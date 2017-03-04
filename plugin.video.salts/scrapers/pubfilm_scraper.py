@@ -29,8 +29,8 @@ from salts_lib.constants import USER_AGENT
 from salts_lib.constants import XHR
 import scraper
 
-BASE_URL = 'http://pubfilm.cc'
-GK_URL = 'http://player.pubfilm.cc/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
+BASE_URL = 'http://pubfilm.ac'
+GK_URL = 'http://player.pubfilm.ac/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -69,7 +69,7 @@ class Scraper(scraper.Scraper):
                         iframe_urls.append(link)
                 
             for iframe_url in iframe_urls:
-                headers = {'Referer': iframe_url}
+                headers = {'Referer': url}
                 html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
                 match = re.search('{link\s*:\s*"([^"]+)', html)
                 if match:

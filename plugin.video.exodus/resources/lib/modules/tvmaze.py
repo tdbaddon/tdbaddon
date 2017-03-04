@@ -142,3 +142,16 @@ class tvMaze:
         return episode
 
 
+    def getTVShowTranslation(self, thetvdb, lang):
+        try:
+            url = 'http://thetvdb.com/api/%s/series/%s/%s.xml' % ('MUQ2MkYyRjkwMDMwQzQ0NA=='.decode('base64'), thetvdb, lang)
+            r = client.request(url)
+            title = client.parseDOM(r, 'SeriesName')[0]
+            title = client.replaceHTMLCodes(title)
+            title = title.encode('utf-8')
+
+            return title
+        except:
+            pass
+
+

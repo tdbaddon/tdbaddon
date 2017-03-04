@@ -179,9 +179,11 @@ def BACKUP_RD_TRAKT():
 		EXCLUDEMOVE = xbmc.translatePath(os.path.join(EXCLUDES_FOLDER,match+'_settings.xml'))
 		dialog = xbmcgui.Dialog()
 
-		if os.path.exists(ADDONSETTINGS):
-			copyfile(ADDONSETTINGS, EXCLUDEMOVE)
-
+		try:
+			if os.path.exists(ADDONSETTINGS):
+				copyfile(ADDONSETTINGS, EXCLUDEMOVE)
+		except: pass
+        
 	exclude_dirs =  [' ']
 	exclude_files = [" "]
 	message_header = "Creating full backup..."
@@ -189,7 +191,9 @@ def BACKUP_RD_TRAKT():
 	message1 = "Archiving..."
 	message2 = ""
 	message3 = ""
-	ARCHIVE_CB(EXCLUDES_FOLDER, backup_zip, message_header2, message1, message2, message3, exclude_dirs, exclude_files)  
+	try:
+		ARCHIVE_CB(EXCLUDES_FOLDER, backup_zip, message_header2, message1, message2, message3, exclude_dirs, exclude_files)  
+	except: pass
 	time.sleep(1)
 	try:
 		shutil.rmtree(EXCLUDEMOVE)
@@ -220,13 +224,14 @@ def AUTO_BACKUP_RD_TRAKT():
 	link=Common.OPEN_URL('http://pastebin.com/raw/CU2PSGze')
 	plugins=re.compile('<plugin>(.+?)</plugin>').findall(link)
 	for match in plugins:
-		ADDONPATH = xbmc.translatePath(os.path.join(ADDON_DATA,match))
-		ADDONSETTINGS = xbmc.translatePath(os.path.join(ADDONPATH,'settings.xml'))
-		EXCLUDEMOVE = xbmc.translatePath(os.path.join(EXCLUDES_FOLDER,match+'_settings.xml'))
-
-		if os.path.exists(ADDONSETTINGS):
-			copyfile(ADDONSETTINGS, EXCLUDEMOVE)
-			found = 2
+		try:
+			ADDONPATH = xbmc.translatePath(os.path.join(ADDON_DATA,match))
+			ADDONSETTINGS = xbmc.translatePath(os.path.join(ADDONPATH,'settings.xml'))
+			EXCLUDEMOVE = xbmc.translatePath(os.path.join(EXCLUDES_FOLDER,match+'_settings.xml'))
+			if os.path.exists(ADDONSETTINGS):
+				copyfile(ADDONSETTINGS, EXCLUDEMOVE)
+				found = 2
+		except: pass
 
 	if found == 2:
 		exclude_dirs =  [' ']
@@ -253,28 +258,33 @@ def RESTORE_RD_TRAKT():
 			Common.addItem(file,url,105,ICON,ICON,'')
 
 def ARCHIVE_CB(sourcefile, destfile, message_header, message1, message2, message3, exclude_dirs, exclude_files):
-    zipobj = zipfile.ZipFile(destfile , 'w', zipfile.ZIP_DEFLATED)
-    rootlen = len(sourcefile)
-    for_progress = []
-    ITEM =[]
-    dp.create(message_header, message1, message2, message3)
-    for base, dirs, files in os.walk(sourcefile):
-        for file in files:
-            ITEM.append(file)
-    N_ITEM =len(ITEM)
-    for base, dirs, files in os.walk(sourcefile):
-        dirs[:] = [d for d in dirs if d not in exclude_dirs]
-        files[:] = [f for f in files if f not in exclude_files]
-        for file in files:
-            try:
-                for_progress.append(file) 
-                progress = len(for_progress) / float(N_ITEM) * 100  
-                dp.update(int(progress),"Backing Up",'[COLOR yellowgreen]%s[/COLOR]'%file, '')
-                fn = os.path.join(base, file)
-                zipobj.write(fn, fn[rootlen:]) 
-            except: pass			
-    zipobj.close()
-    dp.close()
+   
+    try:
+        zipobj = zipfile.ZipFile(destfile , 'w', zipfile.ZIP_DEFLATED)
+        rootlen = len(sourcefile)
+        for_progress = []
+        ITEM =[]
+        dp.create(message_header, message1, message2, message3)
+        for base, dirs, files in os.walk(sourcefile):
+            for file in files:
+                try:
+                    ITEM.append(file)
+                except: pass
+        N_ITEM =len(ITEM)
+        for base, dirs, files in os.walk(sourcefile):
+            dirs[:] = [d for d in dirs if d not in exclude_dirs]
+            files[:] = [f for f in files if f not in exclude_files]
+            for file in files:
+                try:
+                    for_progress.append(file) 
+                    progress = len(for_progress) / float(N_ITEM) * 100  
+                    dp.update(int(progress),"Backing Up",'[COLOR yellowgreen]%s[/COLOR]'%file, '')
+                    fn = os.path.join(base, file)
+                    zipobj.write(fn, fn[rootlen:]) 
+                except: pass
+        zipobj.close()
+        dp.close()
+    except: pass
 
 def FIX_SPECIAL(url):
 
@@ -284,13 +294,15 @@ def FIX_SPECIAL(url):
     url = xbmc.translatePath('special://userdata')
     for root, dirs, files in os.walk(url):
         for file in files:
-            if file.endswith(".xml"):
-                 dp.update(0,"Fixing","[COLOR dodgerblue]" + file + "[/COLOR]", "Please wait.....")
-                 a=open((os.path.join(root, file))).read()
-                 b=a.replace(HOME, 'special://home/')
-                 f= open((os.path.join(root, file)), mode='w')
-                 f.write(str(b))
-                 f.close()
+            try:
+                if file.endswith(".xml"):
+                    dp.update(0,"Fixing","[COLOR dodgerblue]" + file + "[/COLOR]", "Please wait.....")
+                    a=open((os.path.join(root, file))).read()
+                    b=a.replace(HOME, 'special://home/')
+                    f= open((os.path.join(root, file)), mode='w')
+                    f.write(str(b))
+                    f.close()
+            except: pass
 
 def Restore():
 
@@ -374,20 +386,22 @@ def AUTO_READ_ZIP_TRAKT(url):
 	link=Common.OPEN_URL('http://echocoder.com/other/rd_trakt.xml')
 	plugins=re.compile('<plugin>(.+?)</plugin>').findall(link)
 	for match in plugins:
-		ADDONPATH = xbmc.translatePath(os.path.join(ADDON_DATA,match))
-		ADDONSETTINGS = xbmc.translatePath(os.path.join(ADDONPATH,'settings.xml'))
-		EXCLUDEMOVE = xbmc.translatePath(os.path.join(_out,match+'_settings.xml'))
-		if os.path.isfile(EXCLUDEMOVE):
-			if not os.path.exists(ADDONPATH):
-				os.makedirs(ADDONPATH)
-			if os.path.isfile(ADDONSETTINGS):
-				os.remove(ADDONSETTINGS)
-			try:
-				os.rename(EXCLUDEMOVE, ADDONSETTINGS)
-			except: pass
-			try:
-				os.remove(EXCLUDEMOVE)
-			except: pass
+		try:
+			ADDONPATH = xbmc.translatePath(os.path.join(ADDON_DATA,match))
+			ADDONSETTINGS = xbmc.translatePath(os.path.join(ADDONPATH,'settings.xml'))
+			EXCLUDEMOVE = xbmc.translatePath(os.path.join(_out,match+'_settings.xml'))
+			if os.path.isfile(EXCLUDEMOVE):
+				if not os.path.exists(ADDONPATH):
+					os.makedirs(ADDONPATH)
+				if os.path.isfile(ADDONSETTINGS):
+					os.remove(ADDONSETTINGS)
+				try:
+					os.rename(EXCLUDEMOVE, ADDONSETTINGS)
+				except: pass
+				try:
+					os.remove(EXCLUDEMOVE)
+				except: pass
+		except: pass
 	try:
 		shutil.rmtree(_out)
 		shutil.rmdir(_out)
@@ -408,7 +422,6 @@ def unzip(_in, _out, dp):
             except Exception, e:
                 print str(e)
 
-    
     except Exception, e:
         print str(e)
         return False

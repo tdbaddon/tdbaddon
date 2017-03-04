@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re, urllib, urlparse, json
+import re, urllib, urlparse, base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -32,6 +32,7 @@ class source:
         self.domains = ['hdfilme.tv']
         self.base_link = 'http://hdfilme.tv'
         self.search_link = '/movie-search?key=%s'
+        self.get_link = '/movie/getlink/%s/%s'
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -84,22 +85,28 @@ class source:
             if url == None:
                 return sources
 
-            url = urlparse.urljoin(self.base_link, url)
-            result = client.request(url)
-            result = re.compile('(\[{".*?}\])').findall(result)[0]
-            result = json.loads(result)
-            result = [i['file'] for i in result if 'file' in i]
+            r = re.findall('(\d+)-stream(?:\?episode=(\d+))?', url)
+            r = [(i[0], i[1] if i[1] else '1') for i in r][0]
+            r = client.request(urlparse.urljoin(self.base_link, self.get_link % r))
+            r += '=' * (-len(r) % 4)
+            r = base64.b64decode(r)
+            r = re.findall('file"?\s*:\s*"(.+?)"', r)
 
-            for i in result:
-                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
-                except: pass
+            for i in r:
+                try:
+                    i = i.replace('\/', '/')
+                    i = client.replaceHTMLCodes(i).encode('utf-8')
+
+                    sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
+                except:
+                    pass
 
             return sources
         except:
             return sources
 
     def resolve(self, url):
-        return directstream.googlepass(url)
+        return url
 
     def __search(self, title, year, season='0'):
         try:

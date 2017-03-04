@@ -124,7 +124,7 @@ class Scraper(scraper.Scraper):
         if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
             norm_title = scraper_utils.normalize_title(video.ep_title)
             for episode in re.finditer('''<li\s+id=['"]?season\d+-\d+['"]?>.*?</ul>''', html, re.DOTALL):
-                ep_title = dom_parser.parse_dom(episode, 'h2')
+                ep_title = dom_parser.parse_dom(episode.group(0), 'h2')
                 if ep_title and norm_title == scraper_utils.normalize_title(ep_title[0]):
                     return episode
                 

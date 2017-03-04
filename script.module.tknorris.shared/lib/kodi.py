@@ -163,22 +163,8 @@ def close_all():
     xbmc.executebuiltin('Dialog.Close(all)')
     
 def get_current_view():
-    skinPath = translate_path('special://skin/')
-    xml = os.path.join(skinPath, 'addon.xml')
-    f = xbmcvfs.File(xml)
-    read = f.read()
-    f.close()
-    try: src = re.search('defaultresolution="([^"]+)', read, re.DOTALL).group(1)
-    except: src = re.search('<res.+?folder="([^"]+)', read, re.DOTALL).group(1)
-    src = os.path.join(skinPath, src, 'MyVideoNav.xml')
-    f = xbmcvfs.File(src)
-    read = f.read()
-    f.close()
-    match = re.search('<views>([^<]+)', read, re.DOTALL)
-    if match:
-        views = match.group(1)
-        for view in views.split(','):
-            if xbmc.getInfoLabel('Control.GetLabel(%s)' % (view)): return view
+    window = xbmcgui.Window(xbmcgui.getCurrentWindowId())
+    return str(window.getFocusId())
 
 def set_view(content, set_view=False, set_sort=False):
     # set content type so library shows more views and info

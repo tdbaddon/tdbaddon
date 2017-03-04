@@ -84,12 +84,7 @@ class source:
                 info = ' | '.join(info)
 
                 for link, hoster in links:
-                    sources.append({'source': hoster, 'quality': quality,
-                                    'language': 'de',
-                                    'url': link,
-                                    'info': info,
-                                    'direct': False,
-                                    'debridonly': False})
+                    sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False, 'checkquality': True})
 
             return sources
         except:

@@ -1,3 +1,12 @@
+[B]3.1.0[/B]
+- Updated existing providers
+- Added new providers and fix existing German providers
+- Added French providers (Powergrid2000)
+- Tweaked view option
+- Tweaked languages movie section and added languages tvshow section
+- Tweaked Providers Language support
+- Tweaked Trakt episode handling (Gobberwart)
+
 [B]3.0.5[/B]
 - Updated existing providers
 

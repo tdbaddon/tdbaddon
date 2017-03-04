@@ -835,11 +835,7 @@ def OPEN_URL_NORMAL(url):
 			url = url.replace("https://","http://")
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36')
-		try:
-			response = urllib2.urlopen(req, timeout = 10)
-		except urllib2.URLError, e:
-			dialog.ok(AddonTitle, "There was an error reaching the url. Please try again later.")
-			quit()
+		response = urllib2.urlopen(req, timeout = 30)
 		link=response.read()
 		response.close()
 		return link

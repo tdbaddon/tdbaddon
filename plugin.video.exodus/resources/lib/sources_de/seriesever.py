@@ -41,8 +41,8 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = self.__search(tvshowtitle)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle)
+            url = self.__search(tvshowtitle, year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle, year)
             return url
         except:
             return
@@ -75,55 +75,63 @@ class source:
             p = client.parseDOM(r, 'a', attrs={'class': 'changePart', 'data-part': '\d+p'}, ret='data-part')
 
             for i in p:
-                r = urllib.urlencode({'video_id': id, 'part_name': i, 'page': '0'})
-                r = client.request(query, cookie=cookie, mobile=True, XHR=True, post=r , referer=url)
+                p = urllib.urlencode({'video_id': id, 'part_name': i, 'page': '0'})
+                p = client.request(query, cookie=cookie, mobile=True, XHR=True, post=p, referer=url)
 
-                try:
-                    r = json.loads(r)
-                    r = r.get('part', {})
+                p = json.loads(p)
+                p = p.get('part_count', 0)
 
-                    s = r.get('source', '')
-                    url = r.get('code', '')
+                for part_count in range(0, p):
+                    try:
+                        r = urllib.urlencode({'video_id': id, 'part_name': i, 'page': part_count})
+                        r = client.request(query, cookie=cookie, mobile=True, XHR=True, post=r, referer=url)
 
-                    if s == 'url' and 'http' not in url:
-                        url = self.__decode_hash(url)
-                    elif s == 'other':
-                        url = client.parseDOM(url, 'iframe', ret='src')
-                        if len(url) < 1: continue
-                        url = url[0]
-                        if '/old/seframer.php' in url: url = self.__get_old_url(url)
+                        r = json.loads(r)
+                        r = r.get('part', {})
 
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostDict and not 'google' in host: continue
+                        s = r.get('source', '')
+                        url = r.get('code', '')
 
-                    if i in ['720p', 'HD']: quali = 'HD'
-                    elif i in ['1080p', '1440p']: quali = i
-                    elif i in ['2160p']: quali = '4K'
-                    else: quali = 'SD'
+                        if s == 'url' and 'http' not in url:
+                            url = self.__decode_hash(url)
+                        elif s == 'other':
+                            url = client.parseDOM(url, 'iframe', ret='src')
+                            if len(url) < 1: continue
+                            url = url[0]
+                            if '/old/seframer.php' in url: url = self.__get_old_url(url)
 
-                    if 'google' in url: host = 'gvideo'; direct = True; urls = directstream.google(url)
-                    elif 'ok.ru' in url: host = 'vk'; direct = True; urls = directstream.odnoklassniki(url)
-                    elif 'vk.com' in url: host = 'vk'; direct = True; urls = directstream.vk(url)
-                    else: direct = False; urls = [{'quality': quali, 'url': url}]
+                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+                        if not host in hostDict and not 'google' in host: continue
 
-                    for i in urls: sources.append({'source': host, 'quality': i['quality'], 'language': 'de', 'url': i['url'], 'direct': direct, 'debridonly': False})
-                except:
-                    pass
+                        if i in ['720p', 'HD']: quali = 'HD'
+                        elif i in ['1080p', '1440p']: quali = i
+                        elif i in ['2160p']: quali = '4K'
+                        else: quali = 'SD'
+
+                        if 'google' in url: host = 'gvideo'; direct = True; urls = directstream.google(url)
+                        elif 'ok.ru' in url: host = 'vk'; direct = True; urls = directstream.odnoklassniki(url)
+                        elif 'vk.com' in url: host = 'vk'; direct = True; urls = directstream.vk(url)
+                        else: direct = False; urls = [{'quality': quali, 'url': url}]
+
+                        for i in urls: sources.append({'source': host, 'quality': i['quality'], 'language': 'de', 'url': i['url'], 'direct': direct, 'debridonly': False})
+                    except:
+                        pass
 
             return sources
         except:
             return sources
 
     def resolve(self, url):
-        if directstream.googletag(url): url = directstream.googlepass(url)
+        if url.startswith('/'): url = 'http:%s' % url
         return url
 
-    def __search(self, title):
+    def __search(self, title, year):
         try:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(query, XHR=True)
 
@@ -131,7 +139,9 @@ class source:
 
             r = json.loads(r)
             r = [(i['url'], i['name']) for i in r if 'name' in i and 'url' in i]
-            r = [i[0] for i in r if cleantitle.get(i[1]) == t][0]
+            r = [(i[0], i[1], re.findall('(.+?) \(*(\d{4})?\)*$', i[1])) for i in r]
+            r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+            r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
 
             url = re.findall('(?://.+?|)(/.+).html?', r)[0]
             url = client.replaceHTMLCodes(url)
@@ -173,5 +183,3 @@ class source:
             return cookie if r == '1' else ''
         except:
             return ''
-
-

@@ -60,7 +60,7 @@ class source:
                 return sources
 
             hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            hostDict = [i[0] for i in hostDict]
+            locDict = [i[0] for i in hostDict]
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -69,19 +69,13 @@ class source:
             data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data)
             data = json.loads(data)
             data = [i[1] for i in data[1].items()]
-            data = [(i['name'], i['links']) for i in data if i['name'].lower() in hostDict]
+            data = [(i['name'].lower(), i['links']) for i in data if i['name'].lower() in locDict]
+            data = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1]) for i in data]
 
-            for hoster, links in data:
+            for host, links in data:
                 for link in links:
-                    try:
-                        sources.append(
-                            {'source': hoster, 'quality': 'SD',
-                             'language': 'de',
-                             'url': link['URL'],
-                             'direct': False,
-                             'debridonly': False})
-                    except:
-                        pass
+                    try:sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': link['URL'], 'direct': False, 'debridonly': False})
+                    except: pass
 
             return sources
         except:

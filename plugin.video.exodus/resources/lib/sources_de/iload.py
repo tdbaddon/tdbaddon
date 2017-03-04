@@ -44,7 +44,8 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(self.search_link_tv, imdb, tvshowtitle)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(self.search_link_tv, imdb, localtvshowtitle)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(self.search_link_tv, imdb,
+                                                                                localtvshowtitle)
             return url
         except:
             return
@@ -89,13 +90,12 @@ class source:
                     relData = client.parseDOM(relData, 'tr', attrs={'class': 'row'})
                     relData = [(client.parseDOM(i, 'td', attrs={'class': '[^\'"]*list-name[^\'"]*'}),
                                 client.parseDOM(i, 'img', attrs={'class': 'countryflag'}, ret='alt'),
-                                client.parseDOM(i, 'td', attrs={'class': 'release-types'})
-                                ) for i in relData]
+                                client.parseDOM(i, 'td', attrs={'class': 'release-types'})) for i in relData]
                     relData = [(i[0][0], i[1][0].lower(), i[2][0]) for i in relData if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
                     relData = [(i[0], i[2]) for i in relData if i[1] == 'deutsch']
                     relData = [(i[0], client.parseDOM(i[1], 'img', attrs={'class': 'release-type-stream'})) for i in relData]
                     relData = [i[0] for i in relData if len(i[1]) > 0]
-                    #relData = client.parseDOM(relData, 'a', ret='href')[:3]
+                    # relData = client.parseDOM(relData, 'a', ret='href')[:3]
                     relData = client.parseDOM(relData, 'a', ret='href')
 
                     for i in relData:
@@ -125,17 +125,17 @@ class source:
                 if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
                 if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
 
-                items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in items]
+                items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in items if 'stream' in i]
                 items = [(i[0][0], i[1][0]) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
                 items = [(i[0], client.parseDOM(i[1], 'img', ret='src')) for i in items]
                 items = [(i[0], i[1][0]) for i in items if len(i[1]) > 0]
                 items = [(i[0], re.findall('.+/(.+\.\w+)\.\w+', i[1])) for i in items]
-                items = [(i[0], i[1][0]) for i in items if len(i[1]) > 0 and i[1][0].lower() in hostDict]
+                items = [(i[0], i[1][0].lower()) for i in items if len(i[1]) > 0 and i[1][0].lower() in hostDict]
 
                 info = ' | '.join(info)
 
                 for link, hoster in items:
-                    sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False})
+                    sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False, 'checkquality': True})
 
             return sources
         except:
@@ -154,6 +154,7 @@ class source:
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)
+            tq = cleantitle.query(title)
 
             r = client.request(query)
 
@@ -162,9 +163,11 @@ class source:
             r = client.parseDOM(r, 'td', attrs={'class': 'list-name'})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
             r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = [i[0] for i in r if t == cleantitle.get(i[1])]
+            url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
+
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 

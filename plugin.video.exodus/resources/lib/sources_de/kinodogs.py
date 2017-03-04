@@ -21,6 +21,7 @@
 import re, urllib, urlparse, json
 
 from resources.lib.modules import client
+from resources.lib.modules import cleantitle
 
 
 class source:
@@ -33,7 +34,9 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            return self.__search(imdb)
+            url = self.__search(title, year, imdb)
+            if not url and title != localtitle: url = self.__search(localtitle, year, imdb)
+            return url
         except:
             return
 
@@ -95,16 +98,36 @@ class source:
         if self.base_link not in url:
             return url
 
-    def __search(self, imdb):
+    def __search(self, title, year, imdb):
         try:
-            r = client.request(urlparse.urljoin(self.base_link, self.search_link % imdb))
-            r = client.parseDOM(r, 'div', attrs={'class': 'movie_cell'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'bottom'})
-            r = [client.parseDOM(i, 'a', attrs={'title': ''}, ret='href') for i in r if len(i[0]) > 0]
-            r = [i[0] for i in r if len(i[0]) > 0]
+            query = self.search_link % (urllib.quote_plus(title))
+            query = urlparse.urljoin(self.base_link, query)
 
-            if len(r) >= 1:
-                url = client.replaceHTMLCodes(r[0])
+            t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
+
+            r = client.request(query)
+
+            r = client.parseDOM(r, 'div', attrs={'class': 'movie_cell'})
+            r = [(client.parseDOM(i, 'div', attrs={'class': 'bottom'}), client.parseDOM(i, 'div', attrs={'class': 'year'})) for i in r]
+            r = [(client.parseDOM(i[0], 'a', attrs={'title': ''}, ret='href'), client.parseDOM(i[0], 'a', attrs={'title': ''}), re.findall('[(](\d{4})[)]', i[1][0])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y]
+
+            if len(r) > 1:
+                for i in r:
+                    data = client.request(urlparse.urljoin(self.base_link, i))
+                    data = client.parseDOM(data, 'a', attrs={'name': '[^\'"]+/tt\d+[^\'"]+'}, ret='name')
+                    data = [re.findall('.+?(tt\d+).*?', d) for d in data]
+                    data = [d[0] for d in data if len(d) > 0 and d[0] == imdb]
+
+                    if len(data) >= 1:
+                        url = i
+            else:
+                url = r[0]
+
+            if url:
+                url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
                 return url
         except:

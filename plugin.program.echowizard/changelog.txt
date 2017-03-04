@@ -1,3 +1,13 @@
+[COLOR yellowgreen]1.92: 3rd March 2017[/COLOR]
+[COLOR white][B]- Fix broken specials fix.[/B][/COLOR]
+
+[COLOR yellowgreen]1.91: 3rd March 2017[/COLOR]
+[COLOR white][B]- Numerous fixes.[/B][/COLOR]
+
+[COLOR yellowgreen]1.90: 2nd March 2017[/COLOR]
+[COLOR white][B]- Fix errors for source checker.[/B][/COLOR]
+[COLOR white][B]- Fix Kodi Apps add to source function for devices with no sources.xml file.[/B][/COLOR]
+
 [COLOR yellowgreen]1.89: 2nd March 2017[/COLOR]
 [COLOR white][B]- Better error catching.[/B][/COLOR]
 

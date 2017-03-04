@@ -46,7 +46,7 @@ class source:
                 return sources
 
             hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            hostDict = [i[0] for i in hostDict]
+            locDict = [i[0] for i in hostDict]
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -55,24 +55,23 @@ class source:
             data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data, XHR=True)
             data = json.loads(data)
             data = [(i, data['links'][i]) for i in data['links'] if 'links' in data]
-            data = [(i[0], i[1][0], (i[1][1:])) for i in data if i[0] in hostDict]
+            data = [(i[0], i[1][0], (i[1][1:])) for i in data if i[0] in locDict]
+            data = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1], i[2]) for i in data]
 
             for hoster, quli, links in data:
                 for link in links:
-                    try:
-                        sources.append(
-                            {'source': hoster, 'quality': 'HD' if quli.upper() == 'HD' else 'SD',
-                             'language': 'de',
-                             'url': urlparse.urljoin(self.base_link, self.out_link % link), 'direct': False,
-                             'debridonly': False})
-                    except:
-                        pass
+                    try: sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': self.out_link % link, 'direct': False, 'debridonly': False})
+                    except: pass
 
             return sources
-        except Exception as e:
+        except:
             return sources
 
     def resolve(self, url):
-        url = client.request(url, output='geturl')
-        if self.out_link not in url:
-            return url
+        try:
+            url = urlparse.urljoin(self.base_link, url)
+            url = client.request(url, output='geturl')
+            if self.out_link not in url:
+                return url
+        except:
+            return

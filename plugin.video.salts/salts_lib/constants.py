@@ -65,7 +65,6 @@ FORCE_NO_MATCH = '***FORCE_NO_MATCH***'
 SHORT_MONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 ACTIONS = __enum(ADD='add', REMOVE='remove')
-TRIG_DB_UPG = False
 
 # sort keys need to be defined such that "best" have highest values
 # unknown (i.e. None) is always worst

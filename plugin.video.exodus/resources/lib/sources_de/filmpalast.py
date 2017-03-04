@@ -99,7 +99,7 @@ class source:
                 if 'openload' in hoster: hoster = 'openload.co'
                 if hoster not in hostDict: continue
 
-                sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'info' : '' if len(id) == 1 else 'multi-part', 'url': id, 'direct': False, 'debridonly': False})
+                sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'info' : '' if len(id) == 1 else 'multi-part', 'url': id, 'direct': False, 'debridonly': False, 'checkquality': True})
 
             return sources
         except:

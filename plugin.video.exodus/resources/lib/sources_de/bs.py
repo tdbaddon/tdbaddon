@@ -61,18 +61,16 @@ class source:
                 return sources
 
             hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            hostDict = [i[0] for i in hostDict]
-            hostDict.append('openloadhd')
+            locDict = [i[0] for i in hostDict]
+            locDict.append('openloadhd')
 
             j = self.__get_json(url)
             j = [i for i in j['links'] if 'links' in j]
-            j = [(i['hoster'].lower(), i['id']) for i in j if i['hoster'].lower() in hostDict]
+            j = [(i['hoster'].lower(), i['id']) for i in j if i['hoster'].lower() in locDict]
+            j = [(re.sub('hd$', '', i[0]), i[1], 'HD' if i[0].endswith('hd') else 'SD') for i in j]
+            j = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1], i[2]) for i in j]
 
-            for hoster, url in j:
-                quality = 'HD' if hoster.endswith('hd') else 'SD'
-
-                if 'openload' in hoster: hoster = 'openload.co'
-
+            for hoster, url, quality in j:
                 sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': ('watch/%s' % url), 'direct': False, 'debridonly': False})
 
             return sources

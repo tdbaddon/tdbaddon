@@ -140,6 +140,8 @@ def GET_LIST(description):
 
 	dp.create(AddonTitle,"[COLOR blue]We are getting the addons from our server.[/COLOR]",'','')	
 
+	combinedlists = []
+
 	if matcher == "repos":
 		namelist=[]
 		countlist=[]

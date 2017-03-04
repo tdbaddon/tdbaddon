@@ -8,7 +8,7 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
-		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English" default="English" />
+		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
@@ -91,6 +91,7 @@
 		<setting id="provider.ymovies" type="bool" label="YMOVIES" default="true" />
 		<setting label="German" type="lsep" />
 		<setting id="provider.1kino" type="bool" label="1KINO" default="true" />
+		<setting id="provider.animeloads" type="bool" label="ANIMELOADS" default="true" />
 		<setting id="provider.bs" type="bool" label="BS" default="true" />
 		<setting id="provider.cine" type="bool" label="CINE" default="true" />
 		<setting id="provider.ddl" type="bool" label="DDL" default="true" />
@@ -100,12 +101,22 @@
 		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />
 		<setting id="provider.kinox" type="bool" label="KINOX" default="true" />
 		<setting id="provider.meinkino" type="bool" label="MEINKINO" default="true" />
+		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
+		<setting id="provider.moviesever" type="bool" label="MOVIESEVER" default="true" />
+		<setting id="provider.rapidstream" type="bool" label="RAPIDSTREAM" default="true" />
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
 		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
+		<setting label="French" type="lsep" />
+		<setting id="provider.filmenstreaminghd" type="bool" label="FILMENSTREAMINGHD" default="true" />
+		<setting id="provider.filmstreamingclub" type="bool" label="FILMSTREAMINGCLUB" default="true" />
+		<setting id="provider.officialfilmillimite" type="bool" label="OFFICIALFILMILLIMITE" default="true" />
+		<setting id="provider.seriesenstreaming" type="bool" label="SERIESENSTREAMING" default="true" />
+		<setting id="provider.skstream" type="bool" label="SKSTREAM" default="true" />
+		<setting id="provider.voirfilms" type="bool" label="VOIRFILMS" default="true" />
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

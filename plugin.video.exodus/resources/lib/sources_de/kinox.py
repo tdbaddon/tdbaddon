@@ -20,6 +20,7 @@
 
 import re, urllib, urlparse, json
 
+from resources.lib.modules import cache
 from resources.lib.modules import client
 
 
@@ -27,11 +28,13 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['de']
-        self.domains = ['kinox.to']
+        self.domains = ['kinox.to', 'kinox.ag', 'kinox.tv', 'kinox.me', 'kinox.am', 'kinox.nu', 'kinox.pe', 'kinox.sg']
         self.base_link = 'http://kinox.to'
         self.search_link = '/Search.html?q=%s'
         self.get_links_epi = '/aGET/MirrorByEpisode/?Addr=%s&SeriesID=%s&Season=%s&Episode=%s'
         self.mirror_link = '/aGET/Mirror/%s&Hoster=%s&Mirror=%s'
+
+        self.base_link = cache.get(self.__get_base_url, 120, self.base_link)
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -67,7 +70,7 @@ class source:
                 return sources
 
             hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            hostDict = [i[0] for i in hostDict]
+            locDict = [i[0] for i in hostDict]
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -92,7 +95,8 @@ class source:
             r = [(client.replaceHTMLCodes(i[0][0]), i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], re.findall('class="Named"[^>]*>([^<]+).*?(\d+)/(\d+)', i[1])) for i in r]
             r = [(i[0], i[1][0][0].lower().rsplit('.', 1)[0], i[1][0][1], i[1][0][2]) for i in r if len(i[1]) > 0]
-            r = [(i[0], i[1], i[3]) for i in r if i[1] in hostDict]
+            r = [(i[0], i[1], i[3]) for i in r if i[1] in locDict]
+            r = [(i[0], [x[1] for x in hostDict if x[0] == i[1]][0], i[2]) for i in r]
 
             for i in r:
                 u = urlparse.parse_qs('&id=%s' % i[0])
@@ -100,14 +104,8 @@ class source:
                 for x in range(0, int(i[2])):
                     url = self.mirror_link % (u['id'], u['Hoster'], x + 1)
                     if season and episode: url += "&Season=%s&Episode=%s" % (season, episode)
-                    try:
-                        sources.append(
-                            {'source': i[1], 'quality': 'SD',
-                             'language': 'de',
-                             'url': url, 'direct': False,
-                             'debridonly': False})
-                    except:
-                        pass
+                    try: sources.append({'source': i[1], 'quality': 'SD', 'language': 'de', 'url': url, 'direct': False, 'debridonly': False})
+                    except: pass
 
             return sources
         except:
@@ -151,3 +149,20 @@ class source:
             return url
         except:
             return
+
+    def __get_base_url(self, fallback):
+        try:
+            for domain in self.domains:
+                try:
+                    url = 'http://%s' % domain
+                    r = client.request(url)
+                    r = client.parseDOM(r, 'meta', attrs={'name': 'keywords'})[0]
+                    if 'kino.to' in r.lower():
+                        return url
+                except:
+                    pass
+
+            return fallback
+        except:
+            return fallback
+

@@ -49,7 +49,6 @@ BANNER_ENABLED = kodi.get_setting('banner_enable') == 'true'
 CLEARART_ENABLED = kodi.get_setting('clearart_enable') == 'true'
 THUMB_ENABLED = kodi.get_setting('thumb_enable') == 'true'
 GIF_ENABLED = kodi.get_setting('gif_enable') == 'true'
-PROXY_ENABLED = kodi.get_setting('proxy_enable') == 'true'
 ZIP_CACHE = 24
 OBJ_PERSON = 'person'
 IMAGE_PROXY = 'http://127.0.0.1:{port}?video_type={video_type}&trakt_id={trakt_id}&video_ids={video_ids}&image_type={image_type}'
@@ -268,7 +267,7 @@ class TMDBScraper(Scraper):
             else:
                 images = {}
             
-            if PROXY_ENABLED and not images:
+            if kodi.get_setting('proxy_enable') == 'true' and not images:
                 url = '/person/%s/images' % (ids['tmdb'])
                 params = {'api_key': self.API_KEY, 'include_image_language': 'en,null'}
                 images = self._get_url(url, params, headers=self.headers, cache_limit=30)
@@ -594,7 +593,7 @@ class GIFScraper(Scraper):
 tvdb_scraper = TVDBScraper()
 tmdb_scraper = TMDBScraper()
 def get_person_images(video_ids, person, cached=True):
-    if PROXY_ENABLED and cached:
+    if kodi.get_setting('proxy_enable') == 'true' and cached:
         ids = person['person']['ids']
         port = kodi.get_setting('proxy_port')
         video_ids = urllib.quote(json.dumps(video_ids))
@@ -636,7 +635,7 @@ def scrape_person_images(video_ids, person, cached=True):
     return person_art
 
 def get_images(video_type, video_ids, season='', episode='', screenshots=False, cached=True, cache_only=False):
-    if PROXY_ENABLED and cached:
+    if kodi.get_setting('proxy_enable') == 'true' and cached:
         port = kodi.get_setting('proxy_port')
         trakt_id = video_ids['trakt']
         video_ids = urllib.quote(json.dumps(video_ids))
@@ -671,7 +670,7 @@ def scrape_images(video_type, video_ids, season='', episode='', screenshots=Fals
         gif_scraper = GIFScraper()
         if video_type == VIDEO_TYPES.MOVIE:
             art_dict.update(fanart_scraper.get_movie_images(video_ids))
-            if not PROXY_ENABLED and GIF_ENABLED and POSTER_ENABLED:
+            if kodi.get_setting('proxy_enable') != 'true' and GIF_ENABLED and POSTER_ENABLED:
                 art_dict.update(gif_scraper.get_movie_images(video_ids))
              
             need = []

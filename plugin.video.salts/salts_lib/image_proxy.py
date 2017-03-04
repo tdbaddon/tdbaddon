@@ -32,38 +32,34 @@ class ValidationError(Exception):
     pass
 
 class ImageProxy(object):
-    def __init__(self):
+    def __init__(self, host=None):
+        self.host = '127.0.0.1' if host is None else host
         self.running = False
         self.stop_server = False
         self.svr_thread = None
-        self.host = '127.0.0.1'
+        self.httpd = None
     
     def run(self):
-        self.svr_thread = threading.Thread(target=self.start_proxy)
+        self.svr_thread = threading.Thread(target=self.__start_proxy)
         self.svr_thread.daemon = True
         self.svr_thread.start()
 
-    def active(self):
-        return kodi.get_setting('proxy_enable') == 'true' and not self.stop_server
-     
-    def start_proxy(self):
+    def __start_proxy(self):
         port = int(kodi.get_setting('proxy_port') or self.get_port())
         server_address = (self.host, port)
         log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
-        httpd = MyHTTPServer(server_address, MyRequestHandler)
-        httpd.timeout = .5
-        while self.active():
-            self.running = True
-            httpd.handle_request()
+        self.running = True
+        self.httpd = MyHTTPServer(server_address, MyRequestHandler)
+        self.httpd.serve_forever(.5)
         log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
-        httpd.server_close()
         self.running = False
+        self.httpd.server_close()
 
     def stop_proxy(self):
-        self.stop_server = True
-    
-    def manage_proxy(self):
-        if self.svr_thread is not None and not self.svr_thread.is_alive():
+        if self.httpd is not None:
+            self.httpd.shutdown()
+        
+        if self.svr_thread is not None:
             log_utils.log('Reaping proxy thread: %s' % (self.svr_thread))
             self.svr_thread.join()
             self.svr_thread = None
@@ -127,6 +123,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                 else:
                     images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''), screenshots=True)
                 self.proxy_cache[key] = images
+                
             image_url = images[fields['image_type']]
             if image_url is None:
                 self._set_headers()

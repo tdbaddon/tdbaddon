@@ -319,7 +319,8 @@ class Trakt_API():
         length = -1
         result = []
         while length != 0 or length == HIDDEN_SIZE:
-            hidden = self.__call_trakt(url, params=params, cache_limit=7 * 24, cached=cached)
+            cache_limit = self.__get_cache_limit('shows', 'hidden_at', cached)
+            hidden = self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
             length = len(hidden)
             result += hidden
             params['page'] += 1

@@ -22,6 +22,7 @@
 import sys,re,json,urllib,urlparse,random,datetime,time
 
 from resources.lib.modules import trakt
+from resources.lib.modules import tvmaze
 from resources.lib.modules import cache
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
@@ -318,11 +319,11 @@ class sources:
 
         if content == 'movie':
             title = self.getTitle(title)
-            localtitle = self.getLocalTitle(title, imdb, content)
+            localtitle = self.getLocalTitle(title, imdb, tvdb, content)
             for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, localtitle, year, imdb, i[0], i[1]))
         else:
             tvshowtitle = self.getTitle(tvshowtitle)
-            localtvshowtitle = self.getLocalTitle(tvshowtitle, imdb, content)
+            localtvshowtitle = self.getLocalTitle(tvshowtitle, imdb, tvdb, content)
             for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, i[0], i[1]))
 
         s = [i[0] + (i[1],) for i in zip(sourceDict, threads)]
@@ -552,6 +553,10 @@ class sources:
 
         if provider == 'true':
             self.sources = sorted(self.sources, key=lambda k: k['provider'])
+
+        for i in self.sources:
+            if 'checkquality' in i and i['checkquality'] == True: 
+                if not i['source'].lower() in self.hosthqDict: i.update({'quality': 'SD'})
 
         local = [i for i in self.sources if 'local' in i and i['local'] == True]
         self.sources = [i for i in self.sources if not i in local]
@@ -848,13 +853,13 @@ class sources:
         return lang
 
 
-    def getLocalTitle(self, title, imdb, content):
+    def getLocalTitle(self, title, imdb, tvdb, content):
         langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr'}
         name = control.setting('providers.lang')
         try: lang = langDict[name]
         except: return title
         if content == 'movie': t = trakt.getMovieTranslation(imdb, lang)
-        else: t = trakt.getTVShowTranslation(imdb, lang)
+        else: t = tvmaze.tvMaze().getTVShowTranslation(tvdb, lang)
         title = t if not t == None else title
         return title
 
@@ -871,8 +876,9 @@ class sources:
 
         from resources.lib.sources import sources as sources
         from resources.lib.sources_de import sources as sources_de
+        from resources.lib.sources_fr import sources as sources_fr
 
-        self.sourceDict = sources() + sources_de()
+        self.sourceDict = sources() + sources_de() + sources_fr()
 
         try:
             self.hostDict = urlresolver.relevant_resolvers(order_matters=True)
@@ -885,6 +891,8 @@ class sources:
         self.hostprDict = ['1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
+
+        self.hosthqDict = ['openload.io', 'openload.co', 'thevideo.me']
 
         self.hostblockDict = []
 

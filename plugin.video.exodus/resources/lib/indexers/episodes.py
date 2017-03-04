@@ -781,14 +781,17 @@ class episodes:
         for item in result:
             try:
                 num_1 = 0
-                for i in range(0, len(item['seasons'])): num_1 += len(item['seasons'][i]['episodes'])
+                for i in range(0, len(item['seasons'])):
+                    if item['seasons'][i]['number'] > 0: num_1 += len(item['seasons'][i]['episodes'])
                 num_2 = int(item['show']['aired_episodes'])
                 if num_1 >= num_2: raise Exception()
 
                 season = str(item['seasons'][-1]['number'])
                 season = season.encode('utf-8')
 
-                episode = str(item['seasons'][-1]['episodes'][-1]['number'])
+                episode = [x for x in item['seasons'][-1]['episodes'] if 'number' in x]
+                episode = sorted(episode, key=lambda x: x['number'])
+                episode = str(episode[-1]['number'])
                 episode = episode.encode('utf-8')
 
                 tvshowtitle = item['show']['title']
