@@ -42,5 +42,5 @@ item_info_from=rtmp_2 || rtmp_1
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp+' playPath='+file+h+' swfUrl=http://thecdn.04stream.com/p/ooolo1.swf flashver=WIN\2024,0,0,186 timeout=10 live=1 pageUrl='+pageUrl
+item_info_from=rtmp+' playPath='+file+h+' swfUrl=http://thecdn.04stream.com/p/ooolo1.swf flashver=WIN\2024,0,0,221 timeout=10 live=1 pageUrl='+pageUrl
 item_info_build=%s

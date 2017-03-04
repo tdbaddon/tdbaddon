@@ -1618,13 +1618,20 @@ class resolver:
             return
 
     def source(self, url):
-        try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+        '''try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
         except: pass
         try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
         except: pass
         url = urlparse.urlparse(url).query
         url = base64.b64decode(url)
-        url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
+        url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]'''
+        if url.startswith("//"): url = "http:%s" % url
+        data = {'chtc': 'Click Here to Continue'}
+        data = urllib.urlencode(data)
+        cookie = client.request(url, output='cookie', close=False)
+        result = client.request(url, post=data, referer=url, cookie=cookie)
+        try: url = client.parseDOM(result, 'IFRAME', ret='src', attrs={"id": "showvideo"})[0]
+        except: url = client.parseDOM(result, 'iframe', ret='src', attrs={"id": "showvideo"})[0]
         url = client.replaceHTMLCodes(url)
         url = url.encode('utf-8')
         url = HostedMediaFile(url=url).resolve()
@@ -1642,12 +1649,15 @@ class resolver:
             hosts = [i.strip() for i in hosts if not 'HD Sponsor' in i]
             
             urls = client.parseDOM(result, 'li', attrs = { "id": "playing_button" })
-            urls = [i for i in urls if '/stream.php?' in i]
+            urls = [i for i in urls if not '/watchnow.php?' in i]
             
             srcs = []
             i = 0
             for url in urls:
                 host = hosts[i]
+                if host == '': 
+                    i += 1
+                    continue
                 url = client.parseDOM(url, 'a', ret="href")[0]
                 #url = self.source(url)
                 #if HostedMediaFile(url).valid_url():

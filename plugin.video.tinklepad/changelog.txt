@@ -1,4 +1,9 @@
 ------------------------
+TinklePad v1.2.2 (04 Mar-17)
+
+- Fixed no stream available
+
+------------------------
 TinklePad v1.2.1 (01 Mar-17)
 
 - Added Latest TS list

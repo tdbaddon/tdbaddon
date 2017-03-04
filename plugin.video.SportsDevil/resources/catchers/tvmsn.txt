@@ -49,10 +49,15 @@ item_info_from=m3u8
 item_info_convert=parseText('%s','.*?live\/(\w+)')
 item_info_build=%s
 
+item_info_name=ip
+item_info_from=m3u8
+item_info_convert=parseText('%s','.*?://([^:/]+)')
+item_info_build=%s
+
 item_info_name=url
-item_info_from=rtmp://109.200.202.124/live?wmsAuthSign='+part1+part2+' playpath='+file+' swfUrl=http://www.tv-msn.com/player/player.swf flashver=WIN\2024,0,0,186 live=1 timeout=15 pageUrl=' + pageUrl
+item_info_from=rtmp://'+ip+'/live?wmsAuthSign='+part1+part2+' playpath='+file+' swfUrl=http://www.tv-msn.com/player/player.swf flashver=WIN\2024,0,0,221 live=1 timeout=15 pageUrl=' + pageUrl
 item_info_build=%s
 
 #item_info_name=url
-#item_info_from=m3u8+part1+part2+'|Referer='+pageUrl+'&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36
+#item_info_from=m3u8+part1+part2+'|Referer='+pageUrl+'&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
 #item_info_build=%s

@@ -2207,7 +2207,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.SportsDevil"
-  version="ZNL2017.02.18"
+  version="ZNL2017.02.29"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -2527,7 +2527,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.1" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.2" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>

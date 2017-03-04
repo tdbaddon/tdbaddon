@@ -4,7 +4,17 @@ item_info_build=TheActionLive - %s
 
 item_info_name=d2
 item_info_from=@PARAM1@
-item_info_convert=getInfo('http://soccerschedule.online/livegamecr.js','.*src=['"](http[^'"]+).*','@REFERER@')
+item_info_convert=getInfo('http://soccerschedule.online/livegamecr.js','.*['"](\\x49\\x69\\x42\\x7a\\x59\\x33[^'"]+).*','@REFERER@')
+item_info_convert=unicode_escape
+item_info_convert=decodeBase64
+item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
+item_info_build=%s
+
+item_info_name=d2
+item_info_from=@PARAM1@
+item_info_convert=getInfo('http://soccerschedule.online/livegamecr.js','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@REFERER@')
+item_info_convert=unicode_escape
+item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
 item_info_build=%s
 
 item_info_name=ch
@@ -12,8 +22,8 @@ item_info_from=@PARAM1@
 item_info_build=%s
 
 item_info_name=pageUrl
-item_info_from=ch
-item_info_build=http://soccerschedule.online/cricyes.php?id=%s&width=620&height=490&stretching=
+item_info_from=d2+ch
+item_info_build=%s&width=620&height=490&stretching=
 
 item_info_name=id
 item_info_from=pageUrl
@@ -27,12 +37,22 @@ item_info_build=%s
 
 item_info_name=d1
 item_info_from=js_url
-item_info_convert=getInfo('%s','.*src=['"](http[^'"]+).*','@pageUrl@')
+item_info_convert=getInfo('%s','.*['"](\\x49\\x69\\x42\\x7a\\x59\\x33[^'"]+).*','@pageUrl@')
+item_info_convert=unicode_escape
+item_info_convert=decodeBase64
+item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
+item_info_build=%s
+
+item_info_name=d1
+item_info_from=js_url
+item_info_convert=getInfo('%s','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@REFERER@')
+item_info_convert=unicode_escape
+item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
 item_info_build=%s
 
 item_info_name=playUrl
-item_info_from=id
-item_info_build=http://playstream.club/cricyesplayer.php?id=%s&width=620&height=490
+item_info_from=d1+id
+item_info_build=%s&width=620&height=490
 
 item_info_name=file
 item_info_from=playUrl
@@ -47,5 +67,5 @@ item_info_convert=quote(%s)
 item_info_build=%s
 
 item_info_name=url
-item_info_from=file+'|Referer='+ref+'&User-Agent=Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.100 Safari/537.36&X-Requested-With=ShockwaveFlash/24.0.0.186
+item_info_from=file+'|Referer='+ref+'&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36&X-Requested-With=ShockwaveFlash/24.0.0.221
 item_info_build=%s

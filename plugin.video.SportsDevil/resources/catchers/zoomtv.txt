@@ -40,7 +40,7 @@ item_info_build=http://www.zoomtv.me/%s
 
 item_info_name=h0
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?(\w+)\s*=.{0,20}(rtmp[^']*).*(?:file.{0,20}\1).*','@REFERER@','junk|rtmp')
+item_info_convert=getInfo('%s','.*?(\w+)\s*=.{0,20}(rtmp[^']*).*(?:file.{0,20}\1).*','@REFERER@','junk|rtmp1')
 item_info_build=%s
 
 item_info_name=h1
@@ -58,11 +58,15 @@ item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*?(\w+)\s*=\s*['"]([a-z0-9]{32})\b.*stok.\1','@REFERER@','junk|sg1')
 item_info_build=%s
 
-item_info_name=rtmp
+item_info_name=rtmp2
 item_info_from=req
 item_info_convert=getInfo('%s','.*['"](rtmp[^'"]+).*','@pageUrl2@')
 item_info_build=%s
 
+item_info_name=rtmp
+item_info_from=rtmp1 || rtmp2
+item_info_build=%s
+
 item_info_name=url
-item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static.zoomtv.me/player/jwplayer.7.9.swf flashver=WIN\2024,0,0,186 conn=S:' + file + ' conn=S:'+ts+' conn=S:'+sg1+' conn=S:V&gt;JWhui^@2ESdu0?}&gt;AN live=1 timeout=15 token=Q!lrB@G1)ww(-dQ4J4 swfVfy=1 pageUrl=' + pageUrl2
+item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static.zoomtv.me/player/7.9/jwplayer.flash.swf flashver=WIN\2024,0,0,221 conn=S:' + file + ' conn=S:'+ts+' conn=S:'+sg1+' conn=S:V&gt;JWhui^@2ESdu0?}&gt;AN live=1 token=Q!lrB@G1)ww(-dQ4J4 pageUrl=' + pageUrl2
 item_info_build=%s

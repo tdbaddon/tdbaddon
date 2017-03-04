@@ -34,7 +34,7 @@ class BaseRequest(object):
         self.s = requests.Session()
         if fileExists(self.cookie_file):
             self.s.cookies = self.load_cookies_from_lwp(self.cookie_file)
-        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'})
+        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'})
         self.s.headers.update({'Accept-Language' : 'en-US,en;q=0.5'})
         self.url = ''
     
@@ -78,7 +78,7 @@ class BaseRequest(object):
         if not referer:
             referer = url
         else:
-            referer = self.fixurl(referer.replace('wizhdsports.be','wizhdsports.to').replace('ibrod.tv','www.ibrod.tv').replace('livetv123.net','livetv.sx'))
+            referer = self.fixurl(referer.replace('wizhdsports.be','wizhdsports.is').replace('ibrod.tv','www.ibrod.tv').replace('livetv123.net','livetv.sx'))
         
         headers = {'Referer': referer}
         if mobile:
@@ -125,34 +125,12 @@ class BaseRequest(object):
             r.encoding = 'utf-8'
         if 'lfootball.ws' in urlparse.urlsplit(url).netloc:
             r.encoding = 'windows-1251'
-            
+
         response  = r.text
-        
-        while ('answer this question' in response and 'streamlive.to' in urlparse.urlsplit(url).netloc):
-            import xbmcgui
-            dialog = xbmcgui.Dialog()
-            r = re.compile("Question:\s*([^<]+)<")
-            q_regex = r.findall(response)
-            if q_regex:
-                q_resp = dialog.input(q_regex[0])
-                if q_resp:
-                    form_data = 'captcha={0}'.format(q_resp)
-                    headers['Referer'] = url
-                    headers['Content-Type'] = 'application/x-www-form-urlencoded'
-                    headers['Content-Length'] = str(len(form_data))
-                    r = self.s.post(url, headers=headers, data=form_data, timeout=20)
-                    response  = r.text
-                else:
-                    break
-            else:
-                break
-        
+
         if len(response) > 10:
             if self.cookie_file:
                 self.save_cookies_lwp(self.s.cookies, self.cookie_file)
-        
-        if '"zmbtn"' in response:
-            response = response.replace("""' + '""",'').replace('"("+','').replace("""'+'""",'')
 
         return HTMLParser().unescape(response)
 

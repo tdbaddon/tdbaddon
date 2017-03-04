@@ -14,7 +14,7 @@ item_info_convert=resolve
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp+' playPath=raw:'+file+' conn=S:client conn=S:3.1.1.31 conn=S:en swfUrl=http://sportstream365.com/getZone/VideoPlayerSportstream.swf swfVfy=1 swfhash=5aaaa32059cba732636c28519b2ce34a3568f1058a8bd02d6a932643554ccbb4 swfsize=585534 timeout=15 live=true pageUrl=http://sportstream365.com/
+item_info_from=rtmp+' playPath=raw:'+file+' conn=S:client conn=S:3.1.1.45 conn=S:en swfUrl=http://sportstream365.com/getZone/VideoPlayerSportstream.swf swfVfy=1 swfhash=6ce6802075cd941ffb56a189b990e1a1f3495239eb4ac048fd566d682c577e3d swfsize=693720 timeout=15 live=true pageUrl=http://sportstream365.com/
 item_info_build=%s
 
 item_info_name=url4
