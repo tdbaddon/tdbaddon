@@ -1,3 +1,8 @@
+1.1.0 (05-03-2017)
+- Removed redundant opener and random agent functions. They are now handled by the client module
+- Removed option for mirror. Github is being phazed out and playlist was moved to another host.
+- Code cosmetics
+
 1.0.9 (17-01-2017)
 - Base64-ed the lists
 - Minor fixes

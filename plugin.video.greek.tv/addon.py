@@ -18,10 +18,10 @@
         along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re, os, sys, base64, random
+import re, os, sys, random
 import urlparse
 import xbmcaddon, xbmcgui, xbmcplugin, xbmc
-from resources.lib import ordereddict, client
+from resources.lib import ordereddict, client, thgiliwt
 
 addon = xbmcaddon.Addon()
 localisedstr = addon.getLocalizedString
@@ -40,7 +40,6 @@ endDir = xbmcplugin.endOfDirectory
 execute = xbmc.executebuiltin
 
 join = os.path.join
-decode = base64.b64decode
 addonmedia = join(addonpath, 'resources', 'media')
 
 addon_url = sys.argv[0]
@@ -49,52 +48,12 @@ params = dict(urlparse.parse_qsl(sys.argv[2][1:]))
 action = params.get('action', None)
 
 
-def random_agent():
-
-    BR_VERS = [['%s.0' % i for i in xrange(18, 43)],
-               ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101',
-                '38.0.2125.104', '38.0.2125.111', '39.0.2171.71', '39.0.2171.95',
-                '39.0.2171.99', '40.0.2214.93', '40.0.2214.111', '40.0.2214.115',
-                '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81',
-                '43.0.2357.124', '44.0.2403.155', '44.0.2403.157', '45.0.2454.101',
-                '45.0.2454.85', '46.0.2490.71', '46.0.2490.80', '46.0.2490.86',
-                '47.0.2526.73', '47.0.2526.80'], ['11.0']]
-    WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1',
-                'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
-    FEATURES = ['; WOW64', '; Win64; IA64', '; Win64; x64', '']
-    RAND_UAS = ['Mozilla/5.0 ({win_ver}{feature}; rv:{br_ver}) Gecko/20100101 Firefox/{br_ver}',
-                'Mozilla/5.0 ({win_ver}{feature}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{br_ver} Safari/537.36',
-                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko']
-    index = random.randrange(len(RAND_UAS))
-    return RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES),
-                                  br_ver=random.choice(BR_VERS[index]))
-
-
-# def opener(url, user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'):
-#
-#     req = urllib2.Request(url)
-#     req.add_header('User-Agent', user_agent)
-#     response = urllib2.urlopen(req)
-#     result = response.read()
-#     response.close()
-#
-#     return result
-
-
-def ant1cy_resolver():
-
-    return client.request('http://www.ant1iwo.com/ajax.aspx?m=Atcom.Sites.Ant1iwo.Modules.TokenGenerator&videoURL=http://l2.cloudskep.com/antl2/abr/playlist.m3u8')
-
-
 def constructor():
 
     compiled_list = []
     groups = []
 
-    if addon.getSetting('mirror') == 'true':
-        text = client.request(decode('aHR0cDovL3R2LngtbWFkLmNvbS9hbmRyb2lkLm0zdQ=='))
-    else:
-        text = client.request(decode('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ZyZWUtZ3JlZWstaXB0di9ncmVlay1pcHR2L21hc3Rlci9hbmRyb2lkLm0zdQ=='))
+    text = client.request(thgiliwt.thgiliwt('==Qdz0mLkl2byRmbh9SbvNmLkFWbtgnL2R3LvoDc0RHa'))
 
     result = text.replace('\r\n', '\n')
     items = re.compile('group-title="(.*?)".*?tvg-logo="(.*?)",(.*?)$\n(.*?)$', re.U + re.M).findall(result)
@@ -102,9 +61,6 @@ def constructor():
     for group, icon, title, url in items:
 
         title = title.strip()
-
-        if 'cloudskep.com/antl2' in url:
-            url = ant1cy_resolver()
 
         item_data = ({'title': title, 'icon': icon, 'group': group.decode('utf-8'), 'url': url})
         compiled_list.append(item_data)
@@ -126,7 +82,7 @@ def switcher():
 
     groups = [localisedstr(30016)] + constructor()[1]
 
-    choices = dialog.select(heading=localisedstr(30017), list=groups)
+    choices = dialog.select(heading=localisedstr(30017), list_=groups)
 
     if choices == 0:
         addon.setSetting('group', 'ΟΛΑ'.decode('utf-8'))

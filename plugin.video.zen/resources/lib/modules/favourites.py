@@ -84,7 +84,7 @@ def addFavourite(meta, content):
         dbcon.commit()
 
         control.refresh()
-        control.infoDialog('Added to Watchlist', heading=title)
+        control.infoDialog('Added to Watchlist', heading=title, icon=item['poster'])
     except:
         return
 

@@ -1018,7 +1018,7 @@ class tvshows:
 				
 
             self.worker()
-            
+            self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))	            
             self.tvshowDirectory(self.list)
         except:
             return
@@ -1094,7 +1094,9 @@ class tvshows:
                 except:
                     pass
                 sysmeta = urllib.quote_plus(json.dumps(meta))
-                # print "SYSMETA SHOWS %s" %sysmeta
+
+                if not tvdb == "0" or tvdb == None: sysmetalliq = "plugin://plugin.video.metalliq/tv/add_to_library_parsed/%s/direct.zen.q" % tvdb
+                else: sysmetalliq = "0"
                 url = '%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&tmdb=%s' % (sysaddon, systitle, year, imdb, tvdb,tmdb)
 
 
@@ -1105,10 +1107,10 @@ class tvshows:
                 if action == 'tvFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
-
                 cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
 
                 cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
+                if not sysmetalliq == '0' or sysmetalliq == None:cm.append(('Add To Library', 'RunPlugin(%s)' % (sysmetalliq)))
 
                 if traktCredentials == True:
                     cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))

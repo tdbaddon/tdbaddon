@@ -1472,9 +1472,8 @@ class episodes:
                 cm = []
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                cm.append((tvshowBrowserMenu, 'Container.Update(%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
-                if multi == True:
-                    cm.append((tvshowBrowserMenu, 'Container.Update(%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
                 try:
                     overlay = int(playcount.getEpisodeOverlay(indicators, imdb, tvdb, season, episode))

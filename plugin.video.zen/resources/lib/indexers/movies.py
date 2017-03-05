@@ -553,7 +553,7 @@ class movies:
 				
 
             self.worker()
-            
+            self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))	            
             self.movieDirectory(self.list)
         except:
             return
@@ -1000,7 +1000,7 @@ class movies:
             imdb = item['imdb_id']
             if imdb == '' or imdb == None: imdb = '0'
             imdb = imdb.encode('utf-8')
-            if not imdb == '0': self.list[i].update({'imdb': imdb, 'code': imdb})
+            if not imdb == '0' and "tt" in imdb: self.list[i].update({'imdb': imdb, 'code': imdb})
 
             poster = item['poster_path']
             if poster == '' or poster == None: poster = '0'
@@ -1172,7 +1172,7 @@ class movies:
             try:
                 if not 'originaltitle' in i: i['originaltitle'] = '%s' %(i['title'])
                 label = '%s' % (i['title'])
-                imdb, title, year = i['imdb'], i['originaltitle'], i['year']
+                tmdb, imdb, title, year = i['tmdb'], i['imdb'], i['originaltitle'], i['year']
 
                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
                 systitle = urllib.quote_plus(title)
@@ -1197,9 +1197,11 @@ class movies:
                 if isEstuary == True:
                     try: del meta['cast']
                     except: pass
-
+                if "tt" in imdb: sysmetalliq = "plugin://plugin.video.metalliq/movies/add_to_library_parsed/imdb/%s/direct.zen.q" % imdb
+                elif not tmdb == "0" or tmdb == None: sysmetalliq = "plugin://plugin.video.metalliq/movies/add_to_library_parsed/tmdb/%s/direct.zen.q" % tmdb
+                else: sysmetalliq = "0"
                 sysmeta = urllib.quote_plus(json.dumps(meta))
-
+                
                 url_alt = '%s?action=play_alter&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, sysmeta, self.systime)
 
                 url = '%s?action=play&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, sysmeta, self.systime)
@@ -1216,7 +1218,7 @@ class movies:
                 if not action == 'movieFavourites':cm.append(('Add to Watchlist', 'RunPlugin(%s?action=addFavourite&meta=%s&content=movies)' % (sysaddon, sysmeta)))
                 if action == 'movieFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=movies)' % (sysaddon, sysmeta)))
                 if action == 'movieProgress': cm.append(('Remove From Progress', 'RunPlugin(%s?action=deleteProgress&meta=%s&content=movies)' % (sysaddon, sysmeta)))
-
+                if not sysmetalliq == '0' or sysmetalliq == None:cm.append(('Add To Library', 'RunPlugin(%s)' % (sysmetalliq)))
 		
 				
                 try:

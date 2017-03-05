@@ -1,3 +1,9 @@
+[B]2017.03.05[/B]
+- Added Library Feature (you need Metalliq addon)
+- Improved results and searches
+- Added a "Browse Series" in the episodes context menu to jump to the main series page
+- Added a scraper for local library
+
 [B]2017.02.28[/B]
 - Hotfixes
 - Improved Sources Caching

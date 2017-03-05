@@ -52,6 +52,7 @@
 	
 	
 	<category label="32345">
+		<setting id="provider.library" type="bool" label="Include Library Items" default="true" />
 		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false" />
 		<setting type="lsep" label="Free Providers" />
 

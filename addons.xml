@@ -1290,9 +1290,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.9" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.1.0" provider-name="Thgiliwt">
     <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="xbmc.python" version="2.20.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="addon.py">
@@ -1309,6 +1309,12 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.1.0 (05-03-2017)
+- Removed redundant opener and random agent functions. They are now handled by the client module
+- Removed option for mirror. Github is being phazed out and playlist was moved to another host.
+- Bump to Isengard
+- Code cosmetics
+
 1.0.9 (17-01-2017)
 - Base64-ed the lists
 
@@ -2925,7 +2931,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.02.28" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.03.05" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2934,7 +2940,7 @@ Enjoy!</description>
 		<import addon="script.module.requests" />
 		<import addon="script.module.beautifulsoup" />
 		<import addon="script.module.schism.common" />
-        <import addon="script.module.futures" version="2.2.0"/>
+		<import addon="script.module.futures" version="2.2.0"/>
 
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="zen.py">
@@ -2946,14 +2952,14 @@ Enjoy!</description>
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Providers - Hotfixes</news>
-        <assets>
+		<news>Added Library via Metalliq - Browse Series now in the Context Menu</news>
+		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
 			<screenshot>resources/screenshots/01.jpg</screenshot>
 			<screenshot>resources/screenshots/02.jpg</screenshot>
 			<screenshot>resources/screenshots/03.jpg</screenshot>
-        </assets>
+		</assets>
 	</extension>
 </addon>
 

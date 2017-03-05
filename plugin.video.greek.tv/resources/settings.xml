@@ -5,7 +5,5 @@
         <setting id="show-bup" label="30003" type="bool" default="true"/>
         <setting id="sort" label="30004" type="bool" default="false"/>
         <setting id="method" type="enum" label="30007" lvalues="30005|30006" default="0" enable="eq(-1,true)"/>
-        <setting label="30009" type="lsep"/>
-        <setting id="mirror" label="30008" type="bool" default="false"/>
     </category>
 </settings>
