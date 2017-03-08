@@ -1,8 +1,42 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Filipe Mota, 2017
+# Filipe Torres, 2016
+# Helder, 2016
+# Igor Ferreira, 2017
+# lambda81, 2016
+# Mafarricos, 2015
+# satanuke gervasio, 2016
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-04 01:28+0000\n"
+"Last-Translator: Filipe Mota\n"
+"Language-Team: Portuguese (http://www.transifex.com/tv-addons/exodus/language/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -38,7 +72,7 @@ msgstr "Ferramentas"
 
 msgctxt "#32009"
 msgid "Downloads"
-msgstr "Downloads"
+msgstr "Transferências"
 
 msgctxt "#32010"
 msgid "Search"
@@ -98,11 +132,11 @@ msgstr "Bem Classificados"
 
 msgctxt "#32024"
 msgid "Airing today"
-msgstr "A dar hoje"
+msgstr "Estreia hoje"
 
 msgctxt "#32025"
 msgid "Returning TV Shows"
-msgstr "Séries a Retornar"
+msgstr "Séries Renovadas"
 
 msgctxt "#32026"
 msgid "New TV Shows"
@@ -130,11 +164,11 @@ msgstr "Descobrir"
 
 msgctxt "#32032"
 msgid "Collection"
-msgstr "Collection"
+msgstr "Coleção"
 
 msgctxt "#32033"
 msgid "Watchlist"
-msgstr "Watchlist"
+msgstr "Desejo Ver"
 
 msgctxt "#32034"
 msgid "IMDb"
@@ -166,11 +200,11 @@ msgstr "Listas de Séries"
 
 msgctxt "#32041"
 msgid "Episode Lists"
-msgstr "Lista Episódios"
+msgstr "Lista de Episódios"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
-msgstr "Conta Trakt ou IMDb não encontrada"
+msgstr "Conta Trakt ou IMDb não encontrada."
 
 msgctxt "#32043"
 msgid "[B]SETTINGS[/B] : General"
@@ -190,11 +224,11 @@ msgstr "[B]CONFIGURAÇÕES[/B] : Legendas"
 
 msgctxt "#32047"
 msgid "[B]SETTINGS[/B] : Providers"
-msgstr "[B]CONFIGURAÇOES[/B] : Serviços"
+msgstr "[B]CONFIGURAÇOES[/B] : Fontes"
 
 msgctxt "#32048"
 msgid "[B]EXODUS[/B] : Downloads"
-msgstr "[B]EXODUS[/B]: Downloads"
+msgstr "[B]EXODUS[/B]: Transferências"
 
 msgctxt "#32049"
 msgid "[B]EXODUS[/B] : Viewtypes"
@@ -238,7 +272,7 @@ msgstr "Notará alguma lentidão até que todos os urls sejam re-colocados em ca
 
 msgctxt "#32059"
 msgid "CLICK HERE TO SAVE VIEW"
-msgstr "CLIQUE AQUI PARA SALVAR A VISTA"
+msgstr "CLIQUE AQUI PARA GUARDAR A VISTA"
 
 msgctxt "#32060"
 msgid ""
@@ -283,7 +317,7 @@ msgstr "Não Visto no Trakt"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
-msgstr "Gestor Trakt"
+msgstr "Gerir Trakt"
 
 msgctxt "#32071"
 msgid "Browse Series"
@@ -291,7 +325,7 @@ msgstr "Procurar séries"
 
 msgctxt "#32072"
 msgid "Refresh"
-msgstr "Actualizar"
+msgstr "Atualizar"
 
 msgctxt "#32073"
 msgid "[B]HELP[/B] : www.tvaddons.ag"
@@ -303,11 +337,11 @@ msgstr "[B]AJUDA[/B]"
 
 msgctxt "#32301"
 msgid "Enabled"
-msgstr "Ativo"
+msgstr "Ativado"
 
 msgctxt "#32302"
 msgid "Disabled"
-msgstr "Desativo"
+msgstr "Desativado"
 
 msgctxt "#32303"
 msgid "User"
@@ -315,7 +349,7 @@ msgstr "Utilizador"
 
 msgctxt "#32304"
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgctxt "#32305"
 msgid "ID"
@@ -323,11 +357,11 @@ msgstr "ID"
 
 msgctxt "#32306"
 msgid "Authorization..."
-msgstr "Autorização"
+msgstr "Autorização..."
 
 msgctxt "#32307"
 msgid "Password"
-msgstr "Password"
+msgstr "Palavra-passe"
 
 msgctxt "#32308"
 msgid "PIN"
@@ -347,7 +381,7 @@ msgstr "Aspecto"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
-msgstr "Timeout de serviços"
+msgstr "Tempo dos serviços expirou"
 
 msgctxt "#32313"
 msgid "Indicators"
@@ -363,11 +397,11 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Linguagem de Informação"
+msgstr "Informação do Idioma"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
-msgstr "Agrupar temporadas de séries de TV"
+msgstr "Agrupar temporadas de Séries"
 
 msgctxt "#32318"
 msgid "Enable Fanart"
@@ -375,11 +409,11 @@ msgstr "Ativar Fanart"
 
 msgctxt "#32319"
 msgid "Menu"
-msgstr "Menu principal"
+msgstr "Menu Principal"
 
 msgctxt "#32320"
 msgid "New Movies"
-msgstr "Filmes Novos"
+msgstr "Filmes Recentes"
 
 msgctxt "#32321"
 msgid "Featured"
@@ -407,11 +441,11 @@ msgstr "Episódios"
 
 msgctxt "#32327"
 msgid "Trakt Progress"
-msgstr "Progresso Trakt"
+msgstr "Progresso do Trakt"
 
 msgctxt "#32328"
 msgid "Trakt Episodes"
-msgstr "Episódios Trakt"
+msgstr "Episódios do Trakt"
 
 msgctxt "#32329"
 msgid "My Lists"
@@ -459,7 +493,7 @@ msgstr "Qualidade Máxima"
 
 msgctxt "#32340"
 msgid "SD Hosters in Auto Play"
-msgstr "Hosters SD em reprodução automática"
+msgstr "Fontes SD em reprodução automática"
 
 msgctxt "#32341"
 msgid "Hosters with captchas"
@@ -467,7 +501,7 @@ msgstr "Fontes com captchas"
 
 msgctxt "#32342"
 msgid "Sort by Provider"
-msgstr "Organizar por Serviço"
+msgstr "Organizar por Fonte"
 
 msgctxt "#32343"
 msgid "When playback starts..."
@@ -479,7 +513,7 @@ msgstr "Resumir Reprodução"
 
 msgctxt "#32345"
 msgid "Providers"
-msgstr "Serviços"
+msgstr "Fontes"
 
 msgctxt "#32346"
 msgid "Accounts"
@@ -487,11 +521,11 @@ msgstr "Contas"
 
 msgctxt "#32347"
 msgid "Downloads"
-msgstr "Downloads"
+msgstr "Transferências"
 
 msgctxt "#32348"
 msgid "Enable downloads"
-msgstr "Ativar Downloads"
+msgstr "Ativar Transferências"
 
 msgctxt "#32349"
 msgid "Movies"
@@ -499,15 +533,15 @@ msgstr "Filmes"
 
 msgctxt "#32350"
 msgid "TV"
-msgstr "TV"
+msgstr "Séries"
 
 msgctxt "#32351"
 msgid "Downloading features are disabled by default."
-msgstr "As opções de download estão desativas por defeito."
+msgstr "As opções de transferência estão desativas por defeito."
 
 msgctxt "#32352"
 msgid "Set up your download folders in order to enable them."
-msgstr "Defina a pasta de Downloads para os poderes ativar"
+msgstr "Defina a pasta de transferência para os ativar."
 
 msgctxt "#32353"
 msgid "Subtitles"
@@ -523,23 +557,23 @@ msgstr "Converter legendas para UTF-8"
 
 msgctxt "#32356"
 msgid "Primary Language"
-msgstr "Língua Principal"
+msgstr "Idioma Principal"
 
 msgctxt "#32357"
 msgid "Secondary Language"
-msgstr "Língua Secundária"
+msgstr "Idioma Secundário"
 
 msgctxt "#32358"
 msgid "Subtitles could be unavailable or out of sync."
-msgstr "As Legendas poderão estar indisponíveis ou fora de sincronismo."
+msgstr "As legendas poderão não estar disponíveis ou sincronizadas."
 
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
-msgstr "Nessa situação utilize as suas próprias legendas."
+msgstr "Nesse caso utilize as suas próprias legendas."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Linguagem de Serviços"
+msgstr "Fontes de Idioma"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -551,7 +585,7 @@ msgstr "Reproduzir fora do Exodus não é permitido"
 
 msgctxt "#32403"
 msgid "Download"
-msgstr "Downloads"
+msgstr "Transferência"
 
 msgctxt "#32404"
 msgid "Time elapsed: %s seconds"
@@ -563,7 +597,7 @@ msgstr "%s segundos"
 
 msgctxt "#32406"
 msgid "Remaining providers: %s"
-msgstr "Serviços Restantes: %s"
+msgstr "Fontes Restantes: %s"
 
 msgctxt "#32407"
 msgid "Are you sure?"
@@ -587,11 +621,11 @@ msgstr "Continuar"
 
 msgctxt "#32511"
 msgid "An account already exists."
-msgstr "A conta já existe"
+msgstr "A conta já existe."
 
 msgctxt "#32512"
 msgid "Do you want to reset?"
-msgstr "Fazer Reset?"
+msgstr "Deseja reinicializar?"
 
 msgctxt "#32513"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -603,27 +637,27 @@ msgstr "2) Quando solicitado, introduza : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32515"
 msgid "Trakt Manager"
-msgstr "Gestor Trakt"
+msgstr "Gerir Trakt"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
-msgstr "Adicionar à [B]Collection[/B]"
+msgstr "Adicionar à [B]Coleção[/B]"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr "Remover da [B]Collection[/B]"
+msgstr "Remover da [B]Coleção[/B]"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
-msgstr "Adicionar à [B]Watchlist[/B]"
+msgstr "Adicionar à [B]Desejo Ver[/B]"
 
 msgctxt "#32519"
 msgid "Remove from [B]Watchlist[/B]"
-msgstr "Remover da [B]Watchlist[/B]"
+msgstr "Remover da [B]Desejo Ver[/B]"
 
 msgctxt "#32520"
 msgid "Add to [B]new List[/B]"
-msgstr "Adicionar a nova Lista"
+msgstr "Adicionar a [B]Nova Lista[/B]"
 
 msgctxt "#32521"
 msgid "Add to [B]%s[/B]"
@@ -635,11 +669,11 @@ msgstr "Remover de [B]%s[/B]"
 
 msgctxt "#32531"
 msgid "An account already exists."
-msgstr "A conta já existe"
+msgstr "A conta já existe."
 
 msgctxt "#32532"
 msgid "Do you want to reset?"
-msgstr "Fazer Reset?"
+msgstr "Deseja reinicializar?"
 
 msgctxt "#32533"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -648,3 +682,4 @@ msgstr "1) Visite : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Quando solicitado, introduza : [COLOR skyblue]%s[/COLOR]"
+

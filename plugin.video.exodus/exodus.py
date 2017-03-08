@@ -64,9 +64,10 @@ if action == None:
 
     try:
         from resources.lib.modules import control
+
         if control.has_upgraded():
-            control.setSetting(id='old_version', value=control.addon().getAddonInfo('version'))
             control.announcement()
+            control.setSetting(id='old_version', value=control.addon().getAddonInfo('version'))
     except:
         pass
 

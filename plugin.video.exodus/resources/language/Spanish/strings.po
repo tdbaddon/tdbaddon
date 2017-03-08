@@ -1,8 +1,42 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# 1 2, 2017
+# Achaw, 2015
+# Achaw Gomez, 2016
+# Achaw Gomez, 2016
+# Alberto Pardo, 2015
+# lambda81, 2016
+# lambda81, 2016
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-04 02:43+0000\n"
+"Last-Translator: 1 2\n"
+"Language-Team: Spanish (http://www.transifex.com/tv-addons/exodus/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -241,7 +275,8 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "PRESIONE AQUÍ PARA GUARDAR VISTA"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|December"
 msgstr "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre"
 
 msgctxt "#32061"
@@ -362,7 +397,7 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Idioma de Información"
+msgstr "Idioma Info"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
@@ -538,7 +573,7 @@ msgstr "En ese caso utilice sus propios subtítulos"
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Idioma para Proveedores"
+msgstr "Lenguaje de Proveedores"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -647,3 +682,4 @@ msgstr "1) Visite : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Cuando se le solicite ingrese : [COLOR skyblue]%s[/COLOR]"
+

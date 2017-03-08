@@ -29,7 +29,7 @@ from resources.lib.modules import tvmaze
 class source:
     def __init__(self):
         self.priority = 1
-        self.language = ['en']
+        self.language = ['fr']
         self.domains = ['film-streaming.club']
         self.base_link = 'http://www.film-streaming.club'
         self.key_link = 'http://www.film-streaming.club/search.php'

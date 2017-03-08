@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="3.1.0" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.1" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -31,11 +31,8 @@
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>- Updated existing providers
-- Added new providers and fix existing German providers
-- Added French providers (Powergrid2000)
-- Tweaked view option
-- Tweaked languages movie section and added languages tvshow section
-- Tweaked Providers Language support
-- Tweaked Trakt episode handling (Gobberwart)</news>
+- Tweaked French providers
+- Update Translation
+- Fix skipping for hosters with captchas</news>
 	</extension>
 </addon>

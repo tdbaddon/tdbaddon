@@ -18,10 +18,10 @@
         along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re, os, sys, random
-import urlparse
+import re, os, sys
+import urlparse, urllib2
 import xbmcaddon, xbmcgui, xbmcplugin, xbmc
-from resources.lib import ordereddict, client, thgiliwt
+from resources.lib import ordereddict, thgiliwt
 
 addon = xbmcaddon.Addon()
 localisedstr = addon.getLocalizedString
@@ -48,12 +48,23 @@ params = dict(urlparse.parse_qsl(sys.argv[2][1:]))
 action = params.get('action', None)
 
 
+def opener(url, user_agent='Z3JlZWsgdHYgYWRkb24gZm9yIEtvZGk='):
+
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', user_agent)
+    response = urllib2.urlopen(req)
+    result = response.read()
+    response.close()
+
+    return result
+
+
 def constructor():
 
     compiled_list = []
     groups = []
 
-    text = client.request(thgiliwt.thgiliwt('==Qdz0mLkl2byRmbh9SbvNmLkFWbtgnL2R3LvoDc0RHa'))
+    text = opener(thgiliwt.thgiliwt('wV3bydmd0tWZlJ3Z9U3PwhGcuQXZn9SbvNmLkFWbtgnL2R3LvoDc0RHa'))
 
     result = text.replace('\r\n', '\n')
     items = re.compile('group-title="(.*?)".*?tvg-logo="(.*?)",(.*?)$\n(.*?)$', re.U + re.M).findall(result)

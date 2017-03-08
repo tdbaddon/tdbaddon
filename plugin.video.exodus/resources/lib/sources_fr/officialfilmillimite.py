@@ -28,8 +28,8 @@ from resources.lib.modules import tvmaze
 
 class source:
     def __init__(self):
-        self.priority = 0
-        self.language = ['en', 'fr']
+        self.priority = 1
+        self.language = ['fr']
         self.domains = ['official-film-illimite.net']
         self.base_link = 'http://official-film-illimite.net/'
         self.key_link = '?'

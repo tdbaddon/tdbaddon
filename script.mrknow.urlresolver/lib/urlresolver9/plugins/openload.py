@@ -22,7 +22,7 @@ from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 from HTMLParser import HTMLParser
 import time
-import traceback
+import urllib
 import base64
 from lib.png import Reader as PNGReader
 
@@ -33,14 +33,6 @@ try:
     ctx.verify_mode = ssl.CERT_NONE
 except:
     pass
-
-def printExc(msg=''):
-    print("===============================================")
-    print("                   EXCEPTION                   ")
-    print("===============================================")
-    msg = msg + ': \n%s' % traceback.format_exc()
-    print(msg)
-    print("===============================================")
 
 try:
     compat_chr = unichr  # Python 2
@@ -66,23 +58,24 @@ class OpenLoadResolver(UrlResolver):
             html = response.content
             #common.log_utils.log_notice('1 openload html: %s' % (html))
             mylink = self.get_mylink(html)
-            HTTP_HEADER = {'Cookie': response.get_headers(as_dict=True).get('Set-Cookie', ''),
-                       'User-Agent': common.FF_USER_AGENT, 'Referer':myurl}
+            #HTTP_HEADER = {'Cookie': response.get_headers(as_dict=True).get('Set-Cookie', ''),
+            #           'User-Agent': common.FF_USER_AGENT, 'Referer':myurl}
 
-            if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
-                common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
-                time.sleep(2)
-                html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
-                mylink = self.get_mylink(html)
-                if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
-                    common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
-                    time.sleep(2)
-                    html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
-                    mylink = self.get_mylink(html)
+            #if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
+            #    common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
+            #    time.sleep(2)
+            #    html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
+            #    mylink = self.get_mylink(html)
+            #    if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
+            #        common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
+            #        time.sleep(2)
+            #        html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
+            #        mylink = self.get_mylink(html)
 
             #common.log_utils.log_notice('A openload mylink: %s' % mylink)
             #print "Mylink", mylink, urllib.quote_plus(mylink)
-            videoUrl = 'http://openload.co/stream/{0}?mime=true'.format(mylink)
+            #videoUrl = 'http://openload.co/stream/{0}?mime=true'.format(mylink)
+            videoUrl = mylink
             common.log_utils.log_notice('A openload resolve parse: %s' % videoUrl)
 
             req = urllib2.Request(videoUrl, None, HTTP_HEADER)
@@ -116,81 +109,44 @@ class OpenLoadResolver(UrlResolver):
         if any(x in html for x in ['We are sorry', 'File not found']):
             raise Exception('The file was removed')
 
-        n = re.findall('<span id="(.*?)">(.*?)</span>', html)
-        print "y",n
-        ol_id = n[0][1]
-        print "ol_id", ol_id
-        #encTab = re.compile('''<span[^>]+?id="%s[^"]*?"[^>]*?>([^<]+?)<\/span>''' % varName).findall(data)
+        #n = re.findall('<span id="(.*?)">(.*?)</span>', html)
 
-        #ol_id = '1912600068121040814522121400721607315067330652607609130410762808802070250653206719095380702907317071131340712337065301180513039121031453407418075140682307336104010682109835145110682406827068201270613010067311244209004';
+        ol_id = re.findall('<span[^>]+id="[^"]+"[^>]*>([0-9A-Za-z]+)</span>',html)[0]
+        print ol_id
 
-        ok = False
-        #for enc in ol_id:
-        enc = ol_id
+        video_url_chars = []
 
-        #Decode form samsamsam
-        #https://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2/blob/a6253cd4b6a0627f5070b28c01037d04d0dee7e7/IPTVPlayer/libs/urlparser.py
+        first_char = ord(ol_id[0])
+        key = first_char - 55
+        maxKey = max(2, key)
+        key = min(maxKey, len(ol_id) - 14)
+        t = ol_id[key:key + 12]
 
+        hashMap = {}
+        v = ol_id.replace(t, "")
+        h = 0
 
+        while h < len(t):
+          f = t[h:h + 2]
+          i = int(f, 16)
+          hashMap[h / 2] = i
+          h += 2
 
-        for fs in [-1, 1]:
-            decTab = {}
-            try:
-                s = int(enc[0:2]) * fs
-                idx = 2
-                while idx < len(enc):
-                    key = int(enc[idx + 3:idx + 5])
-                    decTab[key] = chr(int(enc[idx:idx + 3]) + s)
-                    idx += 5
-                dec = ''
-                for key in range(len(decTab)):
-                    dec += decTab[key]
-                if re.compile('~[0-9]{10}~').search(dec):
-                    ok = True
-                    break
-            except Exception:
-                printExc()
-                continue
-            if ok:
-                break
+        h = 0
 
-        print("DEC",dec)
-        return dec
+        while h < len(v):
+          B = v[h:h + 2]
+          i = int(B, 16)
+          index = (h / 2) % 6
+          A = hashMap[index]
+          i = i ^ A
+          video_url_chars.append(compat_chr(i))
+          h += 2
 
+        video_url = 'https://openload.co/stream/%s?mime=true'
+        video_url = video_url % (''.join(video_url_chars))
 
-
-
-        first_two_chars = int(float(ol_id[0:][:2]))
-        urlcode = {}
-        num = 2
-
-        while num < len(ol_id):
-            key = int(float(ol_id[num + 3:][:2]))
-            urlcode[key] = chr(int(float(ol_id[num:][:3])) - first_two_chars)
-            num += 5
-
-        sorted(urlcode, key=lambda key: urlcode[key])
-
-        urllink = ''.join(['%s' % (value) for (key, value) in urlcode.items()])
-
-        video_url = 'https://openload.co/stream/' + urllink
-
-        print(video_url)
-
-        def parseInt(sin):
-            m = re.search(r'^(\d+)[.,]?\d*?', str(sin))
-            return int(m.groups()[-1]) if m and not callable(sin) else None
-
-        first_three_chars = int(float(ol_id[0:][:3]))
-        fifth_char = int(float(ol_id[3:5]))
-        num = 5
-        txt = ''
-        while num < len(ol_id):
-            #txt += compat_chr(int(float(ol_id[num:][:3])) + first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
-            txt += compat_chr(int(float(ol_id[num:][:3])) +  first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
-            num += 5
-
-        return txt
+        return video_url
 
         enc_data = HTMLParser().unescape(y)
 

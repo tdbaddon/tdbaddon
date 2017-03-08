@@ -1,8 +1,40 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# lambda81, 2016
+# Mike Bike, 2015
+# Mike Bike, 2016
+# Sedat B, 2017
+# Youko van der Blom, 2017
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-06 19:25+0000\n"
+"Last-Translator: Youko van der Blom\n"
+"Language-Team: Dutch (http://www.transifex.com/tv-addons/exodus/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -241,7 +273,8 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "Klik hier om Layout op te slaan"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|December"
 msgstr "Januari|Februari|Maart|April|Mei|Juni|Juli|Augustus|September|Oktober|November|December"
 
 msgctxt "#32061"
@@ -294,11 +327,11 @@ msgstr "Verversen"
 
 msgctxt "#32073"
 msgid "[B]HELP[/B] : www.tvaddons.ag"
-msgstr "[B]HULP[/B] : www.tvaddons.ag"
+msgstr "[B]HELP[/B] : www.tvaddons.ag"
 
 msgctxt "#32074"
 msgid "[B]HELP[/B]"
-msgstr "[B]HULP[/B]"
+msgstr "[B]HELP[/B]"
 
 msgctxt "#32301"
 msgid "Enabled"
@@ -538,7 +571,7 @@ msgstr "In dat geval kies uw eigen ondertiteling."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Bronnen Taal"
+msgstr "Talen van bronnen"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -647,3 +680,4 @@ msgstr "1) Bezoek : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Wanneer gevraagd, vul in : [COLOR skyblue]%s[/COLOR]"
+

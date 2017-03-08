@@ -27,9 +27,9 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.priority = 0
-        self.language = ['en', 'fr']
-        self.domains = ['dpstreaming.tv/']
+        self.priority = 1
+        self.language = ['fr']
+        self.domains = ['dpstreaming.tv']
 
         #http://dpstreaming.tv/?s=max+steel
         #http://dpstreaming.tv/max-steel-vostfr-streaming-telecharger/']

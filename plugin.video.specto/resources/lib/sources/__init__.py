@@ -172,8 +172,7 @@ class sources:
 
                     control.addItem(handle=int(sys.argv[1]), url='%s?%s' % (sysaddon, query), listitem=item, isFolder=False)
                 except Exception as e:
-                    control.log('ERROR Sources.addItem %s' % e)
-
+                    control.log('ERROR Sources.addItem %s | %s' % (e,i))
                     pass
             control.content(int(sys.argv[1]), 'files')
             control.directory(int(sys.argv[1]), cacheToDisc=True)
@@ -240,19 +239,30 @@ class sources:
                     m = ''
 
                     for x in range(3600):
-                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
-                        if xbmc.abortRequested == True: return sys.exit()
+                        try:
+                            if xbmc.abortRequested == True: return sys.exit()
+                            if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        except:
+                            pass
+
                         k = control.condVisibility('Window.IsActive(virtualkeyboard)')
                         if k: m += '1'; m = m[-1]
                         if (w.is_alive() == False or x > 30) and not k: break
-                        time.sleep(1)
+                        k = control.condVisibility('Window.IsActive(yesnoDialog)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
+                        time.sleep(0.5)
 
                     for x in range(30):
+                        try:
+                            if xbmc.abortRequested == True: return sys.exit()
+                            if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        except:
+                            pass
+
                         if m == '': break
-                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
-                        if xbmc.abortRequested == True: return sys.exit()
                         if w.is_alive() == False: break
-                        time.sleep(1)
+                        time.sleep(0.5)
 
 
                     if w.is_alive() == True: block = items[i]['source']
@@ -630,14 +640,14 @@ class sources:
 
 
         #MRKNOW remove duplicate url's
-        dupes = []
-        filter = []
-        for entry in self.sources:
-            if not entry['url'] in dupes:
-                filter.append(entry)
-                dupes.append(entry['url'])
+        #dupes = []
+        #filter = []
+        #for entry in self.sources:
+        #    if not entry['url'] in dupes:
+        #        filter.append(entry)
+        #        dupes.append(entry['url'])
 
-        self.sources = filter
+        #self.sources = filter
 
         filter = []
         for host in hd_rank: filter += [i for i in self.sources if i['quality'] == '1080p' and i['source'].lower() == host]

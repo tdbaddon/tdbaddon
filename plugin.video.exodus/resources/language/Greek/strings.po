@@ -1,8 +1,40 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Maiko77, 2016
+# lambda81, 2016
+# lambda81, 2016
+# Maiko77, 2016
+# Marios Ioannou, 2017
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-04 16:30+0000\n"
+"Last-Translator: Marios Ioannou\n"
+"Language-Team: Greek (http://www.transifex.com/tv-addons/exodus/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -241,7 +273,8 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "ΠΑΤΗΣΤΕ ΕΔΩ ΓΙΑ ΝΑ ΑΠΟΘΗΚΕΥΤΕΙ Η ΠΡΟΒΟΛΗ"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|December"
 msgstr "Ιανουαρίου|Φεβρουαρίου|Μαρτίου|Απριλίου|Μαΐου|Ιουνίου|Ιουλίου|Αυγούστου|Σεπτεμβρίου|Οκτωβρίου|Νοεμβρίου|Δεκεμβρίου"
 
 msgctxt "#32061"
@@ -294,7 +327,7 @@ msgstr "Ανανέωση"
 
 msgctxt "#32073"
 msgid "[B]HELP[/B] : www.tvaddons.ag"
-msgstr "[B]ΒΟΗΘΕΙΑ[/B] : www.tvaddons.ag"
+msgstr "[B]ΒΟΗΘΕΙΑ [/B] : www.tvaddons.ag"
 
 msgctxt "#32074"
 msgid "[B]HELP[/B]"
@@ -538,7 +571,7 @@ msgstr "Σε αυτήν την περίπτωση χρησιμοποιήστε �
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Γλώσσα πάροχων"
+msgstr "Γλώσσα Παρόχων"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -647,3 +680,4 @@ msgstr "1) Επισκεφθείτε : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Όταν σας ζητηθεί εισάγετε : [COLOR skyblue]%s[/COLOR]"
+

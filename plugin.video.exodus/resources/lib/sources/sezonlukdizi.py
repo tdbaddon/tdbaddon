@@ -33,7 +33,7 @@ class source:
         self.language = ['en']
         self.domains = ['sezonlukdizi.net', 'sezonlukdizi.com']
         self.base_link = 'http://sezonlukdizi.net'
-        self.search_link = '/js/dizi.js'
+        self.search_link = '/js/dizi2.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
 

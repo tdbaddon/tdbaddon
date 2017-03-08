@@ -29,8 +29,8 @@ from resources.lib.modules import tvmaze
 class source:
     def __init__(self):
         self.priority = 1
-        self.language = ['en', 'fr']
-        self.domains = ['http://www.voirfilms.co/']
+        self.language = ['fr']
+        self.domains = ['voirfilms.co']
         self.base_link = 'http://www.voirfilms.co'
 
 

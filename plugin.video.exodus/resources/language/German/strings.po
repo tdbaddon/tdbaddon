@@ -1,8 +1,40 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Viper2k4, 2017
+# eidermar, 2016
+# Christian Klippel, 2015
+# eidermar, 2016
+# lambda81, 2016
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-02-23 18:34+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: German (http://www.transifex.com/tv-addons/exodus/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -202,15 +234,15 @@ msgstr "[B]EXODUS[/B] : Anzeige Typen"
 
 msgctxt "#32050"
 msgid "[B]EXODUS[/B] : Clear providers..."
-msgstr "[B]EXODUS[/B] : Index Seiten löschen..."
+msgstr "[B]EXODUS[/B] : Index Seiten-Cache leeren..."
 
 msgctxt "#32051"
 msgid "[B]EXODUS[/B] : Clear metadata..."
-msgstr "[B]EXODUS[/B] : Metadaten löschen..."
+msgstr "[B]EXODUS[/B] : Metadaten-Cache leeren..."
 
 msgctxt "#32052"
 msgid "[B]EXODUS[/B] : Clear cache..."
-msgstr "[B]EXODUS[/B] : Cache löschen..."
+msgstr "[B]EXODUS[/B] : Cache leeren..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -241,7 +273,8 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "HIER KLICKEN UM ANSICHT ZU SPEICHERN"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|December"
 msgstr "Jannuar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember"
 
 msgctxt "#32061"
@@ -538,7 +571,7 @@ msgstr "In diesem Fall eigene Untertitel verwenden."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Sprache fur Index Seiten"
+msgstr "Sprache für Index Seiten"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -647,3 +680,4 @@ msgstr "1) Besuche : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Wenn angewiesen folgendes eingeben: [COLOR skyblue]%s[/COLOR]"
+

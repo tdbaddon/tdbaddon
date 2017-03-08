@@ -280,14 +280,12 @@ def has_upgraded():
     if not old_version: old_version = '0.0.0.0'
     old_version = old_version.split('.')
     new_version = addon().getAddonInfo('version').split('.')
-    print new_version
     current_oct = 0
     for octant in old_version:
         if int(new_version[current_oct]) > int(octant):
             return True
         current_oct += 1
     return False
-
 
 def announcement():
     # based on H99's splash code
@@ -364,15 +362,14 @@ def announcement():
             pass
 
     try:
-        do_My_TextSplash("""\
+        if not setting('old_version'):
+            do_My_TextSplash("""\
     We are very excited to announce a new era in the
     development of Exodus. There are a lot of big changes!
 
     Please visit the following link for more information
     on the future of Exodus (or for addon support):
 
-    [B][COLOR blue]www.tvaddons.ag/exodus[/COLOR][/B]
-                """, img='', HowLong=20, BorderWidth=45, Font='font13')
+    [B][COLOR blue]www.tvaddons.ag/exodus[/COLOR][/B]""", img='', HowLong=20, BorderWidth=45, Font='font13')
     except:
         pass
-

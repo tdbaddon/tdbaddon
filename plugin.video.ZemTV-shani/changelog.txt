@@ -1,3 +1,9 @@
+[B]Version 6.4.1[/B]
+ablity to turn off zenga in settings
+[B]Version 6.4.0[/B]
+network more source
+[B]Version 6.3.9[/B]
+ignore error when sorting
 [B]Version 6.3.8[/B]
 network tv quickfix again :p
 [B]Version 6.3.7[/B]

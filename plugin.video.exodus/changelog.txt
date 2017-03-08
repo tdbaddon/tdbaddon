@@ -1,3 +1,9 @@
+[B]3.1.1[/B]
+- Updated existing providers
+- Tweaked French providers
+- Update Translation
+- Fix skipping for hosters with captchas
+
 [B]3.1.0[/B]
 - Updated existing providers
 - Added new providers and fix existing German providers

@@ -232,6 +232,8 @@ class sources:
                     w = workers.Thread(self.sourcesResolve, items[i])
                     w.start()
 
+                    offset = 60 * 2 if items[i].get('source') in self.hostcapDict else 0
+
                     m = ''
 
                     for x in range(3600):
@@ -243,10 +245,10 @@ class sources:
 
                         k = control.condVisibility('Window.IsActive(virtualkeyboard)')
                         if k: m += '1'; m = m[-1]
-                        if (w.is_alive() == False or x > 30) and not k: break
+                        if (w.is_alive() == False or x > 30 + offset) and not k: break
                         k = control.condVisibility('Window.IsActive(yesnoDialog)')
                         if k: m += '1'; m = m[-1]
-                        if (w.is_alive() == False or x > 30) and not k: break
+                        if (w.is_alive() == False or x > 30 + offset) and not k: break
                         time.sleep(0.5)
 
 
@@ -890,9 +892,9 @@ class sources:
 
         self.hostprDict = ['1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
-        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
-        self.hosthqDict = ['openload.io', 'openload.co', 'thevideo.me']
+        self.hosthqDict = ['openload.io', 'openload.co', 'oload.tv', 'thevideo.me']
 
         self.hostblockDict = []
 

@@ -1,8 +1,41 @@
 # Addon Name: Exodus
 # Addon id: plugin.video.exodus
 # Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Addon Master, 2016
+# Dominique Favreau, 2017
+# Jrm, 2015
+# lambda81, 2016
+# lambda81, 2016
+# power grid, 2017
 msgid ""
 msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-06 21:06+0000\n"
+"Last-Translator: Dominique Favreau\n"
+"Language-Team: French (http://www.transifex.com/tv-addons/exodus/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -26,7 +59,7 @@ msgstr "Nouveaux Films"
 
 msgctxt "#32006"
 msgid "New Episodes"
-msgstr "Nouvelles Épisodes"
+msgstr "Nouveaux Épisodes"
 
 msgctxt "#32007"
 msgid "Channels"
@@ -38,7 +71,7 @@ msgstr "Outils"
 
 msgctxt "#32009"
 msgid "Downloads"
-msgstr "Téléchargement"
+msgstr "Téléchargements"
 
 msgctxt "#32010"
 msgid "Search"
@@ -158,15 +191,15 @@ msgstr "Épisodes"
 
 msgctxt "#32039"
 msgid "Movie Lists"
-msgstr "Liste de Films"
+msgstr "Listes de Films"
 
 msgctxt "#32040"
 msgid "TV Show Lists"
-msgstr "Liste de Série Télé"
+msgstr "Listes d'Émissions de TV"
 
 msgctxt "#32041"
 msgid "Episode Lists"
-msgstr "Liste des Épisodes"
+msgstr "Listes des Épisodes"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
@@ -241,8 +274,9 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "CLIQUEZ ICI POUR MÉMORISER LA PRÉSENTATION"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "Janvier|Février|Mars|vril|Mai|Juin|Juillet|Août|Septembre|Octobre|Novembre|Décembre"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|December"
+msgstr "Janvier|Février|Mars|Avril|Mai|Juin|Juillet|Août|Septembre|Octobre|Novembre|Décembre"
 
 msgctxt "#32061"
 msgid "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
@@ -342,7 +376,7 @@ msgstr "Général"
 
 msgctxt "#32311"
 msgid "Appearance"
-msgstr "Apparance"
+msgstr "Apparence"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
@@ -402,7 +436,7 @@ msgstr "Nouvelles Épisodes"
 
 msgctxt "#32326"
 msgid "Episodes"
-msgstr "Épisode"
+msgstr "Épisodes"
 
 msgctxt "#32327"
 msgid "Trakt Progress"
@@ -414,7 +448,7 @@ msgstr "Épisodes TrakT"
 
 msgctxt "#32329"
 msgid "My Lists"
-msgstr "Ma Liste"
+msgstr "Mes Listes"
 
 msgctxt "#32330"
 msgid "Playback"
@@ -538,7 +572,7 @@ msgstr "Dans ce Cas Utilisez vos Propre Sous-Titres"
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Langue des sources"
+msgstr "Langue principale"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -647,3 +681,4 @@ msgstr "1) Visite : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "\"2) Lorsque Demandé Veuillez Entrer : [COLOR skyblue]%s[/COLOR]\""
+

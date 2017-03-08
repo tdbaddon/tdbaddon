@@ -918,7 +918,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.einthusan"
        name="Einthusan"
-       version="1.3.4"
+       version="1.3.5"
        provider-name="humla">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1027,7 +1027,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.0" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.1" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1059,12 +1059,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>- Updated existing providers
-- Added new providers and fix existing German providers
-- Added French providers (Powergrid2000)
-- Tweaked view option
-- Tweaked languages movie section and added languages tvshow section
-- Tweaked Providers Language support
-- Tweaked Trakt episode handling (Gobberwart)</news>
+- Tweaked French providers
+- Update Translation
+- Fix skipping for hosters with captchas</news>
 	</extension>
 </addon>
 
@@ -1290,7 +1287,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.1.0" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.1.1" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.20.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1309,6 +1306,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.1.1 (06-03-2017)
+- Removed client module
+
 1.1.0 (05-03-2017)
 - Removed redundant opener and random agent functions. They are now handled by the client module
 - Removed option for mirror. Github is being phazed out and playlist was moved to another host.
@@ -1653,7 +1653,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="2.0.6" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.0.7" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -2185,7 +2185,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.29.2" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.07.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2900,7 +2900,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.3.8"
+       version="6.4.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4241,7 +4241,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.02.08.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.06.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

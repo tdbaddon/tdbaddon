@@ -26,6 +26,8 @@
         <setting label="32038" type="bool"   id="isFastOff" default="false"/>   
         <setting label="32040" type="bool"   id="isNetworkTVOff" default="false"/>   
         <setting label="32041" type="bool"   id="isSlowTVOff" default="false"/>   
+        <setting label="32044" type="bool"   id="isZengaOff" default="false"/>   
+        
         
           <setting type="sep"/>
                   <setting label="32031" type="bool"   id="donotcache" default="false"/>    

@@ -2,6 +2,7 @@
 
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin
+from bs4 import BeautifulSoup as bs
 from md_request import open_url
 from md_view import setView
 from common import Addon
@@ -249,7 +250,11 @@ def RESOLVE(url,name,content,fan_art,infolabels):
         link = open_url(url).content
 
 	if content == 'movies':
-                request_url = re.findall(r'<a  href="([^"]+)">Watch <b>', str(link), re.I|re.DOTALL)[0]
+                soup = bs(link, "html.parser")
+                a = soup.find('h3',class_='h3-detail')
+                b = a.find('a', href=True)
+                request_url = str(b["href"])
+                #request_url = re.findall(r'<a  href="([^"]+)">Watch <', str(link), re.I|re.DOTALL)[0]
 		link = open_url(request_url).content
 		
 	value = []

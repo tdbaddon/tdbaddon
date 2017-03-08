@@ -12,6 +12,8 @@ import HTTPInterface
 import JSONInterface
 import DBInterface
 
+import requests
+
 # s = requests.Session()
 
 ADDON = xbmcaddon.Addon(id='plugin.video.einthusan')
