@@ -24,13 +24,13 @@ import os
 import re
 import time
 
-from resources.lib.modules.fileFetcher import *
-from resources.lib.modules.liveParser import *
+from ashock.modules.fileFetcher import *
+from ashock.modules.liveParser import *
 
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import control
-from resources.lib.modules import logger
+from ashock.modules import cache
+from ashock.modules import client
+from ashock.modules import control
+from ashock.modules import logger
 
 
 class source:
@@ -88,7 +88,7 @@ class source:
                     category = client.parseDOM(channel, "programCategory")[0]
                     if category == 'Indian':
                         title = client.parseDOM(channel, "programTitle")[0]
-                        #from resources.lib.modules import livemeta
+                        #from ashock.modules import livemeta
                         #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
                         #title = cleantitle.live(title)
                         #if title == 'SKIP':

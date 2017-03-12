@@ -38,6 +38,7 @@ class source:
     def movie(self, imdb, title, year):
 		try:
 			self.zen_url = []
+			if not debridstatus == 'true': raise Exception() 
 			headers = {'User-Agent': random_agent()}
 
 			cleanmovie = cleantitle.get(title)
@@ -76,6 +77,7 @@ class source:
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
 		try:
 			self.zen_url = []
+			if not debridstatus == 'true': raise Exception() 
 			headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
 			data = urlparse.parse_qs(url)
 			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])

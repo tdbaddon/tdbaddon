@@ -195,7 +195,7 @@ class navigator:
     def search(self):
         self.addDirectoryItem(32001, 'movieSearch', 'search.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvSearch', 'search.png', 'DefaultTVShows.png')
-        # self.addDirectoryItem(32029, 'moviePerson', 'people-search.png', 'DefaultMovies.png')
+        self.addDirectoryItem(32029, 'moviePerson', 'people-search.png', 'DefaultMovies.png')
         # self.addDirectoryItem(32030, 'tvPerson', 'people-search.png', 'DefaultTVShows.png')
 
         self.endDirectory()

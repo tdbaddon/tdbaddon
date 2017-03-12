@@ -29,11 +29,11 @@ import urllib
 import urllib2
 import zipfile
 
-from resources.lib.modules import client
-from resources.lib.modules import control
-from resources.lib.modules import logger
-from resources.lib.modules import views
-from resources.lib.modules import cache
+from ashock.modules import client
+from ashock.modules import control
+from ashock.modules import logger
+from ashock.modules import views
+from ashock.modules import cache
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 

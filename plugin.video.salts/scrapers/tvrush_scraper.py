@@ -78,12 +78,18 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         if title:
-            first_letter = title[:1].upper()
-            if first_letter.isdigit(): first_letter = '#'
-            search_url = '/series-%s' % (first_letter)
-            search_url = urlparse.urljoin(self.base_url, search_url)
-            html = self._http_get(search_url, cache_limit=48)
+            html = self._http_get(self.base_url, cache_limit=48)
             norm_title = scraper_utils.normalize_title(title)
+            fragment = dom_parser.parse_dom(html, 'div', {'class': 'container seo'})
+            if fragment:
+                titles = dom_parser.parse_dom(fragment[0], 'a', {'class': 'link'})
+                urls = dom_parser.parse_dom(fragment[0], 'a', {'class': 'link'}, ret='href')
+                match_year = ''
+                for match_url, match_title in zip(urls, titles):
+                    if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
+                        result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                        results.append(result)
+                    
             for table in dom_parser.parse_dom(html, 'table'):
                 for td in dom_parser.parse_dom(table, 'td'):
                     match_url = re.search('href="([^"]+)', td)

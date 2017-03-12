@@ -26,7 +26,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://losmovies.club'
+BASE_URL = 'http://losmovies.cc'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL

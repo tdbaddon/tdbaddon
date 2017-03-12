@@ -1,3 +1,17 @@
+[B]Version 2.0.159[/B]
+- Improve Image Proxy reliability
+- Add StreamDor scraper
+- Fix sezon
+- Fix flixanity
+- Fix vidics
+- Fix RLSBB
+- Fix scene-rls
+- Fix tvonline
+- Remove WatchFilm
+- Fix OnlineDizi
+- Fix TVRush
+- Fix Losmovies
+
 [B]Version 2.0.155[/B]
 - Improve service code to reduce globals
 - Improve DB upgrade handling since it depends on DB Recovery now

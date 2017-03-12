@@ -20,12 +20,12 @@
 
 import os
 
-from resources.lib.modules.fileFetcher import *
-from resources.lib.modules.liveParser import  *
+from ashock.modules.fileFetcher import *
+from ashock.modules.liveParser import  *
 
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import control
+from ashock.modules import cache
+from ashock.modules import client
+from ashock.modules import control
 
 
 class source:

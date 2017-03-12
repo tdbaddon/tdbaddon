@@ -23,10 +23,10 @@ import os
 import sys
 import urllib
 
-from resources.lib.modules import control
-from resources.lib.modules import views
+from ashock.modules import control
+from ashock.modules import views
 from resources.lib.sources import sources
-from resources.lib.modules import logger
+from ashock.modules import logger
 
 try:
     from sqlite3 import dbapi2 as database

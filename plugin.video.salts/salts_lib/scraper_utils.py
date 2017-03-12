@@ -417,7 +417,7 @@ def set_default_url(Scraper):
     return default_url
 
 def extra_year(match_title_year):
-    match = re.search('(.*?)\s+\((\d{4})\)', match_title_year)
+    match = re.search('(.*?)\s+\((\d{4})[^)]*\)', match_title_year)
     if match:
         match_title, match_year = match.groups()
     else:
@@ -439,3 +439,55 @@ def append_headers(headers):
 
 def excluded_link(stream_url):
     return re.search('\.part\.?\d+', stream_url) or '.rar' in stream_url or 'sample' in stream_url or stream_url.endswith('.nfo')
+
+def rshift(val, n):
+    return (val % 0x100000000) >> n
+
+def int32(x):
+    x = 0xffffffff & x
+    if x > 0x7fffffff:
+        return int(-(~(x - 1) & 0xffffffff))
+    else:
+        return int(x)
+
+# if salt is provided, it should be string
+# ciphertext is base64 and passphrase is string
+def evp_decode(cipher_text, passphrase, salt=None):
+    cipher_text = base64.b64decode(cipher_text)
+    if not salt:
+        salt = cipher_text[8:16]
+        cipher_text = cipher_text[16:]
+    data = evpKDF(passphrase, salt)
+    decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(data['key'], data['iv']))
+    plain_text = decrypter.feed(cipher_text)
+    plain_text += decrypter.feed()
+    return plain_text
+
+def evpKDF(passwd, salt, key_size=8, iv_size=4, iterations=1, hash_algorithm="md5"):
+    target_key_size = key_size + iv_size
+    derived_bytes = ""
+    number_of_derived_words = 0
+    block = None
+    hasher = hashlib.new(hash_algorithm)
+    while number_of_derived_words < target_key_size:
+        if block is not None:
+            hasher.update(block)
+
+        hasher.update(passwd)
+        hasher.update(salt)
+        block = hasher.digest()
+        hasher = hashlib.new(hash_algorithm)
+
+        for _i in range(1, iterations):
+            hasher.update(block)
+            block = hasher.digest()
+            hasher = hashlib.new(hash_algorithm)
+
+        derived_bytes += block[0: min(len(block), (target_key_size - number_of_derived_words) * 4)]
+
+        number_of_derived_words += len(block) / 4
+
+    return {
+        "key": derived_bytes[0: key_size * 4],
+        "iv": derived_bytes[key_size * 4:]
+    }

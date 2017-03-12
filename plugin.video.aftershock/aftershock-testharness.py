@@ -39,7 +39,8 @@ try :
     #params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
     #params = {'tmdb': '0', 'tvdb': '0', 'tvshowtitle': 'Bigg Boss 10', 'year': '2016', 'url': 'forums/3994-Bigg-Boss-10', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
     params =  {'action': 'desiLiveNavigator', 'url': 'all', 'name': 'ALL'}
-
+    params = {'episode': '0', 'name': '6th March 2017', 'title': '6th March 2017', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Badho Bahu', 'date': '0', 'meta': '{"name": "6th March 2017", "title": "6th March 2017", "url": "threads/1024165-Badho-Bahu-6th-March-2017-Watch-Online?s=4c275330a949a1a2ef5ce9defce71d0e", "tvshowtitle": "Badho Bahu", "provider": "desirulez", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Badho+Bahu", "tvshowurl": "forums/4169-Badho-Bahu?s=4c275330a949a1a2ef5ce9defce71d0e"}', 'imdb': '0', 't': '20170307224121195968', 'year': '0', 'action': 'play'}
+    params = {'episode': '0', 'name': '7th March 2017', 'title': '7th March 2017', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Naamkaran', 'date': '0', 'meta': '{"name": "7th March 2017", "title": "7th March 2017", "url": "threads/1024453-Naamkarann-7th-March-2017-Watch-Online?s=836a359a185d34d10e27dedbbfc0adbc", "tvshowtitle": "Naamkaran", "provider": "desirulez", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Naamkarann", "tvshowurl": "forums/4189-Naamkarann?s=836a359a185d34d10e27dedbbfc0adbc"}', 'imdb': '0', 't': '20170308003337451618', 'year': '0', 'action': 'play'}
     select = None
 
     try:
@@ -129,13 +130,13 @@ try :
     from resources.lib.indexers import tvshows
     from resources.lib.indexers import episodes
     from resources.lib import sources
-    from resources.lib.modules import debrid, user, client, livemeta
-    from resources.lib.modules import client
+    from ashock.modules import debrid, user, client, livemeta
+    from ashock.modules import client
     from resources.lib.resolvers import dailymotion
     from resources.lib import resolvers
     from resources.lib.sources import einthusan
 
-    from resources.lib.modules import user
+    from ashock.modules import user
 
     #movies.movies().get(url, lang=lang)
 
@@ -157,10 +158,10 @@ try :
     #from resources.lib.sources import swift_live
     #swift_live.source().getLiveSource()
 
-    from resources.lib.indexers import navigator
-    navigator.navigator().desiLiveTV(url)
+    #from resources.lib.indexers import navigator
+    #navigator.navigator().desiLiveTV(url)
 
-    from resources.lib.modules import livemeta
+    #from ashock.modules import livemeta
     #livemeta.source().getLiveNames()
 
     from resources.lib.sources import sources
@@ -193,13 +194,13 @@ try :
     #from resources.lib.sources import iptv_live
     #iptv_live.source().getLiveSource(True)
 
-    #from resources.lib.modules import control
+    #from ashock.modules import control
     #control.delete('*.json')
 
     #from resources.lib.sources import swift_live
     #swift_live.source().resolve('http://163.172.142.242:8081/swiftiptv/9xjalwa/playlist.m3u8', None)
 
-    #from resources.lib.modules import cleantitle
+    #from ashock.modules import cleantitle
     #print cleantitle.live('COLORS TV HD ( ENTERTAINMENT )')
     #print cleantitle.live('COLORS TV INDIA')
     #print cleantitle.live('COLORS TV APAC')
@@ -207,7 +208,7 @@ try :
 
 
 except:
-    from resources.lib.modules import client
+    from ashock.modules import client
     import traceback
     traceback.print_exc()
     client.printException('aftershock-testharness')

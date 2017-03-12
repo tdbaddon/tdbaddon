@@ -25,11 +25,11 @@ try:
 except:
     from pysqlite2 import dbapi2 as database
 
-from resources.lib.modules import control
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import proxy
-from resources.lib.modules import logger
+from ashock.modules import control
+from ashock.modules import cleantitle
+from ashock.modules import client
+from ashock.modules import proxy
+from ashock.modules import logger
 
 
 class source:

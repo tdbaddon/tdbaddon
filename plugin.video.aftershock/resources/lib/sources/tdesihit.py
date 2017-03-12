@@ -24,8 +24,8 @@ import urllib
 import urlparse
 
 from resources.lib import resolvers
-from resources.lib.modules import client
-from resources.lib.modules import logger
+from ashock.modules import client
+from ashock.modules import logger
 
 
 class source:

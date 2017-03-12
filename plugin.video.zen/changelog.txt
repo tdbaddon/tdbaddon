@@ -1,3 +1,10 @@
+[B]2017.03.08[/B]
+- Update Providers
+- Improved results
+- Added setting to disable hosts with captcha (i.e. openload etc)
+- Max quality for sources extended to 4k
+- Code tweaks
+
 [B]2017.03.05[/B]
 - Added Library Feature (you need Metalliq addon)
 - Improved results and searches

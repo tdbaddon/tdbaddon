@@ -76,7 +76,7 @@ def ntos(n):
     return urllib.unquote(n)
 
 def doDemystify(data):
-    common.log('MR DECODE0: ' )
+    #common.log('MR DECODE0: ' )
     escape_again=False
     
     #init jsFunctions and jsUnpacker
@@ -120,7 +120,7 @@ def doDemystify(data):
             res = ''.join(map(chr, alina))
             # common.log('Malina: %s ' % malina)
         data = data.replace(g, res)
-    common.log('MR DECODE10: ' + data)
+    #common.log('MR DECODE10: ' + data)
 
     #MRKNOW END
 

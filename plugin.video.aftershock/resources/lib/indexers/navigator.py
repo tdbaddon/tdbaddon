@@ -22,10 +22,10 @@ import os
 import sys
 import urlparse
 
-from resources.lib.modules import control
-from resources.lib.modules import logger
-from resources.lib.modules import views
-from resources.lib.modules import analytics
+from ashock.modules import control
+from ashock.modules import logger
+from ashock.modules import views
+from ashock.modules import analytics
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
@@ -51,8 +51,8 @@ class navigator:
         self.addDirectoryItem(90117, 'clearCache', 'clearcache.png', 'DefaultMovies.png')
         self.addDirectoryItem(30864, 'changelog', 'changelog.png', 'DefaultMovies.png')
 
-        from resources.lib.modules import cache
-        from resources.lib.modules import changelog
+        from ashock.modules import cache
+        from ashock.modules import changelog
         cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
         cache.get(self.donation, 600000000, control.addonInfo('version'), table='changelog')
         #cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
@@ -73,19 +73,19 @@ class navigator:
 
             self.endDirectory(confViewMode='list')
         elif url == 'main':
-            from resources.lib.modules import cache
+            from ashock.modules import cache
             cache.clear()
         elif url == 'providers':
-            from resources.lib.modules import cache
+            from ashock.modules import cache
             cache.clear(['rel_src', 'rel_url'], control.sourcescacheFile)
         elif url == 'live' :
-            from resources.lib.modules import cache
+            from ashock.modules import cache
             control.deleteAll('.json')
             control.delete('user.db')
             cache.clear(['rel_live', 'rel_logo', 'live_meta'], control.sourcescacheFile)
             cache.clear(['live_cache'])
         elif url == 'meta':
-            from resources.lib.modules import cache
+            from ashock.modules import cache
             cache.clear(['meta', 'meta_imdb'], control.metacacheFile)
 
     def desiLiveTV(self, url=None):

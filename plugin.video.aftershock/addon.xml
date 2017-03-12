@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.3" provider-name="AftershockPY">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.4" provider-name="AftershockPY">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -8,6 +8,7 @@
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
         <import addon="script.aftershocknow.guide" version="1.0.0"/>
+        <import addon="script.aftershock.core" version="1.0.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="aftershock.py">
         <provides>video</provides>
@@ -26,6 +27,6 @@
             <screenshot>resources/screenshots/screenshot-02.png</screenshot>
             <screenshot>resources/screenshots/screenshot-03.png</screenshot>
         </assets>
-        <news>-Updated Live Providers</news>
+        <news>-Updated Providers [CR] Updated Resolvers</news>
   </extension>
 </addon>

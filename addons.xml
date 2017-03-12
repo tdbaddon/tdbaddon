@@ -395,7 +395,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.92"
+	     version="1.94"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -532,7 +532,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.3" provider-name="AftershockPY">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.4" provider-name="AftershockPY">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -541,6 +541,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
         <import addon="script.aftershocknow.guide" version="1.0.0"/>
+        <import addon="script.aftershock.core" version="1.0.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="aftershock.py">
         <provides>video</provides>
@@ -559,7 +560,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
             <screenshot>resources/screenshots/screenshot-02.png</screenshot>
             <screenshot>resources/screenshots/screenshot-03.png</screenshot>
         </assets>
-        <news>-Updated Live Providers</news>
+        <news>-Updated Providers [CR] Updated Resolvers</news>
   </extension>
 </addon>
 
@@ -1140,7 +1141,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.filmon.simple" name="FilmOn Simple" version="0.1.5" provider-name="mhancoc7">
+<addon id="plugin.video.filmon.simple" name="FilmOn Simple" version="0.1.6" provider-name="mhancoc7">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -1806,7 +1807,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
-       version="2017.01.22.3"
+       version="2017.03.11.2"
        provider-name="mrknow">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2134,7 +2135,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.155" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.159" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2680,7 +2681,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.27" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.28" provider-name="MetalKettle">
 
   <requires>
 
@@ -2797,7 +2798,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="2.9.2" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="2.9.3" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -2900,7 +2901,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.4.1"
+       version="6.4.4"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2931,7 +2932,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.03.05" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.03.08" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2952,7 +2953,7 @@ Enjoy!</description>
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Added Library via Metalliq - Browse Series now in the Context Menu</news>
+		<news>Update Providers - Added Ability to Disable Captcha hosts - Extended Quality of source to 4k</news>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3990,6 +3991,21 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
+<addon id="script.aftershock.core" name="aftershock-core" version="1.0.0" provider-name="AftershockPY">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary></summary>
+    <description></description>
+    <platform>all</platform>
+    <license>Simplified BSD</license>
+    <source></source>
+    <website></website>
+  </extension>
+</addon>
+
 <addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.0" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
@@ -4151,10 +4167,9 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.schism.common" name="SchisM Common Libraries" version="1.9.0" provider-name="SchisM">
+<addon id="script.module.schism.common" name="SchisM Common Libraries" version="3.1.0" provider-name="SchisM">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.requests" />
 		<import addon="script.module.six" />
 		<import addon="script.module.metahandler" />
 		<import addon="script.module.beautifulsoup" />
@@ -4163,18 +4178,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en">Collection of modules used by SchisM Addons</summary>
-		<description lang="en">Collection of modules used by SchisM Addons
-beautifulsoup3 v3.2.1 from https://www.crummy.com/software/BeautifulSoup :
-beautifulsoup4 v4.5.1 from https://www.crummy.com/software/BeautifulSoup :
-cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape :
-incapsula-cracker v0.1.3 from https://github.com/ziplokk1/incapsula-cracker :
-Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
-jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
-jsunpack from urlresolver :
-requests v2.12.4 from https://github.com/kennethreitz/requests :
-six v1.10.0 from https://pypi.python.org/pypi/six :
-unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
-		</description>
+		<description lang="en">Collection of modules used by SchisM Addons</description>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>
 </addon>
@@ -4241,7 +4245,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.06.2" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.08.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

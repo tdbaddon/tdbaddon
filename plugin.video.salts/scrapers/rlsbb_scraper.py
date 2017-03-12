@@ -29,7 +29,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
-BASE_URL = 'http://rlsbb.com'
+BASE_URL = 'http://rlsbb.ru'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/"', VIDEO_TYPES.EPISODE: '/category/tv-shows/"'}
 
 class Scraper(scraper.Scraper):

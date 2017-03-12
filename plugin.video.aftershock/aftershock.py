@@ -22,8 +22,8 @@ import sys
 import urlparse
 
 import xbmc
-from resources.lib.modules import analytics
-from resources.lib.modules import logger
+from ashock.modules import analytics
+from ashock.modules import logger
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
@@ -153,11 +153,11 @@ elif action == 'desiLiveNavigator':
     analytics.sendAnalytics('%s-LIVE' % action)
 
 elif action == 'artwork':
-    from resources.lib.modules import control
+    from ashock.modules import control
     control.artwork()
 
 elif action == 'liveEPGNavigator':
-    from resources.lib.modules import control
+    from ashock.modules import control
     analytics.sendAnalytics('%s-EPG' % action)
     xbmc.executebuiltin("RunAddon(script.aftershocknow.guide)")
 
@@ -182,7 +182,7 @@ elif action == 'addItem':
 elif action == 'download':
     import json
     from resources.lib.sources import sources
-    from resources.lib.modules import downloader
+    from ashock.modules import downloader
     try: downloader.download(name, image, sources().sourcesResolve(json.loads(source)[0]))
     except: pass
 
@@ -195,35 +195,35 @@ elif action == 'playItem':
     sources().playItem(content, title, source)
 
 elif action == 'trailer':
-    from resources.lib.modules import trailer
+    from ashock.modules import trailer
     trailer.trailer().play(name, url)
 
 elif action == 'addView':
-    from resources.lib.modules import views
+    from ashock.modules import views
     views.addView(content)
 
 elif action == 'refresh':
-    from resources.lib.modules import control
+    from ashock.modules import control
     control.refresh()
 
 elif action == 'queueItem':
-    from resources.lib.modules import control
+    from ashock.modules import control
     control.queueItem()
 
 elif action == 'moviePlaycount':
-    from resources.lib.modules import playcount
+    from ashock.modules import playcount
     playcount.movies(title, year, imdb, query)
 
 elif action == 'episodePlaycount':
-    from resources.lib.modules import playcount
+    from ashock.modules import playcount
     playcount.episodes(imdb, tvdb, season, episode, query)
 
 elif action == 'tvPlaycount':
-    from resources.lib.modules import playcount
+    from ashock.modules import playcount
     playcount.tvshows(name, year, imdb, tvdb, season, query)
 
 elif action == 'rdAuthorize':
-    from resources.lib.modules import debrid
+    from ashock.modules import debrid
     debrid.rdAuthorize()
 
 elif action == 'alterSources':
@@ -231,11 +231,11 @@ elif action == 'alterSources':
     sources().alterSources(url, meta)
 
 elif action == 'trailer':
-    from resources.lib.modules import trailer
+    from ashock.modules import trailer
     trailer.trailer().play(name, url)
 
 elif action == 'openSettings':
-    from resources.lib.modules import control
+    from ashock.modules import control
     control.openSettings(query)
 
 elif action == 'clearCache':
@@ -243,13 +243,13 @@ elif action == 'clearCache':
     navigator.navigator().clearCache(url)
 
 elif action == 'changelog':
-    from resources.lib.modules import changelog
+    from ashock.modules import changelog
     changelog.get('1')
 
 elif action == 'startLiveProxy':
     try :
         import os
-        from resources.lib.modules import control
+        from ashock.modules import control
 
         libPath = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'modules')
         serverPath = os.path.join(libPath, 'localproxy.py')

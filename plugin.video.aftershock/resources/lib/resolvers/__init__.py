@@ -21,8 +21,8 @@
 import urllib
 import urlparse
 
-from resources.lib.modules import client
-from resources.lib.modules import logger
+from ashock.modules import client
+from ashock.modules import logger
 
 try :import urlresolver
 except:pass
@@ -94,4 +94,5 @@ def info():
         , {'class': 'ditto', 'host': ['dittotv.com']}
         , {'class': 'dynns', 'host': ['dynns.com']}
         , {'class': 'dailymotion', 'host': ['dailymotion.com']}
+        , {'class': 'watchify', 'host': ['watchify.net']}
     ]

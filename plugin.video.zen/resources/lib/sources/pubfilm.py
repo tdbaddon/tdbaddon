@@ -29,9 +29,9 @@ from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,
 class source:
     def __init__(self):
         self.domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
-        self.base_link = 'http://pidtv.com'
-        self.moviesearch_link = '/%s-%s-full-hd-pidtv-free.html'
-        self.moviesearch_link_2 = '/%s-%s-pidtv-free.html'
+        self.base_link = 'http://pubfilm.ac'
+        self.moviesearch_link = '/%s-%s-full-hd-pubfilm-free.html'
+        self.moviesearch_link_2 = '/%s-%s-pubfilm-free.html'
         self.tvsearch_link = '/wp-admin/admin-ajax.php'
         self.tvsearch_link_2 = '/?s=%s'
 
@@ -94,12 +94,12 @@ class source:
         try:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
-            post = urllib.urlencode({'aspp': tvshowtitle, 'action': 'ajaxsearchpro_search', 'options': 'qtranslate_lang=0&set_exactonly=checked&set_intitle=None&customset%5B%5D=post', 'asid': '1', 'asp_inst_id': '1_1'})
+            post = urllib.urlencode({'aspp': tvshowtitle, 'action': 'ajaxsearchpro_search', 'options': 'qtranslate_lang=0&set_intitle=None&customset%5B%5D=post', 'asid': '5', 'asp_inst_id': '5_1'})
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
             url = client.request(url, post=post, headers=headers)
             url = zip(client.parseDOM(url, 'a', ret='href', attrs={'class': 'asp_res_url'}), client.parseDOM(url, 'a', attrs={'class': 'asp_res_url'}))
             url = [(i[0], re.findall('(.+?: Season \d+)', i[1].strip())) for i in url]
-            url = [i[0] for i in url if len(i[1]) > 0 and tvshowtitle == i[1][0]][0]
+            url = [i[0] for i in url if len(i[1]) > 0 and tvshowtitle in i[1][0]][0]
 
             '''
             url = urlparse.urljoin(self.base_link, self.tvsearch_link_2)

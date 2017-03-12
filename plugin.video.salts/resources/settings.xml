@@ -286,7 +286,7 @@
          <setting id="Filmovizija-base_url" type="text" label="    Base Url" default="http://www.filmovizija.ws" visible="eq(-1,true)"/>
          <setting id="Filmovizija-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Flixanity-enable" type="bool" label="Flixanity Enabled" default="true" visible="true"/>
-         <setting id="Flixanity-base_url" type="text" label="    Base Url" default="http://flixanity.watch" visible="eq(-1,true)"/>
+         <setting id="Flixanity-base_url" type="text" label="    Base Url" default="https://flixanity.watch" visible="eq(-1,true)"/>
          <setting id="Flixanity-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Flixanity-username" type="text" label="     Username" default="" visible="eq(-3,true)"/>
          <setting id="Flixanity-password" type="text" label="     Password" option="hidden" default="" visible="eq(-4,true)"/>
@@ -326,7 +326,7 @@
          <setting id="Local-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Local-def-quality" type="enum" label="     Default Quality" values="None|Low|Medium|High|HD720|HD1080" default="0" visible="eq(-3,true)"/>
          <setting id="LosMovies-enable" type="bool" label="LosMovies Enabled" default="true" visible="true"/>
-         <setting id="LosMovies-base_url" type="text" label="    Base Url" default="http://losmovies.club" visible="eq(-1,true)"/>
+         <setting id="LosMovies-base_url" type="text" label="    Base Url" default="http://losmovies.cc" visible="eq(-1,true)"/>
          <setting id="LosMovies-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="m4ufree-enable" type="bool" label="m4ufree Enabled" default="true" visible="true"/>
          <setting id="m4ufree-base_url" type="text" label="    Base Url" default="http://m4ufree.info" visible="eq(-1,true)"/>
@@ -452,7 +452,7 @@
          <setting id="RealMovies-base_url" type="text" label="    Base Url" default="http://kodimadman.site88.net" visible="eq(-1,true)"/>
          <setting id="RealMovies-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="ReleaseBB-enable" type="bool" label="ReleaseBB Enabled" default="true" visible="true"/>
-         <setting id="ReleaseBB-base_url" type="text" label="    Base Url" default="http://rlsbb.com" visible="eq(-1,true)"/>
+         <setting id="ReleaseBB-base_url" type="text" label="    Base Url" default="http://rlsbb.ru" visible="eq(-1,true)"/>
          <setting id="ReleaseBB-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="ReleaseBB-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="60" visible="eq(-3,true)"/>
          <setting id="ReleaseBB-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-4,true)"/>
@@ -473,7 +473,7 @@
          <setting id="RLSSource.net-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-3,true)"/>
          <setting id="RLSSource.net-select" type="enum" label="     Automatically Select" values="Most Recent|Highest Quality" default="0" visible="eq(-4,true)"/>
          <setting id="scene-rls-enable" type="bool" label="scene-rls Enabled" default="true" visible="true"/>
-         <setting id="scene-rls-base_url" type="text" label="    Base Url" default="http://scene-rls.com" visible="eq(-1,true)"/>
+         <setting id="scene-rls-base_url" type="text" label="    Base Url" default="http://scene-rls.net" visible="eq(-1,true)"/>
          <setting id="scene-rls-sub_check" type="bool" label="    Include in Page Existence checks?" default="false" visible="eq(-2,true)"/>
          <setting id="scene-rls-filter" type="slider" range="0,180" option="int" label="     Filter results older than (0=No Filter) (days)" default="30" visible="eq(-3,true)"/>
          <setting id="scene-rls-select" type="enum" label="     Automatically Select" lvalues="30636|30637" default="0" visible="eq(-4,true)"/>
@@ -517,6 +517,9 @@
          <setting id="streamallthis.is-enable" type="bool" label="streamallthis.is Enabled" default="true" visible="true"/>
          <setting id="streamallthis.is-base_url" type="text" label="    Base Url" default="http://streamallthis.is" visible="eq(-1,true)"/>
          <setting id="streamallthis.is-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
+         <setting id="StreamDor-enable" type="bool" label="StreamDor Enabled" default="true" visible="true"/>
+         <setting id="StreamDor-base_url" type="text" label="    Base Url" default="https://streamdor.com" visible="eq(-1,true)"/>
+         <setting id="StreamDor-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="StreamLord-enable" type="bool" label="StreamLord Enabled" default="true" visible="true"/>
          <setting id="StreamLord-base_url" type="text" label="    Base Url" default="http://www.streamlord.com" visible="eq(-1,true)"/>
          <setting id="StreamLord-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
@@ -572,21 +575,18 @@
          <setting id="Vumoo-enable" type="bool" label="Vumoo Enabled" default="true" visible="true"/>
          <setting id="Vumoo-base_url" type="text" label="    Base Url" default="http://vumoo.li" visible="eq(-1,true)"/>
          <setting id="Vumoo-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
-         <setting id="Watch5s-enable" type="bool" label="Watch5s Enabled" default="true" visible="true"/>
-         <setting id="Watch5s-base_url" type="text" label="    Base Url" default="http://watch5s.to" visible="eq(-1,true)"/>
-         <setting id="Watch5s-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
     </category>
 
     <category label="Scrapers 5">
+         <setting id="Watch5s-enable" type="bool" label="Watch5s Enabled" default="true" visible="true"/>
+         <setting id="Watch5s-base_url" type="text" label="    Base Url" default="http://watch5s.to" visible="eq(-1,true)"/>
+         <setting id="Watch5s-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Watch8Now-enable" type="bool" label="Watch8Now Enabled" default="true" visible="true"/>
          <setting id="Watch8Now-base_url" type="text" label="    Base Url" default="http://geektv.ma" visible="eq(-1,true)"/>
          <setting id="Watch8Now-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="WatchEpisodes-enable" type="bool" label="WatchEpisodes Enabled" default="true" visible="true"/>
          <setting id="WatchEpisodes-base_url" type="text" label="    Base Url" default="http://www.watchepisodes.com" visible="eq(-1,true)"/>
          <setting id="WatchEpisodes-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
-         <setting id="WatchFilm-enable" type="bool" label="WatchFilm Enabled" default="true" visible="true"/>
-         <setting id="WatchFilm-base_url" type="text" label="    Base Url" default="http://watchfilm.to" visible="eq(-1,true)"/>
-         <setting id="WatchFilm-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="WatchFree.to-enable" type="bool" label="WatchFree.to Enabled" default="true" visible="true"/>
          <setting id="WatchFree.to-base_url" type="text" label="    Base Url" default="http://www.watchfree.to" visible="eq(-1,true)"/>
          <setting id="WatchFree.to-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>

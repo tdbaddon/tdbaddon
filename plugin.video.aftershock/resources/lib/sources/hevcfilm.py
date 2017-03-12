@@ -22,10 +22,10 @@ import re
 import urllib
 import urlparse
 
-from resources.lib.modules import client
-from resources.lib.modules import debrid
-from resources.lib.modules import logger
-from resources.lib.modules import cleantitle
+from ashock.modules import client
+from ashock.modules import debrid
+from ashock.modules import logger
+from ashock.modules import cleantitle
 
 
 class source:

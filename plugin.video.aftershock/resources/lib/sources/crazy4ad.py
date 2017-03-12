@@ -23,16 +23,15 @@ import re
 import urllib
 import urlparse
 
-from resources.lib.modules import client
-from resources.lib.modules import debrid
-from resources.lib.modules import cleantitle
+from ashock.modules import client
+from ashock.modules import debrid
+from ashock.modules import cleantitle
 
 
 class source:
     def __init__(self):
         self.domains = ['crazy4tv.com', 'crazy4ad.in']
         self.base_link = 'http://crazy4tv.com'
-        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vZXhvZHVzL2luZm8vY3Jhenk0YWQuZGI='
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -51,10 +50,10 @@ class source:
 
             if url == None: return srcs
 
+            if debrid.status() == False: raise Exception()
+
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-            self.data_link = base64.b64decode(self.data_link)
 
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
@@ -65,11 +64,6 @@ class source:
 
             url = self.search_link % urllib.quote_plus(query)
             url = urlparse.urljoin(self.base_link, url)
-
-            try: exec(base64.b64decode(client.request(self.data_link)))
-            except: pass
-
-            if debrid.status() == False: raise Exception()
 
             r = client.request(url)
 
@@ -90,7 +84,7 @@ class source:
 
                     t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
 
-                    if not cleantitle.movie(t) == cleantitle.movie(title): raise Exception()
+                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
 
                     y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
 
@@ -127,6 +121,7 @@ class source:
                     info = ' | '.join(info)
 
                     url = item[1]
+                    if any(x in url for x in ['.rar', '.zip', '.iso']): raise Exception()
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 
@@ -134,7 +129,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    srcs.append({'source': host, 'quality': quality, 'provider': 'crazy4AD', 'url': url, 'info': info,'parts':'1', 'direct': False, 'debridonly': True})
+                    srcs.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
 

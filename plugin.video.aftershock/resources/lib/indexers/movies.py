@@ -30,14 +30,14 @@ import urlparse
 try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
 except: action = None
 
-from resources.lib.modules import control
-from resources.lib.modules import trakt
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import metacache
-from resources.lib.modules import workers
-from resources.lib.modules import views
-from resources.lib.modules import logger
+from ashock.modules import control
+from ashock.modules import trakt
+from ashock.modules import client
+from ashock.modules import cache
+from ashock.modules import metacache
+from ashock.modules import workers
+from ashock.modules import views
+from ashock.modules import logger
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 

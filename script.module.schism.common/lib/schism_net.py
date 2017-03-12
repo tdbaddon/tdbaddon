@@ -55,20 +55,34 @@ class sucuri:
                         pass
 
 
-def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, timeout=None):
+def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None):
         if timeout == None: timeout= '30'	
         if headers == None:
 
                 headers = {}
                 headers['User-Agent'] = random_agent()
+				
+        elif  mobile == True:			
+				headers['User-Agent'] = ''
+				headers['User-Agent'] = 'Apple-iPhone/701.341'
 
         link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
-      
+        response_code = link.status_code
+        print ("RESPONSE CODE", response_code)
         try: resp_header = link.headers['Server']
         except: resp_header = 'none'
-        try:
-                if resp_header.lower() == 'sucuri/cloudproxy':
 
+				
+        try:
+                if resp_header.lower() == 'cloudflare-nginx' and response_code == 503 and not "sucuri_cloudproxy_js" in link.content:
+                    print ("DETECTED CLOUDFLARE", url)
+                    link = scraper.get(url)
+        except:
+                pass
+				
+        try:
+                if "sucuri_cloudproxy_js" in link.content:
+                        print ("DETECTED SUCURI", url)
                         su = sucuri().get(link.content)
                         headers['Cookie'] = su
 
@@ -76,13 +90,6 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
                                 url = '%s/' %url
 
                         link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
-        except:
-                pass
-				
-        try:
-                if resp_header.lower() == 'cloudflare-nginx':
-                    print ("DETECTED CLOUDFLARE", url)
-                    link = scraper.get(url)
         except:
                 pass
 
@@ -94,6 +101,45 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
                
 
         return link
+		
+		
+def OPEN_URL_POST(url, method='post', headers=None, params=None, data=None, redirects=True, verify=True, timeout=None):
+        if timeout == None: timeout= '30'	
+        if headers == None:
+
+                headers = {}
+                headers['User-Agent'] = random_agent()
+        resp = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        link = requests.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        response_code = resp.status_code
+        print ("RESPONSE CODE", response_code)
+        try: resp_header = resp.headers['Server']
+        except: resp_header = 'none'
+
+				
+        try:
+                if resp_header.lower() == 'cloudflare-nginx' and response_code == 503 and not "sucuri_cloudproxy_js" in resp.content:
+                    print ("DETECTED CLOUDFLARE", url)
+                    link = scraper.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, timeout=int(timeout))
+        except:
+                pass
+				
+        try:
+                if "sucuri_cloudproxy_js" in resp.content:
+                        print ("DETECTED SUCURI", url)
+                        su = sucuri().get(link.content)
+                        headers['Cookie'] = su
+
+                        if not url[-1] == '/':
+                                url = '%s/' %url
+
+                        link = requests.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        except:
+                pass
+
+
+		
+		
 
 def OPEN_CF(url):
         link = scraper.get(url)

@@ -23,10 +23,10 @@ import re
 import urlparse
 
 from resources.lib import resolvers
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import logger
-from resources.lib.modules import cleantitle
+from ashock.modules import cache
+from ashock.modules import client
+from ashock.modules import logger
+from ashock.modules import cleantitle
 
 
 class source:
@@ -166,6 +166,8 @@ class source:
                 if type(title) is list and len(title) > 0:
                     title = str(title[0])
                 title = client.replaceHTMLCodes(title)
+                if title == 'Naamkarann':
+                    title = 'Naamkaran'
                 url = client.parseDOM(item, "a", ret="href")
 
                 if not url:

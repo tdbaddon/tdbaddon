@@ -26,18 +26,18 @@ import urlparse
 import BeautifulSoup
 
 from resources.lib import resolvers
-from resources.lib.modules import client
-from resources.lib.modules import logger
+from ashock.modules import client
+from ashock.modules import logger
 
 
 class source:
     def __init__(self):
-        self.base_link_1 = 'http://www.desiplex.net'
+        self.base_link_1 = 'http://www.desiplex.me'
         self.base_link_2 = 'http://www.desiplex.net'
         self.base_link_3 = 'http://www.desiplex.net'
 
         self.search_link = '/feed/?s=%s&submit=Search'
-        self.info_link = 'http://www.desiplex.net/watch/?id=%s'
+        self.info_link = '%s/watch/?id=%s'
         self.now = datetime.datetime.now()
 
         self.srcs = []
@@ -47,6 +47,8 @@ class source:
             return tvshowtitle
 
     def episode(self, url, ep_url, imdb, tvdb, title, date, season, episode):
+        if imdb == 'Naamkarann':
+            imdb = 'Naamkaran'
         query = '%s %s' % (imdb, title)
         query = self.search_link % (urllib.quote_plus(query))
         ep_url = query
@@ -63,7 +65,8 @@ class source:
 
             links = [self.base_link_1, self.base_link_2, self.base_link_3]
             for base_link in links:
-                try: result = client.request(base_link + '/' + url)
+                try:
+                    result = client.request(base_link + '/' + url)
                 except: result = ''
                 if 'item' in result: break
 
@@ -85,8 +88,11 @@ class source:
                     urls = client.parseDOM(items[i], "a", ret="href")
                     for j in range(0,len(urls)):
                         videoID = getVideoID(urls[j])
-                        result = client.request(self.info_link % videoID)
+                        result = client.request(urls[j])
                         item = BeautifulSoup.BeautifulSoup(result, parseOnlyThese=BeautifulSoup.SoupStrainer("iframe"))
+                        if len(item) == 0:
+                            item = re.compile('data-config="(.+?)"').findall(result)[0]
+                            item = [{"src":item}]
                         for links in item:
                             rUrl = links["src"]
                             if rUrl.startswith('//'):

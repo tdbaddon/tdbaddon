@@ -695,7 +695,7 @@ class Scraper(object):
             self.__db_connection = DB_Connection()
         return self.__db_connection
 
-    def _parse_sources_list(self, html, key='sources', var=None):
+    def _parse_sources_list(self, html, key='sources', var=None, file_key=None):
         sources = {}
         match = re.search('''['"]?%s["']?\s*:\s*[\{\[](\s*)[\}\]]''' % (key), html, re.DOTALL)
         if not match:
@@ -706,19 +706,21 @@ class Scraper(object):
                     match = re.search('''%s\s*=\s*\[\{(.*?)\}\]''' % (var), html, re.DOTALL)
             
         if match:
-            files = re.findall('''['"]?file['"]?\s*:\s*['"]([^'"]+)''', match.group(1), re.DOTALL)
+            file_key = 'file' if file_key is None else file_key
+            files = re.findall('''['"]?%s['"]?\s*:\s*['"]([^'"]+)''' % (file_key), match.group(1), re.DOTALL)
             labels = re.findall('''['"]?label['"]?\s*:\s*['"]([^'"]*)''', match.group(1), re.DOTALL)
             for stream_url, label in map(None, files, labels):
-                stream_url = stream_url.replace('\/', '/')
-                stream_url = urllib.unquote(stream_url)
-                if self._get_direct_hostname(stream_url) == 'gvideo':
-                    sources[stream_url] = {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}
-                elif label is not None and re.search('\d+p?', label, re.I):
-                    sources[stream_url] = {'quality': scraper_utils.height_get_quality(label), 'direct': True}
-                elif label is not None:
-                    sources[stream_url] = {'quality': label, 'direct': True}
-                else:
-                    sources[stream_url] = {'quality': QUALITIES.HIGH, 'direct': True}
+                if stream_url:
+                    stream_url = stream_url.replace('\/', '/')
+                    stream_url = urllib.unquote(stream_url)
+                    if self._get_direct_hostname(stream_url) == 'gvideo':
+                        sources[stream_url] = {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}
+                    elif label is not None and re.search('\d+p?', label, re.I):
+                        sources[stream_url] = {'quality': scraper_utils.height_get_quality(label), 'direct': True}
+                    elif label is not None:
+                        sources[stream_url] = {'quality': label, 'direct': True}
+                    else:
+                        sources[stream_url] = {'quality': QUALITIES.HIGH, 'direct': True}
         return sources
 
     def _get_files(self, url, headers=None, cache_limit=.5):

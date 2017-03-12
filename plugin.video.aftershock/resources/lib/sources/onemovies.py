@@ -27,10 +27,10 @@ import string
 import urllib
 import urlparse
 
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import directstream
-from resources.lib.modules import cleantitle
+from ashock.modules import cache
+from ashock.modules import client
+from ashock.modules import directstream
+from ashock.modules import cleantitle
 
 
 class source:

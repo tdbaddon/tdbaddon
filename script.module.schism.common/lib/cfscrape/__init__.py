@@ -2,7 +2,6 @@ from time import sleep
 import logging
 import random
 import re
-import os
 from requests.sessions import Session
 import js2py
 from copy import deepcopy
@@ -29,20 +28,20 @@ class CloudflareScraper(Session):
 
         if "requests" in self.headers["User-Agent"]:
             # Spoof Firefox on Linux if no custom User-Agent has been set
-            self.headers["User-Agent"] = DEFAULT_USER_AGENT
+            self.headers["User-Agent"] = random_agent()
 
     def request(self, method, url, *args, **kwargs):
         resp = super(CloudflareScraper, self).request(method, url, *args, **kwargs)
 
         # Check if Cloudflare anti-bot is on
-        if resp.status_code == 503 and resp.headers.get("Server") == "cloudflare-nginx":
+        if (resp.status_code == 503 and resp.headers.get("Server") == "cloudflare-nginx"):
             return self.solve_cf_challenge(resp, **kwargs)
 
         # Otherwise, no Cloudflare anti-bot detected
         return resp
 
     def solve_cf_challenge(self, resp, **original_kwargs):
-        sleep(5)  # Cloudflare requires a delay before solving the challenge
+        sleep(6.1)  # Cloudflare requires a delay before solving the challenge
 
         body = resp.text
         parsed_url = urlparse(resp.url)
@@ -74,16 +73,15 @@ class CloudflareScraper(Session):
             raise
 
         # Safely evaluate the Javascript expression
-        js = js.replace('return', '')
         params["jschl_answer"] = str(int(js2py.eval_js(js)) + len(domain))
 
         # Requests transforms any request into a GET after a redirect,
         # so the redirect has to be handled manually here to allow for
         # performing other types of requests even as the first request.
         method = resp.request.method
-        cloudflare_kwargs['allow_redirects'] = False
+        cloudflare_kwargs["allow_redirects"] = False
         redirect = self.request(method, submit_url, **cloudflare_kwargs)
-        return self.request(method, redirect.headers['Location'], **original_kwargs)
+        return self.request(method, redirect.headers["Location"], **original_kwargs)
 
     def extract_js(self, body):
         js = re.search(r"setTimeout\(function\(\){\s+(var "
@@ -95,14 +93,13 @@ class CloudflareScraper(Session):
         # These characters are not currently used in Cloudflare's arithmetic snippet
         js = re.sub(r"[\n\\']", "", js)
 
-        return js.replace("parseInt", "return parseInt")
+        return js
 
     @classmethod
     def create_scraper(cls, sess=None, **kwargs):
         """
         Convenience function for creating a ready-to-go requests.Session (subclass) object.
         """
-
         scraper = cls()
 
         if sess:
@@ -124,7 +121,7 @@ class CloudflareScraper(Session):
             scraper.headers["User-Agent"] = user_agent
 
         try:
-            resp = scraper.get(url)
+            resp = scraper.get(url, **kwargs)
             resp.raise_for_status()
         except Exception as e:
             logging.error("'%s' returned an error. Could not collect tokens." % url)
@@ -138,7 +135,7 @@ class CloudflareScraper(Session):
                 cookie_domain = d
                 break
         else:
-            raise ValueError("Unable to find Cloudflare cookies. Does the site actually have Cloudflare IUAM mode enabled?")
+            raise ValueError("Unable to find Cloudflare cookies. Does the site actually have Cloudflare IUAM (\"I'm Under Attack Mode\") enabled?")
 
         return ({
                     "__cfduid": scraper.cookies.get("__cfduid", "", domain=cookie_domain),
@@ -152,9 +149,30 @@ class CloudflareScraper(Session):
         """
         Convenience function for building a Cookie HTTP header value.
         """
-        tokens, user_agent = cls.get_tokens(url, user_agent=user_agent)
+        tokens, user_agent = cls.get_tokens(url, user_agent=user_agent, **kwargs)
         return "; ".join("=".join(pair) for pair in tokens.items()), user_agent
 
 create_scraper = CloudflareScraper.create_scraper
 get_tokens = CloudflareScraper.get_tokens
 get_cookie_string = CloudflareScraper.get_cookie_string
+
+
+
+def random_agent():
+    BR_VERS = [
+        ['%s.0' % i for i in xrange(18, 43)],
+        ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101', '38.0.2125.104', '38.0.2125.111',
+         '39.0.2171.71', '39.0.2171.95', '39.0.2171.99', '40.0.2214.93', '40.0.2214.111',
+         '40.0.2214.115', '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81', '43.0.2357.124',
+         '44.0.2403.155', '44.0.2403.157', '45.0.2454.101', '45.0.2454.85', '46.0.2490.71',
+         '46.0.2490.80', '46.0.2490.86', '47.0.2526.73', '47.0.2526.80'],
+        ['11.0']]
+    WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1',
+                'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
+    FEATURES = ['; WOW64', '; Win64; IA64', '; Win64; x64', '']
+    RAND_UAS = ['Mozilla/5.0 ({win_ver}{feature}; rv:{br_ver}) Gecko/20100101 Firefox/{br_ver}',
+                'Mozilla/5.0 ({win_ver}{feature}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{br_ver} Safari/537.36',
+                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko']
+    index = random.randrange(len(RAND_UAS))
+    return RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES),
+                                  br_ver=random.choice(BR_VERS[index]))

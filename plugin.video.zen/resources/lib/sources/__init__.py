@@ -1042,22 +1042,22 @@ class sources:
             pass
 
 
+
     def sourcesFilter(self):
         provider = control.setting('hosts.sort.provider')
 
         quality = control.setting('hosts.quality')
         if quality == '': quality = '0'
 
-        # captcha = control.setting('hosts.captcha')
-
+        captcha = control.setting('hosts.captcha')
 
         random.shuffle(self.sources)
 
         if provider == 'true':
             self.sources = sorted(self.sources, key=lambda k: k['provider'])
 
-        # local = [i for i in self.sources if 'local' in i and i['local'] == True]
-        # self.sources = [i for i in self.sources if not i in local]
+        local = [i for i in self.sources if 'local' in i and i['local'] == True]
+        self.sources = [i for i in self.sources if not i in local]
 
         filter = []
        
@@ -1070,12 +1070,18 @@ class sources:
         self.sources = filter
 
         filter = []
-        # filter += local
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and i['debridonly'] == True] 
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p'  and i['debridonly'] == False]
+        filter += local
+        if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4k' and i['debridonly'] == True] 
+        if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4k'  and i['debridonly'] == False]
 
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == True] 
-        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == False]
+        if quality in ['0', '1']: filter += [i for i in self.sources if i['quality'] == '2k' and i['debridonly'] == True] 
+        if quality in ['0', '1']: filter += [i for i in self.sources if i['quality'] == '2k'  and i['debridonly'] == False]
+		
+        if quality in ['0' ,'1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p' and i['debridonly'] == True] 
+        if quality in ['0', '1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p'  and i['debridonly'] == False]
+
+        if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == True] 
+        if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and i['debridonly'] == False]
 
         filter += [i for i in self.sources if i['quality'] == 'SD' and i['debridonly'] == True]
         filter += [i for i in self.sources if i['quality'] == 'SD' and i['debridonly'] == False]
@@ -1084,18 +1090,19 @@ class sources:
         if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
         self.sources = filter
 
-        # if not captcha == 'true':
-            # filter = [i for i in self.sources if i['source'].lower() in self.hostcapDict and not 'debrid' in i]
-            # self.sources = [i for i in self.sources if not i in filter]
+        if not captcha == 'true':
+            filter = [i for i in self.sources if i['source'].lower() in self.hostcapDict and not 'debrid' in i]
+            self.sources = [i for i in self.sources if not i in filter]
 
         # filter = [i for i in self.sources if i['source'].lower() in self.hostblockDict and not 'debrid' in i]
         # self.sources = [i for i in self.sources if not i in filter]
 
-        self.sources = self.sources[:2000]
+        self.sources = self.sources[:1000]
 
         for i in range(len(self.sources)):
             u = self.sources[i]['url']
             s = self.sources[i]['source'].lower()
+            s = s.rsplit('.', 1)[0]
             p = self.sources[i]['provider']
             d = self.sources[i]['debridonly']
             d = str(d)
@@ -1111,9 +1118,9 @@ class sources:
             #if not d == '': label = '%02d | [B]%s[/B] | [B]%s[/B] | ' % (int(i+1), p, d)
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
-            if q in ['1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
-            elif q == 'SD': label += '%s | %s' % (s.rsplit('.', 1)[0], f)
-            else: label += '%s | %s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
+            if q in ['4K', '2k', '1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s, f, q)
+            elif q == 'SD': label += '%s | %s' % (s, f)
+            else: label += '%s | %s | [I]%s [/I]' % (s, f, q)
             label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
             label = label.replace('[I]HEVC [/I]', 'HEVC')
             label = re.sub('\[I\]\s+\[/I\]', ' ', label)
@@ -1123,8 +1130,10 @@ class sources:
             self.sources[i]['label'] = label.upper()
 
         return self.sources
-
-
+			
+			
+			
+			
     def sourcesResolve(self, item, info=False):
         try:
             self.url = None
@@ -1372,7 +1381,7 @@ class sources:
         # items = [i for i in items if ('autoplay' in i and i['autoplay'] == True) or not 'autoplay' in i]
 
         if control.setting('autoplay.sd') == 'true':
-            items = [i for i in items if not i['quality'] in ['1080p', 'HD']]
+			items = [i for i in items if not i['quality'] in ['4K', '2k', '1080p', 'HD']]
 
         u = None
 
@@ -1433,7 +1442,7 @@ class sources:
  
         self.hostmyDict = ['uploadrocket.net','userscloud','alfafile','.avi','.mkv','.mov','.mp4','.xvid','.divx','oboom', 'rapidgator', 'rg.to',  'uploaded', 'ul.to', 'filefactory', 'nitroflare', 'turbobit', '1fichier','uptobox', '1fich', 'uploadrocket','uploading','hugefiles', 'uploaded' , 'clicknupload']
         self.hostprDict = self.hostDict + self.hostmyDict
-        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'torba.se']
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
         self.hostblockDict = []
 

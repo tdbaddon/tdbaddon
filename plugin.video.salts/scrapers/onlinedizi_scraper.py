@@ -87,21 +87,35 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
+        season_url = show_url
+        if video.season != 1:
+            show_url = urlparse.urljoin(self.base_url, show_url)
+            html = self._http_get(show_url, cache_limit=24)
+            fragment = dom_parser.parse_dom(html, 'div', {'class': 'page-numbers'})
+            if fragment:
+                match = re.search('href="([^"]+-%s-sezon[^"]*)' % (video.season), fragment[0])
+                if match:
+                    season_url = match.group(1)
+            
         episode_pattern = '''href=['"]([^'"]+-%s-sezon-%s-bolum[^'"]*)''' % (video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)
+        return self._default_get_episode_url(season_url, video, episode_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        html = self._http_get(self.base_url, cache_limit=48)
         results = []
-        seen_urls = {}
+        seen_urls = set()
+        search_url = urlparse.urljoin(self.base_url, '/yabanci-diziler/')
+        html = self._http_get(search_url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for fragment in dom_parser.parse_dom(html, 'ul', {'class': '[^"]*all-series-list[^"]*'}):
-            for match in re.finditer('''href=["']([^'"]+)[^>]+>([^<]+)''', fragment):
-                url, match_title = match.groups()
-                if url not in seen_urls:
-                    seen_urls[url] = True
-                    if norm_title in scraper_utils.normalize_title(match_title):
-                        result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
-                        results.append(result)
+        for item in dom_parser.parse_dom(html, 'div', {'class': '[^"]*category-post[^"]*'}):
+            match_url = dom_parser.parse_dom(item, 'a', ret='href')
+            match_title = dom_parser.parse_dom(item, 'h3')
+            if match_url and match_title:
+                match_url = scraper_utils.pathify_url(match_url[0])
+                match_title = match_title[0]
+                if match_url in seen_urls: continue
+                seen_urls.add(match_url)
+                if norm_title in scraper_utils.normalize_title(match_title):
+                    result = {'url': match_url, 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                    results.append(result)
 
         return results

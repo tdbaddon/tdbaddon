@@ -20,8 +20,8 @@
 
 import re
 
-from resources.lib.modules import client
-from resources.lib.modules import logger
+from ashock.modules import client
+from ashock.modules import logger
 
 
 def resolve(url):

@@ -3,7 +3,7 @@ import unittest
 
 sys.argv = ['plugin.video.aftershock', '1']
 
-from resources.lib.modules import logger
+from ashock.modules import logger
 
 class TestingMovies(unittest.TestCase):
     def setUp(self):

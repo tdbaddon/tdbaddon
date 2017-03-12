@@ -60,9 +60,9 @@ def perform_auto_conf(responses):
                      ['MovyTvy', 'YabanciDizi', 'Dizist', 'DownloadTube', 'scene-rls', 'DDLValley', '2DDL', 'MyDDL', 'DDLSeries', 'SceneDown', 'CinemaMKV', 'TVShow.me'],
                      ['BestMoviez', 'SceneHDTV', 'Vumoo', 'TVHD', 'RLSHD', 'rls-movies', 'ReleaseBB', 'MyVideoLinks.eu', 'RLSSource.net', 'WatchInHD', 'SeeHD'],
                      ['vivo.to', 'IceFilms', 'Flixanity', 'Watch5s', 'WatchEpisodes', 'WatchItVideos', 'PrimeWire', 'alluc.com', 'tvonline', 'SolarMovie', 'SantaSeries'],
-                     ['Vebup', 'MoviePool', 'WatchSeries', 'Putlocker', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K'],
+                     ['StreamDor', 'Vebup', 'MoviePool', 'WatchSeries', 'Putlocker', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K'],
                      ['MovieZone', 'MovieHubs', 'tvrush', 'afdah', 'MiraDeTodo', 'Filmovizija', 'wso.ch', 'MovieSub', 'MovieHut', 'CouchTunerV1', 'Watch8Now', 'SnagFilms'],
-                     ['WatchFilm', 'treasureen', 'MoviePool', 'iWatchOnline', 'vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac'],
+                     ['treasureen', 'MoviePool', 'iWatchOnline', 'vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac'],
                      ['SpaceMov', 'LosMovies', 'wmo.ch', 'stream-tv.co', 'MintMovies', 'MovieNight', 'cmz', 'SeriesCoco', 'filmikz.ch', 'clickplay.to'],
                      ['MovieTube']]
         

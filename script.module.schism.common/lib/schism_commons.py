@@ -1,61 +1,5 @@
-# -*- coding: utf-8 -*- 
-
-#
-#      Copyright (C) 2017 SchisM fork from MuckyDuck Modules
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
-
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 import re,sys,cookielib,urllib,urllib2,urlparse,HTMLParser,time,random,base64,unicodedata
 
-def quality_tag(txt):
-	if any(value in txt for value in ['1080', '1080p','1080P']):
-		quality = "1080p"
-	elif any(value in txt for value in ['720', '720p','720P']):
-		quality = "HD"
-	else: 
-		quality = "SD"
-	return quality	
-
-def google_tag(url):
-    quality = re.compile('itag=(\d*)').findall(url)
-    quality += re.compile('=m(\d*)$').findall(url)
-    try: 
-		quality = quality[0]
-    except:
-		quality = "ND"
-		return quality
-
-    if quality in ['37', '137', '299', '96', '248', '303', '46']:
-        quality = "1080p"
-        return quality
-    elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
-        quality = "HD"
-        return quality
-    elif quality in ['35', '44', '135', '244', '94']:
-        quality = "SD"
-        return quality
-    elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
-        quality = "SD"
-        return quality
-    elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
-        quality = "SD"
-        return quality
-    else:
-        quality = "SD"
-        return quality
-		
 def parseDOM(html, name=u"", attrs={}, ret=False):
     # Copyright (C) 2010-2011 Tobias Ussing And Henrik Mosgaard Jensen
 
@@ -158,6 +102,11 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
 
     return ret_lst
 
+
+
+# ################### TAGS  ########################
+
+
 def replaceHTMLCodes(txt):
     txt = re.sub("(&#[0-9]+)([^;^0-9]+)", "\\1;\\2", txt)
     txt = HTMLParser.HTMLParser().unescape(txt)
@@ -168,12 +117,43 @@ def replaceHTMLCodes(txt):
     txt = txt.strip()
     return txt
 
+def quality_tag(txt):
+	if any(value in txt for value in ['1080', '1080p','1080P']):
+		quality = "1080p"
+	elif any(value in txt for value in ['720', '720p','720P']):
+		quality = "HD"
+	else: 
+		quality = "SD"
+	return quality	
 
-# ################### CLEANTITLES ########################
+def google_tag(url):
+    quality = re.compile('itag=(\d*)').findall(url)
+    quality += re.compile('=m(\d*)$').findall(url)
+    try: 
+		quality = quality[0]
+    except:
+		quality = "ND"
+		return quality
 
-import re,unicodedata
-
-
+    if quality in ['37', '137', '299', '96', '248', '303', '46']:
+        quality = "1080p"
+        return quality
+    elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
+        quality = "HD"
+        return quality
+    elif quality in ['35', '44', '135', '244', '94']:
+        quality = "SD"
+        return quality
+    elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
+        quality = "SD"
+        return quality
+    elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
+        quality = "SD"
+        return quality
+    else:
+        quality = "SD"
+        return quality
+		
 def get_size(txt):
 	try:
 		txt = re.findall('(\d+(?:\.|/,|)?\d+(?:\s+|)(?:GB|GiB|MB|MiB))', txt)
@@ -182,10 +162,30 @@ def get_size(txt):
 		txt = ''
 	return txt
 
+def get_video(txt):
+	pattern = 'file(?:\'|\")?\s*(?:\:)\s*(?:\"|\')(.+?)(?:\"|\')'
+	match = re.compile(pattern).findall(txt)
+	links = []
+	for url in match: links.append(url.encode('utf-8'))
+	return links
+
+def get_host(url):
+	try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+	except: host = 'none'
+	return host
 	
 
+	
+	
+	
+	
+	
 
+	
+# ################### CLEANTITLES ########################
 
+	
+	
 def cleantitle_get(title):
     if title == None: return
     title = title.lower()
@@ -195,7 +195,6 @@ def cleantitle_get(title):
     title = re.sub(r'\<[^>]*\>','', title)
     title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\(|\)|\[|\]|\{|\}|\s', '', title).lower()
     return title
-	
 	
 def cleantitle_get_2(title):
    # #### KEEPS ROUND PARENTHESES CONTENT #####
@@ -208,7 +207,6 @@ def cleantitle_get_2(title):
     title = re.sub('\n|([[].+?[]])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\(|\)|\[|\]|\{|\}|\s', '', title).lower()
     return title
 	
-	
 def cleantitle_get_full(title):
     if title == None: return
     title = title.lower()
@@ -219,7 +217,6 @@ def cleantitle_get_full(title):
     title = re.sub(r'\<[^>]*\>','', title)
     title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
-	
 	
 def cleantitle_geturl(title):
     if title == None: return
@@ -241,7 +238,6 @@ def cleantitle_get_simple(title):
     title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
 	
-	
 def cleantitle_query(title):
     if title == None: return
     title = title.lower()
@@ -251,7 +247,6 @@ def cleantitle_query(title):
     title = re.sub('\\\|/|\(|\)|\[|\]|\{|\}|-|:|;|\*|\?|"|\'|<|>|\_|\.|\?', ' ', title).lower()
     title = ' '.join(title.split())
     return title
-	
 	
 def getsearch(title):
     if title == None: return
@@ -271,3 +266,7 @@ def cleantitle_normalize(title):
         return str( ''.join(c for c in unicodedata.normalize('NFKD', unicode( title.decode('utf-8') )) if unicodedata.category(c) != 'Mn') )
     except:
         return title
+		
+def title_normalize(txt):
+	txt = unicodedata.normalize("NFKD", txt)
+	return txt

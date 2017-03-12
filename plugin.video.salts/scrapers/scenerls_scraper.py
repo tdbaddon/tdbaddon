@@ -27,8 +27,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
-BASE_URL = 'http://scene-rls.com'
-MULTI_HOST = 'nfo.scene-rls.com'
+BASE_URL = 'http://scene-rls.net'
+MULTI_HOST = 'nfo.scene-rls.net'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/"', VIDEO_TYPES.EPISODE: '/category/tvshows/"'}
 
 class Scraper(scraper.Scraper):
@@ -53,13 +53,16 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
             sources = self.__get_post_links(html)
-            for source in sources:
+            for source, value in sources.iteritems():
                 if scraper_utils.excluded_link(source): continue
                 host = urlparse.urlparse(source).hostname
-                quality = scraper_utils.blog_get_quality(video, sources[source]['release'], host)
+                if video.video_type == VIDEO_TYPES.MOVIE:
+                    meta = scraper_utils.parse_movie_link(value['release'])
+                else:
+                    meta = scraper_utils.parse_episode_link(value['release'])
+                quality = scraper_utils.height_get_quality(meta['height'])
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
-                if 'X265' in sources[source]['release'] or 'HEVC' in sources[source]['release']:
-                    hoster['format'] = 'x265'
+                if 'format' in meta: hoster['format'] = meta['format']
                 hosters.append(hoster)
         return hosters
 

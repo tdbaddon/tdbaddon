@@ -30,7 +30,6 @@ from salts_lib.constants import QUALITIES
 import scraper
 
 BASE_URL = 'http://sezonlukdizi.net'
-SEARCH_URL = '/js/dizi1.js'
 SEASON_URL = '/ajax/dataDizi.asp'
 EMBED_URL = '/ajax/dataEmbed.asp'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
@@ -148,13 +147,14 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
-        html = self._http_get(search_url, cache_limit=48)
+        html = self._http_get(self.base_url, cache_limit=24)
         norm_title = scraper_utils.normalize_title(title)
-        match_year = ''
-        for match in re.finditer('d\s*:\s*"([^"]+).*?u\s*:\s*"([^"]+)', html):
-            match_title, match_url = match.groups()
-            if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                results.append(result)
+        for script in dom_parser.parse_dom(html, 'script', {'type': 'text/javascript'}, ret='src'):
+            html = self._http_get(script, cache_limit=48)
+            match_year = ''
+            for match in re.finditer('d\s*:\s*"([^"]+).*?u\s*:\s*"([^"]+)', html):
+                match_title, match_url = match.groups()
+                if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                    results.append(result)
         return results

@@ -22,14 +22,14 @@ import json
 import os
 import re
 
-from resources.lib.modules.fileFetcher import *
-from resources.lib.modules.liveParser import *
+from ashock.modules.fileFetcher import *
+from ashock.modules.liveParser import *
 
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import control
-from resources.lib.modules import logger
-from resources.lib.modules import pyaes
+from ashock.modules import cache
+from ashock.modules import client
+from ashock.modules import control
+from ashock.modules import logger
+from ashock.modules import pyaes
 
 
 class source:
@@ -67,7 +67,7 @@ class source:
                 channelList = {}
                 for url, title, icon in channels:
                     title = title.replace("&amp;","And")
-                    #from resources.lib.modules import livemeta
+                    #from ashock.modules import livemeta
                     #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
                     #title = cleantitle.live(title)
                     #if title == 'SKIP':

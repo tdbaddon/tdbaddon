@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.94: 10th March 2017[/COLOR]
+[COLOR white][B]- Slight fixes to code.[/B][/COLOR]
+
+[COLOR yellowgreen]1.93: 9th March 2017[/COLOR]
+[COLOR white][B]- New system for Addon Installer.[/B][/COLOR]
+
 [COLOR yellowgreen]1.92: 3rd March 2017[/COLOR]
 [COLOR white][B]- Fix broken specials fix.[/B][/COLOR]
 

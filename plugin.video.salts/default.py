@@ -1343,7 +1343,7 @@ def apply_urlresolver(hosters):
                     known_hosts[host] += 1
                     filtered_hosters.append(hoster)
                 else:
-                    hmf = urlresolver.HostedMediaFile(host=host, media_id='1337')  # use dummy media_id to force host validation
+                    hmf = urlresolver.HostedMediaFile(host=host, media_id='12345678901')  # use dummy media_id to force host validation
                     if hmf:
                         # log_utils.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                         known_hosts[host] = known_hosts.get(host, 0) + 1

@@ -21,10 +21,11 @@
 import datetime
 import urllib
 import urlparse
+import re
 
 from resources.lib import resolvers
-from resources.lib.modules import client
-from resources.lib.modules import logger
+from ashock.modules import client
+from ashock.modules import logger
 
 
 class source:
@@ -83,17 +84,25 @@ class source:
 
             result = client.parseDOM(result, "div", attrs={"class": "single-post-video"})[0]
 
-            parts = client.parseDOM(result, "script", ret="data-config")
-            for i in range(0, len(parts)):
-                if parts[i].startswith('//'):
-                    parts[i]='http:%s'%parts[i]
+            items = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(result)
 
-            host = client.host(parts[0])
+            for item in items:
+                if item[1].endswith('png'):
+                    continue
+                host = client.host(item[1])
+                url = item[1]
+                parts = [url]
+            #parts = client.parseDOM(result, "script", ret="data-config")
+            #for i in range(0, len(parts)):
+            #    if parts[i].startswith('//'):
+            #        parts[i]='http:%s'%parts[i]
 
-            if len(parts) > 1 :
-                url = "##".join(parts)
-            else :
-                url = parts[0]
+            #host = client.host(parts[0])
+
+            #if len(parts) > 1 :
+            #    url = "##".join(parts)
+            #else :
+            #    url = parts[0]
             srcs.append({'source':host, 'parts': len(parts), 'quality':quality,'provider':'BadtameezDil','url':"##".join(parts), 'direct':False})
             logger.debug('SOURCES [%s]' % srcs, __name__)
             return srcs

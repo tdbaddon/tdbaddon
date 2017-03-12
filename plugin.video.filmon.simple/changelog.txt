@@ -1,3 +1,6 @@
+[B]Version 0.1.6[/B]
+- Update TV ADDONS graphics
+
 [B]Version 0.1.5[/B]
 - Fixed Carribean Channels
 

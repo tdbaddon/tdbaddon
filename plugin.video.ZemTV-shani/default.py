@@ -817,7 +817,7 @@ def AddPv2Sports(url):
             if cname.lower().startswith('high alert'): continue
             #cid=source.findtext('programURL')# change from programURL
             cid=source.findtext('programID')
-            cimage=source.findtext('programImage')
+            cimage=source.findtext('programImage')+'|User-Agent=Pak%20TV/1.4 CFNetwork/808.2.16 Darwin/16.3.0'
             seq=cname
             if isMovies:
                 seq=str(url.index(source.findtext('programCategory').lower()))
@@ -3185,19 +3185,21 @@ def AddSmartCric(url):
     link=response.read()
 #    print link
     response.close()
-    patt='performGet\(\'(.+)\''
-    match_url =re.findall(patt,link)[0]
+    #patt='performGet\(\'(.+)\''
+    #match_url =re.findall(patt,link)[0]
     channeladded=False
     patt_sn='sn = "(.*?)"'
-    patt_pk='(&pk=.*?)"'
+    patt_pk='showChannels\("(.+)"'
     try:
         match_sn =re.findall(patt_sn,link)[0]
         match_pk =re.findall(patt_pk,link)[0]
         ref=[('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1'),
             ('Referer','http://smartcric.com/')]
+        lbip=''
         lburl=re.findall('(http.*?loadbalancer)',link)[0]
+        lbip=lburl.split('//')[1].split(':')[0]
         fms=getUrl(lburl,headers=ref).split('=')[1]
-        final_url=  match_url+   match_sn
+        final_url=  'http://%s:8087/mobile/channels/live/%s' %(lbip,  match_sn)
         req = urllib2.Request(final_url)
         req.add_header('User-Agent', 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')
         req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
@@ -3232,7 +3234,7 @@ def AddSmartCric(url):
                         curl=s["streamName"]
                         streamid=str(s["streamId"])
                         
-                        curl1="http://"+fms+":8088/mobile/"+curl+"/playlist.m3u8?id="+streamid+match_pk+'|User-Agent=Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3';
+                        curl1="http://"+fms+":8088/mobile/"+curl+"/playlist.m3u8?id="+streamid+"&pk="+match_pk+'|User-Agent=Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3';
                         addDir('    -'+cname +" (http)" ,curl1 ,15,'', False, True,isItFolder=False)		#name,url,mode,icon
                         #curl1="rtsp://"+"206.190.140.164"+":1935/mobile/"+curl+"?key="+match_sn+match_pk;
                         #curl1="rtsp://"+fms+":1935/mobile/"+curl+"?id="+streamid+"&key="+match_sn+match_pk;
@@ -4502,6 +4504,11 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     isNetworkTVOff=selfAddon.getSetting( "isNetworkTVOff" )
     isSlowTVOff=selfAddon.getSetting( "isSlowTVOff" )
     
+    istvplayerOff=selfAddon.getSetting( "istvplayerOff" )
+    if istvplayerOff=="":istvplayerOff="true"#bydefault off    
+
+    
+    
     main_ch='(<section_name>Pakistani<\/section_name>.*?<\/section>)'
 #    v4link='aHR0cDovL3N0YWdpbmcuamVtdHYuY29tL3FhLnBocC8yXzIvZ3htbC9jaGFubmVsX2xpc3QvMQ=='
     v4link='aHR0cDovL2ZlcnJhcmlsYi5qZW10di5jb20vaW5kZXgucGhwLzJfMi9neG1sL2NoYW5uZWxfbGlzdC8x'
@@ -4639,9 +4646,10 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
             
             match.append((base64.b64decode('S1ROIEVudC4gKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktn swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktntv.tv/ live=1",'http://shani.offshorepastebin.com/ZemLogos/ktn.png'))
             match.append((base64.b64decode('S1ROIE5FV1MgKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktnnews swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktnnews.tv/ live=1",'http://shani.offshorepastebin.com/ZemLogos/ktnnews.png'))
-            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'D8YHp37-tp0','makkah.png'))
-            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'ArVmnth5jB4','madina.png'))
-            
+            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'0b1IMR2H_7s','makkah.png'))
+            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'wfQcy7vp55Q','makkah.png'))
+            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'Nxzeb_5LjtU','makkah.png'))
+            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'-WYI832cx5Q','madina.png'))
   
 
 
@@ -4721,6 +4729,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isNetworkTVOff=='true': nettvgen=None
     if isSlowTVOff=='true': slowtvgen=None
     
+    if istvplayerOff=='true': tvplayerChannels=None
     
     
     if isdittoOff=='true': dittogen=None
@@ -4750,7 +4759,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     if cname.lower().startswith('high alert'): continue
                     #cid=source.findtext('programURL')# change from programURL
                     cid=source.findtext('programID')
-                    cimage=source.findtext('programImage')
+                    cimage=source.findtext('programImage')+'|User-Agent=Pak%20TV/1.4 CFNetwork/808.2.16 Darwin/16.3.0'
 #                    addDir(cname ,base64.b64encode(cid),37,cimage, False, True,isItFolder=False)
                     match.append((cname +' v3' ,'manual2', cid ,cimage))
             
@@ -5829,8 +5838,8 @@ def getPV2UserAgent(option):
         return getPv2Code();
 
 def getpv2stkey():
-    headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5T21waGJuVm5aWEp0WVc0PQ=='))]
-    return getUrl(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL2FyYWJpY3R2djFwLnBocA=='),headers=headers)
+    headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5YW1GdWFUcHFZVzUxWjJWeWJXRnVhbUZ1YVE9PQ=='))]
+    return getUrl(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL3Bha2luZGlhdjIzcC5waHA='),headers=headers)
     
 def getPV2Device(option):
     useragent=getpv2stkey()
@@ -5889,7 +5898,8 @@ def getPV2Url():
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
                     mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
-                
+                                                               
+
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
                 #mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
@@ -5902,7 +5912,7 @@ def getPV2Url():
                     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
                     
                     req = urllib2.Request( base64.b64decode(mainurl))#  %(token))    
-                    req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ==')) 
+                    #req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ==')) 
                     req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
                     #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
                     response = urllib2.urlopen(req)

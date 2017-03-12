@@ -34,11 +34,11 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'http://flixanity.watch'
-API_BASE_URL = 'http://api.flixanity.watch'
+BASE_URL = 'https://flixanity.watch'
+API_BASE_URL = 'https://api.flixanity.watch'
 EMBED_URL = '/ajax/jne.php'
 SEARCH_URL = '/api/v1/cautare/upd'
-KEY = 'MEE2cnUzNXl5aTV5bjRUSFlwSnF5MFg4MnRFOTVidFY='
+KEY = 'MEE2cnUzNXl5aTV5bjRUSFlwSnF5MFg4MnRFOTVidA=='
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -104,13 +104,13 @@ class Scraper(scraper.Scraper):
         results = []
         self.__get_token()
         if self.__token is not None:
-            search_url = urlparse.urljoin(API_BASE_URL, self.__get_search_url())
+            search_url, u = self.__get_search_url()
+            search_url = urlparse.urljoin(API_BASE_URL, search_url)
             timestamp = int(time.time() * 1000)
             s = self.__get_s()
             query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token, 'set': s, 'rt': self.__get_rt(self.__token + s),
-                     'sl': self.__get_sl(search_url)}
+                     'sl': self.__get_sl(u)}
             headers = {'Referer': self.base_url}
-            headers.update(XHR)
             html = self._http_get(search_url, data=query, headers=headers, cache_limit=1)
             if video_type in [VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE]:
                 media_type = 'TV SHOW'
@@ -171,6 +171,7 @@ class Scraper(scraper.Scraper):
     
     def __get_search_url(self):
         search_url = SEARCH_URL
+        u = search_url[-10:]
         html = super(self.__class__, self)._http_get(self.base_url, cache_limit=24)
         for match in re.finditer('<script[^>]+src="([^"]+)', html):
             script = match.group(1)
@@ -181,9 +182,10 @@ class Scraper(scraper.Scraper):
                     n = re.search('n\s*=\s*"([^"]+)', html)
                     u = re.search('u\s*=\s*"([^"]+)', html)
                     if r and n and u:
-                        search_url = r.group(1) + n.group(1)[8:16] + u.group(1)
+                        u = u.group(1)
+                        search_url = r.group(1) + n.group(1)[8:16] + u
                         break
-        return search_url
+        return search_url, u
         
     def __get_token(self, html=''):
         if self.username and self.password and self.__token is None:

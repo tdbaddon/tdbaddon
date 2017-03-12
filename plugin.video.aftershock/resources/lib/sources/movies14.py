@@ -22,10 +22,10 @@ import re, json
 import urllib
 import urlparse
 
-from resources.lib.modules import client
-from resources.lib.modules import cleantitle
-from resources.lib.modules import directstream
-from resources.lib.modules import jsunpack
+from ashock.modules import client
+from ashock.modules import cleantitle
+from ashock.modules import directstream
+from ashock.modules import jsunpack
 
 
 class source:

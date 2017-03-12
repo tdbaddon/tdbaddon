@@ -93,7 +93,7 @@ class Scraper(scraper.Scraper):
         return results
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="(/Serie/[^-]+-Season-%s-Episode-%s)' % (video.season, video.episode)
+        episode_pattern = 'href="(/Serie/[^"]+-Season-%s-Episode-%s)' % (video.season, video.episode)
         title_pattern = 'class="episode"\s+href="(?P<url>[^"]+).*?class="episode_title">\s*-\s*(?P<title>.*?) \('
         airdate_pattern = 'class="episode"\s+(?:style="[^"]+")?\s+href="([^"]+)(?:[^>]+>){2}[^<]+\s+\({year} {month_name} {p_day}\)'
         headers = {'Referer': self.base_url}

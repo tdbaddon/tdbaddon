@@ -83,7 +83,7 @@ def GetMenu():
                                         addLink(name,url2,3,iconimage,fanart)
             except:pass
             view(link)
-        addDir('[B][COLOR silver]Wall Of Fame[/COLOR][/B]',url,11,walloffameicon,fanarts)
+        #addDir('[B][COLOR silver]Wall Of Fame[/COLOR][/B]',url,11,walloffameicon,fanarts)
         addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)		
 
 def popup():

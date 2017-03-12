@@ -30,7 +30,8 @@
 		<setting id="hosts.mode" type="enum" label="32331" values="Dialog|Directory|Autoplay|Real Time|Dialog+" default="4" />
 		<setting id="progress.dialog" type="enum" label="32335" lvalues="32336|32337" default="0" />
 		<setting type="lsep" label="32338" />
-		<setting id="hosts.quality" type="enum" label="32339" values="1080p|720p|480p" default="0" />
+		<setting id="hosts.quality" type="enum" label="32339" values="4k|2k|1080p|720p|480p" default="0" />
+		<setting id="hosts.captcha" type="bool" label="32341" default="true" />
 		<setting id="autoplay.sd" type="bool" label="AutoPlay SD Only" default="false" />
 		<setting id="hosts.sort.provider" type="bool" label="32342" default="false" />
 		<setting type="lsep" label="32343" />
@@ -84,7 +85,8 @@
 		<setting id="provider.movies25" type="bool" label="Movies25" default="true" />
 
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
-	
+		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
+		
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
 
@@ -97,6 +99,7 @@
 
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
+		<setting id="provider.solarmovie" type="bool" label="Solarmovie" default="true" />
 
 		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
 

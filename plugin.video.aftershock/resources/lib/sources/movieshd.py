@@ -25,8 +25,8 @@ import time
 import urllib
 import urlparse
 
-from resources.lib.modules import client
-from resources.lib.modules import directstream
+from ashock.modules import client
+from ashock.modules import directstream
 
 
 class source:
