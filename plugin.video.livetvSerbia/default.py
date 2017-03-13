@@ -2331,7 +2331,14 @@ def get_params():
 
 
 def getFavorites():
-        items = json.loads(open(favorites).read())
+        #@Marko
+        if os.path.exists(favorites)==True:
+          items = json.loads(open(favorites).read())
+        else:
+          items = []
+          xbmcgui.Dialog().ok('Live TV Serbia', '\nAdd your favorite channels!\nRight click on channel and click [COLOR yellow]Add to livetvSerbia Favorites[/COLOR].')
+          return
+        #items = json.loads(open(favorites).read())
         total = len(items)
         for i in items:
             name = i[0]
@@ -2999,18 +3006,18 @@ try:
     xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_UNSORTED)
 except:
     pass
-try:
-    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
-except:
-    pass
-try:
-    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_DATE)
-except:
-    pass
-try:
-    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_GENRE)
-except:
-    pass
+#try:
+#    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
+#except:
+ #   pass
+#try:
+ #   xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_DATE)
+#except:
+#    pass
+#try:
+ #   xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_GENRE)
+#except:
+ #   pass
 
 params=get_params()
 

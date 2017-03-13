@@ -1526,7 +1526,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.livetvSerbia"
        name="Live TV Serbia"
-       version="1.1.1"
+       version="1.1.2"
        provider-name="livetvSerbia">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1543,7 +1543,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="plugin.program.chrome.launcher" version="1.1.5"/>
+
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
