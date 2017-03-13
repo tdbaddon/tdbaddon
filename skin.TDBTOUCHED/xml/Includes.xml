@@ -83,6 +83,10 @@
 		<value condition="Player.HasAudio">[B]$INFO[MusicPlayer.Title][/B]</value>
 		<value condition="Player.HasVideo">[B]$INFO[VideoPlayer.Title][/B]</value>
 	</variable>
+	<variable name="VideoHWDecoder">
+		<value condition="Player.Process(videohwdecoder)">HW</value>
+		<value>SW</value>
+	</variable>
 
 	<include name="ScreenWidth">
 		<include condition="String.IsEqual(Skin.AspectRatio,16:9)">ScreenWidth-16x9</include>
@@ -101,7 +105,7 @@
 			<aspectratio>scale</aspectratio>
 			<include>ScreenWidth</include>
 			<height>960</height>
-			<texture colordiffuse="FF006699">special://skin/background/primary.jpg</texture>
+			<texture colordiffuse="FF0E597E">special://skin/background/primary.jpg</texture>
 			<visible>!Skin.HasSetting(UseCustomBackground)</visible>
 		</control>
 		<control type="image">
@@ -170,7 +174,7 @@
 			<aspectratio>scale</aspectratio>
 			<include>ScreenWidth</include>
 			<height>960</height>
-			<texture colordiffuse="4D24CCA2">special://skin/background/secondary1.png</texture>
+			<texture colordiffuse="330BAA8E">special://skin/background/secondary.jpg</texture>
 			<visible>!Skin.HasSetting(UseCustomBackground)</visible>
 		</control>
 		<control type="videowindow">
@@ -310,7 +314,7 @@
 			<include>Window_OpenClose_Animation</include>
 			<posx>40r</posx>
 			<posy>120</posy>
-			<visible>Control.IsVisible(60) + ![[Window.IsVisible(TVGuide) | Window.IsVisible(RadioGuide)] + Control.IsVisible(10)]</visible>
+			<visible>Control.IsVisible(60)</visible>
 			<animation effect="slide" start="40,0" end="0,0" time="400">Visible</animation>
 			<animation effect="slide" start="0,0" end="40,0" time="400">Hidden</animation>
 			<animation effect="slide" start="0,0" end="-7,0" time="0" condition="String.IsEqual(Skin.AspectRatio,4:3)">Conditional</animation>
@@ -401,9 +405,10 @@
 				</item>
 				<item>
 					<label>31202</label>
-					<onclick>Container.NextViewMode</onclick>
+					<onclick condition="![Window.IsVisible(TVGuide) | Window.IsVisible(RadioGuide)]">Container.NextViewMode</onclick>
+					<onclick condition="Window.IsVisible(TVGuide) | Window.IsVisible(RadioGuide)">SendClick(2)</onclick>
 					<icon>icon_button_view.png</icon>
-					<visible>![Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(TVGuide) | Window.IsVisible(RadioGuide) | Window.IsVisible(TVRecordings) | Window.IsVisible(RadioRecordings) | Window.IsVisible(TVTimers) | Window.IsVisible(RadioTimers) | Window.IsVisible(TVTimerRules) | Window.IsVisible(RadioTimerRules) | Window.IsVisible(TVSearch) | Window.IsVisible(RadioSearch) | Window.IsVisible(MusicOSD) | Window.IsVisible(VideoOSD) | Window.IsVisible(MusicPlaylist) | Window.IsVisible(VideoPlaylist) | Window.IsVisible(MusicPlaylistEditor)]</visible>
+					<visible>![Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(TVRecordings) | Window.IsVisible(RadioRecordings) | Window.IsVisible(TVTimers) | Window.IsVisible(RadioTimers) | Window.IsVisible(TVTimerRules) | Window.IsVisible(RadioTimerRules) | Window.IsVisible(TVSearch) | Window.IsVisible(RadioSearch) | Window.IsVisible(MusicOSD) | Window.IsVisible(VideoOSD) | Window.IsVisible(MusicPlaylist) | Window.IsVisible(VideoPlaylist) | Window.IsVisible(MusicPlaylistEditor)]</visible>
 				</item>
 				<item>
 					<label>5</label>
@@ -759,12 +764,6 @@
 						<icon>icon_menu_addons.png</icon>
 						<visible>!Skin.HasSetting(HideHomeButtonPrograms)</visible>
 					</item>
-					<item>
-						<label></label>
-						<onclick>ActivateWindow(Games)</onclick>
-						<icon>icon_menu_games.png</icon>
-						<visible>!Skin.HasSetting(HideHomeButtonGames)</visible>
-					</item>
 				</content>
 			</control>
 		</control>
@@ -917,13 +916,6 @@
 			<visible>!Skin.HasSetting(HideHomeButtonPrograms)</visible>
 		</item>
 		<item>
-			<label>15016</label>
-			<onclick>ActivateWindow(Games)</onclick>
-			<icon>icon_menu_games.png</icon>
-			<thumb></thumb>
-			<visible>System.GetBool(gamesgeneral.enable) + !Skin.HasSetting(HideHomeButtonGames)</visible>
-		</item>
-		<item>
 			<label>8</label>
 			<onclick>ActivateWindow(Weather)</onclick>
 			<icon>icon_menu_weather.png</icon>
@@ -977,7 +969,7 @@
 					<posx>0</posx>
 					<posy>$PARAM[panel-posy]</posy>
 					<width>350</width>
-					<height>560</height>
+					<height>640</height>
 					<onleft>9000</onleft>
 					<onright>50</onright>
 					<onup>9000</onup>
@@ -985,7 +977,6 @@
 					<itemgap>0</itemgap>
 					<include condition="Window.IsVisible(AddonBrowser)">AddonsMenu</include>
 					<include condition="Window.IsVisible(EventLog)">EventLogMenu</include>
-					<include condition="Window.IsVisible(Games)">GamesMenu</include>
 					<include condition="Window.IsVisible(Music)">MusicMenu</include>
 					<include condition="Window.IsVisible(MusicOSD)">MusicOSDMenu</include>
 					<include condition="Window.IsVisible(MusicPlaylist)">MusicPlaylistMenu</include>
@@ -993,8 +984,7 @@
 					<include condition="Window.IsVisible(Pictures)">PicturesMenu</include>
 					<include condition="Window.IsVisible(Programs)">ProgramsMenu</include>
 					<include condition="Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(TVGuide) | Window.IsVisible(RadioGuide) | Window.IsVisible(TVRecordings) | Window.IsVisible(RadioRecordings) | Window.IsVisible(TVTimers) | Window.IsVisible(RadioTimers) | Window.IsVisible(TVTimerRules) | Window.IsVisible(RadioTimerRules) | Window.IsVisible(TVSearch) | Window.IsVisible(RadioSearch)">PVRMenu</include>
-					<include condition="Window.IsVisible(Settings)">SettingsMenu</include>
-					<include condition="Window.IsVisible(PlayerSettings) | Window.IsVisible(MediaSettings) | Window.IsVisible(PVRSettings) | Window.IsVisible(ServiceSettings) | Window.IsVisible(InterfaceSettings) | Window.IsVisible(GameSettings) | Window.IsVisible(SystemSettings)">SettingsCatMenu</include>
+					<include condition="Window.IsVisible(PlayerSettings) | Window.IsVisible(MediaSettings) | Window.IsVisible(PVRSettings) | Window.IsVisible(ServiceSettings) | Window.IsVisible(InterfaceSettings) | Window.IsVisible(SystemSettings)">SettingsMenu</include>
 					<include condition="Window.IsVisible(Videos)">VideosMenu</include>
 					<include condition="Window.IsVisible(VideoOSD)">VideoOSDMenu</include>
 					<include condition="Window.IsVisible(VideoPlaylist)">VideoPlaylistMenu</include>
@@ -1002,7 +992,7 @@
 				<control type="image">
 					<description>Panel Arrow image</description>
 					<posx>110r</posx>
-					<posy>122r</posy>
+					<posy>125r</posy>
 					<width>75</width>
 					<height>41</height>
 					<texture>arrow_up.png</texture>
@@ -1073,22 +1063,6 @@
 			<description>Clear button</description>
 			<include>MenuButtonCommonValues</include>
 			<label>192</label>
-		</control>
-	</include>
-	<include name="GamesMenu">
-		<control type="button" id="3">
-			<description>Sort by button</description>
-			<include>MenuButtonCommonValues</include>
-			<label>103</label>
-		</control>
-		<control type="togglebutton" id="4">
-			<description>Sort asc</description>
-			<include>MenuButtonCommonValues</include>
-			<alttexturefocus>list_focus.png</alttexturefocus>
-			<alttexturenofocus></alttexturenofocus>
-			<label>31051</label>
-			<altlabel>31050</altlabel>
-			<usealttexture>Container.SortDirection(Ascending)</usealttexture>
 		</control>
 	</include>
 	<include name="MusicMenu">
@@ -1540,14 +1514,6 @@
 	</include>
 	<include name="SettingsMenu">
 		<control type="button" id="20">
-			<description>Sysinfo button</description>
-			<include>MenuButtonCommonValues</include>
-			<label>130</label>
-			<onclick>ActivateWindow(SystemInfo)</onclick>
-		</control>
-	</include>
-	<include name="SettingsCatMenu">
-		<control type="button" id="20">
 			<description>Settings level button</description>
 			<include>MenuButtonCommonValues</include>
 			<label>10037</label>
@@ -1695,22 +1661,22 @@
 					<icon>icon_settings_system.png</icon>
 				</item>
 				<item id="7">
-					<label>15016</label>
-					<label2>35100</label2>
-					<onclick>ActivateWindow(GameSettings)</onclick>
-					<icon>icon_settings_games.png</icon>
-				</item>
-				<item id="8">
 					<label>24001</label>
 					<label2>31407</label2>
 					<onclick>ActivateWindow(AddonBrowser)</onclick>
 					<icon>icon_settings_addons.png</icon>
 				</item>
-				<item id="9">
+				<item id="8">
 					<label>13200</label>
 					<label2>31411</label2>
 					<onclick>ActivateWindow(Profiles)</onclick>
 					<icon>icon_settings_profiles.png</icon>
+				</item>
+				<item id="9">
+					<label>130</label>
+					<label2>31412</label2>
+					<onclick>ActivateWindow(SystemInfo)</onclick>
+					<icon>icon_settings_systeminfo.png</icon>
 				</item>
 			</content>
 		</control>
@@ -1861,22 +1827,6 @@
 				<textoffsetx>20</textoffsetx>
 			</control>
 			<control type="radiobutton" id="110">
-				<description>Hide Games</description>
-				<width>$PARAM[panel-width]</width>
-				<height>80</height>
-				<aligny>center</aligny>
-				<font>font24_title</font>
-				<textcolor>white</textcolor>
-				<texturefocus>list_focus.png</texturefocus>
-				<texturenofocus></texturenofocus>
-				<pulseonselect>false</pulseonselect>
-				<label>$LOCALIZE[15016]</label>
-				<onclick>Skin.ToggleSetting(HideHomeButtonGames)</onclick>
-				<selected>!Skin.HasSetting(HideHomeButtonGames)</selected>
-				<enable>System.GetBool(gamesgeneral.enable)</enable>
-				<textoffsetx>20</textoffsetx>
-			</control>
-			<control type="radiobutton" id="111">
 				<description>Hide Weather</description>
 				<width>$PARAM[panel-width]</width>
 				<height>80</height>
@@ -1891,7 +1841,7 @@
 				<selected>!Skin.HasSetting(HideHomeButtonWeather)</selected>
 				<textoffsetx>20</textoffsetx>
 			</control>
-			<control type="radiobutton" id="112">
+			<control type="radiobutton" id="111">
 				<description>Hide Favourites</description>
 				<width>$PARAM[panel-width]</width>
 				<height>80</height>
@@ -2452,7 +2402,6 @@
 		<control type="button">
 			<label>31358</label>
 			<include>MenuButtonCommonValues</include>
-			<onclick>ActivateWindow(PVROSDChannels)</onclick>
 			<onclick>ActivateWindow(Teletext)</onclick>
 			<visible>VideoPlayer.Content(LiveTV)</visible>
 		</control>
@@ -2499,6 +2448,12 @@
 			<include>MenuButtonCommonValues</include>
 			<onclick>ActivateWindow(OSDAudioDSPSettings)</onclick>
 			<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
+		</control>
+		<control type="button">
+			<label>Player info</label>
+			<include>MenuButtonCommonValues</include>
+			<onclick>ClearProperty(PopupMenuVisible,Home)</onclick>
+			<onclick>ActivateWindow(playerprocessinfo)</onclick>
 		</control>
 	</include>
 	<include name="VideoPlaylistMenu">
