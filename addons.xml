@@ -1079,35 +1079,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.Fido"
-       name="Fido Video Addon"
-       version="1.0"
-       provider-name="Fido">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.common.plugin.cache" version="2.5.2"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Help from SimpleCore and Markov for playlists</summary>
-    <description lang="en">Dedicated to Fido</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.filmon.simple" name="FilmOn Simple" version="0.1.6" provider-name="mhancoc7">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
