@@ -1,0 +1,8 @@
+Official Indigo addon For Kodi
+
+
+V1.0.2
+Fixed broken Next Page function in installer
+
+V1.0.0
+Initial Official Release

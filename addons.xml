@@ -393,6 +393,28 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
+<addon id="plugin.program.indigo" version="1.0.2"
+	name="Indigo" provider-name="tvaddons.ag">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video executable </provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">Indigo is your gateway to the world of unofficial Kodi addons!</summary>
+        <description lang="en">Indigo is your gateway to the world of unofficial Kodi addons! Please visit www.tvaddons.ag for addon support and www.cablecutters.com for hardware support.</description>
+        <disclaimer lang="en">Kodi is a registered trademark of the XBMC Foundation. We are not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation. Furthermore, any software, addons, or products offered by us will receive no support in official Kodi channels, including the Kodi forums and various social networks.</disclaimer>
+        <language>en</language>
+        <platform>all</platform>
+        <forum>https://forums.tvaddons.ag</forum>
+        <website>https://www.tvaddons.ag</website>
+        <source></source>
+        <email></email>
+    </extension>
+</addon>
+
 <addon id="plugin.program.SpeedTester.net" name="SpeedTester.net" version="1.0.2" provider-name="Twilight0">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -878,6 +900,36 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description lang="sk">Najväčšie centrum multimédií a alternatívnych správ o UFO videách, starovekých mystériách, konšpiračných teóriách, prísne tajnom, Novom svetovom poriadku a inom!</description>
     <description lang="sv">Största mediahubben och alternativa nyhetssidan om UFO´n, gamla mysterier, konspirationsteorier, topphemligheter, N.W.O. plus mycket mera! </description>
     <description lang="zh">最大的多媒体中心和另类新闻网站，包括UFO视频、历史之谜、阴谋论、最高机密、N.W.O. 和更多内容！</description>
+  </extension>
+</addon>
+
+<addon id="plugin.video.echodocs"
+         name="Echo Documentaries"
+         version="1.06"
+         provider-name="Echo Coder">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.urlresolver"/>
+    <import addon="plugin.video.youtube" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">This addon provides documenraries from a variety of sources.</summary>
+    <description lang="en">This addon provides documenraries from a variety of sources.</description>
+    <disclaimer lang="en">We do not host any of the streams provided within the addon.</disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
   </extension>
 </addon>
 
