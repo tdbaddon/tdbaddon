@@ -22,7 +22,9 @@ import xbmc
 import xbmcaddon
 import xbmcgui
 import xbmcvfs
-import login
+import koding
+
+koding.User_Info()
 
 ADDON_ID = 'plugin.video.bob'
 HOME = xbmc.translatePath('special://home')
@@ -96,7 +98,7 @@ import sys
 import urlparse
 import __builtin__
 
-__builtin__.BOB_BASE_DOMAIN = "norestrictions.club/norestrictions.club"
+__builtin__.BOB_BASE_DOMAIN = str(koding.Check_Cookie('base'))
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?', '')))
 try:
@@ -134,7 +136,7 @@ except:
     uncached = False
 
 if action is None:
-    login.user_info()
+    xbmc.log('### user info initiated')
     from resources.lib.indexers import bob
     bob.Indexer().root()
 elif action == 'directory':

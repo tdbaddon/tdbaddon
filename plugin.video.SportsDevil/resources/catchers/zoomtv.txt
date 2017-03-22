@@ -31,7 +31,7 @@ item_info_build=%s
 
 item_info_name=req
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*{file:\s*['"](smil[^,]+),.*','@REFERER@')
+item_info_convert=getInfo('%s','.*?file.?:\s*['"](smil[^,]+),.*','@REFERER@')
 item_info_convert=quote('%s')
 item_info_convert=replace('%s','%27','')
 item_info_convert=replace('%s','%2B','')
@@ -40,22 +40,26 @@ item_info_build=http://www.zoomtv.me/%s
 
 item_info_name=h0
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?(\w+)\s*=.{0,20}(rtmp[^']*).*(?:file.{0,20}\1).*','@REFERER@','junk|rtmp1')
+#item_info_convert=getInfo('%s','.*?(\w+)\s*=.{0,20}(rtmp[^']*).*(?:file.{0,20}\1).*','@REFERER@','junk|rtmp1')
+item_info_convert=getInfo('%s','.*?(\W)(rtmp:[^'"]+)','@REFERER@','junk|rtmp1')
 item_info_build=%s
 
 item_info_name=h1
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?(\w+)\s*=['"]([\w]{9,15})\b.*?fname.\1.*','@REFERER@','junk|file')
+#item_info_convert=getInfo('%s','.*?(\w+)\s*=['"]([\w]{9,15})\b.*?name.\1.*','@REFERER@','junk|file')
+item_info_convert=getInfo('%s','.*?:(\W)(?!1\d)((?:\w{10}|\w{15}))\W','@REFERER@','junk|file')
 item_info_build=%s
 
 item_info_name=h3
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?(\w+)\s*=\s*.(1[0-9]+)\b.*tnum["':\+]+\s*\1\s*','@REFERER@','junk|ts')
+#item_info_convert=getInfo('%s','.*?(\w+)\s*=\s*.(1[0-9]+)\b.*num["':\+]+\s*\1\s*','@REFERER@','junk|ts')
+item_info_convert=getInfo('%s','.*?(\W)(1[0-9]{9})\b','@REFERER@','junk|ts')
 item_info_build=%s
 
 item_info_name=get_sg1
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?(\w+)\s*=\s*['"]([a-z0-9]{32})\b.*stok.\1','@REFERER@','junk|sg1')
+#item_info_convert=getInfo('%s','.*?(\w+)\s*=\s*['"]([a-z0-9]{32})\b.*ok.\1','@REFERER@','junk|sg1')
+item_info_convert=getInfo('%s','.*?(\W)([a-z0-9]{32})\W','@REFERER@','junk|sg1')
 item_info_build=%s
 
 item_info_name=rtmp2
@@ -65,8 +69,9 @@ item_info_build=%s
 
 item_info_name=rtmp
 item_info_from=rtmp1 || rtmp2
+item_info_convert=replace('%s','\','')
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static.zoomtv.me/player/7.9/jwplayer.flash.swf flashver=WIN\2024,0,0,221 conn=S:' + file + ' conn=S:'+ts+' conn=S:'+sg1+' conn=S:V&gt;JWhui^@2ESdu0?}&gt;AN live=1 token=Q!lrB@G1)ww(-dQ4J4 pageUrl=' + pageUrl2
+item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static.zoomtv.me/player/7.10/jwplayer.flash.swf flashver=WIN\2024,0,0,221 conn=S:' + file + ' conn=S:'+ts+' conn=S:'+sg1+' conn=S:V&gt;JWhui^@2ESdu0?}&gt;AN live=1 token=Q!lrB@G1)ww(-dQ4J4 pageUrl=' + pageUrl2
 item_info_build=%s

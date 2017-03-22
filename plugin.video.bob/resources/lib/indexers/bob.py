@@ -46,10 +46,14 @@ from resources.lib.modules import views
 def replace_url(url):
     if 'norestrictions.noobsandnerds.com' in url and not 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('norestrictions.noobsandnerds.com', __builtin__.BOB_BASE_DOMAIN)
-    elif 'www.norestrictions.club' in url and not 'norestrictions.club/norestrictions.club' in url:
+    elif 'www.norestrictions.club' in url and not 'www.norestrictions.club/norestrictions.club' in url and not 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('www.norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
+    elif 'www.norestrictions.club/norestrictions.club' in url:
+        url = url.replace('www.norestrictions.club/norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
     elif 'norestrictions.club' in url and not 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
+    elif 'norestrictions.club/norestrictions.club' in url:
+        url = url.replace('norestrictions.club/norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
     return url
 
 
@@ -210,6 +214,7 @@ class Indexer:
         import time
 
         now = int(time.time())
+        cachebase = url.replace(__builtin__.BOB_BASE_DOMAIN + "/", "").replace("http://", "")
         xbmcvfs.mkdir(xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')))
         cache_location = os.path.join(
             xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')).decode('utf-8'),
@@ -234,7 +239,7 @@ class Indexer:
             if not uncached:
                 try:
                     dbcur.execute(
-                        "SELECT * FROM xml WHERE url = '%s'" % (url))
+                        "SELECT * FROM xml WHERE url = '%s'" % (cachebase))
                     match = dbcur.fetchone()
                     if match:
                         return (match[1], match[3])
@@ -252,13 +257,13 @@ class Indexer:
             if last_modified:
                 try:
                     dbcur.execute(
-                        "SELECT * FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
+                        "SELECT * FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, cachebase))
                     match = dbcur.fetchone()
                     if match:
                         if match[2] == last_modified:
                             dbcur.execute(
                                 "UPDATE xml set created = %s WHERE last_modified = '%s' and url = '%s'" % (
-                                now, last_modified, url))
+                                    now, last_modified, cachebase))
                             dbcon.commit()
                             return (match[1], match[3])
                 except:
@@ -266,7 +271,7 @@ class Indexer:
             else:
                 try:
                     dbcur.execute(
-                        "SELECT * FROM xml WHERE url = '%s'" % (url))
+                        "SELECT * FROM xml WHERE url = '%s'" % (cachebase))
                     match = dbcur.fetchone()
                     if match:
                         return (match[1], match[3])
@@ -277,15 +282,15 @@ class Indexer:
                 last_modified = request.headers['Last-Modified']
             xml = request.content
             try:
-                dbcur.execute("DELETE FROM xml WHERE url = '%s'" % (url))
+                dbcur.execute("DELETE FROM xml WHERE url = '%s'" % (cachebase))
             except:
                 pass
             xml = xml.replace("\n", "").replace("##", "").replace('\t', "")
             try:
                 dbcur.execute("INSERT INTO xml Values (?, ?, ?, ?)",
-                              (url, xml.encode("utf-8", "ignore"), last_modified, now))
+                              (cachebase, xml.encode("utf-8", "ignore"), last_modified, now))
             except:
-                dbcur.execute("INSERT INTO xml Values (?, ?, ?, ?)", (url, xml.decode("utf-8"), last_modified, now))
+                dbcur.execute("INSERT INTO xml Values (?, ?, ?, ?)", (cachebase, xml.decode("utf-8"), last_modified, now))
             dbcon.commit()
             return (xml, now)
         except:
@@ -1022,7 +1027,8 @@ class Indexer:
                 try:
                     if i['url'].endswith(".xml"):
                         cm.append(
-                            ("Update Selected List", "RunPlugin(%s)" % url.replace("action=directory", "action=uncached")))
+                            ("Update Selected List",
+                             "RunPlugin(%s)" % url.replace("action=directory", "action=uncached")))
                 except:
                     pass
 
@@ -1279,19 +1285,28 @@ class Resolver:
                     'SD': ''
                 }
 
+            already_added = False
+
             for item in items:
-                if "searchsd" in item:
-                    label = 'SD'
-                    if message['SD'] != '':
-                        label += ' (%s)' % message['SD']
-                    new_item = (label, item)
-                elif "search" in item:
-                    label = 'HD'
-                    if message['HD'] != '':
-                        label += ' (%s)' % message['HD']
-                    new_item = (label, item)
+                if control.setting('use_link_dialog') == 'true' and ("searchsd" in item or "search" in item):
+                    if not already_added:
+                        new_item = ("Search", item)
+                        already_added = True
+                    else:
+                        continue
                 else:
-                    new_item = ('Link %s' % (int(items.index(item)) + 1), item)
+                    if "searchsd" in item:
+                        label = 'SD'
+                        if message['SD'] != '':
+                            label += ' (%s)' % message['SD']
+                        new_item = (label, item)
+                    elif "search" in item:
+                        label = 'HD'
+                        if message['HD'] != '':
+                            label += ' (%s)' % message['HD']
+                        new_item = (label, item)
+                    else:
+                        new_item = ('Link %s' % (int(items.index(item)) + 1), item)
                 new_items.append(new_item)
             items = new_items
 

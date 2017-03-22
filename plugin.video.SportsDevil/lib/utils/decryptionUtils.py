@@ -3,8 +3,7 @@ import pyDes
 import urllib
 import re
 from regexUtils import parseTextToGroups
-from javascriptUtils import JsFunctions, JsUnpacker, JsUnpackerV2, JsUnpacker95High, JsUnwiser, JsUnIonCube, JsUnFunc, JsUnPP, JsUnPush
-from hivelogic import hivelogic
+from javascriptUtils import JsFunctions, JsUnpacker, JsUnpackerV2, JsUnwiser, JsUnFunc, JsUnPP, JsUnPush
 try: import json
 except ImportError: import simplejson as json
 try: from Crypto.Cipher import AES
@@ -39,10 +38,6 @@ def m3u8AesDec(data, key):
         aes = AES.new(key.decode('hex'), AES.MODE_CBC, _in[1].decode('hex'))
         return unpad(aes.decrypt(_in[0].decode('hex')))
     except: return data
-    
-def drenchDec(data, key):
-    from drench import blowfish
-    return blowfish(key).decrypt(data)
 
 def zdecode(data):
     import csv
@@ -112,31 +107,7 @@ def onetv(playpath):
     
     url = "hls://http://{0}/p2p/{1}?st={2}&e={3}".format(server,playpath,out_hash,time_stamp)
     return '{url}|User-Agent={user_agent}&referer={referer}'.format(url=url,user_agent=user_agent,referer='6d6f6264726f2e6d65'.decode('hex'))
-    
 
-def encryptJimey(data):
-    result = encryptDES_ECB(data,"PASSWORD").encode('base64').replace('/','').strip()
-    return result
-
-# used by 24cast
-def destreamer(s):
-    #remove all but[0-9A-Z]
-    string = re.sub("[^0-9A-Z]", "", s.upper())
-    result = ""
-    nextchar = ""
-    for i in range(0,len(string)-1):
-        nextchar += string[i]
-        if len(nextchar) == 2:
-            result += ntos(int(nextchar,16))
-            nextchar = ""
-    return result
-
-def ntos(n):
-    n = hex(n)[2:]
-    if len(n) == 1:
-        n = "0" + n
-    n = "%" + n
-    return urllib.unquote(n)
 
 def doDemystify(data):
     escape_again=False
@@ -146,16 +117,9 @@ def doDemystify(data):
     jsU = JsUnpacker()
     jsU2 = JsUnpackerV2()
     jsUW = JsUnwiser()
-    jsUI = JsUnIonCube()
     jsUF = JsUnFunc()
     jsUP = JsUnPP()
-    jsU95 = JsUnpacker95High()
     JsPush = JsUnPush()
-    JsHive = hivelogic()
-
-    # replace NUL
-    #data = data.replace('\0','')
-
 
     # unescape
     r = re.compile('a1=["\'](%3C(?=[^\'"]*%\w\w)[^\'"]+)["\']')
@@ -193,6 +157,14 @@ def doDemystify(data):
                     res = res + chr(ord(i) ^ 123)
             data = data.replace(g, res)
 
+    #sebn
+    r = re.compile(r"""(?:file|src|source):\s*(window\.atob\(['"][^'"]+['"]\))""")
+    if r.findall(data):
+        for g in r.findall(data):
+            r2 = re.compile(r"""window\.atob\(['"]([^'"]+)['"]\)""")
+            for base64_data in r2.findall(g):
+                data = data.replace(g, urllib.unquote(base64_data.decode('base-64')))
+
     #r = re.compile('((?:eval\(decodeURIComponent\(|window\.)atob\([\'"][^\'"]+[\'"]\)+)')
     #while r.findall(data):
         #for g in r.findall(data):
@@ -215,12 +187,14 @@ def doDemystify(data):
                 data = data.replace(g, urllib.unquote(base64_data.decode('base-64')))
                 escape_again=True
     
-    r = re.compile('\?i=([^&]+)&r=')
+    r = re.compile('\?i=([^&]+)&r=([^&\'"]+)')
     for g in r.findall(data):
+        print g
         try:
-            _a, _b =  g.split('%2F')
+            _a, _b =  g[0].split('%2F')
             _res = (_a+'=').decode('base-64')+'?'+_b.decode('base-64')
-            data = data.replace(g, _res)
+            data = data.replace(g[0], _res)
+            data = data.replace(g[1], urllib.unquote(g[1]).decode('base-64'))
         except:
             pass
 
@@ -239,33 +213,15 @@ def doDemystify(data):
         gs = r.findall(data)
         if gs:
             for g in gs:
+                if '\\' in g[0]:
+                    data = data.replace(g[0].lower(),g[1])
                 data = data.replace(g[0],g[1])
 
-    # util.de
-    if 'Util.de' in data:
-        r = re.compile("Util.de\(unescape\(['\"](.+?)['\"]\)\)")
-        gs = r.findall(data)
-        if gs:
-            for g in gs:
-                data = data.replace(g,g.decode('base64'))
-
-    # 24cast
-    if 'destreamer(' in data:
-        r = re.compile("destreamer\(\"(.+?)\"\)")
-        gs = r.findall(data)
-        if gs:
-            for g in gs:
-                data = data.replace(g, destreamer(g))
-
     # JS P,A,C,K,E,D
-    if jsU95.containsPacked(data):
-        data = jsU95.unpackAll(data)
-        escape_again=True
-        
     if jsU2.containsPacked(data):
         data = jsU2.unpackAll(data)
         escape_again=True
-    
+
     if jsU.containsPacked(data):
         data = jsU.unpackAll(data)
         escape_again=True
@@ -275,27 +231,21 @@ def doDemystify(data):
         data = jsUW.unwiseAll(data)
         escape_again=True
 
-    # JS IonCube
-    if jsUI.containsIon(data):
-        data = jsUI.unIonALL(data)
-        escape_again=True
-        
     # Js unFunc
     if jsUF.cointainUnFunc(data):
         data = jsUF.unFuncALL(data)
         escape_again=True
-    
+
     if jsUP.containUnPP(data):
         data = jsUP.UnPPAll(data)
         escape_again=True
-        
+
     if JsPush.containUnPush(data):
         data = JsPush.UnPush(data)
 
-    if JsHive.contains_hivelogic(data):
-        data = JsHive.unpack_hivelogic(data)
-
-    try: data = zdecode(data)
+    try: 
+        data = zdecode(data)
+        escape_again=True
     except: pass
     # unescape again
     if escape_again:

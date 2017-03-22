@@ -5,8 +5,9 @@ import re
 import urllib
 import urlparse
 import requests
-import cookielib
 import socket
+import time
+from cookielib import LWPCookieJar
 from HTMLParser import HTMLParser
 from fileUtils import fileExists, setFileContent, getFileContent
 
@@ -32,30 +33,13 @@ class BaseRequest(object):
     def __init__(self, cookie_file=None):
         self.cookie_file = cookie_file
         self.s = requests.Session()
+        self.s.cookies = LWPCookieJar(self.cookie_file)
         if fileExists(self.cookie_file):
-            self.s.cookies = self.load_cookies_from_lwp(self.cookie_file)
+            self.s.cookies.load(ignore_discard=True)
         self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'})
         self.s.headers.update({'Accept-Language' : 'en-US,en;q=0.5'})
         self.url = ''
-    
-    def save_cookies_lwp(self, cookiejar, filename):
-        lwp_cookiejar = cookielib.LWPCookieJar()
-        for c in cookiejar:
-            args = dict(vars(c).items())
-            args['rest'] = args['_rest']
-            del args['_rest']
-            c = cookielib.Cookie(**args)
-            lwp_cookiejar.set_cookie(c)
-        lwp_cookiejar.save(filename, ignore_discard=True)
 
-    def load_cookies_from_lwp(self, filename):
-        lwp_cookiejar = cookielib.LWPCookieJar()
-        try:
-            lwp_cookiejar.load(filename, ignore_discard=True)
-        except:
-            pass
-        return lwp_cookiejar
-    
     def fixurl(self, url):
         #url is unicode (quoted or unquoted)
         try:
@@ -102,6 +86,9 @@ class BaseRequest(object):
         if 'indexstream.tv' in urlparse.urlsplit(url).netloc:
             del self.s.headers['Accept-Encoding']
         
+        if 'streamlive.to' in urlparse.urlsplit(url).netloc:
+            self.s.verify = False
+        
         if form_data:
             #zo**tv
             if 'uagent' in form_data[0]:
@@ -128,10 +115,25 @@ class BaseRequest(object):
 
         response  = r.text
 
-        if len(response) > 10:
-            if self.cookie_file:
-                self.save_cookies_lwp(self.s.cookies, self.cookie_file)
+        if 'beget=begetok' in response: # av
+            _cookie = requests.cookies.create_cookie('beget','begetok',domain=urlparse.urlsplit(url).netloc,path='/')
+            self.s.cookies.set_cookie(_cookie)
+            r = self.s.get(url, headers=headers, timeout=20)
+            response  = r.text
 
+        if 'fromCharCode,sucuri_cloudproxy_js' in response: # sebn
+            from sucuri import sucuri_decode
+            sucuri_name, sucuri_value = sucuri_decode(response)
+            sucuri_cookie = requests.cookies.create_cookie(sucuri_name,sucuri_value,domain=urlparse.urlsplit(url).netloc,path='/',
+                                                           discard=False,expires=(time.time() + 86400))
+            self.s.cookies.set_cookie(sucuri_cookie)
+            r = self.s.get(url, headers=headers, timeout=20)
+            response  = r.text
+
+        if len(response) > 10:
+            self.s.cookies.save(ignore_discard=True)
+
+        self.s.close()
         return HTMLParser().unescape(response)
 
 

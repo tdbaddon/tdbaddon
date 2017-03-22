@@ -559,7 +559,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.bob" name="Bob" version="1.3.8" provider-name="Team Bob">
+<addon id="plugin.video.bob" name="Bob" version="1.3.9" provider-name="Team Bob">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" />
@@ -572,6 +572,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<import addon="script.module.addon.common" version="2.0.0" />
 		<import addon="script.module.xmltodict" version="0.9.0"/>
         <import addon="script.module.m3u8" version="0.2.10"/>
+        <import addon="script.module.python.koding.aio" version="0.1"/>
 		<!--<import addon="script.video.F4mProxy" version="2.6.4" />-->
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -581,10 +582,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<summary lang="en">Bob</summary>
 		<description lang="en">Bob - Unrestricted. I Am Not A Dev... I Am Bob</description>
 		<platform>all</platform>
-		<forum>http://noobsandnerds.com/support</forum>
+		<forum>http://www.noobsandnerds.com/support/forumdisplay.php?fid=253</forum>
 		<website>www.noobsandnerds.com</website>
 		<news></news>
-		<ref>35c3c72734f09f1136e9493e9d91c57f</ref>
 		<video_guide>y0w8zIH4lOY</video_guide>
 		<video_preview>WdKIzajiBBI</video_preview>
 	</extension>
@@ -2181,7 +2181,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.SportsDevil"
-  version="ZNL2017.02.29"
+  version="ZNL2017.03.20"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -2197,6 +2197,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     library="default.py">
    <provides>video</provides>
   </extension>
+  <extension point="xbmc.service" library="service/proxy_service.py" start="startup" />
   <extension point="xbmc.addon.metadata">
     <summary>Play videos of different sports streaming sites</summary>
     <description>Play videos of different sports streaming sites</description>
@@ -4145,6 +4146,27 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     </extension>
 </addon>
 
+<addon id="script.module.python.koding.aio"
+   name="Python Koding AIO"
+   version="0.1"
+   provider-name="noobsandnerds">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Python Koding All In One</summary>
+    <description lang="en">Python Koding AIO contains a bunch of time saving modules that allows for quick and simple development. This also contains unique features that can hook into the Add-on Portal framework built at noobsandnerds.com</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <license>http://creativecommons.org/licenses/by-nc-nd/4.0</license>
+    <forum>http://noobsandnerds.com</forum>
+    <website>http://noobsandnerds.com</website>
+    <source></source>
+  </extension>
+</addon>
+
 <addon id="script.module.pytz" name="pytz" version="2014.2" provider-name="Stuart Bishop, Paul Backhouse">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -4200,7 +4222,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.17" provider-name="tknorris">
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.18" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

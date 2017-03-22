@@ -58,7 +58,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.wfile.write("Version: 0.1\r\n")
             elif request_path[0:13] == "livestreamer/":
                 realpath = request_path[13:]
-                fURL = base64.b64decode(realpath)
+                fURL = base64.urlsafe_b64decode(realpath)
                 self.serveFile(fURL, sendData)
             else:
                 self.send_response(403)

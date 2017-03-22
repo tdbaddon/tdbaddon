@@ -2,6 +2,11 @@ Visit WWW.NOOBSANDNERDS.COM for your all Kodi needs.
 No fighting, no censorship, no agenda.
 We just concentrate on exciting new features.
 
+v1.3.9
+- removed login.py and switched to new koding module
+- added link selection dialog option
+- fixed bug with scraping link quality selection
+
 v1.3.8
 - fixed acestreams
 

@@ -32,7 +32,7 @@ item_info_build=%s
 
 item_info_name=js_url
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*['"]([^"']+playstream.club[^"']+).*','@REFERER@')
+item_info_convert=getInfo('%s','.*src=['"](http[^'"]+\.js)['"].*','@REFERER@')
 item_info_build=%s
 
 item_info_name=d1
@@ -45,7 +45,7 @@ item_info_build=%s
 
 item_info_name=d1
 item_info_from=js_url
-item_info_convert=getInfo('%s','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@REFERER@')
+item_info_convert=getInfo('%s','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@pageUrl@')
 item_info_convert=unicode_escape
 item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
 item_info_build=%s
@@ -57,7 +57,7 @@ item_info_build=%s&width=620&height=490
 item_info_name=file
 item_info_from=playUrl
 item_info_convert=getInfo('%s','.*(http[^"']+\.m3u8[^"']*).*','@pageUrl@')
-#item_info_convert=resolve
+item_info_convert=resolve
 item_info_build=%s
 
 item_info_name=ref

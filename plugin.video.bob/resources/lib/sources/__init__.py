@@ -38,7 +38,7 @@ except:
 class sources:
     @staticmethod
     def getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30,
-                   progress=True, preset="search", dialog=None, exclude = None, scraper_title=False):
+                   progress=True, preset="search", dialog=None, exclude=None, scraper_title=False):
 
         year = str(year)
 
@@ -57,6 +57,30 @@ class sources:
             return
 
         allow_debrid = bool(control.setting('allow_debrid'))
+
+        if control.setting('use_link_dialog') == 'true':
+            if content == 'movie':
+                link = nanscrapers.scrape_movie_with_dialog(title, year, imdb, timeout=timeout, exclude=exclude, sort_function=sources.sort_function)
+            elif content == "episode":
+                link = nanscrapers.scrape_episode_with_dialog(tvshowtitle, year, premiered, season, episode, imdb, tvdb,
+                                                       timeout=timeout, exclude=exclude, sort_function=sources.sort_function)
+            else:
+                return
+
+            url = link['url']
+            import urlresolver9
+            hmf = urlresolver9.HostedMediaFile(url=url, include_disabled=False,
+                                               include_universal=allow_debrid)
+            if hmf.valid_url() == True:
+                resolved_url = hmf.resolve()
+            else:
+                resolved_url = None
+            if resolved_url and sources().check_playable(resolved_url) is not None:
+                url = resolved_url
+            return url
+
+
+
 
         sd_links = []
         non_direct = []
@@ -101,9 +125,9 @@ class sources:
                             if scraper_link['direct']:
                                 import urlresolver9
                                 hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
-                                                                        include_universal=allow_debrid)
+                                                                   include_universal=allow_debrid)
                                 if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                                #resolved_url = urlresolver9.resolve(scraper_link['url'])
+                                # resolved_url = urlresolver9.resolve(scraper_link['url'])
                                 if resolved_url and sources().check_playable(resolved_url) is not None:
                                     url = resolved_url
                                     return url
@@ -119,45 +143,6 @@ class sources:
                                     return url
                             else:
                                 non_direct.append(scraper_link)
-
-        for scraper_link in sd_links:
-
-            if dialog is not None and dialog.iscanceled():
-                return
-
-            if "m4u" in scraper_link['url']:
-                return scraper_link['url']
-
-            else:
-                try:
-                    if scraper_link['direct']:
-                        import urlresolver9
-                        hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
-                                                           include_universal=allow_debrid)
-                        if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                        #resolved_url = urlresolver9.resolve(scraper_link['url'])
-                        if resolved_url and sources().check_playable(resolved_url) is not None:
-                            url = resolved_url
-                            return url
-                        else:
-                            if sources().check_playable(scraper_link['url']):
-                                return scraper_link['url']
-                    else:
-                        non_direct.append(scraper_link)
-                except:
-                    if scraper_link['direct']:
-                        url = scraper_link['url']
-                        if sources().check_playable(url) is not None:
-                            return url
-                    else:
-                        non_direct.append(scraper_link)
-
-        try:
-            import urlresolver9
-        except:
-            control.dialog.ok("Dependency missing",
-                              "please install script.mrknow.urlresolver to resolve non-direct links")
-            return
 
         for scraper_link in non_direct:
             if dialog is not None and dialog.iscanceled():
@@ -190,13 +175,52 @@ class sources:
                 hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
                                                    include_universal=allow_debrid)
                 if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                #resolved_url = urlresolver9.resolve(scraper_link['url'])
+                # resolved_url = urlresolver9.resolve(scraper_link['url'])
             except:
                 continue
             if resolved_url and (
-                resolved_url.startswith("plugin://") or sources().check_playable(resolved_url) is not None):
+                        resolved_url.startswith("plugin://") or sources().check_playable(resolved_url) is not None):
                 url = resolved_url
                 return url
+
+        for scraper_link in sd_links:
+
+            if dialog is not None and dialog.iscanceled():
+                return
+
+            if "m4u" in scraper_link['url']:
+                return scraper_link['url']
+
+            else:
+                try:
+                    if scraper_link['direct']:
+                        import urlresolver9
+                        hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
+                                                           include_universal=allow_debrid)
+                        if hmf.valid_url() == True: resolved_url = hmf.resolve()
+                        # resolved_url = urlresolver9.resolve(scraper_link['url'])
+                        if resolved_url and sources().check_playable(resolved_url) is not None:
+                            url = resolved_url
+                            return url
+                        else:
+                            if sources().check_playable(scraper_link['url']):
+                                return scraper_link['url']
+                    else:
+                        non_direct.append(scraper_link)
+                except:
+                    if scraper_link['direct']:
+                        url = scraper_link['url']
+                        if sources().check_playable(url) is not None:
+                            return url
+                    else:
+                        non_direct.append(scraper_link)
+
+        try:
+            import urlresolver9
+        except:
+            control.dialog.ok("Dependency missing",
+                              "please install script.mrknow.urlresolver to resolve non-direct links")
+            return
 
         for scraper_link in sd_non_direct:
             if dialog is not None and dialog.iscanceled():
@@ -206,7 +230,7 @@ class sources:
                 hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
                                                    include_universal=allow_debrid)
                 if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                #resolved_url = urlresolver9.resolve(scraper_link['url'])
+                # resolved_url = urlresolver9.resolve(scraper_link['url'])
             except:
                 continue
             if resolved_url and (
@@ -215,7 +239,7 @@ class sources:
                 return url
 
     @staticmethod
-    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude= None):
+    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude=None):
         title = cleantitle.normalize(title)
         links_scraper = nanscrapers.scrape_song(title, artist, timeout=timeout, exclude=exclude)
 
@@ -282,7 +306,7 @@ class sources:
                         hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
                                                            include_universal=allow_debrid)
                         if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                        #resolved_url = urlresolver9.resolve(scraper_link['url'])
+                        # resolved_url = urlresolver9.resolve(scraper_link['url'])
                     except:
                         continue
                     if resolved_url and (
@@ -299,7 +323,7 @@ class sources:
                         hmf = urlresolver9.HostedMediaFile(url=scraper_link['url'], include_disabled=False,
                                                            include_universal=allow_debrid)
                         if hmf.valid_url() == True: resolved_url = hmf.resolve()
-                        #resolved_url = urlresolver9.resolve(scraper_link['url'])
+                        # resolved_url = urlresolver9.resolve(scraper_link['url'])
                     except:
                         continue
                     if resolved_url and (
@@ -320,7 +344,7 @@ class sources:
             hmf = urlresolver9.HostedMediaFile(url=url, include_disabled=False,
                                                include_universal=allow_debrid)
             if hmf.valid_url() == True: resolved_url = hmf.resolve()
-            #resolved_url = urlresolver9.resolve(url)
+            # resolved_url = urlresolver9.resolve(url)
             if resolved_url and sources().check_playable(resolved_url) is not None:
                 return resolved_url
         except:
@@ -346,6 +370,19 @@ class sources:
             if result == None: return None
 
         return result
+
+    @staticmethod
+    def sort_function(item):
+        quality = item[1][0]["quality"]
+        if quality == "1080": quality = "HDa"
+        if quality == "720": quality = "HDb"
+        if quality == "560": quality = "HDc"
+        if quality == "HD": quality = "HDd"
+        if quality == "480": quality = "SDa"
+        if quality == "360": quality = "SDb"
+        if quality == "SD": quality = "SDc"
+
+        return quality
 
     @staticmethod
     def get_vk_token():

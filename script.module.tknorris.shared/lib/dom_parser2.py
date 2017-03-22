@@ -22,9 +22,16 @@ from collections import namedtuple
 DomMatch = namedtuple('DOMMatch', ['attrs', 'content'])
 
 def __get_dom_content(html, name, match):
-    end_str = "</%s" % (name)
+    if match.endswith('/>'): return ''
+    
+    # override tag name with tag from match if possible
+    tag = re.match('<([^\s/>]+)', match)
+    if tag: name = tag.group(1)
+    
     start_str = '<%s' % (name)
+    end_str = "</%s" % (name)
 
+    # start/end tags without matching case cause issues
     start = html.find(match)
     end = html.find(end_str, start)
     pos = html.find(start_str, start + 1)
@@ -71,9 +78,13 @@ def __get_dom_elements(item, name, attrs):
 
 def __get_attribs(element):
     attribs = {}
-    for match in re.finditer('''\s+(?P<key>[^=]+)=(?:(?P<delim>["'])(?P<value1>.*?)(?P=delim)|(?P<value2>[^"'][^>\s]*))''', element):
+    for match in re.finditer('''\s+(?P<key>[^=]+)=\s*(?:(?P<delim>["'])(?P<value1>.*?)(?P=delim)|(?P<value2>[^"'][^>\s]*))''', element):
         match = match.groupdict()
-        attribs[match['key']] = match.get('value1') or match.get('value2')
+        value1 = match.get('value1')
+        value2 = match.get('value2')
+        value = value1 if value1 is not None else value2
+        if value is None: continue
+        attribs[match['key'].lower().strip()] = value
     return attribs
 
 def parse_dom(html, name='', attrs=None, req=False):
@@ -107,7 +118,7 @@ def parse_dom(html, name='', attrs=None, req=False):
     if req:
         if not isinstance(req, list):
             req = [req]
-        req = set(req)
+        req = set([tag.lower() for tag in req])
         
     all_results = []
     for item in html:

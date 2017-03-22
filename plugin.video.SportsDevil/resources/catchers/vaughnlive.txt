@@ -29,7 +29,7 @@ item_info_convert=random(10000000000000000,99999999999999999)
 item_info_build=%s
 
 item_info_name=tkurl
-item_info_from=http://mvn.vaughnsoft.net/video/edge/soon_depricated_Q2_2017-live_'+stream+'-0?'+player+'_'+millis+'-'+millis+'-0.'+rand+'
+item_info_from=http://mvn.vaughnsoft.net/video/edge/soon__depricated_Q2_2017-live_'+stream+'-0?'+player+'_'+millis+'-'+millis+'-0.'+rand+'
 item_info_build=%s
 
 item_info_name=file

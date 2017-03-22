@@ -6,13 +6,13 @@ item_info_build=iLive - %s
 item_info_name=pageUrl
 item_info_from=@PARAM1@
 item_info_convert=getInfo('%s','.*?src=['"]([^'"]+)','@REFERER@')
+#item_info_convert=replace('%s','http:','http:')
 item_info_build=%s
 
 item_info_name=rtmp
 item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*?streamer:\s*['"]([^'"]+)','@REFERER@')
 item_info_convert=replace('%s','\','')
-#item_info_convert=resolve
 item_info_build=%s
 
 item_info_name=file
@@ -33,8 +33,18 @@ item_info_from=tkurl
 item_info_convert=getXML('%s','.*?token['"]*[:,]\s*['"]([^'"]+)['"].*','http://www.streamlive.to/')
 item_info_build=%s
 
-item_info_name=app
+item_info_name=http
 item_info_from=rtmp
+item_info_convert=parseText('%s','.*.*rtmp://([\.\w:]*)/\w+/_definst_/([^\s]+)','serv|auth')
+item_info_build=%s
+
+item_info_name=stream
+item_info_from=rtmp://live4.streamlive.to:1935/edge/_definst_/'+auth
+item_info_convert=resolve
+item_info_build=%s
+
+item_info_name=app
+item_info_from=stream
 item_info_convert=parseText('%s','.*.*rtmp://[\.\w:]*/([^\s]+)')
 item_info_build=%s
 
@@ -44,5 +54,5 @@ item_info_convert=simpleToken
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp + ' app=' + app + ' playpath=' + file + ' swfUrl='+swf+' flashver=WIN\2024,0,0,221 live=1 timeout=15 token='+stoken+' swfVfy=1 pageUrl=http://www.streamlive.to/
+item_info_from=stream + ' app=' + app + ' playpath=' + file + ' swfUrl='+swf+' flashver=WIN\2024,0,0,221 live=1 timeout=15 token='+stoken+' pageUrl=http://www.streamlive.to/
 item_info_build=%s

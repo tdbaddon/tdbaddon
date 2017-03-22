@@ -1,0 +1,268 @@
+WHAT IS KODING.PY?
+=================
+This is a universal module which has an variety of functions to make life much easier for developers whilst giving them the opportunity to keep their code secure.
+
+
+IMPORTING KODING.PY
+===================
+
+addon.xml - just import as you would any other module, the following code would work:
+    
+    <import addon="script.module.python.koding.aio" version="0.1"/>
+
+default.py (or whatever your initial opening py document is called) - all you need is to import koding.py
+
+IF you're using the noobsandnerds features (see below) then you will also need to add the following in your default.py file:
+
+	koding.User_Info() - This will create a cookie file containing cached details. It's important you do this somewhere at the start of your code as it will initialise your variables on first run.
+
+
+UNIVERSAL MODULES (ANYONE CAN USE, NOT LINKED TO NAN SERVER)
+============================================================
+CHECK IF VIDEO PLAYBACK IS SUCCESSFUL:
+This function will return true or false based on video playback. Simply start a stream (whether via an add-on, direct link to URL or local storage doesn't matter), the code will then work out if playback is successful. This uses a number of checks and should take into account all potential glitches which can occur during playback. The return should happen within a second or two of playback being successful (or not).
+
+	CODE: Check_Playback()
+------------------------------------------------------------------------------------------
+PULL CONTENTS FROM A WEB PAGE:
+If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
+
+	CODE:	koding.Open_URL(url,[post_type])
+	post_type is optional, by default it's set as 'get'
+
+	AVAILABLE VALUES:
+
+		'get'  -  This is already the default so no real need to add this but this uses a standard query string
+		
+		'post' -  This will convert the query string into a post
+
+	EXAMPLE CODE:	koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+------------------------------------------------------------------------------------------
+DEBUG MODE:
+Print the the Kodi log but only if debugging is enabled in settings.xml
+
+	CODE: koding.dolog(string)
+	string is your text you want printed to log.
+
+	EXAMPLE CODE:	koding.dolog('Quick test to see if this gets printed to the log')
+	EXAMPLE OUTPUT:		<addon_id>: Quick test to see if this gets printed to the log
+------------------------------------------------------------------------------------------
+RUN CODE FROM YOUR OWN SERVER:
+If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
+
+	CODE:	koding.Main(url,[post_type])
+	post_type is optional, by default it's set as 'get'
+
+	AVAILABLE VALUES:
+
+		'get'  -  This is already the default so no real need to add this but this uses a standard query string
+		
+		'post' -  This will convert the query string into a post
+
+	EXAMPLE CODE:	koding.Main('http://testpage.com?query1=value1&query2=value2', post_type='post')
+------------------------------------------------------------------------------------------
+CURRENT TIMESTAMP:
+This will return the timestamp in various formats. By default it returns as "integer" mode but other options are listed below:
+
+	CODE: koding.Timestamp(mode)
+	mode is optional, by default it's set as integer
+
+	AVAILABLE VALUES:
+
+	    'integer' -  An integer which is nice and easy to work with in Python (especially for finding out human readable diffs). The format returned is [year][month][day][hour][minutes][seconds]. 
+	    
+	    'epoch'   -  Unix Epoch format (calculated in seconds passed since 12:00 1st Jan 1970).
+
+	    'clean'   -  A clean user friendly time format: Tue Jan 13 10:17:09 2009
+------------------------------------------------------------------------------------------
+DOWNLOAD:
+This will download a file, currently this has to be a standard download link which doesn't require cookies/login.
+
+	CODE: koding.Download(src,dst,[dp])
+	dp is optional, by default it is set to false
+
+	AVAILABLE PARAMS:
+
+		src    - This is the source file, the URL to your download. If you attempted to download an item but it's not behaving the way you think it should (e.g. a zip file not unzipping) then change the extension of the downloaded file to .txt and open up in a text editor. You'll most likely find it's just a piece of text that was returned from the URL you gave and it should have details explaining why it failed. Could be that's the wrong URL, it requires some kind of login, it only accepts certain user-agents etc.
+
+		dst    - This is the destination file, make sure it's a physical path and not "special://...". Also remember you need to add the actual filename to the end of the path, so if we were downloading something to the "downloads" folder and we wanted the file to be called "test.txt" we would use this path: dst = "downloads/test.txt". Of course the downloads folder would actually need to exist otherwise it would fail and based on this poor example the downloads folder would be at root level of your device as we've not specified a path prior to that so it just uses the first level that's accessible.
+
+		(*) dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the progress of the download. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+
+	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
+
+		dp = xbmcgui.DialogProgress()
+		dp.create('Downloading File','Please Wait')
+		koding.Download(src,dst,dp)
+------------------------------------------------------------------------------------------
+EXTRACT:
+This function extract a zip file and return true or false so unlike the builtin xbmc function "Extract" this one will pause code until it's completed the action.
+
+	CODE: koding.Extract(src,dst,[dp])
+	dp is optional, by default it is set to false
+
+	AVAILABLE PARAMS:
+
+		src    - This is the source file, the actual zip. Make sure this is a full path to your zip file and also make sure you're not using "special://". This extract function is only compatible with zip files (currently) so make sure it's a valid zip.
+
+		dst    - This is the destination folder, make sure it's a physical path and not "special://...". This needs to be a FULL path, if you want it to extract to the same location as where the zip is located you still have to enter the full path.
+
+		(*) dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the status of the extraction process. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+
+	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
+
+		dp = xbmcgui.DialogProgress()
+		dp.create('Extracting Zip','Please Wait')
+		if koding.Extract(src,dst,dp):
+		    xbmc.log('YAY IT WORKED!')
+		else:
+		    xbmc.log('UH OH SOMETHING WENT HORRIBLY WRONG')
+------------------------------------------------------------------------------------------
+GENERATE RANDOM PASSWORD:
+This will generate a random string made up of uppercase & lowercase ASCII characters and digits - it does not contain special characters.
+
+	CODE:  ID_Generator([size])
+	size is an optional paramater.
+
+	AVAILABLE PARAMS:
+
+		(*) size - just send through an integer, this is the length of the string you'll get returned. So if you want a password generated that's 20 characters long just use ID_Generator(20). The default is 15.
+------------------------------------------------------------------------------------------
+ENABLE/DISABLE/SET VARIOUS KODI SETTINGS:
+Use this to set built-in kodi settings via JSON or set skin settings. The value paramater is only required for JSON and string commands. Available options are below:
+
+	CODE: koding.Set_Setting(setting, setting_type, [value])
+
+	AVAILABLE PARAMS:
+		
+		setting_type - The type of setting type you want to change, available types are:
+
+			string (sets a skin string, requires a value)
+			bool_true (sets a skin boolean to true, no value required)
+			bool_false (sets a skin boolean to false, no value required)
+			(*) kodi_setting (sets values found in guisettings.xml)
+			(*) addon_enable (enables/disables an addon. setting = addon_id, value = true/false)
+			(*) json (WIP - setitng = method, value = params, see documentation on JSON-RPC API here: http://kodi.wiki/view/JSON-RPC_API)
+
+			(*) = These will return True or False if successful
+
+	setting - This is the name of the setting you want to change, it could be a setting from the kodi settings or a skin based setting.
+
+	value: This is the value you want to change the setting to.
+
+
+	EXAMPLE CODE - DISABLING RSS FEEDS:
+	Below is an example of how to disable the RSS feed. To find the setting you need the simplest way is to open the guisettings.xml and find the value you want to change. In the example below you'll notice the setting is split by a dot - this is because it exists in a sub-section in guisettings (lookandfeel > enablerssfeeds).
+
+		koding.Set_Setting('kodi_setting', 'lookandfeel.enablerssfeeds', 'false')
+------------------------------------------------------------------------------------------
+RETURN INSTALLED ADD-ON DETAILS:
+koding.Installed_Addons([types],[content],[properties])
+All the three paramaters you can send through to this function are optional, by default (without any params) this function will return a dictionary of all installed add-ons. The dictionary will contain "addonid" and "type" e.g. 'xbmc.python.pluginsource'.
+
+Available filters:
+
+types: If you only want to retrieve details for specific types of add-ons then use this filter. Unfortunately only one type can be filtered at a time, it is not yet possible to filter multiple types all in one go. Please check the official wiki for the add-on types avaialble but here is an example if you only wanted to show installed repositories:
+koding.Installed_Addons(types='xbmc.addon.repository')
+
+content: Just as above unfortunately only one content type can be filtered at a time, you can filter by video,audio,image and executable. If you want to only return installed add-ons which appear in the video add-ons section you would use this:
+koding.Installed_Addons(content='video')
+
+properties: By default a dictionary containing "addonid" and "type" will be returned for all found add-ons meeting your criteria. However you can add any properties in here available in the add-on xml (check official Wiki for properties available). Unlike the above two options you can choose to add multiple properties to your dictionary, see example below:
+koding.Installed_Addons(properties='name,thumbnail,description')
+
+Of course you can use as many of these params as you wish, they are all optional but if you wanted you could use something like this:
+
+koding.Installed_Addons(types='xbmc.python.script', content='video', properties='name')
+This would show all scripts that also appear in the video section and it would return the defaults of "addonid" & "types" plus a third dictionary item of "name".
+------------------------------------------------------------------------------------------
+
+
+NOOBSANDNERDS FEATURES
+======================
+
+The following unique features are only available to developers who have their addons supported at noobsandnerds.com. The more users we have hooking into these functions the more money we need to spend on servers and as NaN is a voluntarily run site we rely solely on donations and google ads to keep the site going. If you're interested in hooking into these features please send whufclee a PM on the noobsandnerds forum.
+
+SECURITY
+========
+Lock your code to your add-on. You can lock code so it only works with your add-on id, if someone tries to clone your code without your consent then they would only be able to run it if they used the same ID. Even if someone did try to clone the add-on using the same ID you're able to push code remotely via the sync options available (details below). What code you choose to push is entirely your call but it must not be a malicious act against the end user - developers using malicious code will not be tolerated on this system. Simply forcing the add-on to sync with your fanart/icon/addon.xml should suffice - it will then overwrite the bogus version automatically.
+
+LOGIN FEATURES
+==============
+If you want specific features only avaialble via NaN login you'll need to add login details in your settings.xml. This is optional, there is no requirement to force login upon your users but it can be useful - especially with the new upcoming Add-on Portal features where users will be able to hook into a more personalised system. Some developers also want to try and limit the amount of users accessing their add-on due to too many hits on a server, this will help with that as you can lock certain features to login only. Login is locked to a max. of 3 different IP's in a 24hr period, if the same login credentials are used by more than 3 different IP's the account will be temporarily suspended for 24 hours and they will no longer have any access to any of the add-on. If you require login then you'll need the following id's in your settings.xml
+
+		<setting id="login" label="Enable noobsandnerds login" type="bool" default="false"/>
+		<setting id="username" label="Username" type="text" default="" visible="eq(-1,true) "/>
+		<setting id="password" label="password" type="text" default="" option="hidden" visible="eq(-2,true) "/>
+
+AUTO INSTALL THIRD PARTY ADD-ONS ON STARTUP
+===========================================
+If there's any add-ons your code can hook into which aren't hosted on your repository then you can set a list of add-ons you want installed when the user opens your add-on. This list of add-ons can be set online via your own (*)admin panel, all that's required is a list of comma separated addon id's. You will need the following added into your settings.xml file:
+
+		<setting id="installaddons"	label="Offer to install recommended extras"	type="enum"	values="Off|Auto|Ask"	default="0"	visible="true"/>
+		<setting id="installrepos"	label="Install relevant repositories"	type="enum"	values="Off|Auto|Ask"	default="0"	visible="eq(-1,1)||eq(-1,2)"/>
+		<setting id="silent"	    label="Install type"	type="enum"	values="Show Install Progress|Silent"	default="0"	visible="eq(-2,1)||eq(-2,2)"/>
+
+Of course if you don't want to give the end user choices then it's possible to set the defaults of these id's and set visibility as false. However, ethically the user should always be given a choice, especially if your imports contain third party code not maintained by yourself as there's no guarantee what code that third party may push in the future.
+
+TEST/DEVELOPMENT VERSIONS
+=========================
+If you want to offer a test version only available to donators or a specific test group then you can do so very easily. Your test add-on needs to be uploaded via your (*)admin panel and all the user needs to do is enter their NaN login credentials, if they are in the correct test group and have access then they can switch between test or live version at the click of a button in settings. To the end user it will only appear as one add-on that's installed but it can be opened into test or live just by one simple change in the settings. Please add this to your settings.xml file if you want to offer test versions:
+
+		<setting id="testver" label="Use test version" type="bool" default="true" />
+		<setting id="testsettings" label="Test version settings" type="action"	action="RunScript(special://home/addons/script.module.python.koding.aio/lib/koding/__init__.py,settings,your.plugin.id)" option="close" />
+
+SETTINGS - CLEAR DATA
+=====================
+If you want to offer the option to clear the cookie data then you can add the following code. This will wipe the cookies folder - could be useful if things like initial run code sent back from server changes or the base urls have changed.
+
+        <setting id="clear_data"	label="Re-check Server"	type="action"	action="RunScript(special://home/addons/script.module.python.koding.aio/lib/koding/__init__.py,clear_data,your.plugin.id)"	option="close"	visible="true"/>
+
+SYNCHRONISE FILES
+=================
+By adding small zip files on the server you can have your add-on auto-syncing with specific files. Particularly useful if you have userdata which is required but often requires some sort of regular changes.
+
+The system will check every 24 hours for newly updated files. This can of course be overrided in extreme circumstances by clearing the cookie file and it will then check again. This hack should only be used in extreme circumstances and anyone found to be abusing this will most likely end up with their add-on blacklisted as it can potentially cause a ddos attack affect on the servers and affect other add-ons (and normal web users) using the system.
+
+
+RUNNING ENCRYPTED/ONLINE CODE
+=============================
+
+RUN ENCRYPTED CODE ON FIRST RUN:
+If you want to hide specific code then you can do so by uploading a segment of code via the web form and this will be run automatically (encrypted) when you run the add-on, this is cached so if testing make sure you clear your cookies folder otherwise you may get false positives. If you wish to run this specific piece of code at any point later on in the add-on you can simply call koding.User_Info()
+
+RUN CUSTOM ONLINE CODE:
+You can upload as many segments of code as you want and they can run by using the following command: koding.Main(url) where url is the name of the code page you created, e.g. 'check_updates'.
+
+RUN UNIVERSAL NAN CODE :
+You can run a variety of universal NaN modules, if you want to submit new ones then you're free to do so, just get in touch with a member of admin. Below are a list of the current functions available to anyone who's add-on has been accepted on the system.
+
+---------------
+
+RETURN THE BASE URL: koding.Check_Cookie('base') - NaN uses a special load balancing system whereby multiple servers are used, all sync'd with access to the same content. If you need to hook into files hosted on your NaN account then using this function will return the base url. This may change from day to day, every add-on that uses koding.py will automatically get a new randomised server to use for the following 24 hours. This helps prevent ddos attacks, gives fallback options for any slow servers and also makes sure there are sufficient backups of your important files.
+
+---------------
+
+CLEAR COOKIE DATA: koding.Clear_Data() - If you're having any problems with the temporary cached files or you're testing in a dev environment and need to clear any cache you can call this function and it will simply wipe the whole cookie folder in your relevant addon_data folder. This is the folder that will always be used for any future temporary cache files used by koding.py. You can also call this function in the settings.xml - see the settings.xml section above.
+
+---------------
+
+ADDON INSTALL: koding.Main('addoninstall|id:<addon_id>~version:<kodi_version>~repo:1~silent:1') - This will install the relevant add-on and modules for the kodi version you're running.
+
+Params explained:
+
+id: This is the addon_id you want to install.
+
+version: The version of kodi you're running (as 2 digits e.g. 16). Use the following code to get the current Kodi version in the correct format:
+str(xbmc.getInfoLabel("System.BuildVersion")[:2])
+
+repo: This is optional - the available options are:
+      0 - This will not install the repo the add-on was found on.
+      1 - This will automatically install the repo the add-on is found on.
+      2 - This will ask user if they want to install the repo the add-on was found on.
+
+silent: This is optional - set to 1 if you want addon installed with no progress dialog.
+
+If the add-on install takes a while to kick in (spinning wheel) it just means that particular add-on hasn't yet been cached in the db, the next time someone hits that add-on it will be instant.
+
+TODO: Set auto-update option and also option to install relevant repo.

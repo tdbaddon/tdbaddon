@@ -14,7 +14,8 @@ item_info_build=iptvhq - %s
 
 item_info_name=rtmp
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*(rtmpe*://[^"']+).*','@REFERER@')
+item_info_convert=getInfo('%s','.*(?:trap|url)\s*=\s*["']([^"']+).*','@REFERER@')
+item_info_convert=decodeBase64
 item_info_build=%s
 
 item_info_name=url

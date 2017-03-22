@@ -194,6 +194,10 @@ msgctxt "#30743"
 msgid "Enable Debrid"
 msgstr ""
 
+msgctxt "#30744"
+msgid "Enable Link Selection Dialog"
+msgstr ""
+
 msgctxt "#30751"
 msgid "Scoreboard"
 msgstr ""
@@ -219,7 +223,7 @@ msgid "Pick A Bandwidth"
 msgstr ""
 
 msgctxt "#30757"
-msgid "Offer to install required 3rd party repositories"
+msgid "Install required 3rd party repositories"
 msgstr ""
 
 msgctxt "#30758"
@@ -246,12 +250,8 @@ msgctxt "#30764"
 msgid "You can choose whether or not to install[CR]the relevant repos."
 msgstr ""
 
-msgctxt "#30765"
-msgid "We recommend installing the relevant repos[CR]to ensure your addons auto-update_host_file."
-msgstr ""
-
 msgctxt "#30766"
-msgid "Offer to install required 3rd party addons"
+msgid "Install required 3rd party addons"
 msgstr ""
 
 msgctxt "#30767"

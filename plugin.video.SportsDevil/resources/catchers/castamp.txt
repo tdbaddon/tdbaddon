@@ -18,7 +18,8 @@ item_info_build=%s
 
 item_info_name=rtmp
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*(?![^"']+50.7.118.3)(?![^"']+50.7.128.2)(rtmp:[^"']+)','@REFERER@')
+item_info_convert=getInfo('%s','.*"(\\x72\\x74\\x6d[^"']+)"','@REFERER@')
+item_info_convert=unicode_escape
 item_info_build=%s
 
 item_info_name=url
