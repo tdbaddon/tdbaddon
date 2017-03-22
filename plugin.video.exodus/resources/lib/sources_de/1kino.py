@@ -146,6 +146,7 @@ class source:
             r = [(i[0], i[1], i[2][0]) for i in r if len(i[2]) > 0]
             r = [(i[0], i[1], re.findall('(.+?) \((\d{4})\)?', i[1]), i[2]) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0', i[3]) for i in r]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y and i[3] == imdb][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]

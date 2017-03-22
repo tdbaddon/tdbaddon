@@ -21,7 +21,7 @@ import urlparse
 import base64
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -52,10 +52,10 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            for fragment in dom_parser.parse_dom(html, 'div', {'class': 'player_wraper'}):
-                iframe_url = dom_parser.parse_dom(fragment, 'iframe', ret='src')
+            for fragment in dom_parser2.parse_dom(html, 'div', {'class': 'player_wraper'}):
+                iframe_url = dom_parser2.parse_dom(fragment.content, 'iframe', ret='src')
                 if iframe_url:
-                    url = urlparse.urljoin(self.base_url, iframe_url[0])
+                    url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
                     html = self._http_get(url, cache_limit=.5)
                     for match in re.finditer('"(?:url|src)"\s*:\s*"([^"]+)[^}]+"res"\s*:\s*([^,]+)', html):
                         stream_url, height = match.groups()
@@ -121,14 +121,15 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, params=params, cache_limit=1)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'caption'}):
-            match = re.search('href="([^"]+)[^>]+>(.*?)<span[^>]*>', item)
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'caption'}):
+            match = dom_parser2.parse_dom(item, 'a', req='href')
             if match:
-                match_url, match_title = match.groups()
-                is_season = re.search('-season-\d+', match_url)
+                match_url, match_title = match[0].attrs['href'], match[0].content
+                is_season = re.search('-season-(\d+)', match_url)
                 if (video_type == VIDEO_TYPES.MOVIE and not is_season) or (video_type == VIDEO_TYPES.SEASON and is_season):
                     if video_type == VIDEO_TYPES.SEASON:
-                        if season and not re.search('season-0*%s$' % (season), match_url): continue
+                        if season and int(season) != int(is_season.group(1)): continue
+                        match_title += ' - Season %s' % (is_season.group(1))
                         
                     match_title = re.sub('</?[^>]*>', '', match_title)
                     match_title = re.sub('\s+Full\s+Movie', '', match_title)

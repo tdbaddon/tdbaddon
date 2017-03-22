@@ -20,7 +20,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -93,12 +93,11 @@ class Scraper(scraper.Scraper):
         
     def __get_gk_links(self, html, page_url):
         sources = {}
-        for link in dom_parser.parse_dom(html, 'div', {'class': '[^"]*server_line[^"]*'}):
-            film_id = dom_parser.parse_dom(link, 'a', ret='data-film')
-            name_id = dom_parser.parse_dom(link, 'a', ret='data-name')
-            server_id = dom_parser.parse_dom(link, 'a', ret='data-server')
-            if film_id and name_id and server_id:
-                data = {'ipplugins': 1, 'ip_film': film_id[0], 'ip_server': server_id[0], 'ip_name': name_id[0]}
+        for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*server_line[^"]*'}):
+            match = dom_parser2.parse_dom(link, 'a', req=['data-film', 'data-name', 'data-server'])
+            if match:
+                film_id, name_id, server_id = match[0].attrs['data-film'], match[0].attrs['data-name'], match[0].attrs['data-server']
+                data = {'ipplugins': 1, 'ip_film': film_id, 'ip_server': server_id, 'ip_name': name_id}
                 headers = {'Referer': page_url}
                 headers.update(XHR)
                 url = urlparse.urljoin(self.base_url, LINK_URL)
@@ -134,17 +133,16 @@ class Scraper(scraper.Scraper):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search/%s.html' % (urllib.quote_plus(title)))
         html = self._http_get(search_url, cache_limit=1)
-        fragment = dom_parser.parse_dom(html, 'ul', {'class': 'cfv'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'cfv'})
         if fragment:
             norm_title = scraper_utils.normalize_title(title)
-            for item in dom_parser.parse_dom(fragment[0], 'li'):
-                is_season = dom_parser.parse_dom(item, 'div', {'class': 'status'})
+            for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'li'):
+                is_season = dom_parser2.parse_dom(item, 'div', {'class': 'status'})
                 if (not is_season and video_type == VIDEO_TYPES.MOVIE) or (is_season and video_type == VIDEO_TYPES.SEASON):
-                    match_url = dom_parser.parse_dom(item, 'a', ret='href')
-                    match_title = dom_parser.parse_dom(item, 'a', ret='title')
-                    if match_url and match_title:
-                        match_title = match_title[0]
-                        match_url = match_url[0]
+                    match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
+                    if match:
+                        match_title = match[0].attrs['title']
+                        match_url = match[0].attrs['href']
                         match_year = ''
                         if video_type == VIDEO_TYPES.SEASON:
                             if season and not re.search('Season\s+%s$' % (season), match_title, re.I):

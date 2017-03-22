@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -27,7 +27,6 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 from salts_lib.utils2 import i18n
 import scraper
-
 
 BASE_URL = 'http://www.tvshow.me'
 
@@ -52,17 +51,18 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            title = dom_parser.parse_dom(html, 'title')
+            title = dom_parser2.parse_dom(html, 'title')
             if title:
-                title = re.sub('^\[ST\]\s*&#8211;\s*', '', title[0])
+                title = title[0].content
+                title = re.sub('^\[ST\]\s*&#8211;\s*', '', title)
                 meta = scraper_utils.parse_episode_link(title)
                 page_quality = scraper_utils.height_get_quality(meta['height'])
             else:
                 page_quality = QUALITIES.HIGH
             
-            fragment = dom_parser.parse_dom(html, 'section', {'class': '[^"]*entry-content[^"]*'})
+            fragment = dom_parser2.parse_dom(html, 'section', {'class': '[^"]*entry-content[^"]*'})
             if fragment:
-                for section in dom_parser.parse_dom(fragment[0], 'p'):
+                for _attrs, section in dom_parser2.parse_dom(fragment[0].content, 'p'):
                     match = re.search('([^<]*)', section)
                     meta = scraper_utils.parse_episode_link(match.group(1))
                     if meta['episode'] != '-1' or meta['airdate']:
@@ -75,7 +75,8 @@ class Scraper(scraper.Scraper):
                     else:
                         quality = page_quality
                         
-                    for stream_url in dom_parser.parse_dom(section, 'a', ret='href'):
+                    for attrs, _content in dom_parser2.parse_dom(section, 'a', req='href'):
+                        stream_url = attrs['href']
                         host = urlparse.urlparse(stream_url).hostname
                         hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
                         hosters.append(hoster)

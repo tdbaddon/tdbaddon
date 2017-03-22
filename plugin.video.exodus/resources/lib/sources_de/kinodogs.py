@@ -94,9 +94,16 @@ class source:
             return sources
 
     def resolve(self, url):
-        url = client.request(urlparse.urljoin(self.base_link, url), output='geturl')
-        if self.base_link not in url:
+        try:
+            if not url.startswith('http'):
+                url = urlparse.urljoin(self.base_link, url)
+                url = client.request(url, output='geturl', error=True)
+
+            if self.base_link not in url:
+                return url
+        except:
             return url
+
 
     def __search(self, title, year, imdb):
         try:
@@ -104,6 +111,7 @@ class source:
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)
+            tq = cleantitle.query(title).lower()
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(query)
@@ -112,7 +120,12 @@ class source:
             r = [(client.parseDOM(i, 'div', attrs={'class': 'bottom'}), client.parseDOM(i, 'div', attrs={'class': 'year'})) for i in r]
             r = [(client.parseDOM(i[0], 'a', attrs={'title': ''}, ret='href'), client.parseDOM(i[0], 'a', attrs={'title': ''}), re.findall('[(](\d{4})[)]', i[1][0])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y]
+            r = [(i[0], i[1].lower(), i[2]) for i in r if i[2] in y]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+
+            r_t = [i[0] for i in r if t == cleantitle.get(i[1])]
+            r_t = r_t if len(r_t) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])]
+            r = r_t
 
             if len(r) > 1:
                 for i in r:

@@ -36,8 +36,8 @@ MODES = __enum(
     PLAYED='played', WATCHED='watched', COLLECTED='collected', SHOW_BOOKMARKS='show_bookmarks', DELETE_BOOKMARK='delete_bookmark', SHOW_HISTORY='show_history',
     RESET_FAILS='reset_failures', MANAGE_PROGRESS='toggle_progress', AUTOPLAY='autoplay', INSTALL_THEMES='install_themes', RESET_REL_URLS='reset_rel_urls',
     ANTICIPATED='anticipated', SHOW_REWATCH='show_rewatch', PICK_REWATCH_LIST='pick_rewatch_list', SET_REWATCH_LIST='set_rewatch_list', MANAGE_REWATCH='manage_rewatch',
-    BUILD_SOURCE_DIR='build_source_dir', GENRES='genres', SHOW_GENRE='show_genre', PRUNE_CACHE='prune_cache', AUTH_TORBA='auth_torba', FLUSH_IMAGES='flush_images',
-    REFRESH_IMAGES='refresh_images', RESET_TORBA='reset_torba', INSTALL_CACHE='install_cache', REPAIR_URLRESOLVER='repair_urlresolver')
+    BUILD_SOURCE_DIR='build_source_dir', GENRES='genres', SHOW_GENRE='show_genre', PRUNE_CACHE='prune_cache', FLUSH_IMAGES='flush_images', REFRESH_IMAGES='refresh_images',
+    INSTALL_CACHE='install_cache', REPAIR_URLRESOLVER='repair_urlresolver')
 SECTIONS = __enum(TV='TV', MOVIES='Movies')
 VIDEO_TYPES = __enum(TVSHOW='TV Show', MOVIE='Movie', EPISODE='Episode', SEASON='Season')
 CONTENT_TYPES = __enum(TVSHOWS='tvshows', MOVIES='movies', SEASONS='seasons', EPISODES='episodes', FILES='files', ADDONS='addons')
@@ -65,6 +65,8 @@ FORCE_NO_MATCH = '***FORCE_NO_MATCH***'
 SHORT_MONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 ACTIONS = __enum(ADD='add', REMOVE='remove')
+DELIM = '[._ -]'
+
 
 # sort keys need to be defined such that "best" have highest values
 # unknown (i.e. None) is always worst

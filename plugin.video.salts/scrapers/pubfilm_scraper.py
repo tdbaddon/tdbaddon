@@ -20,7 +20,7 @@ import urlparse
 import urllib
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -55,14 +55,13 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
             
             views = None
-            fragment = dom_parser.parse_dom(html, 'span', {'class': 'post-views'})
+            fragment = dom_parser2.parse_dom(html, 'span', {'class': 'post-views'})
             if fragment:
-                fragment = fragment[0]
-                views = re.sub('[^\d]', '', fragment)
+                views = re.sub('[^\d]', '', fragment[0].content)
             
             iframe_urls = []
             if video.video_type == VIDEO_TYPES.MOVIE:
-                iframe_urls = dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, ret='href')
+                iframe_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
             else:
                 for label, link in self.__get_episode_links(html):
                     if int(label) == int(video.episode):
@@ -126,11 +125,8 @@ class Scraper(scraper.Scraper):
                 return season_url
     
     def __get_episode_links(self, html):
-        links = dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, ret='href')
-        labels = dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'})
-        labels = [re.sub('[^\d]', '', label) for label in labels]
-        episodes = [(label, link) for label, link in zip(labels, links) if label.isdigit()]
-        return episodes
+        episodes = [(re.sub('[^\d]', '', label), attrs['href']) for attrs, label in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
+        return [episode for episode in episodes if episode[0].isdigit()]
     
     def search(self, video_type, title, year, season=''):
         results = []
@@ -138,16 +134,15 @@ class Scraper(scraper.Scraper):
         headers = {'Referer': self.base_url}
         html = self._http_get(search_url, headers=headers, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'recent-item'}):
-            fragment = dom_parser.parse_dom(item, 'h\d+')
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'recent-item'}):
+            fragment = dom_parser2.parse_dom(item, 'h\d+')
             if not fragment: continue
             
-            match_title_year = dom_parser.parse_dom(fragment[0], 'a', {'rel': 'bookmark'})
-            match_url = dom_parser.parse_dom(fragment[0], 'a', {'rel': 'bookmark'}, ret='href')
-            if match_title_year and match_url:
-                match_title_year = match_title_year[0]
-                match_url = match_url[0]
-                match_title_year = re.sub('</?span[^>]*>', '', match_title_year)
+            match = dom_parser2.parse_dom(fragment[0].content, 'a', {'rel': 'bookmark'}, req='href')
+            if match:
+                match_title_year = match[0].content
+                match_url = match[0].attrs['href']
+                match_title_year = re.sub('</?[^>]*>', '', match_title_year)
                 is_season = re.search('Season\s+(\d+)\s*', match_title_year, re.I)
                 if (not is_season and video_type == VIDEO_TYPES.MOVIE) or (is_season and video_type == VIDEO_TYPES.SEASON):
                     match_year = ''

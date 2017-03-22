@@ -15,12 +15,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import re
 import scraper
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
+from salts_lib import jsunpack
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -49,8 +51,8 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=8)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'playex'})
-            if fragment: html = fragment[0]
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'playex'})
+            if fragment: html = fragment[0].content
             links = self._parse_sources_list(html)
             for link in links:
                 stream_url = link
@@ -74,23 +76,49 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'result-item'}):
-            match = dom_parser.parse_dom(item, 'div', {'class': 'title'})
-            is_movie = dom_parser.parse_dom(item, 'span', {'class': 'movies'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'result-item'}):
+            match = dom_parser2.parse_dom(item, 'div', {'class': 'title'})
+            is_movie = dom_parser2.parse_dom(item, 'span', {'class': 'movies'})
             if is_movie and match:
-                match = match[0]
-                match_url = dom_parser.parse_dom(match, 'a', ret='href')
-                match_title_year = dom_parser.parse_dom(match, 'a')
-                if match_url and match_title_year:
-                    match_url = match_url[0]
-                    match_title_year = match_title_year[0]
+                match = dom_parser2.parse_dom(match[0].content, 'a', req='href')
+                if match:
+                    match_url, match_title_year = match[0].attrs['href'], match[0].content
                     match_title, match_year = scraper_utils.extra_year(match_title_year)
                     if not match_year:
-                        match_year = dom_parser.parse_dom(item, 'span', {'class': 'year'})
-                        match_year = match_year[0] if match_year else ''
+                        match_year = dom_parser2.parse_dom(item, 'span', {'class': 'year'})
+                        match_year = match_year[0].content if match_year else ''
                         
                     if not year or not match_year or year == match_year:
                         result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                         results.append(result)
 
         return results
+
+    def _http_get(self, url, params=None, data=None, multipart_data=None, headers=None, cookies=None, allow_redirect=True, method=None,
+                  require_debrid=False, read_error=False, cache_limit=8):
+        html = super(self.__class__, self)._http_get(url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies,
+                                                     allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error, cache_limit=cache_limit)
+        
+        if re.search('<body\s+onload=', html, re.I):
+            if cookies is None: cookies = {}
+            cookies.update(self.__get_cookies(html))
+            html = super(self.__class__, self)._http_get(url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies,
+                                                         allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error, cache_limit=0)
+            
+        return html
+    
+    def __get_cookies(self, html):
+        try:
+            js_code = ''
+            for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
+                js_data = jsunpack.unpack(match.group(1))
+                js_data = js_data.replace('\\', '')
+                js_code += js_data
+                
+            match = re.search("cookie\s*=\s*'([^;']+)", js_code)
+            parts = match.group(1).split('=')
+            cookies = {parts[0]: parts[1]}
+        except:
+            cookies = {}
+            
+        return cookies

@@ -18,7 +18,7 @@
 import re
 import urlparse
 import kodi
-import dom_parser
+import dom_parser2
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
 from salts_lib import jsunpack
@@ -52,10 +52,10 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
             page_quality = QUALITIES.HD720 if video.video_type == VIDEO_TYPES.MOVIE else QUALITIES.HIGH
-            for fragment in dom_parser.parse_dom(html, 'div', {'class': '[^"]*embed-responsive[^"]*'}):
-                iframe_url = dom_parser.parse_dom(fragment, 'iframe', ret='data-src')
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*embed-responsive[^"]*'}):
+                iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='data-src')
                 if iframe_url:
-                    iframe_url = iframe_url[0]
+                    iframe_url = iframe_url[0].attrs['data-src']
                     iframe_host = urlparse.urlparse(iframe_url).hostname
                     if iframe_host in DIRECT_HOSTS:
                         sources = self.__parse_streams(iframe_url, url)
@@ -91,14 +91,14 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'article', {'class': 'movie-details'}):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title = dom_parser.parse_dom(item, 'h2', {'class': 'movie-title'})
-            match_year = dom_parser.parse_dom(item, 'div', {'class': 'movie-year'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'article', {'class': 'movie-details'}):
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_title = dom_parser2.parse_dom(item, 'h2', {'class': 'movie-title'})
+            match_year = dom_parser2.parse_dom(item, 'div', {'class': 'movie-year'})
             if match_url and match_title:
-                match_url = match_url[0]
-                match_title = match_title[0]
-                match_year = match_year[0] if match_year else ''
+                match_url = match_url[0].attrs['href']
+                match_title = match_title[0].content
+                match_year = match_year[0].content if match_year else ''
                 if norm_title in scraper_utils.normalize_title(match_title) and (not match_year or not year or year == match_year):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
@@ -111,11 +111,12 @@ class Scraper(scraper.Scraper):
 
         url = urlparse.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=2)
-        fragment = dom_parser.parse_dom(html, 'ul', {'class': 'episode_list'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'episode_list'})
         if fragment:
-            ep_urls = dom_parser.parse_dom(fragment[0], 'a', ret='href')
-            ep_dates = dom_parser.parse_dom(fragment[0], 'span', {'class': 'episode_air_d'})
-            ep_titles = dom_parser.parse_dom(fragment[0], 'span', {'class': 'episode_name'})
+            fragment = fragment[0].content
+            ep_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(fragment, 'a', req='href')]
+            ep_dates = [r.content for r in dom_parser2.parse_dom(fragment, 'span', {'class': 'episode_air_d'})]
+            ep_titles = [r.content for r in dom_parser2.parse_dom(fragment, 'span', {'class': 'episode_name'})]
             force_title = scraper_utils.force_title(video)
             if not force_title and kodi.get_setting('airdate-fallback') == 'true' and video.ep_airdate:
                 for ep_url, ep_date in zip(ep_urls, ep_dates):

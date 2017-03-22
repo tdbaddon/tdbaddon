@@ -1,3 +1,6 @@
+2017.03.18.3 - poprawka cda premium i sitemtv1.rf.gd
+2017.03.18.1 - Poprawka telewizji sitemtv1.rf.gd
+
 2017.03.11.2 - Poprawka telewizji, dodałem następujące serwisy w sekcji telewizja
     tele-miki, iklub.info oraz nowatv.net
 

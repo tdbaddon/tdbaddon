@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -49,9 +49,9 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
-            for comment in dom_parser.parse_dom(html, 'div', {'class': 'commentmetadata'}):
-                for match in re.finditer('href="([^"]+)', comment):
-                    stream_url = match.group(1)
+            for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'class': 'commentmetadata'}):
+                for attrs, _content in dom_parser2.parse_dom(comment, 'a', req='href'):
+                    stream_url = attrs['href']
                     host = urlparse.urlparse(stream_url).hostname
                     quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
@@ -68,30 +68,28 @@ class Scraper(scraper.Scraper):
     def __get_pages(self, url):
         url = urlparse.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=2)
-        pages = [scraper_utils.pathify_url(page) for page in dom_parser.parse_dom(html, 'a', {'class': 'page-numbers'}, ret='href')]
+        pages = [scraper_utils.pathify_url(attrs['href']) for attrs, _content in dom_parser2.parse_dom(html, 'a', {'class': 'page-numbers'}, req='href')]
         return pages
     
     def __find_episode(self, page, video):
         url = urlparse.urljoin(self.base_url, page)
         html = self._http_get(url, cache_limit=2)
-        for article in dom_parser.parse_dom(html, 'article', {'id': 'post-\d+'}):
+        for _attrs, article in dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'}):
             match = re.search('href="([^"]+-s%02d-e%02d[/-][^"]*)' % (int(video.season), int(video.episode)), article, re.I)
             if match:
                 return scraper_utils.pathify_url(match.group(1))
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        html = self._http_get(self.base_url, cache_limit=48)
         results = []
+        html = self._http_get(self.base_url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        fragment = dom_parser.parse_dom(html, 'select', {'id': 'cat'})
+        fragment = dom_parser2.parse_dom(html, 'select', {'id': 'cat'})
         if fragment:
-            labels = dom_parser.parse_dom(fragment[0], 'option')
-            cats = dom_parser.parse_dom(fragment[0], 'option', ret='value')
-            for label, category in zip(labels, cats):
+            for attrs, label in dom_parser2.parse_dom(fragment[0].content, 'option', {'class': 'level-0'}, req='value'):
                 label = scraper_utils.cleanse_title(label)
                 label = re.sub('\s+\(\d+\)$', '', label)
                 if norm_title in scraper_utils.normalize_title(label):
-                    cat_url = urlparse.urljoin(self.base_url, '/?cat=%s' % (category))
+                    cat_url = urlparse.urljoin(self.base_url, '/?cat=%s' % (attrs['value']))
                     html = self._http_get(cat_url, allow_redirect=False, cache_limit=8)
                     if html.startswith('http'):
                         cat_url = html

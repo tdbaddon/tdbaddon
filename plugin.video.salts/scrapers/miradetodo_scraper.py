@@ -20,7 +20,7 @@ import urlparse
 import base64
 import log_utils  # @UnusedImport
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -28,7 +28,7 @@ from salts_lib.constants import QUALITIES
 import scraper
 
 
-BASE_URL = 'http://miradetodo.net'
+BASE_URL = 'http://miradetodo.io'
 GK_KEY1 = base64.urlsafe_b64decode('QjZVTUMxUms3VFJBVU56V3hraHI=')
 GK_KEY2 = base64.urlsafe_b64decode('aUJocnZjOGdGZENaQWh3V2huUm0=')
 
@@ -51,44 +51,42 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
+        sources = {}
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            for fragment in dom_parser.parse_dom(html, 'div', {'class': 'movieplay'}):
-                iframe_url = dom_parser.parse_dom(fragment, 'iframe', ret='src')
-                if iframe_url:
-                    iframe_url = iframe_url[0]
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
+                for attrs, _content in dom_parser2.parse_dom(fragment, 'iframe', req='src') + dom_parser2.parse_dom(fragment, 'iframe', req='data-lazy-src'):
+                    iframe_url = attrs.get('src', '')
                     if not iframe_url.startswith('http'):
-                        iframe_url = dom_parser.parse_dom(fragment, 'iframe', ret='data-lazy-src')
-                        iframe_url = iframe_url[0]
+                        iframe_url = attrs.get('data-lazy-src', '')
+                        if not iframe_url.startswith('http'): continue
                         
-                    sources = {}
                     if 'miradetodo' in iframe_url:
-                        direct = True
                         html = self._http_get(iframe_url, cache_limit=.5)
-                        fragment = dom_parser.parse_dom(html, 'nav', {'class': 'nav'})
+                        fragment = dom_parser2.parse_dom(html, 'nav', {'class': 'nav'})
                         if fragment:
-                            stream_url = dom_parser.parse_dom(fragment, 'a', ret='href')
+                            stream_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                             if stream_url:
-                                html = self._http_get(stream_url[0], cache_limit=.5)
+                                html = self._http_get(stream_url[0].attrs['href'], cache_limit=.5)
                                 
                         sources.update(self.__get_gk_links(html))
                         sources.update(self.__get_gk_links2(html))
                         sources.update(self.__get_amazon_links(html))
                         sources.update(self._parse_sources_list(html))
                     else:
-                        direct = False
                         host = urlparse.urlparse(iframe_url).hostname
-                        sources = {iframe_url: scraper_utils.get_quality(video, host, QUALITIES.HIGH)}
+                        source = {'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'direct': False}
+                        sources.update({iframe_url: source})
                         
-                    for source in sources:
-                        stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
-                        direct = sources[source]['direct']
-                        quality = sources[source]['quality']
-                        host = self._get_direct_hostname(source) if direct else urlparse.urlparse(source).hostname
-                            
-                        hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct}
-                        hosters.append(hoster)
+            for source in sources:
+                stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
+                direct = sources[source]['direct']
+                quality = sources[source]['quality']
+                host = self._get_direct_hostname(source) if direct else urlparse.urlparse(source).hostname
+                hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct}
+                hosters.append(hoster)
+            
         return hosters
 
     def __get_amazon_links(self, html):
@@ -146,20 +144,20 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
         results = []
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'item'}):
-            match = re.search('href="([^"]+)', item)
-            match_title = dom_parser.parse_dom(item, 'span', {'class': 'tt'})
-            year_frag = dom_parser.parse_dom(item, 'span', {'class': 'year'})
-            if match and match_title:
-                url = match.group(1)
-                match_title = match_title[0]
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'item'}):
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_title = dom_parser2.parse_dom(item, 'span', {'class': 'tt'})
+            year_frag = dom_parser2.parse_dom(item, 'span', {'class': 'year'})
+            if match_url and match_title:
+                match_url = match_url[0].attrs['href']
+                match_title = match_title[0].content
                 if re.search('\d+\s*x\s*\d+', match_title): continue  # exclude episodes
                 match_title, match_year = scraper_utils.extra_year(match_title)
                 if not match_year and year_frag:
-                    match_year = year_frag[0]
+                    match_year = year_frag[0].content
 
                 if not year or not match_year or year == match_year:
-                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(url)}
+                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                     results.append(result)
 
         return results

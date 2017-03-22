@@ -15,11 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -49,15 +48,12 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            title = dom_parser.parse_dom(html, 'meta', {'property': 'og:title'}, ret='content')
-            if title:
-                meta = scraper_utils.parse_movie_link(title[0])
-            else:
-                meta = {}
-                
-            fragment = dom_parser.parse_dom(html, 'p', {'class': 'download_message'})
+            title = dom_parser2.parse_dom(html, 'meta', {'property': 'og:title'}, req='content')
+            meta = scraper_utils.parse_movie_link(title[0].attrs['content']) if title else {}
+            fragment = dom_parser2.parse_dom(html, 'p', {'class': 'download_message'})
             if fragment:
-                for source in dom_parser.parse_dom(fragment[0], 'a', ret='href'):
+                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                    source = attrs['href']
                     if scraper_utils.excluded_link(source): continue
                     host = urlparse.urlparse(source).hostname
                     quality = scraper_utils.height_get_quality(meta.get('height', 480))

@@ -23,12 +23,13 @@
 # lambda81, 2016
 # Maiko77, 2016
 # Marios Ioannou, 2017
+# Stefanos Chatz, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-04 16:30+0000\n"
-"Last-Translator: Marios Ioannou\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"Last-Translator: Viper2k4\n"
 "Language-Team: Greek (http://www.transifex.com/tv-addons/exodus/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,7 +328,7 @@ msgstr "Ανανέωση"
 
 msgctxt "#32073"
 msgid "[B]HELP[/B] : www.tvaddons.ag"
-msgstr "[B]ΒΟΗΘΕΙΑ [/B] : www.tvaddons.ag"
+msgstr "[B]ΒΟΗΘΕΙΑ[/B] : www.tvaddons.ag"
 
 msgctxt "#32074"
 msgid "[B]HELP[/B]"
@@ -680,4 +681,8 @@ msgstr "1) Επισκεφθείτε : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Όταν σας ζητηθεί εισάγετε : [COLOR skyblue]%s[/COLOR]"
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "Τυχαία αναπαραγωγή"
 

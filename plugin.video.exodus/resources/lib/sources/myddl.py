@@ -30,8 +30,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['myddl.org']
-        self.base_link = 'http://myddl.org'
+        self.domains = ['myddl.pw']
+        self.base_link = 'http://myddl.pw'
         self.search_link = '/search/%s/feed/rss2/'
 
 

@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -52,12 +52,12 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
             if video.video_type == VIDEO_TYPES.EPISODE:
                 html = self.__get_episode_fragment(html, video)
-            for item in dom_parser.parse_dom(html, 'div', {'class': 'linkTr'}):
-                stream_url = dom_parser.parse_dom(item, 'div', {'class': '[^"]*linkHiddenUrl[^"]*'})
-                q_str = dom_parser.parse_dom(item, 'div', {'class': '[^"]*linkQualityText[^"]*'})
+            for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'linkTr'}):
+                stream_url = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*linkHiddenUrl[^"]*'})
+                q_str = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*linkQualityText[^"]*'})
                 if stream_url and q_str:
-                    stream_url = stream_url[0]
-                    q_str = q_str[0]
+                    stream_url = stream_url[0].content
+                    q_str = q_str[0].content
                     host = urlparse.urlparse(stream_url).hostname
                     base_quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
                     quality = scraper_utils.get_quality(video, host, base_quality)
@@ -67,17 +67,16 @@ class Scraper(scraper.Scraper):
         return sources
 
     def __get_episode_fragment(self, html, video):
-        fragment = dom_parser.parse_dom(html, 'div', {'id': 'season%s' % (video.season)})
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'season%s' % (video.season)})
         if fragment:
-            fragment = fragment[0]
-            labels = dom_parser.parse_dom(fragment, 'h3')
+            fragment = fragment[0].content
             pattern = 'Season\s+%s\s+Series?\s+%s$' % (video.season, video.episode)
-            for i, label in enumerate(labels):
-                match = re.search(pattern, label, re.I)
+            for i, label in enumerate(dom_parser2.parse_dom(fragment, 'h3')):
+                match = re.search(pattern, label.content, re.I)
                 if match:
-                    fragments = dom_parser.parse_dom(fragment, 'div', {'class': '[^"]*tableLinks[^"]*'})
+                    fragments = dom_parser2.parse_dom(fragment, 'div', {'class': '[^"]*tableLinks[^"]*'})
                     if len(fragments) > i:
-                        return fragments[i]
+                        return fragments[i].content
                     else:
                         break
                 
@@ -113,14 +112,14 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, params=params, cache_limit=24)
         norm_title = scraper_utils.normalize_title(title)
         match_year = ''
-        for item in dom_parser.parse_dom(html, 'div', {'id': 'movie-+\d+'}):
-            is_tvshow = dom_parser.parse_dom(item, 'div', {'class': 'movieTV'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'id': 'movie-+\d+'}):
+            is_tvshow = dom_parser2.parse_dom(item, 'div', {'class': 'movieTV'})
             if (is_tvshow and video_type == VIDEO_TYPES.TVSHOW) or (not is_tvshow and video_type == VIDEO_TYPES.MOVIE):
-                fragment = dom_parser.parse_dom(item, 'h4', {'class': '[^"]*showRowName[^"]*'})
+                fragment = dom_parser2.parse_dom(item, 'h4', {'class': '[^"]*showRowName[^"]*'})
                 if fragment:
-                    match = re.search('href="([^"]+)[^>]+>([^<]+)', fragment[0])
+                    match = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                     if match:
-                        match_url, match_title = match.groups()
+                        match_url, match_title = match[0].attrs['href'], match[0].content
                         if re.search('/-?\d{7,}/', match_url): continue
                         
                         match_norm_title = scraper_utils.normalize_title(match_title)

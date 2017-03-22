@@ -18,17 +18,19 @@
 # Translators:
 # Translators:
 # Translators:
+# Diallo, 2017
 # lambda81, 2016
 # Mike Bike, 2015
-# Mike Bike, 2016
+# Mike Bike, 2016-2017
+# Robin Caluwe, 2017
 # Sedat B, 2017
 # Youko van der Blom, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-06 19:25+0000\n"
-"Last-Translator: Youko van der Blom\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"Last-Translator: Diallo\n"
 "Language-Team: Dutch (http://www.transifex.com/tv-addons/exodus/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -571,7 +573,7 @@ msgstr "In dat geval kies uw eigen ondertiteling."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Talen van bronnen"
+msgstr "Taal van bronnen"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -680,4 +682,16 @@ msgstr "1) Bezoek : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Wanneer gevraagd, vul in : [COLOR skyblue]%s[/COLOR]"
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "Speel willekeurige af"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "Nu aan het afspelen"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Niets gevonden om af te spelen"
 

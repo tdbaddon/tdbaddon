@@ -20,7 +20,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -48,11 +48,10 @@ class Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         if self.base_url in link:
-            url = urlparse.urljoin(self.base_url, link)
-            html = self._http_get(url, cache_limit=0)
-            for url in dom_parser.parse_dom(html, 'a', ret='href'):
-                if '/external/' in url:
-                    return base64.b64decode(url.split('/')[-1])
+            html = self._http_get(link, cache_limit=0)
+            for attrs, _content in dom_parser2.parse_dom(html, 'a', req='href'):
+                if '/external/' in attrs['href']:
+                    return base64.b64decode(attrs['href'].split('/')[-1])
         else:
                 return link
 
@@ -68,14 +67,14 @@ class Scraper(scraper.Scraper):
             if match:
                 quality = QUALITY_MAP.get(match.group(1).strip().upper())
 
-            fragment = dom_parser.parse_dom(html, 'div', {'id': 'links'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'id': 'links'})
             if fragment:
-                for item in dom_parser.parse_dom(fragment[0], 'ul'):
-                    stream_url = dom_parser.parse_dom(item, 'a', ret='href')
-                    host = dom_parser.parse_dom(item, 'li', {'id': 'download'})
+                for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'ul'):
+                    stream_url = dom_parser2.parse_dom(item, 'a', req='href')
+                    host = dom_parser2.parse_dom(item, 'li', {'id': 'download'})
                     if stream_url and host:
-                        stream_url = stream_url[0]
-                        host = host[-1]
+                        stream_url = stream_url[0].attrs['href']
+                        host = host[-1].content
                         hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': scraper_utils.get_quality(video, host, quality), 'rating': None, 'views': None, 'direct': False}
                         hosters.append(hoster)
         return hosters
@@ -84,12 +83,11 @@ class Scraper(scraper.Scraper):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/keywords/%s/' % (title))
         html = self._http_get(search_url, cache_limit=4)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'movie_about'}):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title_year = dom_parser.parse_dom(item, 'a')
-            if match_url and match_title_year:
-                match_url = match_url[0]
-                match_title, match_year = scraper_utils.extra_year(match_title_year[0])
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'movie_about'}):
+            match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
+            if match:
+                match_url, match_title, extra = match[0].attrs['href'], match[0].attrs['title'], match[0].content
+                _match_title, match_year = scraper_utils.extra_year(extra)
                 if not year or not match_year or year == match_year:
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)

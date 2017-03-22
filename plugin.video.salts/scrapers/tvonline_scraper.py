@@ -20,7 +20,7 @@ import urlparse
 import base64
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -50,10 +50,10 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.25)
-            for button in dom_parser.parse_dom(html, 'li', {'class': 'playing_button'}):
+            for _attrs, button in dom_parser2.parse_dom(html, 'li', {'class': 'playing_button'}):
                 try:
-                    link = dom_parser.parse_dom(button, 'a', ret='href')
-                    match = re.search('php\?.*?=?([^"]+)', link[0])
+                    link = dom_parser2.parse_dom(button, 'a', req='href')
+                    match = re.search('php\?.*?=?([^"]+)', link[0].attrs['href'])
                     stream_url = base64.b64decode(match.group(1))
                     match = re.search('(https?://.*)', stream_url)
                     stream_url = match.group(1)
@@ -78,11 +78,11 @@ class Scraper(scraper.Scraper):
         for page in ['/latest-added/', '/popular-today/', '/most-popular/']:
             url = urlparse.urljoin(self.base_url, page)
             html = self._http_get(url, cache_limit=24)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'home'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'home'})
             if fragment:
                 norm_title = scraper_utils.normalize_title(title)
-                for match in re.finditer('''href=["']([^'"]+)[^>]+>([^<]+)''', fragment[0]):
-                    match_url, match_title_year = match.groups()
+                for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                    match_url = attrs['href']
                     match_title, match_year = scraper_utils.extra_year(match_title_year)
                     if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                         match_url = scraper_utils.pathify_url(match_url)

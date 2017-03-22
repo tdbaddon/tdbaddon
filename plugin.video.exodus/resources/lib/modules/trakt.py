@@ -244,12 +244,12 @@ def getWatchedActivity():
 
 
 def cachesyncMovies(timeout=0):
-    indicators = cache.get(syncMovies, timeout, control.setting('trakt.user').strip(), table='trakt')
+    indicators = cache.get(syncMovies, timeout, control.setting('trakt.user').strip())
     return indicators
 
 
 def timeoutsyncMovies():
-    timeout = cache.timeout(syncMovies, control.setting('trakt.user').strip(), table='trakt')
+    timeout = cache.timeout(syncMovies, control.setting('trakt.user').strip())
     return timeout
 
 
@@ -266,12 +266,12 @@ def syncMovies(user):
 
 
 def cachesyncTVShows(timeout=0):
-    indicators = cache.get(syncTVShows, timeout, control.setting('trakt.user').strip(), table='trakt')
+    indicators = cache.get(syncTVShows, timeout, control.setting('trakt.user').strip())
     return indicators
 
 
 def timeoutsyncTVShows():
-    timeout = cache.timeout(syncTVShows, control.setting('trakt.user').strip(), table='trakt')
+    timeout = cache.timeout(syncTVShows, control.setting('trakt.user').strip())
     return timeout
 
 

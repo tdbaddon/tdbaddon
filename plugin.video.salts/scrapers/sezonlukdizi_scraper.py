@@ -22,7 +22,7 @@ import urllib2
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -69,17 +69,17 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=2)
-            fragment = dom_parser.parse_dom(html, 'div', {'id': 'playerMenu'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'id': 'playerMenu'})
             if fragment:
-                for data_id in dom_parser.parse_dom(fragment[0], 'div', {'class': '[^"]*item[^"]*'}, ret='data-id'):
-                    embed_url = urlparse.urljoin(self.base_url, EMBED_URL)
-                    data = {'id': data_id}
+                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': '[^"]*item[^"]*'}, req='data-id'):
+                    data_id = attrs['data-id']
                     headers = {'Referer': page_url}
                     headers.update(XHR)
-                    html = self._http_get(embed_url, data=data, headers=headers, cache_limit=.5)
-                    iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+                    embed_url = urlparse.urljoin(self.base_url, EMBED_URL)
+                    html = self._http_get(embed_url, data={'id': data_id}, headers=headers, cache_limit=.5)
+                    iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
                     if iframe_url:
-                        iframe_url = iframe_url[0]
+                        iframe_url = iframe_url[0].attrs['src']
                         if urlparse.urlparse(self.base_url).hostname in iframe_url:
                             sources += self.__get_direct_links(iframe_url, page_url)
                         else:
@@ -92,7 +92,7 @@ class Scraper(scraper.Scraper):
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(stream_url)
                     else:
-                        quality = sources[source]['quality']
+                        quality = source['quality']
                 else:
                     stream_url = source['stream_url']
                     host = urlparse.urlparse(stream_url).hostname
@@ -121,9 +121,9 @@ class Scraper(scraper.Scraper):
             sources.append({'stream_url': stream_url, 'subs': subs, 'quality': quality, 'direct': True})
         
         if not sources:
-            iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+            iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
             if iframe_url:
-                sources.append({'stream_url': iframe_url[0], 'subs': subs, 'quality': QUALITIES.HD720, 'direct': False})
+                sources.append({'stream_url': iframe_url[0].attrs['src'], 'subs': subs, 'quality': QUALITIES.HD720, 'direct': False})
                 
         return sources
     
@@ -131,10 +131,9 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, show_url)
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=.25)
-        data_id = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-id')
-        data_dizi = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-dizi')
-        if data_id and data_dizi:
-            queries = {'sekme': 'bolumler', 'id': data_id[0], 'dizi': data_dizi[0]}
+        data = dom_parser2.parse_dom(html, 'div', {'id': 'dizidetay'}, req=['data-dizi', 'data-id'])
+        if data:
+            queries = {'sekme': 'bolumler', 'id': data[0].attrs['data-id'], 'dizi': data[0].attrs['data-dizi']}
             season_url = SEASON_URL + '?' + urllib.urlencode(queries)
             episode_pattern = '''href=['"]([^'"]*/%s-sezon-%s-[^'"]*bolum[^'"]*)''' % (video.season, video.episode)
             title_pattern = '''href=['"](?P<url>[^'"]+)[^>]*>(?P<title>[^<]+)'''
@@ -149,8 +148,8 @@ class Scraper(scraper.Scraper):
         results = []
         html = self._http_get(self.base_url, cache_limit=24)
         norm_title = scraper_utils.normalize_title(title)
-        for script in dom_parser.parse_dom(html, 'script', {'type': 'text/javascript'}, ret='src'):
-            html = self._http_get(script, cache_limit=48)
+        for attrs, _content in dom_parser2.parse_dom(html, 'script', {'type': 'text/javascript'}, req='src'):
+            html = self._http_get(attrs['src'], cache_limit=48)
             match_year = ''
             for match in re.finditer('d\s*:\s*"([^"]+).*?u\s*:\s*"([^"]+)', html):
                 match_title, match_url = match.groups()

@@ -18,7 +18,7 @@
 import re
 import urlparse
 import kodi
-import dom_parser
+import dom_parser2
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
@@ -58,42 +58,41 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-
-            pattern = r'id=\\?"tablemoviesindex2\\?".*?href\s*=\s*\\?[\'"]([^\'"]+).*?&nbsp;([^<]+)(.*)'
+            pattern = '''tablemoviesindex2.*?href\s*=\s*['"]([^'"]+).*?&nbsp;([^<]+)'''
             for match in re.finditer(pattern, html):
-                url, host, extra = match.groups()
+                url, host = match.groups()
                 if not url.startswith('/'): url = '/' + url
-                r = re.search('/smileys/(\d+)\.gif', extra)
-                smiley = r.group(1) if r else None
-                quality = scraper_utils.get_quality(video, host, QUALITY_MAP[smiley])
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': url, 'direct': False}
                 hosters.append(hoster)
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
+        results = []
         search_url = urlparse.urljoin(self.base_url, '/movies.php')
         cookies = {'onlylanguage': 'en', 'lang': 'en'}
         params = {'list': 'search', 'search': title}
-        html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=1)
-        results = []
-        pattern = 'id="tdmovies">\s*<a\s+href="([^"]+)">([^<]+).*?id="f7">(.*?)</TD>'
-        for match in re.finditer(pattern, html, re.DOTALL):
-            url, title, extra = match.groups('')
-            if (video_type == VIDEO_TYPES.MOVIE and '(TVshow)' in title) or (video_type == VIDEO_TYPES.TVSHOW and '(TVshow)' not in title):
-                continue
+        html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=8)
+        for _attrs, content in dom_parser2.parse_dom(html, 'TR', {'id': 'coverPreview\d+'}):
+            match = dom_parser2.parse_dom(content, 'a', req='href')
+            if match:
+                match_url, match_title = match[0].attrs['href'], match[0].content
+                is_show = re.search('\(tvshow\)', match_title, re.I)
+                if (video_type == VIDEO_TYPES.MOVIE and is_show) or (video_type == VIDEO_TYPES.TVSHOW and not is_show):
+                    continue
 
-            title = title.replace('(TVshow)', '')
-            title = title.strip()
-
-            r = re.search('>(\d{4})<', extra)
-            if r:
-                match_year = r.group(1)
-            else:
+                match_title = match_title.replace('(TVshow)', '')
+                match_title = match_title.strip()
+                
                 match_year = ''
+                for _attrs, div in dom_parser2.parse_dom(content, 'div'):
+                    match = re.match('\s*(\d{4})\s*', div)
+                    if match:
+                        match_year = match.group(1)
 
-            if not year or not match_year or year == match_year:
-                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': match_year}
-                results.append(result)
+                if not year or not match_year or year == match_year:
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                    results.append(result)
         return results
 
     def _get_episode_url(self, show_url, video):
@@ -101,9 +100,9 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, show_url)
             html = self._http_get(url, cache_limit=2)
             season_div = 'episodediv%s' % (video.season)
-            fragment = dom_parser.parse_dom(html, 'div', {'id': season_div})
+            fragment = dom_parser2.parse_dom(html, 'div', {'id': season_div})
             if fragment:
                 pattern = 'value="([^"]+)[^>]*>Episode %s\s*<' % (video.episode)
-                match = re.search(pattern, fragment[0], re.I)
+                match = re.search(pattern, fragment[0].content, re.I)
                 if match:
                     return scraper_utils.pathify_url(match.group(1))

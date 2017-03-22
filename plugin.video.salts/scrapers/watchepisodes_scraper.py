@@ -19,15 +19,15 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import XHR
 import scraper
 
-XHR = {'X-Requested-With': 'XMLHttpRequest'}
-BASE_URL = 'http://www.watchepisodes.com'
+BASE_URL = 'http://www.watchepisodes4.com'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -50,23 +50,25 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.25)
-            for link in dom_parser.parse_dom(html, 'div', {'class': '[^"]*ldr-item[^"]*'}):
-                stream_url = dom_parser.parse_dom(link, 'a', ret='data-actuallink')
+            for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*ldr-item[^"]*'}):
+                stream_url = dom_parser2.parse_dom(link, 'a', req='data-actuallink')
                 
-                views = None
-                watched = dom_parser.parse_dom(link, 'div', {'class': 'click-count'})
-                if watched:
-                    match = re.search(' (\d+) ', watched[0])
-                    if match:
-                        views = match.group(1)
+                try:
+                    watched = dom_parser2.parse_dom(link, 'div', {'class': 'click-count'})
+                    match = re.search(' (\d+) ', watched[0].content)
+                    views = match.group(1)
+                except:
+                    views = None
                         
-                score = dom_parser.parse_dom(link, 'div', {'class': '\s*point\s*'})
-                if score:
-                    score = int(score[0])
+                try:
+                    score = dom_parser2.parse_dom(link, 'div', {'class': 'point'})
+                    score = int(score[0].content)
                     rating = score * 10 if score else None
+                except:
+                    rating = None
                 
                 if stream_url:
-                    stream_url = stream_url[0].strip()
+                    stream_url = stream_url[0].attrs['data-actuallink'].strip()
                     host = urlparse.urlparse(stream_url).hostname
                     quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': rating, 'url': stream_url, 'direct': False}
@@ -79,7 +81,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, cache_limit=2)
         if html:
             force_title = scraper_utils.force_title(video)
-            episodes = dom_parser.parse_dom(html, 'div', {'class': '\s*el-item\s*'})
+            episodes = dom_parser2.parse_dom(html, 'div', {'class': '\s*el-item\s*'})
             if not force_title:
                 episode_pattern = 'href="([^"]*-[sS]%02d[eE]%02d(?!\d)[^"]*)' % (int(video.season), int(video.episode))
                 match = re.search(episode_pattern, html)
@@ -89,20 +91,22 @@ class Scraper(scraper.Scraper):
                 if kodi.get_setting('airdate-fallback') == 'true' and video.ep_airdate:
                     airdate_pattern = '%02d-%02d-%d' % (video.ep_airdate.day, video.ep_airdate.month, video.ep_airdate.year)
                     for episode in episodes:
-                        ep_url = dom_parser.parse_dom(episode, 'a', ret='href')
-                        ep_airdate = dom_parser.parse_dom(episode, 'div', {'class': 'date'})
+                        episode = episode.content
+                        ep_url = dom_parser2.parse_dom(episode, 'a', req='href')
+                        ep_airdate = dom_parser2.parse_dom(episode, 'div', {'class': 'date'})
                         if ep_url and ep_airdate:
-                            ep_airdate = ep_airdate[0].strip()
+                            ep_airdate = ep_airdate[0].content.strip()
                             if airdate_pattern == ep_airdate:
-                                return scraper_utils.pathify_url(ep_url[0])
+                                return scraper_utils.pathify_url(ep_url[0].attrs['href'])
 
             if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
                 norm_title = scraper_utils.normalize_title(video.ep_title)
                 for episode in episodes:
-                    ep_url = dom_parser.parse_dom(episode, 'a', ret='href')
-                    ep_title = dom_parser.parse_dom(episode, 'div', {'class': 'e-name'})
-                    if ep_url and ep_title and norm_title == scraper_utils.normalize_title(ep_title[0]):
-                        return scraper_utils.pathify_url(ep_url[0])
+                    episode = episode.content
+                    ep_url = dom_parser2.parse_dom(episode, 'a', req='href')
+                    ep_title = dom_parser2.parse_dom(episode, 'div', {'class': 'e-name'})
+                    if ep_url and ep_title and norm_title == scraper_utils.normalize_title(ep_title[0].content):
+                        return scraper_utils.pathify_url(ep_url[0].attrs['href'])
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -110,11 +114,11 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, params={'q': title}, headers=XHR, cache_limit=1)
         js_result = scraper_utils.parse_json(html, search_url)
         match_year = ''
-        if 'series' in js_result:
-            for series in js_result['series']:
-                if 'seo' in series and 'label' in series:
-                    if not year or not match_year or year == match_year:
-                        result = {'url': scraper_utils.pathify_url('/' + series['seo']), 'title': scraper_utils.cleanse_title(series['label']), 'year': match_year}
-                        results.append(result)
+        for series in js_result.get('series', []):
+            match_url = series.get('seo')
+            match_title = series.get('label')
+            if match_url and match_title and (not year or not match_year or year == match_year):
+                result = {'url': scraper_utils.pathify_url('/' + match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
 
         return results

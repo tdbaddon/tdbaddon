@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -54,9 +54,9 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
             
             views = None
-            fragment = dom_parser.parse_dom(html, 'img', {'src': '[^"]*view_icon.png'})
+            fragment = dom_parser2.parse_dom(html, 'img', {'src': '[^"]*view_icon.png'})
             if fragment:
-                match = re.search('(\d+)', fragment[0])
+                match = re.search('(\d+)', fragment[0].content)
                 if match:
                     views = match.group(1)
                 
@@ -66,7 +66,8 @@ class Scraper(scraper.Scraper):
                 html = self._http_get(url, cache_limit=.5)
             
             sources = self.__get_embedded(html)
-            for link in dom_parser.parse_dom(html, 'span', {'class': '[^"]*btn-eps[^"]*'}, ret='link'):
+            for link in dom_parser2.parse_dom(html, 'span', {'class': '[^"]*btn-eps[^"]*'}, req='link'):
+                link = link.attrs['link']
                 ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
                 headers = {'Referer': url}
                 headers.update(XHR)
@@ -91,7 +92,8 @@ class Scraper(scraper.Scraper):
     
     def __get_sources(self, html):
         sources = self._parse_sources_list(html)
-        for source in dom_parser.parse_dom(html, 'source', {'type': 'video/mp4'}, ret='src') + dom_parser.parse_dom(html, 'iframe', ret='src'):
+        for source in dom_parser2.parse_dom(html, 'source', {'type': 'video/mp4'}, req='src') + dom_parser2.parse_dom(html, 'iframe', req='src'):
+            source = source.attrs['src']
             if self._get_direct_hostname(source) == 'gvideo':
                 quality = scraper_utils.gv_get_quality(source)
                 direct = True
@@ -127,10 +129,9 @@ class Scraper(scraper.Scraper):
         title = re.sub('\s+', '-', title)
         search_url = urlparse.urljoin(self.base_url, '/tag/%s' % (title))
         html = self._http_get(search_url, cache_limit=1)
-        links = dom_parser.parse_dom(html, 'a', {'class': 'top-item'}, ret='href')
-        titles = dom_parser.parse_dom(html, 'a', {'class': 'top-item'})
-        for match_url, match_title_year in zip(links, titles):
-            match_title_year = re.sub('</?cite>', '', match_title_year)
+        for attrs, match_title_year in dom_parser2.parse_dom(html, 'a', {'class': 'top-item'}, req='href'):
+            match_url = attrs['href']
+            match_title_year = re.sub('</?[^>]*>', '', match_title_year)
             match_title_year = re.sub('^Watch\s*', '', match_title_year)
             match_title, match_year = scraper_utils.extra_year(match_title_year)
             if not year or not match_year or year == match_year:

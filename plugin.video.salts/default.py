@@ -2098,25 +2098,6 @@ def prune_cache():
             log_utils.log('SALTS Active... Busy... Postponing [%s]' % (MODES.PRUNE_CACHE), log_utils.LOGDEBUG, 'prune')
             kodi.sleep(30000)
 
-@url_dispatcher.register(MODES.AUTH_TORBA)
-def auth_torba():
-    kodi.close_all()
-    kodi.sleep(500)  # sleep or authorize won't work for some reason
-    result = torba_scraper.Scraper().auth_torba()
-    if result:
-        kodi.notify(i18n('torba_acct_auth'), i18n('torba_auth_complete'))
-    elif result is None:
-        pass
-    else:
-        kodi.notify(i18n('torba_acct_auth'), i18n('torba_auth_failed'))
-
-@url_dispatcher.register(MODES.RESET_TORBA)
-def reset_torba():
-    kodi.close_all()
-    kodi.sleep(500)  # sleep or reset won't work for some reason
-    torba_scraper.Scraper().reset_auth()
-    kodi.notify(i18n('torba_acct_auth'), i18n('torba_auth_reset'))
-
 @url_dispatcher.register(MODES.RESET_DB)
 def reset_db():
     if db_connection.reset_db():

@@ -21,7 +21,7 @@ import urlparse
 import urllib
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -56,9 +56,9 @@ class Scraper(scraper.Scraper):
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=1)
             hosters = self.__extract_links(html)
-            fragment = dom_parser.parse_dom(html, 'section', {'id': 'video-area'})
+            fragment = dom_parser2.parse_dom(html, 'section', {'id': 'video-area'})
             if fragment:
-                for match in re.finditer('''value=["']([^'"]+)[^>]*>(?:DBX|King|Odnok|Play|Juliet)''', fragment[0], re.I):
+                for match in re.finditer('''value=["']([^'"]+)[^>]*>(?:DBX|King|Odnok|Play|Juliet)''', fragment[0].content, re.I):
                     html = self._http_get(match.group(1), cache_limit=1)
                     hosters += self.__extract_links(html)
     
@@ -66,19 +66,19 @@ class Scraper(scraper.Scraper):
 
     def __extract_links(self, html):
         hosters = []
-        fragment = dom_parser.parse_dom(html, 'span', {'class': '[^"]*video-wrapper[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'span', {'class': '[^"]*video-wrapper[^"]*'})
         if fragment:
-            iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
+            iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
             if iframe_url:
-                iframe_url = iframe_url[0]
+                iframe_url = iframe_url[0].attrs['src']
                 if any([link for link in LINKS if link in iframe_url]):
                     hosters += self.__get_king_links(iframe_url)
                 else:
                     html = self._http_get(iframe_url, cache_limit=.5)
                     hosters += self.__get_embed_links(html)
-                    flashvars = dom_parser.parse_dom(html, 'param', {'name': 'flashvars'}, ret='value')
+                    flashvars = dom_parser2.parse_dom(html, 'param', {'name': 'flashvars'}, req='value')
                     if flashvars:
-                        hosters += self.__get_ok(flashvars[0])
+                        hosters += self.__get_ok(flashvars[0].attrs['value'])
         return hosters
         
     def __get_king_links(self, iframe_url):
@@ -147,11 +147,10 @@ class Scraper(scraper.Scraper):
         results = []
         html = self._http_get(self.base_url, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
-        fragment = dom_parser.parse_dom(html, 'div', {'id': 'all-tv-series-list'})
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'all-tv-series-list'})
         if fragment:
-            links = dom_parser.parse_dom(fragment[0], 'a', ret='href')
-            labels = dom_parser.parse_dom(fragment[0], 'a')
-            for match_url, match_title in zip(links, labels):
+            for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = attrs['href']
                 match_title = re.sub('</?i[^>]*>', '', match_title)
                 if norm_title in scraper_utils.normalize_title(match_title):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}

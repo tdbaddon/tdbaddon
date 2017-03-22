@@ -18,13 +18,12 @@
 import re
 import urlparse
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
-
 
 BASE_URL = 'http://www.mintmovies.net'
 
@@ -45,83 +44,39 @@ class Scraper(scraper.Scraper):
 
     def get_sources(self, video):
         hosters = []
+        sources = []
         source_url = self.get_url(video)
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            hosters += self.__get_links(html, video)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'keremiya_part'})
-            if fragment:
-                for match in re.finditer('href="([^"]+)', fragment[0]):
-                    html = self._http_get(match.group(1), cache_limit=.5)
-                    hosters += self.__get_links(html, video)
+            sources = []
+            for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tab-content'}):
+                for attrs, _content in dom_parser2.parse_dom(div, 'iframe', req='src'):
+                    sources.append(attrs['src'])
+            
+            sources += [match.group(1) for match in re.finditer("window\.open\('([^']+)", html)]
+            
+            for source in sources:
+                host = urlparse.urlparse(source).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
+                hosters.append(hoster)
                     
         return hosters
 
-    def __get_links(self, html, video):
-        hosters = []
-        streams = []
-        fragment = dom_parser.parse_dom(html, 'div', {'class': 'video-embed'})
-        if fragment:
-            match = re.search("id='(engima[^']+)", fragment[0])
-            if match:
-                enigma_id = match.group(1)
-                match = re.search('<script[^>]+src="(http[^"]+mintmovies[^"]+)', html)
-                if match:
-                    js_html = self._http_get(match.group(1), cache_limit=.5)
-                    pattern = "\('#%s'\)\.replaceWith\('([^']+)" % (enigma_id)
-                else:
-                    js_html = html
-                    pattern = "\('#engimadiv[^']+'\)\.replaceWith\('([^']+)"
-                    
-                match = re.search(pattern, js_html)
-                if match:
-                    fragment = [match.group(1).decode('unicode_escape')]
-            
-            match = re.search('src="([^"]+)', fragment[0])
-            if match:
-                streams.append(match.group(1))
-            
-            for match in re.finditer("window.open\('([^']+)", fragment[0]):
-                streams.append(match.group(1))
-
-        for stream_url in streams:
-            if self._get_direct_hostname(stream_url) == 'gvideo':
-                quality = scraper_utils.gv_get_quality(stream_url)
-                host = self._get_direct_hostname(stream_url)
-                direct = True
-            else:
-                host = urlparse.urlparse(stream_url).hostname
-                if host is None: continue
-                quality = scraper_utils.get_quality(video, host, QUALITIES.HD720)
-                direct = False
-
-            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
-            
-            match = re.search('class="views-infos">(\d+)', html, re.DOTALL)
-            if match:
-                hoster['views'] = int(match.group(1))
-    
-            match = re.search('class="rating">(\d+)%', html, re.DOTALL)
-            if match:
-                hoster['rating'] = match.group(1)
-            hosters.append(hoster)
-        return hosters
-    
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
         results = []
         if not re.search('Sorry, but nothing matched', html):
             norm_title = scraper_utils.normalize_title(title)
-            for item in dom_parser.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
-                match = re.search('href="([^"]+)"\s+title="([^"]+)', item)
-                if match:
-                    url, match_title_year = match.groups()
+            for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
+                for attrs, _content in dom_parser2.parse_dom(item, 'a', req=['href', 'title']):
+                    match_url, match_title_year = attrs['href'], attrs['title']
                     if re.search('S\d{2}E\d{2}', match_title_year): continue  # skip episodes
                     if re.search('TV\s*SERIES', match_title_year, re.I): continue  # skip shows
                     match_title, match_year = scraper_utils.extra_year(match_title_year)
                     if (not year or not match_year or year == match_year) and norm_title in scraper_utils.normalize_title(match_title):
-                        result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(url)}
+                        result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                         results.append(result)
 
         return results

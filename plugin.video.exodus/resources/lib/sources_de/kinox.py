@@ -29,12 +29,16 @@ class source:
         self.priority = 1
         self.language = ['de']
         self.domains = ['kinox.to', 'kinox.ag', 'kinox.tv', 'kinox.me', 'kinox.am', 'kinox.nu', 'kinox.pe', 'kinox.sg']
-        self.base_link = 'http://kinox.to'
+        self._base_link = None
         self.search_link = '/Search.html?q=%s'
         self.get_links_epi = '/aGET/MirrorByEpisode/?Addr=%s&SeriesID=%s&Season=%s&Episode=%s'
         self.mirror_link = '/aGET/Mirror/%s&Hoster=%s&Mirror=%s'
 
-        self.base_link = cache.get(self.__get_base_url, 120, self.base_link)
+    @property
+    def base_link(self):
+        if not self._base_link:
+            self._base_link = cache.get(self.__get_base_url, 120, self.domains[0])
+        return self._base_link
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -90,8 +94,7 @@ class source:
 
             r = client.parseDOM(r, 'ul', attrs={'id': 'HosterList'})[0]
             r = re.compile('(<li.+?/li>)', re.DOTALL).findall(r)
-            r = [(client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'}, ret='rel'),
-                  client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'})) for i in r]
+            r = [(client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'}, ret='rel'), client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'})) for i in r]
             r = [(client.replaceHTMLCodes(i[0][0]), i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], re.findall('class="Named"[^>]*>([^<]+).*?(\d+)/(\d+)', i[1])) for i in r]
             r = [(i[0], i[1][0][0].lower().rsplit('.', 1)[0], i[1][0][1], i[1][0][2]) for i in r if len(i[1]) > 0]
@@ -135,8 +138,7 @@ class source:
             r = client.request(urlparse.urljoin(self.base_link, self.search_link % imdb))
             r = client.parseDOM(r, 'table', attrs={'id': 'RsltTableStatic'})
             r = client.parseDOM(r, 'tr')
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'),
-                  client.parseDOM(i, 'img', attrs={'alt': 'language'}, ret='src')) for i in r]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'img', attrs={'alt': 'language'}, ret='src')) for i in r]
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
             r = [(i[0], i[1], re.findall('.+?(\d+)\.', i[2])) for i in r]
             r = [(i[0], i[1], i[2][0] if len(i[2]) > 0 else '0') for i in r]
@@ -155,14 +157,14 @@ class source:
             for domain in self.domains:
                 try:
                     url = 'http://%s' % domain
-                    r = client.request(url)
-                    r = client.parseDOM(r, 'meta', attrs={'name': 'keywords'})[0]
-                    if 'kino.to' in r.lower():
+                    r = client.request(url, limit=1, timeout='10')
+                    r = client.parseDOM(r, 'meta', attrs={'name': 'keywords'}, ret='content')
+                    if r and 'kino.to' in r[0].lower():
                         return url
                 except:
                     pass
-
-            return fallback
         except:
-            return fallback
+            pass
+
+        return fallback
 

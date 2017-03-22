@@ -42,8 +42,19 @@ def retrieveVideoInfo(video_id):
 
             img_link = re.compile('image:"(.+?)"').findall(html)[0]
             video.set_thumb_image(img_link)
+
+        if ('.m3u8' in video_link):
+            try:
+                html = http.HttpClient().get_html_content(url=video_link)
+                final_video_link = 'http' + re.compile('http(.+?)m3u8').findall(html)[0] + 'm3u8'
+            except:
+                final_video_link = video_link
+
+        if final_video_link == '' or final_video_link == None:
+            final_video_link = video_link
+
         video.set_stopped(False)
-        video.add_stream_link(STREAM_QUAL_SD, video_link)
+        video.add_stream_link(STREAM_QUAL_SD, final_video_link)
         
     except: 
         video.set_stopped(True)

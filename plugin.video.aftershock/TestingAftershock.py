@@ -235,7 +235,7 @@ class TestingLive(unittest.TestCase):
         livetv.sources().getLiveGenre()
         sourceurl = call.livetv()
         self.assertGreater(len(sourceurl), 0, 'No Sources found')
-        return
+        return sourceurl
 
     def test_cinefunGenerateJSON(self):
         from resources.lib.sources import cinefun
@@ -262,6 +262,19 @@ class TestingLive(unittest.TestCase):
         call = solid.source()
         self.source(call, True)
 
+    def test_solidPlayURL(self):
+        from resources.lib.sources import solid
+        call = solid.source()
+        sourceurl = self.source(call, True)
+        sourceurl = sourceurl[1]
+        for item in sourceurl:
+            if item['name'] == 'AAJ TAK':
+                url = item['url']
+                resolvedUrl = call.resolve(url, None)
+                self.assertIsNotNone(resolvedUrl, "Unable to resolve")
+            print item
+        print ""
+
     def test_staticGenerateJSON(self):
         from resources.lib.sources import staticjson
         call = staticjson.source()
@@ -271,6 +284,19 @@ class TestingLive(unittest.TestCase):
         from resources.lib.sources import swift
         call = swift.source()
         self.source(call, True)
+
+    def test_swiftPlayURL(self):
+        from resources.lib.sources import swift
+        call = swift.source()
+        sourceurl = self.source(call, True)
+        sourceurl = sourceurl[1]
+        for item in sourceurl:
+            if item['name'] == 'AAJ TAK':
+                url = item['url']
+                resolvedUrl = call.resolve(url, None)
+                self.assertIsNotNone(resolvedUrl, "Unable to resolve")
+            print item
+        print ""
 
 if __name__ == '__main__' :
     unittest.main()

@@ -15,21 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
+import base64
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-
 BASE_URL = 'http://viooz.ac'
-GK_URL = '/p9/plugins/gkpluginsphp.php'
-XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -51,53 +48,39 @@ class Scraper(scraper.Scraper):
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
-            page_html = self._http_get(url, cache_limit=.5)
-
-            if re.search('<span[^>]+>\s*Low Quality\s*</span>', page_html):
-                quality = QUALITIES.LOW
-            else:
-                quality = QUALITIES.HIGH
-            
-            for match in re.finditer('gkpluginsphp.*?link\s*:\s*"([^"]+)', page_html):
-                data = {'link': match.group(1)}
-                headers = XHR
-                headers['Referer'] = url
-                gk_url = urlparse.urljoin(self.base_url, GK_URL)
-                html = self._http_get(gk_url, data=data, headers=headers, cache_limit=.25)
-                js_result = scraper_utils.parse_json(html, gk_url)
-                if 'link' in js_result:
-                    if isinstance(js_result['link'], list):
-                        sources = dict((link['link'], scraper_utils.height_get_quality(link['label'])) for link in js_result['link'])
-                        direct = True
-                    elif js_result['link'].startswith('http'):
-                        sources = {js_result['link']: quality}
-                        direct = False
+            html = self._http_get(url, cache_limit=.5)
+            iframes = []
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'boxed'}):
+                iframes += dom_parser2.parse_dom(fragment, 'iframe', req='src')
+                
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'contenu'}):
+                for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href') + iframes:
+                    stream_url = attrs.get('href') or attrs.get('src')
+                    if '/go/' not in stream_url: continue
                     
-                    for source in sources:
-                        if direct:
-                            host = self._get_direct_hostname(source)
-                        else:
-                            host = urlparse.urlparse(source).hostname
-                        hoster = {'multi-part': False, 'url': source, 'class': self, 'quality': sources[source], 'host': host, 'rating': None, 'views': None, 'direct': direct}
-                        hosters.append(hoster)
-            
-            for fragment in dom_parser.parse_dom(page_html, 'div', {'class': 'tabContent'}):
-                for stream_url in dom_parser.parse_dom(fragment, 'iframe', ret='src') + dom_parser.parse_dom(fragment, 'a', ret='href'):
+                    stream_url = stream_url.split('/')[-1]
+                    if stream_url.startswith('aHR0c'):
+                        stream_url = base64.b64decode(stream_url)
                     host = urlparse.urlparse(stream_url).hostname
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                     hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': False}
                     hosters.append(hoster)
 
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
+        results = []
         search_url = urlparse.urljoin(self.base_url, '/search')
         params = {'q': title, 's': 't'}
         html = self._http_get(search_url, params=params, cache_limit=1)
-        pattern = 'class="title_list">\s*<a\s+href="([^"]+)"\s+title="([^"]+)\((\d{4})\)'
-        results = []
-        for match in re.finditer(pattern, html):
-            url, title, match_year = match.groups('')
-            if not year or not match_year or year == match_year:
-                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': match_year}
-                results.append(result)
+        for _attrs, content in dom_parser2.parse_dom(html, 'span', {'class': 'title_list'}):
+            match = dom_parser2.parse_dom(content, 'a', req=['href', 'title'])
+            if match:
+                attrs = match[0].attrs
+                match_url, match_title_year = attrs['href'], attrs['title']
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
+                if not year or not match_year or year == match_year:
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                    results.append(result)
+                    
         return results

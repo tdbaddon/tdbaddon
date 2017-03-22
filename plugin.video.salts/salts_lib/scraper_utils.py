@@ -35,7 +35,6 @@ from salts_lib.constants import *  # @UnusedWildImport
 cleanse_title = utils2.cleanse_title
 to_datetime = utils2.to_datetime
 normalize_title = utils2.normalize_title
-to_datetime = utils2.to_datetime
 
 def disable_sub_check(settings):
     for i in reversed(xrange(len(settings))):
@@ -263,11 +262,10 @@ def parse_movie_link(link):
     return parse_link(link, movie, movie_patterns)
 
 def parse_link(link, item, patterns):
-    delim = '[._ -]'
     link = cleanse_title(urllib.unquote(link))
     file_name = link.split('/')[-1]
     for pattern in patterns:
-        pattern = pattern.format(delim=delim)
+        pattern = pattern.format(delim=DELIM)
         match = re.search(pattern, file_name, re.I)
         if match:
             match = dict((k, v) for k, v in match.groupdict().iteritems() if v is not None)
@@ -283,7 +281,7 @@ def parse_link(link, item, patterns):
     item['dubbed'] = True if 'DUBBED' in extra else False
     
     if 'airdate' in item and item['airdate']:
-        pattern = '{delim}+'.format(delim=delim)
+        pattern = '{delim}+'.format(delim=DELIM)
         item['airdate'] = re.sub(pattern, '-', item['airdate'])
         item['airdate'] = utils2.to_datetime(item['airdate'], "%Y-%m-%d").date()
         

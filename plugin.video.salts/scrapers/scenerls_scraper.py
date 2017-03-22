@@ -20,7 +20,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -68,9 +68,10 @@ class Scraper(scraper.Scraper):
 
     def __get_post_links(self, html):
         sources = {}
-        post = dom_parser.parse_dom(html, 'div', {'class': 'postContent'})
+        post = dom_parser2.parse_dom(html, 'div', {'class': 'postContent'})
         if post:
-            for result in re.finditer('<p\s+style="text-align:\s*center;">(.*?)<br.*?<h2(.*?)(?:<h4|<h3|</div>|$)', post[0], re.DOTALL):
+            post = post[0].content
+            for result in re.finditer('<p\s+style="text-align:\s*center;">(.*?)<br.*?<h2(.*?)(?:<h4|<h3|</div>|$)', post, re.DOTALL):
                 release, links = result.groups()
                 release = re.sub('</?[^>]*>', '', release)
                 release = release.upper()
@@ -99,7 +100,7 @@ class Scraper(scraper.Scraper):
         all_html = self._http_get(search_url, headers=headers, require_debrid=True, cache_limit=1)
         
         html = ''
-        for post in dom_parser.parse_dom(all_html, 'div', {'class': 'post'}):
+        for _attrs, post in dom_parser2.parse_dom(all_html, 'div', {'class': 'post'}):
             if CATEGORIES[video_type] in post:
                 html += post
                 

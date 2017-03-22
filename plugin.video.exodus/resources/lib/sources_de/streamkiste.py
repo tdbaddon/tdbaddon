@@ -109,10 +109,10 @@ class source:
 
             r = client.request(query)
             r = json.loads(r)
-            r = [(i, r[i].get('url', ''), r[i].get('title', ''), r[i].get('extra', {}).get('names', ''),
-                  r[i].get('extra', {}).get('date', '0')) for i in r]
+            r = [(i, r[i].get('url', ''), r[i].get('title', ''), r[i].get('extra', {}).get('names', ''), r[i].get('extra', {}).get('date', '0')) for i in r]
             r = [(i[0], i[1], client.replaceHTMLCodes(i[2]), client.replaceHTMLCodes(i[3]), i[4]) for i in r]
-            r = [i[1] for i in r if t == cleantitle.get(i[2]) or t == cleantitle.get(i[3]) and i[4] in y][0]
+            r = sorted(r, key=lambda i: int(i[4]), reverse=True)  # with year > no year
+            r = [i[1] for i in r if (t == cleantitle.get(i[2]) or t == cleantitle.get(i[3])) and i[4] in y][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)

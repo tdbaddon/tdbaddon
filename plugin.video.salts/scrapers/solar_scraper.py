@@ -18,7 +18,7 @@
 import re
 import urlparse
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            for tr in dom_parser.parse_dom(html, 'tr', {'id': 'link_\d+'}):
+            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': 'link_\d+'}):
                 link_pattern = 'href="[^"]+go.php\?url=([^"]+).*?class="qualityCell[^>]*>\s*([^<]+)'
                 link_match = re.search(link_pattern, tr, re.DOTALL)
                 if link_match:
@@ -69,10 +69,9 @@ class Scraper(scraper.Scraper):
         else:
             results = []
             html = self. _http_get(self.base_url, params={'s': title}, cache_limit=8)
-            titles = dom_parser.parse_dom(html, 'a', {'class': 'coverImage'}, ret='title')
-            links = dom_parser.parse_dom(html, 'a', {'class': 'coverImage'}, ret='href')
             norm_title = scraper_utils.normalize_title(title)
-            for match_title_year, match_url in zip(titles, links):
+            for attrs, _content in dom_parser2.parse_dom(html, 'a', {'class': 'coverImage'}, req=['title', 'href']):
+                match_title_year, match_url = attrs['title'], attrs['href']
                 if 'Season' in match_title_year and 'Episode' in match_title_year: continue
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 match_norm_title = scraper_utils.normalize_title(match_title)
@@ -87,9 +86,9 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, '/watch-series')
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for fragment in dom_parser.parse_dom(html, 'ul', {'class': 'letter-box-container'}):
-            for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', fragment):
-                match_url, match_title = match.groups()
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'ul', {'class': 'letter-box-container'}):
+            for attrs, match_title in dom_parser2.parse_dom(fragment, 'a', req='href'):
+                match_url = attrs['href']
                 if norm_title in scraper_utils.normalize_title(match_title):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)

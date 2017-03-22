@@ -18,15 +18,17 @@
 # Translators:
 # Translators:
 # Translators:
+# Calin Gabriel Mihai, 2017
 # Cojocaru Nicolae - Gheorhe, 2015
 # lambda81, 2016
+# Marian Temisan, 2017
 # Patrick G, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-05 23:24+0000\n"
-"Last-Translator: Patrick G\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"Last-Translator: Marian Temisan\n"
 "Language-Team: Romanian (http://www.transifex.com/tv-addons/exodus/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +86,7 @@ msgstr "Anul"
 
 msgctxt "#32013"
 msgid "People"
-msgstr "Actori"
+msgstr "Persoane"
 
 msgctxt "#32014"
 msgid "Languages"
@@ -144,7 +146,7 @@ msgstr "Calendar TV"
 
 msgctxt "#32028"
 msgid "People Search"
-msgstr "Căutare Actori"
+msgstr "Căutare Persoane"
 
 msgctxt "#32029"
 msgid "People (Movies)"
@@ -200,7 +202,7 @@ msgstr "Liste Episoade"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
-msgstr "Nu a fost găsit nici un cont Trakt sau IMDb"
+msgstr "Nu a fost găsit cont Trakt sau IMDb"
 
 msgctxt "#32043"
 msgid "[B]SETTINGS[/B] : General"
@@ -678,4 +680,16 @@ msgstr "1) Vizitați : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Când vi se solicită, introduceți : [COLOR skyblue]%s[/COLOR]"
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "Reda Aleator"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "In Redare"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Nu s-a gasit nimic pentru redare"
 

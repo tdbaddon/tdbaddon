@@ -18,8 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
-import re,urllib,urlparse,string
+import re, urllib, urlparse, string
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -34,8 +33,7 @@ class source:
         self.domains = ['afdah.tv']
         self.base_link = 'http://afdah.tv'
         self.search_link = '/wp-content/themes/afdah/ajax-search.php'
-        self.post_link = 'query=%s&item=title'
-
+        self.post_link = 'yreuq=%s&meti=title'
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -62,7 +60,6 @@ class source:
         except:
             pass
 
-
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
@@ -74,12 +71,12 @@ class source:
             r = proxy.request(url, 'movie')
 
             d = re.findall('(/embed\d*/\d+)', r)
-            d = [x for y,x in enumerate(d) if x not in d[:y]]
+            d = [x for y, x in enumerate(d) if x not in d[:y]]
 
             s = client.parseDOM(r, 'a', ret='href')
             s = [proxy.parse(i) for i in s]
             s = [i for i in s if i.startswith('http')]
-            s = [x for y,x in enumerate(s) if x not in s[:y]]
+            s = [x for y, x in enumerate(s) if x not in s[:y]]
 
             q = re.findall('This movie is of poor quality', r)
             quality = 'SD' if not q else 'CAM'
@@ -127,11 +124,8 @@ class source:
         except:
             return sources
 
-
     def resolve(self, url):
         return url
-
-
 
     def __caesar(self, plaintext, shift):
         lower = string.ascii_lowercase
@@ -156,7 +150,7 @@ class source:
                 i += 4
             except:
                 break
-    
+
         return t
 
 

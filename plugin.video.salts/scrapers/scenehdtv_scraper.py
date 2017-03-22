@@ -16,12 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import datetime
-import re
 import urlparse
 import kodi
 import utils
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -29,7 +28,7 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'http://scenehdtv.download'
+BASE_URL = 'http://hdtv720p.download'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -47,25 +46,24 @@ class Scraper(scraper.Scraper):
         return 'SceneHDTV'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
         sources = {}
+        source_url = self.get_url(video)
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'entry-content'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'entry-content'})
             if fragment:
-                for td in dom_parser.parse_dom(fragment[0], 'td'):
-                    for stream_url in dom_parser.parse_dom(td, 'a', ret='href'):
-                        meta = scraper_utils.parse_episode_link(stream_url)
-                        sources[stream_url] = scraper_utils.height_get_quality(meta['height'])
+                for _attrs, td in dom_parser2.parse_dom(fragment[0].content, 'td'):
+                    for attrs, _content in dom_parser2.parse_dom(td, 'a', req='href'):
+                        meta = scraper_utils.parse_episode_link(attrs['href'])
+                        sources[attrs['href']] = scraper_utils.height_get_quality(meta['height'])
 
-        for source in sources:
-            if source:
-                if scraper_utils.excluded_link(source): continue
-                host = urlparse.urlparse(source).hostname
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': sources[source], 'direct': False}
-                hosters.append(hoster)
+        for source, values in sources.iteritems():
+            if scraper_utils.excluded_link(source): continue
+            host = urlparse.urlparse(source).hostname
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': values, 'direct': False}
+            hosters.append(hoster)
         return hosters
 
     def get_url(self, video):
@@ -83,19 +81,19 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         posts = []
         html = self._http_get(self.base_url, params={'s': title}, require_debrid=True, cache_limit=2)
-        for post in dom_parser.parse_dom(html, 'header', {'class': 'entry-header'}):
+        for _attrs, post in dom_parser2.parse_dom(html, 'header', {'class': 'entry-header'}):
             if self.__too_old(post): continue
-            posts += dom_parser.parse_dom(post, 'h2', {'class': 'entry-title'})
+            posts += [r.content for r in dom_parser2.parse_dom(post, 'h2', {'class': 'entry-title'})]
             
         return self._blog_proc_results('\n'.join(posts), 'href="(?P<url>[^"]+)[^>]+>(?P<post_title>.*?)</a>', '', video_type, title, year)
 
     def __too_old(self, post):
         filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
-        post_date = dom_parser.parse_dom(post, 'time', {'class': 'updated'}, ret='datetime')
+        post_date = dom_parser2.parse_dom(post, 'time', {'class': 'updated'}, req='datetime')
         if filter_days and post_date:
-            today = datetime.date.today()
             try:
-                post_date = datetime.date.fromtimestamp(utils.iso_2_utc(post_date[0]))
+                today = datetime.date.today()
+                post_date = datetime.date.fromtimestamp(utils.iso_2_utc(post_date[0].attrs['datetime']))
                 if today - post_date > filter_days:
                     return True
             except ValueError:

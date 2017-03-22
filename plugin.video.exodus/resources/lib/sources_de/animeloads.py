@@ -163,6 +163,7 @@ class source:
             r = [(client.parseDOM(i[0], 'a', ret='href'), client.parseDOM(i[0], 'a'), i[1][0] if len(i[1]) > 0 else '0') for i in r if len(i[0]) > 0]
             r = [(i[0][0], i[1][0], re.sub('<.+?>|</.+?>', '', i[2])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], i[2].strip()) for i in r if i[2]]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) in t and i[2] in y][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]

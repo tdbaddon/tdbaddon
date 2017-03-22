@@ -129,7 +129,7 @@ class source:
 
             for i in r:
                 try:
-                    #control.log('Filmyto SOURCES %s' % str(i))
+                    control.log('Filmyto SOURCES %s' % str(i))
 
                     host = urlparse.urlparse(i[0]).netloc
                     host = host.replace('www.', '').replace('embed.', '')

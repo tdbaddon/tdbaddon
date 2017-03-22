@@ -179,6 +179,7 @@ def parallel_get_sources(scraper, video):
     if hosters is None: hosters = []
     if kodi.get_setting('filter_direct') == 'true':
         hosters = [hoster for hoster in hosters if not hoster['direct'] or utils2.test_stream(hoster)]
+
     found = False
     for hoster in hosters:
         if hoster['host'] is None:
@@ -186,6 +187,8 @@ def parallel_get_sources(scraper, video):
             found = True
         elif not hoster['direct']:
             hoster['host'] = hoster['host'].lower().strip()
+            if isinstance(hoster['host'], unicode):
+                hoster['host'] = hoster['host'].encode('utf-8')
     
     if found:
         hosters = [hoster for hoster in hosters if hoster['host'] is not None]

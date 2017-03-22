@@ -20,7 +20,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -55,6 +55,11 @@ class Scraper(scraper.Scraper):
                 return hosters
             
             hosters = self.__get_embed_sources(html, page_url)
+            if not hosters:
+                match = re.search('''html\('<iframe[^>]+src="(http[^"]+)''', html)
+                if match:
+                    hosters = self.__get_iframe_sources(match.group(1), page_url)
+                    
             if not hosters:
                 hosters = self.__get_ajax_sources(html, page_url)
                 
@@ -96,9 +101,10 @@ class Scraper(scraper.Scraper):
         hosters = []
         headers = {'Referer': page_url}
         html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
-        sources = dom_parser.parse_dom(html, 'div', {'class': 'dzst-player'}, ret='data-dzst-player')
+        log_utils.log(html)
+        sources = dom_parser2.parse_dom(html, 'div', {'class': 'dzst-player'}, req='data-dzst-player')
         if sources:
-            sources = sources[0].replace('&#x3D;', '=')
+            sources = scraper_utils.cleanse_title(sources[0].attrs['data-dzst-player'].replace('&#x3D;', '='))
             js_data = scraper_utils.parse_json(scraper_utils.cleanse_title(sources), iframe_url)
             sources = js_data.get('tr', {})
             for key in sources:
@@ -145,10 +151,10 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         html = self._http_get(self.base_url, cache_limit=48)
         results = []
-        fragment = dom_parser.parse_dom(html, 'div', {'id': 'fil'})
-        norm_title = scraper_utils.normalize_title(title)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'fil'})
         if fragment:
-            for match in re.finditer('href="([^"]+)"\s+title="([^"]+)', fragment[0]):
+            norm_title = scraper_utils.normalize_title(title)
+            for match in re.finditer('href="([^"]+)"\s+title="([^"]+)', fragment[0].content):
                 url, match_title = match.groups()
                 if norm_title in scraper_utils.normalize_title(match_title):
                     result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}

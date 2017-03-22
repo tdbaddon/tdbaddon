@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -54,24 +54,27 @@ class Scraper(scraper.Scraper):
             html = self._http_get(page_url, cache_limit=.5)
             
             best_quality = QUALITIES.HIGH
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'entry'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
             if fragment:
-                for match in re.finditer('href="[^"]*/movies-quality/[^"]*[^>]*>([^<]+)', fragment[0], re.I):
+                for match in re.finditer('href="[^"]*/movies-quality/[^"]*[^>]*>([^<]+)', fragment[0].content, re.I):
                     quality = Q_MAP.get(match.group(1).upper(), QUALITIES.HIGH)
                     if Q_ORDER[quality] > Q_ORDER[best_quality]:
                         best_quality = quality
                         
             sources = []
-            for vid_url in dom_parser.parse_dom(html, 'a', ret='data-vid'):
-                vid_url = dom_parser.parse_dom(scraper_utils.cleanse_title(vid_url), 'iframe', ret='src')
-                if vid_url:
+            for attrs, _content in dom_parser2.parse_dom(html, 'a', req='data-vid'):
+                try:
+                    vid_url = dom_parser2.parse_dom(scraper_utils.cleanse_title(attrs['data-vid']), 'iframe', req='src')
                     sources.append(vid_url[0])
+                except:
+                    pass
                 
-            fragment = dom_parser.parse_dom(html, 'table', {'class': 'additional-links'})
+            fragment = dom_parser2.parse_dom(html, 'table', {'class': 'additional-links'})
             if fragment:
-                sources += re.findall('href="([^"]+)', fragment[0])
+                sources += dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                     
             for stream_url in sources:
+                stream_url = stream_url.attrs.get('href') or stream_url.attrs.get('src')
                 host = urlparse.urlparse(stream_url).hostname
                 quality = scraper_utils.get_quality(video, host, best_quality)
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}

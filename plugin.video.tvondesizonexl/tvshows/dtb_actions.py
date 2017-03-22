@@ -47,19 +47,31 @@ DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
  
 LIVE_CHANNELS = {"9XM":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_music.png|Referer=http://www.lyngsat.com/",
                         "channelType": "IND",
-                        "channelUrl": "http://ind19-lh.akamaihd.net/i/ind19_9xm@440010/master.m3u8"},
+                        "channelUrl": "http://ind19-lh.akamaihd.net/i/ind19_9xm@440010/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
+                 "9XJhakaas":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_jhakaas.png|Referer=http://www.lyngsat.com/",
+                        "channelType": "IND",
+                        "channelUrl": "http://ind28-lh.akamaihd.net/i/ind28_9xjhakaas@424619/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
+                 "Aajtak":{"iconimage":"http://www.lyngsat.com/logo/tv/aa/aaj_tak.png|Referer=http://lyngsat.com",
+                        "channelType": "IND",
+                        "channelUrl": "http://vidgyor.com/prod/aajtak/aajtak_auth.json"},
+                 "9XTashan":{"iconimage":"https://www.lyngsat.com/logo/tv/num/9x_tashan.png|Referer=http://www.lyngsat.com/",
+                        "channelType": "IND",
+                        "channelUrl": "http://ind28-lh.akamaihd.net/i/ind28_9xtashan@424619/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
                  "IBN7": {"iconimage":"http://www.lyngsat.com/logo/tv/ii/ibn7.png|Referer=http://www.lyngsat.com/",
                           "channelType": "IND",
-                          "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on"},
+                          "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
                  "India TV": {"iconimage":"http://www.lyngsat.com/logo/tv/ii/india_tv_in.png|Referer=http://www.lyngsat.com/",
                               "channelType": "IND",
-                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8"},
+                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
                  "NDTV 24x7": {"iconimage":"http://www.lyngsat.com/logo/tv/nn/ndtv_24x7.png|Referer=http://www.lyngsat.com/",
                               "channelType": "IND",
-                              "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b7/_definst_/ndtv/live/ndtv247live.smil/playlist.m3u8"},
+                              "channelUrl": "http://ndtvstream-lh.akamaihd.net/i/ndtv_24x7_1@300633/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
                  "NDTV India": {"iconimage":"http://www.lyngsat.com/logo/tv/nn/ndtv_india.png|Referer=http://www.lyngsat.com/",
                               "channelType": "IND",
-                              "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b7/_definst_/ndtv/live/ndtvindialive.smil/playlist.m3u8"},
+                              "channelUrl": "http://ndtvstream-lh.akamaihd.net/i/ndtv_india_1@300634/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
+                 "NDTV Prime": {"iconimage":"http://www.lyngsat.com/logo/tv/nn/ndtv_prime.png|Referer=http://www.lyngsat.com/",
+                              "channelType": "IND",
+                              "channelUrl": "http://ndtvstream-lh.akamaihd.net/i/ndtv_profit_1@300635/master.m3u8|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"},
                  "NDTV GoodTimes": {"iconimage":"http://www.lyngsat.com/logo/tv/nn/ndtv_good_times.png|Referer=http://www.lyngsat.com/",
                               "channelType": "IND",
                               "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b3/_definst_/ndtv/live/ndtvgoodtime.smil/playlist.m3u8"}
@@ -322,7 +334,14 @@ def watch_live(req_attrib, modelMap):
         tv_channel = live_file_channels[channel_name]
         
     item = xbmcgui.ListItem(label=channel_name, iconImage=tv_channel['iconimage'], thumbnailImage=tv_channel['iconimage'])
-    item.setProperty('streamLink', tv_channel['channelUrl'])
+    if 'aajtak' in tv_channel['channelUrl']:
+        html = HttpClient().get_html_content(url=tv_channel['channelUrl'])
+        token = re.compile('\"token\"\:\"(.+?)\"').findall(html)[0]
+        finalLink = "http://atcdn.vidgyor.com/at-origin/mobilelive/playlist.m3u8" + token
+        item.setProperty('streamLink', finalLink)
+    else:
+        item.setProperty('streamLink', tv_channel['channelUrl'])
+
     modelMap['live_item'] = item
     
 def _prepare_tv_show_items_(tv_shows, channel_type, channel_name, selected_tv_show_name, tv_show_items, is_finished_shows, modelMap, index):

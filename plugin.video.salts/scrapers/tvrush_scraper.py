@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -46,9 +46,9 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         url = urlparse.urljoin(self.base_url, link)
         html = self._http_get(url, cache_limit=.5)
-        stream = dom_parser.parse_dom(html, 'a', {'class': '[^"]*hostLink[^"]*'}, ret='href')
+        stream = dom_parser2.parse_dom(html, 'a', {'class': '[^"]*hostLink[^"]*'}, req='href')
         if stream:
-            return stream[0]
+            return stream[0].attrs['href']
         else:
             return link
 
@@ -58,10 +58,11 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'embeds'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'embeds'})
             if fragment:
-                links = dom_parser.parse_dom(fragment[0], 'a', ret='href')
-                hosts = dom_parser.parse_dom(fragment[0], 'div', {'class': 'searchTVname'})
+                fragment = fragment[0].content
+                links = [r.attrs['href'] for r in dom_parser2.parse_dom(fragment, 'a', req='href')]
+                hosts = [r.content for r in dom_parser2.parse_dom(fragment, 'div', {'class': 'searchTVname'})]
                 for stream_url, host in map(None, links, hosts):
                     quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
@@ -80,25 +81,23 @@ class Scraper(scraper.Scraper):
         if title:
             html = self._http_get(self.base_url, cache_limit=48)
             norm_title = scraper_utils.normalize_title(title)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'container seo'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'container seo'})
             if fragment:
-                titles = dom_parser.parse_dom(fragment[0], 'a', {'class': 'link'})
-                urls = dom_parser.parse_dom(fragment[0], 'a', {'class': 'link'}, ret='href')
                 match_year = ''
-                for match_url, match_title in zip(urls, titles):
+                for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', {'class': 'link'}, req='href'):
                     if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                        result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                        result = {'url': scraper_utils.pathify_url(attrs['href']), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                         results.append(result)
                     
-            for table in dom_parser.parse_dom(html, 'table'):
-                for td in dom_parser.parse_dom(table, 'td'):
-                    match_url = re.search('href="([^"]+)', td)
-                    match_title = dom_parser.parse_dom(td, 'div', {'class': 'searchTVname'})
-                    match_year = dom_parser.parse_dom(td, 'span', {'class': 'right'})
+            for _attrs, table in dom_parser2.parse_dom(html, 'table'):
+                for _attrs, td in dom_parser2.parse_dom(table, 'td'):
+                    match_url = dom_parser2.parse_dom(td, 'a', req='href')
+                    match_title = dom_parser2.parse_dom(td, 'div', {'class': 'searchTVname'})
+                    match_year = dom_parser2.parse_dom(td, 'span', {'class': 'right'})
                     if match_url and match_title:
-                        match_url = match_url.group(1)
-                        match_title = match_title[0]
-                        match_year = match_year[0] if match_year else ''
+                        match_url = match_url[0].attrs['href']
+                        match_title = match_title[0].content
+                        match_year = match_year[0].content if match_year else ''
                     
                         if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                             result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}

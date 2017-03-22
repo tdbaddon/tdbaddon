@@ -95,6 +95,12 @@ class Scraper(scraper.Scraper):
                                 quality = scraper_utils.get_quality(video, host, self._get_title_quality(result['title']))
                                 hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': False}
                                 hoster['extra'] = scraper_utils.cleanse_title(result['title'])
+                                if video.video_type == VIDEO_TYPES.MOVIE:
+                                    meta = scraper_utils.parse_movie_link(hoster['extra'])
+                                else:
+                                    meta = scraper_utils.parse_episode_link(hoster['extra'])
+                                if 'format' in meta: hoster['format'] = meta['format']
+                                
                                 hosters.append(hoster)
                                 seen_urls.add(stream_url)
                 else:

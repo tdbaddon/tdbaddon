@@ -29,12 +29,12 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['fr']
-        self.domains = ['dpstreaming.tv']
+        self.domains = ['filmenstreaminghd.co']
 
         #http://dpstreaming.tv/?s=max+steel
         #http://dpstreaming.tv/max-steel-vostfr-streaming-telecharger/']
 
-        self.base_link = 'http://dpstreaming.tv'
+        self.base_link = 'http://www.filmenstreaminghd.co'
         self.key_link = '?'
         self.moviesearch_link = 's=%s'
         self.tvsearch_link = 's=%s'
@@ -121,6 +121,13 @@ class source:
             r = client.request(url, XHR=True, referer=url)
             r = re.sub('(\n|\t)', '', r)
 
+            langue = re.compile('<b class=\"fa fa-cc\"></b><span>(.+?)</span>', re.MULTILINE | re.DOTALL).findall(r)[0]
+            if langue == 'VF':
+                langue = 'fr'
+
+            quality2 = re.compile('<div class=\"kalite\">(.+?)</div>', re.MULTILINE | re.DOTALL).findall(r)[0]
+            quality2 = re.sub('-', '', quality2)
+
             if season and episode:
                 unLien0a = client.parseDOM(r, 'div', attrs={'class': 'dizi-bolumleri'})[0]
                 r = re.compile('Saison\s+0%s\s+\-\s+Episode\s+0%s(.+?)class=\"dropit-trigger\">' % (season, episode), re.MULTILINE | re.DOTALL).findall(unLien0a)[0]
@@ -153,14 +160,6 @@ class source:
                 host = host.encode('utf-8')
 
                 url = url.encode('utf-8')
-
-                #langue = re.compile('<b class=\"fa fa-cc\"></b><span>(.+?)</span>', re.MULTILINE | re.DOTALL).findall(r)[0]
-                #if langue == 'VF':
-                #    langue = 'fr'
-                langue = 'fr'
-
-                quality2 = 'SD' #re.compile('<div class=\"kalite\">(.+?)</div>', re.MULTILINE | re.DOTALL).findall(r)[0]
-                quality2 = re.sub('-', '', quality2)
 
                 if '1080p' in quality2:
                     quality = '1080p'

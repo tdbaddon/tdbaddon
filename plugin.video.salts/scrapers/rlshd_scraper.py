@@ -15,11 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -59,11 +58,11 @@ class Scraper(scraper.Scraper):
 
     def __get_post_links(self, html, video):
         sources = {}
-        post = dom_parser.parse_dom(html, 'article', {'id': 'post-\d+'})
+        post = dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'})
         if post:
-            for fragment in dom_parser.parse_dom(post[0], 'h2'):
-                for match in re.finditer('href="([^"]+)', fragment):
-                    stream_url = match.group(1)
+            for _attrs, fragment in dom_parser2.parse_dom(post[0].content, 'h2'):
+                for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href'):
+                    stream_url = attrs['href']
                     meta = scraper_utils.parse_episode_link(stream_url)
                     release_quality = scraper_utils.height_get_quality(meta['height'])
                     host = urlparse.urlparse(stream_url).hostname

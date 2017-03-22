@@ -21,7 +21,7 @@ import datetime
 import kodi
 import utils
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -51,9 +51,9 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            post = dom_parser.parse_dom(html, 'div', {'class': 'entry-content'})
+            post = dom_parser2.parse_dom(html, 'div', {'class': 'entry-content'})
             if post:
-                for match in re.finditer('(?:href="|>)(https?://[^"<]+)', post[0]):
+                for match in re.finditer('(?:href="|>)(https?://[^"<]+)', post[0].content):
                     stream_url = match.group(1)
                     if scraper_utils.excluded_link(stream_url) or 'imdb.com' in stream_url: continue
                     host = urlparse.urlparse(stream_url).hostname
@@ -81,19 +81,19 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         posts = []
         html = self._http_get(self.base_url, params={'s': title, 'submit': 'Search'}, require_debrid=True, cache_limit=2)
-        for post in dom_parser.parse_dom(html, 'article', {'id': 'post-\d+'}):
+        for _attr, post in dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'}):
             if self.__too_old(post): continue
-            posts += dom_parser.parse_dom(post, 'h1', {'class': 'entry-title'})
+            posts += [post.content for post in dom_parser2.parse_dom(post, 'h1', {'class': 'entry-title'})]
             
         return self._blog_proc_results('\n'.join(posts), 'href="(?P<url>[^"]+)[^>]+>(?P<post_title>.*?)</a>', '', video_type, title, year)
 
     def __too_old(self, post):
         filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
-        post_date = dom_parser.parse_dom(post, 'time', {'class': 'entry-date'}, ret='datetime')
+        post_date = dom_parser2.parse_dom(post, 'time', {'class': 'entry-date'}, req='datetime')
         if filter_days and post_date:
             today = datetime.date.today()
             try:
-                post_date = datetime.date.fromtimestamp(utils.iso_2_utc(post_date[0]))
+                post_date = datetime.date.fromtimestamp(utils.iso_2_utc(post_date[0].content))
                 if today - post_date > filter_days:
                     return True
             except ValueError:

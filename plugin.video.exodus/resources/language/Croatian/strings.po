@@ -26,12 +26,13 @@
 # lambda81, 2016
 # lambda81, 2016
 # Mario Mijic, 2017
+# Zvonimir Brajković, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-04 16:25+0000\n"
-"Last-Translator: Mario Mijic\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"Last-Translator: Zvonimir Brajković\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/exodus/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -683,4 +684,16 @@ msgstr "1) Posjeti : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) Kada Vas se pita unesite: [COLOR skyblue]%s[/COLOR]"
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "Pokreni nasumično"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "Pokrenuto"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Nije pronađeno ništa za reprodukciju"
 

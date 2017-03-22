@@ -22,7 +22,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -33,8 +33,8 @@ import scraper
 QUALITY_MAP = {'HD720P': QUALITIES.HD720, 'HD720P+': QUALITIES.HD720, 'DVDRIP/STANDARDDEF': QUALITIES.HIGH,
                'SD/DVD480P': QUALITIES.HIGH, 'DVDSCREENER': QUALITIES.HIGH, 'FASTSTREAM/LOWQUALITY': QUALITIES.HIGH}
 BASE_URL = 'http://www.icefilms.info'
-LIST_URL = BASE_URL + '/membersonly/components/com_iceplayer/video.php?h=374&w=631&vid=%s&img='
-AJAX_URL = '/membersonly/components/com_iceplayer/video.phpAjaxResp.php?id=%s&s=%s&iqs=&url=&m=%s&cap= &sec=%s&t=%s'
+LIST_URL = BASE_URL + '/membersonly/components/com_iceplayer/video.php?h=374&w=631&vid={vid_id}&img='
+AJAX_URL = '/membersonly/components/com_iceplayer/video.phpAjaxResp.php?id={link_id}&s={s}&iqs=&url=&m={m}&cap= &sec={secret}&t={t}'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -52,11 +52,11 @@ class Scraper(scraper.Scraper):
         return 'IceFilms'
 
     def resolve_link(self, link):
-        url, query = link.split('?', 1)
-        data = urlparse.parse_qs(query, True)
-        url = urlparse.urljoin(self.base_url, url)
+        parts = urlparse.urlparse(link)
+        data = urlparse.parse_qs(parts.query, True)
+        url = urlparse.urljoin(self.base_url, parts.path)
         params = {'s': data['id'][0], 't': data['t'][0], 'app_id': 'SALTS'}
-        headers = {'Referer': LIST_URL % (data['t'][0])}
+        headers = {'Referer': LIST_URL.format(vid_id=data['t'][0])}
         html = self._http_get(url, params=params, data=data, headers=headers, cache_limit=.25)
         match = re.search('url=(http.*)', html)
         if match:
@@ -87,7 +87,7 @@ class Scraper(scraper.Scraper):
                 match = re.search('(?:\s+|,)m\s*=(\d+)', html)
                 m_start = int(match.group(1))
                 
-                for fragment in dom_parser.parse_dom(html, 'div', {'class': 'ripdiv'}):
+                for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'ripdiv'}):
                     match = re.match('<b>(.*?)</b>', fragment)
                     if match:
                         q_str = match.group(1).replace(' ', '').upper()
@@ -100,9 +100,9 @@ class Scraper(scraper.Scraper):
                         link_id, label, host_fragment = match.groups()
                         source = {'multi-part': False, 'quality': quality, 'class': self, 'version': label, 'rating': None, 'views': None, 'direct': False}
                         source['host'] = re.sub('(</?[^>]*>)', '', host_fragment)
-                        s = s_start + random.randint(3, 1000)
-                        m = m_start + random.randint(21, 1000)
-                        url = AJAX_URL % (link_id, s, m, secret, t)
+                        s = s_start + random.randint(3, 100)
+                        m = m_start + random.randint(21, 100)
+                        url = AJAX_URL.format(link_id=link_id, s=s, m=m, secret=secret, t=t)
                         source['url'] = url
                         sources.append(source)
             except Exception as e:

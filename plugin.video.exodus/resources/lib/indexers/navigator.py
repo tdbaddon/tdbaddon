@@ -278,7 +278,7 @@ class navigator:
         yes = control.yesnoDialog(control.lang(32056).encode('utf-8'), '', '')
         if not yes: return
         from resources.lib.modules import cache
-        cache.clear()
+        cache.cache_clear()
         control.infoDialog(control.lang(32057).encode('utf-8'), sound=True, icon='INFO')
 
 

@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -51,9 +51,9 @@ class Scraper(scraper.Scraper):
             if match:
                 url = urlparse.urljoin(self.base_url, match.group(1))
                 html = self._http_get(url, cache_limit=.5)
-                redirect = dom_parser.parse_dom(html, 'meta', {'http-equiv': 'refresh'}, ret='content')
+                redirect = dom_parser2.parse_dom(html, 'meta', {'http-equiv': 'refresh'}, req='content')
                 if redirect:
-                    match = re.search('url=([^"]+)', redirect[0])
+                    match = re.search('url=([^"]+)', redirect[0].attrs['content'])
                     if match: return match.group(1)
 
         return link
@@ -66,22 +66,16 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
 
             for match in re.finditer('<td>\s*<a\s+href="([^"]+)(?:[^>]+>){2}\s*(?:&nbsp;)*\s*([^<]+)', html):
-                url, host = match.groups()
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': scraper_utils.pathify_url(url), 'direct': False}
+                stream_url, host = match.groups()
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
                 hosters.append(hoster)
 
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
-        html = self._http_get(url, cache_limit=8)
-        season_pattern = 'href="([^"]+season-%s/)' % (video.season)
-        match = re.search(season_pattern, html)
-        if match:
-            season_url = match.group(1)
-            episode_pattern = 'href="([^"]+season-%s-episode-%s/)' % (video.season, video.episode)
-            airdate_pattern = '{day} {short_month} {year}\s*<a\s+href="([^"]+)'
-            return self._default_get_episode_url(season_url, video, episode_pattern, airdate_pattern=airdate_pattern)
+        episode_pattern = 'href="([^"]+season-%s-episode-%s/)' % (video.season, video.episode)
+        airdate_pattern = '{day} {short_month} {year}\s*<a\s+href="([^"]+)'
+        return self._default_get_episode_url(show_url, video, episode_pattern, airdate_pattern=airdate_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -89,9 +83,9 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, '/watch-series/')
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'li'):
-            for match in re.finditer('title="([^"]+)[^>]+href="([^"]+)', item):
-                match_title, match_url = match.groups()
+        for _attrs, item in dom_parser2.parse_dom(html, 'li'):
+            for attrs, _content in dom_parser2.parse_dom(item, 'a', req=['title', 'href']):
+                match_title, match_url = attrs['title'], attrs['href']
                 if norm_title in scraper_utils.normalize_title(match_title):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)

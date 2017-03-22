@@ -9,14 +9,12 @@ from . import utils
 def _process_related_videos(provider, context, re_match):
     result = []
 
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    provider.set_content_type(context, kodion.constants.content_type.EPISODES)
 
     page_token = context.get_param('page_token', '')
     video_id = context.get_param('video_id', '')
     if video_id:
         json_data = provider.get_client(context).get_related_videos(video_id=video_id, page_token=page_token)
-        if not v3.handle_error(provider, context, json_data):
-            return False
         result.extend(v3.response_to_items(provider, context, json_data, process_next_page=False))
         pass
 
@@ -24,7 +22,6 @@ def _process_related_videos(provider, context, re_match):
 
 
 def _process_recommendations(provider, context, re_match):
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
     result = []
 
     page_token = context.get_param('page_token', '')
@@ -36,14 +33,12 @@ def _process_recommendations(provider, context, re_match):
 
 
 def _process_popular_right_now(provider, context, re_match):
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    provider.set_content_type(context, kodion.constants.content_type.EPISODES)
 
     result = []
 
     page_token = context.get_param('page_token', '')
     json_data = provider.get_client(context).get_popular_videos(page_token=page_token)
-    if not v3.handle_error(provider, context, json_data):
-        return False
     result.extend(v3.response_to_items(provider, context, json_data))
 
     return result
@@ -56,14 +51,10 @@ def _process_browse_channels(provider, context, re_match):
     guide_id = context.get_param('guide_id', '')
     if guide_id:
         json_data = provider.get_client(context).get_guide_category(guide_id)
-        if not v3.handle_error(provider, context, json_data):
-            return False
         result.extend(v3.response_to_items(provider, context, json_data))
         pass
     else:
         json_data = provider.get_client(context).get_guide_categories()
-        if not v3.handle_error(provider, context, json_data):
-            return False
         result.extend(v3.response_to_items(provider, context, json_data))
         pass
 
@@ -71,7 +62,6 @@ def _process_browse_channels(provider, context, re_match):
 
 
 def _process_disliked_videos(provider, context, re_match):
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
     result = []
 
     page_token = context.get_param('page_token', '')
@@ -86,7 +76,7 @@ def _process_live_events(provider, context, re_match):
     def _sort(x):
         return x.get_aired()
 
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    provider.set_content_type(context, kodion.constants.content_type.EPISODES)
 
     result = []
 
@@ -102,7 +92,7 @@ def _process_live_events(provider, context, re_match):
 
 def _process_description_links(provider, context, re_match):
     def _extract_urls(_video_id):
-        provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+        provider.set_content_type(context, kodion.constants.content_type.EPISODES)
 
         result = []
 
@@ -221,7 +211,7 @@ def _process_description_links(provider, context, re_match):
 
 
 def _process_new_uploaded_videos_tv(provider, context, re_match):
-    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    provider.set_content_type(context, kodion.constants.content_type.EPISODES)
 
     result = []
     next_page_token = context.get_param('next_page_token', '')

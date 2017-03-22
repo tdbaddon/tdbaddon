@@ -697,6 +697,7 @@ class resolver:
             elif url.startswith("//"): url = 'http:%s' % url
             
             if 'video.nhl.com' in url: url = self.nhl(url)
+            elif 'nhl.com/video/embed/' in url: url = self.nhl2(url)
             else: url = HostedMediaFile(url=url).resolve()
             return url
         except:
@@ -712,5 +713,12 @@ class resolver:
         except:
             return
             
+    def nhl2(self, url):
+        try:
+            result = getUrl(url).result
+            url = common.parseDOM(result, "meta", ret="content", attrs = { "itemprop": "contentURL" })[0]
+            return url
+        except:
+            return
 
 main()

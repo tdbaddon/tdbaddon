@@ -52,7 +52,7 @@ def request(url):
 
         try:
             z=False
-            hmf = urlresolver.HostedMediaFile(url,include_disabled=False, include_universal=False)
+            hmf = urlresolver.HostedMediaFile(url,include_disabled=True, include_universal=False)
             if hmf:
                 print 'yay! we can resolve this one'
                 z = hmf.resolve()

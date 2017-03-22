@@ -20,7 +20,7 @@ import time
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -52,9 +52,9 @@ class Scraper(scraper.Scraper):
         if html.startswith('http'):
             return html
         else:
-            iframe_url = dom_parser.parse_dom(html, 'iframe', {'class': 'frame'}, ret='src')
+            iframe_url = dom_parser2.parse_dom(html, 'iframe', {'class': 'frame'}, req='src')
             if iframe_url:
-                return iframe_url[0]
+                return iframe_url[0].attrs['src']
 
     def get_sources(self, video):
         source_url = self.get_url(video)
@@ -63,11 +63,11 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            fragment = dom_parser.parse_dom(html, 'table', {'id': 'streamlinks'})
+            fragment = dom_parser2.parse_dom(html, 'table', {'id': 'streamlinks'})
             if fragment:
                 max_age = 0
                 now = min_age = int(time.time())
-                for row in dom_parser.parse_dom(fragment[0], 'tr', {'id': 'pt\d+'}):
+                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': 'pt\d+'}):
                     if video.video_type == VIDEO_TYPES.MOVIE:
                         pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
                     else:
@@ -116,7 +116,6 @@ class Scraper(scraper.Scraper):
                 num = 0
                 mult = 0
             age = now - (num * mult)
-            # print '%s, %s, %s, %s' % (num, unit, mult, age)
         return age
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
@@ -125,10 +124,10 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, data={'searchquery': title, 'searchin': search_in}, cache_limit=8)
         try:
-            fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*search-page[^"]*'})
-            fragment = dom_parser.parse_dom(fragment[0], 'table')
-            for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', fragment[0]):
-                match_url, match_title_year = match.groups()
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': '[^"]*search-page[^"]*'})
+            fragment = dom_parser2.parse_dom(fragment[0].content, 'table')
+            for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = attrs['href']
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if not year or not match_year or year == match_year:
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}

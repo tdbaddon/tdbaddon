@@ -21,7 +21,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib.utils2 import i18n
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
@@ -96,8 +96,7 @@ class Scraper(scraper.Scraper):
         while page_url and not too_old:
             url = urlparse.urljoin(self.base_url, page_url[0])
             html = self._http_get(url, require_debrid=True, cache_limit=1)
-            posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
-            for post in posts:
+            for _attr, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
                 if self.__too_old(post):
                     too_old = True
                     break
@@ -114,7 +113,8 @@ class Scraper(scraper.Scraper):
                                 if match and norm_title == scraper_utils.normalize_title(match.group(1)):
                                     return scraper_utils.pathify_url(url)
                 
-            page_url = dom_parser.parse_dom(html, 'a', {'class': 'nextpostslink'}, ret='href')
+            page_url = dom_parser2.parse_dom(html, 'a', {'class': 'nextpostslink'}, req='href')
+            if page_url: page_url = page_url[0].attrs['href']
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, require_debrid=True, cache_limit=1)
         if video_type == VIDEO_TYPES.TVSHOW:
             seen_urls = {}
-            for post in dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'}):
+            for _attr, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
                 if CATEGORIES[video_type] not in post: continue
                 match = re.search('<span>\s*TAGS:\s*</span>\s*<a\s+href="([^"]+)[^>]+>([^<]+)', post, re.I)
                 if match:
@@ -133,9 +133,9 @@ class Scraper(scraper.Scraper):
                     seen_urls[show_url] = result
                     results.append(result)
         elif video_type == VIDEO_TYPES.MOVIE:
-            headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
-            posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
             norm_title = scraper_utils.normalize_title(title)
+            headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
+            posts = [result.content for result in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})]
             for heading, post in zip(headings, posts):
                 if CATEGORIES[video_type] not in post or self.__too_old(post): continue
                 post_url, post_title = heading

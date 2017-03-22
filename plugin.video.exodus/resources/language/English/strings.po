@@ -674,3 +674,15 @@ msgstr ""
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr ""
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr ""
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "Playing"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Nothing found to play"

@@ -91,7 +91,7 @@ class tvshows:
         self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
 
-    def get(self, url, idx=True):
+    def get(self, url, idx=True, create_directory=True):
         try:
             try: url = getattr(self, url + '_link')
             except: pass
@@ -136,7 +136,7 @@ class tvshows:
                 if idx == True: self.worker()
 
 
-            if idx == True: self.tvshowDirectory(self.list)
+            if idx == True and create_directory == True: self.tvshowDirectory(self.list)
             return self.list
         except:
             pass
@@ -1050,6 +1050,8 @@ class tvshows:
 
         nextMenu = control.lang(32053).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
 
         for i in items:
             try:
@@ -1083,6 +1085,8 @@ class tvshows:
 
 
                 cm = []
+
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=season&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, urllib.quote_plus(systitle), urllib.quote_plus(year), urllib.quote_plus(imdb), urllib.quote_plus(tvdb))))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
@@ -1170,6 +1174,8 @@ class tvshows:
 
         queueMenu = control.lang(32065).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -1183,6 +1189,8 @@ class tvshows:
                 except: pass
 
                 cm = []
+
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=show&url=%s)' % (sysaddon, urllib.quote_plus(i['url']))))
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))

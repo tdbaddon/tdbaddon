@@ -20,16 +20,15 @@ import hashlib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib import jsunpack
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
-import xml.etree.ElementTree as ET
 
-BASE_URL = 'http://watch5s.to'
+BASE_URL = 'http://watch5s.is'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD-720P': QUALITIES.HD720}
 
 class Scraper(scraper.Scraper):
@@ -57,8 +56,8 @@ class Scraper(scraper.Scraper):
             html = self._http_get(page_url, headers=headers, cache_limit=2)
             if video.video_type == VIDEO_TYPES.MOVIE:
                 sources.update(self.__scrape_sources(html, page_url))
-                pages = set(dom_parser.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, ret='href'))
-                active = set(dom_parser.parse_dom(html, 'a', {'class': '[^"]*active[^"]*'}, ret='href'))
+                pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, req='href')])
+                active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*active[^"]*'}, req='href')])
                 for page in list(pages - active):
                     page_url = urlparse.urljoin(self.base_url, page)
                     html = self._http_get(page_url, headers=headers, cache_limit=2)
@@ -69,9 +68,9 @@ class Scraper(scraper.Scraper):
                     html = self._http_get(page_url, headers=headers, cache_limit=2)
                     sources.update(self.__scrape_sources(html, page_url))
         
-        for source in sources:
+        for source, values in sources.iteritems():
             if not source.lower().startswith('http'): continue
-            if sources[source]['direct']:
+            if values['direct']:
                 host = self._get_direct_hostname(source)
                 if host != 'gvideo':
                     stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
@@ -80,7 +79,7 @@ class Scraper(scraper.Scraper):
             else:
                 host = urlparse.urlparse(source).hostname
                 stream_url = source
-            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': sources[source]['quality'], 'views': None, 'rating': None, 'url': stream_url, 'direct': sources[source]['direct']}
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': values['quality'], 'views': None, 'rating': None, 'url': stream_url, 'direct': values['direct']}
             hosters.append(hoster)
         return hosters
 
@@ -108,9 +107,9 @@ class Scraper(scraper.Scraper):
     def __get_grab_url(self, html, page_url):
         cookie = ''
         grab_url = ''
-        episode_id = dom_parser.parse_dom(html, 'input', {'name': 'episodeID'}, ret='value')
+        episode_id = dom_parser2.parse_dom(html, 'input', {'name': 'episodeID'}, req='value')
         if episode_id:
-            episode_id = episode_id[0]
+            episode_id = episode_id[0].attrs['value']
             token = scraper_utils.get_token(hash_len=8)
             key = hashlib.md5('!@#$%^&*(' + episode_id + token).hexdigest()
             value = hashlib.md5(token + page_url + episode_id).hexdigest()
@@ -154,7 +153,8 @@ class Scraper(scraper.Scraper):
     
     def __get_links_from_js(self, html, page_url):
         sources = {}
-        for src_url in dom_parser.parse_dom(html, 'script', ret='src'):
+        for src_url in dom_parser2.parse_dom(html, 'script', req='src'):
+            src_url = src_url.attrs['src']
             if 'slug=' in src_url:
                 headers = {'Referer': page_url}
                 js_src = self._http_get(src_url, headers=headers, cache_limit=.5)
@@ -211,16 +211,14 @@ class Scraper(scraper.Scraper):
         
     def __match_episode(self, video, html):
         matches = []
-        links = dom_parser.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, ret="href")
-        labels = dom_parser.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'})
-        for ep_label, ep_url in zip(labels, links):
+        for attrs, ep_label in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, req="href"):
             match = re.search('Ep(?:isode)?\s+(\d+)', ep_label, re.I)
             if match:
                 ep_num = match.group(1)
                 try: ep_num = int(ep_num)
                 except: ep_num = 0
                 if int(video.episode) == ep_num:
-                    matches.append(ep_url)
+                    matches.append(attrs['href'])
         return matches
         
     def search(self, video_type, title, year, season=''):
@@ -229,16 +227,16 @@ class Scraper(scraper.Scraper):
         headers = {'Accept-Language': 'en-US,en;q=0.5'}
         html = self._http_get(search_url, params={'q': title}, headers=headers, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'ml-item'}):
-            match_title = dom_parser.parse_dom(item, 'span', {'class': 'mli-info'})
-            match_url = re.search('href="([^"]+)', item, re.DOTALL)
-            year_frag = dom_parser.parse_dom(item, 'img', ret='alt')
-            is_episodes = dom_parser.parse_dom(item, 'span', {'class': 'mli-eps'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'ml-item'}):
+            match_title = dom_parser2.parse_dom(item, 'span', {'class': 'mli-info'})
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            year_frag = dom_parser2.parse_dom(item, 'img', req='alt')
+            is_episodes = dom_parser2.parse_dom(item, 'span', {'class': 'mli-eps'})
             
             if (video_type == VIDEO_TYPES.MOVIE and not is_episodes) or (video_type == VIDEO_TYPES.SEASON and is_episodes):
                 if match_title and match_url:
-                    match_url = match_url.group(1)
-                    match_title = match_title[0]
+                    match_url = match_url[0].attrs['href']
+                    match_title = match_title[0].content
                     match_title = re.sub('</?h2>', '', match_title)
                     match_title = re.sub('\s+\d{4}$', '', match_title)
                     if video_type == VIDEO_TYPES.SEASON:
@@ -248,7 +246,7 @@ class Scraper(scraper.Scraper):
                     match_url = urlparse.urljoin(match_url, 'watch/')
                     match_year = ''
                     if video_type == VIDEO_TYPES.MOVIE and year_frag:
-                        match = re.search('\s*-\s*(\d{4})$', year_frag[0])
+                        match = re.search('\s*-\s*(\d{4})$', year_frag[0].attrs['alt'])
                         if match:
                             match_year = match.group(1)
     

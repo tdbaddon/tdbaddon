@@ -20,7 +20,7 @@ import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
-import dom_parser
+import dom_parser2
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
@@ -47,9 +47,9 @@ class Scraper(scraper.Scraper):
         if not link.startswith('http'):
             stream_url = urlparse.urljoin(self.base_url, link)
             html = self._http_get(stream_url, cache_limit=0)
-            iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+            iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
             if iframe_url:
-                return iframe_url[0]
+                return iframe_url[0].attrs['src']
         else:
             return link
         
@@ -59,16 +59,15 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'alternativesc'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'alternativesc'})
             if fragment:
-                for item in dom_parser.parse_dom(fragment[0], 'div', {'class': 'altercolumn'}):
-                    link = dom_parser.parse_dom(item, 'a', {'class': 'altercolumnlink'}, ret='href')
-                    host = dom_parser.parse_dom(item, 'span')
+                for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'altercolumn'}):
+                    link = dom_parser2.parse_dom(item, 'a', {'class': 'altercolumnlink'}, req='href')
+                    host = dom_parser2.parse_dom(item, 'span')
                     if link and host:
-                        link = link[0]
+                        link, host = link[0].attrs['href'], host[0].content
                         if not link.startswith('http'):
                             link = source_url + link
-                        host = host[0]
                         quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                         hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': link, 'direct': False}
                         hosters.append(hoster)
@@ -80,14 +79,14 @@ class Scraper(scraper.Scraper):
         headers = {'Referer': self.base_url}
         params = {'search': title}
         html = self._http_get(self.base_url, params=params, headers=headers, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'listCard'}):
-            match_title = dom_parser.parse_dom(item, 'p', {'class': 'extraTitle'})
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_year = dom_parser.parse_dom(item, 'p', {'class': 'cardYear'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'listCard'}):
+            match_title = dom_parser2.parse_dom(item, 'p', {'class': 'extraTitle'})
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_year = dom_parser2.parse_dom(item, 'p', {'class': 'cardYear'})
             if match_url and match_title:
-                match_url = match_url[0]
-                match_title = match_title[0]
-                match_year = match_year[0] if match_year else ''
+                match_url = match_url[0].attrs['href']
+                match_title = match_title[0].content
+                match_year = match_year[0].content if match_year else ''
                 if not year or not match_year or year == match_year:
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)

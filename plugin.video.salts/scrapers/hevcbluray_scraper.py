@@ -20,7 +20,7 @@ import urlparse
 import re
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
@@ -52,20 +52,20 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
             is_3d = False
             page_quality = QUALITIES.HD720
-            title = dom_parser.parse_dom(html, 'title')
+            title = dom_parser2.parse_dom(html, 'title')
             if title:
-                title = title[0]
+                title = title[0].content
                 match = re.search('(\d{3,})p', title)
                 if match:
                     page_quality = scraper_utils.height_get_quality(match.group(1))
                 
                 is_3d = True if re.search('\s+3D\s+', title) else False
             
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'entry'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
             if fragment:
-                for item in dom_parser.parse_dom(fragment[0], 'h3'):
-                    for match in re.finditer('href="([^"]+)', item):
-                        stream_url = match.group(1)
+                for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'h3'):
+                    for attrs, _content in dom_parser2.parse_dom(item, 'a', req='href'):
+                        stream_url = attrs['href']
                         host = urlparse.urlparse(stream_url).hostname
                         source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': page_quality, 'views': None, 'rating': None, 'direct': False}
                         source['format'] = 'x265'
@@ -77,10 +77,10 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'cover'}):
-            match = re.search('href="([^"]+)[^>]*title="([^"]+)', item)
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'cover'}):
+            match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
             if match:
-                match_url, match_title_year = match.groups()
+                match_url, match_title_year = match[0].attrs['href'], match[0].attrs['title'] 
                 if re.search('S\d+E\d+', match_title_year, re.I): continue
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if not year or not match_year or year == match_year:

@@ -22,7 +22,7 @@ import urllib
 import base64
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib import jsunpack
 from salts_lib.constants import VIDEO_TYPES
@@ -57,16 +57,16 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'repro'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'repro'})
             if fragment:
-                iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
+                iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
                 if iframe_url:
-                    html = self._http_get(iframe_url[0], cache_limit=.5)
-                    fragment = dom_parser.parse_dom(html, 'div', {'id': 'botones'})
-                    if fragment:
-                        for media_url in dom_parser.parse_dom(fragment[0], 'a', ret='href'):
+                    html = self._http_get(iframe_url[0].attrs['src'], cache_limit=.5)
+                    for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'id': 'botones'}):
+                        for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href'):
+                            media_url = attrs['href']
                             media_url = media_url.replace(' ', '')
-                            if any([media_url for u in (self.base_url, 'pelispedia.biz', 'pelispedia.vip', 'pelispedia.co') if u in media_url]):
+                            if self.get_name().lower() in media_url:
                                 headers = {'Referer': iframe_url[0]}
                                 html = self._http_get(media_url, headers=headers, cache_limit=.5)
                                 hosters += self.__get_page_links(html)
@@ -191,13 +191,13 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'li', {'class': '[^"]*bpM12[^"]*'}):
-            title_frag = dom_parser.parse_dom(item, 'h2')
-            year_frag = dom_parser.parse_dom(item, 'div', {'class': '[^"]*sectionDetail[^"]*'})
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
+        for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*bpM12[^"]*'}):
+            title_frag = dom_parser2.parse_dom(item, 'h2')
+            year_frag = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*sectionDetail[^"]*'})
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
             if title_frag and match_url:
-                match_url = match_url[0]
-                match = re.search('(.*?)<br>', title_frag[0])
+                match_url = match_url[0].attrs['href']
+                match = re.search('(.*?)<br>', title_frag[0].content)
                 if match:
                     match_title = match.group(1)
                 else:
@@ -205,10 +205,11 @@ class Scraper(scraper.Scraper):
                     
                 match_year = ''
                 if year_frag:
-                    match = re.search('(\d{4})', year_frag[0])
+                    match = re.search('(\d{4})', year_frag[0].content)
                     if match:
                         match_year = match.group(1)
 
+                log_utils.log('%s - %s - %s' % (match_title, match_url, match_year))
                 if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)

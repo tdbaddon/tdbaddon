@@ -8,30 +8,22 @@ from . import info_labels
 
 def to_video_item(context, video_item):
     context.log_debug('Converting VideoItem')
-    major_version = context.get_system_version().get_version()[0]
-    thumb = video_item.get_image() if video_item.get_image() else u'DefaultVideo.png'
-    title = video_item.get_title() if video_item.get_title() else video_item.get_name()
-    fanart = ''
-    settings = context.get_settings()
-    item = xbmcgui.ListItem(label=title)
-    if video_item.get_fanart() and settings.show_fanart():
-        fanart = video_item.get_fanart()
-    if major_version <= 12:
-        item.setIconImage(thumb)
-        item.setProperty("Fanart_Image", fanart)
-    elif major_version <= 15:
-        item.setArt({'thumb': thumb, 'fanart': fanart})
-        item.setIconImage(thumb)
-    else:
-        item.setArt({'icon': thumb, 'thumb': thumb, 'fanart': fanart})
+    item = xbmcgui.ListItem(label=video_item.get_name(),
+                            iconImage=u'DefaultVideo.png',
+                            thumbnailImage=video_item.get_image())
 
+    # only set fanart is enabled
+    settings = context.get_settings()
+    if video_item.get_fanart() and settings.show_fanart():
+        item.setProperty(u'fanart_image', video_item.get_fanart())
+        pass
     if video_item.get_context_menu() is not None:
         item.addContextMenuItems(video_item.get_context_menu(), replaceItems=video_item.replace_context_menu())
         pass
-
-    if video_item.use_dash() and settings.dash_support_addon():
-        item.setProperty('inputstreamaddon', 'inputstream.adaptive')
-        item.setProperty('inputstream.adaptive.manifest_type', 'mpd')
+    if video_item.use_dash():
+        item.setProperty('inputstreamaddon', 'inputstream.mpd')
+    else:
+        item.setProperty('inputstreamaddon', '')
 
     item.setProperty(u'IsPlayable', u'true')
 
@@ -53,23 +45,15 @@ def to_video_item(context, video_item):
 
 def to_audio_item(context, audio_item):
     context.log_debug('Converting AudioItem')
-    major_version = context.get_system_version().get_version()[0]
-    thumb = audio_item.get_image() if audio_item.get_image() else u'DefaultAudio.png'
-    title = audio_item.get_name()
-    fanart = ''
-    settings = context.get_settings()
-    item = xbmcgui.ListItem(label=title)
-    if audio_item.get_fanart() and settings.show_fanart():
-        fanart = audio_item.get_fanart()
-    if major_version <= 12:
-        item.setIconImage(thumb)
-        item.setProperty("Fanart_Image", fanart)
-    elif major_version <= 15:
-        item.setArt({'thumb': thumb, 'fanart': fanart})
-        item.setIconImage(thumb)
-    else:
-        item.setArt({'icon': thumb, 'thumb': thumb, 'fanart': fanart})
+    item = xbmcgui.ListItem(label=audio_item.get_name(),
+                            iconImage=u'DefaultAudio.png',
+                            thumbnailImage=audio_item.get_image())
 
+    # only set fanart is enabled
+    settings = context.get_settings()
+    if audio_item.get_fanart() and settings.show_fanart():
+        item.setProperty(u'fanart_image', audio_item.get_fanart())
+        pass
     if audio_item.get_context_menu() is not None:
         item.addContextMenuItems(audio_item.get_context_menu(), replaceItems=audio_item.replace_context_menu())
         pass

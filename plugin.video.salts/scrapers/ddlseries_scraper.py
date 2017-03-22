@@ -19,7 +19,7 @@ import re
 import urlparse
 import log_utils  # @UnusedImport
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -27,7 +27,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 import scraper
 
-BASE_URL = 'http://www.ddlseries.me'
+BASE_URL = 'http://www.ddlseries.top'
 QUALITY_MAP = {'SD-XVID': QUALITIES.MEDIUM, 'DVD9': QUALITIES.HIGH, 'SD-X264': QUALITIES.HIGH,
                'HD-720P': QUALITIES.HD720, 'HD-1080P': QUALITIES.HD1080}
 HEADER_MAP = {'ul.png': 'uploaded.net', 'tb.png': 'turbobit.net', 'utb.png': 'uptobox.com'}
@@ -51,11 +51,11 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         if 'protect-links' in link:
             html = self._http_get(link, require_debrid=True, cache_limit=0)
-            item = dom_parser.parse_dom(html, 'li')
+            item = dom_parser2.parse_dom(html, 'li')
             if item:
-                stream_url = dom_parser.parse_dom(item[0], 'a', ret='href')
+                stream_url = dom_parser2.parse_dom(item[0].content, 'a', ret='href')
                 if stream_url:
-                    return stream_url[0]
+                    return stream_url[0].content
         else:
             return link
     
@@ -98,28 +98,59 @@ class Scraper(scraper.Scraper):
             return season_url
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        results = []
         try: season = int(season)
         except: season = 0
+        
+        results = self.__list(title)
+        if not results:
+            results = self.__search(title, season)
+
+        filtered_results = []
+        norm_title = scraper_utils.normalize_title(title)
+        for result in results:
+            if norm_title in scraper_utils.normalize_title(result['title']) and (not season or season == int(result['season'])):
+                result['title'] = '%s - Season %s [%s]' % (result['title'], result['season'], result['q_str'])
+                if Q_ORDER[result['quality']] <= self.max_qorder:
+                    filtered_results.append(result)
+
+        filtered_results.sort(key=lambda x: Q_ORDER[x['quality']], reverse=True)
+        return filtered_results
+
+    def __list(self, title):
+        results = []
+        params = {'do': 'charmap', 'name': 'tv-series-list', 'args': '/' + title[0]}
+        search_url = urlparse.urljoin(self.base_url, 'index.php')
+        html = self._http_get(search_url, params=params, require_debrid=True, cache_limit=48)
+        
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'downpara-list'})
+        if fragment:
+            for match in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = match.attrs['href']
+                match_title_extra = match.content
+                match_title, match_season, q_str, is_pack = self.__get_title_parts(match_title_extra)
+                if is_pack: continue
+                quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality,
+                          'season': match_season, 'q_str': q_str}
+                results.append(result)
+        return results
+
+    def __search(self, title, season):
+        results = []
         query = '%s season %s' % (title, season)
         data = {'story': query, 'do': 'search', 'subaction': 'search'}
         html = self._http_get(self.base_url + '/', data=data, require_debrid=True, cache_limit=8)
-        for div in dom_parser.parse_dom(html, 'div', {'class': 'cover_infos_title'}):
-            for match in re.finditer('href="([^"]+)[^>]*>(.*?)</a>', div):
-                match_url, match_title = match.groups()
+        for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'cover_infos_title'}):
+            for attrs, content in dom_parser2.parse_dom(div, 'a', req='href'):
+                match_url = attrs['href']
                 if '/tv-pack/' in match_url: continue
-                
-                match_title = re.sub('(</?span[^>]*>|</?b>)', '', match_title)
-                match_season = re.search('Season\s+(\d+)', match_title, re.I)
-                if match_season:
-                    match_season = int(match_season.group(1))
-                    if not season or season == match_season:
-                        _q_str, quality = self.__get_quality(match_url)
-                        if Q_ORDER[quality] <= self.max_qorder:
-                            result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality}
-                            results.append(result)
+                match_title, match_season, q_str, is_pack = self.__get_title_parts(content)
+                if is_pack: continue
+                q_str, quality = self.__get_quality(match_url)
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '',
+                          'quality': quality, 'season': match_season, 'q_str': q_str}
+                results.append(result)
         
-        results.sort(key=lambda x: Q_ORDER[x['quality']], reverse=True)
         return results
 
     def __get_quality(self, match_url):
@@ -130,3 +161,17 @@ class Scraper(scraper.Scraper):
         
         return '', QUALITIES.HIGH
     
+    def __get_title_parts(self, title):
+        title = re.sub('</?[^>]*>', '', title)
+        title = title.replace('&nbsp;', ' ')
+        match = re.search('(.*?)\s*-?\s*Season\s+(\d+)\s*\[?([^]]+)', title)
+        if match:
+            match_title, match_season, extra = match.groups()
+            extra = extra.upper()
+            is_pack = True if '(PACK)' in extra else False
+            extra = re.sub('\s*\(PACK\)', '', extra)
+            extra = re.sub('\s+', '-', extra)
+            return match_title, match_season, extra.upper(), is_pack
+        else:
+            return title, 0, '', False
+ 

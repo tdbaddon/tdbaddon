@@ -21,11 +21,12 @@ import urlparse
 import xbmcgui
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import DELIM
 from salts_lib.utils2 import i18n
 import scraper
 
@@ -156,15 +157,11 @@ class Scraper(scraper.Scraper):
     
     def __get_movie_sources(self, source_url):
         hosters = []
-        query = urlparse.parse_qs(urlparse.urlparse(source_url).query)
-        if 'movie_id' in query:
-            movie_id = query['movie_id']
-        else:
-            movie_id = self.__get_movie_id(source_url)
-        
+        query = kodi.parse_query(urlparse.urlparse(source_url).query)
+        movie_id = query.get('movie_id') or self.__get_movie_id(source_url)
         if movie_id:
             details_url = urlparse.urljoin(self.movie_base_url, MOVIE_DETAILS_URL)
-            detail_data = self._json_get(details_url, params={'movie_id': movie_id[0]}, cache_limit=24)
+            detail_data = self._json_get(details_url, params={'movie_id': movie_id}, cache_limit=24)
             try: torrents = detail_data['data']['movie']['torrents']
             except KeyError: torrents = []
             try: hashes = [torrent['hash'].lower() for torrent in torrents]
@@ -187,7 +184,9 @@ class Scraper(scraper.Scraper):
     def __get_movie_id(self, source_url):
         url = urlparse.urljoin(self.movie_base_url, source_url)
         html = self._http_get(url, cache_limit=24)
-        return dom_parser.parse_dom(html, 'div', {'id': 'movie-info'}, ret='data-movie-id')
+        match = dom_parser2.parse_dom(html, 'div', {'id': 'movie-info'}, req='data-movie-id')
+        if match:
+            return match[0].attrs['data-movie-id']
 
     def __get_hash_data(self, hashes):
         new_data = {}
@@ -207,18 +206,18 @@ class Scraper(scraper.Scraper):
     def __find_episode(self, show_url, video):
         url = urlparse.urljoin(self.tv_base_url, show_url)
         html = self._http_get(url, cache_limit=2)
-        magnets = dom_parser.parse_dom(html, 'a', {'class': 'magnet'}, ret='href')
-        titles = dom_parser.parse_dom(html, 'a', {'class': 'magnet'}, ret='title')
-        titles = [re.sub('\s+[Mm]agnet\s+[Ll]ink', '', title) for title in titles]
         hashes = []
-        for i, magnet in enumerate(magnets):
-            match = re.search('urn:btih:(.*?)(?:&|$)', magnet, re.I)
+        for attrs, _magnet in dom_parser2.parse_dom(html, 'a', {'class': 'magnet'}, req=['href', 'title']):
+            magnet_link, magnet_title = attrs['href'], attrs['title']
+            match = re.search('urn:btih:(.*?)(?:&|$)', magnet_link, re.I)
             if match:
-                hashes.append((match.group(1), titles[i]))
+                magnet_title = re.sub(re.compile('\s+magnet\s+link', re.I), '', magnet_title)
+                hashes.append((match.group(1), magnet_title))
         
-        episode_pattern = 'S%02dE%02d' % (int(video.season), int(video.episode))
+        episode_pattern = 'S%02d\s*E%02d' % (int(video.season), int(video.episode))
         if video.ep_airdate:
-            airdate_pattern = '%d(-|.| )%02d(-|.| )%02d' % (video.ep_airdate.year, video.ep_airdate.month, video.ep_airdate.day)
+            airdate_pattern = '%d{delim}%02d{delim}%02d'.format(delim=DELIM)
+            airdate_pattern = airdate_pattern % (video.ep_airdate.year, video.ep_airdate.month, video.ep_airdate.day)
         else:
             airdate_pattern = ''
             
@@ -259,10 +258,10 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=48)
         match_year = ''
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'td', {'class': 'forum_thread_post'}):
-            match = re.search('href="([^"]+)[^>]+>([^<]+)', item)
+        for _attrs, item in dom_parser2.parse_dom(html, 'td', {'class': 'forum_thread_post'}):
+            match = dom_parser2.parse_dom(item, 'a', req='href')
             if match:
-                match_url, match_title = match.groups()
+                match_url, match_title = match[0].attrs['href'], match[0].content
                 if match_title.upper().endswith(', THE'):
                     match_title = 'The ' + match_title[:-5]
         

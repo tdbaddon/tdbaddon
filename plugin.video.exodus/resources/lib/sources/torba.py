@@ -147,7 +147,7 @@ class source:
             if not url == None:
 
                 def dialog(url):
-                    try: self.disableScraper = control.yesnoDialog('To watch this video visit from any device', '[COLOR skyblue]%s[/COLOR]' % url, '', 'Torba', 'Cancel', 'Settings')
+                    try: self.disableScraper = control.yesnoDialog('Torba requires you visit, on any device, the following url to watch this video:', '[COLOR skyblue]%s[/COLOR]' % url, '', 'Torba', 'Cancel', 'Settings')
                     except: pass
 
                 workers.Thread(dialog, url).start()

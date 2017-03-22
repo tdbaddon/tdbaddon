@@ -483,24 +483,25 @@ class DB_Connection():
     
             log_utils.log('Building SALTS Database', log_utils.LOGDEBUG, COMPONENT)
             if self.db_type == DB_TYPES.MYSQL:
-                self.__execute('CREATE TABLE IF NOT EXISTS url_cache (url VARBINARY(%s) NOT NULL, data VARBINARY(%s) NOT NULL, response MEDIUMBLOB, res_header TEXT, timestamp TEXT, \
-                PRIMARY KEY(url, data))' % (MYSQL_URL_SIZE, MYSQL_DATA_SIZE))
-                self.__execute('CREATE TABLE IF NOT EXISTS function_cache (name VARCHAR(255) NOT NULL, args VARCHAR(64), result MEDIUMBLOB, timestamp TEXT, \
-                PRIMARY KEY(name, args))')
+                self.__execute('CREATE TABLE IF NOT EXISTS url_cache (url VARBINARY(%s) NOT NULL, data VARBINARY(%s) NOT NULL, \
+                response MEDIUMBLOB, res_header TEXT, timestamp TEXT, PRIMARY KEY(url, data))' % (MYSQL_URL_SIZE, MYSQL_DATA_SIZE))
+                self.__execute('CREATE TABLE IF NOT EXISTS function_cache (name VARCHAR(255) NOT NULL, args VARCHAR(64), result MEDIUMBLOB, \
+                timestamp TEXT, PRIMARY KEY(name, args))')
                 self.__execute('CREATE TABLE IF NOT EXISTS db_info (setting VARCHAR(255) NOT NULL, value TEXT, PRIMARY KEY(setting))')
                 self.__execute('CREATE TABLE IF NOT EXISTS rel_url \
                 (video_type VARCHAR(15) NOT NULL, title VARCHAR(255) NOT NULL, year VARCHAR(4) NOT NULL, season VARCHAR(5) NOT NULL, \
-                episode VARCHAR(5) NOT NULL, source VARCHAR(49) NOT NULL, rel_url VARCHAR(255), PRIMARY KEY(video_type, title, year, season, episode, source))')
+                episode VARCHAR(5) NOT NULL, source VARCHAR(49) NOT NULL, rel_url VARCHAR(255), \
+                PRIMARY KEY(video_type, title, year, season, episode, source))')
                 self.__execute('CREATE TABLE IF NOT EXISTS other_lists (section VARCHAR(10) NOT NULL, username VARCHAR(68) NOT NULL, \
                 slug VARCHAR(255) NOT NULL, name VARCHAR(255), PRIMARY KEY(section, username, slug))')
-                self.__execute('CREATE TABLE IF NOT EXISTS saved_searches (id INTEGER NOT NULL AUTO_INCREMENT, section VARCHAR(10) NOT NULL, added DOUBLE NOT NULL,query VARCHAR(255) NOT NULL, \
-                PRIMARY KEY(id))')
-                self.__execute('CREATE TABLE IF NOT EXISTS bookmark (slug VARCHAR(255) NOT NULL, season VARCHAR(5) NOT NULL, episode VARCHAR(5) NOT NULL, resumepoint DOUBLE NOT NULL, \
-                PRIMARY KEY(slug, season, episode))')
-                self.__execute('CREATE TABLE IF NOT EXISTS source_cache (source TEXT NOT NULL)')
-                self.__execute('CREATE TABLE IF NOT EXISTS image_cache (object_type VARCHAR(15), trakt_id INTEGER NOT NULL, season VARCHAR(5) NOT NULL, episode VARCHAR(5) NOT NULL,\
-                timestamp TEXT, banner VARCHAR(255), fanart VARCHAR(255), thumb VARCHAR(255), poster VARCHAR(255), clearart VARCHAR(255), clearlogo VARCHAR(255), \
-                PRIMARY KEY(trakt_id, season, episode))')
+                self.__execute('CREATE TABLE IF NOT EXISTS saved_searches (id INTEGER NOT NULL AUTO_INCREMENT, section VARCHAR(10) NOT NULL, \
+                added DOUBLE NOT NULL,query VARCHAR(255) NOT NULL, PRIMARY KEY(id))')
+                self.__execute('CREATE TABLE IF NOT EXISTS bookmark (slug VARCHAR(255) NOT NULL, season VARCHAR(5) NOT NULL, episode VARCHAR(5) \
+                NOT NULL, resumepoint DOUBLE NOT NULL, PRIMARY KEY(slug, season, episode))')
+                self.__execute('CREATE TABLE IF NOT EXISTS source_cache (source BLOB NOT NULL)')
+                self.__execute('CREATE TABLE IF NOT EXISTS image_cache (object_type VARCHAR(15), trakt_id INTEGER NOT NULL, season VARCHAR(5) \
+                NOT NULL, episode VARCHAR(5) NOT NULL,timestamp TEXT, banner VARCHAR(255), fanart VARCHAR(255), thumb VARCHAR(255), poster \
+                VARCHAR(255), clearart VARCHAR(255), clearlogo VARCHAR(255), PRIMARY KEY(trakt_id, season, episode))')
             else:
                 self.__create_sqlite_db()
                 self.__execute('PRAGMA journal_mode=WAL')

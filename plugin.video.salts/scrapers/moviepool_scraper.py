@@ -20,7 +20,7 @@ import urlparse
 import re
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
@@ -51,9 +51,9 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=8)
-            iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+            iframe_url = dom_parser2.parse_dom(html, 'iframe', ret='src')
             if iframe_url:
-                iframe_url = iframe_url[0]
+                iframe_url = iframe_url[0].attrs['src']
                 if 'cdn.moviepool.net' in iframe_url:
                     headers = {'Referer': page_url}
                     html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
@@ -76,11 +76,11 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=8)
-        fragment = dom_parser.parse_dom(html, 'ul', {'class': '[^"]*listing-videos[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': '[^"]*listing-videos[^"]*'})
         if fragment:
-            urls = dom_parser.parse_dom(fragment[0], 'a', ret='href')
-            labels = dom_parser.parse_dom(fragment[0], 'a')
-            for match_url, match_title_year in zip(urls, labels):
+            fragment = fragment[0].content
+            for attrs, match_title_year in dom_parser2.parse_dom('a', req='href'):
+                match_url = attrs['href']
                 match_title_year = re.sub('</?[^>]*>', '', match_title_year)
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if not year or not match_year or year == match_year:

@@ -1,3 +1,18 @@
+[B]Version 2.0.165[/B]
+- Fix 20 or so scrapers
+- Migrate all scrapers to new dom_parser (4x faster)
+- Remove streamallthis
+- Remove yaban
+- Fix occasional MySQL + Directory mode bug
+
+[B]Version 2.0.160[/B]
+- Add x265 detection to alluc
+- Remove Fardadownload
+- Fix dizigold
+- Fix cf_captcha
+- Fix flixanity
+- Add Movieblast
+
 [B]Version 2.0.159[/B]
 - Improve Image Proxy reliability
 - Add StreamDor scraper

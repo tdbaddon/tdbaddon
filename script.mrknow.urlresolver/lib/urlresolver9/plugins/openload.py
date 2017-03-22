@@ -18,21 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 import re
 import urllib2
+import json
 from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
-from HTMLParser import HTMLParser
-import time
-import urllib
-import base64
-from lib.png import Reader as PNGReader
+from urlresolver9.common import i18n
 
-try:
-    import ssl
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-except:
-    pass
+API_BASE_URL = 'https://api.openload.co/1'
+INFO_URL = API_BASE_URL + '/streaming/info'
+GET_URL = API_BASE_URL + '/streaming/get?file={media_id}'
+FILE_URL = API_BASE_URL + '/file/info?file={media_id}'
 
 try:
     compat_chr = unichr  # Python 2
@@ -43,6 +37,7 @@ except NameError:
 class OpenLoadResolver(UrlResolver):
     name = "openload"
     domains = ["openload.io", "openload.co"]
+    #pattern = '(?://|\.)(openload\.(?:io|co))/(?:embed|f)/([0-9a-zA-Z\-_]+)'
     pattern = '(?://|\.)(openload\.(?:io|co))/(?:embed|f)/([0-9a-zA-Z-_]+)'
 
     def __init__(self):
@@ -56,37 +51,38 @@ class OpenLoadResolver(UrlResolver):
 
             response = self.net.http_GET(myurl, headers=HTTP_HEADER)
             html = response.content
-            #common.log_utils.log_notice('1 openload html: %s' % (html))
-            mylink = self.get_mylink(html)
-            #HTTP_HEADER = {'Cookie': response.get_headers(as_dict=True).get('Set-Cookie', ''),
-            #           'User-Agent': common.FF_USER_AGENT, 'Referer':myurl}
 
-            #if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
-            #    common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
-            #    time.sleep(2)
-            #    html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
+            videoUrl = ''
+
+            #try:
             #    mylink = self.get_mylink(html)
-            #    if set('[<>=!@#$%^&*()+{}":;\']+$').intersection(mylink):
-            #        common.log_utils.log_notice('############################## ERROR A openload mylink: %s' % (mylink))
-            #        time.sleep(2)
-            #        html = self.net.http_GET(myurl, headers=HTTP_HEADER).content
-            #        mylink = self.get_mylink(html)
+            #    videoUrl = mylink
+                #common.log_utils.log_notice('A openload resolve parse: %s' % videoUrl)
+            #except:
+            #    pass
 
-            #common.log_utils.log_notice('A openload mylink: %s' % mylink)
-            #print "Mylink", mylink, urllib.quote_plus(mylink)
-            #videoUrl = 'http://openload.co/stream/{0}?mime=true'.format(mylink)
-            videoUrl = mylink
-            common.log_utils.log_notice('A openload resolve parse: %s' % videoUrl)
+            #try:
+            #    req = urllib2.Request(videoUrl, None, HTTP_HEADER)
+            #    res = urllib2.urlopen(req)
+            #    videoUrl = res.geturl()
+            #    res.close()
+            #except Exception as e:
+            #common.log_utils.log_notice('A openload primary false, backup method. Error: %s' % e)
 
-            req = urllib2.Request(videoUrl, None, HTTP_HEADER)
             try:
-                #common.log_utils.log_notice('ssl ok')
-                res = urllib2.urlopen(req, context=ctx)
-            except:
-                #common.log_utils.log_notice('ssl not ok')
-                res = urllib2.urlopen(req)
-            videoUrl = res.geturl()
-            res.close()
+                if not self.__file_exists(media_id):
+                    raise ResolverError('File Not Available')
+
+                video_url = self.__check_auth(media_id)
+                if not video_url:
+                    video_url = self.__auth_ip(media_id)
+            except ResolverError:
+                raise
+
+            if video_url:
+                return video_url
+            else:
+                raise ResolverError(i18n('no_ol_auth'))
 
             #return videoUrl + helpers.append_headers({'User-Agent': common.FF_USER_AGENT})
             return videoUrl
@@ -110,104 +106,55 @@ class OpenLoadResolver(UrlResolver):
             raise Exception('The file was removed')
 
         #n = re.findall('<span id="(.*?)">(.*?)</span>', html)
+        #Author Samsamsam
+        #https://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2/commit/10438fe21a1ff43bbcafcca9847d43312113b621
+
 
         ol_id = re.findall('<span[^>]+id="[^"]+"[^>]*>([0-9A-Za-z]+)</span>',html)[0]
         print ol_id
 
-        video_url_chars = []
+        def __decode_k(k):
+            y = ord(k[0]);
+            e = y - 0x37
+            d = max(2, e)
+            e = min(d, len(k) - 0x24 - 2)
+            t = k[e:e + 0x24]
+            h = 0
+            g = []
+            while h < len(t):
+                f = t[h:h + 3]
+                g.append(int(f, 0x8))
+                h += 3
+            v = k[0:e] + k[e + 0x24:]
+            p = []
+            i = 0
+            h = 0
+            while h < len(v):
+                B = v[h:h + 2]
+                C = v[h:h + 3]
+                f = int(B, 0x10)
+                h += 0x2
 
-        first_char = ord(ol_id[0])
-        key = first_char - 50
-        maxKey = max(2, key)
-        key = min(maxKey, len(ol_id) - 22)
-        t = ol_id[key:key + 20]
+                if (i % 3) == 0:
+                    f = int(C, 8)
+                    h += 1
+                elif i % 2 == 0 and i != 0 and ord(v[i - 1]) < 0x3c:
+                    f = int(C, 0xa)
+                    h += 1
 
-        hashMap = {}
-        v = ol_id.replace(t, "")
-        h = 0
+                A = g[i % 0x7]
+                #A = g[i % 0xc]
+                f = f ^ 0xd5;
+                f = f ^ A;
+                p.append(chr(f))
+                i += 1
 
-        while h < len(t):
-            f = t[h:h + 2]
-            i = int(f, 16)
-            hashMap[h / 2] = i
-            h += 2
+            return "".join(p)
 
-        h = 0
+        dec = __decode_k(ol_id)
+        videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(dec)
+        return videoUrl
 
-        while h < len(v):
-            B = v[h:h + 2]
-            i = int(B, 16)
-            index = (h / 2) % 10
-            A = hashMap[index]
-            i = i ^ 137
-            i = i ^ A
-            video_url_chars.append(compat_chr(i))
-            h += 2
-
-        video_url = 'https://openload.co/stream/%s?mime=true'
-        video_url = video_url % (''.join(video_url_chars))
-
-        return video_url
-
-        enc_data = HTMLParser().unescape(y)
-
-        res = []
-        for c in enc_data:
-            j = ord(c)
-            if j >= 33 and j <= 126:
-                j = ((j + 14) % 94)
-                j = j + 33
-            res += chr(j)
-        mylink = ''.join(res)
-
-        tmp100 = re.findall('<script type="text/javascript">(ﾟωﾟ.*?)</script>', html, re.DOTALL)
-        encdata = ''
-        tmpEncodedData = tmp100[0].split('┻━┻')
-        for tmpItem in tmpEncodedData:
-            try:
-                encdata += self.decodeOpenLoad(tmpItem)
-            except:
-                pass
-
-        #print "AAAAA",encdata
-
-        exit()
-        encnumbers = re.findall('return(.*?);', encdata, re.DOTALL)
-        print encnumbers
-
-        #https://openload.co/stream/rZ04_L_uRuU~1478308714~95.160.0.0~VWnfq0ig?mime=true
-        #https://openload.co/stream/JlSTfXTluk8~1478209703~46.169.0.0~49kqoQ-2?mime=true')
-
-
-        encnumbers1 = re.findall('(\d+).*?(\d+)', encnumbers[0])[0]
-        encnumbers2 = re.findall('(\d+) \- (\d+)', encnumbers[1])[0]
-        encnumbers4 = re.findall('(\d+)', encnumbers[3])[0]
-
-        number1 = int(encnumbers1[0]) + int(encnumbers1[1])
-        number2 = int(encnumbers2[0]) - int(encnumbers2[1]) + number1
-        number4 = int(encnumbers4[0])
-        number3 = number2 - number4
-
-        print "num1", number1
-        print "num2", number2
-        print "num4", number4
-        print "num3", number3
-        print "a",len(mylink)-number2
-        #	var str =
-        # tmp.substring(0, tmp.length - number2())
-        # + String.fromCharCode(tmp.slice(0 - number2()).charCodeAt(0) + number3())
-        # + tmp.substring(tmp.length - number2() + 1);
-        #        mylink = ''.join(res)[0:-3] + chr(ord(''.join(res)[-1]) -2 3)
-
-        #https://openload.co/stream/ExatdBfcJ38~1478307277~95.160.0.0~hppYZUHF?mime=true
-        mynewlink1 = mylink[0:-number2]
-        mynewlink2 = chr(ord(mylink[-number2])+number3)
-        mynewlink3 = mylink[len(mylink)-number2+1:]
-        print "my2", mynewlink1,mynewlink2,mynewlink3
-        mynewlink = mynewlink1+mynewlink2+mynewlink3
-
-
-        return mynewlink
 
 
 
@@ -216,6 +163,7 @@ class OpenLoadResolver(UrlResolver):
         # for example: "Code take from plugin IPTVPlayer: "https://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2/"
         # It will be very nice if you send also email to me samsamsam@o2.pl and inform were this code will be used
        # start https://github.com/whitecream01/WhiteCream-V0.0.1/blob/master/plugin.video.uwc/plugin.video.uwc-1.0.51.zip?raw=true
+
     def decode(self,encoded):
         tab = encoded.split('\\')
         ret = ''
@@ -300,3 +248,41 @@ class OpenLoadResolver(UrlResolver):
             decodestring = decodestring.replace("\"", "")
         return decodestring
 
+    def get_url(self, host, media_id):
+        return 'http://openload.co/embed/%s' % (media_id)
+
+    def __file_exists(self, media_id):
+        js_data = self.__get_json(FILE_URL.format(media_id=media_id))
+        return js_data.get('result', {}).get(media_id, {}).get('status') == 200
+
+    def __auth_ip(self, media_id):
+        js_data = self.__get_json(INFO_URL)
+        pair_url = js_data.get('result', {}).get('auth_url', '')
+        if pair_url:
+            pair_url = pair_url.replace('\/', '/')
+            header = i18n('ol_auth_header')
+            line1 = i18n('auth_required')
+            line2 = i18n('visit_link')
+            line3 = i18n('click_pair') % (pair_url)
+            with common.kodi.CountdownDialog(header, line1, line2, line3) as cd:
+                return cd.start(self.__check_auth, [media_id])
+
+    def __check_auth(self, media_id):
+        try:
+            js_data = self.__get_json(GET_URL.format(media_id=media_id))
+        except ResolverError as e:
+            status, msg = e
+            if status == 403:
+                return
+            else:
+                raise ResolverError(msg)
+
+        return js_data.get('result', {}).get('url')
+
+    def __get_json(self, url):
+        result = self.net.http_GET(url).content
+        common.log_utils.log(result)
+        js_result = json.loads(result)
+        if js_result['status'] != 200:
+            raise ResolverError(js_result['status'], js_result['msg'])
+        return js_result

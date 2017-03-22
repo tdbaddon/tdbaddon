@@ -20,7 +20,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 import json
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
@@ -57,11 +57,11 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'film-container'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'film-container'})
             if fragment:
-                iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
+                iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
                 if iframe_url:
-                    iframe_url = urlparse.urljoin(self.base_url, iframe_url[0])
+                    iframe_url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
                     headers = {'Referer': page_url}
                     html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
                     sources = self._parse_sources_list(html)
@@ -117,7 +117,7 @@ class Scraper(scraper.Scraper):
             return ''
 
         html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=cache_limit)
-        if auth and not dom_parser.parse_dom(html, 'span', {'class': 'user-name'}):
+        if auth and not dom_parser2.parse_dom(html, 'span', {'class': 'user-name'}):
             log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=0)

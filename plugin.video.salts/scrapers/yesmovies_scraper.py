@@ -21,7 +21,7 @@ import urllib
 import base64
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -200,13 +200,12 @@ class Scraper(scraper.Scraper):
             headers = {'Referer': urlparse.urljoin(self.base_url, page_url)}
             headers.update(XHR)
             html = self._http_get(qp_url, headers=headers, cache_limit=8)
-            source_url = dom_parser.parse_dom(html, 'a', {'title': 'View all episodes'}, ret='href')
+            source_url = dom_parser2.parse_dom(html, 'a', {'title': 'View all episodes'}, req='href')
             if source_url:
-                source_url = source_url[0]
+                source_url = source_url[0].attrs['href']
                 page_html = self._http_get(source_url, headers={'Referer': urlparse.urljoin(self.base_url, page_url)}, cache_limit=8)
-                img_url = dom_parser.parse_dom(page_html, 'img', {'class': 'hidden'}, ret='src')
-                if img_url:
-                    _html = self._http_get(img_url[0], headers={'Referer': source_url}, cache_limit=8)
+                for attrs, _content in dom_parser2.parse_dom(page_html, 'img', {'class': 'hidden'}, req='src'):
+                    _html = self._http_get(attrs['src'], headers={'Referer': source_url}, cache_limit=8)
                 
                 match = re.search('-(\d+)/(\d+)-(\d+)/', source_url)
                 if match:
@@ -218,8 +217,7 @@ class Scraper(scraper.Scraper):
         
     def _get_episode_url(self, season_url, video):
         _movie_id, _sl_url, html = self.__get_source_page(video.video_type, season_url)
-        titles = dom_parser.parse_dom(html, 'a', {'href': 'javascript[^"]*'}, ret='title')
-        if any([self.__episode_match(video, title) for title in titles]):
+        if any([self.__episode_match(video, attrs['title']) for attrs, _content in dom_parser2.parse_dom(html, 'a', {'href': 'javascript[^"]*'}, req='title')]):
             return season_url
     
     def __episode_match(self, video, label):
@@ -243,23 +241,22 @@ class Scraper(scraper.Scraper):
         title = re.sub('[^A-Za-z0-9 ]', '', title)
         search_url += '%s.html' % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'ml-item'}):
-            match_title = dom_parser.parse_dom(item, 'span', {'class': 'mli-info'})
-            match_url = re.search('href="([^"]+)', item, re.DOTALL)
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'ml-item'}):
+            match_title = dom_parser2.parse_dom(item, 'span', {'class': 'mli-info'})
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
             match_year = re.search('class="jt-info">(\d{4})<', item)
-            is_episodes = dom_parser.parse_dom(item, 'span', {'class': 'mli-eps'})
+            is_episodes = dom_parser2.parse_dom(item, 'span', {'class': 'mli-eps'})
             
             if (video_type == VIDEO_TYPES.MOVIE and not is_episodes) or (video_type == VIDEO_TYPES.SEASON and is_episodes):
                 if match_title and match_url:
-                    match_title = match_title[0]
+                    match_url = match_url[0].attrs['href']
+                    match_title = match_title[0].content
                     match_title = re.sub('</?h2>', '', match_title)
                     match_title = re.sub('\s+\d{4}$', '', match_title)
                     if video_type == VIDEO_TYPES.SEASON:
                         if season and not re.search('Season\s+%s$' % (season), match_title): continue
                         
                     match_year = match_year.group(1) if match_year else ''
-                    match_url = match_url.group(1)
-    
                     if not year or not match_year or year == match_year:
                         result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                         results.append(result)

@@ -19,14 +19,14 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://www.dizigold.org'
+BASE_URL = 'http://www.dizigold1.com'
 AJAX_URL = '/sistem/ajax.php'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
@@ -68,10 +68,11 @@ class Scraper(scraper.Scraper):
                 
                 js_data = scraper_utils.parse_json(raw_data, self.ajax_url)
                 if 'data' in js_data:
-                    src = dom_parser.parse_dom(js_data['data'], 'iframe', ret='src')
+                    src = dom_parser2.parse_dom(js_data['data'], 'iframe', req='src')
                     if src:
-                        html = self._http_get(src[0], cache_limit=.25)
-                        for src in dom_parser.parse_dom(html, 'iframe', ret='src'):
+                        html = self._http_get(src[0].attrs['src'], cache_limit=.25)
+                        for attrs, _content in dom_parser2.parse_dom(html, 'iframe', req='src'):
+                            src = attrs['src']
                             if not src.startswith('http'): continue
                             sources.append({'label': '720p', 'file': src, 'direct': False})
 
@@ -106,13 +107,14 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         html = self._http_get(self.base_url, cache_limit=48)
         results = []
-        fragment = dom_parser.parse_dom(html, 'div', {'class': 'dizis'})
-        norm_title = scraper_utils.normalize_title(title)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'dizis'})
         if fragment:
-            for match in re.finditer('href="([^"]+)[^>]+>([^<]+)', fragment[0]):
-                url, match_title = match.groups()
+            norm_title = scraper_utils.normalize_title(title)
+            for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = attrs['href']
+                match_title = re.sub('<div[^>]*>.*?</div>', '', match_title)
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

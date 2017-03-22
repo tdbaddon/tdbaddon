@@ -393,42 +393,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.program.echowizard"
-	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.94"
-	     provider-name="Echo Coder">
-  <requires>
-  	<import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.requests" version="2.9.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="startup">
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <platform>all</platform>
-    <summary lang="en">[COLOR white]Twitter: @[/COLOR][COLOR yellowgreen]EchoCoder[/COLOR]</summary>
-    <description lang="en">[COLOR white]ECHO Wizard is a swiss army knife tool for Kodi. It gives you conrol over everything you need in one place. For support please contact @[/COLOR][COLOR yellowgreen]EchoCoder[/COLOR][COLOR white] on twitter.[/COLOR]</description>
-    <disclaimer lang="en"></disclaimer>
-    <language></language>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <website>http://echocoder.com/repo</website>
-    <email>echocoder@protonmail.com</email>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-        <screenshot>resources/art/screenshots/screenshot-1.png</screenshot>
-        <screenshot>resources/art/screenshots/screenshot-2.png</screenshot>
-        <screenshot>resources/art/screenshots/screenshot-3.png</screenshot>
-        <screenshot>resources/art/screenshots/screenshot-4.png</screenshot>
-        <screenshot>resources/art/screenshots/screenshot-5.png</screenshot>
-        <screenshot>resources/art/screenshots/screenshot-6.png</screenshot>
-    </assets>
-  </extension>
-</addon>
-
 <addon id="plugin.program.SpeedTester.net" name="SpeedTester.net" version="1.0.2" provider-name="Twilight0">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -532,7 +496,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.4" provider-name="AftershockPY">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.6.5" provider-name="AftershockPY">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -560,7 +524,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
             <screenshot>resources/screenshots/screenshot-02.png</screenshot>
             <screenshot>resources/screenshots/screenshot-03.png</screenshot>
         </assets>
-        <news>-Updated Providers [CR] Updated Resolvers</news>
+        <news>-Updated Live Providers [CR] - Updated Resolvers</news>
   </extension>
 </addon>
 
@@ -741,7 +705,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.colombiatv"
        name="ColombiaTV"
-       version="1.3.8"
+       version="1.3.9"
        provider-name="Wiiego">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -1028,7 +992,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.1" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.3" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1061,8 +1025,11 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		</assets>
 		<news>- Updated existing providers
 - Tweaked French providers
-- Update Translation
-- Fix skipping for hosters with captchas</news>
+- Removed dead providers
+- Add Play-Random (PickJones)
+- Add Documentary movie genre (Amante)
+- Add Debrid-Link.fr
+- Tweaked website-parser</news>
 	</extension>
 </addon>
 
@@ -1083,7 +1050,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.fanfilm" name="FanFilm - MrKnow"  version="2017.01.26.4" provider-name="mrknow" >
+<addon id="plugin.video.fanfilm" name="FanFilm - MrKnow"  version="2017.03.18.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests"/>
@@ -1807,7 +1774,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
-       version="2017.03.11.2"
+       version="2017.03.20.1"
        provider-name="mrknow">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1967,7 +1934,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.6" provider-name="lambda,jsergio">
+<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.6.01" provider-name="lambda,jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
@@ -2135,7 +2102,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.159" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.165" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2186,10 +2153,10 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.07.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.20.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.requests" version="1.0.0" />
+		<import addon="script.module.requests" />
 		<import addon="script.module.metahandler" />
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.mrknow.urlresolver" />
@@ -2606,7 +2573,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.21"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.23"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2681,7 +2648,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.28" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.30" provider-name="MetalKettle">
 
   <requires>
 
@@ -2837,30 +2804,19 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.4.1" provider-name="jdf76, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.4.13" provider-name="h0d3nt3uf3l, bromix">
 	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
+		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
-    <extension point="xbmc.service" library="startup.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
         <news>
-[add] MPEG-DASH support for Kodi 17 w/ inputstream.adaptive add-on or SPMC 16 w/ builtin-in
-[add] optional History and Watch Later custom playlist to Settings -> Folders, or (My)Playlists context menu to set/remove
-[add] Maintenance section to Settings
-[add] 'Subtitle language(s) to download' selection to Settings -> General
-[add] 'Force SSL Certificate verification' to Settings -> Advanced
-[upd] API key set switching from Settings -> API (this will log you out)
-[upd] Dual login only required if My Subscriptions folder is enabled at sign-in
-[upd] setting content type from episodes, now videos
-[del] override view options
-[upd] Norwegian strings [torstehu]
-[upd] Greek strings [twilight0]
-[upd] Portuguese strings [Wanilton]
-[upd] Dutch strings [flemlion]
-[fix/upd] API tweaking and various other updates
+- Added MPEG-DASH support for Kodi 17 w/ inputstream.mpd Add-on
+- Added optional Watch Later custom playlist to Settings -> Folders
+- Added Maintenance section to Settings
+- Added 'Subtitle language(s) to download' selection to Settings -> General
         </news>
         <assets>
             <icon>icon.png</icon>
@@ -3114,22 +3070,27 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.echo" name="[COLOR greenyellow]ECHO[/COLOR] [COLOR white]Repository[/COLOR]" version="1.04" provider-name="Echo Coder">
-	<extension point="xbmc.addon.repository" name="Echo Coder Repository">
-		<dir>
-			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-		</dir>
-		<info compressed="false">https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>The official Echo Coder Repository.</summary>
-		<description>Support available at Twitter: @EchoCoder</description>
-		<platform>all</platform>
-	</extension>
+<addon id="repository.echo" name="Echo Coder Repository" version="2.00" provider-name="Echo Coder">
+    <extension point="xbmc.addon.repository" name="Echo Coder Repository">
+        <dir>
+            <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+            <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+        </dir>
+        <dir>
+            <info compressed="false">https://offshoregit.com/unofficialsportsdevil/addons.xml</info>
+            <checksum>https://offshoregit.com/unofficialsportsdevil/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/unofficialsportsdevil/</datadir>
+        </dir>
+        <info compressed="false">https://offshoregit.com/echocoder/main/addons.xml</info>
+        <checksum>https://offshoregit.com/echocoder/main/addons.xml.md5</checksum>
+        <datadir zip="true">https://offshoregit.com/echocoder/main/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>The official Echo Coder Repository.</summary>
+        <description>Support available at https://www.tvaddons.ag</description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.eldorado" name="Eldorado's XBMC Addons" version="2.0.2" provider-name="eldorado">
@@ -4239,7 +4200,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.16" provider-name="tknorris">
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.17" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -4281,7 +4242,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.08.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.18.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

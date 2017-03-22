@@ -55,13 +55,13 @@ class seasons:
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
 
-    def get(self, tvshowtitle, year, imdb, tvdb, idx=True):
+    def get(self, tvshowtitle, year, imdb, tvdb, idx=True, create_directory=True):
         if control.window.getProperty('PseudoTVRunning') == 'True':
             return episodes().get(tvshowtitle, year, imdb, tvdb)
 
         if idx == True:
             self.list = cache.get(self.tvdb_list, 24, tvshowtitle, year, imdb, tvdb, self.lang)
-            self.seasonDirectory(self.list)
+            if create_directory == True: self.seasonDirectory(self.list)
             return self.list
         else:
             self.list = self.tvdb_list(tvshowtitle, year, imdb, tvdb, 'en')
@@ -416,6 +416,8 @@ class seasons:
 
         labelMenu = control.lang(32055).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
 
         for i in items:
             try:
@@ -447,6 +449,8 @@ class seasons:
 
 
                 cm = []
+                
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=episode&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s)' % (sysaddon, urllib.quote_plus(systitle), urllib.quote_plus(year), urllib.quote_plus(imdb), urllib.quote_plus(tvdb), urllib.quote_plus(season))))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
@@ -529,7 +533,7 @@ class episodes:
         self.traktlist_link = 'http://api-v2launch.trakt.tv/users/%s/lists/%s/items'
 
 
-    def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True):
+    def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True, create_directory=True):
         try:
             if idx == True:
                 if season == None and episode == None:
@@ -541,7 +545,7 @@ class episodes:
                     num = [x for x,y in enumerate(self.list) if y['season'] == str(season) and  y['episode'] == str(episode)][-1]
                     self.list = [y for x,y in enumerate(self.list) if x >= num]
 
-                self.episodeDirectory(self.list)
+                if create_directory == True: self.episodeDirectory(self.list)
                 return self.list
             else:
                 self.list = seasons().tvdb_list(tvshowtitle, year, imdb, tvdb, 'en', '-1')

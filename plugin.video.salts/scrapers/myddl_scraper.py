@@ -17,11 +17,10 @@
 """
 import datetime
 import re
-import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib.utils2 import i18n
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
@@ -53,11 +52,12 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'post-cont'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'post-cont'})
             if fragment:
-                match = re.search('<p>\s*<strong>(.*?)<script', fragment[0], re.DOTALL)
+                match = re.search('<p>\s*<strong>(.*?)<script', fragment[0].content, re.DOTALL)
                 if match:
-                    for stream_url in dom_parser.parse_dom(match.group(1), 'a', ret='href'):
+                    for attrs, _content in dom_parser2.parse_dom(match.group(1), 'a', req='href'):
+                        stream_url = attrs['href']
                         if scraper_utils.excluded_link(stream_url): continue
                         if video.video_type == VIDEO_TYPES.MOVIE:
                             meta = scraper_utils.parse_movie_link(stream_url)
@@ -88,8 +88,7 @@ class Scraper(scraper.Scraper):
         while page_url and not too_old:
             url = urlparse.urljoin(self.base_url, page_url[0])
             html = self._http_get(url, require_debrid=True, cache_limit=1)
-            posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
-            for post in posts:
+            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
                 if self.__too_old(post):
                     too_old = True
                     break
@@ -106,7 +105,8 @@ class Scraper(scraper.Scraper):
                             if match and norm_title == scraper_utils.normalize_title(match.group(1)):
                                 return scraper_utils.pathify_url(url)
                 
-            page_url = dom_parser.parse_dom(html, 'a', {'class': 'nextpostslink'}, ret='href')
+            page_url = dom_parser2.parse_dom(html, 'a', {'class': 'nextpostslink'}, req='href')
+            if page_url: page_url = page_url[0].attrs['href']
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -114,7 +114,7 @@ class Scraper(scraper.Scraper):
             test_url = '/tv-show/%s/' % (self.__to_slug(title))
             test_url = urlparse.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
-            posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
+            posts = dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})
             if posts:
                 result = {'url': scraper_utils.pathify_url(test_url), 'title': scraper_utils.cleanse_title(title), 'year': ''}
                 results.append(result)
@@ -122,7 +122,7 @@ class Scraper(scraper.Scraper):
             search_title = re.sub('[^A-Za-z0-9 ]', '', title.lower())
             html = self._http_get(self.base_url, params={'s': search_title}, require_debrid=True, cache_limit=1)
             norm_title = scraper_utils.normalize_title(title)
-            for post in dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'}):
+            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
                 match = re.search('<h\d+[^>]*>\s*<a\s+href="([^"]+)[^>]*>(.*?)</a>', post)
                 if match:
                     post_url, post_title = match.groups()

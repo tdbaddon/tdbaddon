@@ -98,6 +98,9 @@ class BaseRequest(object):
             
         if 'finecast.tv' in urlparse.urlsplit(url).netloc:
             self.s.headers.update({'Cookie' : 'PHPSESSID=d08b73a2b7e0945b3b1bb700f01f7d72'})
+        if 'sitemtv1' in urlparse.urlsplit(url).netloc:
+            self.s.headers.update({'Cookie': '__test=96c52ac42c8bb20e0d9a0d896c09fed1'})
+            #8ef0ed27766603cb1fafe173c34f4a1a
         
         if form_data:
             #ca**on.tv/key.php

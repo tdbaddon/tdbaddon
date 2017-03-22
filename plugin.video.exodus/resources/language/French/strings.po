@@ -19,17 +19,20 @@
 # Translators:
 # Translators:
 # Addon Master, 2016
+# Viper2k4, 2017
+# Daniel Lajeunesse, 2017
 # Dominique Favreau, 2017
 # Jrm, 2015
 # lambda81, 2016
 # lambda81, 2016
+# Pierre Guerin, 2017
 # power grid, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-06 21:06+0000\n"
-"Last-Translator: Dominique Favreau\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"Last-Translator: power grid\n"
 "Language-Team: French (http://www.transifex.com/tv-addons/exodus/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -432,7 +435,7 @@ msgstr "Au Cinéma"
 
 msgctxt "#32325"
 msgid "New Episodes"
-msgstr "Nouvelles Épisodes"
+msgstr "Nouveaux Épisodes"
 
 msgctxt "#32326"
 msgid "Episodes"
@@ -520,7 +523,7 @@ msgstr "Comptes"
 
 msgctxt "#32347"
 msgid "Downloads"
-msgstr "Téléchargement"
+msgstr "Téléchargements"
 
 msgctxt "#32348"
 msgid "Enable downloads"
@@ -572,7 +575,7 @@ msgstr "Dans ce Cas Utilisez vos Propre Sous-Titres"
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Langue principale"
+msgstr "Langue de la sources"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -644,7 +647,7 @@ msgstr "Ajouter à la [B]Collection[/B]"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr "Enleverer de la [B]Collection[/B]"
+msgstr "Enlever de la [B]Collection[/B]"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
@@ -681,4 +684,16 @@ msgstr "1) Visite : [COLOR skyblue]%s[/COLOR]"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "\"2) Lorsque Demandé Veuillez Entrer : [COLOR skyblue]%s[/COLOR]\""
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "Reproduction aléatoire"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "En Cours de Lecture"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Rien n'a été trouvé pour visionner"
 

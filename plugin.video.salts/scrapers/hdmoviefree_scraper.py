@@ -20,7 +20,7 @@ import urlparse
 import re
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
@@ -53,25 +53,24 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=8)
-            film_id = dom_parser.parse_dom(html, 'img', ret='data-id')
-            film_name = dom_parser.parse_dom(html, 'img', ret='data-name')
-            if film_id and film_name:
-                data = {'id': film_id[0], 'n': film_name[0]}
+            for attrs, _content in dom_parser2.parse_dom(html, 'img', req=['data-id', 'data-name']):
+                film_id, data_name = attrs['data-id'], attrs['data-name']
+                data = {'id': film_id, 'n': data_name}
                 server_url = urlparse.urljoin(self.base_url, SERVER_URL)
-                server_url = server_url % (film_id[0])
+                server_url = server_url % (film_id)
                 headers = {'Referer': page_url}
                 headers.update(XHR)
                 html = self._http_get(server_url, data=data, headers=headers, cache_limit=.5)
-                for ep_id in dom_parser.parse_dom(html, 'a', ret='data-id'):
-                    data = {'epid': ep_id}
+                for attrs, _content in dom_parser2.parse_dom(html, 'a', req='data-id'):
+                    data = {'epid': attrs['data-id']}
                     ep_url = urlparse.urljoin(self.base_url, EP_URL)
-                    ep_url = ep_url % (ep_id)
+                    ep_url = ep_url % (attrs['data-id'])
                     headers = {'Referer': page_url}
                     headers.update(XHR)
                     html = self._http_get(ep_url, data=data, headers=headers, cache_limit=.5)
                     js_data = scraper_utils.parse_json(html, ep_url)
                     try:
-                        links = dom_parser.parse_dom(js_data['link']['embed'], 'iframe', ret='src')
+                        links = [r.attrs['src'] for r in dom_parser2.parse_dom(js_data['link']['embed'], 'iframe', req='src')]
                     except:
                         try: links = js_data['link']['l']
                         except: links = []
@@ -104,13 +103,13 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search/%s.html')
         search_url = search_url % (self.__to_slug(title))
         html = self._http_get(search_url, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': '[^"]*slideposter[^"]*'}):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title_year = dom_parser.parse_dom(item, 'img', ret='alt')
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*slideposter[^"]*'}):
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_title_year = dom_parser2.parse_dom(item, 'img', req='alt')
             if match_url and match_title_year:
-                match_url = match_url[0]
-                match_title_year = match_title_year[0]
-                match_title, match_year = scraper_utils.extra_year(match_title_year[0])
+                match_url = match_url[0].attrs['href']
+                match_title_year = match_title_year[0].attrs['alt']
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if not year or not match_year or year == match_year:
                     result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                     results.append(result)

@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -49,15 +49,16 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=1)
-            iframes = dom_parser.parse_dom(html, 'iframe', ret='src')
-            for iframe_url in iframes:
+            iframes = dom_parser2.parse_dom(html, 'iframe', req='src')
+            for attrs, _content in iframes:
+                iframe_url = attrs['src']
                 if 'docs.google.com' in iframe_url:
                     sources = self._parse_google(iframe_url)
                     break
                 else:
                     iframe_url = urlparse.urljoin(self.base_url, iframe_url)
                     html = self._http_get(iframe_url, cache_limit=1)
-                    iframes += dom_parser.parse_dom(html, 'iframe', ret='src')
+                    iframes += dom_parser2.parse_dom(html, 'iframe', req='src')
  
             for source in sources:
                 host = self._get_direct_hostname(source)
@@ -76,16 +77,17 @@ class Scraper(scraper.Scraper):
         html = self._http_get(page_url, params={'dayq': title}, cache_limit=48)
         html = re.sub('<!--.*?-->', '', html)
         norm_title = scraper_utils.normalize_title(title)
-        for td in dom_parser.parse_dom(html, 'td', {'class': 'topic_content'}):
-            match_url = re.search('href="([^"]+)', td)
-            match_title_year = dom_parser.parse_dom(td, 'img', ret='alt')
+        for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': 'topic_content'}):
+            match_url = dom_parser2.parse_dom(td, 'a', req='href')
+            match_title_year = dom_parser2.parse_dom(td, 'img', req='alt')
             if match_url and match_title_year:
-                match_url = match_url.group(1)
+                match_url = match_url[0].attrs['href']
+                match_title_year = match_title_year[0].attrs['alt']
+                log_utils.log(match_url)
                 if not match_url.startswith('/'): match_url = '/tvseries/' + match_url
-                match_title, match_year = scraper_utils.extra_year(match_title_year[0])
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if (norm_title in scraper_utils.normalize_title(match_title)) and (not year or not match_year or year == match_year):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
-            
 
         return results

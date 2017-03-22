@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,27 +16,27 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-
-import re,unicodedata
-
-from resources.lib.modules import client
+import re
+import unicodedata
 
 
 def get(title):
-    if title == None: return
+    if title is None: return
+    try:
+        title = title.encode('utf-8')
+    except:
+        pass
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
-    try: title = title.encode('utf-8')
-    except: pass
+    title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|–|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
 
 
 def geturl(title):
-    if title == None: return
+    if title is None: return
     title = title.lower()
     title = title.translate(None, ':*?"\'\.<>|&!,')
     title = title.replace('/', '-')
@@ -46,28 +46,28 @@ def geturl(title):
 
 
 def get_simple(title):
-    if title == None: return
+    if title is None: return
     title = title.lower()
     title = re.sub('(\d{4})', '', title)
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|–|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
-	
-	
+
+
 def getsearch(title):
-    if title == None: return
+    if title is None: return
     title = title.lower()
     title = re.sub('&#(\d+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub('\\\|/|-|:|;|\*|\?|"|\'|<|>|\|', '', title).lower()
+    title = re.sub('\\\|/|-|–|:|;|\*|\?|"|\'|<|>|\|', '', title).lower()
     return title
 
 
 def query(title):
-    if title == None: return
+    if title is None: return
     title = title.replace('\'', '').rsplit(':', 1)[0].rsplit(' -', 1)[0].replace('-', ' ')
     return title
 
@@ -77,8 +77,6 @@ def normalize(title):
         try: return title.decode('ascii').encode("utf-8")
         except: pass
 
-        return str( ''.join(c for c in unicodedata.normalize('NFKD', unicode( title.decode('utf-8') )) if unicodedata.category(c) != 'Mn') )
+        return str(''.join(c for c in unicodedata.normalize('NFKD', unicode(title.decode('utf-8'))) if unicodedata.category(c) != 'Mn'))
     except:
         return title
-
-

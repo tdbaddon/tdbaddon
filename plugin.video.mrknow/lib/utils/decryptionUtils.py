@@ -120,7 +120,7 @@ def doDemystify(data):
             res = ''.join(map(chr, alina))
             # common.log('Malina: %s ' % malina)
         data = data.replace(g, res)
-    #common.log('MR DECODE10: ' + data)
+    common.log('MR DECODE10: ' + data)
 
     #MRKNOW END
 

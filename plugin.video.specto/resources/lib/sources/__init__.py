@@ -640,14 +640,14 @@ class sources:
 
 
         #MRKNOW remove duplicate url's
-        #dupes = []
-        #filter = []
-        #for entry in self.sources:
-        #    if not entry['url'] in dupes:
-        #        filter.append(entry)
-        #        dupes.append(entry['url'])
+        dupes = []
+        filter = []
+        for entry in self.sources:
+            if not entry['url'] in dupes:
+                filter.append(entry)
+                dupes.append(entry['url'])
 
-        #self.sources = filter
+        self.sources = filter
 
         filter = []
         for host in hd_rank: filter += [i for i in self.sources if i['quality'] == '1080p' and i['source'].lower() == host]

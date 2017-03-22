@@ -19,7 +19,7 @@
 '''
 
 
-import urlparse,sys
+import urlparse,sys,urllib
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
@@ -61,15 +61,6 @@ content = params.get('content')
 if action == None:
     from resources.lib.indexers import navigator
     navigator.navigator().root()
-
-    try:
-        from resources.lib.modules import control
-
-        if control.has_upgraded():
-            control.announcement()
-            control.setSetting(id='old_version', value=control.addon().getAddonInfo('version'))
-    except:
-        pass
 
 elif action == 'movieNavigator':
     from resources.lib.indexers import navigator
@@ -314,3 +305,44 @@ elif action == 'clearSources':
     from resources.lib.modules import sources
     sources.sources().clearSources()
 
+elif action == 'random':
+    rtype = params.get('rtype')
+    if rtype == 'movie':
+        from resources.lib.indexers import movies
+        rlist = movies.movies().get(url, create_directory=False)
+        r = sys.argv[0]+"?action=play"
+    elif rtype == 'episode':
+        from resources.lib.indexers import episodes
+        rlist = episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, create_directory=False)
+        r = sys.argv[0]+"?action=play"
+    elif rtype == 'season':
+        from resources.lib.indexers import episodes
+        rlist = episodes.seasons().get(tvshowtitle, year, imdb, tvdb, create_directory=False)
+        r = sys.argv[0]+"?action=random&rtype=episode"
+    elif rtype == 'show':
+        from resources.lib.indexers import tvshows
+        rlist = tvshows.tvshows().get(url, create_directory=False)
+        r = sys.argv[0]+"?action=random&rtype=season"
+    from resources.lib.modules import control
+    from random import randint
+    import json
+    try:
+        rand = randint(1,len(rlist))-1
+        for p in ['title','year','imdb','tvdb','season','episode','tvshowtitle','premiered','select']:
+            if rtype == "show" and p == "tvshowtitle":
+                try: r += '&'+p+'='+urllib.quote_plus(rlist[rand]['title'])
+                except: pass
+            else:
+                try: r += '&'+p+'='+urllib.quote_plus(rlist[rand][p])
+                except: pass
+        try: r += '&meta='+urllib.quote_plus(json.dumps(rlist[rand]))
+        except: r += '&meta='+urllib.quote_plus("{}")
+        if rtype == "movie":
+            try: control.infoDialog(rlist[rand]['title'], control.lang(32536).encode('utf-8'), time=30000)
+            except: pass
+        elif rtype == "episode":
+            try: control.infoDialog(rlist[rand]['tvshowtitle']+" - Season "+rlist[rand]['season']+" - "+rlist[rand]['title'], control.lang(32536).encode('utf-8'), time=30000)
+            except: pass
+        control.execute('RunPlugin(%s)' % r)
+    except:
+        control.infoDialog(control.lang(32537).encode('utf-8'), time=8000)

@@ -96,6 +96,7 @@
 		<setting id="provider.cine" type="bool" label="CINE" default="true" />
 		<setting id="provider.ddl" type="bool" label="DDL" default="true" />
 		<setting id="provider.filmpalast" type="bool" label="FILMPALAST" default="true" />
+		<setting id="provider.foxx" type="bool" label="FOXX" default="true" />
 		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
 		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
 		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />
@@ -103,20 +104,19 @@
 		<setting id="provider.meinkino" type="bool" label="MEINKINO" default="true" />
 		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
 		<setting id="provider.moviesever" type="bool" label="MOVIESEVER" default="true" />
-		<setting id="provider.rapidstream" type="bool" label="RAPIDSTREAM" default="true" />
+		<setting id="provider.netzkino" type="bool" label="NETZKINO" default="true" />
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
+		<setting id="provider.streamit" type="bool" label="STREAMIT" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
 		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
 		<setting label="French" type="lsep" />
-		<setting id="provider.filmenstreaminghd" type="bool" label="FILMENSTREAMINGHD" default="true" />
-		<setting id="provider.filmstreamingclub" type="bool" label="FILMSTREAMINGCLUB" default="true" />
-		<setting id="provider.officialfilmillimite" type="bool" label="OFFICIALFILMILLIMITE" default="true" />
-		<setting id="provider.seriesenstreaming" type="bool" label="SERIESENSTREAMING" default="true" />
+        <setting id="provider.filmenstreaminghd" type="bool" label="FILMENSTREAMINGHD" default="true" />
 		<setting id="provider.skstream" type="bool" label="SKSTREAM" default="true" />
-		<setting id="provider.voirfilms" type="bool" label="VOIRFILMS" default="true" />
+		<setting id="provider.streamay" type="bool" label="STREAMAY" default="true" />
+		<setting id="provider.streamingseries" type="bool" label="STREAMINGSERIES" default="true" />
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />
@@ -153,6 +153,10 @@
 		<setting type="lsep" label="RPnet" />
 		<setting id="rpnet.user" type="text" label="32303" default="" />
 		<setting id="rpnet.api" type="text" option="hidden" label="32309" default="" />
+		<setting type="sep" />
+		<setting type="lsep" label="Debrid-Link" />
+		<setting id="debridlink.user" type="text" label="32303" default="" />
+		<setting id="debridlink.pass" type="text" option="hidden" label="32307" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="Moviesplanet.is" />
 		<setting id="moviesplanet.user" type="text" label="32303" default="" />

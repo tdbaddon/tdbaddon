@@ -1,5 +1,10 @@
 - [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
 
+Aftershock v4.6.5
+--------------------------------
+- Updated Live Providers
+- Updated Resolvers
+
 Aftershock v4.6.3
 --------------------------------
 - Updated Providers

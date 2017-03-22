@@ -1,3 +1,6 @@
+[B]Version 0.0.17[/B]
+- Add dom_parser2
+
 [B]Version 0.0.16[/B]
 - Add profiler
 - Add better get_current_view code

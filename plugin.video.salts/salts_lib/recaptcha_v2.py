@@ -136,8 +136,9 @@ class cInputWindow(xbmcgui.WindowDialog):
             self.close()
 
 class UnCaptchaReCaptcha:
-    def processCaptcha(self, key, lang, name=None):
-        headers = {'Referer': 'https://www.google.com/recaptcha/api2/demo', 'Accept-Language': lang}
+    def processCaptcha(self, key, lang, name=None, referer=None):
+        if referer is None: referer = 'https://www.google.com/recaptcha/api2/demo'
+        headers = {'Referer': referer, 'Accept-Language': lang}
         html = get_url('http://www.google.com/recaptcha/api/fallback?k=%s' % (key), headers=headers)
         token = ''
         iteration = 0

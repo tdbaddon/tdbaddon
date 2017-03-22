@@ -19,14 +19,14 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://emovies.pro'
+BASE_URL = 'http://emovies.is'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -49,15 +49,15 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'tab_container'})
-            if fragment:
-                q_str = 'HDRIP'
-                match = re.search('>Quality(.*?)<br\s*/?>', html, re.I)
-                if match:
-                    q_str = match.group(1)
-                    q_str = re.sub('(</?strong[^>]*>|:|\s)', '', q_str, re.I | re.U)
+            q_str = 'HDRIP'
+            match = re.search('>Quality(.*?)<br\s*/?>', html, re.I)
+            if match:
+                q_str = match.group(1)
+                q_str = re.sub('(</?strong[^>]*>|:|\s)', '', q_str, re.I | re.U)
 
-                for source in dom_parser.parse_dom(fragment[0], 'iframe', ret='src'):
+            for _attr, content in dom_parser2.parse_dom(html, 'div', {'class': 'tab_content'}):
+                for attrs, _content in dom_parser2.parse_dom(content, 'iframe', req='src'):
+                    source = attrs['src']
                     host = urlparse.urlparse(source).hostname
                     quality = scraper_utils.blog_get_quality(video, q_str, host)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
@@ -66,35 +66,20 @@ class Scraper(scraper.Scraper):
                     if match:
                         hoster['views'] = int(match.group(1))
                         hoster['rating'] = match.group(2)
-                    
-                    hosters.append(hoster)
+                
+                hosters.append(hoster)
 
         return hosters
 
-    def __get_sources(self, html):
-        sources = []
-        for source in dom_parser.parse_dom(html, 'source', {'type': 'video/mp4'}, ret='src'):
-            if source:
-                if self._get_direct_hostname(source) == 'gvideo':
-                    sources.append(source)
-                else:
-                    redir_url = self._http_get(source, allow_redirect=False, method='HEAD', cache_limit=.5)
-                    if redir_url.startswith('http'):
-                        sources.append(redir_url)
-                    else:
-                        sources.append(source)
-                
-        return sources
-    
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
         if not re.search('nothing matched your search criteria', html, re.I):
-            for item in dom_parser.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
-                match = re.search('href="([^"]+)[^>]*title="([^"]+)', item)
+            for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
+                match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
                 if match:
-                    match_url, match_title_year = match.groups()
-                    match_title, match_year = scraper_utils.extra_year(match_title_year)
+                    match_url = match[0].attrs['href']
+                    match_title, match_year = scraper_utils.extra_year(match[0].attrs['title'])
                     if not year or not match_year or year == match_year:
                         result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                         results.append(result)

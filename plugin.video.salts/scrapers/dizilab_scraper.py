@@ -20,7 +20,7 @@ import urlparse
 import random
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -28,7 +28,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 import scraper
 
-BASE_URL = 'http://dizilab.tv'
+BASE_URL = 'http://dizilab.net'
 AJAX_URL = '/request/php/'
 ICONS = {'icon-tr': 'Turkish Subtitles', 'icon-en': 'English Subtitles', 'icon-orj': ''}
 DEFAULT_SUB = 'Turkish Subtitles'
@@ -73,10 +73,10 @@ class Scraper(scraper.Scraper):
 
     def __get_subs(self, html):
         subs = []
-        fragment = dom_parser.parse_dom(html, 'ul', {'class': 'language alternative'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'language alternative'})
         if fragment:
-            subs = dom_parser.parse_dom(fragment[0], 'span', {'class': 'icon-[^"]*'}, ret='class')
-        return subs
+            subs = dom_parser2.parse_dom(fragment[0].content, 'span', {'class': 'icon-[^"]*'}, req='class')
+        return [sub.attrs['class'] for sub in subs]
     
     def __get_json_links(self, html, sub):
         hosters = []
@@ -100,9 +100,9 @@ class Scraper(scraper.Scraper):
     def __get_iframe_links(self, html, sub):
         hosters = []
         html = html.replace('\\"', '"').replace('\\/', '/')
-        iframe_urls = dom_parser.parse_dom(html, 'iframe', {'id': 'episode_player'}, ret='src')
+        iframe_urls = dom_parser2.parse_dom(html, 'iframe', {'id': 'episode_player'}, req='src')
         if iframe_urls:
-            stream_url = iframe_urls[0]
+            stream_url = iframe_urls[0].attrs['src']
             host = urlparse.urlparse(stream_url).hostname
             quality = QUALITIES.HD720
             hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
@@ -129,7 +129,8 @@ class Scraper(scraper.Scraper):
         match = re.search("dizi_kapak_getir\('([^']+)", html)
         if match:
             ep_id = match.group(1)
-            for script_url in dom_parser.parse_dom(html, 'script', {'data-cfasync': 'false'}, ret='src'):
+            for attrs, _content in dom_parser2.parse_dom(html, 'script', {'data-cfasync': 'false'}, req='src'):
+                script_url = attrs['src']
                 html = self._http_get(script_url, cache_limit=24)
                 match1 = re.search("var\s+kapak_url\s*=\s*'([^']+)", html)
                 match2 = re.search("var\s+aCtkp\s*=\s*'([^']+)", html)

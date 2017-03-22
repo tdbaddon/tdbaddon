@@ -2,7 +2,7 @@ import urllib,urllib2,re,os
 
 def scrape():
     string=''
-    link=open_url("http://mamahd.com").replace('\n','').replace('\t','')
+    link=open_url("http://mamahd.com/index.html").replace('\n','').replace('\t','')
     allgames=re.compile('<div class="schedule">(.+?)<br><div id="pagination">').findall(link)[0]
     livegame=re.compile('<a href="(.+?)">.+?<img src="(.+?)"></div>.+?<div class="home cell">.+?<span>(.+?)</span>.+?<span>(.+?)</span>.+?</a>').findall(allgames)
     for url,iconimage,home,away in livegame:

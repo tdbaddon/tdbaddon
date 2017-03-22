@@ -47,7 +47,7 @@ def solve(url, cj, user_agent=None, name=None):
     match = re.search('data-sitekey="([^"]+)', html)
     match1 = re.search('data-ray="([^"]+)', html)
     if match and match1:
-        token = recaptcha_v2.UnCaptchaReCaptcha().processCaptcha(match.group(1), lang='en', name=name)
+        token = recaptcha_v2.UnCaptchaReCaptcha().processCaptcha(match.group(1), lang='en', name=name, referer=url)
         if token:
             data = {'g-recaptcha-response': token, 'id': match1.group(1)}
             scheme = urlparse.urlparse(url).scheme

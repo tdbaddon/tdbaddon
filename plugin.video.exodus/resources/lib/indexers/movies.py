@@ -69,7 +69,7 @@ class movies:
         self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&sort=num_votes,desc&count=40&start=1'
         self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
-        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=moviemeter,asc&count=40&start=1'
+        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=moviemeter,asc&count=40&start=1'
         self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&primary_language=%s&sort=moviemeter,asc&count=40&start=1'
         self.certification_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
@@ -92,7 +92,7 @@ class movies:
         self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
 
-    def get(self, url, idx=True):
+    def get(self, url, idx=True, create_directory=True):
         try:
             try: url = getattr(self, url + '_link')
             except: pass
@@ -133,7 +133,7 @@ class movies:
                 if idx == True: self.worker() ; self.list = [i for i in self.list if not i['poster'] == '0']
 
 
-            if idx == True: self.movieDirectory(self.list)
+            if idx == True and create_directory == True: self.movieDirectory(self.list)
             return self.list
         except:
             pass
@@ -194,6 +194,7 @@ class movies:
         ('Biography', 'biography'),
         ('Comedy', 'comedy'),
         ('Crime', 'crime'),
+        ('Documentary', 'documentary'),
         ('Drama', 'drama'),
         ('Family', 'family'),
         ('Fantasy', 'fantasy'),
@@ -210,7 +211,14 @@ class movies:
         ('Western', 'western')
         ]
 
-        for i in genres: self.list.append({'name': cleangenre.lang(i[0], self.lang), 'url': self.genre_link % i[1], 'image': 'genres.png', 'action': 'movies'})
+        for i in genres: self.list.append(
+            {
+                'name': cleangenre.lang(i[0], self.lang),
+                'url': self.genre_link % i[1],
+                'image': 'genres.png',
+                'action': 'movies'
+            })
+
         self.addDirectory(self.list)
         return self.list
 
@@ -370,7 +378,7 @@ class movies:
                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                 except: premiered = '0'
                 premiered = premiered.encode('utf-8')
-  
+
                 try: genre = item['genres']
                 except: genre = '0'
                 genre = [i.title() for i in genre]
@@ -1013,6 +1021,8 @@ class movies:
 
         queueMenu = control.lang(32065).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -1026,6 +1036,8 @@ class movies:
                 except: pass
 
                 cm = []
+
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=movie&url=%s)' % (sysaddon, urllib.quote_plus(i['url']))))
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
@@ -1043,5 +1055,3 @@ class movies:
 
         control.content(syshandle, 'addons')
         control.directory(syshandle, cacheToDisc=True)
-
-

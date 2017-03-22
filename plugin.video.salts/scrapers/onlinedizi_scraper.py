@@ -20,7 +20,7 @@ import urlparse
 import urllib
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -48,42 +48,47 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        sources = []
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.25)
-            fragment = dom_parser.parse_dom(html, 'ul', {'class': 'dropdown-menu'})
+            fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'dropdown-menu'})
             if fragment:
-                match = re.search('''href=['"]([^'"]+)[^>]*>(?:Altyaz.{1,3}s.{1,3}z)<''', fragment[0])
-                if match:
+                for match in re.finditer('''href=['"]([^'"]+)[^>]*>(Altyaz.{1,3}s.{1,3}z|ok\.ru|openload)<''', fragment[0].content, re.I):
+                    sources = []
+                    subs = True if not match.group(2).startswith('Altyaz') else False
                     option_url = urlparse.urljoin(self.base_url, match.group(1))
                     html = self._http_get(option_url, cache_limit=2)
-                    fragment = dom_parser.parse_dom(html, 'div', {'class': 'video-player'})
+                    fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-player'})
                     if fragment:
-                        iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
-                        if iframe_url:
-                            html = self._http_get(iframe_url[0], cache_limit=.25)
-                            iframe_url = dom_parser.parse_dom(html, 'iframe', {'id': 'ifr'}, ret='src')
-                            if iframe_url:
-                                html = self._http_get(iframe_url[0], allow_redirect=False, method='HEAD', cache_limit=.25)
+                        iframes = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
+                        for attrs, _content in iframes:
+                            iframe_url = attrs['src']
+                            if attrs.get('id') == 'ifr':
+                                html = self._http_get(iframe_url, allow_redirect=False, method='HEAD', cache_limit=.25)
                                 if html.startswith('http'):
-                                    sources.append(html)
-                                    
-                            for match in re.finditer('"((?:\\\\x[A-Fa-f0-9]+)+)"', html):
-                                s = match.group(1).replace('\\x', '').decode('hex')
-                                if s.startswith('http'):
-                                    s = urllib.unquote(s)
-                                    match = re.search('videoPlayerMetadata&mid=(\d+)', s)
-                                    if match:
-                                        s = 'http://ok.ru/video/%s' % (match.group(1))
-                                    sources.append(s)
-                            
-                            for stream_url in sources:
-                                    host = urlparse.urlparse(stream_url).hostname
-                                    quality = QUALITIES.HIGH
-                                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                                    hosters.append(hoster)
+                                    sources.append({'stream_url': html, 'subs': subs})
+                            else:
+                                html = self._http_get(iframe_url, cache_limit=.25)
+                                for match in re.finditer('"((?:\\\\x[A-Fa-f0-9]+)+)"', html):
+                                    s = match.group(1).replace('\\x', '').decode('hex')
+                                    if s.startswith('http'):
+                                        s = urllib.unquote(s)
+                                        match = re.search('videoPlayerMetadata&mid=(\d+)', s)
+                                        if match:
+                                            s = 'http://ok.ru/video/%s' % (match.group(1))
+                                            sources.append({'stream_url': s, 'subs': subs})
+
+                                iframes += dom_parser2.parse_dom(html, 'iframe', req='src')
+                                
+                    for source in sources:
+                        stream_url = source['stream_url']
+                        host = urlparse.urlparse(stream_url).hostname
+                        quality = QUALITIES.HIGH
+                        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                        if source['subs']: hoster['subs'] = 'Turkish Subtitles'
+                        hosters.append(hoster)
     
+        log_utils.log(hosters)
         return hosters
 
     def _get_episode_url(self, show_url, video):
@@ -91,9 +96,9 @@ class Scraper(scraper.Scraper):
         if video.season != 1:
             show_url = urlparse.urljoin(self.base_url, show_url)
             html = self._http_get(show_url, cache_limit=24)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'page-numbers'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'page-numbers'})
             if fragment:
-                match = re.search('href="([^"]+-%s-sezon[^"]*)' % (video.season), fragment[0])
+                match = re.search('href="([^"]+-%s-sezon[^"]*)' % (video.season), fragment[0].content)
                 if match:
                     season_url = match.group(1)
             
@@ -106,12 +111,12 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/yabanci-diziler/')
         html = self._http_get(search_url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'div', {'class': '[^"]*category-post[^"]*'}):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title = dom_parser.parse_dom(item, 'h3')
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*category-post[^"]*'}):
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_title = dom_parser2.parse_dom(item, 'h3')
             if match_url and match_title:
-                match_url = scraper_utils.pathify_url(match_url[0])
-                match_title = match_title[0]
+                match_url = scraper_utils.pathify_url(match_url[0].attrs['href'])
+                match_title = match_title[0].content
                 if match_url in seen_urls: continue
                 seen_urls.add(match_url)
                 if norm_title in scraper_utils.normalize_title(match_title):

@@ -20,7 +20,7 @@ import re
 import urlparse
 import log_utils  # @UnusedImport
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -44,27 +44,20 @@ class Scraper(scraper.Scraper):
     def get_name(cls):
         return 'wso.ch'
 
-    def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
-        html = self._http_get(url, cache_limit=.5)
-        match = re.search('''href=(?:\|")([^"']+)(?:"|')>Click Here to Play''', html)
-        if match:
-            return match.group(1)
-        else:
-            return link
-
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-
-            pattern = 'class="[^"]*tdhost".*?href="([^"]+)">([^<]+)'
-            for match in re.finditer(pattern, html, re.DOTALL):
-                stream_url, host = match.groups()
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'direct': False}
-                hosters.append(hoster)
+            for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': '[^"]*tdhost[^"]*'}):
+                match = dom_parser2.parse_dom(td, 'a', req='href')
+                if match:
+                    stream_url = match[0].attrs['href']
+                    host = urlparse.urlparse(stream_url).hostname
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                    hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+                    hosters.append(hoster)
         return hosters
 
     def _get_episode_url(self, show_url, video):
@@ -76,13 +69,12 @@ class Scraper(scraper.Scraper):
         results = []
         url = urlparse.urljoin(self.base_url, '/index')
         html = self._http_get(url, cache_limit=24)
-        for fragment in dom_parser.parse_dom(html, 'div', {'class': 'ddmcc'}):
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'ddmcc'}):
             norm_title = scraper_utils.normalize_title(title)
             pattern = 'href="([^"]+)[^>]*>([^<]+)'
-            for match in re.finditer(pattern, fragment):
-                url, match_title = match.groups('')
+            for attrs, match_title in dom_parser2.parse_dom(fragment, 'a', req='href'):
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(attrs['href']), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

@@ -67,7 +67,7 @@ def rdAuthorize():
         try: progressDialog.close()
         except: pass
 
-        id, secret = result['client_id'], result['client_secret'] 
+        id, secret = result['client_id'], result['client_secret']
 
         url = 'https://api.real-debrid.com/oauth/v2/token'
         post = urllib.urlencode({'client_id': id, 'client_secret': secret, 'code': device_code, 'grant_type': 'http://oauth.net/grant_type/device/1.0'})
@@ -137,35 +137,53 @@ def rpDict():
         return []
 
 
+def dlDict():
+    try:
+        if '' in credentials().get('debridlink', {}).values(): raise Exception()
+        url = 'https://debrid-link.fr/api/downloader/status'
+        result = cache.get(client.request, 24, url)
+        result = json.loads(result)
+        host_list = result.get('value', {}).get('hosters', [])
+        hosts = [host for status in host_list for host in status.get('hosts', [])]
+        return hosts
+    except:
+        return []
+
+
 def debridDict():
     return {
-    'realdebrid': rdDict(),
-    'premiumize': pzDict(),
-    'alldebrid': adDict(),
-    'rpnet': rpDict()
+        'realdebrid': rdDict(),
+        'premiumize': pzDict(),
+        'alldebrid': adDict(),
+        'rpnet': rpDict(),
+        'debridlink': dlDict()
     }
 
 
 def credentials():
     return {
         'realdebrid': {
-        'id': control.setting('realdebrid.id'),
-        'secret': control.setting('realdebrid.secret'),
-        'token': control.setting('realdebrid.token'),
-        'refresh': control.setting('realdebrid.refresh')
-    },
+            'id': control.setting('realdebrid.id'),
+            'secret': control.setting('realdebrid.secret'),
+            'token': control.setting('realdebrid.token'),
+            'refresh': control.setting('realdebrid.refresh')
+        },
         'premiumize': {
-        'user': control.setting('premiumize.user'),
-        'pass': control.setting('premiumize.pin')
-    },
+            'user': control.setting('premiumize.user'),
+            'pass': control.setting('premiumize.pin')
+        },
         'alldebrid': {
-        'user': control.setting('alldebrid.user'),
-        'pass': control.setting('alldebrid.pass')
-    },
+            'user': control.setting('alldebrid.user'),
+            'pass': control.setting('alldebrid.pass')
+        },
         'rpnet': {
-        'user': control.setting('rpnet.user'),
-        'pass': control.setting('rpnet.api')
-    }}
+            'user': control.setting('rpnet.user'),
+            'pass': control.setting('rpnet.api')
+        },
+        'debridlink': {
+            'user': control.setting('debridlink.user'),
+            'pass': control.setting('debridlink.pass')
+        }}
 
 
 def status():
@@ -255,6 +273,43 @@ def resolver(url, debrid):
         url = result['links'][0]['generated']
         return url
     except:
-        return
+        pass
+
+    try:
+        if not debrid == 'debridlink' and not debrid == True: raise Exception()
+
+        cred = credentials().get('debridlink', {})
+
+        if '' in cred.values(): raise Exception()
+        user, password = cred.get('user'), cred.get('pass')
+
+        post = urllib.urlencode({'pseudo': user, 'password': password})
+        result = client.request('https://debrid-link.fr/api/account/login', post=post)
+        result = json.loads(result)
+
+        if result.get('result') == 'OK':
+            token = result.get('value', {}).get('token')
+            key = result.get('value', {}).get('key')
+            offset = int(time.time()) - result.get('ts') if 'ts' in result else None
+
+            if not offset or not token or not key: raise Exception()
+
+            import hashlib
+            server_ts = int(time.time()) - int(offset)
+            signature = hashlib.sha1(str(server_ts) + '/downloader/add' + key).hexdigest()
+            headers = {'X-DL-SIGN': signature, 'X-DL-TOKEN': token, 'X-DL-TS': server_ts}
+
+            post = urllib.urlencode({'link': u})
+            result = client.request('https://debrid-link.fr/api/downloader/add', post=post, headers=headers)
+            result = json.loads(result)
+
+            if result.get('result') == 'OK':
+                return result.get('value', {}).get('downloadLink')
+    except:
+        import traceback
+        traceback.print_exc()
+        pass
+
+    return None
 
 

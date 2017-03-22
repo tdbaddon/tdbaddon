@@ -20,7 +20,7 @@ import string
 import urlparse
 import log_utils  # @UnusedImport
 import kodi
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -117,12 +117,11 @@ class Scraper(scraper.Scraper):
         data = {'yreuq': title, 'meti': 'title'}
         html = self._http_get(search_url, data=data, headers=XHR, cache_limit=1)
         log_utils.log(html)
-        for item in dom_parser.parse_dom(html, 'li'):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title_year = dom_parser.parse_dom(item, 'a')
-            if match_url and match_title_year:
-                match_url = match_url[0]
-                match_title, match_year = scraper_utils.extra_year(match_title_year[0])
+        for _attrs, item in dom_parser2.parse_dom(html, 'li'):
+            match = dom_parser2.parse_dom(item, 'a', req='href')
+            if match:
+                match_url = match[0].attrs['href']
+                match_title, match_year = scraper_utils.extra_year(match[0].content)
                 if not year or not match_year or year == match_year:
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)

@@ -18,13 +18,12 @@
 import re
 import urlparse
 import kodi
-import dom_parser
-import log_utils
+import dom_parser2
+import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
-
 
 BASE_URL = 'http://putlocker-9.site'
 
@@ -49,11 +48,11 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'video-embed'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-embed'})
             if fragment:
-                iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
+                iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
                 if iframe_url:
-                    stream_url = iframe_url[0]
+                    stream_url = iframe_url[0].attrs['src']
                     host = urlparse.urlparse(stream_url).hostname
                     q_str = 'HDRIP'
                     match = re.search('>Quality(.*?)<br\s*/>', html, re.I)
@@ -75,13 +74,11 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
-        fragment = dom_parser.parse_dom(html, 'ul', {'class': '[^"]*listing-videos[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': '[^"]*listing-videos[^"]*'})
         if fragment:
-            log_utils.log(fragment)
-            for match in re.finditer('href="([^"]+)[^>]+>(.*?)</a>', fragment[0], re.DOTALL):
-                match_url, match_title_year = match.groups()
-                log_utils.log(match.groups())
-                match_title_year = re.sub('</?span[^>]*>', '', match_title_year)
+            for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = attrs['href']
+                match_title_year = re.sub('</?[^>]*>', '', match_title_year)
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                 results.append(result)

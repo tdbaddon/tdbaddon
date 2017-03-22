@@ -20,7 +20,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -28,7 +28,7 @@ from salts_lib.constants import QUALITIES
 import scraper
 
 BASE_URL = 'http://www.dizist.net'
-ALLOWED = [u'odnok', u'rodi', u'odnokaltyazısız']
+ALLOWED = [u'odnok', u'rodi', u'odnokaltyazısız', u'openload']
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -81,10 +81,10 @@ class Scraper(scraper.Scraper):
 
     def __get_alt_pages(self, html, page_url):
         pages = {}
-        fragment = dom_parser.parse_dom(html, 'div', {'class': 'video-alternatives'})
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-alternatives'})
         if fragment:
-            active = dom_parser.parse_dom(fragment[0], 'div', {'class': 'active'})
-            for div in dom_parser.parse_dom(fragment[0], 'div'):
+            active = dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'active'})
+            for _attrs, div in dom_parser2.parse_dom(fragment[0].content, 'div'):
                 match = re.search('href="([^"]+)[^>]>(.*?)</a>', div, re.DOTALL)
                 if match:
                     alt_url, alt_label = match.groups()
@@ -93,7 +93,7 @@ class Scraper(scraper.Scraper):
                     if alt_label not in ALLOWED: continue
                     
                     subs = False if u'altyazısız' in alt_label else True
-                    if active and active[0] == div:
+                    if active and active[0].content == div:
                         pages[page_url] = subs
                     else:
                         pages[alt_url] = subs
@@ -102,9 +102,9 @@ class Scraper(scraper.Scraper):
     
     def __get_sources(self, html, page_url, subs):
         sources = {}
-        player_div = dom_parser.parse_dom(html, 'div', {'class': 'dzst-player'}, ret='data-dzst-player')
+        player_div = dom_parser2.parse_dom(html, 'div', {'class': 'dzst-player'}, req='data-dzst-player')
         if player_div:
-            js_html = scraper_utils.cleanse_title(player_div[0])
+            js_html = scraper_utils.cleanse_title(player_div[0].attrs['data-dzst-player'].replace('&#x3D;', '='))
             js_data = scraper_utils.parse_json(js_html, page_url)
             links = js_data.get('tr', {})
             for height in links:
@@ -115,21 +115,26 @@ class Scraper(scraper.Scraper):
                     quality = scraper_utils.height_get_quality(height)
                 sources[stream_url] = {'direct': True, 'subs': subs, 'quality': quality}
         else:
-            fragment = dom_parser.parse_dom(html, 'div', {'class': 'video-player'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-player'})
             if fragment:
-                fragment = fragment[0]
-                for div in dom_parser.parse_dom(fragment, 'div', {'class': 'ad-player'}):
+                fragment = fragment[0].content
+                for _attrs, div in dom_parser2.parse_dom(fragment, 'div', {'class': 'ad-player'}):
                     fragment = fragment.replace(div, '')
     
-                iframe_url = dom_parser.parse_dom(fragment, 'iframe', ret='src')
+                iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='src')
                 if iframe_url:
-                    iframe_url = iframe_url[0]
-                    if iframe_url.startswith('//'): iframe_url = 'http:' + iframe_url
-                    if self._get_direct_hostname(iframe_url) == 'gvideo':
-                        direct = True
+                    iframe_url = iframe_url[0].attrs['src']
+                    log_utils.log(iframe_url)
+                    if 'dizist' in iframe_url:
+                        html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=1)
+                        return self.__get_sources(html, page_url, subs)
                     else:
-                        direct = False
-                    sources[iframe_url] = {'direct': direct, 'subs': subs, 'quality': QUALITIES.HD720}
+                        if iframe_url.startswith('//'): iframe_url = 'http:' + iframe_url
+                        if self._get_direct_hostname(iframe_url) == 'gvideo':
+                            direct = True
+                        else:
+                            direct = False
+                        sources[iframe_url] = {'direct': direct, 'subs': subs, 'quality': QUALITIES.HD720}
             
         return sources
     
@@ -143,19 +148,17 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, '/arsiv')
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        fragment = dom_parser.parse_dom(html, 'div', {'class': 'ts-list-content'})
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ts-list-content'})
         if fragment:
-            items = dom_parser.parse_dom(fragment[0], 'h1', {'class': 'ts-list-name'})
-            details = dom_parser.parse_dom(fragment[0], 'ul')
+            items = dom_parser2.parse_dom(fragment[0].content, 'h1', {'class': 'ts-list-name'})
+            details = dom_parser2.parse_dom(fragment[0].content, 'ul')
             for item, detail in zip(items, details):
-                match = re.search('href="([^"]+)[^>]*>(.*?)</a>', item)
-                match_year = re.search('<span>(\d{4})</span>', detail)
+                match = dom_parser2.parse_dom(item.content, 'a', req='href')
+                match_year = re.search('<span>(\d{4})</span>', detail.content)
                 if match:
-                    match_url, match_title = match.groups()
-                    if match_year:
-                        match_year = match_year.group(1)
-                    else:
-                        match_year = ''
+                    match_url = match[0].attrs['href']
+                    match_title = match[0].content
+                    match_year = match_year.group(1) if match_year else ''
                     
                     if norm_title in scraper_utils.normalize_title(match_title):
                         result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}

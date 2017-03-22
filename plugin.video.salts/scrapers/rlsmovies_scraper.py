@@ -19,7 +19,7 @@ import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -50,11 +50,10 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            sources = self.__get_post_links(html)
-            for source in sources:
-                if re.search('\.part\.?\d+', source) or '.rar' in source or 'sample' in source: continue
-                release = sources[source]['release']
+            for source, values in self.__get_post_links(html).iteritems():
+                if scraper_utils.excluded_link(source): continue
                 host = urlparse.urlparse(source).hostname
+                release = values['release']
                 quality = scraper_utils.blog_get_quality(video, release, host)
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
                 if 'X265' in release or 'HEVC' in release:
@@ -64,13 +63,12 @@ class Scraper(scraper.Scraper):
 
     def __get_post_links(self, html):
         sources = {}
-        release = dom_parser.parse_dom(html, 'span', {'itemprop': 'name'})
-        release = release[0] if release else ''
-        fragment = dom_parser.parse_dom(html, 'div', {'class': 'entry'})
+        release = dom_parser2.parse_dom(html, 'span', {'itemprop': 'name'})
+        release = release[0].content if release else ''
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
         if fragment:
-            streams = re.findall('href="([^"]+)[^>]*>(.*?)</a>', fragment[0])
-            streams += [(stream_url, '') for stream_url in re.findall('<p[^>]*>(http.*?)</p>', fragment[0])]
-            for stream_url, label in streams:
+            for attrs, label in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                stream_url = attrs['href']
                 if not label or re.search('single\s+link', label, re.I):
                     sources[stream_url] = {'release': release}
                 elif any([ext for ext in ['.mp4', '.mkv', '.avi'] if ext in label]):

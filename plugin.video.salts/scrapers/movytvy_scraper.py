@@ -20,7 +20,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
@@ -50,9 +50,9 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, require_debrid=True, cache_limit=.5)
-            fragment = dom_parser.parse_dom(html, 'table', {'class': '[^"]*links-table[^"]*'})
+            fragment = dom_parser2.parse_dom(html, 'table', {'class': '[^"]*links-table[^"]*'})
             if fragment:
-                for row in dom_parser.parse_dom(fragment[0], 'tr'):
+                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr'):
                     match = re.search("playVideo\.bind\(.*?'([^']+)(?:[^>]*>){2}(.*?)</td>", row, re.DOTALL)
                     if match:
                         stream_url, release = match.groups()
@@ -83,9 +83,9 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         show_url = urlparse.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, require_debrid=True, cache_limit=8)
-        fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*seasons[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': '[^"]*seasons[^"]*'})
         if fragment:
-            match = re.search('href="([^"]+)[^>]*>%s<' % (video.season), html)
+            match = re.search('href="([^"]+)[^>]*>%s<' % (video.season), fragment[0].content)
             if match:
                 season_url = scraper_utils.pathify_url(match.group(1))
                 episode_pattern = 'href="([^"]*/seasons/%s/episodes/%s(?!\d)[^"]*)' % (video.season, video.episode)

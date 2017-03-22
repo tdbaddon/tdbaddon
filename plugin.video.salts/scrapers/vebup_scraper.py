@@ -20,7 +20,7 @@ import scraper
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib import jsunpack
 from salts_lib.constants import VIDEO_TYPES
@@ -51,11 +51,11 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=8)
-            for fragment in dom_parser.parse_dom(html, 'div', {'class': 'movieplay'}):
-                iframe_src = dom_parser.parse_dom(fragment, 'iframe', ret='src')
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
+                iframe_src = dom_parser2.parse_dom(fragment, 'iframe', req='src')
                 if iframe_src:
-                    iframe_src = iframe_src[0]
-                    if 'openload' in iframe_src:
+                    iframe_src = iframe_src[0].attrs['src']
+                    if re.search('o(pen)?load', iframe_src, re.I):
                         meta = scraper_utils.parse_movie_link(iframe_src)
                         quality = scraper_utils.height_get_quality(meta['height'])
                         links = {iframe_src: {'quality': quality, 'direct': False}}
@@ -92,14 +92,14 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'item'}):
-            match_title = dom_parser.parse_dom(item, 'span', {'class': 'tt'})
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_year = dom_parser.parse_dom(item, 'span', {'class': 'year'})
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'item'}):
+            match_title = dom_parser2.parse_dom(item, 'span', {'class': 'tt'})
+            match_url = dom_parser2.parse_dom(item, 'a', req='href')
+            match_year = dom_parser2.parse_dom(item, 'span', {'class': 'year'})
             if match_url and match_title:
-                match_url = match_url[0]
-                match_title = match_title[0]
-                match_year = match_year[0] if match_year else ''
+                match_url = match_url[0].attrs['href']
+                match_title = match_title[0].content
+                match_year = match_year[0].content if match_year else ''
                     
                 if not year or not match_year or year == match_year:
                     result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}

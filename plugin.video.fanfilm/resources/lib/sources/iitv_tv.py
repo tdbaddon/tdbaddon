@@ -121,20 +121,18 @@ class source:
             result = client.source(url)
             resulttype = client.parseDOM(result, 'ul',attrs={'class':'tab-content'}, ret='id')
             for j in resulttype:
-                print("j",j)
                 linkstype = client.parseDOM(result, 'ul', attrs={'class': 'tab-content', 'id':j})[0]
-                #print("LinkType",linkstype)
                 links1 = client.parseDOM(linkstype, 'a', ret='href', attrs={'class':'video-link'})
                 links2 = client.parseDOM(linkstype, 'a', attrs={'class':'video-link'})
                 #links = [i for i in links if i[0][0].startswith('http')]
                 print("links1",links1, len(links1))
                 for k in range(len(links1)):
-                    print("k",links1[k], links2[k].split('.')[0], j)
                     if links1[k].startswith('http'): mylinks.append([links1[k], links2[k].split('.')[0], j])
 
             for i in mylinks:
                 try:
-                    print("i",i)
+                    control.log(' IITV LinkType %s' % str(i))
+
                     vtype = 'BD'
                     if i[2] == 'lecPL': vtype = 'Lektor'
                     if i[2] == 'subPL': vtype = 'Napisy'

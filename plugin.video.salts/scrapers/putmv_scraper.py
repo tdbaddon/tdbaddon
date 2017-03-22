@@ -20,7 +20,7 @@ import urllib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -46,9 +46,9 @@ class Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         html = self._http_get(link, cache_limit=.5)
-        iframe_url = dom_parser.parse_dom(html, 'iframe', ret='src')
+        iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
         if iframe_url:
-            return iframe_url[0]
+            return iframe_url[0].attrs['src']
         else:
             match = re.search('href="([^"]+)[^>]*>Click Here To Play<', html, re.I)
             if match:
@@ -62,12 +62,12 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=2)
-            for tr in dom_parser.parse_dom(html, 'tr', {'id': 'link_\d+'}):
-                stream_url = dom_parser.parse_dom(tr, 'a', {'class': 'buttonlink'}, ret='href')
-                host = dom_parser.parse_dom(tr, 'a', {'class': 'buttonlink'}, ret='title')
-                if stream_url and host:
-                    stream_url = stream_url[0]
-                    host = re.sub(re.compile('Server\s+', re.I), '', host[0])
+            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': 'link_\d+'}):
+                match = dom_parser2.parse_dom(tr, 'a', {'class': 'buttonlink'}, req=['href', 'title'])
+                if match:
+                    stream_url = match[0].attrs['href']
+                    host = match[0].attrs['title']
+                    host = re.sub(re.compile('Server\s+', re.I), '', host)
                     quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
                     hosters.append(hoster)
@@ -82,12 +82,11 @@ class Scraper(scraper.Scraper):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search-movies/%s.html' % urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=8)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'movie_about'}):
-            match_url = dom_parser.parse_dom(item, 'a', ret='href')
-            match_title_year = dom_parser.parse_dom(item, 'a')
-            if match_url and match_title_year:
-                match_url = match_url[0]
-                match_title_year = match_title_year[0]
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'movie_about'}):
+            match = dom_parser2.parse_dom(item, 'a', req='href')
+            if match:
+                match_url = match[0].attrs['href']
+                match_title_year = match[0].content
                 is_season = re.search('Season\s+(\d+)\s*', match_title_year, re.I)
                 if (not is_season and video_type == VIDEO_TYPES.MOVIE) or (is_season and video_type == VIDEO_TYPES.SEASON):
                     match_title, match_year = scraper_utils.extra_year(match_title_year)

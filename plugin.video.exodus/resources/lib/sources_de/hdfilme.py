@@ -114,6 +114,7 @@ class source:
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)
+            tq = cleantitle.query(title).lower()
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(query)
@@ -128,9 +129,13 @@ class source:
             r = [(i[0], i[1], i[2], re.findall('(.+?)\s+(?:staf+el|s)\s+(\d+)', i[1])) for i in r]
             r = [(i[0], i[3][0][0] if len(i[3]) > 0 else i[1], i[2], i[3][0][1] if len(i[3]) > 0 else '0') for i in r]
             r = [(i[0], i[1].replace(' hd', ''), i[2], i[3]) for i in r]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y and int(i[3]) == int(season)][0]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+            r = [(i[0], i[1]) for i in r if i[2] in y and int(i[3]) == int(season)]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = [i[0] for i in r if t == cleantitle.get(i[1])]
+            url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
+
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             url = url.replace('-info', '-stream')

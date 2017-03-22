@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-06 15:03+0000\n"
+"PO-Revision-Date: 2017-03-17 20:20+0000\n"
 "Last-Translator: gogo dave\n"
 "Language-Team: Japanese (http://www.transifex.com/tv-addons/exodus/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -435,7 +435,7 @@ msgstr "エピソード"
 
 msgctxt "#32327"
 msgid "Trakt Progress"
-msgstr "Trakt経過"
+msgstr "Trakt進捗"
 
 msgctxt "#32328"
 msgid "Trakt Episodes"
@@ -467,7 +467,7 @@ msgstr "自動再生"
 
 msgctxt "#32335"
 msgid "Progress Dialog"
-msgstr "ダイアログ表示場所"
+msgstr "進捗ダイアログ"
 
 msgctxt "#32336"
 msgid "Foreground"
@@ -635,11 +635,11 @@ msgstr "Trakt管理"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
-msgstr "[B]Collection[/B]に追加"
+msgstr "[B]コレクション[/B]に追加"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr "[B]Collection[/B]から削除"
+msgstr "[B]コレクション[/B]から削除"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
@@ -676,4 +676,16 @@ msgstr "1) [COLOR skyblue]%s[/COLOR] : へ飛ぶ"
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
 msgstr "2) [COLOR skyblue]%s[/COLOR] : を入力"
+
+msgctxt "#32535"
+msgid "Play Random"
+msgstr "ランダム再生"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "再生中"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "再生できません"
 

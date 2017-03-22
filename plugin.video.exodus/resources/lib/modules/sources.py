@@ -848,22 +848,24 @@ class sources:
 
 
     def getLanguage(self):
-        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr']}
+        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['en', 'pt']}
         name = control.setting('providers.lang')
-        try: lang = langDict[name]
-        except: lang = ['en']
-        return lang
+        return langDict.get(name, ['en'])
 
 
     def getLocalTitle(self, title, imdb, tvdb, content):
-        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr'}
+        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt'}
         name = control.setting('providers.lang')
-        try: lang = langDict[name]
-        except: return title
-        if content == 'movie': t = trakt.getMovieTranslation(imdb, lang)
-        else: t = tvmaze.tvMaze().getTVShowTranslation(tvdb, lang)
-        title = t if not t == None else title
-        return title
+        lang = langDict.get(name)
+        if not lang:
+            return title
+
+        if content == 'movie':
+            t = trakt.getMovieTranslation(imdb, lang)
+        else:
+            t = tvmaze.tvMaze().getTVShowTranslation(tvdb, lang)
+
+        return t or title
 
 
     def getTitle(self, title):
@@ -879,8 +881,9 @@ class sources:
         from resources.lib.sources import sources as sources
         from resources.lib.sources_de import sources as sources_de
         from resources.lib.sources_fr import sources as sources_fr
+        from resources.lib.sources_pt import sources as sources_pt
 
-        self.sourceDict = sources() + sources_de() + sources_fr()
+        self.sourceDict = sources() + sources_de() + sources_fr() + sources_pt()
 
         try:
             self.hostDict = urlresolver.relevant_resolvers(order_matters=True)

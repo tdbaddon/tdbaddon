@@ -20,7 +20,7 @@ from string import capwords
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
-import dom_parser
+import dom_parser2
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
@@ -94,9 +94,9 @@ class Scraper(scraper.Scraper):
             return self.__do_join(match.group(1))
     
     def __get_fragment(self, span, html):
-        fragment = dom_parser.parse_dom(html, 'span', {'id': span})
+        fragment = dom_parser2.parse_dom(html, 'span', {'id': span})
         if fragment:
-            return fragment[0]
+            return fragment[0].content
     
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="(episode[^"]*-[Ss]%02d[Ee]%02d-[^"]+)' % (int(video.season), int(video.episode))
@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
             query_type = 'watch-tvshow-'
 
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'a', {'href': '#'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'a', {'href': '#'}):
             match = re.search('href="(%s[^"]+)' % (query_type), item)
             if match:
                 link = match.group(1)

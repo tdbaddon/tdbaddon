@@ -73,7 +73,7 @@ class source:
                 first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
                 token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
 
-                headers = {'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ=='),
+                headers = {#'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ=='),
                            base64.b64decode("VXNlci1BZ2VudA=="): cache.get(self.getDeviceID, 600000, table='live_cache')}
 
                 url = base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==') % deviceid
@@ -136,9 +136,9 @@ class source:
     def getUserAgent(self):
 
         headers = {'User-Agent':base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I='),
-                   'Authorization':base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5T21waGJuVm5aWEp0WVc0PQ==')}
+                   'Authorization':base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5YW1GdWFUcHFZVzUxWjJWeWJXRnVhbUZ1YVE9PQ==')}
 
-        useragent = client.request(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL2FyYWJpY3R2djFwLnBocA=='), headers=headers)
+        useragent = client.request(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL3Bha2luZGlhdjIzcC5waHA='), headers=headers)
 
         logger.debug('UserAgent : %s' % useragent, __name__)
         return useragent
