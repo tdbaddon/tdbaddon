@@ -84,7 +84,7 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, page_url[0])
             html = self._http_get(url, require_debrid=True, cache_limit=1)
             headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
-            posts = [r.content for r in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})]
+            posts = [r.content for r in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})]
             for heading, post in zip(headings, posts):
                 if self.__too_old(post):
                     too_old = True
@@ -109,7 +109,7 @@ class Scraper(scraper.Scraper):
             test_url = '/show/%s/' % (self.__to_slug(title))
             test_url = urlparse.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
-            posts = dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})
+            posts = dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})
             if posts and CATEGORIES[video_type] in posts[0].content:
                 match = re.search('<div[^>]*>\s*show\s+name:.*?<a\s+href="([^"]+)[^>]+>(?!Season\s+\d+)([^<]+)', posts[0].content, re.I)
                 if match:
@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
             headers = {'User-Agent': LOCAL_UA}
             html = self._http_get(search_url, headers=headers, require_debrid=True, cache_limit=1)
             headings = re.findall('<h2>\s*<a\s+href="([^"]+).*?">(.*?)</a>', html)
-            posts = [r.content for r in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})]
+            posts = [r.content for r in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})]
             norm_title = scraper_utils.normalize_title(title)
             for heading, post in zip(headings, posts):
                 if not re.search('[._ -]S\d+E\d+[._ -]', heading[1], re.I) and not self.__too_old(post):

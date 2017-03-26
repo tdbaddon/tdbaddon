@@ -55,7 +55,7 @@ class sucuri:
                         pass
 
 
-def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None):
+def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None, output=None, XHR=False):
         if timeout == None: timeout= '30'	
         if headers == None:
 
@@ -65,6 +65,21 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
         elif  mobile == True:			
 				headers['User-Agent'] = ''
 				headers['User-Agent'] = 'Apple-iPhone/701.341'
+				
+        if output == 'geturl':
+                link = requests.head(url, allow_redirects=True)
+                link = str(link.url)	
+                return link	
+
+        if output == 'cookie':
+                cookie = [] 
+                r = session.get(url, headers=headers)
+                cookie_dict = session.cookies.get_dict()
+                for k,v in cookie_dict.items(): cookie ="%s=%s" % (k,v)
+                return cookie
+        if XHR == True:
+			print ("REQUESTING WITH XMLHttpRequest")
+			headers['X-Requested-With'] = 'XMLHttpRequest'
 
         link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         response_code = link.status_code

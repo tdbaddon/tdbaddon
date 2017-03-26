@@ -22,7 +22,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules.common import  random_agent
 import requests
 from BeautifulSoup import BeautifulSoup
-alluc_debrid = control.setting('alluc_debrid')
+alluc_debrid = control.setting('debrid_service')
 alluc_status = control.setting('enable_alluc')
 alluc_user = control.setting('alluc_username')
 alluc_pw = control.setting('alluc_password')

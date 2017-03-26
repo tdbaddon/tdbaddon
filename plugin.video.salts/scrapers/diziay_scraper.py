@@ -105,15 +105,16 @@ class Scraper(scraper.Scraper):
             return self._default_get_episode_url(SEASON_URL, video, episode_pattern, title_pattern, data=data, headers=XHR)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        html = self._http_get(self.base_url, cache_limit=8)
         results = []
-        fragment = dom_parser2.parse_dom(html, 'div', {'class': '[^"]*dizis[^"]*'})
-        norm_title = scraper_utils.normalize_title(title)
+        html = self._http_get(self.base_url, cache_limit=8)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'dizis'})
         if fragment:
-            for match in re.finditer('href="([^"]+)[^>]*>([^<]+)', fragment[0].content):
-                url, match_title = match.groups()
+            norm_title = scraper_utils.normalize_title(title)
+            for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                match_url = attrs['href']
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                    match_title = re.sub('<div[^>]*>.*?</div>', '', match_title)
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

@@ -5,6 +5,7 @@
 # Itzik Bereby, 2016
 # ‫לידור מליח‬‎, 2015
 # Michael strat, 2015
+# Noam Guterman, 2017
 # SagaMi, 2016
 # Vella, 2015
 # Yaron Shahrabani, 2016
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2017-03-07 18:21+0000\n"
+"Last-Translator: Noam Guterman\n"
 "Language-Team: Hebrew (http://www.transifex.com/tv-addons/salts/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -387,6 +388,10 @@ msgctxt "#30090"
 msgid "Enter Rating (unrate, or 1-10)"
 msgstr "הזנת דירוג (ללא, או 1-10)"
 
+msgctxt "#30091"
+msgid "Input TVShow ID"
+msgstr "הכנס קוד תוכנית טלויזיה"
+
 msgctxt "#30092"
 msgid "Item Added to Collection"
 msgstr "הפריט התווסף לאוסף"
@@ -578,6 +583,10 @@ msgstr "הוספה לרשימה"
 msgctxt "#30139"
 msgid "Add to Library"
 msgstr "הוספה לספריה"
+
+msgctxt "#30140"
+msgid "Set Addic7ed TVShowID"
+msgstr "הגדר קוד תוכנית טלויזיה Addic7ed"
 
 msgctxt "#30141"
 msgid "Use Default episode matching"
@@ -927,6 +936,10 @@ msgctxt "#30238"
 msgid "Remove Unusable Indirect sources from results"
 msgstr "הסרת מקורות עקיפים בלתי שמישים מהתוצאות"
 
+msgctxt "#30239"
+msgid "Highlight Debrid Sources in results"
+msgstr "הבלט מקורות דבריד בתוצאות"
+
 msgctxt "#30240"
 msgid "No Limit on Maximum Source Results"
 msgstr "אין הגבלה על מספר תוצאות המקורות המרבי"
@@ -980,9 +993,81 @@ msgctxt "#30252"
 msgid "DB Reset Failed: %s"
 msgstr "איפוס מסד הנתונים נכשל: %s"
 
+msgctxt "#30253"
+msgid "No Streamable Url Found"
+msgstr "לא נמצאו כתובות לצפייה ישירה"
+
 msgctxt "#30254"
 msgid "Discovering Next Episodes"
 msgstr "מגלה פרקים באים"
+
+msgctxt "#30255"
+msgid "Retrieving Watched History"
+msgstr "משיג היסטוריית רשימת צפייה"
+
+msgctxt "#30256"
+msgid "Retrieving Watchlist"
+msgstr "משיג רשימת צפייה"
+
+msgctxt "#30257"
+msgid "Retrieving Hidden Progress List"
+msgstr "משיג רשימת התקדמות מוסתרת"
+
+msgctxt "#30258"
+msgid "Requesting Progress for: %s"
+msgstr "מבקש התקדמות עבור: %"
+
+msgctxt "#30259"
+msgid "Received Progress for: %s"
+msgstr "התקבלה התקדמות עבור: %"
+
+msgctxt "#30260"
+msgid "Reset Related Urls"
+msgstr "אפס כתובות קשורות"
+
+msgctxt "#30261"
+msgid "Related Urls Cleared: %s"
+msgstr "כתובות קשורות שנוקו: %"
+
+msgctxt "#30269"
+msgid "Authorization was Rejected"
+msgstr "הרשאה נדחתה"
+
+msgctxt "#30272"
+msgid "Watch It Again"
+msgstr "צפה שוב"
+
+msgctxt "#30282"
+msgid "Next Episode"
+msgstr "פרק הבא"
+
+msgctxt "#30284"
+msgid "Remaining: %s"
+msgstr "אחוזים שנותרו: %"
+
+msgctxt "#30285"
+msgid "Genres"
+msgstr "ז'אנרים"
+
+msgctxt "#30286"
+msgid "Retrieving Collection"
+msgstr "משיג אוסף"
+
+msgctxt "#30287"
+msgid "Adding Items to Directory"
+msgstr "מוסיף פריטים לתיקייה"
+
+msgctxt "#30288"
+msgid "Working..."
+msgstr "עובד..."
+
+msgctxt "#30295"
+msgid "and login when prompted"
+msgstr "והתחבר "
+
+msgctxt "#30300"
+msgid "Refresh Images"
+msgstr "רענן תמונות"
 
 msgctxt "#30500"
 msgid "Addon Theme"
@@ -1055,6 +1140,10 @@ msgstr "כותרת"
 msgctxt "#30517"
 msgid "Year"
 msgstr "שנה"
+
+msgctxt "#30518"
+msgid "Recent Activity"
+msgstr "פעילויות אחרונות"
 
 msgctxt "#30519"
 msgid "Title"
@@ -1200,6 +1289,22 @@ msgctxt "#30561"
 msgid "     Update Interval (hours)"
 msgstr "מרווח בין עדכונים (שעות)"
 
+msgctxt "#30562"
+msgid "     During StartUp?"
+msgstr "במהלך אתחול?"
+
+msgctxt "#30563"
+msgid "     During Playback?"
+msgstr "במהלך ניגון?"
+
+msgctxt "#30565"
+msgid "Include specials in library?"
+msgstr "לכלול מיוחדים בספריה?"
+
+msgctxt "#30566"
+msgid "Include episodes with unknown air dates"
+msgstr "לכלול פרקים עם תאריכי שידור לא ידועים"
+
 msgctxt "#30567"
 msgid "Update Library Afterward?"
 msgstr "האם לעדכן את הספרייה לאחר מכן?"
@@ -1259,6 +1364,14 @@ msgstr "ניפוי מקורות בלתי שמישים"
 msgctxt "#30581"
 msgid "Source Exclusion List"
 msgstr "רשימת מקורות לניפוי"
+
+msgctxt "#30582"
+msgid "Maximum Allowed TV Show Quality"
+msgstr "איכות מקסימלית לסדרות טלוויזיה"
+
+msgctxt "#30583"
+msgid "Maximum Allowed Movie Quality"
+msgstr "איכות מקסימלית לסרטים"
 
 msgctxt "#30587"
 msgid "    Check Frequency (requests)"
@@ -1364,6 +1477,10 @@ msgctxt "#30613"
 msgid "Include in Page Existence checks?"
 msgstr "האם לכלול בבדיקות האם העמוד קיים?"
 
+msgctxt "#30614"
+msgid "Subtitles work only for TV Shows currently"
+msgstr "כתוביות עובדות רק עבור סדרות טלוויזיה לעת עתה"
+
 msgctxt "#30615"
 msgid "Enable Subtitles"
 msgstr "הפעלת כתוביות"
@@ -1456,6 +1573,22 @@ msgctxt "#30637"
 msgid "Highest Quality"
 msgstr "האיכות הגבוהה ביותר"
 
+msgctxt "#30638"
+msgid "Prompt"
+msgstr "התראה"
+
+msgctxt "#30639"
+msgid "On"
+msgstr "פועל"
+
+msgctxt "#30640"
+msgid "Show Liked Lists"
+msgstr "הראה רשימות שאהבתי"
+
+msgctxt "#30641"
+msgid "Show Mosts"
+msgstr "הראה קטגוריות מובילות"
+
 msgctxt "#30643"
 msgid "Recently Added"
 msgstr "נוספו לאחרונה"
@@ -1540,6 +1673,10 @@ msgctxt "#30669"
 msgid "Select this item to Install the SALTS Themepak"
 msgstr "נא לבחור בפריט זה כדי להתקין את חבילת העיצוב של SALTS"
 
+msgctxt "#30670"
+msgid "Show Settings"
+msgstr "הראה הגדרות"
+
 msgctxt "#30677"
 msgid "Automatic"
 msgstr "אוטומטי"
@@ -1567,4 +1704,20 @@ msgstr "מהיר מאוד"
 msgctxt "#30696"
 msgid "Popular"
 msgstr "פופולארי"
+
+msgctxt "#30707"
+msgid "Date Format"
+msgstr "פורמט תאריך"
+
+msgctxt "#30708"
+msgid "Past Activity"
+msgstr "פעילות עבר"
+
+msgctxt "#30727"
+msgid "Enable Cast Thumbnails"
+msgstr "אפשר תמונות שחקנים"
+
+msgctxt "#30729"
+msgid "    Debrid Highlight Color"
+msgstr "צבע סימון דבריד"
 

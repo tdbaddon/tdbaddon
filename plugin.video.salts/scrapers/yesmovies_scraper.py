@@ -200,7 +200,7 @@ class Scraper(scraper.Scraper):
             headers = {'Referer': urlparse.urljoin(self.base_url, page_url)}
             headers.update(XHR)
             html = self._http_get(qp_url, headers=headers, cache_limit=8)
-            source_url = dom_parser2.parse_dom(html, 'a', {'title': 'View all episodes'}, req='href')
+            source_url = dom_parser2.parse_dom(html, 'a', {'title': re.compile('View all episodes')}, req='href')
             if source_url:
                 source_url = source_url[0].attrs['href']
                 page_html = self._http_get(source_url, headers={'Referer': urlparse.urljoin(self.base_url, page_url)}, cache_limit=8)
@@ -217,8 +217,9 @@ class Scraper(scraper.Scraper):
         
     def _get_episode_url(self, season_url, video):
         _movie_id, _sl_url, html = self.__get_source_page(video.video_type, season_url)
-        if any([self.__episode_match(video, attrs['title']) for attrs, _content in dom_parser2.parse_dom(html, 'a', {'href': 'javascript[^"]*'}, req='title')]):
-            return season_url
+        for attrs, _content in dom_parser2.parse_dom(html, 'a', {'href': re.compile('javascript[^"]*')}, req='title'):
+            if self.__episode_match(video, attrs['title']):
+                return season_url
     
     def __episode_match(self, video, label):
         episode_pattern = 'Episode\s+0*%s(?!\d)' % (video.episode)

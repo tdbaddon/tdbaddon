@@ -47,6 +47,7 @@ def make_info(item, show=None, people=None):
     # log_utils.log('Making Info: Item: %s' % (item), log_utils.LOGDEBUG)
     info = {}
     info['originaltitle'] = info['title'] = item['title']
+    if 'originaltitle' in item: info['originaltitle'] = item['originaltitle']
     info['mediatype'] = 'tvshow' if 'aired_episodes' in item else 'movie'
     if 'overview' in item: info['plot'] = info['plotoutline'] = item['overview']
     if 'runtime' in item and item['runtime'] is not None: info['duration'] = item['runtime'] * 60

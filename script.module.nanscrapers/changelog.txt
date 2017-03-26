@@ -1,3 +1,9 @@
+v0.5.11
+- removed 123moviescraper at md's request
+- fixed some scrapers
+- added bobby, alluc and solar scrapers (thanks shism)
+- new optional check_url parameter to scrape_movie_with_dialog and scrape_episode_with_dialog to weed out some of the dead links
+
 v0.5.10
 - fix 123movie scraper (thx to md's code for inspiration)
 

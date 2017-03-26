@@ -73,7 +73,7 @@ class Scraper(scraper.Scraper):
         cookies = {'onlylanguage': 'en', 'lang': 'en'}
         params = {'list': 'search', 'search': title}
         html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=8)
-        for _attrs, content in dom_parser2.parse_dom(html, 'TR', {'id': 'coverPreview\d+'}):
+        for _attrs, content in dom_parser2.parse_dom(html, 'TR', {'id': re.compile('coverPreview\d+')}):
             match = dom_parser2.parse_dom(content, 'a', req='href')
             if match:
                 match_url, match_title = match[0].attrs['href'], match[0].content

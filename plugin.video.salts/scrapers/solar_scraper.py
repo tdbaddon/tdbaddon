@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': 'link_\d+'}):
+            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
                 link_pattern = 'href="[^"]+go.php\?url=([^"]+).*?class="qualityCell[^>]*>\s*([^<]+)'
                 link_match = re.search(link_pattern, tr, re.DOTALL)
                 if link_match:

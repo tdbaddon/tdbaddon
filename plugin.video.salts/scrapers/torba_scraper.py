@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            vid_link = dom_parser2.parse_dom(html, 'a', {'class': '[^"]*video-play[^"]*'}, req='href')
+            vid_link = dom_parser2.parse_dom(html, 'a', {'class': 'video-play'}, req='href')
             if vid_link:
                 vid_id = vid_link[0].attrs['href'].split('/')[-1]
                 for height, stream_id in self.__get_streams(vid_id).iteritems():

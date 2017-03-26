@@ -93,7 +93,7 @@ class Scraper(scraper.Scraper):
         
     def __get_gk_links(self, html, page_url):
         sources = {}
-        for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*server_line[^"]*'}):
+        for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': 'server_line'}):
             match = dom_parser2.parse_dom(link, 'a', req=['data-film', 'data-name', 'data-server'])
             if match:
                 film_id, name_id, server_id = match[0].attrs['data-film'], match[0].attrs['data-name'], match[0].attrs['data-server']

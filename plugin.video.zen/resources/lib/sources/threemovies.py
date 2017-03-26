@@ -34,7 +34,7 @@ class source:
     
     def __init__(self):
         self.domains = ['300movies.co']
-        self.base_link = 'http://300mbmovies4u.net'
+        self.base_link = 'http://300mbmovies4u.co'
         self.search_link = '/?s=%s+%s'
         
         

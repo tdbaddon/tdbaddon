@@ -74,7 +74,7 @@ class Scraper(scraper.Scraper):
     def __find_episode(self, page, video):
         url = urlparse.urljoin(self.base_url, page)
         html = self._http_get(url, cache_limit=2)
-        for _attrs, article in dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'}):
+        for _attrs, article in dom_parser2.parse_dom(html, 'article', {'id': re.compile('post-\d+')}):
             match = re.search('href="([^"]+-s%02d-e%02d[/-][^"]*)' % (int(video.season), int(video.episode)), article, re.I)
             if match:
                 return scraper_utils.pathify_url(match.group(1))

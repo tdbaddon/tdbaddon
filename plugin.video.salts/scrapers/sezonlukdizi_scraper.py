@@ -71,7 +71,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(page_url, cache_limit=2)
             fragment = dom_parser2.parse_dom(html, 'div', {'id': 'playerMenu'})
             if fragment:
-                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': '[^"]*item[^"]*'}, req='data-id'):
+                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'item'}, req='data-id'):
                     data_id = attrs['data-id']
                     headers = {'Referer': page_url}
                     headers.update(XHR)

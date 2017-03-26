@@ -73,9 +73,9 @@ class Scraper(scraper.Scraper):
 
     def __get_subs(self, html):
         subs = []
-        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'language alternative'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': re.compile('language alternative')})
         if fragment:
-            subs = dom_parser2.parse_dom(fragment[0].content, 'span', {'class': 'icon-[^"]*'}, req='class')
+            subs = dom_parser2.parse_dom(fragment[0].content, 'span', {'class': re.compile('icon-[^"]*')}, req='class')
         return [sub.attrs['class'] for sub in subs]
     
     def __get_json_links(self, html, sub):

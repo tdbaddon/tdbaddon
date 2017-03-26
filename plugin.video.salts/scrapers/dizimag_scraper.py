@@ -101,7 +101,6 @@ class Scraper(scraper.Scraper):
         hosters = []
         headers = {'Referer': page_url}
         html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
-        log_utils.log(html)
         sources = dom_parser2.parse_dom(html, 'div', {'class': 'dzst-player'}, req='data-dzst-player')
         if sources:
             sources = scraper_utils.cleanse_title(sources[0].attrs['data-dzst-player'].replace('&#x3D;', '='))

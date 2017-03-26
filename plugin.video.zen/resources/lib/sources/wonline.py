@@ -123,13 +123,13 @@ class source:
 							sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Wonline', 'url': href, 'direct': True, 'debridonly': False})
 					else:
 							if "google" in result: quality = google_tag(result)
-							else: quality = "SD"
+							else: quality = quality_tag(result)
 							try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(result.strip().lower()).netloc)[0]
 						
 							except: host = 'none'
 							url = replaceHTMLCodes(result)
 							url = url.encode('utf-8')
-							if host in hostDict: sources.append({'source': host, 'quality':quality, 'provider': 'Wonline', 'url': href, 'direct': False, 'debridonly': False})
+							if host in hostDict: sources.append({'source': host, 'quality':quality, 'provider': 'Wonline', 'url': url, 'direct': False, 'debridonly': False})
 
 			except:
 				pass

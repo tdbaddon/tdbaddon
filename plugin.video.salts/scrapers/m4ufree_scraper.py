@@ -54,7 +54,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(url, cache_limit=.5)
             
             views = None
-            fragment = dom_parser2.parse_dom(html, 'img', {'src': '[^"]*view_icon.png'})
+            fragment = dom_parser2.parse_dom(html, 'img', {'src': re.compile('[^"]*view_icon.png')})
             if fragment:
                 match = re.search('(\d+)', fragment[0].content)
                 if match:
@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
                 html = self._http_get(url, cache_limit=.5)
             
             sources = self.__get_embedded(html)
-            for link in dom_parser2.parse_dom(html, 'span', {'class': '[^"]*btn-eps[^"]*'}, req='link'):
+            for link in dom_parser2.parse_dom(html, 'span', {'class': 'btn-eps'}, req='link'):
                 link = link.attrs['link']
                 ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
                 headers = {'Referer': url}

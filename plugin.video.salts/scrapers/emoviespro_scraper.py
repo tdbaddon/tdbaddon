@@ -75,7 +75,7 @@ class Scraper(scraper.Scraper):
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
         if not re.search('nothing matched your search criteria', html, re.I):
-            for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
+            for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
                 match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
                 if match:
                     match_url = match[0].attrs['href']

@@ -60,7 +60,7 @@ class Scraper(scraper.Scraper):
             else:
                 page_quality = QUALITIES.HIGH
             
-            fragment = dom_parser2.parse_dom(html, 'section', {'class': '[^"]*entry-content[^"]*'})
+            fragment = dom_parser2.parse_dom(html, 'section', {'class': 'entry-content'})
             if fragment:
                 for _attrs, section in dom_parser2.parse_dom(fragment[0].content, 'p'):
                     match = re.search('([^<]*)', section)

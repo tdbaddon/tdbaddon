@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.25)
-            for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*ldr-item[^"]*'}):
+            for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': 'ldr-item'}):
                 stream_url = dom_parser2.parse_dom(link, 'a', req='data-actuallink')
                 
                 try:
@@ -81,7 +81,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, cache_limit=2)
         if html:
             force_title = scraper_utils.force_title(video)
-            episodes = dom_parser2.parse_dom(html, 'div', {'class': '\s*el-item\s*'})
+            episodes = dom_parser2.parse_dom(html, 'div', {'class': 'el-item'})
             if not force_title:
                 episode_pattern = 'href="([^"]*-[sS]%02d[eE]%02d(?!\d)[^"]*)' % (int(video.season), int(video.episode))
                 match = re.search(episode_pattern, html)

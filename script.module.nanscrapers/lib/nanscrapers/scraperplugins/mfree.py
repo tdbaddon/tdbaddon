@@ -5,7 +5,7 @@ import requests
 from BeautifulSoup import BeautifulSoup
 from ..common import clean_title, random_agent
 from ..scraper import Scraper
-
+import xbmc
 
 class Mfree(Scraper):
     domains = ['m4ufree.info']
@@ -21,27 +21,37 @@ class Mfree(Scraper):
         try:
             headers = {'User-Agent': random_agent()}
             q = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
-            query = urlparse.urljoin(self.base_link, self.movie_search_link % q)
+            page = 1
+            query = urlparse.urljoin(self.base_link, self.movie_search_link % q, page)
             cleaned_title = clean_title(title)
-            html = requests.get(query, headers=headers, timeout=30).content
-            containers = re.compile('<a class="top-item".*href="(.*?)"><cite>(.*?)</cite></a>').findall(html)
-            for href, title in containers:
-                parsed = re.findall('(.+?) \((\d{4})', title)
-                parsed_title = parsed[0][0]
-                parsed_years = parsed[0][1]
-                if cleaned_title == clean_title(parsed_title) and year == parsed_years:
+            while True:
+                html = requests.get(query, headers=headers, timeout=30).content
+                containers = re.compile('<a class="top-item".*href="(.*?)"><cite>(.*?)</cite></a>').findall(html)
+                for href, title in containers:
                     try:
-                        headers = {'User-Agent': random_agent()}
-                        html = requests.get(href, headers=headers, timeout=30).content
-                        parsed_html = BeautifulSoup(html)
-                        quality_title = parsed_html.findAll("h3", attrs={'title': re.compile("Quality of ")})[0]
-                        quality = quality_title.findAll('span')[0].text
-                        match = re.search('href="([^"]+-full-movie-[^"]+)', html)
-                        if match:
-                            url = match.group(1)
-                            return self.sources(url, "SD")
+                        parsed = re.findall('(.+?) \((\d{4})', title)
+                        parsed_title = parsed[0][0]
+                        parsed_years = parsed[0][1]
                     except:
-                        pass
+                        continue
+                    if cleaned_title == clean_title(parsed_title) and year == parsed_years:
+                        try:
+                            headers = {'User-Agent': random_agent()}
+                            html = requests.get(href, headers=headers, timeout=30).content
+                            parsed_html = BeautifulSoup(html)
+                            quality_title = parsed_html.findAll("h3", attrs={'title': re.compile("Quality of ")})[0]
+                            quality = quality_title.findAll('span')[0].text
+                            match = re.search('href="([^"]+-full-movie-[^"]+)', html)
+                            if match:
+                                url = match.group(1)
+                                return self.sources(url, quality)
+                        except:
+                            pass
+                page_numbers = re.findall("http://m4ufree.info/tag/%s/(.*)\"" % q, html)
+                if str(page + 1) not in page_numbers:
+                    break
+                else:
+                    page += 1
 
         except:
             pass
@@ -95,6 +105,10 @@ class Mfree(Scraper):
                     except:
                         pass
                     try:
+                        links.extend(re.findall(r'sources:.*?\[.*?\{"file":.*?"(.*?)"', server_html, re.I | re.DOTALL))
+                    except:
+                        pass
+                    try:
                         links.extend(re.findall(r'<source.*?src="(.*?)"', server_html, re.I | re.DOTALL))
                     except:
                         pass
@@ -118,7 +132,10 @@ class Mfree(Scraper):
                                     pass
 
                             if 'google' in link_source:
-                                quality = googletag(link_source)[0]['quality']
+                                try:
+                                    quality = googletag(link_source)[0]['quality']
+                                except:
+                                    pass
                                 sources.append(
                                     {'source': 'google video', 'quality': quality, 'scraper': self.name,
                                      'url': link_source,
@@ -129,8 +146,22 @@ class Mfree(Scraper):
                                      'url': link_source,
                                      'direct': False})
                             else:
+                                loc = urlparse.urlparse(link_source).netloc # get base host (ex. www.google.com)
+                                source_base = str.join(".",loc.split(".")[1:-1])
+                                if "4sync" in source_base:
+                                    try:
+                                        html = requests.get(link_source).content
+                                        link_source = re.findall("<source src=\"(.*?)\"", html)[0]
+                                        try:
+                                            quality = re.findall("title: \".*?(\d+)p.*?\"", html)[0]
+                                            if quality == "720":
+                                                quality = "540"
+                                        except:
+                                            pass
+                                    except:
+                                        continue
                                 sources.append(
-                                    {'source': 'M4U', 'quality': quality, 'scraper': self.name, 'url': link_source,
+                                    {'source': source_base, 'quality': quality, 'scraper': self.name, 'url': link_source,
                                      'direct': True})
                         except:
                             continue
@@ -160,4 +191,4 @@ def googletag(url):
     elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
         return [{'quality': '480', 'url': url}]
     else:
-        return []
+        raise

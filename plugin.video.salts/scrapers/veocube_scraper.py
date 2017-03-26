@@ -91,7 +91,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=8)
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*movie-details[^"]*'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'movie-details'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             match_title = dom_parser2.parse_dom(item, 'a')
             match_year = dom_parser2.parse_dom(item, 'span', {'class': 'movie-release'})

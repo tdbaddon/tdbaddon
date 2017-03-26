@@ -24,12 +24,12 @@ from resources.lib.modules import client
 from resources.lib.modules import directstream
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules.common import  random_agent, quality_tag
-
+from schism_net import OPEN_URL
 class source:
     def __init__(self):
         self.domains = ['gogoanimemobile.com', 'gogoanimemobile.net', 'gogoanime.io']
-        self.base_link = 'http://gogoanimemobile.net'
-        self.fullbase_link = 'http://gogoanime.io'
+        self.base_link = 'http://ww1.gogoanime.io'
+        self.fullbase_link = 'http://ww1.gogoanime.io'
         self.search_link = '/search.html?keyword=%s'
         self.episode_link = '/%s-episode-%s'
 
@@ -39,16 +39,17 @@ class source:
             headers = {'User-Agent': random_agent()}
             query = self.search_link % (urllib.quote_plus(tvshowtitle))
             q = urlparse.urljoin(self.base_link, query)
-            r = BeautifulSoup(requests.get(q, headers=headers).content)
-            r = r.findAll('div', attrs={'class': re.compile('last_episodes.+?')})
+            r = BeautifulSoup(OPEN_URL(q).content)
+            r = r.findAll('ul', attrs={'class': 'items'})
             for containers in r:
-				# print ("GOGOANIME r1", containers)
+				print ("GOGOANIME r1", containers)
 				r_url = containers.findAll('a')[0]['href'].encode('utf-8')
 				r_title = containers.findAll('a')[0]['title'].encode('utf-8')
 				if cleantitle.get(r_title) == cleantitle.get(tvshowtitle):
 					url = re.findall('(?://.+?|)(/.+)', r_url)[0]
 					url = client.replaceHTMLCodes(url)
 					url = url.encode('utf-8')
+					print ("GOGOANIME PASSED", url)
 					return url
         except:
             return
@@ -74,22 +75,44 @@ class source:
             headers = {'User-Agent': random_agent()}
             if url == None: return sources
             url = urlparse.urljoin(self.base_link, url)
-            r = BeautifulSoup(requests.get(url, headers=headers).content)
-            r = r.findAll('iframe')
+            html = BeautifulSoup(OPEN_URL(url).content)
+            r = html.findAll('iframe')
             # print ("GOGOANIME s1",  r)
             for u in r:
                 try:
                     u = u['src'].encode('utf-8')
-                    # print ("GOGOANIME s2",  u)
-                    if not  'vidstreaming' in u: raise Exception()
-                    html = BeautifulSoup(requests.get(u, headers=headers).content)
-                    r_src = html.findAll('source')
-                    for src in r_src:
-                        vid_url = src['src'].encode('utf-8')
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(vid_url)[0]['quality'], 'provider': 'Gogoanime', 'url': vid_url, 'direct': True, 'debridonly': False})
-                        except: pass
+                    print ("GOGOANIME s2",  u)
+                    if 'vidstreaming' in u:
+						html = BeautifulSoup(OPEN_URL(u).content)
+						r_src = html.findAll('source')
+						for src in r_src:
+							vid_url = src['src'].encode('utf-8')
+							try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(vid_url)[0]['quality'], 'provider': 'Gogoanime', 'url': vid_url, 'direct': True, 'debridonly': False})
+							except: pass
                 except:
-                    pass
+					pass
+            # r2 = html.findAll('div', attrs={'class': 'download-anime'})
+            # for s in r2:
+
+					# print ("GOGOANIME DOWNLOAD", s)
+					# h = s.findAll('a')[0]['href'].encode('utf-8')
+					# print ("GOGOANIME DOWNLOAD 2", h)
+					# a = BeautifulSoup(OPEN_URL(h).content)
+					# print ("GOGOANIME DOWNLOAD 3", a)
+					# b = a.findAll('div', attrs={'class':'mirror_link'})
+					# for items in b:
+						# src = items.findAll('a')
+						# for s in src:
+						
+							# print ("GOGOANIME DOWNLOAD 4", items)
+							# vid_url = s['href'].encode('utf-8')
+							# title = s.string
+							# if "google" in vid_url: quality = quality_tag(title)
+							# else: quality = "SD"
+							# try: sources.append({'source': 'download', 'quality': quality, 'provider': 'Gogoanime', 'url': vid_url, 'direct': True, 'debridonly': False})
+							# except: pass
+				# except:
+                    # pass
 
             return sources
         except:
@@ -97,8 +120,7 @@ class source:
 
 
     def resolve(self, url):
-        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-        else: url = url.replace('https://', 'http://')
+
         return url
 
 

@@ -60,17 +60,19 @@ class HostedLink:
         else:
             return False
 
-    def scrape_movie_with_dialog(self, maximum_age=60, sort_function=None):
+    def scrape_movie_with_dialog(self, maximum_age=60, sort_function=None, check_url=False, extended=False):
         scrape_f = lambda p: self.to_dialog_tuple(
             self.get_url(p, self.title, '', self.year, '', '', self.imdb, self.tvdb, "movie",
-                         self.cache_location, maximum_age))
+                         self.cache_location, maximum_age, check_url))
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
             populator = lambda: execute(scrape_f, self.__scrapers, stop_flag, pool_size, self.timeout)
             if populator:
-                selected = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
+                selected, items = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
                 stop_flag.set()
+                if extended:
+                    return selected, items
                 return selected
             return False
 
@@ -86,17 +88,19 @@ class HostedLink:
         else:
             return False
 
-    def scrape_episode_with_dialog(self, show_year, season, episode, maximum_age=60, sort_function=None):
+    def scrape_episode_with_dialog(self, show_year, season, episode, maximum_age=60, sort_function=None, check_url=False, extended = False):
         scrape_f = lambda p: self.to_dialog_tuple(
             self.get_url(p, self.title, show_year, self.year, season, episode, self.imdb, self.tvdb, "episode",
-                         self.cache_location, maximum_age))
+                         self.cache_location, maximum_age, check_url))
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
             populator = lambda: execute(scrape_f, self.__scrapers, stop_flag, pool_size, self.timeout)
             if populator:
-                selected = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
+                selected, items = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
                 stop_flag.set()
+                if extended:
+                    return selected, items
                 return selected
             return False
 
@@ -110,7 +114,7 @@ class HostedLink:
         else:
             return False
 
-    def scrape_song_with_dialog(self, title, artist, maximum_age=60, sort_function=None):
+    def scrape_song_with_dialog(self, title, artist, maximum_age=60, sort_function=None, extended=False):
         scrape_f = lambda p: self.to_dialog_tuple(
             self.get_muscic_url(p, title, artist, self.cache_location, maximum_age))
         if len(self.__scrapers) > 0:
@@ -118,13 +122,15 @@ class HostedLink:
             stop_flag = Event()
             populator = lambda: execute(scrape_f, self.__scrapers, stop_flag, pool_size, self.timeout)
             if populator:
-                selected = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
+                selected, items = dialogs.select_ext("Select Link", populator, len(self.__scrapers), sort_function)
                 stop_flag.set()
+                if extended:
+                    return selected, items
                 return selected
             return False
 
     @staticmethod
-    def get_url(scraper, title, show_year, year, season, episode, imdb, tvdb, type, cache_location, maximum_age):
+    def get_url(scraper, title, show_year, year, season, episode, imdb, tvdb, type, cache_location, maximum_age, check_url = False):
         cache_enabled = xbmcaddon.Addon('script.module.nanscrapers').getSetting("cache_enabled") == 'true'
         try:
             dbcon = database.connect(cache_location)
@@ -178,6 +184,36 @@ class HostedLink:
                         datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
                     dbcon.commit()
 
+            if check_url:
+                noresolver = False
+                try:
+                    import urlresolver
+                except:
+                    try:
+                        import urlresolver9 as urlresolver
+                    except:
+                        noresolver = True
+                new_sources = []
+                from common import check_playable
+                for source in sources:
+                    if source["direct"]:
+                        check = check_playable(source["url"])
+                        if check:
+                            new_sources.append(source)
+                    elif not noresolver:
+                        try:
+                            hmf = urlresolver.HostedMediaFile(url=source['url'], include_disabled=False,
+                                                         include_universal=False)
+                            if hmf.valid_url():
+                                resolved_url = hmf.resolve()
+                                check = check_playable(resolved_url)
+                                if check:
+                                    new_sources.append(source)
+                        except:
+                            pass
+                    else:
+                        new_sources.append(source)
+                sources = new_sources
             return sources
         except:
             pass

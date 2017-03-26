@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    zen Add-on
-    Copyright (C) 2016 zen
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,24 +17,23 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
+
+
 import re,urllib,urlparse,json,base64,time
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
-from resources.lib.modules import control
+
 class source:
     def __init__(self):
-        self.base_link = control.setting('putlocker_base')
-        if self.base_link == '' or self.base_link == None: self.base_link = 'http://cartoonhd.online'
-		
-        self.social_lock = '0A6ru35yevokjaqbb8'
-        self.search_link = 'http://api.cartoonhd.online/api/v1/' + self.social_lock
-        self.shows_link = '/show/%s/season/%s/episode/%s'
-        self.movies_link = '/movie/%s'
+        self.priority = 1
+        self.language = ['en']
+        self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt', 'cartoonhd.website', 'cartoonhd.online']
+        self.base_link = 'http://cartoonhd.online'
+
 
     def movie(self, imdb, title, year):
         try:
@@ -83,7 +82,7 @@ class source:
                 imdb = data['imdb'] ; year = data['year']
 
                 if 'tvshowtitle' in data:
-                    url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
+                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
 
@@ -104,7 +103,7 @@ class source:
                
             else:
                 url = urlparse.urljoin(self.base_link, url)
-               
+
                 r = client.request(url, output='extended')
 
 
@@ -151,4 +150,5 @@ class source:
 
     def resolve(self, url):
         return directstream.googlepass(url)
+
 

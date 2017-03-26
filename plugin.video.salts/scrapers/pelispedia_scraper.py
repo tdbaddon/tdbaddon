@@ -191,9 +191,9 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*bpM12[^"]*'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'bpM12'}):
             title_frag = dom_parser2.parse_dom(item, 'h2')
-            year_frag = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*sectionDetail[^"]*'})
+            year_frag = dom_parser2.parse_dom(item, 'div', {'class': 'sectionDetail'})
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             if title_frag and match_url:
                 match_url = match_url[0].attrs['href']
@@ -209,7 +209,6 @@ class Scraper(scraper.Scraper):
                     if match:
                         match_year = match.group(1)
 
-                log_utils.log('%s - %s - %s' % (match_title, match_url, match_year))
                 if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                     result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)

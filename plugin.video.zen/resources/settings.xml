@@ -8,9 +8,7 @@
 		<setting id="inprogress_db" type="bool" label="Enable In Progress Database" default="true" />
 		<setting id="inprogress_limit" type="slider" label="In Progress Items" default="100" range="5,200" option="int" visible="!eq(-1,false)" />
 
-		
-		
-		
+
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="false" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
@@ -18,6 +16,7 @@
 		<setting id="episodes_notaired" type="bool" label="Show Not Aired Episodes" default="true" />
 		<setting id="episodes_colours" type="enum" label="Not Aired Episodes Colours" values="Gold|Green|Red|Normal" default="0"  visible="!eq(-1,false)" />
 		<setting id="show_specials" type="bool" label="Show Special Seasons" default="false" />
+        <setting id="calendar_watching" type="bool" label="Display only My Watchlist Shows in TV Calendar" default="false" />
 
 		
 		
@@ -76,8 +75,7 @@
 		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
 
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
-
-		<setting id="provider.moviezone" type="bool" label="Moviezone" default="true" />
+	
 		<setting id="provider.moviexk" type="bool" label="Moviexk" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
 		
@@ -87,7 +85,6 @@
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		
-		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
 
 		<setting id="provider.putmovie" type="bool" label="Putmovie" default="true" />
@@ -104,7 +101,8 @@
 		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
 
 		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
-		
+		<setting id="provider.vumoo" type="bool" label="Vumoo" default="true" />
+				
 		<setting id="provider.watch5s" type="bool" label="Watch5s" default="true" />
 		<setting id="provider.watch32" type="bool" label="Watch32" default="true" />
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
@@ -116,7 +114,6 @@
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
 		<setting id="watchepisodes_base"  type="text" label=" - Base Url" default="http://www.watchepisodes4.com" visible="!eq(-1,false)" />
 				
-		<setting id="provider.watchfilm" type="bool" label="Watchfilm" default="true" />
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />
 
 		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
@@ -134,15 +131,13 @@
 		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
 		<setting id="provider.allrls" type="bool" label="Allrls" default="true" />
 		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true" />
-
-		<setting id="provider.crazy" type="bool" label="Crazy" default="true" />
 		<setting id="provider.ddls" type="bool" label="Ddls" default="true" />		
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
-		<setting id="provider.dailyrls" type="bool" label="Dailyrls" default="true" />		
 		<setting id="provider.directdl" type="bool" label="Directdl" default="true" />
 		<setting id="provider.dltube" type="bool" label="Dltube" default="true" />
 		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
-		<setting id="provider.releasebb" type="bool" label="releaseBB" default="true" />
+		<setting id="provider.releasebb" type="bool" label="Releasebb" default="true" />
+		<setting id="provider.rapidmovies" type="bool" label="Rapidmovies" default="true" />
 		<setting id="provider.rlsbbonline" type="bool" label="Rlsbbonline" default="true" />
 		<setting id="provider.rlshd" type="bool" label="Rlshd" default="true" />
 		<setting id="provider.rlsmovies" type="bool" label="Rlsmovies" default="true" />
@@ -153,7 +148,6 @@
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
 		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
 		<setting id="twoddl_base"  type="text" label=" - Base Url" default="http://iiddl.com" visible="!eq(-1,false)" />
-
 		<setting id="provider.threemovies" type="bool" label="Threemovies" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
 	

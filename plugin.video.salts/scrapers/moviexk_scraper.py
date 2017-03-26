@@ -68,14 +68,13 @@ class Scraper(scraper.Scraper):
             
             streams = dom_parser2.parse_dom(html, 'iframe', req='src')
             if streams:
-                streams = [(stream_url.attrs['src'], 480) for stream_url in streams]
+                streams = [(attrs['src'], 480) for attrs, _content in streams]
                 direct = False
             else:
-                streams = re.findall('''<source[^>]+src=['"]([^'"]+)([^>]+)''', html)
-                streams = [(stream_url, extra) for stream_url, extra in streams if stream_url.startswith('http')]
+                streams = [(attrs['src'], attrs['data-res']) for attrs, _content in dom_parser2.parse_dom(html, 'source', req=['src', 'data-res'])]
                 direct = True
                 
-            for stream_url, extra in streams:
+            for stream_url, height in streams:
                 if 'video.php' in stream_url:
                     redir_url = self._http_get(stream_url, allow_redirect=False, method='HEAD', cache_limit=0)
                     if redir_url.startswith('http'):
@@ -86,16 +85,12 @@ class Scraper(scraper.Scraper):
                     host = self._get_direct_hostname(stream_url)
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(stream_url)
-                        match = re.search('''data-res\s*=\s*["']([^"']+)''', extra)
-                        if match:
-                            height = re.sub('(hd|px)', '', match.group(1))
-                            quality = scraper_utils.height_get_quality(height)
-                        else:
-                            quality = QUALITIES.HIGH
+                    else:
+                        quality = scraper_utils.height_get_quality(height)
                     stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
                 else:
                     host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.height_get_quality(extra)
+                    quality = scraper_utils.height_get_quality(height)
                 
                 source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
                 sources.append(source)
@@ -105,8 +100,7 @@ class Scraper(scraper.Scraper):
     def __get_best_page(self, episodes):
         if 'EPTRAILER' in episodes: del episodes['EPTRAILER']
         if 'EPCAM' in episodes: del episodes['EPCAM']
-        qualities = ['EPHD1080P', 'EPHD720P', 'EPHD', 'EPFULL']
-        for q in qualities:
+        for q in ['EPHD1080P', 'EPHD720P', 'EPHD', 'EPFULL']:
             if q in episodes:
                 return episodes[q]
             
@@ -114,10 +108,7 @@ class Scraper(scraper.Scraper):
             return episodes.items()[0][1]
         
     def __get_episodes(self, html):
-        labels = [r.content for r in dom_parser2.parse_dom(html, 'a', {'data-type': 'watch'})]
-        labels = [label.replace(' ', '').upper() for label in labels]
-        urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'data-type': 'watch'}, req='href')]
-        return dict(zip(labels, urls))
+        return dict((r.content.replace(' ', '').upper(), r.attrs['href']) for r in dom_parser2.parse_dom(html, 'a', {'data-type': 'watch'}))
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

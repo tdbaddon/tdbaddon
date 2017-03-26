@@ -83,7 +83,6 @@ class Scraper(scraper.Scraper):
             if match_url and match_title_year:
                 match_url = match_url[0].attrs['href']
                 match_title_year = match_title_year[0].attrs['alt']
-                log_utils.log(match_url)
                 if not match_url.startswith('/'): match_url = '/tvseries/' + match_url
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
                 if (norm_title in scraper_utils.normalize_title(match_title)) and (not year or not match_year or year == match_year):

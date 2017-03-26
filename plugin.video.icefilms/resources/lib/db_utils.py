@@ -509,6 +509,7 @@ class DB_Connection():
             if self.db_type == DB_TYPES.MYSQL:
                 self.db = database.connect(database=self.dbname, user=self.username, password=self.password, host=self.address, buffered=True)
             else:
+                self.__create_sqlite_db()
                 self.db = database.connect(self.db_path)
                 self.db.text_factory = str
 

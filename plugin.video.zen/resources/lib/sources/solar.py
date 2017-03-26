@@ -25,7 +25,7 @@ from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,
 
 class source:
 	def __init__(self):
-		self.base_link = 'http://www.solarmovies.ag'
+		self.base_link = 'http://www.tvsolarmovie.com'
 		self.movie_link = '/%s.html'
 		self.ep_link = '/%s.html'
 

@@ -67,7 +67,7 @@ class Scraper(scraper.Scraper):
             if fragment:
                 max_age = 0
                 now = min_age = int(time.time())
-                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': 'pt\d+'}):
+                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': re.compile('pt\d+')}):
                     if video.video_type == VIDEO_TYPES.MOVIE:
                         pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
                     else:
@@ -124,7 +124,7 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, data={'searchquery': title, 'searchin': search_in}, cache_limit=8)
         try:
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': '[^"]*search-page[^"]*'})
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'search-page'})
             fragment = dom_parser2.parse_dom(fragment[0].content, 'table')
             for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
                 match_url = attrs['href']

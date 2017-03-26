@@ -5,6 +5,8 @@
 # Mafarricos, 2015
 # discave, 2015
 # discave, 2015
+# Helder, 2017
+# Igor Ferreira, 2017
 # Mafarricos, 2015
 # Ricardo Ferreira, 2016
 # Sheik, 2016
@@ -12,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2017-03-06 21:24+0000\n"
+"Last-Translator: Helder\n"
 "Language-Team: Portuguese (http://www.transifex.com/tv-addons/salts/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -189,6 +191,10 @@ msgctxt "#30041"
 msgid "Set Default %s View"
 msgstr "Definir Vista Padrão de %s"
 
+msgctxt "#30042"
+msgid "Set a view then select this item to set the default %s view"
+msgstr "Escolher vista e depois selecionar este item para vista %s por defeito"
+
 msgctxt "#30043"
 msgid "Import"
 msgstr "Importar"
@@ -353,6 +359,10 @@ msgctxt "#30089"
 msgid "Scraper does not support searching"
 msgstr "Função de pesquisa não suportada pelo scraper"
 
+msgctxt "#30090"
+msgid "Enter Rating (unrate, or 1-10)"
+msgstr "Inserir avaliação (não avaliar, ou 1-10)"
+
 msgctxt "#30091"
 msgid "Input TVShow ID"
 msgstr "Introduza ID de Série"
@@ -480,6 +490,14 @@ msgstr "Semana Anterior"
 msgctxt "#30124"
 msgid "Next Week"
 msgstr "Próxima Semana"
+
+msgctxt "#30125"
+msgid "Mark as Unwatched (SALTS)"
+msgstr "Marcar como não visto (SALTS)"
+
+msgctxt "#30126"
+msgid "Mark as Watched (SALTS)"
+msgstr "Marcar como visto (SALTS)"
 
 msgctxt "#30127"
 msgid "Rate on trakt.tv"
@@ -865,6 +883,78 @@ msgctxt "#30252"
 msgid "DB Reset Failed: %s"
 msgstr "Falhou o restauro da BD: %s"
 
+msgctxt "#30258"
+msgid "Requesting Progress for: %s"
+msgstr "Pedir progresso para: %s"
+
+msgctxt "#30259"
+msgid "Received Progress for: %s"
+msgstr "Progresso recebido para: %s"
+
+msgctxt "#30262"
+msgid "Anticipated %s"
+msgstr "Antecipado %s"
+
+msgctxt "#30263"
+msgid "Set as Sources View"
+msgstr "Definir como vista para as fontes"
+
+msgctxt "#30266"
+msgid "On ANY device, visit: %s"
+msgstr "Em qualquer dispositivo, visite: %s"
+
+msgctxt "#30267"
+msgid "When prompted, enter code: %s"
+msgstr "quando pedido, inserir código: %s"
+
+msgctxt "#30269"
+msgid "Authorization was Rejected"
+msgstr "Autorização rejeitada"
+
+msgctxt "#30270"
+msgid "To watch this video scan the QR Code below or visit [COLOR blue]"
+msgstr "Para ver este vídeo scanar o código QR abaixo ou visitar [COLOR blue]"
+
+msgctxt "#30272"
+msgid "Watch It Again"
+msgstr "Ver outra vez"
+
+msgctxt "#30274"
+msgid "Use Least Watched Method"
+msgstr "Usar o método menos visto"
+
+msgctxt "#30275"
+msgid "Use Most Watched Method"
+msgstr "Usar o método mais visto"
+
+msgctxt "#30276"
+msgid "Use Last Watched Method"
+msgstr "Usar o método do último visto"
+
+msgctxt "#30282"
+msgid "Next Episode"
+msgstr "Próximo episódio"
+
+msgctxt "#30285"
+msgid "Genres"
+msgstr "Géneros"
+
+msgctxt "#30291"
+msgid "Torba Account Authorization"
+msgstr "Autorização de Conta Torba"
+
+msgctxt "#30292"
+msgid "Torba Authorization Complete"
+msgstr "Autorização de Torba Completa"
+
+msgctxt "#30293"
+msgid "Torba Authorization Failed"
+msgstr "Autorização de Torba Falhada"
+
+msgctxt "#30300"
+msgid "Refresh Images"
+msgstr "Atualizar imagens"
+
 msgctxt "#30500"
 msgid "Addon Theme"
 msgstr "Tema do addon"
@@ -936,6 +1026,10 @@ msgstr "Título"
 msgctxt "#30517"
 msgid "Year"
 msgstr "Ano"
+
+msgctxt "#30518"
+msgid "Recent Activity"
+msgstr "Atividade Recente"
 
 msgctxt "#30519"
 msgid "Title"
@@ -1520,4 +1614,64 @@ msgstr "Cancelar"
 msgctxt "#30669"
 msgid "Select this item to Install the SALTS Themepak"
 msgstr "Seleccione esta opção para instalar o pacote de temas SALTS"
+
+msgctxt "#30670"
+msgid "Show Settings"
+msgstr "Mostrar Definições"
+
+msgctxt "#30677"
+msgid "Automatic"
+msgstr "Automático"
+
+msgctxt "#30678"
+msgid "Very Slow"
+msgstr "Muito Lento"
+
+msgctxt "#30679"
+msgid "Slow"
+msgstr "Lento"
+
+msgctxt "#30680"
+msgid "Medium"
+msgstr "Médio"
+
+msgctxt "#30681"
+msgid "Fast"
+msgstr "Rápido"
+
+msgctxt "#30682"
+msgid "Very Fast"
+msgstr "Muito Rápido"
+
+msgctxt "#30692"
+msgid "Show Genres"
+msgstr "Mostrar Géneros"
+
+msgctxt "#30695"
+msgid "Trending"
+msgstr "A Ser Visto"
+
+msgctxt "#30696"
+msgid "Popular"
+msgstr "Popular"
+
+msgctxt "#30697"
+msgid "Anticipated"
+msgstr "Antecipado"
+
+msgctxt "#30698"
+msgid "Most Watched (Week)"
+msgstr "Mais Visto (semana)"
+
+msgctxt "#30699"
+msgid "Most Watched (Month)"
+msgstr "Mais Visto (mes)"
+
+msgctxt "#30700"
+msgid "Most Watched (All)"
+msgstr "Mais Visto (todos)"
+
+msgctxt "#30707"
+msgid "Date Format"
+msgstr "Formato da Data"
 

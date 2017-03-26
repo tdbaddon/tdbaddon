@@ -1,3 +1,4 @@
+import xbmc
 import json
 import re
 import urllib
@@ -48,7 +49,6 @@ class Onemusic(Scraper):
                         if artist == artist_name:
                             print("ONEMUSIC PASSED", href, song_title, artist)
                             return self.sources(href, "HD")
-
 
         except:
             pass

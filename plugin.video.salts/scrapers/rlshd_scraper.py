@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
@@ -58,7 +59,7 @@ class Scraper(scraper.Scraper):
 
     def __get_post_links(self, html, video):
         sources = {}
-        post = dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'})
+        post = dom_parser2.parse_dom(html, 'article', {'id': re.compile('post-\d+')})
         if post:
             for _attrs, fragment in dom_parser2.parse_dom(post[0].content, 'h2'):
                 for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href'):

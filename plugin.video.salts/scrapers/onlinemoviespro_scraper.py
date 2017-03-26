@@ -74,7 +74,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
-        fragment = dom_parser2.parse_dom(html, 'ul', {'class': '[^"]*listing-videos[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'listing-videos'})
         if fragment:
             for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
                 match_url = attrs['href']

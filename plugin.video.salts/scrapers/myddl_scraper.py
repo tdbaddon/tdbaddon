@@ -88,7 +88,7 @@ class Scraper(scraper.Scraper):
         while page_url and not too_old:
             url = urlparse.urljoin(self.base_url, page_url[0])
             html = self._http_get(url, require_debrid=True, cache_limit=1)
-            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
+            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')}):
                 if self.__too_old(post):
                     too_old = True
                     break
@@ -114,7 +114,7 @@ class Scraper(scraper.Scraper):
             test_url = '/tv-show/%s/' % (self.__to_slug(title))
             test_url = urlparse.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
-            posts = dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'})
+            posts = dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})
             if posts:
                 result = {'url': scraper_utils.pathify_url(test_url), 'title': scraper_utils.cleanse_title(title), 'year': ''}
                 results.append(result)
@@ -122,7 +122,7 @@ class Scraper(scraper.Scraper):
             search_title = re.sub('[^A-Za-z0-9 ]', '', title.lower())
             html = self._http_get(self.base_url, params={'s': search_title}, require_debrid=True, cache_limit=1)
             norm_title = scraper_utils.normalize_title(title)
-            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': 'post-\d+'}):
+            for _attrs, post in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')}):
                 match = re.search('<h\d+[^>]*>\s*<a\s+href="([^"]+)[^>]*>(.*?)</a>', post)
                 if match:
                     post_url, post_title = match.groups()

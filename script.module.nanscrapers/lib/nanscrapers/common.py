@@ -8,11 +8,21 @@ import urlparse
 
 def clean_title(title):
     if title == None: return
-    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('&#(\dhttp://www.norestrictions.club/norestrictions.club/main/themes/cars+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
     title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title)
     return title.lower()
+
+def clean_search(title):
+    if title == None: return
+    title = title.lower()
+    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+    title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub('\\\|/|\(|\)|\[|\]|\{|\}|-|:|;|\*|\?|"|\'|<|>|\_|\.|\?', ' ', title).lower()
+    title = ' '.join(title.split())
+    return title
 
 
 def random_agent():
@@ -199,3 +209,85 @@ def googletag(url):
         return [{'quality': '480', 'url': url}]
     else:
         return []
+
+def filter_host(host):
+    if host not in ['example.com', 'allvid.ch', 'anime-portal.org', 'anyfiles.pl',
+                    'www.apnasave.club', 'castamp.com', 'clicknupload.com', 'clicknupload.me',
+                    'clicknupload.link', 'cloud.mail.ru', 'cloudy.ec', 'cloudy.eu', 'cloudy.sx',
+                    'cloudy.ch', 'cloudy.com', 'daclips.in', 'daclips.com', 'dailymotion.com',
+                    'ecostream.tv', 'exashare.com', 'uame8aij4f.com', 'yahmaib3ai.com',
+                    'facebook.com', 'filepup.net', 'fileweed.net', 'flashx.tv', 'googlevideo.com',
+                    'googleusercontent.com', 'get.google.com', 'plus.google.com', 'googledrive.com',
+                    'drive.google.com', 'docs.google.com', 'gorillavid.in', 'gorillavid.com',
+                    'grifthost.com', 'hugefiles.net', 'indavideo.hu', 'kingfiles.net', 'mail.ru',
+                    'my.mail.ru', 'm.my.mail.ru', 'videoapi.my.mail.ru', 'api.video.mail.ru',
+                    'mersalaayitten.com', 'mersalaayitten.co', 'mersalaayitten.us', 'movdivx.com',
+                    'divxme.com', 'movpod.net', 'movpod.in', 'movshare.net', 'wholecloud.net',
+                    'vidgg.to', 'mp4stream.com', 'myvi.ru', 'nosvideo.com', 'noslocker.com',
+                    'novamov.com', 'auroravid.to', 'ok.ru', 'odnoklassniki.ru', 'openload.io',
+                    'openload.co', 'oload.tv', 'playwire.com', 'promptfile.com', 'rapidvideo.com',
+                    'raptu.com', 'rutube.ru', 'videos.sapo.pt', 'speedvideo.net', 'streamcloud.eu',
+                    'streamin.to', 'stream.moe', 'streamplay.to', 'teramixer.com', 'thevid.net',
+                    'thevideo.me', 'toltsd-fel.tk', 'toltsd-fel.xyz', 'trollvid.net', 'trollvid.io',
+                    'mp4edge.com', 'tudou.com', 'tune.pk', 'upload.af', 'uploadx.org', 'uploadz.co',
+                    'uptobox.com', 'uptostream.com', 'veoh.com', 'videa.hu', 'videoget.me',
+                    'videohut.to', 'videoraj.ec', 'videoraj.eu', 'videoraj.sx', 'videoraj.ch',
+                    'videoraj.com', 'videoraj.to', 'videoraj.co', 'bitvid.sx', 'videoweed.es',
+                    'videoweed.com', 'videowood.tv', 'byzoo.org', 'playpanda.net', 'videozoo.me',
+                    'videowing.me', 'easyvideo.me', 'play44.net', 'playbb.me', 'video44.net',
+                    'vidlox.tv', 'vidmad.net', 'tamildrive.com', 'vid.me', 'vidup.me', 'vimeo.com',
+                    'vivo.sx', 'vk.com', 'vshare.eu', 'watchers.to', 'watchonline.to',
+                    'everplay.watchpass.net', 'weshare.me', 'xvidstage.com', 'yourupload.com',
+                    'yucache.net', 'youtube.com', 'youtu.be', 'youtube-nocookie.com',
+                    'youwatch.org', 'chouhaa.info', 'aliez.me', 'ani-stream.com', 'bestream.tv',
+                    'blazefile.co', 'divxstage.eu', 'divxstage.net', 'divxstage.to', 'cloudtime.to',
+                    'downace.com', 'entervideo.net', 'estream.to', 'fastplay.sx', 'fastplay.cc',
+                    'goodvideohost.com', 'jetload.tv', 'letwatch.us', 'letwatch.to', 'vidshare.us',
+                    'megamp4.net', 'mp4engine.com', 'mp4upload.com', 'myvidstream.net',
+                    'nowvideo.eu', 'nowvideo.ch', 'nowvideo.sx', 'nowvideo.co', 'nowvideo.li',
+                    'nowvideo.fo', 'nowvideo.at', 'nowvideo.ec', 'playedto.me', 'www.playhd.video',
+                    'www.playhd.fo', 'putload.tv', 'shitmovie.com', 'rapidvideo.ws',
+                    'speedplay.xyz', 'speedplay.us', 'speedplay1.site', 'speedplay.pw',
+                    'speedplay1.pw', 'speedplay3.pw', 'speedplayy.site', 'speedvid.net',
+                    'spruto.tv', 'stagevu.com', 'streame.net', 'thevideos.tv', 'tusfiles.net',
+                    'userscloud.com', 'usersfiles.com', 'vidabc.com', 'vidcrazy.net',
+                    'uploadcrazy.net', 'thevideobee.to', 'videocloud.co', 'vidfile.net',
+                    'vidhos.com', 'vidto.me', 'vidtodo.com', 'vidup.org', 'vidzi.tv', 'vodlock.co',
+                    'vshare.io', 'watchvideo.us', 'watchvideo2.us', 'watchvideo3.us',
+                    'watchvideo4.us', 'watchvideo5.us', 'watchvideo6.us', 'watchvideo7.us',
+                    'watchvideo8.us', 'watchvideo9.us', 'watchvideo10.us', 'watchvideo11.us',
+                    'watchvideo12.us', 'zstream.to']:
+        return False
+    return True
+
+def check_playable(url):
+    """
+checks if passed url is a live link
+    :param str url: stream url
+    :return: playable stream url or None
+    :rtype: str or None
+    """
+    import urllib
+    import requests
+    try:
+        headers = url.rsplit('|', 1)[1]
+    except:
+        headers = ''
+    headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
+    headers = dict(urlparse.parse_qsl(headers))
+
+    result = None
+    try:
+        if url.startswith('http') and '.m3u8' in url:
+            result = requests.head(url.split('|')[0], headers=headers, timeout=5)
+            if result is None:
+                return None
+
+        elif url.startswith('http'):
+            result = requests.head(url.split('|')[0], headers=headers, timeout=5)
+            if result is None:
+                return None
+    except:
+        pass
+
+    return result

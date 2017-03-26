@@ -5,10 +5,11 @@ import urlparse
 
 from BeautifulSoup import BeautifulSoup
 from nanscrapers import proxy
-from ..common import clean_title, replaceHTMLCodes
+from ..common import clean_title, replaceHTMLCodes, filter_host
 from ..scraper import Scraper
 import xbmcaddon
-import xbmc
+
+
 class Primewire(Scraper):
     domains = ['primewire.ag']
     name = "primewire"
@@ -62,7 +63,7 @@ class Primewire(Scraper):
         try:
             html = BeautifulSoup(self.get_html(title, self.tvsearch_link))
             index_items = html.findAll('div', attrs={'class': re.compile('index_item.+?')})
-            title = 'watch' + clean_title(" ".join(title.translate(None, '\'"?:!@#$&-')))
+            title = 'watch' + clean_title(" ".join(title.translate(None, '\'"?:!@#$&-,')))
 
             for index_item in index_items:
                 try:
@@ -78,7 +79,7 @@ class Primewire(Scraper):
                             href = urlparse.parse_qs(urlparse.urlparse(href).query)['q'][0]
                         except:
                             pass
-                        clean_link_title = clean_title(" ".join(link_title.encode().translate(None, '\'"?:!@#$&-')))
+                        clean_link_title = clean_title(" ".join(link_title.encode().translate(None, '\'"?:!@#$&-,')))
                         if title == clean_link_title:  # href is the show page relative url
                             show_url = urlparse.urljoin(self.base_link, href)
                             html = BeautifulSoup(proxy.get(show_url, 'tv_episode_item'))
@@ -118,7 +119,8 @@ class Primewire(Scraper):
 
     def get_html(self, title, search_link):
         key = self.get_key()
-        query = search_link % (urllib.quote_plus(" ".join(title.translate(None, '\'"?:!@#$&-').split()).rsplit(':', 1)[0]), key)
+        query = search_link % (
+        urllib.quote_plus(" ".join(title.translate(None, '\'"?:!@#$&-,').split()).rsplit(':', 1)[0]), key)
         query = urlparse.urljoin(self.base_link, query)
 
         html = proxy.get(query, ('index_item'))
@@ -171,7 +173,7 @@ class Primewire(Scraper):
                     elif quality == 'quality_dvd':
                         quality = 'SD'
 
-                    if "qertewrt" in host:
+                    if not filter_host(host):
                         continue
 
                     sources.append(

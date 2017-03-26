@@ -52,7 +52,7 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
             page_quality = QUALITIES.HD720 if video.video_type == VIDEO_TYPES.MOVIE else QUALITIES.HIGH
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*embed-responsive[^"]*'}):
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'embed-responsive'}):
                 iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='data-src')
                 if iframe_url:
                     iframe_url = iframe_url[0].attrs['data-src']

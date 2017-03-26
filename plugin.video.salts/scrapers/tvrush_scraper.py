@@ -46,7 +46,7 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         url = urlparse.urljoin(self.base_url, link)
         html = self._http_get(url, cache_limit=.5)
-        stream = dom_parser2.parse_dom(html, 'a', {'class': '[^"]*hostLink[^"]*'}, req='href')
+        stream = dom_parser2.parse_dom(html, 'a', {'class': 'hostLink'}, req='href')
         if stream:
             return stream[0].attrs['href']
         else:

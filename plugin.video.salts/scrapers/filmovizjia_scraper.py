@@ -135,7 +135,6 @@ class Scraper(scraper.Scraper):
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'cbp-rfgrid'})
         if fragment:
             for _attr, item in dom_parser2.parse_dom(fragment[0].content, 'li'):
-                log_utils.log(item)
                 match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
                 if match:
                     match_url = match[0].attrs['href']

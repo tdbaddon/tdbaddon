@@ -12,9 +12,9 @@ def scrape_movie(title, year, imdb, host=None, include_disabled=False, timeout=3
 
 
 def scrape_movie_with_dialog(title, year, imdb, host=None, include_disabled=False, timeout=30, exclude=None,
-                             sort_function=None):
+                             sort_function=None, check_url=False, extended=False):
     return HostedLink(title, year, imdb, None, host, include_disabled, timeout, exclude).scrape_movie_with_dialog(
-        sort_function=sort_function)
+        sort_function=sort_function, check_url=check_url, extended=extended)
 
 
 def scrape_episode(title, show_year, year, season, episode, imdb, tvdb, host=None, include_disabled=False, timeout=30,
@@ -25,11 +25,11 @@ def scrape_episode(title, show_year, year, season, episode, imdb, tvdb, host=Non
 
 
 def scrape_episode_with_dialog(title, show_year, year, season, episode, imdb, tvdb, host=None, include_disabled=False,
-                               timeout=30, exclude=None, sort_function=None):
+                               timeout=30, exclude=None, sort_function=None, check_url=False, extended=False):
     return HostedLink(title, year, imdb, tvdb, host, include_disabled, timeout, exclude).scrape_episode_with_dialog(
         show_year,
         season,
-        episode, sort_function=sort_function)
+        episode, sort_function=sort_function, check_url=check_url, extended=extended)
 
 
 def scrape_song(title, artist, host=None, include_disabled=False, timeout=30, exclude=None):
@@ -37,10 +37,11 @@ def scrape_song(title, artist, host=None, include_disabled=False, timeout=30, ex
 
 
 def scrape_song_with_dialog(title, artist, host=None, include_disabled=False, timeout=30, exclude=None,
-                            sort_function=None):
+                            sort_function=None, extended=False):
     return HostedLink(title, None, None, None, host, include_disabled, timeout, exclude).scrape_song_with_dialog(title,
                                                                                                                  artist,
-                                                                                                                 sort_function=sort_function)
+                                                                                                                 sort_function=sort_function,
+                                                                                                                 extended=extended)
 
 
 def relevant_scrapers(names_list=None, include_disabled=False, exclude=None):

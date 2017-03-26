@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
             sources.update(self.__get_post_links(html, video))
             
             if kodi.get_setting('%s-include_comments' % (self.get_name())) == 'true':
-                for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'id': 'commentbody-\d+'}):
+                for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'id': re.compile('commentbody-\d+')}):
                     sources.update(self.__get_comment_links(comment, video))
 
         for source in sources:

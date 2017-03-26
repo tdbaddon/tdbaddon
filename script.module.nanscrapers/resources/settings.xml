@@ -3,8 +3,15 @@
 	 <category label = "General">		<setting id="cache_enabled" type="bool" label="Enable Caching" default="true"/>	</category>	<category label="Scrapers 1">
 		<setting label="afdah" type="lsep"/>
 		<setting id="afdah_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="Alluc" type="lsep"/>
+		<setting id="Alluc_enabled" type="bool" label="Enabled" default="true"/>
+		<setting id="Alluc_max" type="slider" label="Max Results for Search" default="20" range="5,200" option="int"/>
+		<setting id= "Alluc_user" type="text" label="Username" default=0 />
+		<setting id= "Alluc_pw" type="text" label="Password" default=0 />
 		<setting label="animetoon" type="lsep"/>
 		<setting id="animetoon_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="Bobby" type="lsep"/>
+		<setting id="Bobby_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="dizi720p" type="lsep"/>
 		<setting id="dizi720p_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="dizigold" type="lsep"/>
@@ -13,13 +20,12 @@
 		<setting id="hddizi_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="M4U" type="lsep"/>
 		<setting id="M4U_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="moviefree" type="lsep"/>
+		<setting id="moviefree_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="moviego" type="lsep"/>
 		<setting id="moviego_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="moviexk" type="lsep"/>
 		<setting id="moviexk_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="onemovies" type="lsep"/>
-		<setting id="onemovies_enabled" type="bool" label="Enabled" default="true"/>
-		<setting id= "onemovies_baseurl" type="text" label="Base Url" default="https://123movies.pp.ru"/>
 		<setting label="Onemusic" type="lsep"/>
 		<setting id="Onemusic_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="onlinemovies" type="lsep"/>
@@ -31,9 +37,11 @@
 		<setting id= "primewire_baseurl" type="text" label="Base Url" default="http://www.primewire.ag"/>
 		<setting label="pubfilm" type="lsep"/>
 		<setting id="pubfilm_enabled" type="bool" label="Enabled" default="true"/>
-		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.com"/>
+		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.ac"/>
 		<setting label="sezonlukdizi" type="lsep"/>
 		<setting id="sezonlukdizi_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="Solar" type="lsep"/>
+		<setting id="Solar_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchcartoon" type="lsep"/>
 		<setting id="watchcartoon_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchepisodes" type="lsep"/>

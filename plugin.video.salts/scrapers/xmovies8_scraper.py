@@ -90,7 +90,6 @@ class Scraper(scraper.Scraper):
 
         cookies = {'begin_referer': referer}
         html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=0)
-        log_utils.log(html)
         results = []
         for _attrs, result in dom_parser2.parse_dom(html, 'div', {'class': 'cell'}):
             title_frag = dom_parser2.parse_dom(result, 'div', {'class': 'video_title'})

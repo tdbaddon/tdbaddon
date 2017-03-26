@@ -9,11 +9,11 @@ class Dizi720(Scraper):
     sources = []
 
     def __init__(self):
-        self.base_link = 'http://www.dizi720p.com/'
+        self.base_link = 'http://www.dizi720p.net/'
 
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
         try:
-            start_url = self.base_link+title.replace(' ','-')+'-'+season+'-sezon-'+episode+'-bolum-izle.html'
+            start_url = self.base_link+title.replace(' ','-')+'-'+season+'-sezon-'+episode+'-bolum.html'
             html = requests.get(start_url).text
             block = re.compile('<div id="konumuz">(.+?)<div class="btn-group begenmeler">',re.DOTALL).findall(html)
             for Block in block:

@@ -67,10 +67,10 @@ class Scraper(scraper.Scraper):
                     entry = ''
                     break
     
-            for _attribs, tab in dom_parser2.parse_dom(entry, 'div', {'class': '''[^'"]*postTabs_divs[^'"]*'''}):
-                match = re.search('<iframe[^>]*src="([^"]+)', tab, re.I | re.DOTALL)
+            for _attribs, tab in dom_parser2.parse_dom(entry, 'div', {'class': 'postTabs_divs'}):
+                match = dom_parser2.parse_dom(tab, 'iframe', req='src')
                 if match:
-                    link = match.group(1)
+                    link = match[0].attrs['src']
                     host = urlparse.urlparse(link).hostname
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': link, 'direct': False}
                     hosters.append(hoster)

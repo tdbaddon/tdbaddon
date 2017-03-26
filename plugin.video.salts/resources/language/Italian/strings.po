@@ -2,14 +2,14 @@
 # Addon id: plugin.video.salts
 # Addon Provider: TV Addons
 # Translators:
-# Alessandro Boggiano, 2016
+# Alessandro Boggiano, 2016-2017
 # theloca95, 2015-2016
 # tknorris, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
+"PO-Revision-Date: 2017-03-07 21:36+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: Italian (http://www.transifex.com/tv-addons/salts/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -838,6 +838,26 @@ msgctxt "#30269"
 msgid "Authorization was Rejected"
 msgstr "L'Autorizzazione e' stat Rifiutata"
 
+msgctxt "#30272"
+msgid "Watch It Again"
+msgstr "Guardalo di nuovo"
+
+msgctxt "#30282"
+msgid "Next Episode"
+msgstr "Prossimo Episodio"
+
+msgctxt "#30296"
+msgid "Flush Image Cache"
+msgstr "Pulisci Cache Immagini"
+
+msgctxt "#30299"
+msgid "Flush Complete"
+msgstr "Pulizia Completata"
+
+msgctxt "#30300"
+msgid "Refresh Images"
+msgstr "Aggiorna Immagini"
+
 msgctxt "#30511"
 msgid "Off"
 msgstr "Off"
@@ -857,6 +877,10 @@ msgstr "Titolo"
 msgctxt "#30517"
 msgid "Year"
 msgstr "Anno"
+
+msgctxt "#30518"
+msgid "Recent Activity"
+msgstr "Attività Recente"
 
 msgctxt "#30519"
 msgid "Title"
@@ -1273,4 +1297,132 @@ msgstr "Ultimo aggiornamento dello Scaper"
 msgctxt "#30674"
 msgid "Trakt API Offline Mode"
 msgstr "API Trakt Modo Offline"
+
+msgctxt "#30675"
+msgid "Torba IP Authorization"
+msgstr "Torba IP Autorizzazione"
+
+msgctxt "#30676"
+msgid "Machine Speed"
+msgstr "Velocità della macchina"
+
+msgctxt "#30677"
+msgid "Automatic"
+msgstr "Automatica"
+
+msgctxt "#30678"
+msgid "Very Slow"
+msgstr "Molto Lenta"
+
+msgctxt "#30679"
+msgid "Slow"
+msgstr "Lenta"
+
+msgctxt "#30680"
+msgid "Medium"
+msgstr "Media"
+
+msgctxt "#30681"
+msgid "Fast"
+msgstr "Veloce"
+
+msgctxt "#30682"
+msgid "Very Fast"
+msgstr "Molto Veloce"
+
+msgctxt "#30683"
+msgid "Show Watch It Again"
+msgstr "Mostra Guardalo di nuovo"
+
+msgctxt "#30686"
+msgid "Show Next Episode Notification"
+msgstr "Notifica Mostra Prossimo Episodio"
+
+msgctxt "#30687"
+msgid "    Next Episode Delay (secs)"
+msgstr "Ritardo Prossimo Episodio (sec)"
+
+msgctxt "#30691"
+msgid "    Next Episode Duration (secs)"
+msgstr "Durata Prossimo Episodio (sec)"
+
+msgctxt "#30692"
+msgid "Show Genres"
+msgstr "Mostra Genere"
+
+msgctxt "#30695"
+msgid "Trending"
+msgstr "Di Tendenza"
+
+msgctxt "#30696"
+msgid "Popular"
+msgstr "Popolari"
+
+msgctxt "#30697"
+msgid "Anticipated"
+msgstr "Anticipati"
+
+msgctxt "#30698"
+msgid "Most Watched (Week)"
+msgstr "Più Visti (Settimana)"
+
+msgctxt "#30699"
+msgid "Most Watched (Month)"
+msgstr "Più Visti (Mese)"
+
+msgctxt "#30700"
+msgid "Most Watched (All)"
+msgstr "Più Visti (Tutti)"
+
+msgctxt "#30701"
+msgid "Most Played (Week)"
+msgstr "Più riprodotti (Settimana)"
+
+msgctxt "#30702"
+msgid "Most Played (Month)"
+msgstr "Più riprodotti (Mese)"
+
+msgctxt "#30703"
+msgid "Most Played (All)"
+msgstr "Più riprodotti (Tutti)"
+
+msgctxt "#30704"
+msgid "Most Collected (Week)"
+msgstr "Più Collezionati (Settimana)"
+
+msgctxt "#30705"
+msgid "Most Collected (Month)"
+msgstr "Più Collezionati (Mese)"
+
+msgctxt "#30706"
+msgid "Most Collected (All)"
+msgstr "Più Collezionati (Tutti)"
+
+msgctxt "#30707"
+msgid "Date Format"
+msgstr "Formato Data"
+
+msgctxt "#30714"
+msgid "Enable OMDB Images"
+msgstr "Abilita Immagini OMDB"
+
+msgctxt "#30715"
+msgid "Enable TVMaze Images"
+msgstr "Abilita Immagini TVMaze"
+
+msgctxt "#30716"
+msgid "Flush Image Cache..."
+msgstr "Pulisci Cache Immagini"
+
+msgctxt "#30717"
+msgid "Enable Fanart.tv Images"
+msgstr "Abilita Immagini Fanart.tv"
+
+msgctxt "#30720"
+msgid "Enable Posters"
+msgstr "Abilita Poster"
+
+msgctxt "#30721"
+msgid "Enable Banners"
+msgstr "Abilita Banner"
 

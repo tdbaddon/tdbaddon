@@ -29,7 +29,7 @@ from BeautifulSoup import BeautifulSoup
 from resources.lib.modules.common import  random_agent, quality_tag
 import requests
 from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
-
+from schism_net import OPEN_URL
 class source:
     def __init__(self):
         self.domains = ['bestmovies.wz']
@@ -49,12 +49,12 @@ class source:
 			query = self.search_link % (urllib.quote_plus(title), year)
 			query = urlparse.urljoin(self.base_link, query)
 		
-			html = BeautifulSoup(requests.get(query, headers=headers, timeout=10).content)
+			html = BeautifulSoup(OPEN_URL(query).content)
 			
 			containers = html.findAll('h1', attrs={'class': 'entry-title'})
 			
 			for result in containers:
-				
+				print ("BMOVIES SOURCES movielink", result)				
 				r_title = result.findAll('a')[0]
 				r_title = r_title.string
 				r_href = result.findAll('a')[0]["href"]
@@ -63,7 +63,7 @@ class source:
 				
 				r_title2 = cleantitle_get_2(r_title)
 				if titlecheck in r_title2:
-					self.zen_url.append([movielink,r_title])
+					self.zen_url.append([r_href,r_title])
 			return self.zen_url
         except:
             return
@@ -92,7 +92,7 @@ class source:
 			query = self.search_link % (urllib.quote_plus(title), ep_search)
 			query = urlparse.urljoin(self.base_link, query)
 			titlecheck = cleanmovie + episodecheck
-			html = BeautifulSoup(requests.get(query, headers=headers, timeout=10).content)
+			html = BeautifulSoup(OPEN_URL(query).content)
 			
 			containers = html.findAll('h1', attrs={'class': 'entry-title'})
 			
@@ -116,10 +116,11 @@ class source:
         try:
 			sources = []
 			for movielink,title in self.zen_url:
-				mylink = client.request(movielink)
+				mylink = OPEN_URL(movielink).content
 				if "1080" in title: quality = "1080p"
 				elif "720" in title: quality = "HD"				
-				else: quality = "SD"			
+				else: quality = "SD"		
+				print ("BMOVIES SOURCES movielink", movielink)				
 				for item in parse_dom(mylink, 'div', {'class': 'entry-content'}):
 					match = re.compile('<a href="(.+?)">(.+?)</a>').findall(item)
 					for url,title in match:

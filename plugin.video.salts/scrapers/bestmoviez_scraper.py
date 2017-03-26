@@ -81,7 +81,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         posts = []
         html = self._http_get(self.base_url, params={'s': title, 'submit': 'Search'}, require_debrid=True, cache_limit=2)
-        for _attr, post in dom_parser2.parse_dom(html, 'article', {'id': 'post-\d+'}):
+        for _attr, post in dom_parser2.parse_dom(html, 'article', {'id': re.compile('post-\d+')}):
             if self.__too_old(post): continue
             posts += [post.content for post in dom_parser2.parse_dom(post, 'h1', {'class': 'entry-title'})]
             

@@ -103,7 +103,7 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search/%s.html')
         search_url = search_url % (self.__to_slug(title))
         html = self._http_get(search_url, cache_limit=8)
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*slideposter[^"]*'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'slideposter'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             match_title_year = dom_parser2.parse_dom(item, 'img', req='alt')
             if match_url and match_title_year:

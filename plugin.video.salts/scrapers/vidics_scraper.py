@@ -63,7 +63,7 @@ class Scraper(scraper.Scraper):
             headers = {'Referer': self.base_url}
             html = self._http_get(url, headers=headers, cache_limit=.5)
             for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'lang'}):
-                section_label = dom_parser2.parse_dom(fragment, 'div', {'title': 'Language Flag\s+[^"]*'})
+                section_label = dom_parser2.parse_dom(fragment, 'div', {'title': re.compile('Language Flag\s+[^"]*')})
                 lang, subs = self.__get_section_label(section_label)
                 if lang.lower() == 'english':
                     for attrs, host in dom_parser2.parse_dom(fragment, 'a', {'class': 'p1'}, req='href'):

@@ -13,9 +13,10 @@ def select_ext(title, populator, tasks_count, sort_function = None):
     with ExtendedDialogHacks():
         dlg.doModal()
         selection = dlg.get_selection()
+        items = dlg.items
         del dlg
 
-    return selection
+    return (selection, items)
 
 
 class FanArtWindow(xbmcgui.WindowDialog):

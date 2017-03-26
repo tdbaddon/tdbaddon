@@ -7,12 +7,13 @@
 # BHnetTV, 2017
 # natko1412, 2016
 # natko1412, 2015
+# Zvonimir Brajković, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2017-03-14 08:07+0000\n"
+"Last-Translator: Zvonimir Brajković\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/salts/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -934,6 +935,10 @@ msgctxt "#30238"
 msgid "Remove Unusable Indirect sources from results"
 msgstr "Uklanjanje neupotrebljivih neizravnih izvora iz rezultata"
 
+msgctxt "#30239"
+msgid "Highlight Debrid Sources in results"
+msgstr "Istakni Debrid izvore u rezultatima"
+
 msgctxt "#30240"
 msgid "No Limit on Maximum Source Results"
 msgstr "Nema ograničenja na Maksimalni rezultat Izvora"
@@ -1787,6 +1792,10 @@ msgctxt "#30651"
 msgid "All"
 msgstr "Sve"
 
+msgctxt "#30652"
+msgid "Show Debrid Supported Sources in ..."
+msgstr "Prikaži Debrid podržane izvore u ..."
+
 msgctxt "#30653"
 msgid "6th Sort Key"
 msgstr "6. Ključ sortiranja"
@@ -2086,4 +2095,8 @@ msgstr "Omogući minijature glumaca"
 msgctxt "#30728"
 msgid "    *** Install TMDB API Cache ***"
 msgstr "*** Instalirajte TMDB API predmemoriju ***"
+
+msgctxt "#30729"
+msgid "    Debrid Highlight Color"
+msgstr "Boja označavanja Debrid izvora"
 

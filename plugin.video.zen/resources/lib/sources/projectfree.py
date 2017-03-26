@@ -83,17 +83,17 @@ class source:
 		try:
 				# for url in self.zen_url:
 				if url == None: return
-				
+				print ("PROJECTFREETV SOURCE", url)
 				r = OPEN_URL(url).content
 				links = client.parseDOM(r, 'tr')
 				for i in links:
 					try:
-						
+						print ("PROJECTFREETV SOURCE r2", i)
 						url = re.findall('callvalue\((.+?)\)', i)[0]
 						url = re.findall('(http.+?)(?:\'|\")', url)[0]
 						url = replaceHTMLCodes(url)
 						url = url.encode('utf-8')
-						
+						print ("PROJECTFREETV SOURCE r3", url)
 
 						host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
 						host = host.encode('utf-8')

@@ -116,7 +116,6 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/wp-content/themes/afdah/ajax-search.php')
         data = {'yreuq': title, 'meti': 'title'}
         html = self._http_get(search_url, data=data, headers=XHR, cache_limit=1)
-        log_utils.log(html)
         for _attrs, item in dom_parser2.parse_dom(html, 'li'):
             match = dom_parser2.parse_dom(item, 'a', req='href')
             if match:

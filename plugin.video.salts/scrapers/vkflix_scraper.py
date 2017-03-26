@@ -53,8 +53,8 @@ class Scraper(scraper.Scraper):
             if video.video_type == VIDEO_TYPES.EPISODE:
                 html = self.__get_episode_fragment(html, video)
             for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'linkTr'}):
-                stream_url = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*linkHiddenUrl[^"]*'})
-                q_str = dom_parser2.parse_dom(item, 'div', {'class': '[^"]*linkQualityText[^"]*'})
+                stream_url = dom_parser2.parse_dom(item, 'div', {'class': 'linkHiddenUrl'})
+                q_str = dom_parser2.parse_dom(item, 'div', {'class': 'linkQualityText'})
                 if stream_url and q_str:
                     stream_url = stream_url[0].content
                     q_str = q_str[0].content
@@ -74,7 +74,7 @@ class Scraper(scraper.Scraper):
             for i, label in enumerate(dom_parser2.parse_dom(fragment, 'h3')):
                 match = re.search(pattern, label.content, re.I)
                 if match:
-                    fragments = dom_parser2.parse_dom(fragment, 'div', {'class': '[^"]*tableLinks[^"]*'})
+                    fragments = dom_parser2.parse_dom(fragment, 'div', {'class': 'tableLinks'})
                     if len(fragments) > i:
                         return fragments[i].content
                     else:
@@ -112,10 +112,10 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, params=params, cache_limit=24)
         norm_title = scraper_utils.normalize_title(title)
         match_year = ''
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'id': 'movie-+\d+'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'id': re.compile('movie-+\d+')}):
             is_tvshow = dom_parser2.parse_dom(item, 'div', {'class': 'movieTV'})
             if (is_tvshow and video_type == VIDEO_TYPES.TVSHOW) or (not is_tvshow and video_type == VIDEO_TYPES.MOVIE):
-                fragment = dom_parser2.parse_dom(item, 'h4', {'class': '[^"]*showRowName[^"]*'})
+                fragment = dom_parser2.parse_dom(item, 'h4', {'class': 'showRowName'})
                 if fragment:
                     match = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                     if match:

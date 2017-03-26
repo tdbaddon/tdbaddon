@@ -17,7 +17,7 @@
 
 
 import re,urllib,urlparse,json
-
+from BeautifulSoup import BeautifulSoup
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
@@ -30,7 +30,7 @@ class source:
         self.domains = ['mydownloadtube.com']
         self.base_link = 'http://www.mydownloadtube.com'
         self.search_link = '/search/search_val?language=English%20-%20UK&term='
-
+        self.download_link = '/movies/add_download'
 
     def movie(self, imdb, title, year):
         try:
@@ -48,12 +48,10 @@ class source:
 
             r = [i for i in r if 'category' in i and 'movie' in i['category'].lower()]
             r = [(i['url'], i['label']) for i in r if 'label' in i and 'url' in i]
-            r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year in i[1]][0]
+            # print("DLTUBE MOVIES", r)
+            # url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = client.replaceHTMLCodes(r)
             url = url.encode('utf-8')
             return url
         except:
@@ -69,26 +67,35 @@ class source:
             if not debridstatus == 'true': raise Exception()
 
             url = urlparse.urljoin(self.base_link, url)
-
+            # print("DLTUBE MOVIES SOURCES", url)
             r = client.request(url)
 
-            links = client.parseDOM(r, 'p')
-
-            hostDict = hostprDict + hostDict
-
-            locDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-
-
-            for link in links:
+            movie_id = re.findall('<input type="hidden" value="(\d+)" name="movie_id"', r)[0]
+			
+            # print("DLTUBE MOVIES ID", movie_id)
+            download_link = urlparse.urljoin(self.base_link, self.download_link)
+            p = urllib.urlencode({'movie': movie_id.encode('utf-8')})
+            r = client.request(download_link, post=p, XHR=True)
+            r = BeautifulSoup(r)
+            r = r.findAll('p')
+            ext = ['.avi','.mkv','.mov','.mp4','.xvid','.divx']
+            locDict = [(i.rsplit('.', 1)[0], i) for i in hostprDict if not i in ext]
+			
+            # print ("DLTUBE MOVIES SOURCES 2", r)			
+            for link in r:
                 try:
+                    link = str(link)
                     host = re.findall('Downloads-Server(.+?)(?:\'|\")\)', link)[0]
-                    host = host.strip().lower().split()[-1]
-                    if host == 'fichier': host = '1fichier'
-                    host = [x[1] for x in locDict if host == x[0]][0]
-                    
+                    # print ("DLTUBE MOVIES SOURCES 3", locDict, host.lower())
+					
+                    # host = host.strip().lower().split()[-1]
+                    if 'fichier' in host.lower(): host = '1fichier'
+				
+                    host = [x[1] for x in locDict if x[0].lower() in host.lower()][0]
+                    # print ("DLTUBE MOVIES SOURCES 4", host)	                   
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
-
+                    if not any(value in host for value in hostprDict): raise Exception()
                     url = client.parseDOM(link, 'a', ret='href')[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')

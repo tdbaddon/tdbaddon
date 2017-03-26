@@ -69,7 +69,7 @@ class Scraper(scraper.Scraper):
         results = []
         if not re.search('Sorry, but nothing matched', html):
             norm_title = scraper_utils.normalize_title(title)
-            for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
+            for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
                 for attrs, _content in dom_parser2.parse_dom(item, 'a', req=['href', 'title']):
                     match_url, match_title_year = attrs['href'], attrs['title']
                     if re.search('S\d{2}E\d{2}', match_title_year): continue  # skip episodes

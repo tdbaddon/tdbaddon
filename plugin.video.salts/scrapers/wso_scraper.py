@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': '[^"]*tdhost[^"]*'}):
+            for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': 'tdhost'}):
                 match = dom_parser2.parse_dom(td, 'a', req='href')
                 if match:
                     stream_url = match[0].attrs['href']

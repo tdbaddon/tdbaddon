@@ -62,7 +62,7 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=2)
-            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': 'link_\d+'}):
+            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
                 match = dom_parser2.parse_dom(tr, 'a', {'class': 'buttonlink'}, req=['href', 'title'])
                 if match:
                     stream_url = match[0].attrs['href']

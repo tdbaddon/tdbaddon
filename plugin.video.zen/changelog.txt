@@ -1,3 +1,9 @@
+[B]2017.03.21[/B]
+- Update Providers 
+- Added Ability to Display only watchlisted Shows in TV Calendar
+- new Free and Debrid Providers
+- Cleaned up resources and scraping methods
+
 [B]2017.03.08[/B]
 - Update Providers
 - Improved results

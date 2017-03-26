@@ -2,12 +2,13 @@
 # Addon id: plugin.video.salts
 # Addon Provider: TV Addons
 # Translators:
+# Algimantas Margevičius, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2017-03-10 16:06+0000\n"
+"Last-Translator: Algimantas Margevičius\n"
 "Language-Team: Lithuanian (http://www.transifex.com/tv-addons/salts/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -929,6 +930,10 @@ msgctxt "#30238"
 msgid "Remove Unusable Indirect sources from results"
 msgstr "Iš rezultatų pašalinti netiesioginius šaltinius"
 
+msgctxt "#30239"
+msgid "Highlight Debrid Sources in results"
+msgstr "Rezultatuose „debrid“ šaltinius paryškinti"
+
 msgctxt "#30240"
 msgid "No Limit on Maximum Source Results"
 msgstr "Neriboti šaltinių skaičiaus"
@@ -1782,6 +1787,10 @@ msgctxt "#30651"
 msgid "All"
 msgstr "Visi"
 
+msgctxt "#30652"
+msgid "Show Debrid Supported Sources in ..."
+msgstr "Debrid palaikančius šaltinius rodyti..."
+
 msgctxt "#30653"
 msgid "6th Sort Key"
 msgstr "6-tas rikiavimo raktas"
@@ -2081,4 +2090,8 @@ msgstr "Įjungti miniatiūrų perdavimą"
 msgctxt "#30728"
 msgid "    *** Install TMDB API Cache ***"
 msgstr "    *** Įdiegti TMBD API podėlį ***"
+
+msgctxt "#30729"
+msgid "    Debrid Highlight Color"
+msgstr "Debrid paryškinimo spalva"
 

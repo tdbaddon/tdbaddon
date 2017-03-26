@@ -88,7 +88,6 @@ class Scraper(scraper.Scraper):
                         if source['subs']: hoster['subs'] = 'Turkish Subtitles'
                         hosters.append(hoster)
     
-        log_utils.log(hosters)
         return hosters
 
     def _get_episode_url(self, show_url, video):
@@ -111,7 +110,7 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/yabanci-diziler/')
         html = self._http_get(search_url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*category-post[^"]*'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'category-post'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             match_title = dom_parser2.parse_dom(item, 'h3')
             if match_url and match_title:

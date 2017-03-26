@@ -8,7 +8,7 @@ import xbmc
 from BeautifulSoup import BeautifulSoup
 from nanscrapers.common import random_agent, googletag
 from ..scraper import Scraper
-
+from ..jsunpack import unpack
 
 class Pelispedia(Scraper):
     domains = ['pelispedia.tv']
@@ -82,7 +82,7 @@ class Pelispedia(Scraper):
         return []
 
     def get_imdb_title(self, imdb):
-        headers = {'User-Agent': random_agent(), 'Accept-Language': 'es-es'}
+        headers = {'User-Agent': random_agent(), 'Accept-Language': 'es-pt'}
         html = BeautifulSoup(requests.get('http://www.imdb.com/title/%s' % imdb, headers=headers).content)
         html_title = html.findAll('title')[0].text.encode('utf-8')
         imdb_title = re.sub('(?:\(||\(TV Series\s|\s)\d{4}.+', '', html_title).strip()
@@ -120,11 +120,13 @@ class Pelispedia(Scraper):
                             html_sources = re.findall('sources\s*:\s*\[(.+?)\]', html)
                             for source in html_sources:
                                 files = re.findall('"file"\s*:\s*"(.+?)"', source)
+                                files.extend(re.findall('file\s*:\s*\'(.+?)\'', source))
                                 for file in files:
                                     file = file.split()[0].replace('\\/', '/')
                                     sources.append(
                                         {'source': 'google video', 'quality': googletag(file)[0]['quality'],
                                          'scraper': self.name, 'url': file, 'direct': True})
+                                continue
                         except:
                             pass
 
@@ -138,6 +140,7 @@ class Pelispedia(Scraper):
                             sources.append(
                                 {'source': 'google video', 'quality': 'SD', 'scraper': self.name, 'url': episode_link,
                                  'direct': True})
+                            continue
                         except:
                             pass
 
@@ -153,6 +156,7 @@ class Pelispedia(Scraper):
                             sources.append(
                                 {'source': 'cdn', 'quality': 'SD', 'scraper': self.name, 'url': episode_link,
                                  'direct': True})
+                            continue
                         except:
                             pass
                 except:

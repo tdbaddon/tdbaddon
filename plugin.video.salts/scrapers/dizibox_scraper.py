@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
 
     def __extract_links(self, html):
         hosters = []
-        fragment = dom_parser2.parse_dom(html, 'span', {'class': '[^"]*video-wrapper[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'span', {'class': 'video-wrapper'})
         if fragment:
             iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
             if iframe_url:

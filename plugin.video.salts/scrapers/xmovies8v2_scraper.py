@@ -66,10 +66,13 @@ class Scraper(scraper.Scraper):
                 if pl_url:
                     headers = {'Referer': page_url}
                     if pl_url.startswith('//'): pl_url = 'https:' + pl_url
-                    html = self._http_get(pl_url, headers=headers, cache_limit=1)
-                    js_data = scraper_utils.parse_json(html, pl_url)
-                    try: streams = [(source['file'], source.get('label', '')) for source in js_data['playlist'][0]['sources']]
-                    except: streams = []
+                    html = self._http_get(pl_url, headers=headers, allow_redirect=False, cache_limit=0)
+                    if html.startswith('http'):
+                        streams = [(html, '')]
+                    else:
+                        js_data = scraper_utils.parse_json(html, pl_url)
+                        try: streams = [(source['file'], source.get('label', '')) for source in js_data['playlist'][0]['sources']]
+                        except: streams = []
                         
                     for stream in streams:
                         stream_url, label = stream
@@ -104,7 +107,7 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, season_url, video):
         season_url = urlparse.urljoin(self.base_url, season_url)
         html = self._http_get(season_url, cache_limit=.5)
-        fragment = dom_parser2.parse_dom(html, 'div', {'class': '[^"]*ep_link[^"]*'})
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ep_link'})
         if fragment:
             episode_pattern = 'href="([^"]+)[^>]+>(?:Episode)?\s*0*%s<' % (video.episode)
             match = re.search(episode_pattern, fragment[0].content)

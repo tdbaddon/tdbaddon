@@ -53,7 +53,7 @@ class Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
             for fragment in dom_parser2.parse_dom(html, 'div', {'class': 'player_wraper'}):
-                iframe_url = dom_parser2.parse_dom(fragment.content, 'iframe', ret='src')
+                iframe_url = dom_parser2.parse_dom(fragment.content, 'iframe', req='src')
                 if iframe_url:
                     url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
                     html = self._http_get(url, cache_limit=.5)

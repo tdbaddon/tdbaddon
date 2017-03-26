@@ -25,14 +25,14 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
-
+from schism_net import OPEN_URL
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
         self.domains = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
-        self.base_link = 'http://watch5s.to'
+        self.base_link = 'https://pmovies.to'
         self.random_link = ['watch5s.to', 'cmovieshd.com']
         self.info_link = '/ajax/movie_qtip/%s'
 
@@ -98,7 +98,7 @@ class source:
                 url = urlparse.urljoin(base_link, url)
                 referer = url
 
-                r = client.request(url)
+                r = OPEN_URL(url).content
 
                 y = re.findall('Release\s*:\s*.+?\s*(\d{4})', r)[0]
 
@@ -111,7 +111,7 @@ class source:
                 url = re.sub('/watch$', '', url.strip('/')) + '/watch/'
                 referer = url
 
-                r = client.request(url)
+                r = OPEN_URL(url).content
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a'))

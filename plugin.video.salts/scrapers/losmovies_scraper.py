@@ -59,7 +59,7 @@ class Scraper(scraper.Scraper):
                 fragment = html
 
             if fragment:
-                for attrs, stream_url in dom_parser2.parse_dom(fragment, 'td', {'class': '[^"]*linkHiddenUrl[^"]*'}, req='data-width'):
+                for attrs, stream_url in dom_parser2.parse_dom(fragment, 'td', {'class': 'linkHiddenUrl'}, req='data-width'):
                     host = urlparse.urlsplit(stream_url).hostname.replace('embed.', '')
                     url = url.replace('&amp;', '&')
                     quality = scraper_utils.width_get_quality(attrs['data-width'])
@@ -73,7 +73,7 @@ class Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search')
         params = {'type': 'movies', 'q': title}
         html = self._http_get(search_url, params=params, cache_limit=8)
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'id': 'movie-\d+'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'id': re.compile('movie-\d+')}):
             is_tvshow = dom_parser2.parse_dom(item, 'div', {'class': 'movieTV'})
             if (video_type == VIDEO_TYPES.MOVIE and is_tvshow) or (video_type == VIDEO_TYPES.TVSHOW and not is_tvshow): continue
             

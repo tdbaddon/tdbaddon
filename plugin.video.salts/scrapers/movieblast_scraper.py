@@ -59,7 +59,7 @@ class Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=8)
-            for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'class': '[^"]*streaming-link[^"]*'}):
+            for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'class': 'streaming-link'}):
                 match = re.search("nowPlaying\(\s*\d+\s*,\s*'([^']+)'\s*,\s*'([^']+)", row)
                 if match:
                     host, stream_url = match.groups()
@@ -81,7 +81,7 @@ class Scraper(scraper.Scraper):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search/%s/' % (urllib.quote(title)))
         html = self._http_get(search_url, cache_limit=8)
-        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': '[^"]*item[^"]*'}):
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'item'}):
             match_title = dom_parser2.parse_dom(item, 'span')
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             if match_url and match_title:

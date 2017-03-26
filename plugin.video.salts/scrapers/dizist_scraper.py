@@ -124,7 +124,6 @@ class Scraper(scraper.Scraper):
                 iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='src')
                 if iframe_url:
                     iframe_url = iframe_url[0].attrs['src']
-                    log_utils.log(iframe_url)
                     if 'dizist' in iframe_url:
                         html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=1)
                         return self.__get_sources(html, page_url, subs)

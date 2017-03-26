@@ -25,7 +25,7 @@ from resources.lib.modules import cache
 from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
-
+import xbmc
 import os,sys,re,json,zipfile,StringIO,urllib,urllib2,urlparse,base64,datetime
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
@@ -582,13 +582,52 @@ class episodes:
                     self.list += cache.get(self.tvmaze_list, 720, url, True)
 
             elif self.tvmaze_link in url:
-                self.list = cache.get(self.tvmaze_list, 1, url, False)
-
+                self.cached = cache.get(self.tvmaze_list, 1, url, False)
+                self.list = []
+                calendar_watchlist = control.setting('calendar_watching')
+                my_shows = self.favourites()
+                # print ("ZEN MY SHOWS", my_shows)
+                for i in self.cached:
+					if calendar_watchlist == 'true':
+						if i['tvdb'] in my_shows: self.list.append(i)
+					else: self.list.append(i)
+                self.episodeDirectory_calendar(self.list)
+                return self.list
 
             self.episodeDirectory(self.list)
             return self.list
         except:
             pass
+			
+			
+    def favourites(self):
+        from resources.lib.modules import favourites
+        try:
+            items = favourites.getFavourites('tvshows')
+            self.list = [i[1] for i in items]
+            self.mytvshows = []
+            for i in self.list:
+                # print "ZEEEEN SELF LIST %s" %i
+                if not 'name' in i: i['name'] = '%s (%s)' % (i['title'], i['year'])
+                try: i['title'] = i['title'].encode('utf-8')
+                except: pass
+                try: i['name'] = i['name'].encode('utf-8')
+                except: pass
+                if not 'duration' in i: i['duration'] = '0'
+                if not 'imdb' in i: i['imdb'] = '0'
+                if not 'tmdb' in i: i['tmdb'] = '0'
+                if not 'tvdb' in i: i['tvdb'] = '0'
+                if not 'tvrage' in i: i['tvrage'] = '0'
+                if not 'poster' in i: i['poster'] = '0'
+                if not 'banner' in i: i['banner'] = '0'
+                if not 'fanart' in i: i['fanart'] = '0'
+			
+                if not i['tvdb'] == '0' or i['tvdb'] == None : self.mytvshows.append(i['tvdb'].encode('utf-8'))
+                
+            return self.mytvshows
+
+        except:
+            return	
 
 
     def widget(self):
@@ -1540,6 +1579,180 @@ class episodes:
         views.setView('episodes', {'skin.confluence': 504})
 
 		
+    def episodeDirectory_calendar(self, items):
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
+        playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+        playlist.clear()
+        sysaddon = sys.argv[0]
+
+        syshandle = int(sys.argv[1])
+
+        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
+
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
+
+        traktCredentials = trakt.getTraktCredentialsInfo()
+
+        try: isOld = False ; control.item().getArt('type')
+        except: isOld = True
+
+        isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
+
+        indicators = playcount.getTVShowIndicators(refresh=True)
+
+        # try: multi = [i['tvshowtitle'] for i in items]
+        # except: multi = []
+        # multi = len([x for y,x in enumerate(multi) if x not in multi[:y]])
+        # multi = True if multi > 1 else False
+        multi = False
+        try: sysaction = items[0]['action']
+        except: sysaction = ''
+
+        isFolder = False if not sysaction == 'episodes' else True
+
+        playbackMenu = control.lang(32063).encode('utf-8') if control.setting('hosts.mode') == '2' else control.lang(32064).encode('utf-8')
+
+        watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+
+        unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+
+        queueMenu = control.lang(32065).encode('utf-8')
+
+        traktManagerMenu = control.lang(32070).encode('utf-8')
+
+        tvshowBrowserMenu = control.lang(32071).encode('utf-8')
+
+        netflix_style = control.setting('autoplay_next_episode')
+		
+        for i in items:
+            try:
+                if not 'label' in i: i['label'] = i['title']
+                date_premiered = i['premiered']
+                if i['label'] == '0':
+                    label = '%sx%02d . %s %s' % (i['season'], int(i['episode']), 'Episode', i['episode'])
+                else:
+                    label = '%sx%02d . %s' % (i['season'], int(i['episode']), i['label'])
+
+                label = '%s - %s' % (i['tvshowtitle'], label)
+					
+					
+                if self.episodes_notaired == 'true':
+					if self.episodes_colours == '0': label2 = '[COLOR gold][I]%s[/I][/COLOR]' % label
+					elif self.episodes_colours == '1': label2 = '[COLOR green][I]%s[/I][/COLOR]' % label
+					elif self.episodes_colours == '2': label2 = '[COLOR red][I]%s[/I][/COLOR]' % label
+					else: label2 = '[I]%s[/I]' % label
+								
+					if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  label = label2
+                else:
+					if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  raise Exception()
+					
+                imdb, tvdb, year, season, episode = i['imdb'], i['tvdb'], i['original_year'], i['season'], i['episode']
+
+                systitle = urllib.quote_plus(i['title'])
+                systvshowtitle = urllib.quote_plus(i['tvshowtitle'])
+                syspremiered = urllib.quote_plus(i['premiered'])
+
+                meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'mediatype': 'episode'})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, systvshowtitle)})
+                if not 'duration' in i: meta.update({'duration': '60'})
+                elif i['duration'] == '0': meta.update({'duration': '60'})
+                try: meta.update({'duration': str(int(meta['duration']) * 60)})
+                except: pass
+                try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
+                except: pass
+                try: meta.update({'title': i['label']})
+                except: pass
+
+                sysmeta = urllib.quote_plus(json.dumps(meta))
+
+                url_alt = '%s?action=play_alter&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered, sysmeta, self.systime)
+
+                url = '%s?action=play&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered, sysmeta, self.systime)
+                if netflix_style == 'true':
+					url = '%s?action=play_playlist&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered, sysmeta, self.systime)
+
+
+                sysurl = urllib.quote_plus(url)
+
+                path = '%s?action=play&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered)
+
+                if isFolder == True:
+                    url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s' % (sysaddon, systvshowtitle, year, imdb, tvdb, season, episode)
+
+
+                cm = []
+
+                cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+
+                if isFolder == False:
+                    cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon,  urllib.quote_plus(url_alt), sysmeta)))
+
+                if isOld == True:
+                    cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
+					
+                cm.append((tvshowBrowserMenu, 'Container.Update(%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
+
+                try:
+                    overlay = int(playcount.getEpisodeOverlay(indicators, imdb, tvdb, season, episode))
+                    if overlay == 7:
+                        cm.append((unwatchedMenu, 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=6)' % (sysaddon, imdb, tvdb, season, episode)))
+                        meta.update({'playcount': 1, 'overlay': 7})
+                    else:
+                        cm.append((watchedMenu, 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=7)' % (sysaddon, imdb, tvdb, season, episode)))
+                        meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
+
+                if traktCredentials == True:
+                    cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, systvshowtitle, tvdb)))
+
+
+
+
+                item = control.item(label=label)
+
+                art = {}
+
+                if 'poster' in i and not i['poster'] == '0':
+                    art.update({'poster': i['poster'], 'tvshow.poster': i['poster'], 'season.poster': i['poster']})
+                else:
+                    art.update({'poster': addonPoster})
+
+                if 'thumb' in i and not i['thumb'] == '0':
+                    art.update({'icon': i['thumb'], 'thumb': i['thumb']})
+                elif 'fanart' in i and not i['fanart'] == '0':
+                    art.update({'icon': i['fanart'], 'thumb': i['fanart']})
+                elif 'poster' in i and not i['poster'] == '0':
+                    art.update({'icon': i['poster'], 'thumb': i['poster']})
+                else:
+                    art.update({'icon': addonFanart, 'thumb': addonFanart})
+
+                if 'banner' in i and not i['banner'] == '0':
+                    art.update({'banner': i['banner']})
+                elif 'fanart' in i and not i['fanart'] == '0':
+                    art.update({'banner': i['fanart']})
+                else:
+                    art.update({'banner': addonBanner})
+
+                if settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
+                    item.setProperty('Fanart_Image', i['fanart'])
+                elif not addonFanart == None:
+                    item.setProperty('Fanart_Image', addonFanart)
+
+                item.setArt(art)
+                item.addContextMenuItems(cm)
+                item.setProperty('IsPlayable', isPlayable)
+                item.setInfo(type='Video', infoLabels = meta)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=isFolder)
+            except:
+                pass
+
+        control.content(syshandle, 'episodes')
+        control.directory(syshandle, cacheToDisc=True)
+        views.setView('episodes', {'skin.confluence': 504})
+
 		
 
 

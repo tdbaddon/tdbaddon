@@ -56,8 +56,8 @@ class Scraper(scraper.Scraper):
             html = self._http_get(page_url, headers=headers, cache_limit=2)
             if video.video_type == VIDEO_TYPES.MOVIE:
                 sources.update(self.__scrape_sources(html, page_url))
-                pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, req='href')])
-                active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*active[^"]*'}, req='href')])
+                pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'btn-eps'}, req='href')])
+                active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'active'}, req='href')])
                 for page in list(pages - active):
                     page_url = urlparse.urljoin(self.base_url, page)
                     html = self._http_get(page_url, headers=headers, cache_limit=2)
@@ -211,7 +211,7 @@ class Scraper(scraper.Scraper):
         
     def __match_episode(self, video, html):
         matches = []
-        for attrs, ep_label in dom_parser2.parse_dom(html, 'a', {'class': '[^"]*btn-eps[^"]*'}, req="href"):
+        for attrs, ep_label in dom_parser2.parse_dom(html, 'a', {'class': 'btn-eps'}, req="href"):
             match = re.search('Ep(?:isode)?\s+(\d+)', ep_label, re.I)
             if match:
                 ep_num = match.group(1)
