@@ -21,7 +21,7 @@
 import re, urllib, urlparse, json
 
 from resources.lib.modules import client
-
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -59,9 +59,6 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             data.update({'raw': 'true', 'language': 'de'})
@@ -69,10 +66,12 @@ class source:
             data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data)
             data = json.loads(data)
             data = [i[1] for i in data[1].items()]
-            data = [(i['name'].lower(), i['links']) for i in data if i['name'].lower() in locDict]
-            data = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1]) for i in data]
+            data = [(i['name'].lower(), i['links']) for i in data]
 
             for host, links in data:
+                valid, host = source_utils.is_host_valid(host, hostDict)
+                if not valid: continue
+
                 for link in links:
                     try:sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': link['URL'], 'direct': False, 'debridonly': False})
                     except: pass

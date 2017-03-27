@@ -18,11 +18,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re, urllib, urlparse, json, base64
+import re, urllib, urlparse, base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -70,8 +71,8 @@ class source:
                     i = client.replaceHTMLCodes(i)
                     if not i.startswith('http'): i = self.__decode_hash(i)
 
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
-                    if not host in hostDict and not 'google' in host: continue
+                    valid, host = source_utils.is_host_valid(i, hostDict)
+                    if not valid: continue
 
                     if 'google' in i: host = 'gvideo'; direct = True; urls = directstream.google(i)
                     elif 'ok.ru' in i: host = 'vk'; direct = True; urls = directstream.odnoklassniki(i)

@@ -427,6 +427,8 @@ class seasons:
                 imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['year'], i['season']
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
+                meta.update({'tvdb_id': tvdb})
                 meta.update({'mediatype': 'tvshow'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if not 'duration' in i: meta.update({'duration': '60'})
@@ -491,6 +493,9 @@ class seasons:
                 item.setArt(art)
                 item.addContextMenuItems(cm)
                 item.setInfo(type='Video', infoLabels = meta)
+
+                video_streaminfo = {'codec': 'h264'}
+                item.addStreamInfo('video', video_streaminfo)
 
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
@@ -1483,6 +1488,9 @@ class episodes:
                 item.addContextMenuItems(cm)
                 item.setProperty('IsPlayable', isPlayable)
                 item.setInfo(type='Video', infoLabels = meta)
+
+                video_streaminfo = {'codec': 'h264'}
+                item.addStreamInfo('video', video_streaminfo)
 
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=isFolder)
             except:

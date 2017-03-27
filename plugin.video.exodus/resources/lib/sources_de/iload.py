@@ -22,6 +22,7 @@ import re, urllib, urlparse, json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -111,30 +112,21 @@ class source:
                 rel = urlparse.urlparse(rel).query
                 rel = urlparse.parse_qs(rel)['xrel_search_query'][0]
 
-                fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', rel.upper())
-                fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
-                fmt = [i.lower() for i in fmt]
-
-                if '1080p' in fmt: quality = '1080p'
-                elif '720p' in fmt: quality = 'HD'
-                else: quality = 'SD'
-                if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt): quality = 'SCR'
-                elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
-
-                info = []
-                if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
-                if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
+                quality, info = source_utils.get_release_quality(rel)
 
                 items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in items if 'stream' in i]
                 items = [(i[0][0], i[1][0]) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
                 items = [(i[0], client.parseDOM(i[1], 'img', ret='src')) for i in items]
                 items = [(i[0], i[1][0]) for i in items if len(i[1]) > 0]
                 items = [(i[0], re.findall('.+/(.+\.\w+)\.\w+', i[1])) for i in items]
-                items = [(i[0], i[1][0].lower()) for i in items if len(i[1]) > 0 and i[1][0].lower() in hostDict]
+                items = [(i[0], i[1][0]) for i in items if i[1]]
 
                 info = ' | '.join(info)
 
                 for link, hoster in items:
+                    valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                    if not valid: continue
+
                     sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False, 'checkquality': True})
 
             return sources

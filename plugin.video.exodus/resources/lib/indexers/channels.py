@@ -243,6 +243,7 @@ class channels:
                 imdb, year = i['imdb'], i['year']
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
                 meta.update({'mediatype': 'movie'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 #meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
@@ -291,6 +292,9 @@ class channels:
                 item.addContextMenuItems(cm)
                 item.setProperty('IsPlayable', isPlayable)
                 item.setInfo(type='Video', infoLabels = meta)
+
+                video_streaminfo = {'codec': 'h264'}
+                item.addStreamInfo('video', video_streaminfo)
 
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
             except:

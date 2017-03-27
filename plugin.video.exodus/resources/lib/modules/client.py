@@ -208,9 +208,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
 
 def parseDOM(html, name='', attrs=None, ret=False):
+    if attrs: attrs = dict((key, re.compile(value)) for key, value in attrs.iteritems())
     results = dom_parser.parse_dom(html, name, attrs, ret)
     if ret:
-        results = [result.attrs[ret] for result in results]
+        results = [result.attrs[ret.lower()] for result in results]
     else:
         results = [result.content for result in results]
     return results

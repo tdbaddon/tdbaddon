@@ -21,7 +21,7 @@
 import re, urllib, urlparse, json
 
 from resources.lib.modules import client
-
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -45,9 +45,6 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             data = urllib.urlencode({'ID': re.sub('[^0-9]', '', str(data['imdb'])), 'lang': 'de'})
@@ -55,10 +52,12 @@ class source:
             data = client.request(urlparse.urljoin(self.base_link, self.request_link), post=data, XHR=True)
             data = json.loads(data)
             data = [(i, data['links'][i]) for i in data['links'] if 'links' in data]
-            data = [(i[0], i[1][0], (i[1][1:])) for i in data if i[0] in locDict]
-            data = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1], i[2]) for i in data]
+            data = [(i[0], i[1][0], (i[1][1:])) for i in data]
 
             for hoster, quli, links in data:
+                valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                if not valid: continue
+
                 for link in links:
                     try: sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': self.out_link % link, 'direct': False, 'debridonly': False})
                     except: pass

@@ -22,6 +22,7 @@ import re, urllib, urlparse, json
 
 from resources.lib.modules import cache
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -73,9 +74,6 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             url = urlparse.urljoin(self.base_link, data['url'])
@@ -97,17 +95,17 @@ class source:
             r = [(client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'}, ret='rel'), client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'})) for i in r]
             r = [(client.replaceHTMLCodes(i[0][0]), i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], re.findall('class="Named"[^>]*>([^<]+).*?(\d+)/(\d+)', i[1])) for i in r]
-            r = [(i[0], i[1][0][0].lower().rsplit('.', 1)[0], i[1][0][1], i[1][0][2]) for i in r if len(i[1]) > 0]
-            r = [(i[0], i[1], i[3]) for i in r if i[1] in locDict]
-            r = [(i[0], [x[1] for x in hostDict if x[0] == i[1]][0], i[2]) for i in r]
+            r = [(i[0], i[1][0][0].lower().rsplit('.', 1)[0], i[1][0][2]) for i in r if len(i[1]) > 0]
 
-            for i in r:
-                u = urlparse.parse_qs('&id=%s' % i[0])
+            for link, hoster, mirrors in r:
+                valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                if not valid: continue
+                u = urlparse.parse_qs('&id=%s' % link)
                 u = dict([(x, u[x][0]) if u[x] else (x, '') for x in u])
-                for x in range(0, int(i[2])):
+                for x in range(0, int(mirrors)):
                     url = self.mirror_link % (u['id'], u['Hoster'], x + 1)
                     if season and episode: url += "&Season=%s&Episode=%s" % (season, episode)
-                    try: sources.append({'source': i[1], 'quality': 'SD', 'language': 'de', 'url': url, 'direct': False, 'debridonly': False})
+                    try: sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': url, 'direct': False, 'debridonly': False})
                     except: pass
 
             return sources

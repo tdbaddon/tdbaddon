@@ -8,7 +8,7 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
-		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English" default="English" />
+		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English|Polish|Polish+English" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
@@ -48,7 +48,6 @@
 		<setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
 		<setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
 		<setting id="provider.moviefree" type="bool" label="MOVIEFREE" default="true" />
-		<setting id="provider.moviegee" type="bool" label="MOVIEGEE" default="true" />
 		<setting id="provider.moviegross" type="bool" label="MOVIEGROSS" default="true" />
 		<setting id="provider.movies14" type="bool" label="MOVIES14" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MOVIESHD" default="true" />
@@ -105,6 +104,7 @@
 		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
 		<setting id="provider.moviesever" type="bool" label="MOVIESEVER" default="true" />
 		<setting id="provider.netzkino" type="bool" label="NETZKINO" default="true" />
+		<setting id="provider.pureanime" type="bool" label="PUREANIME" default="true" />
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
@@ -113,10 +113,18 @@
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
 		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
 		<setting label="French" type="lsep" />
+		<setting id="provider.cinemay" type="bool" label="CINEMAY" default="true" />
+		<setting id="provider.dpstreaming" type="bool" label="DPSTREAMING" default="true" />
         <setting id="provider.filmenstreaminghd" type="bool" label="FILMENSTREAMINGHD" default="true" />
 		<setting id="provider.skstream" type="bool" label="SKSTREAM" default="true" />
 		<setting id="provider.streamay" type="bool" label="STREAMAY" default="true" />
 		<setting id="provider.streamingseries" type="bool" label="STREAMINGSERIES" default="true" />
+		<setting label="Polish" type="lsep" />
+        <setting id="provider.alltube" type="bool" label="ALLTUBE" default="true" />
+        <setting id="provider.filmyto" type="bool" label="FILMYTO" default="true" />
+        <setting id="provider.filister" type="bool" label="FILISTER" default="true" />
+        <setting id="provider.cdahd" type="bool" label="CDAHD" default="true" />
+        <setting id="provider.szukajkatv" type="bool" label="SZUKAJKATV" default="true" />
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

@@ -27,6 +27,7 @@ from resources.lib.modules import jsunpack
 from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 from resources.lib.modules import anilist
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -128,10 +129,10 @@ class source:
                             except:
                                 pass
                     else:
-                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
-                        if not host in hostDict: raise Exception()
+                        valid, hoster = source_utils.is_host_valid(i, hostDict)
+                        if not valid: continue
 
-                        sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': i, 'direct': False, 'debridonly': False})
+                        sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': i, 'direct': False, 'debridonly': False})
                 except:
                     pass
 

@@ -1061,6 +1061,8 @@ class tvshows:
                 imdb, tvdb, year = i['imdb'], i['tvdb'], i['year']
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
+                meta.update({'tvdb_id': tvdb})
                 meta.update({'mediatype': 'tvshow'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if not 'duration' in i: meta.update({'duration': '60'})
@@ -1137,6 +1139,9 @@ class tvshows:
                 item.setArt(art)
                 item.addContextMenuItems(cm)
                 item.setInfo(type='Video', infoLabels = meta)
+
+                video_streaminfo = {'codec': 'h264'}
+                item.addStreamInfo('video', video_streaminfo)
 
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:

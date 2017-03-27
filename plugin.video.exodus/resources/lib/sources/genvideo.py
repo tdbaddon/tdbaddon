@@ -62,12 +62,12 @@ class source:
             url = '/watch_%s.html' % v
             url = urlparse.urljoin(self.base_link, url)
 
-            #c = client.request(url, headers=h, output='cookie')
-            #c = client.request(urlparse.urljoin(self.base_link, '/av'), cookie=c, output='cookie', headers=h, referer=url)
+            c = client.request(url, headers=h, output='cookie')
+            c = client.request(urlparse.urljoin(self.base_link, '/av'), cookie=c, output='cookie', headers=h, referer=url)
             #c = client.request(url, cookie=c, headers=h, referer=url, output='cookie')
 
             post = urllib.urlencode({'v': v})
-            u = urlparse.urljoin(self.base_link, '/video_info/iframe')
+            u = urlparse.urljoin(self.base_link, '/video_info/frame')
 
             #r = client.request(u, post=post, cookie=c, headers=h, XHR=True, referer=url)
             r = client.request(u, post=post, headers=h, XHR=True, referer=url)

@@ -1,5 +1,9 @@
+[B]Version 6.4.6[/B]
+CF only free channels, slow tv and nettv fixed 
+[B]Version 6.4.5[/B]
+DM and Tune referers
 [B]Version 6.4.4[/B]
-option to turn off TVPlayer (by default off)
+smartcric
 [B]Version 6.4.3[/B]
 pv2 fixed
 [B]Version 6.4.2[/B]

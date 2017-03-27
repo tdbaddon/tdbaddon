@@ -31,7 +31,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['fmovie.co', 'afdah.org', 'xmovies8.org', 'putlockerhd.co']
-        self.base_link = 'https://fmovie.co'
+        self.base_link = 'https://afdah.org'
         self.search_link = '/results?q=%s'
 
 
@@ -40,11 +40,13 @@ class source:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
+            c, h = self.__get_cookies(query)
+
             t = cleantitle.get(title)
 
-            r = client.request(query)
+            r = client.request(query, headers=h, cookie=c)
 
-            r = client.parseDOM(r, 'div', attrs = {'class': 'cell_container'})
+            r = client.parseDOM(r, 'div', attrs={'class': 'cell_container'})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
             r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
@@ -60,12 +62,15 @@ class source:
 
 
     def sources(self, url, hostDict, hostprDict):
-        try:
-            sources = []
+        sources = []
 
-            if url == None: return sources
+        try:
+            if not url:
+                return sources
 
             referer = urlparse.urljoin(self.base_link, url)
+
+            c, h = self.__get_cookies(referer)
 
             try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
             except: post = referer.strip('/').split('/')[-1].split('watch_', 1)[-1].rsplit('#')[0].rsplit('.')[0]
@@ -74,9 +79,9 @@ class source:
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            r = client.request(url, post=post, XHR=True, referer=url)
+            r = client.request(url, post=post, headers=h, cookie=c, XHR=True, referer=referer)
             r = json.loads(r).values()
-            r = [urllib.unquote(i.split('url=')[-1])  for i in r]
+            r = [urllib.unquote(i.split('url=')[-1]) for i in r]
 
             for i in r:
                 try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
@@ -86,6 +91,14 @@ class source:
         except:
             return sources
 
+    def __get_cookies(self, url):
+        h = {'User-Agent': client.randomagent()}
+
+        c = client.request(url, headers=h, output='cookie')
+        c = client.request(urlparse.urljoin(self.base_link, '/av'), cookie=c, output='cookie', headers=h, referer=url)
+        c = client.request(url, cookie=c, headers=h, referer=url, output='cookie')
+
+        return c, h
 
     def resolve(self, url):
         return directstream.googlepass(url)

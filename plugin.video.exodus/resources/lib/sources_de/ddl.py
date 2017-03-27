@@ -21,6 +21,7 @@
 import re, urllib, urlparse, json
 
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -82,18 +83,13 @@ class source:
                 if len(jLinks) < pcnt: continue
 
                 h_url = jLinks[0]
-                host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(h_url.strip().lower()).netloc)[0]
-                if not host in hostDict: continue
+                valid, hoster = source_utils.is_host_valid(h_url, hostDict)
+                if not valid: continue
 
                 h_url = h_url if pcnt == 1 else 'stack://' + ' , '.join(jLinks)
 
-                try:
-                    sources.append(
-                        {'source': jHoster, 'quality': 'SD',
-                         'language': 'de', 'info' : '' if pcnt == 1 else 'multi-part',
-                         'url': h_url, 'direct': False, 'debridonly': False})
-                except:
-                    pass
+                try: sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'info' : '' if pcnt == 1 else 'multi-part', 'url': h_url, 'direct': False, 'debridonly': False})
+                except: pass
 
             return sources
         except:

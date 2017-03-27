@@ -110,7 +110,7 @@ class source:
 
     def __search(self, title, year, season='0'):
         try:
-            query = self.search_link % (urllib.quote_plus(cleantitle.query(title)))
+            query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)

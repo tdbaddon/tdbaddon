@@ -22,7 +22,7 @@
 # Cojocaru Nicolae - Gheorhe, 2015
 # lambda81, 2016
 # Marian Temisan, 2017
-# Patrick G, 2017
+# Patrick K, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"

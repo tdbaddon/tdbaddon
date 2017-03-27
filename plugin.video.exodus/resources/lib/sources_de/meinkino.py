@@ -23,6 +23,7 @@ import re, urllib, urlparse, json
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -90,10 +91,10 @@ class source:
                                 try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(urlData['link_mp4'])[0]['quality'], 'language': 'de', 'url': urlData['link_mp4'], 'direct': True, 'debridonly': False})
                                 except: pass
                             else:
-                                host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(urlData.strip().lower()).netloc)[0]
-                                if not host in hostDict: continue
+                                valid, hoster = source_utils.is_host_valid(urlData, hostDict)
+                                if not valid: continue
 
-                                sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': urlData, 'direct': False, 'debridonly': False})
+                                sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': urlData, 'direct': False, 'debridonly': False})
                 except:
                     pass
 

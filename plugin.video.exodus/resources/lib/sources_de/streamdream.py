@@ -18,9 +18,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re, urllib, urlparse, json
+import re, urllib, urlparse
 
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -86,13 +87,10 @@ class source:
             r = [(i[0].strip(), 'HD' if i[1].startswith('hd') else 'SD') for i in r]
 
             for url, quli in r:
-                host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                if not host in hostDict: continue
+                valid, host = source_utils.is_host_valid(url, hostDict)
+                if not valid: continue
 
-                sources.append({'source': host, 'quality': quli,
-                                'language': 'de',
-                                'url': url, 'direct': False,
-                                'debridonly': False})
+                sources.append({'source': host, 'quality': quli, 'language': 'de', 'url': url, 'direct': False, 'debridonly': False})
 
             return sources
         except:

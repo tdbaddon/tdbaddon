@@ -33,7 +33,7 @@ class source:
         self.language = ['en']
         self.domains = ['sezonlukdizi.net', 'sezonlukdizi.com']
         self.base_link = 'http://sezonlukdizi.net'
-        self.search_link = '/js/dizi2.js'
+        self.search_link = '/js/dizi3.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
 
@@ -124,15 +124,24 @@ class source:
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()
 
-                    r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', result)
+                    r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*.*?label"?\s*:\s*"(\d+)p?[^"]*"', result)
 
                     links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
                     links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
                     links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
 
                     for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
-
                     if r: break
+
+                    r = re.findall('"?label"?\s*:\s*(\d*)\s*.*?file"?\s*:\s*"([^"]+)"\s*', result)
+
+                    links = [(i[1], '1080p') for i in r if int(i[0]) >= 1080]
+                    links += [(i[1], 'HD') for i in r if 720 <= int(i[0]) < 1080]
+                    links += [(i[1], 'SD') for i in r if 480 <= int(i[0]) < 720]
+
+                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
+                    if r: break
+
                 except:
                     pass
 

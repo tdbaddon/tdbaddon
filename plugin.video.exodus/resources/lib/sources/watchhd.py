@@ -30,7 +30,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['watchhd.co', 'watchonline.one', 'watchonline.vip']
-        self.base_link = 'http://watchonline.vip'
+        self.base_link = 'http://watchhd.co'
 
 
     def movie(self, imdb, title, localtitle, year):
@@ -87,7 +87,7 @@ class source:
 
                 r = client.request(url, timeout='10')
 
-                y = client.parseDOM(r, 'span', attrs = {'class': 'date'})[0]
+                y = client.parseDOM(r, 'a', attrs={'rel': 'tag', 'href': '[^\'"]*year[^\'"]*'})[0]
                 y = re.findall('(\d{4})', y)[0]
                 if not y == year: raise Exception()
             else:

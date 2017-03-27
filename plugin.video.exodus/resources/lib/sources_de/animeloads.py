@@ -25,6 +25,7 @@ from resources.lib.modules import client
 from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 from resources.lib.modules import anilist
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -81,9 +82,6 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             url = data['url']
@@ -129,8 +127,9 @@ class source:
                         hosters = client.parseDOM(html, 'a', attrs={'href': '#streams_episodes_%s_%s' % (id, s)})
                         hosters = [client.parseDOM(i, 'i', ret='class') for i in hosters]
                         hosters = [re.findall('hoster-(\w+)', ' '.join(i)) for i in hosters if len(i) > 0][0]
-                        hosters = [(re.sub('(co|to|net|pw|sx|tv|moe|ws|icon)$', '', i), i) for i in hosters]
-                        hosters = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1]) for i in hosters if i and i[0] in locDict]
+                        hosters = [re.sub('(co|to|net|pw|sx|tv|moe|ws|icon)$', '', i) for i in hosters]
+                        hosters = [(source_utils.is_host_valid(i, hostDict), i) for i in hosters if i]
+                        hosters = [(i[0][1], i[1]) for i in hosters if i[0] and i[0][0]]
 
                         info = ' | '.join(info)
 
@@ -153,7 +152,6 @@ class source:
             query = urlparse.urljoin(self.base_link, query)
 
             t = [cleantitle.get(i) for i in set(titles) if i]
-            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(query, headers={'Accept-Encoding': 'gzip'})
 
@@ -164,7 +162,7 @@ class source:
             r = [(i[0][0], i[1][0], re.sub('<.+?>|</.+?>', '', i[2])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], i[2].strip()) for i in r if i[2]]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
-            r = [i[0] for i in r if cleantitle.get(i[1]) in t and i[2] in y][0]
+            r = [i[0] for i in r if cleantitle.get(i[1]) in t and i[2] == year][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)

@@ -25,6 +25,7 @@ import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -110,8 +111,8 @@ class source:
 
                         link = link.strip()
 
-                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(link.strip().lower()).netloc)[0]
-                        if not host in hostDict: continue
+                        valid, host = source_utils.is_host_valid(link, hostDict)
+                        if not valid: continue
 
                         sources.append({'source': host, 'quality': quality, 'language': 'de', 'url': link, 'direct': False, 'debridonly': False, 'checkquality': True})
                     except:

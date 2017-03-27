@@ -33,6 +33,7 @@ class source:
         self.domains = ['mydownloadtube.com']
         self.base_link = 'http://www.mydownloadtube.com'
         self.search_link = '/search/search_val?language=English%20-%20UK&term='
+        self.download_link = '/movies/add_download'
 
 
     def movie(self, imdb, title, localtitle, year):
@@ -72,6 +73,10 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
 
             r = client.request(url)
+
+            r = client.parseDOM(r, 'input', {'id': 'movie_id'}, ret='value')
+            if r:
+                r = client.request(urlparse.urljoin(self.base_link, self.download_link), post='movie=%s' % r, referer=url)
 
             links = client.parseDOM(r, 'p')
 

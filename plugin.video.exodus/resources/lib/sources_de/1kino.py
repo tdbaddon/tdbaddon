@@ -22,6 +22,7 @@ import re, urllib, urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -93,27 +94,16 @@ class source:
             r = [(i[0][0].strip(), i[1]) for i in r if len(i[0]) > 0]
 
             for name, links in r:
-                fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', name.upper())
-                fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
-                fmt = [i.lower() for i in fmt]
-
-                if '1080p' in fmt: quality = '1080p'
-                elif '720p' in fmt: quality = 'HD'
-                else: quality = 'SD'
-                if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt):  quality = 'SCR'
-                elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
-
-                info = []
-                if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
-                if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
+                quality, info = source_utils.get_release_quality(name)
 
                 links = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in links]
                 links = [(i[0][0], i[1][0].lower().strip()) for i in links if len(i[0]) > 0 and len(i[1]) > 0]
-                links = [(i[0], i[1]) for i in links if i[1] in hostDict]
 
                 info = ' | '.join(info)
 
                 for link, hoster in links:
+                    valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                    if not valid: continue
                     sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': link, 'info': info, 'direct': False, 'debridonly': False, 'checkquality': True})
 
             return sources

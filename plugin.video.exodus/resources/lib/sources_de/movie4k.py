@@ -23,6 +23,7 @@ import re, urllib, urlparse
 from resources.lib.modules import cache
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -59,15 +60,14 @@ class source:
 
             links = client.parseDOM(r, 'tr', attrs={'id': 'tablemoviesindex2'})
 
-            locDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-
             for i in links:
                 try:
                     host = client.parseDOM(i, 'img', ret='alt')[0]
                     host = host.split()[0].rsplit('.', 1)[0].strip().lower()
-                    host = [x[1] for x in locDict if host == x[0]][0]
-                    if not host in hostDict: raise Exception()
                     host = host.encode('utf-8')
+
+                    valid, host = source_utils.is_host_valid(host, hostDict)
+                    if not valid: continue
 
                     url = client.parseDOM(i, 'a', ret='href')[0]
                     url = client.replaceHTMLCodes(url)
