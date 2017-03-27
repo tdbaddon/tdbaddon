@@ -1,3 +1,6 @@
+[B]3.1.5[/B]
+- HotFix for 3.1.4 (fix Next-Page-Bug)
+
 [B]3.1.4[/B]
 - Updated existing providers
 - Removed dead providers

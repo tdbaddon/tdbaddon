@@ -531,7 +531,7 @@ class tvshows:
 
             result = client.request(url)
 
-            result = result.replace('\n','')
+            result = result.replace('\n', ' ')
 
             items = client.parseDOM(result, 'div', attrs = {'class': 'lister-item mode-advanced'})
             items += client.parseDOM(result, 'div', attrs = {'class': 'list_item.+?'})
