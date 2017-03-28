@@ -63,50 +63,51 @@ class Scraper(scraper.Scraper):
             return urllib.unquote_plus(match.group(1))
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            try:
-                url = urlparse.urljoin(self.base_url, source_url)
-                html = self._http_get(url, cache_limit=2)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return sources
+        try:
+            url = urlparse.urljoin(self.base_url, source_url)
+            html = self._http_get(url, cache_limit=2)
 
-                pattern = '<iframe id="videoframe" src="([^"]+)'
-                match = re.search(pattern, html)
-                url = urlparse.urljoin(self.base_url, match.group(1))
-                html = self._http_get(url, cache_limit=.5)
+            pattern = '<iframe id="videoframe" src="([^"]+)'
+            match = re.search(pattern, html)
+            url = urlparse.urljoin(self.base_url, match.group(1))
+            html = self._http_get(url, cache_limit=.5)
 
-                match = re.search('lastChild\.value="([^"]+)"(?:\s*\+\s*"([^"]+))?', html)
-                secret = ''.join(match.groups(''))
+            match = re.search('lastChild\.value="([^"]+)"(?:\s*\+\s*"([^"]+))?', html)
+            secret = ''.join(match.groups(''))
 
-                match = re.search('"&t=([^"]+)', html)
-                t = match.group(1)
-                
-                match = re.search('(?:\s+|,)s\s*=(\d+)', html)
-                s_start = int(match.group(1))
-                
-                match = re.search('(?:\s+|,)m\s*=(\d+)', html)
-                m_start = int(match.group(1))
-                
-                for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'ripdiv'}):
-                    match = re.match('<b>(.*?)</b>', fragment)
-                    if match:
-                        q_str = match.group(1).replace(' ', '').upper()
-                        quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
-                    else:
-                        quality = QUALITIES.HIGH
+            match = re.search('"&t=([^"]+)', html)
+            t = match.group(1)
+            
+            match = re.search('(?:\s+|,)s\s*=(\d+)', html)
+            s_start = int(match.group(1))
+            
+            match = re.search('(?:\s+|,)m\s*=(\d+)', html)
+            m_start = int(match.group(1))
+            
+            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'ripdiv'}):
+                match = re.match('<b>(.*?)</b>', fragment)
+                if match:
+                    q_str = match.group(1).replace(' ', '').upper()
+                    quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
+                else:
+                    quality = QUALITIES.HIGH
 
-                    pattern = '''onclick='go\((\d+)\)'>([^<]+)(<span.*?)</a>'''
-                    for match in re.finditer(pattern, fragment):
-                        link_id, label, host_fragment = match.groups()
-                        source = {'multi-part': False, 'quality': quality, 'class': self, 'version': label, 'rating': None, 'views': None, 'direct': False}
-                        source['host'] = re.sub('(</?[^>]*>)', '', host_fragment)
-                        s = s_start + random.randint(3, 100)
-                        m = m_start + random.randint(21, 100)
-                        url = AJAX_URL.format(link_id=link_id, s=s, m=m, secret=secret, t=t)
-                        source['url'] = url
-                        sources.append(source)
-            except Exception as e:
-                log_utils.log('Failure (%s) during icefilms get sources: |%s|' % (str(e), video), log_utils.LOGWARNING)
+                pattern = '''onclick='go\((\d+)\)'>([^<]+)(<span.*?)</a>'''
+                for match in re.finditer(pattern, fragment):
+                    link_id, label, host_fragment = match.groups()
+                    source = {'multi-part': False, 'quality': quality, 'class': self, 'version': label, 'rating': None, 'views': None, 'direct': False}
+                    source['host'] = re.sub('(</?[^>]*>)', '', host_fragment)
+                    s = s_start + random.randint(3, 100)
+                    m = m_start + random.randint(21, 100)
+                    url = AJAX_URL.format(link_id=link_id, s=s, m=m, secret=secret, t=t)
+                    source['url'] = url
+                    sources.append(source)
+        except Exception as e:
+            log_utils.log('Failure (%s) during icefilms get sources: |%s|' % (str(e), video), log_utils.LOGWARNING)
+            
         return sources
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

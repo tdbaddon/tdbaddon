@@ -44,33 +44,33 @@ class Scraper(scraper.Scraper):
         return 'WatchInHD'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=8)
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'playex'})
-            if fragment:
-                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src'):
-                    stream_url = attrs['src']
-                    if self._get_direct_hostname(stream_url) == 'gvideo':
-                        links = self._parse_google(stream_url)
-                        direct = True
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=8)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'playex'})
+        if fragment:
+            for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src'):
+                stream_url = attrs['src']
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
+                    links = scraper_utils.parse_google(self, stream_url)
+                    direct = True
+                else:
+                    links = [stream_url]
+                    direct = False
+
+                for link in links:
+                    host = scraper_utils.get_direct_hostname(self, stream_url)
+                    if host == 'gvideo':
+                        quality = scraper_utils.gv_get_quality(link)
                     else:
-                        links = [stream_url]
-                        direct = False
+                        quality = QUALITIES.HIGH
+                        host = urlparse.urlparse(stream_url).hostname
+                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                    hosters.append(source)
 
-                    for link in links:
-                        host = self._get_direct_hostname(stream_url)
-                        if host == 'gvideo':
-                            quality = scraper_utils.gv_get_quality(link)
-                        else:
-                            quality = QUALITIES.HIGH
-                            host = urlparse.urlparse(stream_url).hostname
-                        source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                        sources.append(source)
-
-        return sources
+        return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

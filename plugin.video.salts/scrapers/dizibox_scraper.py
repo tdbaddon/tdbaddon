@@ -52,15 +52,16 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=1)
-            hosters = self.__extract_links(html)
-            fragment = dom_parser2.parse_dom(html, 'section', {'id': 'video-area'})
-            if fragment:
-                for match in re.finditer('''value=["']([^'"]+)[^>]*>(?:DBX|King|Odnok|Play|Juliet)''', fragment[0].content, re.I):
-                    html = self._http_get(match.group(1), cache_limit=1)
-                    hosters += self.__extract_links(html)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=1)
+        hosters = self.__extract_links(html)
+        fragment = dom_parser2.parse_dom(html, 'section', {'id': 'video-area'})
+        if not fragment: return hosters
+        
+        for match in re.finditer('''value=["']([^'"]+)[^>]*>(?:DBX|King|Odnok|Play|Juliet)''', fragment[0].content, re.I):
+            html = self._http_get(match.group(1), cache_limit=1)
+            hosters += self.__extract_links(html)
     
         return hosters
 
@@ -94,7 +95,7 @@ class Scraper(scraper.Scraper):
             try:
                 for source in js_data['VideoSources']:
                     stream_url = source['file'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    host = self._get_direct_hostname(source['file'])
+                    host = scraper_utils.get_direct_hostname(self, source['file'])
                     label = source.get('label', '')
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(source['file'])
@@ -111,11 +112,11 @@ class Scraper(scraper.Scraper):
     
     def __get_embed_links(self, html):
         hosters = []
-        sources = self._parse_sources_list(html)
+        sources = scraper_utils.parse_sources_list(self, html)
         for source in sources:
             quality = source['quality']
             stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-            hoster = {'multi-part': False, 'host': self._get_direct_hostname(source), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish Subtitles'}
+            hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, source), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish Subtitles'}
             hosters.append(hoster)
         return hosters
         
@@ -148,12 +149,13 @@ class Scraper(scraper.Scraper):
         html = self._http_get(self.base_url, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'all-tv-series-list'})
-        if fragment:
-            for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                match_url = attrs['href']
-                match_title = re.sub('</?i[^>]*>', '', match_title)
-                if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
-                    results.append(result)
+        if not fragment: return results
+        
+        for attrs, match_title in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+            match_url = attrs['href']
+            match_title = re.sub('</?i[^>]*>', '', match_title)
+            if norm_title in scraper_utils.normalize_title(match_title):
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                results.append(result)
 
         return results

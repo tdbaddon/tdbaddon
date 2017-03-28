@@ -48,20 +48,19 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        sources = {}
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=1)
+        pages = self.__get_alt_pages(html, page_url)
+        sources = self.__get_sources(html, page_url, pages.get(page_url, True))
+        for page in pages:
+            if page == page_url: continue
+            page_url = urlparse.urljoin(self.base_url, page, pages[page])
             html = self._http_get(page_url, cache_limit=1)
-            pages = self.__get_alt_pages(html, page_url)
-            sources = self.__get_sources(html, page_url, pages.get(page_url, True))
-            for page in pages:
-                if page == page_url: continue
-                page_url = urlparse.urljoin(self.base_url, page, pages[page])
-                html = self._http_get(page_url, cache_limit=1)
-                sources.update(self.__get_sources(html, page, pages[page]))
+            sources.update(self.__get_sources(html, page, pages[page]))
             
         for source in sources:
-            host = self._get_direct_hostname(source)
+            host = scraper_utils.get_direct_hostname(self, source)
             if host == 'gvideo':
                 quality = scraper_utils.gv_get_quality(source)
                 direct = True
@@ -86,17 +85,18 @@ class Scraper(scraper.Scraper):
             active = dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'active'})
             for _attrs, div in dom_parser2.parse_dom(fragment[0].content, 'div'):
                 match = re.search('href="([^"]+)[^>]>(.*?)</a>', div, re.DOTALL)
-                if match:
-                    alt_url, alt_label = match.groups()
-                    alt_label = alt_label.lower().strip()
-                    alt_label = re.sub('</?span>', '', alt_label)
-                    if alt_label not in ALLOWED: continue
-                    
-                    subs = False if u'altyazısız' in alt_label else True
-                    if active and active[0].content == div:
-                        pages[page_url] = subs
-                    else:
-                        pages[alt_url] = subs
+                if not match: continue
+                
+                alt_url, alt_label = match.groups()
+                alt_label = alt_label.lower().strip()
+                alt_label = re.sub('</?span>', '', alt_label)
+                if alt_label not in ALLOWED: continue
+                
+                subs = False if u'altyazısız' in alt_label else True
+                if active and active[0].content == div:
+                    pages[page_url] = subs
+                else:
+                    pages[alt_url] = subs
                         
         return pages
     
@@ -109,7 +109,7 @@ class Scraper(scraper.Scraper):
             links = js_data.get('tr', {})
             for height in links:
                 stream_url = links[height]
-                if self._get_direct_hostname(stream_url) == 'gvideo':
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
                     quality = scraper_utils.gv_get_quality(stream_url)
                 else:
                     quality = scraper_utils.height_get_quality(height)
@@ -129,7 +129,7 @@ class Scraper(scraper.Scraper):
                         return self.__get_sources(html, page_url, subs)
                     else:
                         if iframe_url.startswith('//'): iframe_url = 'http:' + iframe_url
-                        if self._get_direct_hostname(iframe_url) == 'gvideo':
+                        if scraper_utils.get_direct_hostname(self, iframe_url) == 'gvideo':
                             direct = True
                         else:
                             direct = False
@@ -148,19 +148,21 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ts-list-content'})
-        if fragment:
-            items = dom_parser2.parse_dom(fragment[0].content, 'h1', {'class': 'ts-list-name'})
-            details = dom_parser2.parse_dom(fragment[0].content, 'ul')
-            for item, detail in zip(items, details):
-                match = dom_parser2.parse_dom(item.content, 'a', req='href')
-                match_year = re.search('<span>(\d{4})</span>', detail.content)
-                if match:
-                    match_url = match[0].attrs['href']
-                    match_title = match[0].content
-                    match_year = match_year.group(1) if match_year else ''
-                    
-                    if norm_title in scraper_utils.normalize_title(match_title):
-                        result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                        results.append(result)
+        if not fragment: return results
+        
+        items = dom_parser2.parse_dom(fragment[0].content, 'h1', {'class': 'ts-list-name'})
+        details = dom_parser2.parse_dom(fragment[0].content, 'ul')
+        for item, detail in zip(items, details):
+            match = dom_parser2.parse_dom(item.content, 'a', req='href')
+            match_year = re.search('<span>(\d{4})</span>', detail.content)
+            if not match: continue
+
+            match_url = match[0].attrs['href']
+            match_title = match[0].content
+            match_year = match_year.group(1) if match_year else ''
+            
+            if norm_title in scraper_utils.normalize_title(match_title):
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
 
         return results

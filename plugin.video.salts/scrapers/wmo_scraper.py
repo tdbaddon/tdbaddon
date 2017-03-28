@@ -42,19 +42,19 @@ class Scraper(scraper.Scraper):
         return 'wmo.ch'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': 'tdhost'}):
-                match = dom_parser2.parse_dom(td, 'a', req='href')
-                if match:
-                    stream_url = match[0].attrs['href']
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': 'tdhost'}):
+            match = dom_parser2.parse_dom(td, 'a', req='href')
+            if match:
+                stream_url = match[0].attrs['href']
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+                hosters.append(hoster)
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

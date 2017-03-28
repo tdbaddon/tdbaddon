@@ -51,27 +51,27 @@ class Scraper(scraper.Scraper):
         hosters = []
         sources = {}
         headers = {'Accept-Language': 'en-US,en;q=0.5'}
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, headers=headers, cache_limit=2)
-            if video.video_type == VIDEO_TYPES.MOVIE:
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, headers=headers, cache_limit=2)
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            sources.update(self.__scrape_sources(html, page_url))
+            pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'btn-eps'}, req='href')])
+            active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'active'}, req='href')])
+            for page in list(pages - active):
+                page_url = urlparse.urljoin(self.base_url, page)
+                html = self._http_get(page_url, headers=headers, cache_limit=2)
                 sources.update(self.__scrape_sources(html, page_url))
-                pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'btn-eps'}, req='href')])
-                active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'active'}, req='href')])
-                for page in list(pages - active):
-                    page_url = urlparse.urljoin(self.base_url, page)
-                    html = self._http_get(page_url, headers=headers, cache_limit=2)
-                    sources.update(self.__scrape_sources(html, page_url))
-            else:
-                for page in self.__match_episode(video, html):
-                    page_url = urlparse.urljoin(self.base_url, page)
-                    html = self._http_get(page_url, headers=headers, cache_limit=2)
-                    sources.update(self.__scrape_sources(html, page_url))
+        else:
+            for page in self.__match_episode(video, html):
+                page_url = urlparse.urljoin(self.base_url, page)
+                html = self._http_get(page_url, headers=headers, cache_limit=2)
+                sources.update(self.__scrape_sources(html, page_url))
         
         for source, values in sources.iteritems():
             if not source.lower().startswith('http'): continue
             if values['direct']:
-                host = self._get_direct_hostname(source)
+                host = scraper_utils.get_direct_hostname(self, source)
                 if host != 'gvideo':
                     stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
                 else:
@@ -81,6 +81,7 @@ class Scraper(scraper.Scraper):
                 stream_url = source
             hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': values['quality'], 'views': None, 'rating': None, 'url': stream_url, 'direct': values['direct']}
             hosters.append(hoster)
+
         return hosters
 
     def __scrape_sources(self, html, page_url):
@@ -190,7 +191,7 @@ class Scraper(scraper.Scraper):
                     if redir_url.startswith('http'):
                         stream_url = redir_url
                 
-                if self._get_direct_hostname(stream_url) == 'gvideo':
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
                     quality = scraper_utils.gv_get_quality(stream_url)
                 elif 'label' in item:
                     quality = scraper_utils.height_get_quality(item['label'])

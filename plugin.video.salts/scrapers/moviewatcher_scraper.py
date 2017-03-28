@@ -54,30 +54,27 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=1)
-            for _attrs, item in dom_parser2.parse_dom(html, 'a', {'class': 'full-torrent1'}):
-                stream_url = dom_parser2.parse_dom(item, 'span', req='onclick')
-                host = dom_parser2.parse_dom(item, 'div', {'class': 'small_server'})
-                
-                match = re.search('Views:\s*(?:</[^>]*>)?\s*(\d+)', item, re.I)
-                views = match.group(1) if match else None
-                
-                match = re.search('Size:\s*(?:</[^>]*>)?\s*(\d+)', item, re.I)
-                size = int(match.group(1)) * 1024 * 1024 if match else None
-                
-                if stream_url and host:
-                    stream_url = stream_url[0].attrs['onclick']
-                    host = host[0].content.lower()
-                    host = host.replace('stream server: ', '')
-                    match = re.search("'(/redirect/[^']+)", stream_url)
-                    if match:
-                        stream_url = match.group(1)
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
-                    if size is not None: hoster['size'] = scraper_utils.format_size(size, 'B')
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=1)
+        for _attrs, item in dom_parser2.parse_dom(html, 'a', {'class': 'full-torrent1'}):
+            stream_url = dom_parser2.parse_dom(item, 'span', req='onclick')
+            host = dom_parser2.parse_dom(item, 'div', {'class': 'small_server'})
+            match = re.search('Views:\s*(?:</[^>]*>)?\s*(\d+)', item, re.I)
+            views = match.group(1) if match else None
+            match = re.search('Size:\s*(?:</[^>]*>)?\s*(\d+)', item, re.I)
+            size = int(match.group(1)) * 1024 * 1024 if match else None
+            if not stream_url or not host: continue
+            
+            stream_url = stream_url[0].attrs['onclick']
+            host = host[0].content.lower()
+            host = host.replace('stream server: ', '')
+            match = re.search("'(/redirect/[^']+)", stream_url)
+            if match: stream_url = match.group(1)
+            quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
+            if size is not None: hoster['size'] = scraper_utils.format_size(size, 'B')
+            hosters.append(hoster)
         return hosters
 
     def _get_episode_url(self, show_url, video):

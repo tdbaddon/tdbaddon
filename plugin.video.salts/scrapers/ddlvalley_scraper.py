@@ -29,7 +29,6 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
-
 BASE_URL = 'http://www.ddlvalley.cool'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
 LOCAL_UA = 'SALTS for Kodi/%s' % (kodi.get_version())
@@ -50,19 +49,19 @@ class Scraper(scraper.Scraper):
         return 'DDLValley'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            headers = {'User-Agent': LOCAL_UA}
-            html = self._http_get(url, require_debrid=True, headers=headers, cache_limit=.5)
-            for match in re.finditer("<span\s+class='info2'(.*?)(<span\s+class='info|<hr\s*/>)", html, re.DOTALL):
-                for match2 in re.finditer('href="([^"]+)', match.group(1)):
-                    stream_url = match2.group(1)
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.blog_get_quality(video, stream_url, host)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        headers = {'User-Agent': LOCAL_UA}
+        html = self._http_get(url, require_debrid=True, headers=headers, cache_limit=.5)
+        for match in re.finditer("<span\s+class='info2'(.*?)(<span\s+class='info|<hr\s*/>)", html, re.DOTALL):
+            for match2 in re.finditer('href="([^"]+)', match.group(1)):
+                stream_url = match2.group(1)
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.blog_get_quality(video, stream_url, host)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
+                hosters.append(hoster)
                 
         return hosters
 

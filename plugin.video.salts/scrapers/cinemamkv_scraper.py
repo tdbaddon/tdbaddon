@@ -45,30 +45,32 @@ class Scraper(scraper.Scraper):
         return 'CinemaMKV'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=8)
-            for div in dom_parser2.parse_dom(html, 'div', {'id': re.compile('stb-container-\d+')}):
-                stream_url = dom_parser2.parse_dom(div.content, 'iframe', req='src')
-                if stream_url:
-                    stream_url = stream_url[0].attrs['src']
-                    host = urlparse.urlparse(stream_url).hostname
-                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': QUALITIES.HIGH, 'views': None, 'rating': None, 'direct': False}
-                    sources.append(source)
-                    
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': "stb-download-body_box"})
-            if fragment:
-                labels = dom_parser2.parse_dom(fragment[0].content, 'a', {'href': '#'})
-                stream_urls = [result for result in dom_parser2.parse_dom(fragment[0].content, 'a', req='href') if result.content.lower() == 'download now']
-                for label, stream_url in zip(labels, stream_urls):
-                    stream_url = stream_url.attrs['href']
-                    label = re.sub('</?[^>]*>', '', label.content)
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.blog_get_quality(video, label, host)
-                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
-                    sources.append(source)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return sources
+        
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=8)
+        for div in dom_parser2.parse_dom(html, 'div', {'id': re.compile('stb-container-\d+')}):
+            stream_url = dom_parser2.parse_dom(div.content, 'iframe', req='src')
+            if not stream_url: continue
+            stream_url = stream_url[0].attrs['src']
+            host = urlparse.urlparse(stream_url).hostname
+            source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': QUALITIES.HIGH, 'views': None, 'rating': None, 'direct': False}
+            sources.append(source)
+                
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': "stb-download-body_box"})
+        if not fragment: return sources
+        
+        labels = dom_parser2.parse_dom(fragment[0].content, 'a', {'href': '#'})
+        stream_urls = [result for result in dom_parser2.parse_dom(fragment[0].content, 'a', req='href') if result.content.lower() == 'download now']
+        for label, stream_url in zip(labels, stream_urls):
+            stream_url = stream_url.attrs['href']
+            label = re.sub('</?[^>]*>', '', label.content)
+            host = urlparse.urlparse(stream_url).hostname
+            quality = scraper_utils.blog_get_quality(video, label, host)
+            source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+            sources.append(source)
 
         return sources
 
@@ -77,11 +79,12 @@ class Scraper(scraper.Scraper):
         html = self._http_get(self.base_url, params={'s': title}, require_debrid=True, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'post'}):
             match = dom_parser2.parse_dom(item, 'a', req='href')
-            if match:
-                match_url, match_title_year = match[0].attrs['href'], match[0].content
-                match_title, match_year = scraper_utils.extra_year(match_title_year)
-                if not year or not match_year or year == match_year:
-                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                    results.append(result)
+            if not match: continue
+
+            match_url, match_title_year = match[0].attrs['href'], match[0].content
+            match_title, match_year = scraper_utils.extra_year(match_title_year)
+            if not year or not match_year or year == match_year:
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                results.append(result)
 
         return results

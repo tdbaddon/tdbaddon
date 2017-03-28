@@ -45,20 +45,20 @@ class Scraper(scraper.Scraper):
         return 'rls-movies'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            for source, values in self.__get_post_links(html).iteritems():
-                if scraper_utils.excluded_link(source): continue
-                host = urlparse.urlparse(source).hostname
-                release = values['release']
-                quality = scraper_utils.blog_get_quality(video, release, host)
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
-                if 'X265' in release or 'HEVC' in release:
-                    hoster['format'] = 'x265'
-                hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        for source, values in self.__get_post_links(html).iteritems():
+            if scraper_utils.excluded_link(source): continue
+            host = urlparse.urlparse(source).hostname
+            release = values['release']
+            quality = scraper_utils.blog_get_quality(video, release, host)
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
+            if 'X265' in release or 'HEVC' in release:
+                hoster['format'] = 'x265'
+            hosters.append(hoster)
         return hosters
 
     def __get_post_links(self, html):

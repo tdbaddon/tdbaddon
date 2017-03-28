@@ -47,23 +47,23 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.25)
-            for _attrs, button in dom_parser2.parse_dom(html, 'li', {'class': 'playing_button'}):
-                try:
-                    link = dom_parser2.parse_dom(button, 'a', req='href')
-                    match = re.search('php\?.*?=?([^"]+)', link[0].attrs['href'])
-                    stream_url = base64.b64decode(match.group(1))
-                    match = re.search('(https?://.*)', stream_url)
-                    stream_url = match.group(1)
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
-                except Exception as e:
-                    log_utils.log('Exception during tvonline source: %s - |%s|' % (e, button), log_utils.LOGDEBUG)
-                    raise
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.25)
+        for _attrs, button in dom_parser2.parse_dom(html, 'li', {'class': 'playing_button'}):
+            try:
+                link = dom_parser2.parse_dom(button, 'a', req='href')
+                match = re.search('php\?.*?=?([^"]+)', link[0].attrs['href'])
+                stream_url = base64.b64decode(match.group(1))
+                match = re.search('(https?://.*)', stream_url)
+                stream_url = match.group(1)
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
+            except Exception as e:
+                log_utils.log('Exception during tvonline source: %s - |%s|' % (e, button), log_utils.LOGDEBUG)
+                raise
     
         return hosters
 

@@ -19,7 +19,7 @@ import re
 import dom_parser2
 
 def parse_dom(html, name='', attrs=None, ret=False):
-    if attrs: attrs = dict((key, re.compile(value)) for key, value in attrs.iteritems())
+    if attrs: attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in attrs.iteritems())
     results = dom_parser2.parse_dom(html, name, attrs, ret)
     if ret:
         results = [result.attrs[ret.lower()] for result in results]

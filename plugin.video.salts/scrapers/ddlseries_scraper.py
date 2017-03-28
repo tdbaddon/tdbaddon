@@ -61,12 +61,8 @@ class Scraper(scraper.Scraper):
     
     def get_sources(self, video):
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            hosters = self.__get_sources(source_url, video)
-        else:
-            hosters = []
-                
-        return hosters
+        if not source_url or source_url == FORCE_NO_MATCH: return []
+        return self.__get_sources(source_url, video)
 
     def __get_sources(self, season_url, video):
         hosters = []
@@ -78,12 +74,12 @@ class Scraper(scraper.Scraper):
             image, fragment = match.groups()
             image = image.split('/')[-1]
             host = HEADER_MAP.get(image)
-            if host:
-                ep_pattern = 'href="([^"]+)[^>]*>\s*Episode\s+0*%s<' % (video.episode)
-                for match in re.finditer(ep_pattern, fragment):
-                    stream_url = match.group(1)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
-                    hosters.append(hoster)
+            if not host: continue
+            ep_pattern = 'href="([^"]+)[^>]*>\s*Episode\s+0*%s<' % (video.episode)
+            for match in re.finditer(ep_pattern, fragment):
+                stream_url = match.group(1)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
+                hosters.append(hoster)
                 
         return hosters
     
@@ -174,4 +170,3 @@ class Scraper(scraper.Scraper):
             return match_title, match_season, extra.upper(), is_pack
         else:
             return title, 0, '', False
- 

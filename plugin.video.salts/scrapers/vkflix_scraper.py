@@ -45,26 +45,26 @@ class Scraper(scraper.Scraper):
         return 'VKFlix'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            if video.video_type == VIDEO_TYPES.EPISODE:
-                html = self.__get_episode_fragment(html, video)
-            for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'linkTr'}):
-                stream_url = dom_parser2.parse_dom(item, 'div', {'class': 'linkHiddenUrl'})
-                q_str = dom_parser2.parse_dom(item, 'div', {'class': 'linkQualityText'})
-                if stream_url and q_str:
-                    stream_url = stream_url[0].content
-                    q_str = q_str[0].content
-                    host = urlparse.urlparse(stream_url).hostname
-                    base_quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
-                    quality = scraper_utils.get_quality(video, host, base_quality)
-                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
-                    sources.append(source)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        if video.video_type == VIDEO_TYPES.EPISODE:
+            html = self.__get_episode_fragment(html, video)
+        for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'linkTr'}):
+            stream_url = dom_parser2.parse_dom(item, 'div', {'class': 'linkHiddenUrl'})
+            q_str = dom_parser2.parse_dom(item, 'div', {'class': 'linkQualityText'})
+            if stream_url and q_str:
+                stream_url = stream_url[0].content
+                q_str = q_str[0].content
+                host = urlparse.urlparse(stream_url).hostname
+                base_quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
+                quality = scraper_utils.get_quality(video, host, base_quality)
+                source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+                hosters.append(source)
 
-        return sources
+        return hosters
 
     def __get_episode_fragment(self, html, video):
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'season%s' % (video.season)})

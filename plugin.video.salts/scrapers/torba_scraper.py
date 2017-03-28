@@ -72,21 +72,20 @@ class Scraper(scraper.Scraper):
             xbmcvfs.delete(M3U8_PATH)
             query = urlparse.parse_qs(link)
             query = dict([(key, value[0]) if value else (key, '') for key, value in query.iteritems()])
-            if 'vid_id' in query and 'stream_id' in query and 'height' in query:
-                auth_url = PL_URL % (query['vid_id'], query['stream_id'])
-                result = self.__authorize_ip(auth_url)
-                if result:
-                    key = '%sp' % (query['height'])
-                    if key in result:
-                        if 'audio' in result:
-                            streams = {'audio_stream': result['audio'], 'stream_name': key, 'video_stream': result[key]}
-                            f = xbmcvfs.File(M3U8_PATH, 'w')
-                            for line in M3U8_TEMPLATE:
-                                line = line.format(**streams)
-                                f.write(line + '\n')
-                            return M3U8_PATH
-                        else:
-                            return result[key]
+            auth_url = PL_URL % (query['vid_id'], query['stream_id'])
+            result = self.__authorize_ip(auth_url)
+            if not result: return
+            key = '%sp' % (query['height'])
+            if key not in result: return
+            if 'audio' in result:
+                streams = {'audio_stream': result['audio'], 'stream_name': key, 'video_stream': result[key]}
+                f = xbmcvfs.File(M3U8_PATH, 'w')
+                for line in M3U8_TEMPLATE:
+                    line = line.format(**streams)
+                    f.write(line + '\n')
+                return M3U8_PATH
+            else:
+                return result[key]
         except Exception as e:
             log_utils.log('Failure during torba resolver: %s' % (e), log_utils.LOGWARNING)
 
@@ -118,19 +117,20 @@ class Scraper(scraper.Scraper):
         return self.check_auth2(self.auth_url)
     
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            vid_link = dom_parser2.parse_dom(html, 'a', {'class': 'video-play'}, req='href')
-            if vid_link:
-                vid_id = vid_link[0].attrs['href'].split('/')[-1]
-                for height, stream_id in self.__get_streams(vid_id).iteritems():
-                    stream_url = urllib.urlencode({'height': height, 'stream_id': stream_id, 'vid_id': vid_id})
-                    quality = scraper_utils.height_get_quality(height)
-                    hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        vid_link = dom_parser2.parse_dom(html, 'a', {'class': 'video-play'}, req='href')
+        if not vid_link: return hosters
+        
+        vid_id = vid_link[0].attrs['href'].split('/')[-1]
+        for height, stream_id in self.__get_streams(vid_id).iteritems():
+            stream_url = urllib.urlencode({'height': height, 'stream_id': stream_id, 'vid_id': vid_id})
+            quality = scraper_utils.height_get_quality(height)
+            hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+            hosters.append(hoster)
                 
         return hosters
 
@@ -148,13 +148,15 @@ class Scraper(scraper.Scraper):
         url = urlparse.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=24)
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'season-list'})
-        if fragment:
-            match = re.search('href="([^"]+)[^>]+>\s*season\s+%s\s*<' % (video.season), fragment[0].content, re.I)
-            if match:
-                season_url = match.group(1)
-                episode_pattern = 'href="([^"]*%s/%s/%s)"' % (show_url, video.season, video.episode)
-                title_pattern = 'href="(?P<url>[^"]+)"[^>]*>\s*<div class="series-item-title">(?P<title>[^<]+)'
-                return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern)
+        if not fragment: return
+
+        match = re.search('href="([^"]+)[^>]+>\s*season\s+%s\s*<' % (video.season), fragment[0].content, re.I)
+        if not match: return
+        
+        season_url = match.group(1)
+        episode_pattern = 'href="([^"]*%s/%s/%s)"' % (show_url, video.season, video.episode)
+        title_pattern = 'href="(?P<url>[^"]+)"[^>]*>\s*<div class="series-item-title">(?P<title>[^<]+)'
+        return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern)
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

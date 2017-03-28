@@ -50,51 +50,51 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=8)
-            for attrs, _content in dom_parser2.parse_dom(html, 'img', req=['data-id', 'data-name']):
-                film_id, data_name = attrs['data-id'], attrs['data-name']
-                data = {'id': film_id, 'n': data_name}
-                server_url = urlparse.urljoin(self.base_url, SERVER_URL)
-                server_url = server_url % (film_id)
+        if not source_url or source_url == FORCE_NO_MATCH: return sources
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=8)
+        for attrs, _content in dom_parser2.parse_dom(html, 'img', req=['data-id', 'data-name']):
+            film_id, data_name = attrs['data-id'], attrs['data-name']
+            data = {'id': film_id, 'n': data_name}
+            server_url = urlparse.urljoin(self.base_url, SERVER_URL)
+            server_url = server_url % (film_id)
+            headers = {'Referer': page_url}
+            headers.update(XHR)
+            html = self._http_get(server_url, data=data, headers=headers, cache_limit=.5)
+            for attrs, _content in dom_parser2.parse_dom(html, 'a', req='data-id'):
+                data = {'epid': attrs['data-id']}
+                ep_url = urlparse.urljoin(self.base_url, EP_URL)
+                ep_url = ep_url % (attrs['data-id'])
                 headers = {'Referer': page_url}
                 headers.update(XHR)
-                html = self._http_get(server_url, data=data, headers=headers, cache_limit=.5)
-                for attrs, _content in dom_parser2.parse_dom(html, 'a', req='data-id'):
-                    data = {'epid': attrs['data-id']}
-                    ep_url = urlparse.urljoin(self.base_url, EP_URL)
-                    ep_url = ep_url % (attrs['data-id'])
-                    headers = {'Referer': page_url}
-                    headers.update(XHR)
-                    html = self._http_get(ep_url, data=data, headers=headers, cache_limit=.5)
-                    js_data = scraper_utils.parse_json(html, ep_url)
-                    try:
-                        links = [r.attrs['src'] for r in dom_parser2.parse_dom(js_data['link']['embed'], 'iframe', req='src')]
-                    except:
-                        try: links = js_data['link']['l']
-                        except: links = []
-                    try: heights = js_data['link']['q']
-                    except: heights = []
-                    for stream_url, height in map(None, links, heights):
-                        match = re.search('movie_url=(.*)', stream_url)
-                        if match:
-                            stream_url = match.group(1)
-                            
-                        host = self._get_direct_hostname(stream_url)
-                        if host == 'gvideo':
-                            quality = scraper_utils.gv_get_quality(stream_url)
-                            stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
-                            direct = True
+                html = self._http_get(ep_url, data=data, headers=headers, cache_limit=.5)
+                js_data = scraper_utils.parse_json(html, ep_url)
+                try:
+                    links = [r.attrs['src'] for r in dom_parser2.parse_dom(js_data['link']['embed'], 'iframe', req='src')]
+                except:
+                    try: links = js_data['link']['l']
+                    except: links = []
+                try: heights = js_data['link']['q']
+                except: heights = []
+                for stream_url, height in map(None, links, heights):
+                    match = re.search('movie_url=(.*)', stream_url)
+                    if match:
+                        stream_url = match.group(1)
+                        
+                    host = scraper_utils.get_direct_hostname(self, stream_url)
+                    if host == 'gvideo':
+                        quality = scraper_utils.gv_get_quality(stream_url)
+                        stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
+                        direct = True
+                    else:
+                        host = urlparse.urlparse(stream_url).hostname
+                        if height:
+                            quality = scraper_utils.height_get_quality(height)
                         else:
-                            host = urlparse.urlparse(stream_url).hostname
-                            if height:
-                                quality = scraper_utils.height_get_quality(height)
-                            else:
-                                quality = QUALITIES.HD720
-                            direct = False
-                        source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                        sources.append(source)
+                            quality = QUALITIES.HD720
+                        direct = False
+                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                    sources.append(source)
 
         return sources
 

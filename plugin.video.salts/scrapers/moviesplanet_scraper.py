@@ -57,36 +57,36 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         sources = {}
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=0)
-            for match in re.finditer("embeds\[(\d+)\]\s*=\s*'([^']+)", html):
-                match = re.search('src="([^"]+)', match.group(2))
-                if match:
-                    iframe_url = match.group(1)
-                    if 'play-en.php' in iframe_url:
-                        match = re.search('id=([^"&]+)', iframe_url)
-                        if match:
-                            proxy_link = match.group(1)
-                            proxy_link = proxy_link.split('*', 1)[-1]
-                            picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY, proxy_link)
-                            for stream_url in self._parse_google(picasa_url):
-                                sources[stream_url] = {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}
-                    else:
-                        html = self._http_get(iframe_url, cache_limit=0)
-                        temp_sources = self._parse_sources_list(html)
-                        for source in temp_sources:
-                            if 'download.php' in source:
-                                redir_html = self._http_get(source, allow_redirect=False, method='HEAD', cache_limit=0)
-                                if redir_html.startswith('http'):
-                                    temp_sources[redir_html] = temp_sources[source]
-                                    del temp_sources[source]
-                        sources.update(temp_sources)
-                        for source in dom_parser2.parse_dom(html, 'source', {'type': 'video/mp4'}, req='src'):
-                            sources[source.attrs['src']] = {'quality': QUALITIES.HD720, 'direct': True, 'referer': iframe_url}
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=0)
+        for match in re.finditer("embeds\[(\d+)\]\s*=\s*'([^']+)", html):
+            match = re.search('src="([^"]+)', match.group(2))
+            if match:
+                iframe_url = match.group(1)
+                if 'play-en.php' in iframe_url:
+                    match = re.search('id=([^"&]+)', iframe_url)
+                    if match:
+                        proxy_link = match.group(1)
+                        proxy_link = proxy_link.split('*', 1)[-1]
+                        picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY, proxy_link)
+                        for stream_url in scraper_utils.parse_google(self, picasa_url):
+                            sources[stream_url] = {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}
+                else:
+                    html = self._http_get(iframe_url, cache_limit=0)
+                    temp_sources = scraper_utils.parse_sources_list(self, html)
+                    for source in temp_sources:
+                        if 'download.php' in source:
+                            redir_html = self._http_get(source, allow_redirect=False, method='HEAD', cache_limit=0)
+                            if redir_html.startswith('http'):
+                                temp_sources[redir_html] = temp_sources[source]
+                                del temp_sources[source]
+                    sources.update(temp_sources)
+                    for source in dom_parser2.parse_dom(html, 'source', {'type': 'video/mp4'}, req='src'):
+                        sources[source.attrs['src']] = {'quality': QUALITIES.HD720, 'direct': True, 'referer': iframe_url}
                                 
         for source, values in sources.iteritems():
-            host = self._get_direct_hostname(source)
+            host = scraper_utils.get_direct_hostname(self, source)
             headers = {'User-Agent': scraper_utils.get_ua()}
             if 'referer' in values: headers['Referer'] = values['referer']
             stream_url = source + scraper_utils.append_headers(headers)
@@ -115,9 +115,10 @@ class Scraper(scraper.Scraper):
 
         js_data = scraper_utils.parse_json(html, search_url)
         for item in js_data:
-            if item['meta'].upper().startswith(media_type):
-                result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink']), 'year': ''}
-                results.append(result)
+            if not item['meta'].upper().startswith(media_type): continue
+            
+            result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink']), 'year': ''}
+            results.append(result)
 
         return results
 

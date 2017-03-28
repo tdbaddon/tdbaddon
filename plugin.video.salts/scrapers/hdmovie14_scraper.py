@@ -49,24 +49,25 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
+        if not source_url or source_url == FORCE_NO_MATCH: return sources
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        for fragment in dom_parser2.parse_dom(html, 'div', {'class': 'player_wraper'}):
+            iframe_url = dom_parser2.parse_dom(fragment.content, 'iframe', req='src')
+            if not iframe_url: continue
+            
+            url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
             html = self._http_get(url, cache_limit=.5)
-            for fragment in dom_parser2.parse_dom(html, 'div', {'class': 'player_wraper'}):
-                iframe_url = dom_parser2.parse_dom(fragment.content, 'iframe', req='src')
-                if iframe_url:
-                    url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
-                    html = self._http_get(url, cache_limit=.5)
-                    for match in re.finditer('"(?:url|src)"\s*:\s*"([^"]+)[^}]+"res"\s*:\s*([^,]+)', html):
-                        stream_url, height = match.groups()
-                        host = self._get_direct_hostname(stream_url)
-                        if host == 'gvideo':
-                            quality = scraper_utils.gv_get_quality(stream_url)
-                        else:
-                            quality = scraper_utils.height_get_quality(height)
-                        stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                        source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
-                        sources.append(source)
+            for match in re.finditer('"(?:url|src)"\s*:\s*"([^"]+)[^}]+"res"\s*:\s*([^,]+)', html):
+                stream_url, height = match.groups()
+                host = scraper_utils.get_direct_hostname(self, stream_url)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(stream_url)
+                else:
+                    quality = scraper_utils.height_get_quality(height)
+                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
+                sources.append(source)
 
         return sources
 

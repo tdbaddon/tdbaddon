@@ -43,27 +43,27 @@ class Scraper(scraper.Scraper):
         return 'WatchFree.to'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            pattern = 'href="[^"]+gtfo=([^&"]+)[^>]+>([^<]+)'
-            for match in re.finditer(pattern, html, re.DOTALL | re.I):
-                url, link_name = match.groups()
-                url = url.decode('base-64')
-                host = urlparse.urlsplit(url).hostname
-                match = re.search('Part\s+(\d+)', link_name)
-                if match:
-                    if match.group(1) == '2':
-                        del sources[-1]  # remove Part 1 previous link added
-                    continue
-                
-                source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'direct': False}
-                sources.append(source)
+        pattern = 'href="[^"]+gtfo=([^&"]+)[^>]+>([^<]+)'
+        for match in re.finditer(pattern, html, re.DOTALL | re.I):
+            url, link_name = match.groups()
+            url = url.decode('base-64')
+            host = urlparse.urlsplit(url).hostname
+            match = re.search('Part\s+(\d+)', link_name)
+            if match:
+                if match.group(1) == '2':
+                    del hosters[-1]  # remove Part 1 previous link added
+                continue
+            
+            source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'direct': False}
+            hosters.append(source)
 
-        return sources
+        return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

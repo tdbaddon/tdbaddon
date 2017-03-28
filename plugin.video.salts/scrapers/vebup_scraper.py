@@ -46,38 +46,38 @@ class Scraper(scraper.Scraper):
         return 'Vebup'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=8)
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
-                iframe_src = dom_parser2.parse_dom(fragment, 'iframe', req='src')
-                if iframe_src:
-                    iframe_src = iframe_src[0].attrs['src']
-                    if re.search('o(pen)?load', iframe_src, re.I):
-                        meta = scraper_utils.parse_movie_link(iframe_src)
-                        quality = scraper_utils.height_get_quality(meta['height'])
-                        links = {iframe_src: {'quality': quality, 'direct': False}}
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=8)
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
+            iframe_src = dom_parser2.parse_dom(fragment, 'iframe', req='src')
+            if iframe_src:
+                iframe_src = iframe_src[0].attrs['src']
+                if re.search('o(pen)?load', iframe_src, re.I):
+                    meta = scraper_utils.parse_movie_link(iframe_src)
+                    quality = scraper_utils.height_get_quality(meta['height'])
+                    links = {iframe_src: {'quality': quality, 'direct': False}}
+                else:
+                    links = self.__get_links(iframe_src, url)
+
+                for link in links:
+                    direct = links[link]['direct']
+                    quality = links[link]['quality']
+                    if direct:
+                        host = scraper_utils.get_direct_hostname(self, link)
+                        if host == 'gvideo':
+                            quality = scraper_utils.gv_get_quality(link)
+                        stream_url = link + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
                     else:
-                        links = self.__get_links(iframe_src, url)
+                        host = urlparse.urlparse(link).hostname
+                        stream_url = link
+                        
+                    source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                    hosters.append(source)
 
-                    for link in links:
-                        direct = links[link]['direct']
-                        quality = links[link]['quality']
-                        if direct:
-                            host = self._get_direct_hostname(link)
-                            if host == 'gvideo':
-                                quality = scraper_utils.gv_get_quality(link)
-                            stream_url = link + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
-                        else:
-                            host = urlparse.urlparse(link).hostname
-                            stream_url = link
-                            
-                        source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                        sources.append(source)
-
-        return sources
+        return hosters
 
     def __get_links(self, iframe_src, page_url):
         sources = {}
@@ -86,7 +86,7 @@ class Scraper(scraper.Scraper):
         for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
             js_data = jsunpack.unpack(match.group(1))
             js_data = js_data.replace('\\', '')
-            sources = self._parse_sources_list(js_data)
+            sources = scraper_utils.parse_sources_list(self, js_data)
         return sources
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

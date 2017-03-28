@@ -44,39 +44,40 @@ class Scraper(scraper.Scraper):
 
     def get_sources(self, video):
         hosters = []
-        sources = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            sources = []
-            for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tab-content'}):
-                for attrs, _content in dom_parser2.parse_dom(div, 'iframe', req='src'):
-                    sources.append(attrs['src'])
-            
-            sources += [match.group(1) for match in re.finditer("window\.open\('([^']+)", html)]
-            
-            for source in sources:
-                host = urlparse.urlparse(source).hostname
-                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
-                hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+
+        sources = []
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tab-content'}):
+            for attrs, _content in dom_parser2.parse_dom(div, 'iframe', req='src'):
+                sources.append(attrs['src'])
+        
+        sources += [match.group(1) for match in re.finditer("window\.open\('([^']+)", html)]
+        
+        for source in sources:
+            host = urlparse.urlparse(source).hostname
+            quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
+            hosters.append(hoster)
                     
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
         results = []
-        if not re.search('Sorry, but nothing matched', html):
-            norm_title = scraper_utils.normalize_title(title)
-            for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
-                for attrs, _content in dom_parser2.parse_dom(item, 'a', req=['href', 'title']):
-                    match_url, match_title_year = attrs['href'], attrs['title']
-                    if re.search('S\d{2}E\d{2}', match_title_year): continue  # skip episodes
-                    if re.search('TV\s*SERIES', match_title_year, re.I): continue  # skip shows
-                    match_title, match_year = scraper_utils.extra_year(match_title_year)
-                    if (not year or not match_year or year == match_year) and norm_title in scraper_utils.normalize_title(match_title):
-                        result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                        results.append(result)
+        html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
+        if re.search('Sorry, but nothing matched', html): return results
+        
+        norm_title = scraper_utils.normalize_title(title)
+        for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
+            for attrs, _content in dom_parser2.parse_dom(item, 'a', req=['href', 'title']):
+                match_url, match_title_year = attrs['href'], attrs['title']
+                if re.search('S\d{2}E\d{2}', match_title_year): continue  # skip episodes
+                if re.search('TV\s*SERIES', match_title_year, re.I): continue  # skip shows
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
+                if (not year or not match_year or year == match_year) and norm_title in scraper_utils.normalize_title(match_title):
+                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                    results.append(result)
 
         return results

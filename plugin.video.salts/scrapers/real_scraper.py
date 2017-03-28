@@ -49,25 +49,25 @@ class Scraper(scraper.Scraper):
         return 'RealMovies'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            query = urlparse.parse_qs(source_url)
-            if 'link' in query:
-                stream_url = query['link'][0]
-                host = urlparse.urlparse(stream_url).hostname
-                if 'xml_file' in query:
-                    xml_meta = XML_META.get(query['xml_file'][0], {})
-                else:
-                    xml_meta = {}
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        query = urlparse.parse_qs(source_url)
+        if 'link' in query:
+            stream_url = query['link'][0]
+            host = urlparse.urlparse(stream_url).hostname
+            if 'xml_file' in query:
+                xml_meta = XML_META.get(query['xml_file'][0], {})
+            else:
+                xml_meta = {}
 
-                quality = xml_meta.get('quality', QUALITIES.HD1080)
-                source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
-                if 'quality' in xml_meta: del xml_meta['quality']
-                source.update(xml_meta)
-                sources.append(source)
+            quality = xml_meta.get('quality', QUALITIES.HD1080)
+            source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+            if 'quality' in xml_meta: del xml_meta['quality']
+            source.update(xml_meta)
+            hosters.append(source)
 
-        return sources
+        return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

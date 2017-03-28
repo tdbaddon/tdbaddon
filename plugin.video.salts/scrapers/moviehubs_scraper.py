@@ -75,35 +75,36 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=8)
-            hosts = [r.content for r in dom_parser2.parse_dom(html, 'p', {'class': 'server_servername'})]
-            links = [r.content for r in dom_parser2.parse_dom(html, 'p', {'class': 'server_play'})]
-            for host, link_frag in zip(hosts, links):
-                stream_url = dom_parser2.parse_dom(link_frag, 'a', req='href')
-                if stream_url:
-                    stream_url = stream_url[0].attrs['href']
-                    host = re.sub('^Server\s*', '', host, re.I)
-                    host = re.sub('\s*Link\s+\d+', '', host)
-                    if host.lower() == 'google':
-                        sources = self.__get_gvideo_links(stream_url)
-                    else:
-                        sources = [{'host': host, 'link': stream_url}]
-                    
-                    for source in sources:
-                        stream_url = source['link']
-                        host = self._get_direct_hostname(stream_url)
-                        if host == 'gvideo':
-                            quality = scraper_utils.gv_get_quality(stream_url)
-                            stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                            direct = True
-                        else:
-                            host = HOST_SUB.get(source['host'].lower(), source['host'])
-                            quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                            direct = False
-                        hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                        hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=8)
+        hosts = [r.content for r in dom_parser2.parse_dom(html, 'p', {'class': 'server_servername'})]
+        links = [r.content for r in dom_parser2.parse_dom(html, 'p', {'class': 'server_play'})]
+        for host, link_frag in zip(hosts, links):
+            stream_url = dom_parser2.parse_dom(link_frag, 'a', req='href')
+            if not stream_url: continue
+            
+            stream_url = stream_url[0].attrs['href']
+            host = re.sub('^Server\s*', '', host, re.I)
+            host = re.sub('\s*Link\s+\d+', '', host)
+            if host.lower() == 'google':
+                sources = self.__get_gvideo_links(stream_url)
+            else:
+                sources = [{'host': host, 'link': stream_url}]
+            
+            for source in sources:
+                stream_url = source['link']
+                host = scraper_utils.get_direct_hostname(self, stream_url)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(stream_url)
+                    stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                    direct = True
+                else:
+                    host = HOST_SUB.get(source['host'].lower(), source['host'])
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                    direct = False
+                hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                hosters.append(hoster)
 
         return hosters
 

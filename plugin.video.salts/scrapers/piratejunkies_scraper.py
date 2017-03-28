@@ -25,7 +25,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 import scraper
 
-BASE_URL = 'http://piratejunkies.com'
+BASE_URL = 'http://www.iframetv.com'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -45,35 +45,35 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            js_url = urlparse.urljoin(self.base_url, '/javascript/movies.js')
-            html = self._http_get(js_url, cache_limit=48)
-            if source_url.startswith('/'):
-                source_url = source_url[1:]
-            pattern = '''getElementById\(\s*"%s".*?play\(\s*'([^']+)''' % (source_url)
-            match = re.search(pattern, html, re.I)
-            if match:
-                stream_url = match.group(1)
-                if 'drive.google' in stream_url or 'docs.google' in stream_url:
-                    sources = self._parse_google(stream_url)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        js_url = urlparse.urljoin(self.base_url, '/javascript/movies.js')
+        html = self._http_get(js_url, cache_limit=48)
+        if source_url.startswith('/'):
+            source_url = source_url[1:]
+        pattern = '''getElementById\(\s*"%s".*?play\(\s*'([^']+)''' % (source_url)
+        match = re.search(pattern, html, re.I)
+        if match:
+            stream_url = match.group(1)
+            if 'drive.google' in stream_url or 'docs.google' in stream_url:
+                sources = scraper_utils.parse_google(self, stream_url)
+            else:
+                sources = [stream_url]
+            
+            for source in sources:
+                stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                host = scraper_utils.get_direct_hostname(self, source)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(source)
+                    direct = True
+                elif 'youtube' in stream_url:
+                    quality = QUALITIES.HD720
+                    direct = False
+                    host = 'youtube.com'
                 else:
-                    sources = [stream_url]
-                
-                for source in sources:
-                    stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    host = self._get_direct_hostname(source)
-                    if host == 'gvideo':
-                        quality = scraper_utils.gv_get_quality(source)
-                        direct = True
-                    elif 'youtube' in stream_url:
-                        quality = QUALITIES.HD720
-                        direct = False
-                        host = 'youtube.com'
-                    else:
-                        quality = QUALITIES.HIGH
-                        direct = True
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
-                    hosters.append(hoster)
+                    quality = QUALITIES.HIGH
+                    direct = True
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
+                hosters.append(hoster)
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

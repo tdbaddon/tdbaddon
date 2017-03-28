@@ -51,52 +51,53 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            match = re.search('((?:pic|emb|vb|dir|emb2)=[^<]+)', html)
-            if match:
-                embeds = match.group(1)
-                for stream_url in embeds.split('&'):
-                    if stream_url.startswith('dir='):
-                        headers = {'Referer': url}
-                        html = self._http_get(DIR_URL, params={'v': stream_url[3:]}, headers=headers, auth=False, allow_redirect=False, cache_limit=.5)
-                        if html.startswith('http'):
-                            stream_url = html + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
-                            host = self._get_direct_hostname(stream_url)
-                            direct = True
-                            quality = QUALITIES.HD720
-                        else:
-                            continue
-                    elif stream_url.startswith('vb='):
-                        stream_url = 'http://www.vidbux.com/%s' % (stream_url[3:])
-                        host = 'vidbux.com'
-                        direct = False
-                        quality = scraper_utils.get_quality(video, host, QUALITIES.HD1080)
-                    elif stream_url.startswith('pic='):
-                        data = {'url': stream_url[4:]}
-                        html = self._http_get(PHP_URL, data=data, auth=False, cache_limit=1)
-                        js_data = scraper_utils.parse_json(html, PHP_URL)
-                        host = self._get_direct_hostname(stream_url)
+        match = re.search('((?:pic|emb|vb|dir|emb2)=[^<]+)', html)
+        if match:
+            embeds = match.group(1)
+            for stream_url in embeds.split('&'):
+                if stream_url.startswith('dir='):
+                    headers = {'Referer': url}
+                    html = self._http_get(DIR_URL, params={'v': stream_url[3:]}, headers=headers, auth=False, allow_redirect=False, cache_limit=.5)
+                    if html.startswith('http'):
+                        stream_url = html + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
+                        host = scraper_utils.get_direct_hostname(self, stream_url)
                         direct = True
-                        for item in js_data:
-                            if 'medium' in item and item['medium'] == 'video':
-                                stream_url = item['url']
-                                quality = scraper_utils.width_get_quality(item['width'])
-                                break
-                        else:
-                            continue
-                    elif stream_url.startswith(('emb=', 'emb2=')):
-                        stream_url = re.sub('emb\d*=', '', stream_url)
-                        host = urlparse.urlparse(stream_url).hostname
-                        direct = False
-                        quality = scraper_utils.get_quality(video, host, QUALITIES.HD720)
+                        quality = QUALITIES.HD720
                     else:
                         continue
+                elif stream_url.startswith('vb='):
+                    stream_url = 'http://www.vidbux.com/%s' % (stream_url[3:])
+                    host = 'vidbux.com'
+                    direct = False
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HD1080)
+                elif stream_url.startswith('pic='):
+                    data = {'url': stream_url[4:]}
+                    html = self._http_get(PHP_URL, data=data, auth=False, cache_limit=1)
+                    js_data = scraper_utils.parse_json(html, PHP_URL)
+                    host = scraper_utils.get_direct_hostname(self, stream_url)
+                    direct = True
+                    for item in js_data:
+                        if item.get('medium') == 'video':
+                            stream_url = item['url']
+                            quality = scraper_utils.width_get_quality(item['width'])
+                            break
+                    else:
+                        continue
+                elif stream_url.startswith(('emb=', 'emb2=')):
+                    stream_url = re.sub('emb\d*=', '', stream_url)
+                    host = urlparse.urlparse(stream_url).hostname
+                    direct = False
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HD720)
+                else:
+                    continue
 
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
-                    hosters.append(hoster)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
+                hosters.append(hoster)
+
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

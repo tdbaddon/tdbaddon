@@ -47,26 +47,26 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            match = re.search('Quality\s*:\s*([^<]+)', html)
-            if match:
-                page_quality = QUALITY_MAP.get(match.group(1), QUALITIES.HIGH)
-            else:
-                page_quality = QUALITIES.HD720
+        match = re.search('Quality\s*:\s*([^<]+)', html)
+        if match:
+            page_quality = QUALITY_MAP.get(match.group(1), QUALITIES.HIGH)
+        else:
+            page_quality = QUALITIES.HD720
 
-            match = re.search("onClick=\"javascript:replaceb64Text.*?,\s*'([^']+)", html)
-            if match:
-                html = match.group(1).decode('base-64').replace('&quot;', '"')
-                    
-            iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
-            if iframe_url:
-                iframe_url = iframe_url[0].attrs['src']
-                host = urlparse.urlsplit(iframe_url).hostname
-                hoster = {'multi-part': False, 'host': host, 'url': iframe_url, 'class': self, 'rating': None, 'views': None, 'quality': scraper_utils.get_quality(video, host, page_quality), 'direct': False}
-                hosters.append(hoster)
+        match = re.search("onClick=\"javascript:replaceb64Text.*?,\s*'([^']+)", html)
+        if match:
+            html = match.group(1).decode('base-64').replace('&quot;', '"')
+                
+        iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
+        if iframe_url:
+            iframe_url = iframe_url[0].attrs['src']
+            host = urlparse.urlsplit(iframe_url).hostname
+            hoster = {'multi-part': False, 'host': host, 'url': iframe_url, 'class': self, 'rating': None, 'views': None, 'quality': scraper_utils.get_quality(video, host, page_quality), 'direct': False}
+            hosters.append(hoster)
 
         return hosters
 

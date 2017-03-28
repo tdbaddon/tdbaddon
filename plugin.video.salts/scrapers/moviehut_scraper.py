@@ -54,30 +54,31 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            pattern = 'href="([^"]+)">Watch (Link \d+)(.*?)</td>\s*<td[^>]*>(.*?)</td>.*?<td[^>]*id="lv_\d+"[^>]*>([^<]+)'
-            for match in re.finditer(pattern, html, re.DOTALL):
-                stream_url, label, part_str, q_str, views = match.groups()
-                q_str = q_str.strip().upper()
-                parts = re.findall('href="([^"]+)">(Part\s+\d+)<', part_str, re.DOTALL)
-                if parts:
-                    multipart = True
-                else:
-                    multipart = False
-                host = urlparse.urlparse(stream_url).hostname
-                if host is not None:
-                    quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
-                    hoster = {'multi-part': multipart, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
-                    hoster['extra'] = label
-                    hosters.append(hoster)
-                    for part in parts:
-                        stream_url, part_label = part
-                        part_hoster = hoster.copy()
-                        part_hoster['part_label'] = part_label
-                        part_hoster['url'] = stream_url
-                        hosters.append(part_hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        pattern = 'href="([^"]+)">Watch (Link \d+)(.*?)</td>\s*<td[^>]*>(.*?)</td>.*?<td[^>]*id="lv_\d+"[^>]*>([^<]+)'
+        for match in re.finditer(pattern, html, re.DOTALL):
+            stream_url, label, part_str, q_str, views = match.groups()
+            q_str = q_str.strip().upper()
+            parts = re.findall('href="([^"]+)">(Part\s+\d+)<', part_str, re.DOTALL)
+            if parts:
+                multipart = True
+            else:
+                multipart = False
+            host = urlparse.urlparse(stream_url).hostname
+            if host is None: continue
+            
+            quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
+            hoster = {'multi-part': multipart, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
+            hoster['extra'] = label
+            hosters.append(hoster)
+            for part in parts:
+                stream_url, part_label = part
+                part_hoster = hoster.copy()
+                part_hoster['part_label'] = part_label
+                part_hoster['url'] = stream_url
+                hosters.append(part_hoster)
             
         return hosters
 
@@ -90,11 +91,12 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=1)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'thumbsTitle'}):
             match = dom_parser2.parse_dom(item, 'a', req='href')
-            if match:
-                match_url, match_title_year = match[0].attrs['href'], match[0].content
-                match_title, match_year = scraper_utils.extra_year(match_title_year)
-                if (not year or not match_year or year == match_year):
-                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                    results.append(result)
+            if not match: continue
+
+            match_url, match_title_year = match[0].attrs['href'], match[0].content
+            match_title, match_year = scraper_utils.extra_year(match_title_year)
+            if (not year or not match_year or year == match_year):
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
         
         return results

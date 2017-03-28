@@ -45,21 +45,21 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            title = dom_parser2.parse_dom(html, 'meta', {'property': 'og:title'}, req='content')
-            meta = scraper_utils.parse_movie_link(title[0].attrs['content']) if title else {}
-            fragment = dom_parser2.parse_dom(html, 'p', {'class': 'download_message'})
-            if fragment:
-                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                    source = attrs['href']
-                    if scraper_utils.excluded_link(source): continue
-                    host = urlparse.urlparse(source).hostname
-                    quality = scraper_utils.height_get_quality(meta.get('height', 480))
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
-                    if 'format' in meta: hoster['format'] = meta['format']
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        title = dom_parser2.parse_dom(html, 'meta', {'property': 'og:title'}, req='content')
+        meta = scraper_utils.parse_movie_link(title[0].attrs['content']) if title else {}
+        fragment = dom_parser2.parse_dom(html, 'p', {'class': 'download_message'})
+        if fragment:
+            for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                source = attrs['href']
+                if scraper_utils.excluded_link(source): continue
+                host = urlparse.urlparse(source).hostname
+                quality = scraper_utils.height_get_quality(meta.get('height', 480))
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': quality, 'direct': False}
+                if 'format' in meta: hoster['format'] = meta['format']
+                hosters.append(hoster)
         return hosters
 
     def get_url(self, video):

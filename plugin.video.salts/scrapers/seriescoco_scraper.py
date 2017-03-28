@@ -44,18 +44,18 @@ class Scraper(scraper.Scraper):
         return 'SeriesCoco'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'class': 'commentmetadata'}):
-                for attrs, _content in dom_parser2.parse_dom(comment, 'a', req='href'):
-                    stream_url = attrs['href']
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'class': 'commentmetadata'}):
+            for attrs, _content in dom_parser2.parse_dom(comment, 'a', req='href'):
+                stream_url = attrs['href']
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
     
         return hosters
 

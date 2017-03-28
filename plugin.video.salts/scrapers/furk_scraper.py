@@ -82,26 +82,26 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
-            if 'title' in params:
-                search_title = re.sub("[^A-Za-z0-9. ]", "", urllib.unquote_plus(params['title'][0]))
-                query = search_title
-                if video.video_type == VIDEO_TYPES.MOVIE:
-                    if 'year' in params: query += ' %s' % (params['year'][0])
-                else:
-                    sxe = ''
-                    if 'season' in params:
-                        sxe = 'S%02d' % (int(params['season'][0]))
-                    if 'episode' in params:
-                        sxe += 'E%02d' % (int(params['episode'][0]))
-                    if sxe: query = '%s %s' % (query, sxe)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+        if 'title' in params:
+            search_title = re.sub("[^A-Za-z0-9. ]", "", urllib.unquote_plus(params['title'][0]))
+            query = search_title
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                if 'year' in params: query += ' %s' % (params['year'][0])
+            else:
+                sxe = ''
+                if 'season' in params:
+                    sxe = 'S%02d' % (int(params['season'][0]))
+                if 'episode' in params:
+                    sxe += 'E%02d' % (int(params['episode'][0]))
+                if sxe: query = '%s %s' % (query, sxe)
+            query_url = '/search?query=%s' % (query)
+            hosters = self.__get_links(query_url, video)
+            if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
+                query = urllib.quote_plus('%s %s' % (search_title, params['air_date'][0].replace('-', '.')))
                 query_url = '/search?query=%s' % (query)
                 hosters = self.__get_links(query_url, video)
-                if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
-                    query = urllib.quote_plus('%s %s' % (search_title, params['air_date'][0].replace('-', '.')))
-                    query_url = '/search?query=%s' % (query)
-                    hosters = self.__get_links(query_url, video)
 
         return hosters
     
@@ -141,7 +141,7 @@ class Scraper(scraper.Scraper):
                         continue
 
                     stream_url = item['url_pls']
-                    host = self._get_direct_hostname(stream_url)
+                    host = scraper_utils.get_direct_hostname(self, stream_url)
                     hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
                     hoster['size'] = size_gb
                     hoster['extra'] = item['name']

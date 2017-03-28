@@ -49,23 +49,23 @@ class Scraper(scraper.Scraper):
         return 'StreamLord'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=1)
-            match = re.search('''["']sources['"]\s*:\s*\[(.*?)\]''', html, re.DOTALL)
-            if match:
-                for match in re.finditer('''['"]*file['"]*\s*:\s*([^\(]+)''', match.group(1), re.DOTALL):
-                    stream_url = self.__decode(match.group(1), html)
-                    if stream_url:
-                        if video.video_type == VIDEO_TYPES.MOVIE:
-                            quality = QUALITIES.HD720
-                        else:
-                            quality = QUALITIES.HIGH
-                        stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url, 'Cookie': self._get_stream_cookies()})
-                        hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
-                        hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=1)
+        match = re.search('''["']sources['"]\s*:\s*\[(.*?)\]''', html, re.DOTALL)
+        if match:
+            for match in re.finditer('''['"]*file['"]*\s*:\s*([^\(]+)''', match.group(1), re.DOTALL):
+                stream_url = self.__decode(match.group(1), html)
+                if stream_url:
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        quality = QUALITIES.HD720
+                    else:
+                        quality = QUALITIES.HIGH
+                    stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url, 'Cookie': self._get_stream_cookies()})
+                    hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, stream_url), 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
+                    hosters.append(hoster)
 
         return hosters
 

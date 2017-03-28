@@ -28,6 +28,8 @@ import os.path
 import string
 import kodi
 import log_utils
+import dom_parser2
+import xbmcgui
 from salts_lib import pyaes
 from salts_lib import utils2
 from salts_lib.constants import *  # @UnusedWildImport
@@ -35,6 +37,7 @@ from salts_lib.constants import *  # @UnusedWildImport
 cleanse_title = utils2.cleanse_title
 to_datetime = utils2.to_datetime
 normalize_title = utils2.normalize_title
+CAPTCHA_BASE_URL = 'http://www.google.com/recaptcha/api'
 
 def disable_sub_check(settings):
     for i in reversed(xrange(len(settings))):
@@ -489,3 +492,208 @@ def evpKDF(passwd, salt, key_size=8, iv_size=4, iterations=1, hash_algorithm="md
         "key": derived_bytes[0: key_size * 4],
         "iv": derived_bytes[key_size * 4:]
     }
+
+def get_direct_hostname(scraper, link):
+    host = urlparse.urlparse(link).hostname
+    if host and any([h for h in ['google', 'picasa', 'blogspot'] if h in host]):
+        return 'gvideo'
+    else:
+        return scraper.get_name()
+
+def parse_sources_list(scraper, html, key='sources', var=None, file_key=None):
+    sources = {}
+    match = re.search('''['"]?%s["']?\s*:\s*[\{\[](\s*)[\}\]]''' % (key), html, re.DOTALL)
+    if not match:
+        match = re.search('''['"]?%s["']?\s*:\s*\[(.*?)\}\s*,?\s*\]''' % (key), html, re.DOTALL)
+        if not match:
+            match = re.search('''['"]?%s["']?\s*:\s*\{(.*?)\}''' % (key), html, re.DOTALL)
+            if not match and var is not None:
+                match = re.search('''%s\s*=\s*\[\{(.*?)\}\]''' % (var), html, re.DOTALL)
+                
+    if match:
+        fragment = match.group(1)
+    elif var is not None:
+        fragment = ''.join(re.findall("%s\.push\(([^)]+)" % (var), html, re.DOTALL))
+    else:
+        fragment = ''
+    
+    file_key = 'file' if file_key is None else file_key
+    files = re.findall('''['"]?%s['"]?\s*:\s*['"]([^'"]+)''' % (file_key), fragment, re.DOTALL)
+    labels = re.findall('''['"]?label['"]?\s*:\s*['"]([^'"]*)''', fragment, re.DOTALL)
+    for stream_url, label in map(None, files, labels):
+        if not stream_url: continue
+        
+        stream_url = stream_url.replace('\/', '/')
+        stream_url = urllib.unquote(stream_url)
+        if get_direct_hostname(scraper, stream_url) == 'gvideo':
+            sources[stream_url] = {'quality': gv_get_quality(stream_url), 'direct': True}
+        elif label is not None and re.search('\d+p?', label, re.I):
+            sources[stream_url] = {'quality': height_get_quality(label), 'direct': True}
+        elif label is not None:
+            sources[stream_url] = {'quality': label, 'direct': True}
+        else:
+            sources[stream_url] = {'quality': QUALITIES.HIGH, 'direct': True}
+
+    return sources
+
+def get_gk_links(scraper, html, page_url, page_quality, link_url, player_url):
+    def get_real_gk_url(scraper, player_url, params):
+        html = scraper._http_get(player_url, params=params, headers=XHR, cache_limit=.25)
+        js_data = parse_json(html, player_url)
+        data = js_data.get('data', {})
+        if 'files' in data:
+            return data['files']
+        else:
+            return data
+
+    sources = {}
+    for attrs, _content in dom_parser2.parse_dom(html, 'a', req=['data-film', 'data-name', 'data-server']):
+        data = {'ipplugins': 1, 'ip_film': attrs['data-film'], 'ip_server': attrs['data-server'], 'ip_name': attrs['data-name'], 'fix': 0}
+        headers = {'Referer': page_url}
+        headers.update(XHR)
+        html = scraper._http_get(link_url, data=data, headers=headers, cache_limit=.25)
+        js_data = parse_json(html, link_url)
+        params = {'u': js_data.get('s'), 'w': '100%', 'h': 420, 's': js_data.get('v'), 'n': 0}
+        stream_urls = get_real_gk_url(scraper, player_url, params)
+        if stream_urls is None: continue
+        
+        if isinstance(stream_urls, basestring):
+            sources[stream_urls] = page_quality
+        else:
+            for item in stream_urls:
+                stream_url = item['files']
+                if get_direct_hostname(scraper, stream_url) == 'gvideo':
+                    quality = gv_get_quality(stream_url)
+                elif 'quality' in item:
+                    quality = height_get_quality(item['quality'])
+                else:
+                    quality = page_quality
+                sources[stream_url] = quality
+                    
+    return sources
+
+def get_files(scraper, url, headers=None, cache_limit=.5):
+    sources = []
+    for row in parse_directory(scraper._http_get(url, headers=headers, cache_limit=cache_limit)):
+        source_url = urljoin(url, row['link'])
+        if row['directory'] and not row['link'].startswith('..'):
+            sources += get_files(source_url, headers={'Referer': url}, cache_limit=cache_limit)
+        else:
+            row['url'] = source_url
+            sources.append(row)
+    return sources
+
+def parse_directory(scraper, html):
+    rows = []
+    for match in re.finditer(scraper.row_pattern, html):
+        row = match.groupdict()
+        if row['title'].endswith('/'): row['title'] = row['title'][:-1]
+        row['directory'] = True if row['link'].endswith('/') else False
+        if row['size'] == '-': row['size'] = None
+        rows.append(row)
+    return rows
+
+def parse_google(scraper, link):
+    sources = []
+    html = scraper._http_get(link, cache_limit=.25)
+    match = re.search('pid=([^&]+)', link)
+    if match:
+        vid_id = match.group(1)
+        sources = parse_gplus(vid_id, html, link)
+    else:
+        if 'drive.google' in link or 'docs.google' in link:
+            sources = parse_gdocs(scraper, link)
+        if 'picasaweb' in link:
+            i = link.rfind('#')
+            if i > -1:
+                link_id = link[i + 1:]
+            else:
+                link_id = ''
+            match = re.search('feedPreload:\s*(.*}]}})},', html, re.DOTALL)
+            if match:
+                js = parse_json(match.group(1), link)
+                for item in js['feed']['entry']:
+                    if not link_id or item['gphoto$id'] == link_id:
+                        for media in item['media']['content']:
+                            if media['type'].startswith('video'):
+                                sources.append(media['url'].replace('%3D', '='))
+            else:
+                match = re.search('preload\'?:\s*(.*}})},', html, re.DOTALL)
+                if match:
+                    js = parse_json(match.group(1), link)
+                    for media in js['feed']['media']['content']:
+                        if media['type'].startswith('video'):
+                            sources.append(media['url'].replace('%3D', '='))
+
+    sources = list(set(sources))
+    return sources
+
+def parse_gplus(vid_id, html, link=''):
+    def extract_video(self, item):
+        vid_sources = []
+        for e in item:
+            if not isinstance(e, dict): continue
+            for key in e:
+                for item2 in e[key]:
+                    if not isinstance(item2, list): continue
+                    for item3 in item2:
+                        if not isinstance(item3, list): continue
+                        for item4 in item3:
+                            if not isinstance(item4, basestring): continue
+                            s = urllib.unquote(item4).replace('\\0026', '&').replace('\\003D', '=')
+                            for match in re.finditer('url=([^&]+)', s):
+                                vid_sources.append(match.group(1))
+        return vid_sources
+    
+    sources = []
+    match = re.search('return\s+(\[\[.*?)\s*}}', html, re.DOTALL)
+    if match:
+        try:
+            js = parse_json(match.group(1), link)
+            for top_item in js:
+                if not isinstance(top_item, list): continue
+                for item in top_item:
+                    if not isinstance(item, list): continue
+                    for item2 in item:
+                        if not isinstance(item2, list): continue
+                        for item3 in item2:
+                            if item3 == vid_id:
+                                sources = extract_video(item2)
+                                
+        except Exception as e:
+            log_utils.log('Google Plus Parse failure: %s - %s' % (link, e), log_utils.LOGWARNING)
+    return sources
+
+def parse_gdocs(scraper, link):
+    urls = []
+    link = re.sub('/preview$', '/view', link)
+    html = scraper._http_get(link, cache_limit=.5)
+    for match in re.finditer('\[\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\]', html):
+        key, value = match.groups()
+        if key != 'fmt_stream_map': continue
+        for item in value.split(','):
+            _source_fmt, source_url = item.split('|')
+            source_url = source_url.replace('\\u003d', '=').replace('\\u0026', '&')
+            source_url = urllib.unquote(source_url)
+            source_url += '|Cookie=%s' % (scraper._get_stream_cookies())
+            urls.append(source_url)
+                
+    return urls
+
+def do_recaptcha(scraper, key, tries=None, max_tries=None):
+    challenge_url = CAPTCHA_BASE_URL + '/challenge?k=%s' % (key)
+    html = scraper._cached_http_get(challenge_url, CAPTCHA_BASE_URL, timeout=DEFAULT_TIMEOUT, cache_limit=0)
+    match = re.search("challenge\s+\:\s+'([^']+)", html)
+    captchaimg = 'http://www.google.com/recaptcha/api/image?c=%s' % (match.group(1))
+    img = xbmcgui.ControlImage(450, 0, 400, 130, captchaimg)
+    wdlg = xbmcgui.WindowDialog()
+    wdlg.addControl(img)
+    wdlg.show()
+    header = 'Type the words in the image'
+    if tries and max_tries:
+        header += ' (Try: %s/%s)' % (tries, max_tries)
+    solution = kodi.get_keyboard(header)
+    if not solution:
+        raise Exception('You must enter text in the image to access video')
+    wdlg.close()
+    return {'recaptcha_challenge_field': match.group(1), 'recaptcha_response_field': solution}

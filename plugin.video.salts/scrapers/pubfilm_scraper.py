@@ -48,44 +48,44 @@ class Scraper(scraper.Scraper):
         return 'pubfilm'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        
+        views = None
+        fragment = dom_parser2.parse_dom(html, 'span', {'class': 'post-views'})
+        if fragment:
+            views = re.sub('[^\d]', '', fragment[0].content)
+        
+        iframe_urls = []
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            iframe_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
+        else:
+            for label, link in self.__get_episode_links(html):
+                if int(label) == int(video.episode):
+                    iframe_urls.append(link)
             
-            views = None
-            fragment = dom_parser2.parse_dom(html, 'span', {'class': 'post-views'})
-            if fragment:
-                views = re.sub('[^\d]', '', fragment[0].content)
-            
-            iframe_urls = []
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                iframe_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
+        for iframe_url in iframe_urls:
+            headers = {'Referer': url}
+            html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
+            match = re.search('{link\s*:\s*"([^"]+)', html)
+            if match:
+                sources = self.__get_gk_links(match.group(1), iframe_url)
             else:
-                for label, link in self.__get_episode_links(html):
-                    if int(label) == int(video.episode):
-                        iframe_urls.append(link)
+                sources = scraper_utils.parse_sources_list(self, html)
                 
-            for iframe_url in iframe_urls:
-                headers = {'Referer': url}
-                html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
-                match = re.search('{link\s*:\s*"([^"]+)', html)
-                if match:
-                    sources = self.__get_gk_links(match.group(1), iframe_url)
+            for source in sources:
+                stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                direct = sources[source]['direct']
+                quality = sources[source]['quality']
+                if sources[source]['direct']:
+                    host = scraper_utils.get_direct_hostname(self, source)
                 else:
-                    sources = self._parse_sources_list(html)
-                    
-                for source in sources:
-                    stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    direct = sources[source]['direct']
-                    quality = sources[source]['quality']
-                    if sources[source]['direct']:
-                        host = self._get_direct_hostname(source)
-                    else:
-                        host = urlparse.urlparse(source).hostname
-                    hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': views, 'direct': direct}
-                    hosters.append(hoster)
+                    host = urlparse.urlparse(source).hostname
+                hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': views, 'direct': direct}
+                hosters.append(hoster)
 
         return hosters
 
@@ -99,16 +99,15 @@ class Scraper(scraper.Scraper):
         if 'link' in js_data:
             if isinstance(js_data['link'], basestring):
                 stream_url = js_data['link']
-                if self._get_direct_hostname(stream_url) == 'gvideo':
-                    temp = self._parse_google(stream_url)
-                    for source in temp:
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
+                    for source in scraper_utils.parse_google(self, stream_url):
                         sources[source] = {'quality': scraper_utils.gv_get_quality(source), 'direct': True}
                 else:
                     sources[stream_url] = {'quality': QUALITIES.HIGH, 'direct': False}
             else:
                 for link in js_data['link']:
                     stream_url = link['link']
-                    if self._get_direct_hostname(stream_url) == 'gvideo':
+                    if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
                         quality = scraper_utils.gv_get_quality(stream_url)
                     elif 'label' in link:
                         quality = scraper_utils.height_get_quality(link['label'])

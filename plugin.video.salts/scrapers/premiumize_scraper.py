@@ -96,89 +96,90 @@ class Scraper(scraper.Scraper):
     def __add_torrent(self, hash_id):
         list_url = urlparse.urljoin(self.base_url, LIST_URL)
         js_data = self._json_get(list_url, cache_limit=0)
-        if 'transfers' in js_data:
-            for transfer in js_data['transfers']:
-                if transfer['hash'].lower() == hash_id:
-                    return True
+        for transfer in js_data.get('transfers', []):
+            if transfer['hash'].lower() == hash_id:
+                return True
          
         add_url = urlparse.urljoin(self.base_url, ADD_URL)
         data = {'src': MAGNET_LINK % hash_id}
         js_data = self._json_get(add_url, data=data, cache_limit=0)
-        if 'status' in js_data and js_data['status'] == 'success':
+        if js_data.get('status') == 'success':
             return True
         else:
             return False
     
     def __get_videos(self, content):
         videos = []
-        for key in content:
-            item = content[key]
+        for item in content.itervalues():
             if item['type'].lower() == 'dir':
                 videos += self.__get_videos(item['children'])
             else:
-                if item['ext'].upper() in VIDEO_EXT:
-                    label = '(%s) %s' % (scraper_utils.format_size(item['size'], 'B'), item['name'])
-                    video = {'label': label, 'url': item['url']}
+                if item['ext'].upper() not in VIDEO_EXT: continue
+                label = '(%s) %s' % (scraper_utils.format_size(item['size'], 'B'), item['name'])
+                video = {'label': label, 'url': item['url']}
+                videos.append(video)
+                if self.include_trans and 'transcoded' in item and item['transcoded']:
+                    transcode = item['transcoded']
+                    if 'size' in transcode:
+                        label = '(%s) (Transcode) %s' % (scraper_utils.format_size(transcode['size'], 'B'), item['name'])
+                    else:
+                        label = '(Transcode) %s' % (item['name'])
+                    video = {'label': label, 'url': transcode['url']}
                     videos.append(video)
-                    if self.include_trans and 'transcoded' in item and item['transcoded']:
-                        transcode = item['transcoded']
-                        if 'size' in transcode:
-                            label = '(%s) (Transcode) %s' % (scraper_utils.format_size(transcode['size'], 'B'), item['name'])
-                        else:
-                            label = '(Transcode) %s' % (item['name'])
-                        video = {'label': label, 'url': transcode['url']}
-                        videos.append(video)
+                    
         return videos
 
     def get_sources(self, video):
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                return self.__get_movie_sources(source_url)
-            else:
-                return self.__get_episode_sources(source_url, video)
+        if not source_url or source_url == FORCE_NO_MATCH: return []
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            return self.__get_movie_sources(source_url)
+        else:
+            return self.__get_episode_sources(source_url, video)
     
     def __get_episode_sources(self, source_url, video):
         hosters = []
         links = self.__find_episode(source_url, video)
-        if links:
-            hash_data = self.__get_hash_data([link[0] for link in links])
-            for link in links:
-                try: status = hash_data['hashes'][link[0]]['status']
-                except KeyError: status = ''
-                if status.lower() == 'finished':
-                    stream_url = 'hash_id=%s' % (link[0])
-                    host = self._get_direct_hostname(stream_url)
-                    quality = scraper_utils.blog_get_quality(video, link[1], '')
-                    hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
-                    hoster['extra'] = link[1]
-                    hosters.append(hoster)
+        if not links: return hosters
+        hash_data = self.__get_hash_data([link[0] for link in links])
+        for link in links:
+            try: status = hash_data['hashes'][link[0]]['status']
+            except KeyError: status = ''
+            if status.lower() != 'finished': continue
+            stream_url = 'hash_id=%s' % (link[0])
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+            quality = scraper_utils.blog_get_quality(video, link[1], '')
+            hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
+            hoster['extra'] = link[1]
+            hosters.append(hoster)
+            
         return hosters
     
     def __get_movie_sources(self, source_url):
         hosters = []
         query = kodi.parse_query(urlparse.urlparse(source_url).query)
         movie_id = query.get('movie_id') or self.__get_movie_id(source_url)
-        if movie_id:
-            details_url = urlparse.urljoin(self.movie_base_url, MOVIE_DETAILS_URL)
-            detail_data = self._json_get(details_url, params={'movie_id': movie_id}, cache_limit=24)
-            try: torrents = detail_data['data']['movie']['torrents']
-            except KeyError: torrents = []
-            try: hashes = [torrent['hash'].lower() for torrent in torrents]
-            except KeyError: hashes = []
-            hash_data = self.__get_hash_data(hashes)
-            for torrent in torrents:
-                hash_id = torrent['hash'].lower()
-                try: status = hash_data['hashes'][hash_id]['status']
-                except KeyError: status = ''
-                if status.lower() == 'finished':
-                    stream_url = 'hash_id=%s' % (hash_id)
-                    host = self._get_direct_hostname(stream_url)
-                    quality = QUALITY_MAP.get(torrent['quality'], QUALITIES.HD720)
-                    hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
-                    if 'size_bytes' in torrent: hoster['size'] = scraper_utils.format_size(torrent['size_bytes'], 'B')
-                    if torrent['quality'] == '3D': hoster['3D'] = True
-                    hosters.append(hoster)
+        if not movie_id: return hosters
+        
+        details_url = urlparse.urljoin(self.movie_base_url, MOVIE_DETAILS_URL)
+        detail_data = self._json_get(details_url, params={'movie_id': movie_id}, cache_limit=24)
+        try: torrents = detail_data['data']['movie']['torrents']
+        except KeyError: torrents = []
+        try: hashes = [torrent['hash'].lower() for torrent in torrents]
+        except KeyError: hashes = []
+        hash_data = self.__get_hash_data(hashes)
+        for torrent in torrents:
+            hash_id = torrent['hash'].lower()
+            try: status = hash_data['hashes'][hash_id]['status']
+            except KeyError: status = ''
+            if status.lower() != 'finished': continue
+            stream_url = 'hash_id=%s' % (hash_id)
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+            quality = QUALITY_MAP.get(torrent['quality'], QUALITIES.HD720)
+            hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
+            if 'size_bytes' in torrent: hoster['size'] = scraper_utils.format_size(torrent['size_bytes'], 'B')
+            if torrent['quality'] == '3D': hoster['3D'] = True
+            hosters.append(hoster)
         return hosters
     
     def __get_movie_id(self, source_url):
@@ -194,13 +195,11 @@ class Scraper(scraper.Scraper):
             check_url = CHECKHASH_URL + urllib.urlencode([('hashes[]', hashes)], doseq=True)
             check_url = urlparse.urljoin(self.base_url, check_url)
             new_data = hash_data = self._json_get(check_url, cache_limit=.1)
-            if 'hashes' in hash_data:
-                new_data['hashes'] = dict((hash_id.lower(), hash_data['hashes'][hash_id]) for hash_id in hash_data['hashes'])
+            new_data['hashes'] = dict((hash_id.lower(), hash_data['hashes'][hash_id]) for hash_id in hash_data.get('hashes', {}))
         return new_data
     
     def _get_episode_url(self, show_url, video):
-        result = self.__find_episode(show_url, video)
-        if result:
+        if self.__find_episode(show_url, video):
             return show_url
     
     def __find_episode(self, show_url, video):
@@ -237,18 +236,13 @@ class Scraper(scraper.Scraper):
         params = {'query_term': title, 'sort_by': 'seeders', 'order_by': 'desc'}
         search_url = urlparse.urljoin(self.movie_base_url, MOVIE_SEARCH_URL)
         js_data = self._json_get(search_url, params=params, cache_limit=1)
-        if 'data' in js_data and 'movies' in js_data['data']:
-            for movie in js_data['data']['movies']:
-                match_year = str(movie['year'])
-                match_url = movie['url'] + '?movie_id=%s' % (movie['id'])
-                if 'title_english' in movie:
-                    match_title = movie['title_english']
-                else:
-                    match_title = movie['title']
-                    
-                if not year or not match_year or year == match_year:
-                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                    results.append(result)
+        for movie in js_data.get('data', {}).get('movies', []):
+            match_url = movie['url'] + '?movie_id=%s' % (movie['id'])
+            match_title = movie.get('title_english') or movie.get('title')
+            match_year = str(movie['year'])
+            if not year or not match_year or year == match_year:
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                results.append(result)
         
         return results
         
@@ -260,14 +254,15 @@ class Scraper(scraper.Scraper):
         norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'td', {'class': 'forum_thread_post'}):
             match = dom_parser2.parse_dom(item, 'a', req='href')
-            if match:
-                match_url, match_title = match[0].attrs['href'], match[0].content
-                if match_title.upper().endswith(', THE'):
-                    match_title = 'The ' + match_title[:-5]
-        
-                if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                    results.append(result)
+            if not match: continue
+            
+            match_url, match_title = match[0].attrs['href'], match[0].content
+            if match_title.upper().endswith(', THE'):
+                match_title = 'The ' + match_title[:-5]
+    
+            if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                results.append(result)
         return results
 
     @classmethod
@@ -292,7 +287,7 @@ class Scraper(scraper.Scraper):
             data.update({'customer_id': self.username, 'pin': self.password})
         result = super(self.__class__, self)._http_get(url, params=params, data=data, allow_redirect=allow_redirect, cache_limit=cache_limit)
         js_result = scraper_utils.parse_json(result, url)
-        if 'status' in js_result and js_result['status'] == 'error':
+        if js_result.get('status') == 'error':
             msg = js_result.get('message', js_result.get('status_message', 'Unknown Error'))
             log_utils.log('Premiumize Scraper Error: %s - (%s)' % (url, msg), log_utils.LOGWARNING)
             js_result = {}

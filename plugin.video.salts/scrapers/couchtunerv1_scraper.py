@@ -45,35 +45,34 @@ class Scraper(scraper.Scraper):
         return 'CouchTunerV1'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            entry = ''
-            while True:
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        entry = ''
+        while True:
+            html = self._http_get(url, cache_limit=.5)
+            if not html:
+                url = urlparse.urljoin(BASE_URL2, source_url)
                 html = self._http_get(url, cache_limit=.5)
-                if not html:
-                    url = urlparse.urljoin(BASE_URL2, source_url)
-                    html = self._http_get(url, cache_limit=.5)
-                entry = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
-                if entry:
-                    entry = entry[0].content
-                    match = re.search('Watch it here\s*:.*?href="([^"]+)', entry, re.I)
-                    if match:
-                        url = match.group(1)
-                    else:
-                        break
-                else:
-                    entry = ''
-                    break
-    
-            for _attribs, tab in dom_parser2.parse_dom(entry, 'div', {'class': 'postTabs_divs'}):
-                match = dom_parser2.parse_dom(tab, 'iframe', req='src')
-                if match:
-                    link = match[0].attrs['src']
-                    host = urlparse.urlparse(link).hostname
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': link, 'direct': False}
-                    hosters.append(hoster)
+                
+            entry = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
+            if entry:
+                entry = entry[0].content
+                match = re.search('Watch it here\s*:.*?href="([^"]+)', entry, re.I)
+                if not match: break
+                url = match.group(1)
+            else:
+                entry = ''
+                break
+
+        for _attribs, tab in dom_parser2.parse_dom(entry, 'div', {'class': 'postTabs_divs'}):
+            match = dom_parser2.parse_dom(tab, 'iframe', req='src')
+            if not match: continue
+            link = match[0].attrs['src']
+            host = urlparse.urlparse(link).hostname
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': link, 'direct': False}
+            hosters.append(hoster)
 
         return hosters
 

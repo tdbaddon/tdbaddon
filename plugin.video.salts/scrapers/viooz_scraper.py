@@ -46,25 +46,25 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            iframes = []
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'boxed'}):
-                iframes += dom_parser2.parse_dom(fragment, 'iframe', req='src')
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        iframes = []
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'boxed'}):
+            iframes += dom_parser2.parse_dom(fragment, 'iframe', req='src')
+            
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'contenu'}):
+            for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href') + iframes:
+                stream_url = attrs.get('href') or attrs.get('src')
+                if '/go/' not in stream_url: continue
                 
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'contenu'}):
-                for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href') + iframes:
-                    stream_url = attrs.get('href') or attrs.get('src')
-                    if '/go/' not in stream_url: continue
-                    
-                    stream_url = stream_url.split('/')[-1]
-                    if stream_url.startswith('aHR0c'):
-                        stream_url = base64.b64decode(stream_url)
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': False}
-                    hosters.append(hoster)
+                stream_url = stream_url.split('/')[-1]
+                if stream_url.startswith('aHR0c'):
+                    stream_url = base64.b64decode(stream_url)
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': False}
+                hosters.append(hoster)
 
         return hosters
 

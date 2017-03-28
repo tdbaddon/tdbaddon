@@ -56,23 +56,23 @@ class Scraper(scraper.Scraper):
         return link
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-    
-            fragment = dom_parser2.parse_dom(html, 'tbody')
-            if fragment:
-                fragment = fragment[0].content
-                for attrs, content in dom_parser2.parse_dom(fragment, 'a', req='href'):
-                    stream_url = attrs['href']
-                    match = dom_parser2.parse_dom(content, 'img')
-                    if not match: continue
-                    host = match[0].content.strip()
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+
+        fragment = dom_parser2.parse_dom(html, 'tbody')
+        if fragment:
+            fragment = fragment[0].content
+            for attrs, content in dom_parser2.parse_dom(fragment, 'a', req='href'):
+                stream_url = attrs['href']
+                match = dom_parser2.parse_dom(content, 'img')
+                if not match: continue
+                host = match[0].content.strip()
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
 
         return hosters
 

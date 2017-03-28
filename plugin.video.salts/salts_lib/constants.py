@@ -66,7 +66,7 @@ SHORT_MONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 ACTIONS = __enum(ADD='add', REMOVE='remove')
 DELIM = '[._ -]'
-
+DEFAULT_TIMEOUT = 30
 
 # sort keys need to be defined such that "best" have highest values
 # unknown (i.e. None) is always worst

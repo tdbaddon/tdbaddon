@@ -59,18 +59,18 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=2)
-            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
-                match = dom_parser2.parse_dom(tr, 'a', {'class': 'buttonlink'}, req=['href', 'title'])
-                if match:
-                    stream_url = match[0].attrs['href']
-                    host = match[0].attrs['title']
-                    host = re.sub(re.compile('Server\s+', re.I), '', host)
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=2)
+        for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
+            match = dom_parser2.parse_dom(tr, 'a', {'class': 'buttonlink'}, req=['href', 'title'])
+            if match:
+                stream_url = match[0].attrs['href']
+                host = match[0].attrs['title']
+                host = re.sub(re.compile('Server\s+', re.I), '', host)
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
             
         return hosters
 

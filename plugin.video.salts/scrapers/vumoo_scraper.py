@@ -47,33 +47,33 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            if video.video_type == VIDEO_TYPES.EPISODE:
-                html = self.__episode_match(video, source_url)
-                sources = [r.attrs['data-click'] for r in dom_parser2.parse_dom(html, 'div', req='data-click') + dom_parser2.parse_dom(html, 'li', req='data-click')]
-            else:
-                sources = self.__get_movie_sources(page_url)
-            sources = [source.strip() for source in sources if source]
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        if video.video_type == VIDEO_TYPES.EPISODE:
+            html = self.__episode_match(video, source_url)
+            sources = [r.attrs['data-click'] for r in dom_parser2.parse_dom(html, 'div', req='data-click') + dom_parser2.parse_dom(html, 'li', req='data-click')]
+        else:
+            sources = self.__get_movie_sources(page_url)
+        sources = [source.strip() for source in sources if source]
 
-            headers = {'Referer': page_url}
-            for source in sources:
-                if source.startswith('http'):
-                    direct = False
-                    quality = QUALITIES.HD720
-                    host = urlparse.urlparse(source).hostname
+        headers = {'Referer': page_url}
+        for source in sources:
+            if source.startswith('http'):
+                direct = False
+                quality = QUALITIES.HD720
+                host = urlparse.urlparse(source).hostname
+            else:
+                source = self.__get_linked_source(source, headers)
+                if source is None: continue
+                direct = True
+                host = scraper_utils.get_direct_hostname(self, source)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(source)
                 else:
-                    source = self.__get_linked_source(source, headers)
-                    if source is None: continue
-                    direct = True
-                    host = self._get_direct_hostname(source)
-                    if host == 'gvideo':
-                        quality = scraper_utils.gv_get_quality(source)
-                    else:
-                        pass
-                
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
-                hosters.append(hoster)
+                    pass
+            
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
+            hosters.append(hoster)
             
         return hosters
 

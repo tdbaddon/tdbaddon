@@ -22,6 +22,7 @@ import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
+from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 from salts_lib.constants import VIDEO_TYPES
@@ -57,27 +58,27 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            js_result = scraper_utils.parse_json(html, url)
-            if 'error' in js_result:
-                log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
-                return hosters
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        js_result = scraper_utils.parse_json(html, url)
+        if 'error' in js_result:
+            log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
+            return hosters
 
-            for result in js_result:
-                if not scraper_utils.release_check(video, result['release'], require_title=False): continue
-                if result['quality'] in self.q_order:
-                    for key in result['links']:
-                        url = result['links'][key][0]
-                        if re.search('\.rar(\.|$)', url):
-                            continue
-                        
-                        hostname = urlparse.urlparse(url).hostname
-                        hoster = {'multi-part': False, 'class': self, 'views': None, 'url': url, 'rating': None, 'host': hostname, 'quality': QUALITY_MAP[result['quality']], 'direct': False}
-                        hoster['format'] = result['quality']
-                        if 'x265' in result['release'] and result['quality'] != '1080P-X265': hoster['dd_qual'] += '-x265'
-                        hosters.append(hoster)
+        for result in js_result:
+            if not scraper_utils.release_check(video, result['release'], require_title=False): continue
+            if result['quality'] in self.q_order:
+                for key in result['links']:
+                    url = result['links'][key][0]
+                    if re.search('\.rar(\.|$)', url):
+                        continue
+                    
+                    hostname = urlparse.urlparse(url).hostname
+                    hoster = {'multi-part': False, 'class': self, 'views': None, 'url': url, 'rating': None, 'host': hostname, 'quality': QUALITY_MAP[result['quality']], 'direct': False}
+                    hoster['format'] = result['quality']
+                    if 'x265' in result['release'] and result['quality'] != '1080P-X265': hoster['dd_qual'] += '-x265'
+                    hosters.append(hoster)
 
         return hosters
 

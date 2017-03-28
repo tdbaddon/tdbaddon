@@ -45,38 +45,39 @@ class Scraper(scraper.Scraper):
         return 'MovyTvy'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, require_debrid=True, cache_limit=.5)
-            fragment = dom_parser2.parse_dom(html, 'table', {'class': 'links-table'})
-            if fragment:
-                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr'):
-                    match = re.search("playVideo\.bind\(.*?'([^']+)(?:[^>]*>){2}(.*?)</td>", row, re.DOTALL)
-                    if match:
-                        stream_url, release = match.groups()
-                        if self._get_direct_hostname(stream_url) == 'gvideo':
-                            sources = self._parse_google(stream_url)
-                        else:
-                            sources = [stream_url]
-                        
-                        for source in sources:
-                            host = self._get_direct_hostname(source)
-                            if host == 'gvideo':
-                                quality = scraper_utils.gv_get_quality(source)
-                                direct = True
-                            else:
-                                host = urlparse.urlparse(source).hostname
-                                if video.video_type == VIDEO_TYPES.MOVIE:
-                                    meta = scraper_utils.parse_movie_link(release)
-                                else:
-                                    meta = scraper_utils.parse_episode_link(release)
-                                base_quality = scraper_utils.height_get_quality(meta['height'])
-                                quality = scraper_utils.get_quality(video, host, base_quality)
-                                direct = False
-                            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
-                            hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, require_debrid=True, cache_limit=.5)
+        fragment = dom_parser2.parse_dom(html, 'table', {'class': 'links-table'})
+        if not fragment: return hosters
+        for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr'):
+            match = re.search("playVideo\.bind\(.*?'([^']+)(?:[^>]*>){2}(.*?)</td>", row, re.DOTALL)
+            if not match: continue
+            
+            stream_url, release = match.groups()
+            if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
+                sources = scraper_utils.parse_google(self, stream_url)
+            else:
+                sources = [stream_url]
+            
+            for source in sources:
+                host = scraper_utils.get_direct_hostname(self, source)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(source)
+                    direct = True
+                else:
+                    host = urlparse.urlparse(source).hostname
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        meta = scraper_utils.parse_movie_link(release)
+                    else:
+                        meta = scraper_utils.parse_episode_link(release)
+                    base_quality = scraper_utils.height_get_quality(meta['height'])
+                    quality = scraper_utils.get_quality(video, host, base_quality)
+                    direct = False
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
+                hosters.append(hoster)
             
         return hosters
 

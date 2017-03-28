@@ -46,15 +46,15 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            sources = self.__get_post_links(html, video)
-            for source in sources:
-                if scraper_utils.excluded_link(source): continue
-                host = urlparse.urlparse(source).hostname
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': sources[source], 'direct': False}
-                hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        sources = self.__get_post_links(html, video)
+        for source in sources:
+            if scraper_utils.excluded_link(source): continue
+            host = urlparse.urlparse(source).hostname
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': sources[source], 'direct': False}
+            hosters.append(hoster)
         return hosters
 
     def __get_post_links(self, html, video):

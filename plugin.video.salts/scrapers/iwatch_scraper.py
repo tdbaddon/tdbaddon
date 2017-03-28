@@ -57,37 +57,39 @@ class Scraper(scraper.Scraper):
                 return iframe_url[0].attrs['src']
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            fragment = dom_parser2.parse_dom(html, 'table', {'id': 'streamlinks'})
-            if fragment:
-                max_age = 0
-                now = min_age = int(time.time())
-                for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': re.compile('pt\d+')}):
-                    if video.video_type == VIDEO_TYPES.MOVIE:
-                        pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
-                    else:
-                        pattern = 'href="([^"]+).*?/>([^<]+).*?(<span class="linkdate">.*?)</td>\s*<td>(.*?)</td>'
-                    match = re.search(pattern, row, re.DOTALL)
-                    if match:
-                        url, host, age, quality = match.groups()
-                        age = self.__get_age(now, age)
-                        quality = quality.upper()
-                        if age > max_age: max_age = age
-                        if age < min_age: min_age = age
-                        host = host.strip()
-                        hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
-                        hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
-                        hosters.append(hoster)
-    
-                unit = (max_age - min_age) / 100
-                if unit > 0:
-                    for hoster in hosters:
-                        hoster['rating'] = (hoster['age'] - min_age) / unit
+        fragment = dom_parser2.parse_dom(html, 'table', {'id': 'streamlinks'})
+        if not fragment: return hosters
+        
+        max_age = 0
+        now = min_age = int(time.time())
+        for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': re.compile('pt\d+')}):
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
+            else:
+                pattern = 'href="([^"]+).*?/>([^<]+).*?(<span class="linkdate">.*?)</td>\s*<td>(.*?)</td>'
+            match = re.search(pattern, row, re.DOTALL)
+            if not match: continue
+            
+            url, host, age, quality = match.groups()
+            age = self.__get_age(now, age)
+            quality = quality.upper()
+            if age > max_age: max_age = age
+            if age < min_age: min_age = age
+            host = host.strip()
+            hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
+            hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
+            hosters.append(hoster)
+
+        unit = (max_age - min_age) / 100
+        if unit > 0:
+            for hoster in hosters:
+                hoster['rating'] = (hoster['age'] - min_age) / unit
         return hosters
 
     def __get_age(self, now, age_str):

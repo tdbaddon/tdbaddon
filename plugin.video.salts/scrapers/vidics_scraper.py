@@ -56,22 +56,22 @@ class Scraper(scraper.Scraper):
         return response.geturl()
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            headers = {'Referer': self.base_url}
-            html = self._http_get(url, headers=headers, cache_limit=.5)
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'lang'}):
-                section_label = dom_parser2.parse_dom(fragment, 'div', {'title': re.compile('Language Flag\s+[^"]*')})
-                lang, subs = self.__get_section_label(section_label)
-                if lang.lower() == 'english':
-                    for attrs, host in dom_parser2.parse_dom(fragment, 'a', {'class': 'p1'}, req='href'):
-                        stream_url = attrs['href']
-                        quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                        hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': False}
-                        if subs: hoster['subs'] = subs
-                        hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        headers = {'Referer': self.base_url}
+        html = self._http_get(url, headers=headers, cache_limit=.5)
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'lang'}):
+            section_label = dom_parser2.parse_dom(fragment, 'div', {'title': re.compile('Language Flag\s+[^"]*')})
+            lang, subs = self.__get_section_label(section_label)
+            if lang.lower() == 'english':
+                for attrs, host in dom_parser2.parse_dom(fragment, 'a', {'class': 'p1'}, req='href'):
+                    stream_url = attrs['href']
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                    hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': False}
+                    if subs: hoster['subs'] = subs
+                    hosters.append(hoster)
 
         return hosters
 

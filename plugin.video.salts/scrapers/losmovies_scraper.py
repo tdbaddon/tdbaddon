@@ -44,28 +44,28 @@ class Scraper(scraper.Scraper):
         return 'LosMovies'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            fragment = ''
-            if video.video_type == VIDEO_TYPES.EPISODE:
-                pattern = 'Season\s+%s\s+Serie\s+%s<(.*?)</table>' % (video.season, video.episode)
-                match = re.search(pattern, html, re.DOTALL)
-                if match:
-                    fragment = match.group(1)
-            else:
-                fragment = html
-
-            if fragment:
-                for attrs, stream_url in dom_parser2.parse_dom(fragment, 'td', {'class': 'linkHiddenUrl'}, req='data-width'):
-                    host = urlparse.urlsplit(stream_url).hostname.replace('embed.', '')
-                    url = url.replace('&amp;', '&')
-                    quality = scraper_utils.width_get_quality(attrs['data-width'])
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hoster['quality'] = scraper_utils.get_quality(video, host, hoster['quality'])
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        fragment = ''
+        if video.video_type == VIDEO_TYPES.EPISODE:
+            pattern = 'Season\s+%s\s+Serie\s+%s<(.*?)</table>' % (video.season, video.episode)
+            match = re.search(pattern, html, re.DOTALL)
+            if match:
+                fragment = match.group(1)
+        else:
+            fragment = html
+        if not fragment: return hosters
+        
+        for attrs, stream_url in dom_parser2.parse_dom(fragment, 'td', {'class': 'linkHiddenUrl'}, req='data-width'):
+            host = urlparse.urlsplit(stream_url).hostname.replace('embed.', '')
+            url = url.replace('&amp;', '&')
+            quality = scraper_utils.width_get_quality(attrs['data-width'])
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+            hoster['quality'] = scraper_utils.get_quality(video, host, hoster['quality'])
+            hosters.append(hoster)
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
@@ -88,5 +88,5 @@ class Scraper(scraper.Scraper):
                     results.append(result)
         return results
 
-    def _get_episode_url(self, show_url, video):
+    def _get_episode_url(self, show_url, video):  # @UnusedVariable
         return show_url

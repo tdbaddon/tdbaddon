@@ -49,25 +49,25 @@ class Scraper(scraper.Scraper):
         return 'Dizilab'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            videos = re.findall('''onclick\s*=\s*"loadVideo\('([^']+)''', html)
-            subs = self.__get_subs(html)
-            for v_id, icon in map(None, videos, subs):
-                ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
-                data = {'vid': v_id, 'tip': 1, 'type': 'loadVideo'}
-                headers = {'Referer': page_url}
-                headers.update(XHR)
-                html = self._http_get(ajax_url, data=data, headers=headers, cache_limit=.5)
-                sub = ICONS.get(icon, DEFAULT_SUB)
-                hosters += self.__get_cloud_links(html, page_url, sub)
-                hosters += self.__get_embedded_links(html, sub)
-                hosters += self.__get_iframe_links(html, sub)
-                hosters += self.__get_json_links(html, sub)
-                if not kodi.get_setting('scraper_url'): break
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        videos = re.findall('''onclick\s*=\s*"loadVideo\('([^']+)''', html)
+        subs = self.__get_subs(html)
+        for v_id, icon in map(None, videos, subs):
+            ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
+            data = {'vid': v_id, 'tip': 1, 'type': 'loadVideo'}
+            headers = {'Referer': page_url}
+            headers.update(XHR)
+            html = self._http_get(ajax_url, data=data, headers=headers, cache_limit=.5)
+            sub = ICONS.get(icon, DEFAULT_SUB)
+            hosters += self.__get_cloud_links(html, page_url, sub)
+            hosters += self.__get_embedded_links(html, sub)
+            hosters += self.__get_iframe_links(html, sub)
+            hosters += self.__get_json_links(html, sub)
+            if not kodi.get_setting('scraper_url'): break
 
         return hosters
 
@@ -82,19 +82,20 @@ class Scraper(scraper.Scraper):
         hosters = []
         js_data = scraper_utils.parse_json(html)
         if 'sources' in js_data:
-            for source in js_data['sources']:
-                if 'file' in source:
-                    stream_url = source['file']
-                    host = self._get_direct_hostname(stream_url)
-                    if host == 'gvideo':
-                        quality = scraper_utils.gv_get_quality(stream_url)
-                    elif 'label' in source:
-                        quality = scraper_utils.height_get_quality(source['label'])
-                    else:
-                        quality = QUALITIES.HIGH
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                    hoster['subs'] = sub
-                    hosters.append(hoster)
+            for source in js_data.get('sources', []):
+                stream_url = source.get('file')
+                if stream_url is None: continue
+                
+                host = scraper_utils.get_direct_hostname(self, stream_url)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(stream_url)
+                elif 'label' in source:
+                    quality = scraper_utils.height_get_quality(source['label'])
+                else:
+                    quality = QUALITIES.HIGH
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+                hoster['subs'] = sub
+                hosters.append(hoster)
         return hosters
     
     def __get_iframe_links(self, html, sub):
@@ -113,9 +114,9 @@ class Scraper(scraper.Scraper):
     def __get_embedded_links(self, html, sub):
         hosters = []
         html = html.replace('\\"', '"').replace('\\/', '/')
-        sources = self._parse_sources_list(html)
+        sources = scraper_utils.parse_sources_list(self, html)
         for source in sources:
-            host = self._get_direct_hostname(source)
+            host = scraper_utils.get_direct_hostname(self, source)
             quality = sources[source]['quality']
             direct = sources[source]['direct']
             hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
@@ -145,7 +146,7 @@ class Scraper(scraper.Scraper):
                             stream_url = stream_host + variant['path'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
                             if not stream_url.startswith('http'):
                                 stream_url = 'http://' + stream_url
-                            host = self._get_direct_hostname(stream_url)
+                            host = scraper_utils.get_direct_hostname(self, stream_url)
                             if 'width' in variant:
                                 quality = scraper_utils.width_get_quality(variant['width'])
                             elif 'height' in variant:

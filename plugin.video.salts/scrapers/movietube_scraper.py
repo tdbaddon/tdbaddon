@@ -46,29 +46,30 @@ class Scraper(scraper.Scraper):
         return 'MovieTube'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            for _attrs, item in dom_parser2.parse_dom(html, 'li'):
-                label = dom_parser2.parse_dom(item, 'span', {'class': 'type'})
-                value = dom_parser2.parse_dom(item, 'p', {'class': 'text'})
-                if label and value and 'quality' in label[0].content.lower():
-                    q_str = value[0].content.upper()
-                    break
-            else:
-                q_str = ''
-            
-            fragment = dom_parser2.parse_dom(html, 'div', {'id': 'fstory-video'})
-            if fragment:
-                for match in re.finditer('<iframe[^>]*src="([^"]+)', fragment[0].content, re.I):
-                    stream_url = match.group(1)
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        for _attrs, item in dom_parser2.parse_dom(html, 'li'):
+            label = dom_parser2.parse_dom(item, 'span', {'class': 'type'})
+            value = dom_parser2.parse_dom(item, 'p', {'class': 'text'})
+            if label and value and 'quality' in label[0].content.lower():
+                q_str = value[0].content.upper()
+                break
+        else:
+            q_str = ''
+        
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'fstory-video'})
+        if not fragment: return hosters
+        
+        for match in re.finditer('<iframe[^>]*src="([^"]+)', fragment[0].content, re.I):
+            stream_url = match.group(1)
+            host = urlparse.urlparse(stream_url).hostname
+            quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+            hosters.append(hoster)
             
         return hosters
 
@@ -79,12 +80,14 @@ class Scraper(scraper.Scraper):
         headers = {'Referer': search_url}
         html = self._http_get(search_url, params={'do': 'search'}, data=data, headers=headers, cache_limit=1)
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'dle-content'})
-        if fragment:
-            for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'short-film'}):
-                match = re.search('<h5><a\s+href="([^"]+)[^>]+title="([^"]+)', item)
-                if match:
-                    url, match_title = match.groups('')
-                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
-                    results.append(result)
+        if not fragment: return results
+        
+        for _attrs, item in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'short-film'}):
+            match = re.search('<h5><a\s+href="([^"]+)[^>]+title="([^"]+)', item)
+            if not match: continue
+            
+            url, match_title = match.groups('')
+            result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+            results.append(result)
         
         return results

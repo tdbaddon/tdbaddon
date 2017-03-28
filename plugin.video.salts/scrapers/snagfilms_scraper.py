@@ -54,26 +54,26 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'film-container'})
-            if fragment:
-                iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
-                if iframe_url:
-                    iframe_url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
-                    headers = {'Referer': page_url}
-                    html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
-                    sources = self._parse_sources_list(html)
-                    for source in sources:
-                        quality = sources[source]['quality']
-                        host = self._get_direct_hostname(source)
-                        stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': iframe_url})
-                        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                        match = re.search('(\d+[a-z]bps)', source)
-                        if match:
-                            hoster['extra'] = match.group(1)
-                        hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'film-container'})
+        if fragment:
+            iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
+            if iframe_url:
+                iframe_url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
+                headers = {'Referer': page_url}
+                html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
+                sources = scraper_utils.parse_sources_list(self, html)
+                for source in sources:
+                    quality = sources[source]['quality']
+                    host = scraper_utils.get_direct_hostname(self, source)
+                    stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': iframe_url})
+                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+                    match = re.search('(\d+[a-z]bps)', source)
+                    if match:
+                        hoster['extra'] = match.group(1)
+                    hosters.append(hoster)
                         
         hosters.sort(key=lambda x: x.get('extra', ''), reverse=True)
         return hosters

@@ -48,22 +48,22 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            post = dom_parser2.parse_dom(html, 'div', {'class': 'entry-content'})
-            if post:
-                for match in re.finditer('(?:href="|>)(https?://[^"<]+)', post[0].content):
-                    stream_url = match.group(1)
-                    if scraper_utils.excluded_link(stream_url) or 'imdb.com' in stream_url: continue
-                    host = urlparse.urlparse(stream_url).hostname
-                    if video.video_type == VIDEO_TYPES.MOVIE:
-                        meta = scraper_utils.parse_movie_link(stream_url)
-                    else:
-                        meta = scraper_utils.parse_episode_link(stream_url)
-                    quality = scraper_utils.height_get_quality(meta['height'])
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        post = dom_parser2.parse_dom(html, 'div', {'class': 'entry-content'})
+        if not post: return hosters
+        for match in re.finditer('(?:href="|>)(https?://[^"<]+)', post[0].content):
+            stream_url = match.group(1)
+            if scraper_utils.excluded_link(stream_url) or 'imdb.com' in stream_url: continue
+            host = urlparse.urlparse(stream_url).hostname
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                meta = scraper_utils.parse_movie_link(stream_url)
+            else:
+                meta = scraper_utils.parse_episode_link(stream_url)
+            quality = scraper_utils.height_get_quality(meta['height'])
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
+            hosters.append(hoster)
         return hosters
         
     def get_url(self, video):

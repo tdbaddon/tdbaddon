@@ -58,17 +58,17 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            sources = self.__get_posts(html)
-            sources.update(self.__get_linked(html))
-            sources.update(self.__get_ajax(html, url))
-            for source in sources:
-                stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                host = self._get_direct_hostname(source)
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': sources[source], 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish subtitles'}
-                hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        sources = self.__get_posts(html)
+        sources.update(self.__get_linked(html))
+        sources.update(self.__get_ajax(html, url))
+        for source in sources:
+            stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+            host = scraper_utils.get_direct_hostname(self, source)
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': sources[source], 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': 'Turkish subtitles'}
+            hosters.append(hoster)
 
         return hosters
 
@@ -76,56 +76,59 @@ class Scraper(scraper.Scraper):
         sources = {}
         pattern = '\$\.post\("([^"]+)"\s*,\s*\{(.*?)\}'
         match = re.search(pattern, html)
-        if match:
-            post_url, post_data = match.groups()
-            data = self.__get_data(post_data)
-            html = self._http_get(post_url, data=data, cache_limit=.5)
-            js_result = scraper_utils.parse_json(html, post_url)
-            for key in js_result:
-                stream_url = js_result[key]
-                host = self._get_direct_hostname(stream_url)
-                if host == 'gvideo':
-                    quality = scraper_utils.gv_get_quality(stream_url)
-                else:
-                    quality = scraper_utils.height_get_quality(key)
-                sources[stream_url] = quality
+        if not match: return sources
+
+        post_url, post_data = match.groups()
+        data = self.__get_data(post_data)
+        html = self._http_get(post_url, data=data, cache_limit=.5)
+        js_result = scraper_utils.parse_json(html, post_url)
+        for key in js_result:
+            stream_url = js_result[key]
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+            if host == 'gvideo':
+                quality = scraper_utils.gv_get_quality(stream_url)
+            else:
+                quality = scraper_utils.height_get_quality(key)
+            sources[stream_url] = quality
         return sources
     
     def __get_ajax(self, html, page_url):
         sources = {}
         pattern = '\$\.ajax\(\s*"([^"]+)'
         match = re.search(pattern, html)
-        if match:
-            post_url = match.group(1)
-            headers = {'Referer': page_url}
-            html = self._http_get(post_url, headers=headers, cache_limit=.5)
-            js_result = scraper_utils.parse_json(html, post_url)
-            for key in js_result:
-                stream_url = js_result[key]
-                host = self._get_direct_hostname(stream_url)
-                if host == 'gvideo':
-                    quality = scraper_utils.gv_get_quality(stream_url)
-                else:
-                    quality = scraper_utils.height_get_quality(key)
-                sources[stream_url] = quality
+        if not match: return sources
+
+        post_url = match.group(1)
+        headers = {'Referer': page_url}
+        html = self._http_get(post_url, headers=headers, cache_limit=.5)
+        js_result = scraper_utils.parse_json(html, post_url)
+        for key in js_result:
+            stream_url = js_result[key]
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+            if host == 'gvideo':
+                quality = scraper_utils.gv_get_quality(stream_url)
+            else:
+                quality = scraper_utils.height_get_quality(key)
+            sources[stream_url] = quality
         return sources
     
     def __get_linked(self, html):
         sources = {}
         match = re.search('dizi=([^"]+)', html)
-        if match:
-            html = self._http_get(AJAX_URL, params={'dizi': match.group(1)}, headers=XHR, cache_limit=.5)
-            js_result = scraper_utils.parse_json(html, AJAX_URL)
-            for source in js_result.get('success', []):
-                stream_url = source.get('src')
-                if stream_url is not None:
-                    if self._get_direct_hostname(stream_url) == 'gvideo':
-                        quality = scraper_utils.gv_get_quality(stream_url)
-                    elif 'label' in source:
-                        quality = scraper_utils.height_get_quality(source['label'])
-                    else:
-                        quality = QUALITIES.HIGH
-                    sources[stream_url] = quality
+        if not match: return sources
+        html = self._http_get(AJAX_URL, params={'dizi': match.group(1)}, headers=XHR, cache_limit=.5)
+        js_result = scraper_utils.parse_json(html, AJAX_URL)
+        for source in js_result.get('success', []):
+            stream_url = source.get('src')
+            if stream_url is None: continue
+
+            if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
+                quality = scraper_utils.gv_get_quality(stream_url)
+            elif 'label' in source:
+                quality = scraper_utils.height_get_quality(source['label'])
+            else:
+                quality = QUALITIES.HIGH
+            sources[stream_url] = quality
         return sources
     
     def __get_data(self, post_data):
@@ -145,18 +148,18 @@ class Scraper(scraper.Scraper):
         results = []
         xml_url = urlparse.urljoin(self.base_url, '/series.xml')
         xml = self._http_get(xml_url, cache_limit=24)
-        if xml:
+        if not xml: return results
+        try:
             norm_title = scraper_utils.normalize_title(title)
             match_year = ''
-            try:
-                for element in ET.fromstring(xml).findall('.//dizi'):
-                    name = element.find('adi')
-                    if name is not None and norm_title in scraper_utils.normalize_title(name.text):
-                        url = element.find('url')
-                        if url is not None and (not year or not match_year or year == match_year):
-                            result = {'url': scraper_utils.pathify_url(url.text), 'title': scraper_utils.cleanse_title(name.text), 'year': ''}
-                            results.append(result)
-            except (ParseError, ExpatError) as e:
-                log_utils.log('Dizilab Search Parse Error: %s' % (e), log_utils.LOGWARNING)
+            for element in ET.fromstring(xml).findall('.//dizi'):
+                name = element.find('adi')
+                if name is not None and norm_title in scraper_utils.normalize_title(name.text):
+                    url = element.find('url')
+                    if url is not None and (not year or not match_year or year == match_year):
+                        result = {'url': scraper_utils.pathify_url(url.text), 'title': scraper_utils.cleanse_title(name.text), 'year': ''}
+                        results.append(result)
+        except (ParseError, ExpatError) as e:
+            log_utils.log('Dizilab Search Parse Error: %s' % (e), log_utils.LOGWARNING)
 
         return results

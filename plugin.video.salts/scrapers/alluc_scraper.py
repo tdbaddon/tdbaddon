@@ -60,18 +60,19 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                query = urllib.quote_plus('%s %s' % (params['title'][0], params['year'][0]))
-            else:
-                query = urllib.quote_plus('%s S%02dE%02d' % (params['title'][0], int(params['season'][0]), int(params['episode'][0])))
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        
+        params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            query = urllib.quote_plus('%s %s' % (params['title'][0], params['year'][0]))
+        else:
+            query = urllib.quote_plus('%s S%02dE%02d' % (params['title'][0], int(params['season'][0]), int(params['episode'][0])))
+        query_url = '/search?query=%s' % (query)
+        hosters = self.__get_links(query_url, video)
+        if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
+            query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
             query_url = '/search?query=%s' % (query)
             hosters = self.__get_links(query_url, video)
-            if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
-                query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
-                query_url = '/search?query=%s' % (query)
-                hosters = self.__get_links(query_url, video)
 
         return hosters
 
@@ -80,29 +81,29 @@ class Scraper(scraper.Scraper):
         seen_urls = set()
         for search_type in SEARCH_TYPES:
             search_url, params = self.__translate_search(url, search_type)
-            if search_url:
-                html = self._http_get(search_url, params=params, cache_limit=.5)
-                js_result = scraper_utils.parse_json(html, search_url)
-                if js_result.get('status') == 'success':
-                    for result in js_result['result']:
-                        if len(result['hosterurls']) > 1: continue
-                        if result['extension'] == 'rar': continue
-                        
-                        stream_url = result['hosterurls'][0]['url']
-                        if stream_url not in seen_urls:
-                            if scraper_utils.release_check(video, result['title']):
-                                host = urlparse.urlsplit(stream_url).hostname
-                                quality = scraper_utils.get_quality(video, host, self._get_title_quality(result['title']))
-                                hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': False}
-                                hoster['extra'] = scraper_utils.cleanse_title(result['title'])
-                                if video.video_type == VIDEO_TYPES.MOVIE:
-                                    meta = scraper_utils.parse_movie_link(hoster['extra'])
-                                else:
-                                    meta = scraper_utils.parse_episode_link(hoster['extra'])
-                                if 'format' in meta: hoster['format'] = meta['format']
-                                
-                                hosters.append(hoster)
-                                seen_urls.add(stream_url)
+            if not search_url: continue
+            html = self._http_get(search_url, params=params, cache_limit=.5)
+            js_result = scraper_utils.parse_json(html, search_url)
+            if js_result.get('status') != 'success': continue
+            for result in js_result['result']:
+                stream_url = result['hosterurls'][0]['url']
+                if len(result['hosterurls']) > 1: continue
+                if result['extension'] == 'rar': continue
+                if stream_url in seen_urls: continue
+
+                if scraper_utils.release_check(video, result['title']):
+                    host = urlparse.urlsplit(stream_url).hostname
+                    quality = scraper_utils.get_quality(video, host, self._get_title_quality(result['title']))
+                    hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': False}
+                    hoster['extra'] = scraper_utils.cleanse_title(result['title'])
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        meta = scraper_utils.parse_movie_link(hoster['extra'])
+                    else:
+                        meta = scraper_utils.parse_episode_link(hoster['extra'])
+                    if 'format' in meta: hoster['format'] = meta['format']
+                    
+                    hosters.append(hoster)
+                    seen_urls.add(stream_url)
                 else:
                     log_utils.log('Alluc API Error: |%s|%s|: %s' % (search_url, params, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
 

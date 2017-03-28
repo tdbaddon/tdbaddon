@@ -49,33 +49,35 @@ class Scraper(scraper.Scraper):
         return '2DDL'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            pattern = '<singlelink>(.*?)(?=<hr\s*/>|download>|thanks_button_div)'
+        else:
+            pattern = '<hr\s*/>\s*<strong>(.*?)</strong>.*?<singlelink>(.*?)(?=<hr\s*/>|download>|thanks_button_div)'
+            
+        for match in re.finditer(pattern, html, re.DOTALL):
             if video.video_type == VIDEO_TYPES.MOVIE:
-                pattern = '<singlelink>(.*?)(?=<hr\s*/>|download>|thanks_button_div)'
-            else:
-                pattern = '<hr\s*/>\s*<strong>(.*?)</strong>.*?<singlelink>(.*?)(?=<hr\s*/>|download>|thanks_button_div)'
-            for match in re.finditer(pattern, html, re.DOTALL):
-                if video.video_type == VIDEO_TYPES.MOVIE:
-                    links = match.group(1)
-                    match = re.search('<h2>\s*<a[^>]+>(.*?)</a>', html)
-                    if match:
-                        title = match.group(1)
-                    else:
-                        title = ''
+                links = match.group(1)
+                match = re.search('<h2>\s*<a[^>]+>(.*?)</a>', html)
+                if match:
+                    title = match.group(1)
                 else:
-                    title, links = match.groups()
-                    
-                for match in re.finditer('href="([^"]+)', links):
-                    stream_url = match.group(1).lower()
-                    if any(link in stream_url for link in EXCLUDE_LINKS): continue
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.blog_get_quality(video, title, host)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
-                    hosters.append(hoster)
+                    title = ''
+            else:
+                title, links = match.groups()
+                
+            for match in re.finditer('href="([^"]+)', links):
+                stream_url = match.group(1).lower()
+                if any(link in stream_url for link in EXCLUDE_LINKS): continue
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.blog_get_quality(video, title, host)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
+                hosters.append(hoster)
                 
         return hosters
 

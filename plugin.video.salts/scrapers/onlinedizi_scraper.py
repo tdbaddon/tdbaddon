@@ -46,47 +46,49 @@ class Scraper(scraper.Scraper):
         return 'OnlineDizi'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.25)
-            fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'dropdown-menu'})
-            if fragment:
-                for match in re.finditer('''href=['"]([^'"]+)[^>]*>(Altyaz.{1,3}s.{1,3}z|ok\.ru|openload)<''', fragment[0].content, re.I):
-                    sources = []
-                    subs = True if not match.group(2).startswith('Altyaz') else False
-                    option_url = urlparse.urljoin(self.base_url, match.group(1))
-                    html = self._http_get(option_url, cache_limit=2)
-                    fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-player'})
-                    if fragment:
-                        iframes = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
-                        for attrs, _content in iframes:
-                            iframe_url = attrs['src']
-                            if attrs.get('id') == 'ifr':
-                                html = self._http_get(iframe_url, allow_redirect=False, method='HEAD', cache_limit=.25)
-                                if html.startswith('http'):
-                                    sources.append({'stream_url': html, 'subs': subs})
-                            else:
-                                html = self._http_get(iframe_url, cache_limit=.25)
-                                for match in re.finditer('"((?:\\\\x[A-Fa-f0-9]+)+)"', html):
-                                    s = match.group(1).replace('\\x', '').decode('hex')
-                                    if s.startswith('http'):
-                                        s = urllib.unquote(s)
-                                        match = re.search('videoPlayerMetadata&mid=(\d+)', s)
-                                        if match:
-                                            s = 'http://ok.ru/video/%s' % (match.group(1))
-                                            sources.append({'stream_url': s, 'subs': subs})
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.25)
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'dropdown-menu'})
+        if not fragment: return hosters
+        
+        for match in re.finditer('''href=['"]([^'"]+)[^>]*>(Altyaz.{1,3}s.{1,3}z|ok\.ru|openload)<''', fragment[0].content, re.I):
+            sources = []
+            subs = True if not match.group(2).startswith('Altyaz') else False
+            option_url = urlparse.urljoin(self.base_url, match.group(1))
+            html = self._http_get(option_url, cache_limit=2)
+            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'video-player'})
+            if not fragment: continue
+            
+            iframes = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
+            for attrs, _content in iframes:
+                iframe_url = attrs['src']
+                if attrs.get('id') == 'ifr':
+                    html = self._http_get(iframe_url, allow_redirect=False, method='HEAD', cache_limit=.25)
+                    if html.startswith('http'):
+                        sources.append({'stream_url': html, 'subs': subs})
+                else:
+                    html = self._http_get(iframe_url, cache_limit=.25)
+                    for match in re.finditer('"((?:\\\\x[A-Fa-f0-9]+)+)"', html):
+                        s = match.group(1).replace('\\x', '').decode('hex')
+                        if s.startswith('http'):
+                            s = urllib.unquote(s)
+                            match = re.search('videoPlayerMetadata&mid=(\d+)', s)
+                            if match:
+                                s = 'http://ok.ru/video/%s' % (match.group(1))
+                                sources.append({'stream_url': s, 'subs': subs})
 
-                                iframes += dom_parser2.parse_dom(html, 'iframe', req='src')
-                                
-                    for source in sources:
-                        stream_url = source['stream_url']
-                        host = urlparse.urlparse(stream_url).hostname
-                        quality = QUALITIES.HIGH
-                        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                        if source['subs']: hoster['subs'] = 'Turkish Subtitles'
-                        hosters.append(hoster)
+                    iframes += dom_parser2.parse_dom(html, 'iframe', req='src')
+                        
+            for source in sources:
+                stream_url = source['stream_url']
+                host = urlparse.urlparse(stream_url).hostname
+                quality = QUALITIES.HIGH
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                if source['subs']: hoster['subs'] = 'Turkish Subtitles'
+                hosters.append(hoster)
     
         return hosters
 

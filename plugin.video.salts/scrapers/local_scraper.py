@@ -42,29 +42,29 @@ class Scraper(scraper.Scraper):
         return 'Local'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            params = urlparse.parse_qs(source_url)
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libMovies"}'
-                result_key = 'moviedetails'
-            else:
-                cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodeDetails", "params": {"episodeid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libTvShows"}'
-                result_key = 'episodedetails'
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        params = urlparse.parse_qs(source_url)
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libMovies"}'
+            result_key = 'moviedetails'
+        else:
+            cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodeDetails", "params": {"episodeid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libTvShows"}'
+            result_key = 'episodedetails'
 
-            run = cmd % (params['id'][0])
-            meta = xbmc.executeJSONRPC(run)
-            meta = scraper_utils.parse_json(meta)
-            log_utils.log('Source Meta: %s' % (meta), log_utils.LOGDEBUG)
-            if 'result' in meta and result_key in meta['result']:
-                details = meta['result'][result_key]
-                def_quality = [item[0] for item in sorted(SORT_KEYS['quality'].items(), key=lambda x:x[1])][self.def_quality]
-                host = {'multi-part': False, 'class': self, 'url': details['file'], 'host': 'XBMC Library', 'quality': def_quality, 'views': details['playcount'], 'rating': None, 'direct': True}
-                stream_details = details['streamdetails']
-                if len(stream_details['video']) > 0 and 'width' in stream_details['video'][0]:
-                    host['quality'] = scraper_utils.width_get_quality(stream_details['video'][0]['width'])
-                hosters.append(host)
+        run = cmd % (params['id'][0])
+        meta = xbmc.executeJSONRPC(run)
+        meta = scraper_utils.parse_json(meta)
+        log_utils.log('Source Meta: %s' % (meta), log_utils.LOGDEBUG)
+        if result_key in meta.get('result', []):
+            details = meta['result'][result_key]
+            def_quality = [item[0] for item in sorted(SORT_KEYS['quality'].items(), key=lambda x:x[1])][self.def_quality]
+            host = {'multi-part': False, 'class': self, 'url': details['file'], 'host': 'XBMC Library', 'quality': def_quality, 'views': details['playcount'], 'rating': None, 'direct': True}
+            stream_details = details['streamdetails']
+            if len(stream_details['video']) > 0 and 'width' in stream_details['video'][0]:
+                host['quality'] = scraper_utils.width_get_quality(stream_details['video'][0]['width'])
+            hosters.append(host)
         return hosters
 
     def _get_episode_url(self, show_url, video):

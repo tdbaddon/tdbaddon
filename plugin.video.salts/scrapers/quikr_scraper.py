@@ -48,32 +48,32 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            page_quality = QUALITIES.HD720 if video.video_type == VIDEO_TYPES.MOVIE else QUALITIES.HIGH
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'embed-responsive'}):
-                iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='data-src')
-                if iframe_url:
-                    iframe_url = iframe_url[0].attrs['data-src']
-                    iframe_host = urlparse.urlparse(iframe_url).hostname
-                    if iframe_host in DIRECT_HOSTS:
-                        sources = self.__parse_streams(iframe_url, url)
-                    else:
-                        sources = {iframe_url: {'quality': scraper_utils.get_quality(video, iframe_host, page_quality), 'direct': False}}
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        page_quality = QUALITIES.HD720 if video.video_type == VIDEO_TYPES.MOVIE else QUALITIES.HIGH
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'embed-responsive'}):
+            iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='data-src')
+            if iframe_url:
+                iframe_url = iframe_url[0].attrs['data-src']
+                iframe_host = urlparse.urlparse(iframe_url).hostname
+                if iframe_host in DIRECT_HOSTS:
+                    sources = self.__parse_streams(iframe_url, url)
+                else:
+                    sources = {iframe_url: {'quality': scraper_utils.get_quality(video, iframe_host, page_quality), 'direct': False}}
+            
+            for source in sources:
+                quality = sources[source]['quality']
+                direct = sources[source]['direct']
+                if direct:
+                    host = scraper_utils.get_direct_hostname(self, source)
+                    stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                else:
+                    host = urlparse.urlparse(source).hostname
+                    stream_url = source
                 
-                for source in sources:
-                    quality = sources[source]['quality']
-                    direct = sources[source]['direct']
-                    if direct:
-                        host = self._get_direct_hostname(source)
-                        stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    else:
-                        host = urlparse.urlparse(source).hostname
-                        stream_url = source
-                    
-                    hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                    hosters.append(hoster)
+                hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                hosters.append(hoster)
 
         return hosters
 
@@ -83,7 +83,7 @@ class Scraper(scraper.Scraper):
         if jsunpack.detect(html):
             html = jsunpack.unpack(html)
         
-        return self._parse_sources_list(html)
+        return scraper_utils.parse_sources_list(self, html)
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

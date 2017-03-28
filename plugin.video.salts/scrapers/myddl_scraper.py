@@ -47,27 +47,29 @@ class Scraper(scraper.Scraper):
         return 'MyDDL'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'post-cont'})
-            if fragment:
-                match = re.search('<p>\s*<strong>(.*?)<script', fragment[0].content, re.DOTALL)
-                if match:
-                    for attrs, _content in dom_parser2.parse_dom(match.group(1), 'a', req='href'):
-                        stream_url = attrs['href']
-                        if scraper_utils.excluded_link(stream_url): continue
-                        if video.video_type == VIDEO_TYPES.MOVIE:
-                            meta = scraper_utils.parse_movie_link(stream_url)
-                        else:
-                            meta = scraper_utils.parse_episode_link(stream_url)
-                        
-                        host = urlparse.urlparse(stream_url).hostname
-                        quality = scraper_utils.get_quality(video, host, scraper_utils.height_get_quality(meta['height']))
-                        hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
-                        hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'post-cont'})
+        if not fragment: return hosters
+        
+        match = re.search('<p>\s*<strong>(.*?)<script', fragment[0].content, re.DOTALL)
+        if not match: return hosters
+        
+        for attrs, _content in dom_parser2.parse_dom(match.group(1), 'a', req='href'):
+            stream_url = attrs['href']
+            if scraper_utils.excluded_link(stream_url): continue
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                meta = scraper_utils.parse_movie_link(stream_url)
+            else:
+                meta = scraper_utils.parse_episode_link(stream_url)
+            
+            host = urlparse.urlparse(stream_url).hostname
+            quality = scraper_utils.get_quality(video, host, scraper_utils.height_get_quality(meta['height']))
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
+            hosters.append(hoster)
                 
         return hosters
 

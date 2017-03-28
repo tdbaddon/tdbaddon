@@ -44,25 +44,26 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            headers = {'User-Agent': scraper_utils.get_ua(), 'Referer': self.base_url + source_url}
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                meta = scraper_utils.parse_movie_link(source_url)
-                stream_url = source_url + scraper_utils.append_headers(headers)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        headers = {'User-Agent': scraper_utils.get_ua(), 'Referer': self.base_url + source_url}
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            meta = scraper_utils.parse_movie_link(source_url)
+            stream_url = source_url + scraper_utils.append_headers(headers)
+            quality = scraper_utils.height_get_quality(meta['height'])
+            hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+            if 'format' in meta: hoster['format'] = meta['format']
+            hosters.append(hoster)
+        else:
+            for episode in self.__match_episode(source_url, video):
+                meta = scraper_utils.parse_episode_link(episode['title'])
+                stream_url = episode['url'] + scraper_utils.append_headers(headers)
+                stream_url = stream_url.replace(self.base_url, '')
                 quality = scraper_utils.height_get_quality(meta['height'])
-                hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+                hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
                 if 'format' in meta: hoster['format'] = meta['format']
+                if 'size' in episode: hoster['size'] = scraper_utils.format_size(int(episode['size']))
                 hosters.append(hoster)
-            else:
-                for episode in self.__match_episode(source_url, video):
-                    meta = scraper_utils.parse_episode_link(episode['title'])
-                    stream_url = episode['url'] + scraper_utils.append_headers(headers)
-                    stream_url = stream_url.replace(self.base_url, '')
-                    quality = scraper_utils.height_get_quality(meta['height'])
-                    hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                    if 'format' in meta: hoster['format'] = meta['format']
-                    if 'size' in episode: hoster['size'] = scraper_utils.format_size(int(episode['size']))
-                    hosters.append(hoster)
+
         return hosters
 
     def _get_episode_url(self, show_url, video):
@@ -73,7 +74,7 @@ class Scraper(scraper.Scraper):
     def __match_episode(self, show_url, video):
         episodes = []
         show_url = self.base_url + show_url
-        for item in self._get_files(show_url, cache_limit=1):
+        for item in scraper_utils.get_files(self, show_url, cache_limit=1):
             if re.search('[._ -]S%02d[._ -]?E%02d[._ -]' % (int(video.season), int(video.episode)), item['title'], re.I):
                 episodes.append(item)
         return episodes
@@ -85,7 +86,7 @@ class Scraper(scraper.Scraper):
         else:
             norm_title = scraper_utils.normalize_title(title)
             html = self._http_get(self.base_url, cache_limit=48)
-            for item in self._parse_directory(html):
+            for item in scraper_utils.parse_directory(self, html):
                 if norm_title in scraper_utils.normalize_title(item['title']) and item['directory']:
                     result = {'url': scraper_utils.pathify_url(item['link']), 'title': scraper_utils.cleanse_title(item['title']), 'year': ''}
                     results.append(result)
@@ -95,7 +96,7 @@ class Scraper(scraper.Scraper):
         results = []
         norm_title = scraper_utils.normalize_title(title)
         html = self._http_get(self.base_url, cache_limit=48)
-        for item in self._parse_directory(html):
+        for item in scraper_utils.parse_directory(self, html):
             if not item['directory']:
                 meta = scraper_utils.parse_movie_link(item['title'])
                 if meta['dubbed']: continue

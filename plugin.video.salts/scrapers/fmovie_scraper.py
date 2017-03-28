@@ -48,29 +48,31 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            match = re.search('var\s*video_id="([^"]+)', html)
-            if match:
-                video_id = match.group(1)
-                data = {'v': video_id}
-                headers = {'Referer': page_url}
-                headers.update(XHR)
-                html = self._http_get(INFO_URL, data=data, headers=headers, cache_limit=.5)
-                sources = scraper_utils.parse_json(html, INFO_URL)
-                for source in sources:
-                    match = re.search('url=(.*)', sources[source])
-                    if match:
-                        stream_url = urllib.unquote(match.group(1))
-                        host = self._get_direct_hostname(stream_url)
-                        if host == 'gvideo':
-                            quality = scraper_utils.gv_get_quality(stream_url)
-                        else:
-                            quality = scraper_utils.height_get_quality(source)
-                        stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                        hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        match = re.search('var\s*video_id="([^"]+)', html)
+        if not match: return hosters
+        
+        video_id = match.group(1)
+        data = {'v': video_id}
+        headers = {'Referer': page_url}
+        headers.update(XHR)
+        html = self._http_get(INFO_URL, data=data, headers=headers, cache_limit=.5)
+        sources = scraper_utils.parse_json(html, INFO_URL)
+        for source in sources:
+            match = re.search('url=(.*)', sources[source])
+            if not match: continue
+            
+            stream_url = urllib.unquote(match.group(1))
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+            if host == 'gvideo':
+                quality = scraper_utils.gv_get_quality(stream_url)
+            else:
+                quality = scraper_utils.height_get_quality(source)
+            stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+            hosters.append(hoster)
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

@@ -45,23 +45,23 @@ class Scraper(scraper.Scraper):
         return 'Dizimag'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            # exit early if trailer
-            if re.search('Şu an fragman*', html, re.I):
-                return hosters
-            
-            hosters = self.__get_embed_sources(html, page_url)
-            if not hosters:
-                match = re.search('''html\('<iframe[^>]+src="(http[^"]+)''', html)
-                if match:
-                    hosters = self.__get_iframe_sources(match.group(1), page_url)
-                    
-            if not hosters:
-                hosters = self.__get_ajax_sources(html, page_url)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        # exit early if trailer
+        if re.search('Şu an fragman*', html, re.I):
+            return hosters
+        
+        hosters = self.__get_embed_sources(html, page_url)
+        if not hosters:
+            match = re.search('''html\('<iframe[^>]+src="(http[^"]+)''', html)
+            if match:
+                hosters = self.__get_iframe_sources(match.group(1), page_url)
+                
+        if not hosters:
+            hosters = self.__get_ajax_sources(html, page_url)
                 
         return hosters
 
@@ -116,7 +116,7 @@ class Scraper(scraper.Scraper):
         for key in js_data:
             if 'videolink' in key:
                 stream_url = js_data[key]
-                if self._get_direct_hostname(stream_url) == 'gvideo':
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
                     hosters.append(self.__create_source(stream_url, 480, page_url))
         return hosters
         
@@ -133,7 +133,7 @@ class Scraper(scraper.Scraper):
         else:
             stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
 
-        host = self._get_direct_hostname(stream_url)
+        host = scraper_utils.get_direct_hostname(self, stream_url)
         if host == 'gvideo':
             quality = scraper_utils.gv_get_quality(stream_url)
         else:
@@ -148,15 +148,16 @@ class Scraper(scraper.Scraper):
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        html = self._http_get(self.base_url, cache_limit=48)
         results = []
+        html = self._http_get(self.base_url, cache_limit=48)
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'fil'})
-        if fragment:
-            norm_title = scraper_utils.normalize_title(title)
-            for match in re.finditer('href="([^"]+)"\s+title="([^"]+)', fragment[0].content):
-                url, match_title = match.groups()
-                if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
-                    results.append(result)
+        if not fragment: return results
+        
+        norm_title = scraper_utils.normalize_title(title)
+        for match in re.finditer('href="([^"]+)"\s+title="([^"]+)', fragment[0].content):
+            url, match_title = match.groups()
+            if norm_title in scraper_utils.normalize_title(match_title):
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
+                results.append(result)
 
         return results

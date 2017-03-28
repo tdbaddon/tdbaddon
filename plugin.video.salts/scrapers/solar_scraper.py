@@ -46,20 +46,20 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
-                link_pattern = 'href="[^"]+go.php\?url=([^"]+).*?class="qualityCell[^>]*>\s*([^<]+)'
-                link_match = re.search(link_pattern, tr, re.DOTALL)
-                if link_match:
-                    stream_url, quality = link_match.groups()
-                    host = urlparse.urlparse(stream_url).hostname
-                    if host:
-                        quality = QUALITY_MAP.get(quality.strip().upper(), QUALITIES.MEDIUM)
-                        hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, quality), 'views': None, 'rating': None, 'direct': False}
-                        hosters.append(hoster)
+        for _attrs, tr in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('link_\d+')}):
+            link_pattern = 'href="[^"]+go.php\?url=([^"]+).*?class="qualityCell[^>]*>\s*([^<]+)'
+            link_match = re.search(link_pattern, tr, re.DOTALL)
+            if link_match:
+                stream_url, quality = link_match.groups()
+                host = urlparse.urlparse(stream_url).hostname
+                if host:
+                    quality = QUALITY_MAP.get(quality.strip().upper(), QUALITIES.MEDIUM)
+                    hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, quality), 'views': None, 'rating': None, 'direct': False}
+                    hosters.append(hoster)
 
         return hosters
 

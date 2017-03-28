@@ -44,44 +44,45 @@ class Scraper(scraper.Scraper):
         return 'eMovies.Pro'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            q_str = 'HDRIP'
-            match = re.search('>Quality(.*?)<br\s*/?>', html, re.I)
-            if match:
-                q_str = match.group(1)
-                q_str = re.sub('(</?strong[^>]*>|:|\s)', '', q_str, re.I | re.U)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        q_str = 'HDRIP'
+        match = re.search('>Quality(.*?)<br\s*/?>', html, re.I)
+        if match:
+            q_str = match.group(1)
+            q_str = re.sub('(</?strong[^>]*>|:|\s)', '', q_str, re.I | re.U)
 
-            for _attr, content in dom_parser2.parse_dom(html, 'div', {'class': 'tab_content'}):
-                for attrs, _content in dom_parser2.parse_dom(content, 'iframe', req='src'):
-                    source = attrs['src']
-                    host = urlparse.urlparse(source).hostname
-                    quality = scraper_utils.blog_get_quality(video, q_str, host)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
-                    
-                    match = re.search('class="views-infos">(\d+).*?class="rating">(\d+)%', html, re.DOTALL)
-                    if match:
-                        hoster['views'] = int(match.group(1))
-                        hoster['rating'] = match.group(2)
+        for _attr, content in dom_parser2.parse_dom(html, 'div', {'class': 'tab_content'}):
+            for attrs, _content in dom_parser2.parse_dom(content, 'iframe', req='src'):
+                source = attrs['src']
+                host = urlparse.urlparse(source).hostname
+                quality = scraper_utils.blog_get_quality(video, q_str, host)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
+                match = re.search('class="views-infos">(\d+).*?class="rating">(\d+)%', html, re.DOTALL)
+                if not match: continue
                 
-                hosters.append(hoster)
+                hoster['views'] = int(match.group(1))
+                hoster['rating'] = match.group(2)
+            
+            hosters.append(hoster)
 
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
-        if not re.search('nothing matched your search criteria', html, re.I):
-            for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
-                match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
-                if match:
-                    match_url = match[0].attrs['href']
-                    match_title, match_year = scraper_utils.extra_year(match[0].attrs['title'])
-                    if not year or not match_year or year == match_year:
-                        result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                        results.append(result)
+        if re.search('nothing matched your search criteria', html, re.I): return results
+        for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
+            match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
+            if not match: continue
+            
+            match_url = match[0].attrs['href']
+            match_title, match_year = scraper_utils.extra_year(match[0].attrs['title'])
+            if not year or not match_year or year == match_year:
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                results.append(result)
 
         return results

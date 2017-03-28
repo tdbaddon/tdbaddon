@@ -41,27 +41,27 @@ class Scraper(scraper.Scraper):
         return 'RLSSource.net'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            
-            q_str = ''
-            match = re.search('class="entry-title">([^<]+)', html)
-            if match:
-                q_str = match.group(1)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        
+        q_str = ''
+        match = re.search('class="entry-title">([^<]+)', html)
+        if match:
+            q_str = match.group(1)
 
-            pattern = 'href="?([^" ]+)(?:[^>]+>){2}\s+\|'
-            for match in re.finditer(pattern, html, re.DOTALL):
-                url = match.group(1)
-                if 'adf.ly' in url:
-                    continue
-                
-                hoster = {'multi-part': False, 'class': self, 'views': None, 'url': url, 'rating': None, 'quality': None, 'direct': False}
-                hoster['host'] = urlparse.urlsplit(url).hostname
-                hoster['quality'] = scraper_utils.blog_get_quality(video, q_str, hoster['host'])
-                hosters.append(hoster)
+        pattern = 'href="?([^" ]+)(?:[^>]+>){2}\s+\|'
+        for match in re.finditer(pattern, html, re.DOTALL):
+            url = match.group(1)
+            if 'adf.ly' in url:
+                continue
+            
+            hoster = {'multi-part': False, 'class': self, 'views': None, 'url': url, 'rating': None, 'quality': None, 'direct': False}
+            hoster['host'] = urlparse.urlsplit(url).hostname
+            hoster['quality'] = scraper_utils.blog_get_quality(video, q_str, hoster['host'])
+            hosters.append(hoster)
 
         return hosters
 

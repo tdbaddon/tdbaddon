@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
@@ -55,18 +54,18 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'embeds'})
-            if fragment:
-                fragment = fragment[0].content
-                links = [r.attrs['href'] for r in dom_parser2.parse_dom(fragment, 'a', req='href')]
-                hosts = [r.content for r in dom_parser2.parse_dom(fragment, 'div', {'class': 'searchTVname'})]
-                for stream_url, host in map(None, links, hosts):
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'embeds'})
+        if fragment:
+            fragment = fragment[0].content
+            links = [r.attrs['href'] for r in dom_parser2.parse_dom(fragment, 'a', req='href')]
+            hosts = [r.content for r in dom_parser2.parse_dom(fragment, 'div', {'class': 'searchTVname'})]
+            for stream_url, host in map(None, links, hosts):
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
     
         return hosters
 

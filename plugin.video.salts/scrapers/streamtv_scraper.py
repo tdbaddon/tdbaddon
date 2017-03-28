@@ -45,18 +45,18 @@ class Scraper(scraper.Scraper):
         return 'stream-tv.co'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            base_ep_url = self.__get_base_ep_url(video)
-            url = urlparse.urljoin(base_ep_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        base_ep_url = self.__get_base_ep_url(video)
+        url = urlparse.urljoin(base_ep_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            for match in re.finditer('postTabs_titles.*?iframe.*?src="([^"]+)', html, re.I | re.DOTALL):
-                stream_url = match.group(1)
-                host = urlparse.urlparse(stream_url).hostname
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': scraper_utils.get_quality(video, host, None), 'views': None, 'rating': None, 'direct': False}
-                hosters.append(hoster)
+        for match in re.finditer('postTabs_titles.*?iframe.*?src="([^"]+)', html, re.I | re.DOTALL):
+            stream_url = match.group(1)
+            host = urlparse.urlparse(stream_url).hostname
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': scraper_utils.get_quality(video, host, None), 'views': None, 'rating': None, 'direct': False}
+            hosters.append(hoster)
 
         return hosters
 

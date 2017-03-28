@@ -63,42 +63,45 @@ class Scraper(scraper.Scraper):
             return link
             
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'playerMenu'})
+        if not fragment: return hosters
+        
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=2)
-            fragment = dom_parser2.parse_dom(html, 'div', {'id': 'playerMenu'})
-            if fragment:
-                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'item'}, req='data-id'):
-                    data_id = attrs['data-id']
-                    headers = {'Referer': page_url}
-                    headers.update(XHR)
-                    embed_url = urlparse.urljoin(self.base_url, EMBED_URL)
-                    html = self._http_get(embed_url, data={'id': data_id}, headers=headers, cache_limit=.5)
-                    iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
-                    if iframe_url:
-                        iframe_url = iframe_url[0].attrs['src']
-                        if urlparse.urlparse(self.base_url).hostname in iframe_url:
-                            sources += self.__get_direct_links(iframe_url, page_url)
-                        else:
-                            sources += [{'stream_url': iframe_url, 'subs': 'Turkish subtitles', 'quality': QUALITIES.HIGH, 'direct': False}]
+        for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'div', {'class': 'item'}, req='data-id'):
+            data_id = attrs['data-id']
+            headers = {'Referer': page_url}
+            headers.update(XHR)
+            embed_url = urlparse.urljoin(self.base_url, EMBED_URL)
+            html = self._http_get(embed_url, data={'id': data_id}, headers=headers, cache_limit=.5)
+            iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
+            if not iframe_url: continue
+            
+            iframe_url = iframe_url[0].attrs['src']
+            if urlparse.urlparse(self.base_url).hostname in iframe_url:
+                sources += self.__get_direct_links(iframe_url, page_url)
+            else:
+                sources += [{'stream_url': iframe_url, 'subs': 'Turkish subtitles', 'quality': QUALITIES.HIGH, 'direct': False}]
                             
-            for source in sources:
-                if source['direct']:
-                    stream_url = source['stream_url'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    host = self._get_direct_hostname(stream_url)
-                    if host == 'gvideo':
-                        quality = scraper_utils.gv_get_quality(stream_url)
-                    else:
-                        quality = source['quality']
+        for source in sources:
+            if source['direct']:
+                stream_url = source['stream_url'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                host = scraper_utils.get_direct_hostname(self, stream_url)
+                if host == 'gvideo':
+                    quality = scraper_utils.gv_get_quality(stream_url)
                 else:
-                    stream_url = source['stream_url']
-                    host = urlparse.urlparse(stream_url).hostname
                     quality = source['quality']
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': source['direct'], 'subs': source['subs']}
-                hosters.append(hoster)
+            else:
+                stream_url = source['stream_url']
+                host = urlparse.urlparse(stream_url).hostname
+                quality = source['quality']
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': source['direct'], 'subs': source['subs']}
+            hosters.append(hoster)
+
         return hosters
     
     def __get_direct_links(self, iframe_url, page_url):
@@ -109,8 +112,8 @@ class Scraper(scraper.Scraper):
         # if captions exist, then they aren't hardcoded
         subs = '' if re.search('kind\s*:\s*"captions"', html) else 'Turkish subtitles'
          
-        streams = self._parse_sources_list(html, key='VideoSources')
-        streams.update(self._parse_sources_list(html, var='video'))
+        streams = scraper_utils.parse_sources_list(self, html, key='VideoSources')
+        streams.update(scraper_utils.parse_sources_list(self, html, var='video'))
         for stream_url in streams:
             quality = streams[stream_url]['quality']
             if 'v.asp' in stream_url:
@@ -120,10 +123,10 @@ class Scraper(scraper.Scraper):
 
             sources.append({'stream_url': stream_url, 'subs': subs, 'quality': quality, 'direct': True})
         
-        if not sources:
-            iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
-            if iframe_url:
-                sources.append({'stream_url': iframe_url[0].attrs['src'], 'subs': subs, 'quality': QUALITIES.HD720, 'direct': False})
+        if sources: return sources
+        iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
+        if not iframe_url: return sources
+        sources.append({'stream_url': iframe_url[0].attrs['src'], 'subs': subs, 'quality': QUALITIES.HD720, 'direct': False})
                 
         return sources
     
@@ -132,17 +135,18 @@ class Scraper(scraper.Scraper):
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=.25)
         data = dom_parser2.parse_dom(html, 'div', {'id': 'dizidetay'}, req=['data-dizi', 'data-id'])
-        if data:
-            queries = {'sekme': 'bolumler', 'id': data[0].attrs['data-id'], 'dizi': data[0].attrs['data-dizi']}
-            season_url = SEASON_URL + '?' + urllib.urlencode(queries)
-            episode_pattern = '''href=['"]([^'"]*/%s-sezon-%s-[^'"]*bolum[^'"]*)''' % (video.season, video.episode)
-            title_pattern = '''href=['"](?P<url>[^'"]+)[^>]*>(?P<title>[^<]+)'''
-            airdate_pattern = '''href=['"]([^"']+)[^>]*>[^<]*</a>\s*</td>\s*<td class="right aligned">{p_day}\.{p_month}\.{year}'''
-            headers = {'Referer': url, 'Content-Length': 0}
-            headers.update(XHR)
-            result = self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, airdate_pattern, headers=headers, method='POST')
-            if result and 'javascript:;' not in result:
-                return result
+        if not data: return
+        
+        queries = {'sekme': 'bolumler', 'id': data[0].attrs['data-id'], 'dizi': data[0].attrs['data-dizi']}
+        season_url = SEASON_URL + '?' + urllib.urlencode(queries)
+        episode_pattern = '''href=['"]([^'"]*/%s-sezon-%s-[^'"]*bolum[^'"]*)''' % (video.season, video.episode)
+        title_pattern = '''href=['"](?P<url>[^'"]+)[^>]*>(?P<title>[^<]+)'''
+        airdate_pattern = '''href=['"]([^"']+)[^>]*>[^<]*</a>\s*</td>\s*<td class="right aligned">{p_day}\.{p_month}\.{year}'''
+        headers = {'Referer': url, 'Content-Length': 0}
+        headers.update(XHR)
+        result = self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, airdate_pattern, headers=headers, method='POST')
+        if result and 'javascript:;' not in result:
+            return result
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

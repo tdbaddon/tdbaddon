@@ -49,49 +49,49 @@ class Scraper(scraper.Scraper):
         return label
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
 
-            container_pattern = r'<table[^>]+class="movie_version[ "][^>]*>(.*?)</table>'
-            item_pattern = (
-                r'quality_(?!sponsored|unknown)([^>]*)></span>.*?'
-                r'url=([^&]+)&(?:amp;)?domain=([^&]+)&(?:amp;)?(.*?)'
-                r'"version_veiws"> ([\d]+) views</')
-            max_index = 0
-            max_views = -1
-            for container in re.finditer(container_pattern, html, re.DOTALL | re.IGNORECASE):
-                for i, source in enumerate(re.finditer(item_pattern, container.group(1), re.DOTALL)):
-                    qual, url, host, parts, views = source.groups()
+        container_pattern = r'<table[^>]+class="movie_version[ "][^>]*>(.*?)</table>'
+        item_pattern = (
+            r'quality_(?!sponsored|unknown)([^>]*)></span>.*?'
+            r'url=([^&]+)&(?:amp;)?domain=([^&]+)&(?:amp;)?(.*?)'
+            r'"version_veiws"> ([\d]+) views</')
+        max_index = 0
+        max_views = -1
+        for container in re.finditer(container_pattern, html, re.DOTALL | re.IGNORECASE):
+            for i, source in enumerate(re.finditer(item_pattern, container.group(1), re.DOTALL)):
+                qual, url, host, parts, views = source.groups()
 
-                    if host == 'ZnJhbWVndGZv': continue  # filter out promo hosts
+                if host == 'ZnJhbWVndGZv': continue  # filter out promo hosts
 
-                    item = {'host': host.decode('base-64'), 'url': url.decode('base-64')}
-                    item['verified'] = source.group(0).find('star.gif') > -1
-                    item['quality'] = scraper_utils.get_quality(video, item['host'], QUALITY_MAP.get(qual.upper()))
-                    item['views'] = int(views)
-                    if item['views'] > max_views:
-                        max_index = i
-                        max_views = item['views']
+                item = {'host': host.decode('base-64'), 'url': url.decode('base-64')}
+                item['verified'] = source.group(0).find('star.gif') > -1
+                item['quality'] = scraper_utils.get_quality(video, item['host'], QUALITY_MAP.get(qual.upper()))
+                item['views'] = int(views)
+                if item['views'] > max_views:
+                    max_index = i
+                    max_views = item['views']
 
-                    if max_views > 0: item['rating'] = item['views'] * 100 / max_views
-                    else: item['rating'] = None
-                    pattern = r'<a href=".*?url=(.*?)&(?:amp;)?.*?".*?>(part \d*)</a>'
-                    other_parts = re.findall(pattern, parts, re.DOTALL | re.I)
-                    if other_parts:
-                        item['multi-part'] = True
-                        item['parts'] = [part[0].decode('base-64') for part in other_parts]
-                    else:
-                        item['multi-part'] = False
-                    item['class'] = self
-                    item['direct'] = False
-                    hosters.append(item)
+                if max_views > 0: item['rating'] = item['views'] * 100 / max_views
+                else: item['rating'] = None
+                pattern = r'<a href=".*?url=(.*?)&(?:amp;)?.*?".*?>(part \d*)</a>'
+                other_parts = re.findall(pattern, parts, re.DOTALL | re.I)
+                if other_parts:
+                    item['multi-part'] = True
+                    item['parts'] = [part[0].decode('base-64') for part in other_parts]
+                else:
+                    item['multi-part'] = False
+                item['class'] = self
+                item['direct'] = False
+                hosters.append(item)
 
-            if max_views > 0:
-                for i in xrange(0, max_index):
-                    hosters[i]['rating'] = hosters[i]['views'] * 100 / max_views
+        if max_views > 0:
+            for i in xrange(0, max_index):
+                hosters[i]['rating'] = hosters[i]['views'] * 100 / max_views
 
         return hosters
 

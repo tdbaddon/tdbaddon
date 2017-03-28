@@ -43,20 +43,20 @@ class Scraper(scraper.Scraper):
         return 'SpaceMov'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=8)
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'responsiveVideo'}):
-                for attrs, _content in dom_parser2.parse_dom(fragment, 'iframe', req='src') + dom_parser2.parse_dom(fragment, 'script', req='src'):
-                    source = attrs['src']
-                    if 'validateemb' in source: continue
-                    host = urlparse.urlparse(source).hostname
-                    source = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': QUALITIES.HD720, 'views': None, 'rating': None, 'direct': False}
-                    sources.append(source)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=8)
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'responsiveVideo'}):
+            for attrs, _content in dom_parser2.parse_dom(fragment, 'iframe', req='src') + dom_parser2.parse_dom(fragment, 'script', req='src'):
+                source = attrs['src']
+                if 'validateemb' in source: continue
+                host = urlparse.urlparse(source).hostname
+                source = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': QUALITIES.HD720, 'views': None, 'rating': None, 'direct': False}
+                hosters.append(source)
 
-        return sources
+        return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

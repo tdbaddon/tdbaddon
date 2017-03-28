@@ -49,38 +49,38 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         sources = {}
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tabcontent'}):
-                for attrs, _content in dom_parser2.parse_dom(div, 'source', req='src'):
-                    source = attrs['src'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
-                    sources[source] = {'quality': None, 'direct': True}
-                
-                iframe_url = dom_parser2.parse_dom(div, 'iframe', req='src')
-                if iframe_url:
-                    iframe_url = iframe_url[0].attrs['src']
-                    if 'songs2dl' in iframe_url:
-                        headers = {'Referer': page_url}
-                        iframe_html = self._http_get(iframe_url, headers=headers, cache_limit=1)
-                        sources.update(self._parse_sources_list(iframe_html))
-                    else:
-                        sources[iframe_url] = {'quality': None, 'direct': False}
-                    
-            sources.update(self.__get_mirror_links(html, video))
-            page_quality = self.__get_best_quality(sources)
-            for source, values in sources.iteritems():
-                direct = values['direct']
-                if direct:
-                    host = self._get_direct_hostname(source)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tabcontent'}):
+            for attrs, _content in dom_parser2.parse_dom(div, 'source', req='src'):
+                source = attrs['src'] + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
+                sources[source] = {'quality': None, 'direct': True}
+            
+            iframe_url = dom_parser2.parse_dom(div, 'iframe', req='src')
+            if iframe_url:
+                iframe_url = iframe_url[0].attrs['src']
+                if 'songs2dl' in iframe_url:
+                    headers = {'Referer': page_url}
+                    iframe_html = self._http_get(iframe_url, headers=headers, cache_limit=1)
+                    sources.update(scraper_utils.parse_sources_list(self, iframe_html))
                 else:
-                    host = urlparse.urlparse(source).hostname
+                    sources[iframe_url] = {'quality': None, 'direct': False}
                 
-                if values['quality'] is None:
-                    values['quality'] = page_quality
-                    
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': values['quality'], 'direct': direct}
-                hosters.append(hoster)
+        sources.update(self.__get_mirror_links(html, video))
+        page_quality = self.__get_best_quality(sources)
+        for source, values in sources.iteritems():
+            direct = values['direct']
+            if direct:
+                host = scraper_utils.get_direct_hostname(self, source)
+            else:
+                host = urlparse.urlparse(source).hostname
+            
+            if values['quality'] is None:
+                values['quality'] = page_quality
+                
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': source, 'rating': None, 'quality': values['quality'], 'direct': direct}
+            hosters.append(hoster)
 
         return hosters
 

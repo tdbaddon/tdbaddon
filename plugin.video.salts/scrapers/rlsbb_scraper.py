@@ -56,18 +56,18 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         sources = {}
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        if not html:
+            url = urlparse.urljoin(self.old_base_url, source_url)
             html = self._http_get(url, require_debrid=True, cache_limit=.5)
-            if not html:
-                url = urlparse.urljoin(self.old_base_url, source_url)
-                html = self._http_get(url, require_debrid=True, cache_limit=.5)
-                
-            sources.update(self.__get_post_links(html, video))
             
-            if kodi.get_setting('%s-include_comments' % (self.get_name())) == 'true':
-                for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'id': re.compile('commentbody-\d+')}):
-                    sources.update(self.__get_comment_links(comment, video))
+        sources.update(self.__get_post_links(html, video))
+        
+        if kodi.get_setting('%s-include_comments' % (self.get_name())) == 'true':
+            for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'id': re.compile('commentbody-\d+')}):
+                sources.update(self.__get_comment_links(comment, video))
 
         for source in sources:
             if scraper_utils.excluded_link(source): continue

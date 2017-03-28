@@ -45,34 +45,34 @@ class Scraper(scraper.Scraper):
         return 'WatchEpisodes'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.25)
-            for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': 'ldr-item'}):
-                stream_url = dom_parser2.parse_dom(link, 'a', req='data-actuallink')
-                
-                try:
-                    watched = dom_parser2.parse_dom(link, 'div', {'class': 'click-count'})
-                    match = re.search(' (\d+) ', watched[0].content)
-                    views = match.group(1)
-                except:
-                    views = None
-                        
-                try:
-                    score = dom_parser2.parse_dom(link, 'div', {'class': 'point'})
-                    score = int(score[0].content)
-                    rating = score * 10 if score else None
-                except:
-                    rating = None
-                
-                if stream_url:
-                    stream_url = stream_url[0].attrs['data-actuallink'].strip()
-                    host = urlparse.urlparse(stream_url).hostname
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': rating, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.25)
+        for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': 'ldr-item'}):
+            stream_url = dom_parser2.parse_dom(link, 'a', req='data-actuallink')
+            
+            try:
+                watched = dom_parser2.parse_dom(link, 'div', {'class': 'click-count'})
+                match = re.search(' (\d+) ', watched[0].content)
+                views = match.group(1)
+            except:
+                views = None
+                    
+            try:
+                score = dom_parser2.parse_dom(link, 'div', {'class': 'point'})
+                score = int(score[0].content)
+                rating = score * 10 if score else None
+            except:
+                rating = None
+            
+            if stream_url:
+                stream_url = stream_url[0].attrs['data-actuallink'].strip()
+                host = urlparse.urlparse(stream_url).hostname
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': rating, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
 
         return hosters
 

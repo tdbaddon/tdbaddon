@@ -52,40 +52,40 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         sources = {}
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
-                for attrs, _content in dom_parser2.parse_dom(fragment, 'iframe', req='src') + dom_parser2.parse_dom(fragment, 'iframe', req='data-lazy-src'):
-                    iframe_url = attrs.get('src', '')
-                    if not iframe_url.startswith('http'):
-                        iframe_url = attrs.get('data-lazy-src', '')
-                        if not iframe_url.startswith('http'): continue
-                        
-                    if 'miradetodo' in iframe_url:
-                        html = self._http_get(iframe_url, cache_limit=.5)
-                        fragment = dom_parser2.parse_dom(html, 'nav', {'class': 'nav'})
-                        if fragment:
-                            stream_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
-                            if stream_url:
-                                html = self._http_get(stream_url[0].attrs['href'], cache_limit=.5)
-                                
-                        sources.update(self.__get_gk_links(html))
-                        sources.update(self.__get_gk_links2(html))
-                        sources.update(self.__get_amazon_links(html))
-                        sources.update(self._parse_sources_list(html))
-                    else:
-                        host = urlparse.urlparse(iframe_url).hostname
-                        source = {'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'direct': False}
-                        sources.update({iframe_url: source})
-                        
-            for source in sources:
-                stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
-                direct = sources[source]['direct']
-                quality = sources[source]['quality']
-                host = self._get_direct_hostname(source) if direct else urlparse.urlparse(source).hostname
-                hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct}
-                hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=.5)
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'movieplay'}):
+            for attrs, _content in dom_parser2.parse_dom(fragment, 'iframe', req='src') + dom_parser2.parse_dom(fragment, 'iframe', req='data-lazy-src'):
+                iframe_url = attrs.get('src', '')
+                if not iframe_url.startswith('http'):
+                    iframe_url = attrs.get('data-lazy-src', '')
+                    if not iframe_url.startswith('http'): continue
+                    
+                if 'miradetodo' in iframe_url:
+                    html = self._http_get(iframe_url, cache_limit=.5)
+                    fragment = dom_parser2.parse_dom(html, 'nav', {'class': 'nav'})
+                    if fragment:
+                        stream_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
+                        if stream_url:
+                            html = self._http_get(stream_url[0].attrs['href'], cache_limit=.5)
+                            
+                    sources.update(self.__get_gk_links(html))
+                    sources.update(self.__get_gk_links2(html))
+                    sources.update(self.__get_amazon_links(html))
+                    sources.update(scraper_utils.parse_sources_list(self, html))
+                else:
+                    host = urlparse.urlparse(iframe_url).hostname
+                    source = {'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'direct': False}
+                    sources.update({iframe_url: source})
+                    
+        for source in sources:
+            stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
+            direct = sources[source]['direct']
+            quality = sources[source]['quality']
+            host = scraper_utils.get_direct_hostname(self, source) if direct else urlparse.urlparse(source).hostname
+            hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct}
+            hosters.append(hoster)
             
         return hosters
 
@@ -109,7 +109,7 @@ class Scraper(scraper.Scraper):
             else:
                 vid_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY2, proxy_link)
             
-            if self._get_direct_hostname(vid_url) == 'gvideo':
+            if scraper_utils.get_direct_hostname(self, vid_url) == 'gvideo':
                 for source in self._parse_gdocs(vid_url):
                     sources[source] = {'quality': scraper_utils.gv_get_quality(source), 'direct': True}
         return sources
@@ -129,7 +129,7 @@ class Scraper(scraper.Scraper):
                 
             for link in links:
                 stream_url = link['link']
-                if self._get_direct_hostname(stream_url) == 'gvideo':
+                if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
                     quality = scraper_utils.gv_get_quality(stream_url)
                     direct = True
                 elif 'label' in link:

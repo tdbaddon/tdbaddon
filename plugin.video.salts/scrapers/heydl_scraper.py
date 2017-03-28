@@ -54,18 +54,19 @@ class Scraper(scraper.Scraper):
     def get_sources(self, video):
         hosters = []
         source_url = self.get_url(video)
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=8)
-            for attrs, _content in dom_parser2.parse_dom(html, 'a', req='href'):
-                stream_url = attrs['href']
-                if MOVIE_URL in stream_url:
-                    meta = scraper_utils.parse_movie_link(stream_url)
-                    stream_url = scraper_utils.pathify_url(stream_url) + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
-                    quality = scraper_utils.height_get_quality(meta['height'])
-                    hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                    if 'format' in meta: hoster['format'] = meta['format']
-                    hosters.append(hoster)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=8)
+        for attrs, _content in dom_parser2.parse_dom(html, 'a', req='href'):
+            stream_url = attrs['href']
+            if MOVIE_URL in stream_url:
+                meta = scraper_utils.parse_movie_link(stream_url)
+                stream_url = scraper_utils.pathify_url(stream_url) + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                quality = scraper_utils.height_get_quality(meta['height'])
+                hoster = {'multi-part': False, 'host': scraper_utils.get_direct_hostname(self, stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+                if 'format' in meta: hoster['format'] = meta['format']
+                hosters.append(hoster)
+                
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable

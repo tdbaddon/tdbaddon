@@ -47,49 +47,49 @@ class Scraper(scraper.Scraper):
         return 'MovieGo'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         hosters = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=8)
-            q_str = dom_parser2.parse_dom(html, 'div', {'class': 'poster-qulabel'})
-            if q_str:
-                q_str = q_str[0].content.replace(' ', '').upper()
-                page_quality = Q_MAP.get(q_str, QUALITIES.HIGH)
-            else:
-                page_quality = QUALITIES.HIGH
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=8)
+        q_str = dom_parser2.parse_dom(html, 'div', {'class': 'poster-qulabel'})
+        if q_str:
+            q_str = q_str[0].content.replace(' ', '').upper()
+            page_quality = Q_MAP.get(q_str, QUALITIES.HIGH)
+        else:
+            page_quality = QUALITIES.HIGH
+            
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'tab_box'}):
+            iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='src')
+            if iframe_url:
+                iframe_url = iframe_url[0].attrs['src']
+                if 'youtube' in iframe_url: continue
                 
-            for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'tab_box'}):
-                iframe_url = dom_parser2.parse_dom(fragment, 'iframe', req='src')
-                if iframe_url:
-                    iframe_url = iframe_url[0].attrs['src']
-                    if 'youtube' in iframe_url: continue
-                    
-                    html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=.5)
-                    for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
-                        js_data = jsunpack.unpack(match.group(1))
-                        js_data = js_data.replace('\\', '')
-                        html += js_data
-                    
-                    sources = self._parse_sources_list(html)
-                    if not sources:
-                        sources = {iframe_url: {'quality': page_quality, 'direct': False}}
-                    
-                    for source, values in sources.iteritems():
-                        direct = values['direct']
-                        if direct:
-                            host = self._get_direct_hostname(source)
-                            if host == 'gvideo':
-                                quality = scraper_utils.gv_get_quality(source)
-                            else:
-                                quality = values['quality']
-                            source += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
+                html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=.5)
+                for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
+                    js_data = jsunpack.unpack(match.group(1))
+                    js_data = js_data.replace('\\', '')
+                    html += js_data
+                
+                sources = scraper_utils.parse_sources_list(self, html)
+                if not sources:
+                    sources = {iframe_url: {'quality': page_quality, 'direct': False}}
+                
+                for source, values in sources.iteritems():
+                    direct = values['direct']
+                    if direct:
+                        host = scraper_utils.get_direct_hostname(self, source)
+                        if host == 'gvideo':
+                            quality = scraper_utils.gv_get_quality(source)
                         else:
-                            host = urlparse.urlparse(source).hostname
-                            quality = scraper_utils.get_quality(video, host, values['quality'])
-                        
-                        hoster = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                        hosters.append(hoster)
+                            quality = values['quality']
+                        source += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
+                    else:
+                        host = urlparse.urlparse(source).hostname
+                        quality = scraper_utils.get_quality(video, host, values['quality'])
+                    
+                    hoster = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                    hosters.append(hoster)
 
         return hosters
 

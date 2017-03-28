@@ -54,28 +54,29 @@ class Scraper(scraper.Scraper):
             return link
     
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=8)
-            for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'class': 'streaming-link'}):
-                match = re.search("nowPlaying\(\s*\d+\s*,\s*'([^']+)'\s*,\s*'([^']+)", row)
-                if match:
-                    host, stream_url = match.groups()
-                    if re.search('server\s*\d+', host, re.I):
-                        for source, value in self.__get_direct_links(stream_url).iteritems():
-                            host = self._get_direct_hostname(source)
-                            source = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': value['quality'], 'views': None, 'rating': None, 'direct': True}
-                            sources.append(source)
-                    else:
-                        source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': QUALITIES.HIGH, 'views': None, 'rating': None, 'direct': False}
-                        sources.append(source)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=8)
+        for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'class': 'streaming-link'}):
+            match = re.search("nowPlaying\(\s*\d+\s*,\s*'([^']+)'\s*,\s*'([^']+)", row)
+            if not match: continue
+            
+            host, stream_url = match.groups()
+            if re.search('server\s*\d+', host, re.I):
+                for source, value in self.__get_direct_links(stream_url).iteritems():
+                    host = scraper_utils.get_direct_hostname(self, source)
+                    source = {'multi-part': False, 'url': source, 'host': host, 'class': self, 'quality': value['quality'], 'views': None, 'rating': None, 'direct': True}
+                    hosters.append(source)
+            else:
+                source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': QUALITIES.HIGH, 'views': None, 'rating': None, 'direct': False}
+                hosters.append(source)
 
-        return sources
+        return hosters
 
     def __get_direct_links(self, stream_url):
-        return self._parse_sources_list(self._http_get(stream_url, cache_limit=1))
+        return scraper_utils.parse_sources_list(self, self._http_get(stream_url, cache_limit=1))
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

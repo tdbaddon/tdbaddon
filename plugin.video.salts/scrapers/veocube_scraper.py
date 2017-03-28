@@ -43,20 +43,20 @@ class Scraper(scraper.Scraper):
         return 'VeoCube'
 
     def get_sources(self, video):
+        hosters = []
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=8)
-            sources += self.__get_sources(html, url)
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'parts-middle'})
-            if fragment:
-                for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                    url = urlparse.urljoin(self.base_url, attrs['href'])
-                    html = self._http_get(url, cache_limit=8)
-                    sources += self.__get_sources(html, url)
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, cache_limit=8)
+        hosters += self.__get_sources(html, url)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'parts-middle'})
+        if fragment:
+            for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+                url = urlparse.urljoin(self.base_url, attrs['href'])
+                html = self._http_get(url, cache_limit=8)
+                hosters += self.__get_sources(html, url)
 
-        return sources
+        return hosters
 
     def __get_sources(self, html, page_url):
         sources = []
@@ -70,10 +70,10 @@ class Scraper(scraper.Scraper):
                     headers = {'Referer': referer}
                     html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
                     referer = iframe_url
-                    links = self._parse_sources_list(html)
+                    links = scraper_utils.parse_sources_list(self, html)
                     if links:
                         for link, values in links.iteritems():
-                            host = self._get_direct_hostname(link)
+                            host = scraper_utils.get_direct_hostname(self, link)
                             if host == 'gvideo':
                                 quality = scraper_utils.gv_get_quality(link)
                             else:

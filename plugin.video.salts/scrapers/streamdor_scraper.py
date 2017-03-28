@@ -26,7 +26,7 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 
-BASE_URL = 'https://streamdor.com'
+BASE_URL = 'https://api.streamdor.com'
 Q_MAP = {'hd': QUALITIES.HD720, 'sd': QUALITIES.HIGH}
 
 class Scraper(scraper.Scraper):
@@ -46,20 +46,20 @@ class Scraper(scraper.Scraper):
 
     def get_sources(self, video):
         source_url = self.get_url(video)
-        sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, headers=XHR, cache_limit=8)
-            js_data = scraper_utils.parse_json(html, url)
-            quality = Q_MAP.get(js_data.get('Key', {}).get('MovieDefinition'), QUALITIES.HIGH)
-            value = js_data.get('Value', {})
-            stream_url = value.get('VideoLink')
-            if stream_url and value.get('ProviderSource', '').lower() == 'youtube':
-                host = 'youtube.com'
-                source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
-                sources.append(source)
+        hosters = []
+        if not source_url or source_url == FORCE_NO_MATCH: return hosters
+        url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(url, headers=XHR, cache_limit=8)
+        js_data = scraper_utils.parse_json(html, url)
+        quality = Q_MAP.get(js_data.get('Key', {}).get('MovieDefinition'), QUALITIES.HIGH)
+        value = js_data.get('Value', {})
+        stream_url = value.get('VideoLink')
+        if stream_url and value.get('ProviderSource', '').lower() == 'youtube':
+            host = 'youtube.com'
+            source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': False}
+            hosters.append(source)
 
-        return sources
+        return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

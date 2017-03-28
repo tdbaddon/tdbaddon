@@ -60,70 +60,71 @@ class Scraper(scraper.Scraper):
         return 'Flixanity'
 
     def get_sources(self, video):
-        source_url = self.get_url(video)
         sources = []
-        if source_url and source_url != FORCE_NO_MATCH:
-            page_url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(page_url, cache_limit=.5)
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                action = 'getMovieEmb'
-            else:
-                action = 'getEpisodeEmb'
-            match = re.search('elid\s*=\s*"([^"]+)', html)
-            if self.__token is None:
-                self.__get_token()
-                
-            if match and self.__token is not None:
-                elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
-                data = {'action': action, 'idEl': match.group(1), 'token': self.__token, 'elid': elid}
-                ajax_url = urlparse.urljoin(self.base_url, EMBED_URL)
-                headers = {'Authorization': 'Bearer %s' % (self.__get_bearer()), 'Referer': page_url}
-                headers.update(XHR)
-                html = self._http_get(ajax_url, data=data, headers=headers, cache_limit=.5)
-                html = html.replace('\\"', '"').replace('\\/', '/')
-                 
-                pattern = '<IFRAME\s+SRC="([^"]+)'
-                for match in re.finditer(pattern, html, re.DOTALL | re.I):
-                    url = match.group(1)
-                    host = self._get_direct_hostname(url)
-                    if host == 'gvideo':
-                        direct = True
-                        quality = scraper_utils.gv_get_quality(url)
-                    else:
-                        if 'vk.com' in url and url.endswith('oid='): continue  # skip bad vk.com links
-                        direct = False
-                        host = urlparse.urlparse(url).hostname
-                        quality = scraper_utils.get_quality(video, host, QUALITIES.HD720)
-    
-                    source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
-                    sources.append(source)
+        source_url = self.get_url(video)
+        if not source_url or source_url == FORCE_NO_MATCH: return sources
+        page_url = urlparse.urljoin(self.base_url, source_url)
+        html = self._http_get(page_url, cache_limit=.5)
+        if video.video_type == VIDEO_TYPES.MOVIE:
+            action = 'getMovieEmb'
+        else:
+            action = 'getEpisodeEmb'
+        match = re.search('elid\s*=\s*"([^"]+)', html)
+        if self.__token is None:
+            self.__get_token()
+            
+        if match and self.__token is not None:
+            elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
+            data = {'action': action, 'idEl': match.group(1), 'token': self.__token, 'elid': elid}
+            ajax_url = urlparse.urljoin(self.base_url, EMBED_URL)
+            headers = {'Authorization': 'Bearer %s' % (self.__get_bearer()), 'Referer': page_url}
+            headers.update(XHR)
+            html = self._http_get(ajax_url, data=data, headers=headers, cache_limit=.5)
+            html = html.replace('\\"', '"').replace('\\/', '/')
+             
+            pattern = '<IFRAME\s+SRC="([^"]+)'
+            for match in re.finditer(pattern, html, re.DOTALL | re.I):
+                url = match.group(1)
+                host = scraper_utils.get_direct_hostname(self, url)
+                if host == 'gvideo':
+                    direct = True
+                    quality = scraper_utils.gv_get_quality(url)
+                else:
+                    if 'vk.com' in url and url.endswith('oid='): continue  # skip bad vk.com links
+                    direct = False
+                    host = urlparse.urlparse(url).hostname
+                    quality = scraper_utils.get_quality(video, host, QUALITIES.HD720)
+
+                source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': direct}
+                sources.append(source)
 
         return sources
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         self.__get_token()
-        if self.__token is not None:
-            search_url, u = self.__get_search_url()
-            search_url = urlparse.urljoin(API_BASE_URL, search_url)
-            timestamp = int(time.time() * 1000)
-            s = self.__get_s()
-            query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token, 'set': s, 'rt': self.__get_rt(self.__token + s),
-                     'sl': self.__get_sl(u)}
-            headers = {'Referer': self.base_url}
-            html = self._http_get(search_url, data=query, headers=headers, cache_limit=1)
-            if video_type in [VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE]:
-                media_type = 'TV SHOW'
-            else:
-                media_type = 'MOVIE'
-    
-            for item in scraper_utils.parse_json(html, search_url):
-                if item['meta'].upper().startswith(media_type):
-                    match_year = str(item['year']) if 'year' in item and item['year'] else ''
-                    if not year or not match_year or year == match_year:
-                        
-                        result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink'].replace('/show/', '/tv-show/')), 'year': match_year}
-                        results.append(result)
+        if self.__token is None: return results
+        
+        search_url, u = self.__get_search_url()
+        search_url = urlparse.urljoin(API_BASE_URL, search_url)
+        timestamp = int(time.time() * 1000)
+        s = self.__get_s()
+        query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token, 'set': s, 'rt': self.__get_rt(self.__token + s),
+                 'sl': self.__get_sl(u)}
+        headers = {'Referer': self.base_url}
+        html = self._http_get(search_url, data=query, headers=headers, cache_limit=1)
+        if video_type in [VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE]:
+            media_type = 'TV SHOW'
+        else:
+            media_type = 'MOVIE'
+
+        for item in scraper_utils.parse_json(html, search_url):
+            if not item['meta'].upper().startswith(media_type): continue
+            
+            match_year = str(item['year']) if 'year' in item and item['year'] else ''
+            if not year or not match_year or year == match_year:
+                result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink'].replace('/show/', '/tv-show/')), 'year': match_year}
+                results.append(result)
 
         return results
 
@@ -175,16 +176,17 @@ class Scraper(scraper.Scraper):
         html = super(self.__class__, self)._http_get(self.base_url, cache_limit=24)
         for match in re.finditer('<script[^>]+src="([^"]+)', html):
             script = match.group(1)
-            if 'flixanity' in script:
-                html = super(self.__class__, self)._http_get(script, cache_limit=24)
-                if 'autocomplete' in html:
-                    r = re.search('r\s*=\s*"([^"]+)', html)
-                    n = re.search('n\s*=\s*"([^"]+)', html)
-                    u = re.search('u\s*=\s*"([^"]+)', html)
-                    if r and n and u:
-                        u = u.group(1)
-                        search_url = r.group(1) + n.group(1)[8:16] + u
-                        break
+            if 'flixanity' not in script: continue
+            html = super(self.__class__, self)._http_get(script, cache_limit=24)
+            if 'autocomplete' not in html: continue
+            
+            r = re.search('r\s*=\s*"([^"]+)', html)
+            n = re.search('n\s*=\s*"([^"]+)', html)
+            u = re.search('u\s*=\s*"([^"]+)', html)
+            if r and n and u:
+                u = u.group(1)
+                search_url = r.group(1) + n.group(1)[8:16] + u
+                break
         return search_url, u
         
     def __get_token(self, html=''):
