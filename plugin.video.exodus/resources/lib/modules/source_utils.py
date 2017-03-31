@@ -27,7 +27,9 @@ def get_release_quality(release_name):
     except: pass
 
     try:
-        fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', release_name.upper())
+        release_name = release_name.upper()
+
+        fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', release_name)
         fmt = re.split('\.|\(|\)|\[|\]|\s|-', fmt)
         fmt = [i.lower() for i in fmt]
 
@@ -38,12 +40,13 @@ def get_release_quality(release_name):
         elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
 
         info = []
-        if '3d' in fmt or any(i.endswith('3d') for i in fmt): info.append('3D')
+        if '3d' in fmt or '.3D.' in release_name: info.append('3D')
         if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
 
         return quality, info
     except:
         return 'SD', []
+
 
 def is_host_valid(url, domains):
     try:
@@ -60,7 +63,7 @@ def __top_domain(url):
     elements = urlparse.urlparse(url)
     domain = elements.netloc or elements.path
     domain = domain.split('@')[-1].split(':')[0]
-    regex = "([\w\-]*\.[\w\-]{2,3}(?:\.[\w\-]{2,3})?)$"
+    regex = "(?:www\.)?([\w\-]*\.[\w\-]{2,3}(?:\.[\w\-]{2,3})?)$"
     res = re.search(regex, domain)
     if res: domain = res.group(1)
     domain = domain.lower()

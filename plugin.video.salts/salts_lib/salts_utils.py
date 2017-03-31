@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 import time
 import datetime
 import xbmc
@@ -373,3 +374,23 @@ def is_salts():
         return True
     else:
         return False
+
+def clear_thumbnails(images):
+    for url in images.itervalues():
+        crc = utils2.crc32(url)
+        for ext in ['jpg', 'png']:
+            file_name = crc + '.' + ext
+            file_path = os.path.join('special://thumbnails', file_name[0], file_name)
+            if xbmcvfs.delete(file_path):
+                break
+            else:
+                try:
+                    file_path = kodi.translate_path(file_path)
+                    os.remove(file_path)
+                    break
+                except OSError:
+                    pass
+        else:
+            continue
+        
+        log_utils.log('Removed thumbnail: %s' % (file_path))

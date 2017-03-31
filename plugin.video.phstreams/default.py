@@ -73,7 +73,7 @@ elif action == 'browser':
 
 elif action == 'search':
     from resources.lib.indexers import phstreams
-    phstreams.indexer().search()
+    phstreams.indexer().search(url=None)
 
 elif action == 'addSearch':
     from resources.lib.indexers import phstreams
@@ -195,4 +195,10 @@ elif action == 'phtoons.animeplay':
     from resources.lib.indexers import phtoons
     phtoons.indexer().animeplay(url)
 
-
+else:
+    if 'search' in action:
+        url = action.split('search=')[1]
+        url = url + '|SECTION|'
+        from resources.lib.indexers import phstreams
+        phstreams.indexer().search(url)
+    else: quit()

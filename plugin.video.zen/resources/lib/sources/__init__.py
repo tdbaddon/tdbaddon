@@ -1067,8 +1067,9 @@ class sources:
 
         filter = []
         filter += [i for i in self.sources if not i['source'].lower() in self.hostBlackList]
+		
         self.sources = filter
-
+       
         filter = []
         filter += local
         if quality in ['0']: filter += [i for i in self.sources if i['quality'] == '4k' and i['debridonly'] == True] 
@@ -1096,11 +1097,13 @@ class sources:
 
         # filter = [i for i in self.sources if i['source'].lower() in self.hostblockDict and not 'debrid' in i]
         # self.sources = [i for i in self.sources if not i in filter]
-
+        self.sources = self.filter_zips(self.sources)
+		
         self.sources = self.sources[:1000]
 
         for i in range(len(self.sources)):
             u = self.sources[i]['url']
+			
             s = self.sources[i]['source'].lower()
             s = s.rsplit('.', 1)[0]
             p = self.sources[i]['provider']
@@ -1133,7 +1136,19 @@ class sources:
 			
 			
 			
-			
+    def filter_zips(self, sources):
+		filtered = []
+		for item in sources:
+			url = item['url'].encode('utf-8')
+			# ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+			# print ("ZEN FILTERING", ext)
+			if "google" in url.lower(): 
+				filtered.append(item)
+			else:
+				if not any(value in url.lower() for value in self.blacklist_zips):
+					filtered.append(item)
+		return filtered
+		
     def sourcesResolve(self, item, info=False):
         try:
             self.url = None
@@ -1443,6 +1458,7 @@ class sources:
         self.hostmyDict = ['uploadrocket.net','userscloud','alfafile','.avi','.mkv','.mov','.mp4','.xvid','.divx','oboom', 'rapidgator', 'rg.to',  'uploaded', 'ul.to', 'filefactory', 'nitroflare', 'turbobit', '1fichier','uptobox', '1fich', 'uploadrocket','uploading','hugefiles', 'uploaded' , 'clicknupload']
         self.hostprDict = self.hostDict + self.hostmyDict
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
+        self.blacklist_zips = ['.zip', '.rar', '.jpeg', '.img', '.jpg', '.RAR', '.ZIP', '.png' , '.sub', '.srt']
 
         self.hostblockDict = []
 

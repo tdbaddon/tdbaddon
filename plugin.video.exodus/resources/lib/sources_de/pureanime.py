@@ -29,6 +29,7 @@ from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 from resources.lib.modules import anilist
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -108,8 +109,8 @@ class source:
             r = [(re.sub('ger (?:sub|dub)', '', i[0], flags=re.I).strip(), i[1]) for i in r if i[0] and i[1]]
             r = [(i[0], re.findall('(.+?) (\d*)$', i[0]), i[1]) for i in r]
             r = [(i[0] if not i[1] else i[1][0][0] + ' ' + str(int(i[1][0][1])), i[2]) for i in r]
-            r = [client.parseDOM(i[1], 'div') for i in r if t == cleantitle.get(i[0])]
-            r = [client.parseDOM(i, 'a', ret='href') + client.parseDOM(i, 'iframe', ret='src') for i in r]
+            r = [dom_parser.parse_dom(i[1], 'div') for i in r if t == cleantitle.get(i[0])]
+            r = [[x.attrs['href'] for x in dom_parser.parse_dom(i, 'a', req='href')] + [x.attrs['src'] for x in dom_parser.parse_dom(i, 'iframe', req='src')] for i in r]
             return r[0]
         except:
             return

@@ -15,6 +15,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from StringIO import StringIO
+import gzip
 import datetime
 import _strptime  # @UnusedImport
 import time
@@ -678,3 +680,27 @@ def normalize_title(title):
         new_title = new_title.encode('utf-8')
     # log_utils.log('In title: |%s| Out title: |%s|' % (title,new_title), log_utils.LOGDEBUG)
     return new_title
+
+def crc32(s):
+    string = s.lower()
+    sb = bytearray(string.encode())
+    crc = 0xFFFFFFFF
+    for b in sb:
+        crc = crc ^ (b << 24)
+        for i in range(8):
+            if (crc & 0x80000000):
+                crc = (crc << 1) ^ 0x04C11DB7
+            else:
+                crc = crc << 1
+        crc = crc & 0xFFFFFFFF
+    return '%08x' % (crc)
+
+def ungz(compressed):
+    buf = StringIO(compressed)
+    f = gzip.GzipFile(fileobj=buf)
+    html = f.read()
+#     before = len(compressed) / 1024.0
+#     after = len(html) / 1024.0
+#     saved = (after - before) / after
+#     log_utils.log('Uncompressing gzip input Before: {before:.2f}KB After: {after:.2f}KB Saved: {saved:.2%}'.format(before=before, after=after, saved=saved))
+    return html

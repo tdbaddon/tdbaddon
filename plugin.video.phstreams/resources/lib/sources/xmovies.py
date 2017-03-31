@@ -31,17 +31,23 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['xmovies8.tv', 'xmovies8.ru']
-        self.base_link = 'http://xmovies8.tv'
-        self.moviesearch_link = '/movie/%s-%s/'
-
+        self.base_link = 'https://xmovies8.ru'
+        self.moviesearch_link = '/movies/search?s=%s'
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.moviesearch_link % (cleantitle.geturl(title.replace('\'', '-')), year)
-            r = urlparse.urljoin(self.base_link, url)
-            r = client.request(r, limit='1')
-            r = client.parseDOM(r, 'title')[0]
-            if not '(%s)' % year in r: raise Exception()
+            url = urlparse.urljoin(self.base_link, self.moviesearch_link % (cleantitle.geturl(title.replace('\'', '-'))))
+            r = client.request(url)
+            t = cleantitle.get(title)
+            r = client.parseDOM(r, 'h2', attrs={'class': 'tit'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
+            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
             return url
         except:
             return
@@ -52,41 +58,32 @@ class source:
             sources = []
 
             if url == None: return sources
-
             url = urlparse.urljoin(self.base_link, url)
             url = path = re.sub('/watching.html$', '', url.strip('/'))
             url = referer = url + '/watching.html'
-
             p = client.request(url)
-            p = re.findall("data\s*:\s*{\s*id:\s*(\d+),\s*episode_id:\s*(\d+),\s*link_id:\s*(\d+)", p)[0]
-            p = urllib.urlencode({'id': p[0], 'episode_id': p[1], 'link_id': p[2], '_': int(time.time() * 1000)})
-
+            p = re.findall('load_player\(.+?(\d+)', p)
+            p = urllib.urlencode({'id': p[0]})
             headers = {
             'Accept-Formating': 'application/json, text/javascript',
             'Server': 'cloudflare-nginx',
             'Referer': referer}
-
-            r = urlparse.urljoin(self.base_link, '/ajax/movie/load_episodes')
+            r = urlparse.urljoin(self.base_link, '/ajax/movie/load_player_v3')
             r = client.request(r, post=p, headers=headers, XHR=True)
-            r = re.findall("load_player\(\s*'([^']+)'\s*,\s*'?(\d+)\s*'?", r)
-            r = [i for i in r if int(i[1]) >= 720]
-
-            for u in r:
+            url = json.loads(r)['value']
+            if not url.startswith('http'):
+                url = 'http:' + url
+            r = client.request(url, headers=headers, XHR=True)
+            src = json.loads(r)['playlist'][0]['sources']
+            links = [i['file'] for i in src if 'file' in i]
+            for i in links:
                 try:
-                    p = urllib.urlencode({'id': u[0], 'quality': u[1], '_': int(time.time() * 1000)})
-                    u = urlparse.urljoin(self.base_link, '/ajax/movie/load_player_v2')
-
-                    u = client.request(u, post=p, headers=headers, XHR=True)
-                    u = json.loads(u)['playlist']
-                    u = client.request(u, headers=headers, XHR=True)
-                    u = json.loads(u)['playlist'][0]['sources']
-                    u = [i['file'] for i in u if 'file' in i]
-
-                    for i in u:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
+                    sources.append(
+                        {'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en',
+                         'url': i, 'direct': True, 'debridonly': False})
                 except:
                     pass
+
 
             return sources
         except:
@@ -95,5 +92,4 @@ class source:
 
     def resolve(self, url):
         return directstream.googlepass(url)
-
 

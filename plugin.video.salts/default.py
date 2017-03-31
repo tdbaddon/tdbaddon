@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import random
 import sys
 import os
 import re
@@ -1295,6 +1296,15 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
             if kodi.get_setting('enable_sort') == 'true':
                 SORT_KEYS['source'] = salts_utils.make_source_sort_key()
                 hosters.sort(key=utils2.get_sort_key)
+            else:
+                random.shuffle(hosters)
+                local_hosters = []
+                for i, item in enumerate(hosters):
+                    if isinstance(item['class'], local_scraper.Scraper):
+                        local_hosters.append(item)
+                        hosters[i] = None
+                hosters = local_hosters + [item for item in hosters if item is not None]
+                
         finally:
             workers = worker_pool.reap_workers(workers)
     
@@ -2046,6 +2056,11 @@ def clean_subs():
 def refresh_images(video_type, ids, season='', episode='', screenshots=False):
     ids = json.loads(ids)
     image_scraper.get_images(video_type, ids, season, episode, screenshots, cached=False)
+    if kodi.get_setting('proxy_enable') == 'true':
+        images = image_scraper.get_images(video_type, ids, season, episode, screenshots)
+        salts_utils.clear_thumbnails(images)
+        image_scraper.clear_cache(video_type, ids, season, episode)
+    
     kodi.refresh_container()
 
 @url_dispatcher.register(MODES.FLUSH_CACHE)
@@ -2087,7 +2102,8 @@ def flush_image_cache():
 
 @url_dispatcher.register(MODES.PRUNE_CACHE)
 def prune_cache():
-    while not xbmc.abortRequested:
+    monitor = xbmc.Monitor()
+    while not monitor.abortRequested():
         if xbmc.getInfoLabel('Container.PluginName') != kodi.get_id():
             if not db_connection.prune_cache():
                 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -2096,7 +2112,8 @@ def prune_cache():
                 break
         else:
             log_utils.log('SALTS Active... Busy... Postponing [%s]' % (MODES.PRUNE_CACHE), log_utils.LOGDEBUG, 'prune')
-            kodi.sleep(30000)
+            if monitor.waitForAbort(30000):
+                break
 
 @url_dispatcher.register(MODES.RESET_DB)
 def reset_db():

@@ -1625,13 +1625,20 @@ class resolver:
         url = urlparse.urlparse(url).query
         url = base64.b64decode(url)
         url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]'''
-        if url.startswith("//"): url = "http:%s" % url
+        
+        '''if url.startswith("//"): url = "http:%s" % url
         data = {'chtc': 'Click Here to Continue'}
         data = urllib.urlencode(data)
         cookie = client.request(url, output='cookie', close=False)
         result = client.request(url, post=data, referer=url, cookie=cookie)
         try: url = client.parseDOM(result, 'IFRAME', ret='src', attrs={"id": "showvideo"})[0]
-        except: url = client.parseDOM(result, 'iframe', ret='src', attrs={"id": "showvideo"})[0]
+        except: url = client.parseDOM(result, 'iframe', ret='src', attrs={"id": "showvideo"})[0]'''
+        
+        url = urlparse.urlparse(url).path
+        url = url.split("/")[2]
+        url = base64.b64decode(url)
+        url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
+        
         url = client.replaceHTMLCodes(url)
         url = url.encode('utf-8')
         url = HostedMediaFile(url=url).resolve()
@@ -1646,15 +1653,15 @@ class resolver:
             result = client.request(url, referer=referer)
             
             hosts = client.parseDOM(result, 'li', attrs = { "id": "link_name" })
-            hosts = [i.strip() for i in hosts if not 'HD Sponsor' in i]
+            #hosts = [i.strip() for i in hosts if not 'HD Sponsor' in i]
             
             urls = client.parseDOM(result, 'li', attrs = { "id": "playing_button" })
-            urls = [i for i in urls if not '/watchnow.php?' in i]
+            #urls = [i for i in urls if not '/watchnow.php?' in i]
             
             srcs = []
             i = 0
             for url in urls:
-                host = hosts[i]
+                host = hosts[i].strip()
                 if host == '': 
                     i += 1
                     continue

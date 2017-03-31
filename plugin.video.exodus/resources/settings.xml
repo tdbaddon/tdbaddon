@@ -8,7 +8,7 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
-		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English|Polish|Polish+English" default="English" />
+		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English|Polish|Polish+English|Korean|Korean+English" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
@@ -29,6 +29,7 @@
 		<setting id="bookmarks" type="bool" label="32344" default="true" />
 	</category>
 	<category label="32345">
+		<setting id="provider.123movieshd" type="bool" label="123MOVIESHD" default="true" />
 		<setting id="provider.afdah" type="bool" label="AFDAH" default="true" />
 		<setting id="provider.animeultima" type="bool" label="ANIMEULTIMA" default="true" />
 		<setting id="provider.bmoviez" type="bool" label="BMOVIEZ" default="true" />
@@ -108,7 +109,6 @@
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
-		<setting id="provider.streamit" type="bool" label="STREAMIT" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
 		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
@@ -116,6 +116,7 @@
 		<setting id="provider.cinemay" type="bool" label="CINEMAY" default="true" />
 		<setting id="provider.dpstreaming" type="bool" label="DPSTREAMING" default="true" />
         <setting id="provider.filmenstreaminghd" type="bool" label="FILMENSTREAMINGHD" default="true" />
+		<setting id="provider.fullstream" type="bool" label="FULLSTREAM" default="true" />
 		<setting id="provider.skstream" type="bool" label="SKSTREAM" default="true" />
 		<setting id="provider.streamay" type="bool" label="STREAMAY" default="true" />
 		<setting id="provider.streamingseries" type="bool" label="STREAMINGSERIES" default="true" />
@@ -125,6 +126,16 @@
         <setting id="provider.filister" type="bool" label="FILISTER" default="true" />
         <setting id="provider.cdahd" type="bool" label="CDAHD" default="true" />
         <setting id="provider.szukajkatv" type="bool" label="SZUKAJKATV" default="true" />
+		<setting label="Korean" type="lsep" />
+		<setting id="provider.drama4u" type="bool" label="DRAMA4U" default="true" />
+		<setting id="provider.dramabus" type="bool" label="DRAMABUS" default="true" />
+		<setting id="provider.dramacool" type="bool" label="DRAMACOOL" default="true" />
+		<setting id="provider.dramafire" type="bool" label="DRAMAFIRE" default="true" />
+		<setting id="provider.iheartdrama" type="bool" label="IHEARTDRAMA" default="true" />
+		<setting id="provider.ikshow" type="bool" label="IKSHOW" default="true" />
+		<setting id="provider.kdramacool" type="bool" label="KDRAMACOOL" default="true" />
+		<setting id="provider.myasiantv" type="bool" label="MYASIANTV" default="true" />
+
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

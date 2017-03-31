@@ -1,3 +1,8 @@
+v2.5
+   - Fix for Prva.RS
+   - Remove Zulu support - website does not exists anymore
+   - VIPTV support
+
 v2.4
    - [mrt] fix for mrt and align with proxy version of the plugin
 

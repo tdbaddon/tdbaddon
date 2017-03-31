@@ -15,11 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from StringIO import StringIO
 import abc
 import cookielib
 import datetime
-import gzip
 import os
 import re
 import urllib
@@ -36,7 +34,7 @@ from salts_lib.constants import SHORT_MONS
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import DEFAULT_TIMEOUT
 from salts_lib.db_utils import DB_Connection
-from salts_lib.utils2 import i18n
+from salts_lib.utils2 import i18n, ungz
 
 try:
     import urlresolver
@@ -321,6 +319,7 @@ class Scraper(object):
             request = urllib2.Request(url, data=data)
             request.add_header('User-Agent', scraper_utils.get_ua())
             request.add_header('Accept', '*/*')
+            request.add_header('Accept-Encoding', 'gzip')
             request.add_unredirected_header('Host', request.get_host())
             request.add_unredirected_header('Referer', referer)
             for key in headers: request.add_header(key, headers[key])
@@ -359,13 +358,15 @@ class Scraper(object):
                 return ''
             else:
                 if response.info().get('Content-Encoding') == 'gzip':
-                    buf = StringIO(response.read(MAX_RESPONSE))
-                    f = gzip.GzipFile(fileobj=buf)
-                    html = f.read()
+                    html = ungz(response.read(MAX_RESPONSE))
                 else:
                     html = response.read(MAX_RESPONSE)
         except urllib2.HTTPError as e:
-            html = e.read()
+            if e.info().get('Content-Encoding') == 'gzip':
+                html = ungz(e.read(MAX_RESPONSE))
+            else:
+                html = e.read(MAX_RESPONSE)
+                
             if CF_CAPCHA_ENABLED and e.code == 403 and 'cf-captcha-bookmark' in html:
                 html = cf_captcha.solve(url, self.cj, scraper_utils.get_ua(), self.get_name())
                 if not html:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,13 +16,16 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -45,26 +48,29 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
             url = self.__search(self.search_link_tv, imdb, tvshowtitle)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(self.search_link_tv, imdb,
-                                                                                localtvshowtitle)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(self.search_link_tv, imdb, localtvshowtitle)
             return url
         except:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             query = urlparse.urljoin(self.base_link, url)
 
             r = client.request(query)
-            r = client.parseDOM(r, 'td', attrs={'data-title-name': 'Season %02d' % int(season)})
-            r = client.parseDOM(r, 'a', ret='href')[0]
+            r = dom_parser.parse_dom(r, 'td', attrs={'data-title-name': re.compile('Season %02d' % int(season))})
+            r = dom_parser.parse_dom(r, 'a', req='href')[0].attrs['href']
             r = client.request(urlparse.urljoin(self.base_link, r))
-            r = client.parseDOM(r, 'td', attrs={'data-title-name': 'Episode %02d' % int(episode)})
-            r = client.parseDOM(r, 'a', ret='href')[0]
-            return r
+            r = dom_parser.parse_dom(r, 'td', attrs={'data-title-name': re.compile('Episode %02d' % int(episode))})
+            r = dom_parser.parse_dom(r, 'a', req='href')[0].attrs['href']
+
+            url = urlparse.urlparse(r).path
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            return url
         except:
             return
 
@@ -72,41 +78,41 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             query = urlparse.urljoin(self.base_link, url)
 
             r = client.request(query)
-            r = client.parseDOM(r, 'div', attrs={'id': 'Module'})
-            r = [(r, client.parseDOM(r, 'a', attrs={'href': '[^\'"]*xrel_search_query[^\'"]*'}, ret='href'))]
-            r = [(i[0], i[1][0] if len(i[1]) > 0 else '') for i in r]
+            r = dom_parser.parse_dom(r, 'div', attrs={'id': 'Module'})
+            r = [(r, dom_parser.parse_dom(r, 'a', attrs={'href': re.compile('[^\'"]*xrel_search_query[^\'"]*')}, req='href'))]
+            r = [(i[0], i[1][0].attrs['href'] if i[1] else '') for i in r]
 
-            rels = client.parseDOM(r[0][0], 'a', attrs={'href': '[^\'"]*ReleaseList[^\'"]*'}, ret='href')
+            rels = dom_parser.parse_dom(r[0][0], 'a', attrs={'href': re.compile('[^\'"]*ReleaseList[^\'"]*')}, req='href')
             if rels and len(rels) > 1:
                 r = []
                 for rel in rels:
-                    relData = client.request(urlparse.urljoin(self.base_link, rel))
-                    relData = client.parseDOM(relData, 'table', attrs={'class': 'release-list'})
-                    relData = client.parseDOM(relData, 'tr', attrs={'class': 'row'})
-                    relData = [(client.parseDOM(i, 'td', attrs={'class': '[^\'"]*list-name[^\'"]*'}),
-                                client.parseDOM(i, 'img', attrs={'class': 'countryflag'}, ret='alt'),
-                                client.parseDOM(i, 'td', attrs={'class': 'release-types'})) for i in relData]
-                    relData = [(i[0][0], i[1][0].lower(), i[2][0]) for i in relData if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+                    relData = client.request(urlparse.urljoin(self.base_link, rel.attrs['href']))
+                    relData = dom_parser.parse_dom(relData, 'table', attrs={'class': 'release-list'})
+                    relData = dom_parser.parse_dom(relData, 'tr', attrs={'class': 'row'})
+                    relData = [(dom_parser.parse_dom(i, 'td', attrs={'class': re.compile('[^\'"]*list-name[^\'"]*')}),
+                                dom_parser.parse_dom(i, 'img', attrs={'class': 'countryflag'}, req='alt'),
+                                dom_parser.parse_dom(i, 'td', attrs={'class': 'release-types'})) for i in relData]
+                    relData = [(i[0][0].content, i[1][0].attrs['alt'].lower(), i[2][0].content) for i in relData if i[0] and i[1] and i[2]]
                     relData = [(i[0], i[2]) for i in relData if i[1] == 'deutsch']
-                    relData = [(i[0], client.parseDOM(i[1], 'img', attrs={'class': 'release-type-stream'})) for i in relData]
-                    relData = [i[0] for i in relData if len(i[1]) > 0]
-                    # relData = client.parseDOM(relData, 'a', ret='href')[:3]
-                    relData = client.parseDOM(relData, 'a', ret='href')
+                    relData = [(i[0], dom_parser.parse_dom(i[1], 'img', attrs={'class': 'release-type-stream'})) for i in relData]
+                    relData = [i[0] for i in relData if i[1]]
+                    #relData = dom_parser.parse_dom(relData, 'a', req='href')[:3]
+                    relData = dom_parser.parse_dom(relData, 'a', req='href')
 
                     for i in relData:
-                        i = client.request(urlparse.urljoin(self.base_link, i))
-                        i = client.parseDOM(i, 'div', attrs={'id': 'Module'})
-                        i = [(i, client.parseDOM(i, 'a', attrs={'href': '[^\'"]*xrel_search_query[^\'"]*'}, ret='href'))]
-                        r += [(x[0], x[1][0] if len(x[1]) > 0 else '') for x in i]
+                        i = client.request(urlparse.urljoin(self.base_link, i.attrs['href']))
+                        i = dom_parser.parse_dom(i, 'div', attrs={'id': 'Module'})
+                        i = [(i, dom_parser.parse_dom(i, 'a', attrs={'href': re.compile('[^\'"]*xrel_search_query[^\'"]*')}, req='href'))]
+                        r += [(x[0], x[1][0].attrs['href'] if x[1] else '') for x in i]
 
-            r = [(client.parseDOM(i[0], 'div', attrs={'id': 'ModuleReleaseDownloads'}), i[1]) for i in r]
-            r = [(re.compile('(<a.+?/a>)', re.DOTALL).findall(i[0][0]), i[1]) for i in r if len(i[0]) > 0]
+            r = [(dom_parser.parse_dom(i[0], 'div', attrs={'id': 'ModuleReleaseDownloads'}), i[1]) for i in r]
+            r = [(dom_parser.parse_dom(i[0][0], 'a', attrs={'class': re.compile('.*-stream.*')}, req='href'), i[1]) for i in r if len(i[0]) > 0]
 
             for items, rel in r:
                 rel = urlparse.urlparse(rel).query
@@ -114,10 +120,9 @@ class source:
 
                 quality, info = source_utils.get_release_quality(rel)
 
-                items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in items if 'stream' in i]
-                items = [(i[0][0], i[1][0]) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
-                items = [(i[0], client.parseDOM(i[1], 'img', ret='src')) for i in items]
-                items = [(i[0], i[1][0]) for i in items if len(i[1]) > 0]
+                items = [(i.attrs['href'], i.content) for i in items]
+                items = [(i[0], dom_parser.parse_dom(i[1], 'img', req='src')) for i in items]
+                items = [(i[0], i[1][0].attrs['src']) for i in items if i[1]]
                 items = [(i[0], re.findall('.+/(.+\.\w+)\.\w+', i[1])) for i in items]
                 items = [(i[0], i[1][0]) for i in items if i[1]]
 
@@ -150,23 +155,23 @@ class source:
 
             r = client.request(query)
 
-            r = client.parseDOM(r, 'div', attrs={'class': 'big-list'})
-            r = client.parseDOM(r, 'table', attrs={'class': 'row'})
-            r = client.parseDOM(r, 'td', attrs={'class': 'list-name'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'big-list'})
+            r = dom_parser.parse_dom(r, 'table', attrs={'class': 'row'})
+            r = dom_parser.parse_dom(r, 'td', attrs={'class': 'list-name'})
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [(i.attrs['href'], i.content) for i in r if i]
 
             url = [i[0] for i in r if t == cleantitle.get(i[1])]
             url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
 
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
             r = client.request(urlparse.urljoin(self.base_link, url))
-            r = client.parseDOM(r, 'a', attrs={'href': '[^\'"]+/tt\d+[^\'"]+'}, ret='href')
-            r = [re.findall('.+?(tt\d+).*?', i) for i in r]
-            r = [i[0] for i in r if len(i) > 0]
+            r = dom_parser.parse_dom(r, 'a', attrs={'href': re.compile('.*/tt\d+.*')}, req='href')
+            r = [re.findall('.+?(tt\d+).*?', i.attrs['href']) for i in r]
+            r = [i[0] for i in r if i]
 
             return url if imdb in r else None
         except:

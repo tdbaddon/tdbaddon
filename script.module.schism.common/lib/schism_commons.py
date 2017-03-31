@@ -106,6 +106,10 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
 
 # ################### TAGS  ########################
 
+def get_files(txt):
+	match = re.findall('''['"]file['"]\s*:\s*['"]([^'"]+)''', txt)
+	return match
+
 
 def replaceHTMLCodes(txt):
     txt = re.sub("(&#[0-9]+)([^;^0-9]+)", "\\1;\\2", txt)
@@ -182,9 +186,7 @@ def get_host(url):
 	
 
 	
-# ################### CLEANTITLES ########################
-
-	
+# ################### CLEANTITLES ########################	
 	
 def cleantitle_get(title):
     if title == None: return

@@ -30,17 +30,17 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['miradetodo.net']
-        self.base_link = 'http://miradetodo.net'
+        self.domains = ['miradetodo.io']
+        self.base_link = 'http://miradetodo.io'
         self.search_link = '/?s=%s'
-
+        self.episode_link = '/episodio/%s-%sx%s'
 
     def movie(self, imdb, title, localtitle, year):
         try:
             t = 'http://www.imdb.com/title/%s' % imdb
             t = client.request(t, headers={'Accept-Language':'ar-AR'})
             t = client.parseDOM(t, 'title')[0]
-            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
+            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip().encode('utf-8')
 
             q = self.search_link % urllib.quote_plus(t)
             q = urlparse.urljoin(self.base_link, q)
@@ -52,6 +52,29 @@ class source:
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
             r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1]) and year == i[2]][0]
 
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            return url
+        except:
+            pass
+
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+        try:
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            t = 'http://www.imdb.com/title/%s' % imdb
+            t = client.request(t, headers={'Accept-Language':'ar-AR'})
+            t = client.parseDOM(t, 'title')[0]
+            t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
+            t = cleantitle.geturl(t.encode("utf-8"))
+            r = urlparse.urljoin(self.base_link, self.episode_link % (t, season, episode))
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -71,6 +94,10 @@ class source:
             result = client.request(r)
 
             f = client.parseDOM(result, 'div', attrs = {'class': 'movieplay'})
+            if not f:
+                f = client.parseDOM(result, 'div', attrs={'class': 'embed2'})
+                f = client.parseDOM(f, 'div')
+
             f = [re.findall('(?:\"|\')(http.+?miradetodo\..+?)(?:\"|\')', i) for i in f]
             f = [i[0] for i in f if len(i) > 0]
 
@@ -95,8 +122,12 @@ class source:
                     s = [x.replace('\\', '') for x in s]
 
                     for i in s:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
+                        try:
+                            if 'getlinkdrive.com' in i:
+                                i = client.request(i, output='geturl')
+                            sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                        except:
+                            pass
                 except:
                     pass
 

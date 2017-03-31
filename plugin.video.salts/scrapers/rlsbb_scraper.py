@@ -127,7 +127,7 @@ class Scraper(scraper.Scraper):
         referer = urlparse.urljoin(SEARCH_BASE_URL, '/search/')
         headers = {'Referer': referer + urllib.quote_plus(title)}
         headers.update(XHR)
-        search_url = urlparse.urljoin(SEARCH_BASE_URL, '/lib/search.php')
+        search_url = urlparse.urljoin(SEARCH_BASE_URL, '/lib/search526049.php')
         params = {'phrase': title, 'pindex': 1}
         html = self._http_get(search_url, params=params, headers=headers, require_debrid=True, cache_limit=1)
         js_data = scraper_utils.parse_json(html, search_url)

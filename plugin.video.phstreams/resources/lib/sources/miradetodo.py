@@ -30,8 +30,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['miradetodo.net']
-        self.base_link = 'http://miradetodo.net'
+        self.domains = ['miradetodo.io']
+        self.base_link = 'http://miradetodo.io'
         self.search_link = '/?s=%s'
 
 
@@ -40,7 +40,7 @@ class source:
             t = 'http://www.imdb.com/title/%s' % imdb
             t = client.request(t, headers={'Accept-Language':'ar-AR'})
             t = client.parseDOM(t, 'title')[0]
-            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
+            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip().encode('utf-8')
 
             q = self.search_link % urllib.quote_plus(t)
             q = urlparse.urljoin(self.base_link, q)

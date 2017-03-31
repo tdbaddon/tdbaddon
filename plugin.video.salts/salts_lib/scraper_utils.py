@@ -574,10 +574,10 @@ def get_gk_links(scraper, html, page_url, page_quality, link_url, player_url):
 
 def get_files(scraper, url, headers=None, cache_limit=.5):
     sources = []
-    for row in parse_directory(scraper._http_get(url, headers=headers, cache_limit=cache_limit)):
+    for row in parse_directory(scraper, scraper._http_get(url, headers=headers, cache_limit=cache_limit)):
         source_url = urljoin(url, row['link'])
         if row['directory'] and not row['link'].startswith('..'):
-            sources += get_files(source_url, headers={'Referer': url}, cache_limit=cache_limit)
+            sources += get_files(scraper, source_url, headers={'Referer': url}, cache_limit=cache_limit)
         else:
             row['url'] = source_url
             sources.append(row)

@@ -63,26 +63,20 @@
 		<setting id="movieshd_base"  type="text" label=" - Base Url" default="http://flixanity.watch" visible="!eq(-1,false)" />
 
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
-		<setting id="onemovies_base"  type="text" label=" - Base Url" default="https://123movies.is" visible="!eq(-1,false)" />
-		
 		
 		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
-		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
-		
+
 		<setting id="provider.bobby" type="bool" label="Bobby" default="true" />	
 		<setting id="provider.chillflix" type="bool" label="Chillflix" default="true" />	
-
-		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
+		<setting id="provider.cinemabox" type="bool" label="Cinemabox" default="true" />	
 
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 	
 		<setting id="provider.moviexk" type="bool" label="Moviexk" default="true" />
-		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
-		
+
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
 		<setting id="provider.movies25" type="bool" label="Movies25" default="true" />
 
-		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
@@ -98,13 +92,11 @@
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 		<setting id="provider.solarmovie" type="bool" label="Solarmovie" default="true" />
 
-		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
 
 		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
 		<setting id="provider.vumoo" type="bool" label="Vumoo" default="true" />
 				
 		<setting id="provider.watch5s" type="bool" label="Watch5s" default="true" />
-		<setting id="provider.watch32" type="bool" label="Watch32" default="true" />
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
 		<setting id="watchfree_base"  type="text" label=" - Base Url" default="http://www.watchfree.to" visible="!eq(-1,false)" />
@@ -135,6 +127,7 @@
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
 		<setting id="provider.directdl" type="bool" label="Directdl" default="true" />
 		<setting id="provider.dltube" type="bool" label="Dltube" default="true" />
+		<setting id="provider.icefilms" type="bool" label="Icefilms" default="true" />
 		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
 		<setting id="provider.releasebb" type="bool" label="Releasebb" default="true" />
 		<setting id="provider.rapidmovies" type="bool" label="Rapidmovies" default="true" />
@@ -154,7 +147,9 @@
 	</category>
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />
-		<setting type="sep" />
+		<setting type="lsep" label="NOTE: DOWNLOAD Context menu only works on DIRECTORY playback mode" visible="!eq(-1,false)" />
+		<setting type="lsep" label="Make sure to switch the mode in the Playback Tab" visible="!eq(-2,false)" />
+
 		<setting id="movie.download.path" type="folder" label="32349" enable="!eq(-2,false)" default="" />
 		<setting id="tv.download.path" type="folder" label="32350" enable="!eq(-3,false)" default="" />
 		<setting type="lsep" label="[CR]" />

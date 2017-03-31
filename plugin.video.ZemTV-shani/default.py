@@ -3175,7 +3175,7 @@ def AddWatchCric(url):
 
 
 def smpk(frompk):
-    return frompk[0:2]+frompk[3:4]+frompk[5:7]+frompk[8:]
+    return frompk[0:2]+frompk[3:]
     
 def AddSmartCric(url):
     req = urllib2.Request(base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29tLw=='))

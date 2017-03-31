@@ -4,11 +4,12 @@
 # Translators:
 # Achaw Gomez, 2015-2016
 # Achaw Gomez, 2016
+# Irene Royster, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-02-07 04:04+0000\n"
+"PO-Revision-Date: 2017-03-28 19:56+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: Spanish (http://www.transifex.com/tv-addons/salts/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1179,6 +1180,14 @@ msgstr "Recargar Imágenes"
 msgctxt "#30301"
 msgid "Private Scraper Updated: "
 msgstr "Scraper Privado Actualizado:"
+
+msgctxt "#30302"
+msgid "Reset Torba Authorization"
+msgstr "Restaurar Autorización de Torba"
+
+msgctxt "#30303"
+msgid "Torba Authorization Reset"
+msgstr "Autorización de Torba Restaurada"
 
 msgctxt "#30500"
 msgid "Addon Theme"

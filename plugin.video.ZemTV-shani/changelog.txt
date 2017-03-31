@@ -1,3 +1,5 @@
+[B]Version 6.4.7[/B]
+SC quicktix
 [B]Version 6.4.6[/B]
 CF only free channels, slow tv and nettv fixed 
 [B]Version 6.4.5[/B]

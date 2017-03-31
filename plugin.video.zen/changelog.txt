@@ -1,3 +1,9 @@
+[B]2017.03.30[/B]
+- Update Providers - New Providers
+- Tweaked caching and results
+- Added checks and filters for unplayables streams and archives
+- tweaked missing headers for auto web requests
+
 [B]2017.03.21[/B]
 - Update Providers 
 - Added Ability to Display only watchlisted Shows in TV Calendar

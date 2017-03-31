@@ -26,7 +26,7 @@ from resources.lib.modules import workers
 from resources.lib.modules import dom_parser
 
 
-def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, XHR=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, XHR=False, limit=None, referer=None, cookie=None, compression=True, output='', timeout='30'):
     try:
         handlers = []
 
@@ -42,18 +42,18 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
 
+        if (2, 7, 9) <= sys.version_info < (2, 7, 11):
+            try:
+                import ssl; ssl_context = ssl.create_default_context()
+                ssl_context.check_hostname = False
+                ssl_context.verify_mode = ssl.CERT_NONE
+                handlers += [urllib2.HTTPSHandler(context=ssl_context)]
+                opener = urllib2.build_opener(*handlers)
+                opener = urllib2.install_opener(opener)
+            except:
+                pass
 
-        try:
-            if sys.version_info < (2, 7, 9): raise Exception()
-            import ssl; ssl_context = ssl.create_default_context()
-            ssl_context.check_hostname = False
-            ssl_context.verify_mode = ssl.CERT_NONE
-            handlers += [urllib2.HTTPSHandler(context=ssl_context)]
-            opener = urllib2.build_opener(*handlers)
-            opener = urllib2.install_opener(opener)
-        except:
-            pass
-
+        if url.startswith('//'): url = 'http:' + url
 
         try: headers.update(headers)
         except: headers = {}
@@ -80,6 +80,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             pass
         elif not cookie == None:
             headers['Cookie'] = cookie
+        if 'Accept-Encoding' in headers:
+            pass
+        elif compression and limit is None:
+            headers['Accept-Encoding'] = 'gzip'
 
 
         if redirect == False:
@@ -208,7 +212,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
 
 def parseDOM(html, name='', attrs=None, ret=False):
-    if attrs: attrs = dict((key, re.compile(value+'$')) for key, value in attrs.iteritems())
+    if attrs: attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in attrs.iteritems())
     results = dom_parser.parse_dom(html, name, attrs, ret)
     if ret:
         results = [result.attrs[ret.lower()] for result in results]

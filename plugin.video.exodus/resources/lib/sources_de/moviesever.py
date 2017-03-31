@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,14 +16,19 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, base64
+import base64
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
+
 
 class source:
     def __init__(self):
@@ -47,23 +52,23 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url, headers={'Accept-Encoding': 'gzip'})
+            r = client.request(url)
 
-            rels = client.parseDOM(r, 'nav', attrs={'class': 'player'})
-            rels = client.parseDOM(rels, 'ul', attrs={'class': 'idTabs'})
-            rels = client.parseDOM(rels, 'li')
-            rels = [(client.parseDOM(i, 'a', attrs={'class': 'options'}, ret='href'), client.parseDOM(i, 'img', ret='src')) for i in rels]
-            rels = [(i[0][0][1:], re.findall('\/flags\/(\w+)\.png$', i[1][0])) for i in rels if len(i[0]) > 0 and len(i[1]) > 0]
+            rels = dom_parser.parse_dom(r, 'nav', attrs={'class': 'player'})
+            rels = dom_parser.parse_dom(rels, 'ul', attrs={'class': 'idTabs'})
+            rels = dom_parser.parse_dom(rels, 'li')
+            rels = [(dom_parser.parse_dom(i, 'a', attrs={'class': 'options'}, req='href'), dom_parser.parse_dom(i, 'img', req='src')) for i in rels]
+            rels = [(i[0][0].attrs['href'][1:], re.findall('\/flags\/(\w+)\.png$', i[1][0].attrs['src'])) for i in rels if i[0] and i[1]]
             rels = [i[0] for i in rels if len(i[1]) > 0 and i[1][0].lower() == 'de']
 
-            r = [client.parseDOM(r, 'div', attrs={'id': i}) for i in rels]
-            r = [(re.findall('link"?\s*:\s*"(.+?)"', i[0]), client.parseDOM(i, 'iframe', attrs={'class': '[^\'"]*metaframe[^\'"]*'}, ret='src')) for i in r]
-            r = [i[0][0] if len(i[0]) > 0 else i[1][0] for i in r if len(i[0]) > 0 or len(i[1]) > 0]
+            r = [dom_parser.parse_dom(r, 'div', attrs={'id': i}) for i in rels]
+            r = [(re.findall('link"?\s*:\s*"(.+?)"', ''.join([x.content for x in i])), dom_parser.parse_dom(i, 'iframe', attrs={'class': 'metaframe'}, req='src')) for i in r]
+            r = [i[0][0] if i[0] else i[1][0].attrs['src'] for i in r if i[0] or i[1]]
 
             for i in r:
                 try:
@@ -108,14 +113,14 @@ class source:
 
             r = client.request(query)
 
-            r = client.parseDOM(r, 'div', attrs={'class': 'details'})
-            r = [(client.parseDOM(i, 'div', attrs={'class': 'title'}), client.parseDOM(i, 'span', attrs={'class': 'year'})) for i in r]
-            r = [(client.parseDOM(i[0][0], 'a', ret='href'), client.parseDOM(i[0][0], 'a'), i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0][0], i[1][0], i[2]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'details'})
+            r = [(dom_parser.parse_dom(i, 'div', attrs={'class': 'title'}), dom_parser.parse_dom(i, 'span', attrs={'class': 'year'})) for i in r]
+            r = [(dom_parser.parse_dom(i[0][0], 'a', req='href'), i[1][0].content) for i in r if i[0] and i[1]]
+            r = [(i[0][0].attrs['href'], i[0][0].content, i[1]) for i in r if i[0]]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

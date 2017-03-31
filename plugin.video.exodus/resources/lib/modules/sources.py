@@ -538,6 +538,7 @@ class sources:
             dbcon = database.connect(control.providercacheFile)
             dbcur = dbcon.cursor()
             dbcur.execute("DROP TABLE IF EXISTS rel_src")
+            dbcur.execute("DROP TABLE IF EXISTS rel_url")
             dbcur.execute("VACUUM")
             dbcon.commit()
 
@@ -851,13 +852,13 @@ class sources:
 
 
     def getLanguage(self):
-        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['en', 'pt'], 'Polish': ['pl'], 'Polish+English': ['en', 'pl']}
+        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['en', 'pt'], 'Polish': ['pl'], 'Polish+English': ['en', 'pl'], 'Korean': ['ko'], 'Korean+English': ['en', 'ko']}
         name = control.setting('providers.lang')
         return langDict.get(name, ['en'])
 
 
     def getLocalTitle(self, title, imdb, tvdb, content):
-        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl'}
+        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko'}
         name = control.setting('providers.lang')
         lang = langDict.get(name)
         if not lang:
@@ -886,8 +887,9 @@ class sources:
         from resources.lib.sources_fr import sources as sources_fr
         from resources.lib.sources_pt import sources as sources_pt
         from resources.lib.sources_pl import sources as sources_pl
+        from resources.lib.sources_ko import sources as sources_ko
 
-        self.sourceDict = sources() + sources_de() + sources_fr() + sources_pt() + sources_pl()
+        self.sourceDict = sources() + sources_de() + sources_fr() + sources_pt() + sources_pl() + sources_ko()
 
         try:
             self.hostDict = urlresolver.relevant_resolvers(order_matters=True)
@@ -901,7 +903,7 @@ class sources:
 
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
-        self.hosthqDict = ['openload.io', 'openload.co', 'oload.tv', 'thevideo.me']
+        self.hosthqDict = ['openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com', 'raptu.com', 'filez.tv']
 
         self.hostblockDict = []
 

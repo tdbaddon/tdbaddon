@@ -51,7 +51,7 @@ THUMB_ENABLED = kodi.get_setting('thumb_enable') == 'true'
 GIF_ENABLED = kodi.get_setting('gif_enable') == 'true'
 ZIP_CACHE = 24
 OBJ_PERSON = 'person'
-IMAGE_PROXY = 'http://127.0.0.1:{port}?video_type={video_type}&trakt_id={trakt_id}&video_ids={video_ids}&image_type={image_type}'
+PROXY_TEMPLATE = 'http://127.0.0.1:{port}{action}'
 
 class Scraper(object):
     protocol = 'http://'
@@ -82,6 +82,7 @@ class Scraper(object):
             res_headers = dict(cached_headers)
         else:
             try:
+                headers['Accept-Encoding'] = 'gzip'
                 log_utils.log('+++Image Scraper Call: %s, header: %s, data: %s cache_limit: %s' % (url, headers, data, cache_limit), log_utils.LOGDEBUG)
                 request = urllib2.Request(url, data=data, headers=headers)
                 response = urllib2.urlopen(request)
@@ -91,6 +92,8 @@ class Scraper(object):
                     if not data: break
                     result += data
                 res_headers = dict(response.info().items())
+                if res_headers.get('content-encoding') == 'gzip':
+                    result = utils2.ungz(result)
                 db_connection.cache_url(url, result, data, res_header=res_headers)
             except (ssl.SSLError, socket.timeout) as e:
                 log_utils.log('Image Scraper Timeout: %s' % (url))
@@ -597,8 +600,9 @@ def get_person_images(video_ids, person, cached=True):
         ids = person['person']['ids']
         port = kodi.get_setting('proxy_port')
         video_ids = urllib.quote(json.dumps(video_ids))
-        image_url = IMAGE_PROXY.format(port=port, image_type='thumb', video_type=OBJ_PERSON, trakt_id=ids['trakt'], video_ids=video_ids)
-        image_url += '&name=%s&person_ids=%s' % (urllib.quote(person['person']['name']), urllib.quote(json.dumps(ids)))
+        params = {'image_type': 'thumb', 'video_type': OBJ_PERSON, 'trakt_id': ids['trakt'], 'video_ids': video_ids, 'name': person['person']['name'],
+                  'person_ids': json.dumps(ids)}
+        image_url = PROXY_TEMPLATE.format(port=port, action='') + '?' + urllib.urlencode(params)
         return {'thumb': image_url}
     else:
         return scrape_person_images(video_ids, person, cached)
@@ -634,19 +638,35 @@ def scrape_person_images(video_ids, person, cached=True):
             
     return person_art
 
+def clear_cache(video_type, video_ids, season='', episode='', ):
+    trakt_id = video_ids['trakt']
+    port = kodi.get_setting('proxy_port')
+    params = {'video_type': video_type, 'trakt_id': trakt_id, 'video_ids': video_ids}
+    if video_type == VIDEO_TYPES.SEASON or video_type == VIDEO_TYPES.EPISODE:
+        params['season'] = season
+    
+    if video_type == VIDEO_TYPES.EPISODE:
+        params['episode'] = episode
+        
+    url = PROXY_TEMPLATE.format(port=port, action='/clear') + '?' + urllib.urlencode(params)
+    try: res = urllib2.urlopen(url, timeout=0.5).read()
+    except: res = ''
+    return res == 'OK'
+
 def get_images(video_type, video_ids, season='', episode='', screenshots=False, cached=True, cache_only=False):
     if kodi.get_setting('proxy_enable') == 'true' and cached:
         port = kodi.get_setting('proxy_port')
         trakt_id = video_ids['trakt']
-        video_ids = urllib.quote(json.dumps(video_ids))
+        video_ids = json.dumps(video_ids)
         art_dict = {}
         for image_type in ['banner', 'fanart', 'thumb', 'poster', 'clearart', 'clearlogo']:
-            image_url = IMAGE_PROXY.format(port=port, image_type=image_type, video_type=urllib.quote(video_type), trakt_id=trakt_id, video_ids=video_ids)
+            params = {'image_type': image_type, 'video_type': video_type, 'trakt_id': trakt_id, 'video_ids': video_ids}
             if video_type == VIDEO_TYPES.SEASON or video_type == VIDEO_TYPES.EPISODE:
-                image_url += '&season=%s' % (season)
+                params['season'] = season
             
             if video_type == VIDEO_TYPES.EPISODE:
-                image_url += '&episode=%s' % (episode)
+                params['episode'] = episode
+            image_url = PROXY_TEMPLATE.format(port=port, action='') + '?' + urllib.urlencode(params)
             art_dict[image_type] = image_url
         return art_dict
     else:

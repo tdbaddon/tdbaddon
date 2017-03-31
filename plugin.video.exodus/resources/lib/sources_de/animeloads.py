@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,16 +16,20 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json
+import json
+import re
+import urllib
+import urlparse
 
+from resources.lib.modules import anilist
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
-from resources.lib.modules import anilist
-from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -40,11 +44,7 @@ class source:
             if not self.__is_anime('movie', 'imdb', imdb): return
 
             url = self.__search([title, localtitle, anilist.getAlternativTitle(title)], year)
-
-            if url:
-                url = {'url': url}
-                url = urllib.urlencode(url)
-                return url
+            return urllib.urlencode({'url': url}) if url else None
         except:
             return
 
@@ -53,17 +53,13 @@ class source:
             if not self.__is_anime('show', 'tvdb', tvdb): return
 
             url = self.__search([tvshowtitle, localtvshowtitle, tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name')], year)
-
-            if url:
-                url = {'url': url}
-                url = urllib.urlencode(url)
-                return url
+            return urllib.urlencode({'url': url}) if url else None
         except:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             episode = tvmaze.tvMaze().episodeAbsoluteNumber(tvdb, int(season), int(episode))
@@ -79,29 +75,29 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = data['url']
+            url = data.get('url')
             episode = int(data.get('episode', 1))
 
-            r = client.request(urlparse.urljoin(self.base_link, url), headers={'Accept-Encoding': 'gzip'})
-            r = client.parseDOM(r, 'div', attrs={'id': 'streams'})
+            r = client.request(urlparse.urljoin(self.base_link, url))
+            r = dom_parser.parse_dom(r, 'div', attrs={'id': 'streams'})
 
-            rels = client.parseDOM(r, 'ul', attrs={'class': '[^\'"]*nav[^\'"]*'})
-            rels = client.parseDOM(rels, 'li')
-            rels = [(client.parseDOM(i, 'a', attrs={'href': '#stream_\d*'}, ret='href'), client.parseDOM(i, 'a', attrs={'href': '#stream_\d*'})) for i in rels]
-            rels = [(re.findall('stream_(\d+)', i[0][0]), re.findall('flag-(\w{2})', i[1][0])) for i in rels if len(i[0]) > 0 and len(i[1]) > 0]
-            rels = [(i[0][0], ['subbed'] if i[1][0] != 'de' else []) for i in rels if len(i[0]) > 0 and 'de' in i[1]]
+            rels = dom_parser.parse_dom(r, 'ul', attrs={'class': 'nav'})
+            rels = dom_parser.parse_dom(rels, 'li')
+            rels = dom_parser.parse_dom(rels, 'a', attrs={'href': re.compile('#stream_\d*')}, req='href')
+            rels = [(re.findall('stream_(\d+)', i.attrs['href']), re.findall('flag-(\w{2})', i.content)) for i in rels if i]
+            rels = [(i[0][0], ['subbed'] if i[1][0] != 'de' else []) for i in rels if i[0] and 'de' in i[1]]
 
             for id, info in rels:
-                rel = client.parseDOM(r, 'div', attrs={'id': 'stream_%s' % id})
-                rel = [(client.parseDOM(i, 'div', attrs={'id': 'streams_episodes_%s' % id}), client.parseDOM(i, 'tr')) for i in rel]
-                rel = [(i[0][0], [x for x in i[1] if 'fa-desktop' in x]) for i in rel if len(i[0]) > 0 and len(i[1]) > 0]
-                rel = [(i[0], client.parseDOM(i[1][0], 'td')) for i in rel if len(i[1]) > 0]
-                rel = [(i[0], re.findall('\d{3,4}x(\d{3,4})$', i[1][0])) for i in rel if len(i[1]) > 0]
+                rel = dom_parser.parse_dom(r, 'div', attrs={'id': 'stream_%s' % id})
+                rel = [(dom_parser.parse_dom(i, 'div', attrs={'id': 'streams_episodes_%s' % id}), dom_parser.parse_dom(i, 'tr')) for i in rel]
+                rel = [(i[0][0].content, [x for x in i[1] if 'fa-desktop' in x.content]) for i in rel if i[0] and i[1]]
+                rel = [(i[0], dom_parser.parse_dom(i[1][0].content, 'td')) for i in rel if i[1]]
+                rel = [(i[0], re.findall('\d{3,4}x(\d{3,4})$', i[1][0].content)) for i in rel if i[1]]
                 rel = [(i[0], i[1][0],) for i in rel if len(i[1]) > 0]
 
                 links = [(x[0], '4K') for x in rel if int(x[1]) >= 2160]
@@ -112,9 +108,9 @@ class source:
 
                 for html, quality in links:
                     try:
-                        s = client.parseDOM(html, 'a', attrs={'href': '#streams_episodes_%s_\d+' % id})
-                        s = [(client.parseDOM(i, 'div', attrs={'data-loop': '\d+'}, ret='data-loop'), client.parseDOM(i, 'span')) for i in s]
-                        s = [(i[0][0], [x for x in i[1] if '<strong' in x]) for i in s if len(i[0]) > 0]
+                        s = dom_parser.parse_dom(html, 'a', attrs={'href': re.compile('#streams_episodes_%s_\d+' % id)})
+                        s = [(dom_parser.parse_dom(i, 'div', attrs={'data-loop': re.compile('\d+')}, req='data-loop'), dom_parser.parse_dom(i, 'span')) for i in s]
+                        s = [(i[0][0].attrs['data-loop'], [x.content for x in i[1] if '<strong' in x.content]) for i in s if i[0]]
                         s = [(i[0], re.findall('<.+?>(\d+)</.+?> (.+?)$', i[1][0])) for i in s if len(i[1]) > 0]
                         s = [(i[0], i[1][0]) for i in s if len(i[1]) > 0]
                         s = [(i[0], int(i[1][0]), re.findall('Episode (\d+):', i[1][1]), re.IGNORECASE) for i in s if len(i[1]) > 1]
@@ -122,11 +118,11 @@ class source:
                         s = [(i[0], i[2] if i[2] >= 0 else i[1]) for i in s]
                         s = [i[0] for i in s if i[1] == episode][0]
 
-                        enc = client.parseDOM(html, 'div', attrs={'id': 'streams_episodes_%s_%s' % (id, s)}, ret='data-enc')[0]
+                        enc = dom_parser.parse_dom(html, 'div', attrs={'id': re.compile('streams_episodes_%s_%s' % (id, s))}, req='data-enc')[0].attrs['data-enc']
 
-                        hosters = client.parseDOM(html, 'a', attrs={'href': '#streams_episodes_%s_%s' % (id, s)})
-                        hosters = [client.parseDOM(i, 'i', ret='class') for i in hosters]
-                        hosters = [re.findall('hoster-(\w+)', ' '.join(i)) for i in hosters if len(i) > 0][0]
+                        hosters = dom_parser.parse_dom(html, 'a', attrs={'href': re.compile('#streams_episodes_%s_%s' % (id, s))})
+                        hosters = [dom_parser.parse_dom(i, 'i', req='class') for i in hosters]
+                        hosters = [re.findall('hoster-(\w+)', ' '.join([x.attrs['class'] for x in i])) for i in hosters if i][0]
                         hosters = [re.sub('(co|to|net|pw|sx|tv|moe|ws|icon)$', '', i) for i in hosters]
                         hosters = [(source_utils.is_host_valid(i, hostDict), i) for i in hosters if i]
                         hosters = [(i[0][1], i[1]) for i in hosters if i[0] and i[0][0]]
@@ -153,18 +149,18 @@ class source:
 
             t = [cleantitle.get(i) for i in set(titles) if i]
 
-            r = client.request(query, headers={'Accept-Encoding': 'gzip'})
+            r = client.request(query)
 
-            r = client.parseDOM(r, 'div', attrs={'id': 'main'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'panel-body'})
-            r = [(client.parseDOM(i, 'h4', attrs={'class': 'title-list'}), client.parseDOM(i, 'a', attrs={'href': '[^\'"]+/year/[^\'"]+'})) for i in r]
-            r = [(client.parseDOM(i[0], 'a', ret='href'), client.parseDOM(i[0], 'a'), i[1][0] if len(i[1]) > 0 else '0') for i in r if len(i[0]) > 0]
-            r = [(i[0][0], i[1][0], re.sub('<.+?>|</.+?>', '', i[2])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'div', attrs={'id': 'main'})
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'panel-body'})
+            r = [(dom_parser.parse_dom(i.content, 'h4', attrs={'class': 'title-list'}), dom_parser.parse_dom(i.content, 'a', attrs={'href': re.compile('.*/year/.*')})) for i in r]
+            r = [(dom_parser.parse_dom(i[0][0].content, 'a', req='href'), i[1][0].content if i[1] else '0') for i in r if i[0]]
+            r = [(i[0][0].attrs['href'], i[0][0].content, re.sub('<.+?>|</.+?>', '', i[1])) for i in r if i[0] and i[1]]
             r = [(i[0], i[1], i[2].strip()) for i in r if i[2]]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) in t and i[2] == year][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

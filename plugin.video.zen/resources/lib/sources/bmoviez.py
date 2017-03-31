@@ -35,6 +35,7 @@ class source:
         self.domains = ['bestmovies.wz']
         self.base_link = 'http://www.best-moviez.ws'
         self.search_link = '/?s=%s+%s'
+        self.blacklist_zips = ['.zip', '.rar', '.jpeg', '.img', '.jpg', '.RAR', '.ZIP', '.png' , '.sub', '.srt']
 
 
     def movie(self, imdb, title, year):
@@ -125,8 +126,8 @@ class source:
 					match = re.compile('<a href="(.+?)">(.+?)</a>').findall(item)
 					for url,title in match:
 						myurl = str(url)
-						if any(value in myurl for value in hostprDict):
-								
+						if any(value in myurl.lower() for value in hostprDict):
+							if not any(value in myurl.lower() for value in self.blacklist_zips):	
 								url = client.replaceHTMLCodes(url)
 								url = url.encode('utf-8')															
 								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]

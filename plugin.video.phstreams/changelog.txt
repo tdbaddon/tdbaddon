@@ -1,2 +1,2 @@
-[B]3.2.3[/B]
-Updated providers
+[B]3.2.6[/B]
+Fixed Numeric Title Bug and repaired several sources

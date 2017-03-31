@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,14 +16,17 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cache
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -51,25 +54,26 @@ class source:
     def sources(self, url, hostDict, hostprDict):
         sources = []
         try:
-            if url == None: return sources
+            if not url:
+                return sources
 
             url = urlparse.urljoin(self.base_link, url)
 
             r = client.request(url)
             r = r.replace('\\"', '"')
 
-            links = client.parseDOM(r, 'tr', attrs={'id': 'tablemoviesindex2'})
+            links = dom_parser.parse_dom(r, 'tr', attrs={'id': 'tablemoviesindex2'})
 
             for i in links:
                 try:
-                    host = client.parseDOM(i, 'img', ret='alt')[0]
+                    host = dom_parser.parse_dom(i, 'img', req='alt')[0].attrs['alt']
                     host = host.split()[0].rsplit('.', 1)[0].strip().lower()
                     host = host.encode('utf-8')
 
                     valid, host = source_utils.is_host_valid(host, hostDict)
                     if not valid: continue
 
-                    url = client.parseDOM(i, 'a', ret='href')[0]
+                    url = dom_parser.parse_dom(i, 'a', req='href')[0].attrs['href']
                     url = client.replaceHTMLCodes(url)
                     url = urlparse.urljoin(self.base_link, url)
                     url = url.encode('utf-8')
@@ -108,13 +112,13 @@ class source:
 
             r = client.request(q)
 
-            r = client.parseDOM(r, 'TR', attrs={'id': 'coverPreview.+?'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'div', attrs={'style': '.+?'}), client.parseDOM(i, 'img', ret='src')) for i in r]
-            r = [(i[0][0].strip(), i[1][0].strip(), i[2], i[3]) for i in r if i[0] and i[1] and i[3]]
-            r = [(i[0], i[1], [x for x in i[2] if x.isdigit() and len(x) == 4], i[3]) for i in r]
+            r = dom_parser.parse_dom(r, 'tr', attrs={'id': re.compile('coverPreview.+?')})
+            r = [(dom_parser.parse_dom(i, 'a', req='href'), dom_parser.parse_dom(i, 'div', attrs={'style': re.compile('.+?')}), dom_parser.parse_dom(i, 'img', req='src')) for i in r]
+            r = [(i[0][0].attrs['href'].strip(), i[0][0].content.strip(), i[1], i[2]) for i in r if i[0] and i[2]]
+            r = [(i[0], i[1], [x.content for x in i[2] if x.content.isdigit() and len(x.content) == 4], i[3]) for i in r]
             r = [(i[0], i[1], i[2][0] if i[2] else '0', i[3]) for i in r]
-            r = [i for i in r if any('us_ger_' in x for x in i[3])]
-            r = [(i[0], i[1], i[2], [re.findall('(\d+)', x) for x in i[3] if 'smileys' in x]) for i in r]
+            r = [i for i in r if any('us_ger_' in x.attrs['src'] for x in i[3])]
+            r = [(i[0], i[1], i[2], [re.findall('(\d+)', x.attrs['src']) for x in i[3] if 'smileys' in x.attrs['src']]) for i in r]
             r = [(i[0], i[1], i[2], [x[0] for x in i[3] if x]) for i in r]
             r = [(i[0], i[1], i[2], int(i[3][0]) if i[3] else 0) for i in r]
             r = sorted(r, key=lambda x: x[3])[::-1]
@@ -140,9 +144,7 @@ class source:
                 except:
                     pass
 
-            url = urlparse.urljoin(self.base_link, url)
-
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -155,8 +157,8 @@ class source:
                 try:
                     url = 'http://%s' % domain
                     r = client.request(url, limit=1, timeout='10')
-                    r = client.parseDOM(r, 'meta', attrs={'name': 'author'}, ret='content')
-                    if r and 'movie4k.to' in r[0].lower():
+                    r = dom_parser.parse_dom(r, 'meta', attrs={'name': 'author'}, req='content')
+                    if r and 'movie4k.to' in r[0].attrs.get('content').lower():
                         return url
                 except:
                     pass

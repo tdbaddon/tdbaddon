@@ -19,13 +19,13 @@
 '''
 
 
-import os,sys,urlparse
+import os,sys,urlparse,base64
 
 from resources.lib.modules import control
 from resources.lib.modules import trakt
 inprogress_db = control.setting('inprogress_db')
 
-sysaddon = sys.argv[0]
+sysaddon = base64.b64decode('cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnplbi8=')
 
 syshandle = int(sys.argv[1])
 

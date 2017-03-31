@@ -24,9 +24,9 @@ import re,urllib,urlparse,json
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
-from schism_net import OPEN_URL, OPEN_CF
+from schism_net import OPEN_URL, OPEN_CF, get_sources, get_files
 from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
-
+from BeautifulSoup import BeautifulSoup
 
 class source:
     def __init__(self):
@@ -86,27 +86,87 @@ class source:
             sources = []
 
             if url == None: return sources
-
             r = client.request(url)
+            try:
+				s = re.compile('file"?:\s*"([^"]+)"').findall(r)
 
-            s = re.compile('file"?:\s*"([^"]+)"').findall(r)
+				for u in s:
+					try:
+						quality = google_tag(u)
+						
+						url = u.encode('utf-8')
+						if quality == 'ND': quality = "SD"
+						# if ".vtt" in url: raise Exception()
+						sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Chillflix', 'url': url, 'direct': True, 'debridonly': False})
 
-           
+					except:
+						pass
+            except:
+				pass
+				
+            try:
+				
+				r = BeautifulSoup(r)
+				
+				iframe = r.findAll('iframe')[0]['src'].encode('utf-8')
+				print ("CHILLFLIX IFRAME CHECK 2", iframe)
+				if "wp-embed.php" in iframe:
+					if iframe.startswith('//'): iframe = "http:" + iframe
+					
+					s = client.request(iframe)
+					print ("CHILLFLIX IFRAME CHECK 3", s)
+					s = get_sources(s)
+					
 
-            for u in s:
-                try:
-                    quality = google_tag(u)
-                    
-                    url = u.encode('utf-8')
-                    if quality == 'ND': quality = "SD"
-                    # if ".vtt" in url: raise Exception()
+					for u in s:
+						try:
+							files = get_files(u)
+							for url in files:
+								url = url.replace('\\','')
+								quality = google_tag(url)
+								
+								url = url.encode('utf-8')
+								if quality == 'ND': quality = "SD"
+								# if ".vtt" in url: raise Exception()
+								sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Chillflix', 'url': url, 'direct': True, 'debridonly': False})
+
+						except:
+							pass
+            except:
+				pass
+					
+			# try:
+				
+				# r = BeautifulSoup(r)
+				
+				# iframe = r.findAll('iframe')[0]['src'].encode('utf-8')
+				
+				# if "wp-embed.php" in iframe:
+					# if iframe.startswith('//'): iframe = "http:" + iframe
+
+					# s = client.request(iframe)
+					# s = get_sources(s)
+
+			   
+
+					# for u in s:
+						# try:
+							# files = get_files(u)
+							# for url in files:
+								# quality = google_tag(url)
+								
+								# url = url.encode('utf-8')
+								# if quality == 'ND': quality = "SD"
+								# # if ".vtt" in url: raise Exception()
 
 
-                   
-                    sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Chillflix', 'url': url, 'direct': True, 'debridonly': False})
+							   
+								# sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Chillflix', 'url': url, 'direct': True, 'debridonly': False})
 
-                except:
-                    pass
+						# except:
+							# pass
+			# except:
+				# pass
 
             return sources
         except:

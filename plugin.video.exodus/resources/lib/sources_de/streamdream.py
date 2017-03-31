@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,11 +16,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import client
+from resources.lib.modules import dom_parser
 from resources.lib.modules import source_utils
 
 
@@ -49,7 +52,7 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             data = urlparse.parse_qs(url)
@@ -63,27 +66,25 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = urlparse.urljoin(self.base_link, data['url'])
-            season = data['season'] if 'season' in data else False
-            episode = data['episode'] if 'episode' in data else False
+            url = urlparse.urljoin(self.base_link, data.get('url'))
+            season = data.get('season')
+            episode = data.get('episode')
 
             if season and episode:
-                r = {'imdbid': data['imdb'], 'language': 'de', 'season': season, 'episode': episode}
-                r = urllib.urlencode(r)
+                r = urllib.urlencode({'imdbid': data['imdb'], 'language': 'de', 'season': season, 'episode': episode})
                 r = client.request(urlparse.urljoin(self.base_link, self.hoster_link), XHR=True, post=r)
             else:
                 r = client.request(url)
 
-            r = client.parseDOM(r, 'div', attrs={'class': 'linkbox'})[0]
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'linkbox'})[0].content
             r = re.compile('(<a.+?/a>)', re.DOTALL).findall(r)
-            r = [(client.parseDOM(i, 'a', ret='href'),
-                  client.parseDOM(i, 'img', attrs={'class': '.*linkbutton'}, ret='class')) for i in r]
-            r = [(i[0][0], i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(dom_parser.parse_dom(i, 'a', req='href'), dom_parser.parse_dom(i, 'img', attrs={'class': re.compile('.*linkbutton')}, req='class')) for i in r]
+            r = [(i[0][0].attrs['href'], i[1][0].attrs['class'].lower()) for i in r if i[0] and i[1]]
             r = [(i[0].strip(), 'HD' if i[1].startswith('hd') else 'SD') for i in r]
 
             for url, quli in r:
@@ -102,8 +103,8 @@ class source:
     def __search(self, imdb):
         try:
             r = client.request(urlparse.urljoin(self.base_link, self.search_link % imdb))
-            r = client.parseDOM(r, 'a', ret='href')
-            r = [i for i in r if len(i[0]) > 0]
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [i.attrs['href'] for i in r if i]
 
             if len(r) > 1:
                 for i in r:
@@ -116,6 +117,7 @@ class source:
                 url = r[0]
 
             if url:
+                url = urlparse.urlparse(url).path
                 url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
                 return url

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,14 +16,18 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json
+import json
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -37,7 +41,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title, 'filme', year)
+            url = self.__search_movie(imdb, year)
+            if not url: url = self.__search(title, 'filme', year)
             if not url and title != localtitle: url = self.__search(localtitle, 'filme', year)
             return url
         except:
@@ -105,6 +110,25 @@ class source:
     def resolve(self, url):
         return url
 
+    def __search_movie(self, imdb, year, type='filme'):
+        try:
+            years = [str(year), str(int(year) + 1), str(int(year) - 1)]
+            years = ['&veroeffentlichung[]=%s' % i for i in years]
+
+            query = self.search_link % (type, imdb)
+            query += ''.join(years)
+            query = urlparse.urljoin(self.base_link, query)
+
+            r = self.__proceed_search(query)
+
+            if len(r) == 1:
+                url = urlparse.urlparse(r[0][0]).path
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+                return url
+        except:
+            return
+
     def __search(self, title, type, year, season=0, episode=False):
         try:
             years = [str(year), str(int(year) + 1), str(int(year) - 1)]
@@ -116,28 +140,33 @@ class source:
 
             t = cleantitle.get(title)
 
-            r = client.request(query)
-            r = client.parseDOM(r, 'div', attrs={'class': 'ml-items'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
-            r = [(client.parseDOM(i, 'a', attrs={'class': 'ml-name'}, ret='href'), client.parseDOM(i, 'a', attrs={'class': 'ml-name'})) for i in r]
-            r = [(i[0][0], re.sub('<.+?>|</.+?>', '', i[1][0]).strip()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0], i[1], re.findall('(.+?)\s+(?:staf+el|s)\s+(\d+)', i[1].lower())) for i in r]
-            r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+            r = self.__proceed_search(query)
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and int(i[2]) == int(season)][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             if episode:
                 r = client.request(urlparse.urljoin(self.base_link, url))
-                r = client.parseDOM(r, 'div', attrs={'class': 'season-list'})
-                r = client.parseDOM(r, 'li')
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if len(i[1]) > 0 and int(i[1][0]) == int(episode)]
+                r = dom_parser.parse_dom(r, 'div', attrs={'class': 'season-list'})
+                r = dom_parser.parse_dom(r, 'li')
+                r = dom_parser.parse_dom(r, 'a', req='href')
+                r = [i.attrs['href'] for i in r if i and int(i.content) == int(episode)][0]
 
-                url = re.findall('(?://.+?|)(/.+)', r[0][0])[0]
+                url = urlparse.urlparse(r).path
                 url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
             return url
         except:
             return
+
+    @staticmethod
+    def __proceed_search(query):
+        r = client.request(query)
+        r = dom_parser.parse_dom(r, 'div', attrs={'class': 'ml-items'})
+        r = dom_parser.parse_dom(r, 'div', attrs={'class': 'ml-item'})
+        r = dom_parser.parse_dom(r, 'a', attrs={'class': 'ml-name'}, req='href')
+        r = [(i.attrs['href'], re.sub('<.+?>|</.+?>', '', i.content).strip()) for i in r if i[0]]
+        r = [(i[0], i[1], re.findall('(.+?)\s+(?:staf+el|s)\s+(\d+)', i[1].lower())) for i in r]
+        r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+        return r

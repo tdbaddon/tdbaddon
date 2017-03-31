@@ -40,8 +40,9 @@ class source:
     def __init__(self):
         self.base_link = 'https://yesmovies.to'
         self.info_link = '/ajax/movie_info/%s.html'
-        self.episode_link = '/ajax/v3_movie_get_episodes/%s/%s/%s/%s.html'
+        self.episode_link = '/ajax/v4_movie_episodes/%s'
         self.playlist_link = '/ajax/v2_get_sources/%s.html?hash=%s'
+        #https://yesmovies.to/ajax/v4_movie_episodes/13115
 
 
     def get_movie(self, imdb, title, year):
@@ -159,6 +160,7 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
 
             vid_id = re.findall('-(\d+)', url)[-1]
+            print("VID",vid_id)
 
             '''
             quality = cache.get(self.ymovies_info, 9000, vid_id)[1].lower()
@@ -173,41 +175,57 @@ class source:
 
             ref = client.parseDOM(r, 'a', ret='href', attrs = {'class': 'mod-btn mod-btn-watch'})[0]
             ref = urlparse.urljoin(self.base_link, ref)
+            #print("VID-ref", ref)
 
             for i in range(3):
                 r = client.request(ref, referer=url)
                 if not r == None: break
+            print("VID-r", r)
 
             c = client.parseDOM(r, 'img', ret='src', attrs = {'class': 'hidden'})
+
             if c: cookie = client.request(c[0], referer=ref, output='cookie')
             else: cookie = ''
+            print("VID-c", cookie)
 
-            server = re.findall('server\s*:\s*"(.+?)"', r)[0]
 
-            type = re.findall('type\s*:\s*"(.+?)"', r)[0]
+            #server = re.findall('server\s*:\s*"(.+?)"', r)[0]
+            #print("VID-s", server)
 
-            episode_id = re.findall('episode_id\s*:\s*"(.+?)"', r)[0]
+            #type = re.findall('type\s*:\s*"(.+?)"', r)[0]
+            #print("VID-t", type)
 
-            r = self.episode_link % (vid_id, server, episode_id, type)
+            #episode_id = re.findall('episode_id\s*:\s*"(.+?)"', r)[0]
+
+            r = self.episode_link % (vid_id)
             u = urlparse.urljoin(self.base_link, r)
 
             for i in range(13):
                 r = client.request(u, referer=ref)
                 if not r == None: break
+            print("VID-r", r)
+            print json.loads(r)['html']
 
+
+            r = client.parseDOM(json.loads(r)['html'], 'div', attrs={'class':'pas-list'})[0]
             r = re.compile('(<li.+?/li>)', re.DOTALL).findall(r)
-            r = [(client.parseDOM(i, 'li', ret='onclick'), client.parseDOM(i, 'a', ret='title')) for i in r]
+            print("VID-r1", r)
+
+            r = [(client.parseDOM(i, 'li', ret='data-id'),client.parseDOM(i, 'li', ret='data-server'), client.parseDOM(i, 'a', ret='title')) for i in r]
+            print("VID-r2", r)
 
             if not episode == None:
-                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
-                r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
-                r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
+                r = [(i[0][0], i[1][0], i[2][0]) for i in r if i[0] and i[1]]
+                r = [(i[0],i[1], ''.join(re.findall('(\d+)', i[2])[:1])) for i in r]
+                r = [(i[0],i[1]) for i in r if '%01d' % int(i[2]) == episode]
             else:
-                r = [i[0][0] for i in r if i[0]]
+                r = [(i[0][0],i[1][0])  for i in r if i[0]]
+            print("VID-r3", r)
 
-            r = [re.findall('(\d+)', i) for i in r]
-            r = [i[:2] for i in r if len(i) > 1]
+            #r = [re.findall('(\d+)', i) for i in r]
+            #r = [i[:2] for i in r if len(i) > 1]
             r = [i[0] for i in r if 1 <= int(i[1]) <= 11][:3]
+            print("VID-r4", r)
 
             for u in r:
                 try:
@@ -237,7 +255,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            print("Error %s" % e)
             return sources
 
     def resolve(self, url):

@@ -173,7 +173,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             su = sucuri().get(result)
 
             headers['Cookie'] = su
-
+            print("ZEN SUCURI", headers)
             request = urllib2.Request(url, data=post, headers=headers)
 
             response = urllib2.urlopen(request, timeout=int(timeout))

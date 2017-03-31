@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,15 +16,20 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json, base64
+import base64
+import json
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import directstream
 from resources.lib.modules import control
+from resources.lib.modules import directstream
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -51,7 +56,7 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             return url + '/staffel-%s-episode-%s.html' % (season, episode)
@@ -74,9 +79,11 @@ class source:
             query = urlparse.urljoin(self.base_link, self.part_link)
             id = re.compile('var\s*video_id\s*=\s*"(\d+)"').findall(r)[0]
 
-            p = client.parseDOM(r, 'a', attrs={'class': 'changePart', 'data-part': '\d+p'}, ret='data-part')
+            p = dom_parser.parse_dom(r, 'a', attrs={'class': 'changePart', 'data-part': re.compile('\d+p')}, req='data-part')
 
             for i in p:
+                i = i.attrs['data-part']
+
                 p = urllib.urlencode({'video_id': id, 'part_name': i, 'page': '0'})
                 p = client.request(query, cookie=cookie, mobile=True, XHR=True, post=p, referer=url)
 
@@ -97,9 +104,9 @@ class source:
                         if s == 'url' and 'http' not in url:
                             url = self.__decode_hash(url)
                         elif s == 'other':
-                            url = client.parseDOM(url, 'iframe', ret='src')
+                            url = dom_parser.parse_dom(url, 'iframe', reg='src')
                             if len(url) < 1: continue
-                            url = url[0]
+                            url = url[0].attrs['src']
                             if '/old/seframer.php' in url: url = self.__get_old_url(url)
 
                         valid, host = source_utils.is_host_valid(url, hostDict)
@@ -146,7 +153,7 @@ class source:
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
 
-            url = re.findall('(?://.+?|)(/.+).html?', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             url = url.replace('serien/', '')
@@ -167,7 +174,7 @@ class source:
             url = re.findall('url="(.*?)"', r)
 
             if len(url) == 0:
-                url = client.parseDOM(r, 'iframe', ret='src')[0]
+                url = dom_parser.parse_dom(r, 'iframe', req='src')[0].attrs['src']
                 if "play/se.php" in url:
                     r = client.request(url, mobile=True)
                     return self.__decode_hash(re.findall('link:"(.*?)"', r)[0])

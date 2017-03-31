@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,13 +16,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 import re, urllib, urlparse, json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -52,7 +53,7 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             data = urlparse.parse_qs(url)
@@ -73,19 +74,19 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             query = urlparse.urljoin(self.base_link, url)
 
             r = client.request(query)
 
-            quality = client.parseDOM(r, 'span', attrs={'id': 'release_text'})[0].split('&nbsp;')[0]
+            quality = dom_parser.parse_dom(r, 'span', attrs={'id': 'release_text'})[0].content.split('&nbsp;')[0]
             quality, info = source_utils.get_release_quality(quality)
 
-            r = client.parseDOM(r, 'ul', attrs={'class': 'currentStreamLinks'})
-            r = [(client.parseDOM(i, 'p', attrs={'class': 'hostName'}), client.parseDOM(i, 'a', attrs={'class': '[^\'"]*stream-src[^\'"]*'}, ret='data-id')) for i in r]
-            r = [(re.sub(' hd$', '', i[0][0].lower()), i[1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'ul', attrs={'class': 'currentStreamLinks'})
+            r = [(dom_parser.parse_dom(i, 'p', attrs={'class': 'hostName'}), dom_parser.parse_dom(i, 'a', attrs={'class': 'stream-src'}, req='data-id')) for i in r]
+            r = [(re.sub(' hd$', '', i[0][0].content.lower()), [x.attrs['data-id'] for x in i[1]]) for i in r if i[0] and i[1]]
 
             for hoster, id in r:
                 valid, hoster = source_utils.is_host_valid(hoster, hostDict)
@@ -123,12 +124,12 @@ class source:
 
             r = client.request(query)
 
-            r = client.parseDOM(r, 'article')
-            r = [(client.parseDOM(i, 'a', attrs={'class': 'rb'}, ret='href'), client.parseDOM(i, 'a', attrs={'class': 'rb'})) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'article')
+            r = dom_parser.parse_dom(r, 'a', attrs={'class': 'rb'}, req='href')
+            r = [(i.attrs['href'], i.content) for i in r]
             r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

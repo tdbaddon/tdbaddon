@@ -114,21 +114,20 @@ def setView(content='movies', mode=503):
 #	xbmc.executebuiltin("Container.SetViewMode("+str(mode)+")")
 
 
-# ZULU live 
+# VIP TV methods
 
-def createZuluListing():
-	url='http://on.net.mk/zulu_tv.aspx'
+def createVipListing():
+	url = 'https://webtv.vip.mk'
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
-	link=response.read()
+	link = response.read()
 	response.close()
-	match=re.compile('<a href="(.+?)" > *?<img src="(.+?)" class="imgclassresponsive"').findall(link)
-	#for station, thumb in match:
-	#	print station, thumb
+	match = re.compile('<li class=".+?"><a href="(.+?)">(.+?)</a></li>').findall(link)
 	return match
 
-def playZuluStream(url, useproxy):
+
+def playVipStream(url, useproxy):
 
 	if useproxy == True:
 		if checkIsProxyEnabled() == False:
@@ -137,33 +136,42 @@ def playZuluStream(url, useproxy):
 			return
 
 	pDialog = xbmcgui.DialogProgress()
-	pDialog.create('Zulu Stream', 'Initializing')
-	pDialog.update(30, 'Fetching video stream')
-	req = urllib2.Request('http://on.net.mk/'+url)
+	pDialog.create('VipTV Stream', 'Initializing')
+	req = urllib2.Request('https://webtv.vip.mk/'+url)
 	req.add_header('User-Agent', user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	nextframe = re.compile('<iframe src="(.+?)"').findall(link)
-	pDialog.update(60, 'Fetching video stream')
-	if useproxy == True:
-		servername	= 'macedoniaondemand.com'
-		hostname	= 'on.net.mk'
-	else:
-		servername	= 'on.net.mk'
-		hostname	= 'on.net.mk'
-	req = urllib2.Request('http://'+servername+'/'+nextframe[0])
-	req.add_header('Host', hostname)
-	req.add_header('User-Agent', user_agent)
+	req.add_header('Accept', str_accept)
+	pDialog.update(30, 'Fetching video stream 30%')
 	response = urllib2.urlopen(req)
 	link = response.read()
 	response.close()
-	streammatch=re.compile('<video .+? src="(.+?)"').findall(link)
+
+	nextframematch = re.compile('src="players/(.+?)"').findall(link)
+
+	req = urllib2.Request('https://webtv.vip.mk/players/'+nextframematch[0])
+	req.add_header('User-Agent', user_agent)
+	req.add_header('Accept', str_accept)
+	pDialog.update(60, 'Fetching video stream 60%')
+	response = urllib2.urlopen(req)
+	link = response.read()
+
+	stream1match = match=re.compile('file: "(https|http)://(.+?)(:[0-9]+?|)/(.+?)"').findall(link)
+	if useproxy == True:
+		proxy=urllib2.ProxyHandler({'http':'macedoniaondemand.com'})
+		opener=urllib2.build_opener(proxy)
+		urllib2.install_opener(opener)
+
+	stream2 = 'http://'+stream1match[0][1]+'/'+stream1match[0][3]
+	req = urllib2.Request(stream2)
+	req.add_header('User-Agent', user_agent)
+	req.add_header('Accept', str_accept)
+	stream3 = urllib2.urlopen(req).geturl()
 	pDialog.update(80, 'Playing')
-	#playurl(streammatch[0].replace('_2/', '_1/'))
-	playurl(streammatch[0])
+	print "Playing "+stream3
+	playurl(stream3)
+	pDialog.close()
 
 	return True
+
 
 # Proxy methods
 
@@ -557,9 +565,16 @@ def list_mrtcategories(url):
 
 	return [list, nextpage]
 
-def list_mrtlive():
-	url = 'http://play.mrt.com.mk/'
-	req = urllib2.Request(url)
+def list_mrtlive(useproxy):
+	if useproxy == True:
+		servername	= 'macedoniaondemand.com'
+		hostname	= 'play.mrt.com.mk'
+	else:
+		servername	= 'play.mrt.com.mk'
+		hostname	= 'play.mrt.com.mk'
+
+	req = urllib2.Request('http://'+servername+'/')
+	req.add_header('Host', hostname)
 	req.add_header('User-Agent', user_agent)
 	response = urllib2.urlopen(req)
 	link=response.read()
@@ -1110,10 +1125,8 @@ def prvatv_playvideo(url):
 	link = response.read()
 	response.close()
 
-	start = link.find('class="mediaDescription"')
-
-	titlematch=re.compile("title: '(.+?)'").findall(link[start:])
-	videourlmatch=re.compile('src: "(.+?)"').findall(link[start:])
+	titlematch=re.compile("title: '(.+?)'").findall(link)
+	videourlmatch=re.compile('src: ("|\')(.+?)("|\')').findall(link)
 
 	if titlematch != []:
 		name = titlematch[0]
@@ -1121,7 +1134,7 @@ def prvatv_playvideo(url):
 	if videourlmatch == []:
 		return False
 
-	videourl=videourlmatch[0]
+	videourl=videourlmatch[0][1]
 	if videourl[0] == '/':
 		videourl='http://'+url.split('/')[2]+videourl
 
@@ -1369,7 +1382,7 @@ def PROCESS_PAGE(page,url='',name=''):
 
 	elif page == 'live_front':
 		addDir('telekabel.com.mk', 'live_telekabelmk', '', '')
-		addDir('zulu.mk', 'live_zulumk', '', '')
+		addDir('webtv.vip.mk', 'live_webtvvipmk', '', '')
 		addDir('мрт play', 'list_mrtlive', '', 'http://mrt.com.mk/sites/all/themes/mrt/logo.png')
 		#addDir('volim.tv', 'volimtv_front', '', 'http://www.volim.tv/images/banners/logo.png')
 		#addDir('serbiaplus (beta)', 'serbiaplus_front', '', '')
@@ -1381,7 +1394,7 @@ def PROCESS_PAGE(page,url='',name=''):
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 	elif page == 'tv_proxy_front':
-		addDir('zulu', 'live_zulumk_proxy', '', '')
+		addDir('webtv.vip.mk', 'live_webtvvipmk_proxy', '', '')
 		if checkIsProxyEnabled():
 			addDir('maxtv', 'live_maxtv_proxy', '', '')
 		addDir('mrt', 'list_mrtlive_proxy', '', '')
@@ -1440,31 +1453,29 @@ def PROCESS_PAGE(page,url='',name=''):
 	elif page == 'netraja_play_stream':
 		playNetrajaStream(url)
 
-	elif page.__contains__('live_zulumk'):
-		listing = createZuluListing()
-		#for station, thumb in match:
-		#	print station, thumb
-		if page == 'live_zulumk':
-			nextpage = 'playzulustream'
-		else:
-			nextpage = 'playzulustreamproxy'
+	elif page == 'live_webtvvipmk':
+		listing = createVipListing()
 
-		for station, thumb in listing:
-			addLink(station.split('/')[-1], station, nextpage, 'http://on.net.mk/'+thumb)
+		for u, name in listing:
+			addLink(name, u, 'playviptv_link', '')
+
 		setView('files', 500)
-		xbmc.executebuiltin("Container.SetViewMode(500)")
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-		if nextpage == 'playzulustreamproxy' and checkIsProxyEnabled() == False:
-			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
-			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+	elif page == 'live_webtvvipmk_proxy':
+		listing = createVipListing()
 
+		for u, name in listing:
+			addLink(name, u, 'playviptv_link_proxy', '')
 
-	elif page=='playzulustream':
-		playZuluStream(url, False)
+		setView('files', 500)
+		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-	elif page=='playzulustreamproxy':
-		playZuluStream(url, True)
+	elif page == 'playviptv_link':
+		playVipStream(url, False)
+
+	elif page == 'playviptv_link_proxy':
+		playVipStream(url, True)
 
 	elif page == 'live_maxtv_proxy':
 		if checkIsProxyEnabled() == False:
@@ -1606,17 +1617,25 @@ def PROCESS_PAGE(page,url='',name=''):
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-	elif page == 'list_mrtlive' or page == 'list_mrtlive_proxy':
-		listing = list_mrtlive()
-		if page == 'list_mrtlive':
-			nextpage = 'play_mrt_video'
-		else:
-			nextpage = 'play_mrt_video_proxy'
+	elif page == 'list_mrtlive':
+		listing = list_mrtlive(False)
 		for url,title,thumb in listing:
-			addLink(title, url, nextpage, thumb)
+			addLink(title, url, 'play_mrt_video', thumb)
 
 		setView()
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+	elif page == 'list_mrtlive_proxy':
+		if checkIsProxyEnabled() == False:
+			xbmcgui.Dialog().ok('Failed', 'Your account or IP address is not active in the proxy.',
+			'Visit http://macedoniaondemand.com from any device on same network to activate it.', 'No need to change any setting!')
+		else:
+			listing = list_mrtlive(True)
+			for url,title,thumb in listing:
+				addLink(title, url, 'play_mrt_video_proxy', thumb)
+
+			setView()
+			xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 	elif page == 'list_mrtcategories':
 		[listing, nextpage] = list_mrtcategories(url)

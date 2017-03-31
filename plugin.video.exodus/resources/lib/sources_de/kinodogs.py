@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,13 +16,16 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json
+import re
+import urllib
+import urlparse
 
-from resources.lib.modules import client
 from resources.lib.modules import cleantitle
+from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -49,19 +52,20 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             r = client.request(urlparse.urljoin(self.base_link, url))
-            r = client.parseDOM(r, 'table', attrs={'class': '[^\'"]*episodes[^\'"]*'})
-            r = client.parseDOM(r, 'tr', attrs={'class': '[^\'"]*episode season_%s[^\'"]*' % season})
-            r = client.parseDOM(r, 'span', attrs={'class': 'normal'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'b')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'table', attrs={'class': 'episodes'})
+            r = dom_parser.parse_dom(r, 'tr', attrs={'class': ['episode', 'season_%s' % season]})
+            r = dom_parser.parse_dom(r, 'span', attrs={'class': 'normal'})
+            r = [(dom_parser.parse_dom(i, 'a', req='href'), dom_parser.parse_dom(i, 'b')) for i in r]
+            r = [(i[0][0].attrs['href'], i[1][0].content) for i in r if i[0] and i[1]]
             r = [i[0] for i in r if i[1].upper() == 'E%s' % episode]
 
             if len(r) >= 1:
-                url = client.replaceHTMLCodes(r[0])
+                url = urlparse.urlparse(r[0]).path
+                url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
                 return url
         except:
@@ -71,16 +75,15 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             r = client.request(urlparse.urljoin(self.base_link, url))
-            r = client.parseDOM(r, 'table', attrs={'class': '[^\'"]*stream_links[^\'"]*'})
-            r = client.parseDOM(r, 'tr')
-            r = [(client.parseDOM(i, 'td'),
-                  client.parseDOM(i, 'td', attrs={'class': 'hide-for-small-only'})) for i in r]
-            r = [(client.parseDOM(i[0][0], 'a', ret='href'), i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0][0], i[1]) for i in r if len(i[0]) > 0]
+            r = dom_parser.parse_dom(r, 'table', attrs={'class': 'stream_links'})
+            r = dom_parser.parse_dom(r, 'tr')
+            r = [(dom_parser.parse_dom(i, 'td'), dom_parser.parse_dom(i, 'td', attrs={'class': 'hide-for-small-only'})) for i in r]
+            r = [(dom_parser.parse_dom(i[0][0], 'a', req='href'), i[1][0].content.lower()) for i in r if i[0] and i[1]]
+            r = [(i[0][0].attrs['href'], i[1]) for i in r if i[0]]
 
             for link, hoster in r:
                 valid, hoster = source_utils.is_host_valid(hoster, hostDict)
@@ -96,7 +99,7 @@ class source:
         try:
             if not url.startswith('http'):
                 url = urlparse.urljoin(self.base_link, url)
-                url = client.request(url, output='geturl', error=True)
+                url = client.request(url, output='geturl')
 
             if self.base_link not in url:
                 return url
@@ -115,10 +118,10 @@ class source:
 
             r = client.request(query)
 
-            r = client.parseDOM(r, 'div', attrs={'class': 'movie_cell'})
-            r = [(client.parseDOM(i, 'div', attrs={'class': 'bottom'}), client.parseDOM(i, 'div', attrs={'class': 'year'})) for i in r]
-            r = [(client.parseDOM(i[0], 'a', attrs={'title': ''}, ret='href'), client.parseDOM(i[0], 'a', attrs={'title': ''}), re.findall('[(](\d{4})[)]', i[1][0])) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'movie_cell'})
+            r = [(dom_parser.parse_dom(i, 'div', attrs={'class': 'bottom'}), dom_parser.parse_dom(i, 'div', attrs={'class': 'year'})) for i in r]
+            r = [(dom_parser.parse_dom(i[0], 'a', req=['href', 'title']), re.findall('[(](\d{4})[)]', i[1][0].content)) for i in r if i[0] and i[1]]
+            r = [(i[0][0].attrs['href'], i[0][0].content, i[1][0]) for i in r if i[0] and i[1]]
             r = [(i[0], i[1].lower(), i[2]) for i in r if i[2] in y]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
 
@@ -129,8 +132,8 @@ class source:
             if len(r) > 1:
                 for i in r:
                     data = client.request(urlparse.urljoin(self.base_link, i))
-                    data = client.parseDOM(data, 'a', attrs={'name': '[^\'"]+/tt\d+[^\'"]+'}, ret='name')
-                    data = [re.findall('.+?(tt\d+).*?', d) for d in data]
+                    data = dom_parser.parse_dom(data, 'a', attrs={'name': re.compile('.*/tt\d+.*')}, req='name')
+                    data = [re.findall('.+?(tt\d+).*?', d.attrs['name']) for d in data]
                     data = [d[0] for d in data if len(d) > 0 and d[0] == imdb]
 
                     if len(data) >= 1:
@@ -139,6 +142,7 @@ class source:
                 url = r[0]
 
             if url:
+                url = urlparse.urlparse(url).path
                 url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
                 return url

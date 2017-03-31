@@ -628,7 +628,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.29" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.30" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -1044,7 +1044,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.5" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.6" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1075,10 +1075,12 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Updated existing providers
-- Removed dead providers
-- Added Polish providers (homik)
-- Added imdb/tvdb-id to directory-items</news>
+		<news>- Updated existing providers (satanuke)
+- Tweaked French providers
+- Tweaked German providers
+- Added Korean providers (Martopotamus)
+- Fixed website-parser
+- Use gzip on requests</news>
 	</extension>
 </addon>
 
@@ -1099,7 +1101,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.fanfilm" name="FanFilm - MrKnow"  version="2017.03.18.1" provider-name="mrknow" >
+<addon id="plugin.video.fanfilm" name="FanFilm - MrKnow"  version="2017.03.30.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests"/>
@@ -1575,7 +1577,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.macedoniaondemand" name="Macedonia On Demand" version="2.4" provider-name="Viktor Mladenovski">
+<addon id="plugin.video.macedoniaondemand" name="Macedonia On Demand" version="2.5" provider-name="Viktor Mladenovski">
   <requires>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
@@ -1774,7 +1776,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
-       version="2017.03.20.1"
+       version="2017.03.29.2"
        provider-name="mrknow">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2012,7 +2014,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.2.3" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.2.6" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2037,7 +2039,7 @@ For DMCA Reports, please send message to our FB page.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Updated Providers</news>
+		<news>Fixed Numeric Title Bug and repaired several sources</news>
 	</extension>
 </addon>
 
@@ -2104,7 +2106,7 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.167" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.169" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2155,7 +2157,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.20.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.30.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -2518,7 +2520,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.2" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.3" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>
@@ -2576,7 +2578,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.23"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.24"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2860,7 +2862,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.4.6"
+       version="6.4.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2891,7 +2893,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.03.21" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.03.30" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2911,7 +2913,7 @@ Enjoy!</description>
 		<description lang="en">Watch Movies and TV Shows in High quality! Please note that this addon is not an official part of the Kodi media player , and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
-		<website>http://schism-tv.net</website>
+
 		<news>Update Providers - Added Ability to Display only watchlisted Shows in TV Calendar</news>
 		<assets>
 			<icon>icon.png</icon>
@@ -3037,18 +3039,18 @@ Enjoy!</description>
 </extension>
 </addon>
 
-<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.9.1" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR darkorange][B]The Community Repository[/B][/COLOR]" version="9.9.3" provider-name="@CommunityRepo">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 	</dir>
-	 <dir>
-	     <info compressed="false">http://simtech.net16.net/plugins/addons.xml</info>
-		 <checksum>http://simtech.net16.net/plugins/addons.xml.md5</checksum>
-		 <datadir zip="true">http://simtech.net16.net/plugins/</datadir>
-	</dir>
+	        <dir>
+            <info compressed="false">https://offshoregit.com/unofficialsportsdevil/addons.xml</info>
+            <checksum>https://offshoregit.com/unofficialsportsdevil/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/unofficialsportsdevil/</datadir>
+        </dir>
 		<info compressed="false">http://thecommunityrepo.netai.net/RepoPlugins/addons.xml</info>
 		<checksum>http://thecommunityrepo.netai.net/RepoPlugins/addons.xml.md5</checksum>
 		<datadir zip="true">http://thecommunityrepo.netai.net/RepoPlugins/</datadir>
@@ -3991,9 +3993,9 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.aftershock.core" name="aftershock-core" version="1.0.0" provider-name="AftershockPY">
+<addon id="script.aftershock.core" name="aftershock-core" version="1.0.1" provider-name="AftershockPY">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="xbmc.python" version="2.19.0"/>
   </requires>
   <extension point="xbmc.python.module" library="lib"/>
   <extension point="xbmc.addon.metadata">
@@ -4006,11 +4008,11 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.0" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.1" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
-		<import addon="plugin.video.aftershock" version="4.2.4" optional="true"/>
+		<!--<import addon="plugin.video.aftershock" version="4.2.4" optional="true"/>-->
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
             <provides>executable</provides>
@@ -4192,7 +4194,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.schism.common" name="SchisM Common Libraries" version="3.3.0" provider-name="SchisM">
+<addon id="script.module.schism.common" name="SchisM Common Libraries" version="2017.3.30" provider-name="SchisM">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.six" />
@@ -4284,7 +4286,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.18.3" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.03.30.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

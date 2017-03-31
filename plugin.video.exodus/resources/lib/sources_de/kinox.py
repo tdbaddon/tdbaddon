@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,13 +16,17 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, json
+import json
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cache
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -76,24 +80,23 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = urlparse.urljoin(self.base_link, data['url'])
-            season = data['season'] if 'season' in data else False
-            episode = data['episode'] if 'episode' in data else False
+            url = urlparse.urljoin(self.base_link, data.get('url'))
+            season = data.get('season')
+            episode = data.get('episode')
 
             r = client.request(url)
 
             if season and episode:
-                r = client.parseDOM(r, 'select', attrs={'id': 'SeasonSelection'}, ret='rel')[0]
-                r = client.replaceHTMLCodes(r)[1:]
+                r = dom_parser.parse_dom(r, 'select', attrs={'id': 'SeasonSelection'}, req='rel')[0]
+                r = client.replaceHTMLCodes(r.attrs['rel'])[1:]
                 r = urlparse.parse_qs(r)
                 r = dict([(i, r[i][0]) if r[i] else (i, '') for i in r])
                 r = urlparse.urljoin(self.base_link, self.get_links_epi % (r['Addr'], r['SeriesID'], season, episode))
                 r = client.request(r)
 
-            r = client.parseDOM(r, 'ul', attrs={'id': 'HosterList'})[0]
-            r = re.compile('(<li.+?/li>)', re.DOTALL).findall(r)
-            r = [(client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'}, ret='rel'), client.parseDOM(i, 'li', attrs={'id': 'Hoster_\d+'})) for i in r]
-            r = [(client.replaceHTMLCodes(i[0][0]), i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'ul', attrs={'id': 'HosterList'})[0]
+            r = dom_parser.parse_dom(r, 'li', attrs={'id': re.compile('Hoster_\d+')}, req='rel')
+            r = [(client.replaceHTMLCodes(i.attrs['rel']), i.content) for i in r if i[0] and i[1]]
             r = [(i[0], re.findall('class="Named"[^>]*>([^<]+).*?(\d+)/(\d+)', i[1])) for i in r]
             r = [(i[0], i[1][0][0].lower().rsplit('.', 1)[0], i[1][0][2]) for i in r if len(i[1]) > 0]
 
@@ -118,8 +121,8 @@ class source:
 
             r = client.request(url, referer=self.base_link)
             r = json.loads(r)['Stream']
-            r = [(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'iframe', ret='src'))]
-            r = [i[0][0] if len(i[0]) > 0 else i[1][0] for i in r if len(i[0]) > 0 or len(i[1]) > 0][0]
+            r = [(dom_parser.parse_dom(r, 'a', req='href'), dom_parser.parse_dom(r, 'iframe', req='src'))]
+            r = [i[0][0].attrs['href'] if i[0] else i[1][0].attrs['src'] for i in r if i[0] or i[1]][0]
 
             if not r.startswith('http'):
                 r = urlparse.parse_qs(r)
@@ -134,16 +137,16 @@ class source:
             l = ['1', '15']
 
             r = client.request(urlparse.urljoin(self.base_link, self.search_link % imdb))
-            r = client.parseDOM(r, 'table', attrs={'id': 'RsltTableStatic'})
-            r = client.parseDOM(r, 'tr')
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'img', attrs={'alt': 'language'}, ret='src')) for i in r]
-            r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            r = dom_parser.parse_dom(r, 'table', attrs={'id': 'RsltTableStatic'})
+            r = dom_parser.parse_dom(r, 'tr')
+            r = [(dom_parser.parse_dom(i, 'a', req='href'), dom_parser.parse_dom(i, 'img', attrs={'alt': 'language'}, req='src')) for i in r]
+            r = [(i[0][0].attrs['href'], i[0][0].content, i[1][0].attrs['src']) for i in r if i[0] and i[1]]
             r = [(i[0], i[1], re.findall('.+?(\d+)\.', i[2])) for i in r]
             r = [(i[0], i[1], i[2][0] if len(i[2]) > 0 else '0') for i in r]
             r = sorted(r, key=lambda i: int(i[2]))  # german > german/subbed
             r = [i[0] for i in r if i[2] in l][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
+            url = urlparse.urlparse(r).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -156,8 +159,8 @@ class source:
                 try:
                     url = 'http://%s' % domain
                     r = client.request(url, limit=1, timeout='10')
-                    r = client.parseDOM(r, 'meta', attrs={'name': 'keywords'}, ret='content')
-                    if r and 'kino.to' in r[0].lower():
+                    r = dom_parser.parse_dom(r, 'meta', attrs={'name': 'keywords'}, req='content')
+                    if r and 'kino.to' in r[0].attrs.get('content').lower():
                         return url
                 except:
                     pass

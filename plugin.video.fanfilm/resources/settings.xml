@@ -33,6 +33,9 @@
 		<setting id="cdaonline" type="bool" label="CdaOnline" default="true" />
 		<setting id="filmyto" type="bool" label="Filmyto" default="true" />
 		<setting id="segos" type="bool" label="Segos" default="true" />
+		<setting id="szukajkatv" type="bool" label="SzukajkaTV" default="true" />
+
+
 	</category>
 	<category label="30861">
 		<setting id="alltube_tv" type="bool" label="Alltube" default="true" />
@@ -40,6 +43,9 @@
 		<setting id="filmyto_tv" type="bool" label="Filmyto" default="true" />
 		<setting id="iitv_tv" type="bool" label="Iitv" default="true" />
 		<setting id="serialeonline_tv" type="bool" label="Serialeonline" default="true" />
+		<setting id="szukajkatv_tv" type="bool" label="SzukajkaTV" default="true" />
+
+
 	</category>
 	<category label="30870">
 		<setting id="hosthd50001" type="select" label="30881" values="-|180upload|Allvid|Clicknupload|Cloudyvideos|Dizibox|Dizimag|Sezonlukdizi|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Movie25|Mailru|Mightyupload|Moviefarsi|MovieTV|Mrfile|Muchmovies|MVsnap|Openload|Primeshare|Promptfile|Skyvids|Turbovideos|Tusfiles|Uploadc|Uploadrocket|Uptobox|V-vids|VK|Videomega|Vidlockers|Xfileload|YIFY|Zalaa|Zettahost|zStream" default="gvideo" />

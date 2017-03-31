@@ -450,7 +450,7 @@ class Trakt_API():
             else:
                 db_cache_limit = 8
         json_data = json.dumps(data) if data else None
-        headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': 2}
+        headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': 2, 'Accept-Encoding': 'gzip'}
         url = '%s%s%s' % (self.protocol, BASE_URL, url)
         if params: url += '?' + urllib.urlencode(params)
 
@@ -474,7 +474,10 @@ class Trakt_API():
                         data = response.read()
                         if not data: break
                         result += data
+
                     res_headers = dict(response.info().items())
+                    if res_headers.get('content-encoding') == 'gzip':
+                        result = utils2.ungz(result)
 
                     db_connection.cache_url(url, result, json_data, response.info().items())
                     break

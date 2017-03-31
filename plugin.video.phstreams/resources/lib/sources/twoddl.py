@@ -30,8 +30,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['2ddl.io', '2ddl.org', '2ddl.one']
-        self.base_link = 'http://2ddl.one'
+        self.domains = ['iiddl.com/']
+        self.base_link = 'http://iiddl.com'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -178,5 +178,4 @@ class source:
 
     def resolve(self, url):
         return url
-
 

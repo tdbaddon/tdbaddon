@@ -28,19 +28,20 @@ from resources.lib.modules import debrid
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
-
+# http://search.rlsbb.ru/lib/search526049.php?phrase=avengers+2016&pindex=1&content=true&rand=0.43580461427300077
 class source:
     def __init__(self):
         self.domains = ['rlsbb.com']
         self.base_link = 'http://rlsbb.ru'
         self.search_base_link = 'http://search.rlsbb.ru'
-        self.search_header_link = {'X-Requested-With': 'XMLHttpRequest', 'Cookie': 'serach_mode=rlsbb'}
-        self.search_link = '/lib/search.php?phrase=%s&pindex=1&content=true'
+        self.search_header_link = {'X-Requested-With': 'XMLHttpRequest', 'Cookie': 'serach_mode=light'}
+        self.search_link = '/lib/search526049.php?phrase=%s&pindex=1&content=true'
         self.search_link2 = '/search/%s'
 
 
     def movie(self, imdb, title, year):
         try:
+            if not debridstatus == 'true': raise Exception()
             self.zen_url = []
             query = cleantitle_query(title)
             cleanmovie = cleantitle_get(title)
@@ -94,6 +95,7 @@ class source:
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             self.zen_url = []
+            if not debridstatus == 'true': raise Exception()
             if url == None: return
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])

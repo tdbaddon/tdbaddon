@@ -17,7 +17,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import base64,cfscrape,re,random
+import base64,cfscrape,re,random,urlparse
 from incapsula import crack
 import requests
 User_Agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2"'
@@ -56,7 +56,8 @@ class sucuri:
 
 
 def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None, output=None, XHR=False):
-        if timeout == None: timeout= '30'	
+        # print ("SCHISM NET TIMEOUT", int(timeout))
+        if timeout == None: timeout = 30	
         if headers == None:
 
                 headers = {}
@@ -80,8 +81,14 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
         if XHR == True:
 			print ("REQUESTING WITH XMLHttpRequest")
 			headers['X-Requested-With'] = 'XMLHttpRequest'
-
-        link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+			
+        if not 'Accept-Language' in headers:
+            headers['Accept-Language'] = 'en-US'
+			
+        if 'referer' in headers or 'Referer' in headers: pass
+        else: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+			
+        link = session.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         response_code = link.status_code
         print ("RESPONSE CODE", response_code)
         try: resp_header = link.headers['Server']
@@ -100,11 +107,7 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
                         print ("DETECTED SUCURI", url)
                         su = sucuri().get(link.content)
                         headers['Cookie'] = su
-
-                        if not url[-1] == '/':
-                                url = '%s/' %url
-
-                        link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+                        link = session.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         except:
                 pass
 
@@ -180,3 +183,25 @@ def random_agent():
                                   br_ver=random.choice(BR_VERS[index]))
 
 
+								  
+								  
+								  
+# ======================================= GET SOURCES BLOCKS ========================================
+
+
+
+def get_sources(txt):
+	sources = re.compile('sources\s*:\s*\[(.+?)\]').findall(txt)
+	return sources
+	
+def get_sources_content(txt):
+	sources = re.compile('\{(.+?)\}').findall(txt)
+	return sources
+	
+def get_files(txt):
+	files = re.compile('''['"]?file['"]?\s*:\s*['"]([^'"]*)''').findall(txt)
+	return files
+	
+	
+	
+# match = re.findall('''['"]?file['"]?\s*:\s*['"]([^'"]*)''', x) GET FILES

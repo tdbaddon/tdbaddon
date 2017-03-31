@@ -183,30 +183,36 @@ def CCATEGORIES():
         addDir('9Cartoon - Search','http://9cartoon.me/Search?s=',8,cartoon,fanart)
 
 def ACATEGORIES():
-        addDir('GogoAnime - Latest Update','http://gogoanime.ch/AnimeList/LatestUpdate',12,anime,fanart)
-        addDir('GogoAnime - New & Hot','http://gogoanime.ch/AnimeList/NewAndHot?page=1',1,anime,fanart)
-	addDir('GogoAnime - New Added','http://gogoanime.ch/AnimeList/New?page=1',1,anime,fanart)
-	addDir('GogoAnime - Popular','http://gogoanime.ch/AnimeList/MostViewed?page=1',1,anime,fanart)
-	addDir('GogoAnime - A - Z','http://gogoanime.ch/AnimeList',5,anime,fanart)
-	addDir('GogoAnime - Genres','http://gogoanime.ch/',6,anime,fanart)
-        addDir('GogoAnime - Search','http://gogoanime.ch/Search?s=',8,anime,fanart)
+        #addDir('GogoAnime - Latest Update','http://chiaanime.co/AnimeList/LatestUpdate',12,anime,fanart)
+        addDir('GogoAnime - New & Hot','http://chiaanime.co/AnimeList/NewAndHot?page=1',1,anime,fanart)
+	addDir('GogoAnime - New Added','http://chiaanime.co/AnimeList/New?page=1',1,anime,fanart)
+	addDir('GogoAnime - Popular','http://chiaanime.co/AnimeList/MostViewed?page=1',1,anime,fanart)
+	addDir('GogoAnime - A - Z','http://chiaanime.co/AnimeList',5,anime,fanart)
+	addDir('GogoAnime - Genres','http://chiaanime.co/',6,anime,fanart)
+        addDir('GogoAnime - Search','http://chiaanime.co/Search?s=',8,anime,fanart)
 
 def LATESTUPDATE(url):
         link = open_url(url)
         link = link.replace("'",'"')
-        match=re.compile('<li title="<div class="thumnail_tool">(.+?)color:',re.DOTALL).findall(link)
+        match=re.compile('<li title="<div class="thumnail_tool">(.+?)</li>',re.DOTALL).findall(link)
         for data in match:
+                ep=''
                 url=re.compile('<a href="(.+?)" title').findall(data)[0]
                 name=re.compile('title="(.+?)">').findall(data)[0]
+                try:ep=re.compile('#FF4429">(.+?)</span>').findall(data)[0]
+                except:pass        
                 iconimage=re.compile('<img src="(.+?)"').findall(data)[0]
                 iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
-                addLink(name,url,100,iconimage,iconimage)
+                addLink(name+ep,url,100,iconimage,iconimage)
 
 def GETMOVIES(url,name):
         link = open_url(url)
-        link = link.replace("'",'"')
-        match=re.compile('<li title="<div class="thumnail_tool"><img src="(.+?)" onerror="this.className=`hide`"></div><div style="float: left; width: 300px"><a class="bigChar" href="(.+?)">(.+?)</a>').findall(link)
-        for iconimage, murl, name in match:
+        link = link.replace("'",'"').replace('\n','').replace('\t','').replace('  ','')
+        items=re.compile('<li title=(.+?)</li>',re.DOTALL).findall(link)
+        for item in items:
+                iconimage=re.compile('<img src="(.+?)"').findall(item)[0]
+                murl=re.compile('bigChar" href="(.+?)">').findall(item)[0]
+                name=re.compile('bigChar" href=".+?">(.+?)</a>').findall(item)[0]
                 iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 name = cleanHex(name)
                 addDir(name,murl,2,iconimage,iconimage)
@@ -224,11 +230,9 @@ def GETEPISODES(url,name,iconimage):
         match=re.compile('<ul id="episode_related">(.+?)</ul></div>').findall(link)[0]      
         match=re.compile('<a href="(.+?)">(.+?)</a>').findall(match)
         match=list(reversed(match))
-        print len(match)
         for url, name2 in match:
                 if len(match)==1:
                         url=GETPLAYLINK(name,url,iconimage)
-                        print url
                         PLAYLINK(name,url,iconimage)
                 else:
                         name = cleanHex(name)
@@ -246,8 +250,10 @@ def SEARCH(url):
 def GETGENRES(url,iconimage):
         link = open_url(url)
         match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)
+        if not 'genre' in url or not 'Genre' in match:
+                match=re.compile('<a href="(.+?)">(.+?)</a>,').findall(link)[:9]    
         for url, name in match:
-                if 'genre' in url:
+                if 'genre' in url or 'Genre' in url:
                         url=url+'?page=1'
                         addDir(name,url,7,iconimage,iconimage)
                         
@@ -255,9 +261,18 @@ def GETGENREMOVIES(url):
 	url2=url
         link = open_url(url)        
         match=re.compile('<img src="(.+?)">.+?<a href="(.+?)" title="(.+?)">',re.DOTALL).findall(link)[3:]
-        for iconimage, url, name  in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
-                addDir(name,url,2,iconimage,iconimage)
+        if len(match)==0:
+                items=re.compile('<div class="last_episodes_items">(.+?)<div class="left sub">',re.DOTALL).findall(link)
+                for data in items:
+                        url=re.compile('<a href="(.+?)" title').findall(data)[0]
+                        name=re.compile('title="(.+?)">').findall(data)[0]
+                        iconimage=re.compile("url\('(.+?)'").findall(data)[0]
+                        iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
+                        addDir(name,url,2,iconimage,iconimage)     
+        else:
+                for iconimage, url, name  in match:
+                        iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
+                        addDir(name,url,2,iconimage,iconimage)
 	try:
                 pagenum = url2.split('?page=')[1]
                 genre = url2.split('?page=')[0]
@@ -270,7 +285,12 @@ def GETGENREMOVIES(url):
 def GETFULL(url,name):
         link = open_url(url)
         match=re.compile('<li class="first-char"><a  href="(.+?)">(.+?)</a></li>').findall(link)
+        if len(match)==0:
+                link = link.replace('\n','').replace('  ','').replace('\t','').replace('\r','')
+                match=re.compile('<li class="first-char"><a href="(.+?)" class="">(.+?)</a></li>').findall(link)
         for url, name in match:
+                if not 'http' in url:
+                        url='http://chiaanime.co/AnimeList' +url
                 url=url+'&page=1'
                 addDir(name,url,11,iconimage,iconimage)
               
@@ -293,7 +313,6 @@ def AZ(url,name):
 def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
         referer=url
-        print link
         holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)[0]
         link = open_url(holderpage)
         if 'googlevideo.com' in link:#GOOGLE
@@ -388,8 +407,6 @@ def open_url(url):
                 link = net.http_GET(url).content
                 link = cleanHex(link)
                 return link
-
-
 	
 def cleanHex(text):
     def fixup(m):

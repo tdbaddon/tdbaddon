@@ -33,7 +33,7 @@ class source:
         self.language = ['en']
         self.domains = ['dizigold.net', 'dizigold.org']
         self.base_link = 'http://www.dizigold.org'
-        self.player_link = 'http://player.dizigold.org/?id=%s&s=1&dil=or'
+        self.player_link = 'http://player.dizigold.org/?id=%s&s=1&dil=%s'
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
@@ -81,43 +81,45 @@ class source:
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
+            base_url = urlparse.urljoin(self.base_link, url)
 
-            result = client.request(url)
-            result = re.compile('var\s*view_id\s*=\s*"(\d*)"').findall(result)[0]
+            result = client.request(base_url)
+            id = re.compile('var\s*view_id\s*=\s*"(\d*)"').findall(result)[0]
 
-            query = self.player_link % result
 
-            result = client.request(query, headers={'Referer': url})
+            for dil in ['tr', 'or']:
+                query = self.player_link % (id, dil)
 
-            try:
-                url = client.parseDOM(result, 'iframe', ret='src')[-1]
+                result = client.request(query, referer=base_url)
 
-                if 'openload' in url:
-                    host = 'openload.co' ; direct = False ; url = [{'url': url, 'quality': 'HD'}]
+                try:
+                    url = client.parseDOM(result, 'iframe', ret='src')[-1]
 
-                elif 'ok.ru' in url:
-                    host = 'vk' ; direct = True ; url = directstream.odnoklassniki(url)
+                    if 'openload' in url:
+                        host = 'openload.co' ; direct = False ; url = [{'url': url, 'quality': 'HD'}]
 
-                elif 'vk.com' in url:
-                    host = 'vk' ; direct = True ; url = directstream.vk(url)
+                    elif 'ok.ru' in url:
+                        host = 'vk' ; direct = True ; url = directstream.odnoklassniki(url)
 
-                else: raise Exception()
+                    elif 'vk.com' in url:
+                        host = 'vk' ; direct = True ; url = directstream.vk(url)
 
-                for i in url: sources.append({'source': host, 'quality': i['quality'], 'language': 'en', 'url': i['url'], 'direct': direct, 'debridonly': False})
-            except:
-                pass
+                    else: raise Exception()
 
-            try:
-                url = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
+                    for i in url: sources.append({'source': host, 'quality': i['quality'], 'language': 'en', 'url': i['url'], 'direct': direct, 'debridonly': False})
+                except:
+                    pass
 
-                links = [(i[0], '1080p') for i in url if int(i[1]) >= 1080]
-                links += [(i[0], 'HD') for i in url if 720 <= int(i[1]) < 1080]
-                links += [(i[0], 'SD') for i in url if 480 <= int(i[1]) < 720]
+                try:
+                    url = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
 
-                for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
-            except:
-                pass
+                    links = [(i[0], '1080p') for i in url if int(i[1]) >= 1080]
+                    links += [(i[0], 'HD') for i in url if 720 <= int(i[1]) < 1080]
+                    links += [(i[0], 'SD') for i in url if 480 <= int(i[1]) < 720]
+
+                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
+                except:
+                    pass
 
             return sources
         except:

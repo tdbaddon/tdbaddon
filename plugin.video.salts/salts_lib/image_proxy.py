@@ -83,14 +83,22 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     LOG_FILE = kodi.translate_path(os.path.join(kodi.get_profile(), 'proxy.log'))
     try: log_fd = open(LOG_FILE, 'w')
     except: log_fd = None
-    base_req = ['image_type', 'trakt_id', 'video_ids']
-    required = {
-        'Movie': base_req,
-        'TV Show': base_req,
+    ping_required = {}
+
+    base_req = ['video_type', 'trakt_id', 'video_ids']
+    clear_required = {
+        '': base_req,
+        'Season': base_req + ['season'],
+        'Episode': base_req + ['season', 'episode'],
+    }
+    base_req = base_req[:] + ['image_type']
+    image_required = {
+        '': base_req,
         'Season': base_req + ['season'],
         'Episode': base_req + ['season', 'episode'],
         'person': base_req + ['name', 'person_ids']
     }
+    required = {'/ping': ping_required, '/': image_required, '/clear': clear_required}
     
     def _set_headers(self, code=200):
         self.send_response(code)
@@ -113,56 +121,74 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     
     def do_GET(self):
         try:
-            if self.path == '/ping':
+            action, fields = self.__validate(self.path)
+            if action == '/ping':
                 self._set_headers()
                 self.wfile.write('OK')
+                return
             else:
-                fields = self.__validate(self.parse_query(self.path))
                 key = (fields['video_type'], fields['trakt_id'], fields.get('season', ''), fields.get('episode', ''))
-                if key in self.proxy_cache:
-                    images = self.proxy_cache[key]
+                if action == '/clear':
+                    if key in self.proxy_cache:
+                        del self.proxy_cache[key]
+                    self._set_headers()
+                    self.wfile.write('OK')
+                    return
                 else:
-                    video_ids = json.loads(fields['video_ids'])
-                    if fields['video_type'] == image_scraper.OBJ_PERSON:
-                        person_ids = json.loads(fields['person_ids'])
-                        person = {'person': {'name': fields['name'], 'ids': person_ids}}
-                        images = image_scraper.scrape_person_images(video_ids, person)
+                    if key in self.proxy_cache:
+                        images = self.proxy_cache[key]
                     else:
-                        images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''), screenshots=True)
-                    self.proxy_cache[key] = images
+                        video_ids = json.loads(fields['video_ids'])
+                        if fields['video_type'] == image_scraper.OBJ_PERSON:
+                            person_ids = json.loads(fields['person_ids'])
+                            person = {'person': {'name': fields['name'], 'ids': person_ids}}
+                            images = image_scraper.scrape_person_images(video_ids, person)
+                        else:
+                            images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''), screenshots=True)
+                        self.proxy_cache[key] = images
                     
-                image_url = images[fields['image_type']]
-                if image_url is None:
-                    self._set_headers()
-                elif image_url.startswith('http'):
-                    self.__redirect(image_url)
-                else:
-                    self._set_headers()
-                    with open(image_url) as f:
-                        self.wfile.write(f.read())
+                    image_url = images[fields['image_type']]
+                    if image_url is None:
+                        self._set_headers()
+                    elif image_url.startswith('http'):
+                        self.__redirect(image_url)
+                    else:
+                        self._set_headers()
+                        with open(image_url) as f:
+                            self.wfile.write(f.read())
         except ValidationError as e:
             self.__send_error(e)
     
-    def __validate(self, params):
-        if 'video_type' not in params:
-            raise ValidationError('Missing Video Type')
+    def __validate(self, path):
+        action = path.split('?')[0]
+        params = self.parse_query(path)
+
+        if action not in self.required:
+            raise ValidationError('Unrecognized Action: %s' % (action))
         
-        video_type = params['video_type']
-        if video_type not in self.required:
-            raise ValidationError('Unrecognized Video Type')
+        if '' in self.required[action]:
+            required = self.required[action][''][:]
+            for key in self.required[action]['']:
+                if key in params: required.remove(key)
         
-        required = self.required[video_type][:]
-        for key in self.required[video_type]:
-            if key in params: required.remove(key)
+            if required:
+                raise ValidationError('Missing Base Parameters: %s' % (', '.join(required)))
         
-        if required:
-            raise ValidationError('Missing Parameters: %s' % (', '.join(required)))
+        if 'video_type' in params:
+            video_type = params['video_type']
+            if video_type in self.required[action]:
+                required = self.required[action][video_type][:]
+                for key in self.required[action][video_type]:
+                    if key in params: required.remove(key)
         
-        return params
+                if required:
+                    raise ValidationError('Missing Sub Parameters: %s' % (', '.join(required)))
+        
+        return action, params
     
     def __send_error(self, msg):
         self.send_error(400, str(msg))
-
+    
     @staticmethod
     def parse_query(path):
         q = {}

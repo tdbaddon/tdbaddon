@@ -65,13 +65,16 @@ class Scraper(scraper.Scraper):
             for _attrs, row in dom_parser2.parse_dom(table, 'tr'):
                 td = dom_parser2.parse_dom(row, 'td')
                 stream_url = dom_parser2.parse_dom(row, 'a', req='href')
-                if td and stream_url:
-                    host = td[0].content
-                    host = re.sub('<!--.*?-->', '', host)
-                    stream_url = stream_url[0].attrs['href']
-                    quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
-                    hosters.append(hoster)
+                if not td or not stream_url: continue
+                
+                host = td[0].content
+                host = re.sub('<!--.*?-->', '', host)
+                host = re.sub('<([^\s]+)[^>]*>.*?</\\1>', '', host)
+                host = host.strip()
+                stream_url = stream_url[0].attrs['href']
+                quality = scraper_utils.get_quality(video, host, QUALITIES.HIGH)
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                hosters.append(hoster)
         return hosters
 
     def _get_episode_url(self, show_url, video):

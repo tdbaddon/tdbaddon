@@ -21,8 +21,10 @@ from resources.lib.modules import client
 from resources.lib.modules import directstream
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules.common import  random_agent, quality_tag
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
+from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes , get_size
+from schism_titles import cleantitle_get, cleantitle_get_2, cleantitle_get_full, cleantitle_geturl, cleantitle_get_simple, cleantitle_query, cleantitle_normalize
 
+from schism_net import OPEN_URL
 class source:
 	def __init__(self):
 		self.base_link = 'http://www.tvsolarmovie.com'
@@ -34,8 +36,7 @@ class source:
 		try:
 			headers = {'User-Agent': random_agent()}
 			
-			title = cleantitle.getsearch(title)
-			title = title.replace(' ','-')
+			title = cleantitle_geturl(title)
 			title = title + "-" + year
 			query = self.movie_link % title
 			u = urlparse.urljoin(self.base_link, query)
@@ -62,8 +63,7 @@ class source:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 			data['season'], data['episode'] = season, episode
 			self.zen_url = []
-			title = cleantitle.getsearch(title)
-			title = title.replace(' ','-')
+			title = cleantitle_geturl(title)
 			query = title + "-season-" + season + "-episode-" + episode
 			query= self.ep_link % query
 			# print("SOLAR query", query)
@@ -77,16 +77,15 @@ class source:
 	def sources(self, url, hostDict, hostprDict):
 		sources = []
 		try:
-			headers = {'User-Agent': random_agent()}
+			
 			for url in self.zen_url:
 				if url == None: return
 				
-				html = requests.get(url, headers=headers, timeout=10).text
-				
+				html = OPEN_URL(url).content
 				match = re.compile('<a href="[^"]+go.php\?url=([^"]+)" target="_blank">').findall(html)
 				for url in match:
 					try:
-						# print("SOLAR SOURCE", url)
+						
 						host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
 						host = host.encode('utf-8')			
 						if not host in hostDict: raise Exception()

@@ -26,13 +26,12 @@ def retrieveVideoInfo(video_id):
         paramSet = re.compile("return p\}\(\'(.+?)\',(\d+),(\d+),\'(.+?)\'").findall(html)
         if len(paramSet) > 0:
             video_info_link = encoders.parse_packed_value(paramSet[0][0], int(paramSet[0][1]), int(paramSet[0][2]), paramSet[0][3].split('|')).replace('\\', '').replace('"', '\'')
-            
             img_data = re.compile(r"image:\'(.+?)\'").findall(video_info_link)
             if len(img_data) == 1:
                 video.set_thumb_image(img_data[0])
-            video_link = re.compile(r"file:\'(.+?)\'").findall(video_info_link)[1]
+            video_link = 'http' + re.compile("file\:\'http(.+?)m3u8\'").findall(video_info_link)[0] + 'm3u8'
             if len(video_link) == 0:
-                video_link = re.compile(r"file:\'(.+?)\'").findall(video_info_link)[0]
+                video_link = 'http' + re.compile("file\:\'http(.+?)mp4\'").findall(video_info_link)[0] + 'mp4'
         else:
             html = html.replace(' ', '')
             html = html.replace('\'', '"')
@@ -44,7 +43,7 @@ def retrieveVideoInfo(video_id):
             video.set_thumb_image(img_link)
         video.set_stopped(False)
         video.add_stream_link(STREAM_QUAL_SD, video_link)
-        
+
     except: 
         video.set_stopped(True)
     return video
