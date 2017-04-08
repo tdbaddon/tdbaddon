@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
+from schism_net import OPEN_URL
 from resources.lib.modules import trakt
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cleangenre
@@ -70,25 +70,23 @@ class tvshows:
         self.tvdb_by_query = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s'
         self.imdb_by_query = 'http://www.omdbapi.com/?i=%s'
         self.tvdb_image = 'http://thetvdb.com/banners/'
-
+        self.tmdb_by_query_imdb = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ("%s", self.tmdb_key)
+		
         self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
         self.personlist_link = 'http://www.imdb.com/search/name?count=100&gender=male,female'
-
         self.popular_link = 'http://api.themoviedb.org/3/tv/popular?api_key=%s&page=1' % self.tmdb_key
         self.featured_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&vote_count.gte=100&sort_by=first_air_date.desc&page=1'  % (self.tmdb_key)
         self.genres_link = 'http://api.themoviedb.org/3/genre/tv/list?api_key=%s&language=en' % self.tmdb_key
         self.genre_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&with_genres=%s&first_air_date.gte=date[365]&first_air_date.lte=date[0]&page=1'
-        
         self.airing_link = 'http://api.themoviedb.org/3/tv/airing_today?api_key=%s&page=1' % self.tmdb_key
         self.premiere_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&first_air_date.gte=%s&first_air_date.lte=%s&page=1' % (self.tmdb_key, self.year_date, self.today_date)
         self.active_link = 'http://api.themoviedb.org/3/tv/on_the_air?api_key=%s&page=1' % self.tmdb_key
         self.rating_link = 'http://api.themoviedb.org/3/tv/top_rated?api_key=%s&page=1' % self.tmdb_key
         self.views_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&vote_count.gte=100&sort_by=vote_average.desc&page=1' % self.tmdb_key
-
         self.person_link = 'http://api.themoviedb.org/3/person/%s?api_key=%s&append_to_response=tv_credits'
-
         self.network_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&with_networks=%s&page=1' % (self.tmdb_key, '%s')
         self.year_link = 'http://api.themoviedb.org/3/discover/movie?&api_key=%s&year=%s&primary_release_date.lte=date[0]&page=1'
+
 
 
         self.tmdbtvlist1_link = control.setting('tmdb.tvlist_id1')		
@@ -139,6 +137,117 @@ class tvshows:
             return self.list
         except:
             pass
+			
+			
+    def similar_shows(self, imdb):
+		print("ZEN SIMILAR Shows", imdb)
+		url = '%s?action=get_similar_shows&imdb=%s' % (sys.argv[0], imdb)
+		control.execute('Container.Update(%s)' % url)
+
+	
+			
+    def get_similar_shows(self, imdb):
+				self.list = []
+				try:
+					imdb_page = "http://www.imdb.com/title/%s/" % imdb
+					r = OPEN_URL(imdb_page).content
+					r = client.parseDOM(r, 'div', attrs = {'class': 'rec_item'})[:20]
+				except:
+					return
+				for u in r:
+						
+						imdb = client.parseDOM(u, 'a', ret='href')[0]
+						imdb = imdb.encode('utf-8')
+						imdb = re.findall('/tt(\d+)/', imdb)[0]
+						imdb = imdb.encode('utf-8')
+						if imdb == '0' or imdb == None or imdb == '': raise Exception()
+						imdb = 'tt' + imdb
+						
+						try:
+							url_tmdb = self.tmdb_by_query_imdb % imdb
+							
+							if not len(self.list) >= 40:
+								self.list = cache.get(self.tmdb_similar_list, 720, url_tmdb, imdb)
+						except:
+							pass
+
+				self.list = self.list[:40]
+				self.no_suggestions_Dir(self.list)			
+			
+    def tmdb_similar_list(self, url,imdb):
+        result = OPEN_URL(url).content
+        result = json.loads(result)
+        item = result['tv_results'][0]
+
+        next = ''
+        # print "TMDB STARTING ITEMS"
+
+        try:
+
+                title = item['name']
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                year = item['first_air_date']
+                year = re.compile('(\d{4})').findall(year)[-1]
+                year = year.encode('utf-8')
+
+                tmdb = item['id']
+                if tmdb == '' or tmdb == None: tmdb = '0'
+                tmdb = re.sub('[^0-9]', '', str(tmdb))
+                tmdb = tmdb.encode('utf-8')
+
+                tvdb = '0'
+
+                poster = item['poster_path']
+                if poster == '' or poster == None: poster = '0'
+                else: poster = self.tmdb_poster + poster
+                poster = poster.encode('utf-8')
+                # print "TMDB %s" % poster
+                fanart = item['backdrop_path']
+                if fanart == '' or fanart == None: fanart = '0'
+                if not fanart == '0': fanart = '%s%s' % (self.tmdb_image, fanart)
+                fanart = fanart.encode('utf-8')
+                # print "TMDB %s" % fanart
+                premiered = item['first_air_date']
+                try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
+                except: premiered = '0'
+                premiered = premiered.encode('utf-8')
+                # print "TMDB %s" % premiered
+
+                rating = str(item['vote_average'])
+                if rating == '' or rating == None: rating = '0'
+                rating = rating.encode('utf-8')
+                # print "TMDB %s" % rating
+
+                votes = str(item['vote_count'])
+                try: votes = str(format(int(votes),',d'))
+                except: pass
+                if votes == '' or votes == None: votes = '0'
+                votes = votes.encode('utf-8')
+                # print "TMDB %s" % votes
+
+                plot = item['overview']
+                if plot == '' or plot == None: plot = '0'
+                plot = client.replaceHTMLCodes(plot)
+                plot = plot.encode('utf-8')
+                # print "TMDB %s" % plot
+
+                tagline = re.compile('[.!?][\s]{1,2}(?=[A-Z])').split(plot)[0]
+                try: tagline = tagline.encode('utf-8')
+                except: pass
+
+				
+                
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'studio': '0', 'genre': '0', 'duration': '0', 'rating': rating, 'votes': votes, 'mpaa': '0', 'director': '0', 'writer': '0', 'cast': '0', 'plot': plot, 'tagline': '0', 'code': imdb, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': tvdb, 'poster': poster, 'banner': '0', 'fanart': fanart, 'next': next})
+        except:
+                pass
+        return self.list
+
+		
+
+			
+			
     def tmdb_list(self, url):
         
         next = url
@@ -1102,7 +1211,7 @@ class tvshows:
 
                 cm = []
                 cm.append(('Trailer', 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-				
+                if "tt" in imdb:  cm.append(('People Also Liked...', 'RunPlugin(%s?action=similar_shows&imdb=%s)' % (sysaddon, imdb)))					
                 if not action == 'tvFavourites':cm.append(('Add to Watchlist', 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
                 if action == 'tvFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
@@ -1157,6 +1266,141 @@ class tvshows:
         views.setView('tvshows', {'skin.confluence': 500})
 
 
+    def no_suggestions_Dir(self, items):
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
+
+        sysaddon = sys.argv[0]
+
+        syshandle = int(sys.argv[1])
+
+        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
+
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
+
+        traktCredentials = trakt.getTraktCredentialsInfo()
+
+        try: isOld = False ; control.item().getArt('type')
+        except: isOld = True
+
+        isEstuary = True if 'estuary' in control.skin else False
+
+        indicators = playcount.getTVShowIndicators(refresh=True) if action == 'tvshows' else playcount.getTVShowIndicators()
+
+        watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+
+        unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+
+        queueMenu = control.lang(32065).encode('utf-8')
+
+        traktManagerMenu = control.lang(32070).encode('utf-8')
+
+        nextMenu = control.lang(32053).encode('utf-8')
+
+
+        for i in items:
+            try:
+                if not 'originaltitle' in i: i['originaltitle'] = '%s' %(i['title'])
+                label = '%s' % (i['title'])
+                systitle = sysname = urllib.quote_plus(i['originaltitle'])
+                sysimage = urllib.quote_plus(i['poster'])
+                imdb, tvdb, title, year = i['imdb'], i['tvdb'], i['title'], i['year']
+                title = i['originaltitle']
+                tmdb = i['tmdb']
+
+
+                poster, banner, fanart = i['poster'], i['banner'], i['fanart']
+                if banner == '0' and not fanart == '0': banner = fanart
+                elif banner == '0' and not poster == '0': banner = poster
+                if poster == '0': poster = addonPoster
+                if banner == '0': banner = addonBanner
+
+
+                meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'mediatype': 'tvshow'})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                if i['duration'] == '0': meta.update({'duration': '60'})
+                try: meta.update({'duration': str(int(meta['duration']) * 60)})
+                except: pass
+                try: meta.update({'imdb': str(imdb)})
+                except: pass
+
+                try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
+                except: pass
+                if isEstuary == True:
+                    try: del meta['cast']
+                    except: pass
+
+                try:
+                    overlay = int(playcount.getTVShowOverlay(indicators, tvdb))
+                    if overlay == 7: meta.update({'playcount': 1, 'overlay': 7})
+                    else: meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
+                sysmeta = urllib.quote_plus(json.dumps(meta))
+
+                if not tvdb == "0" or tvdb == None: sysmetalliq = "plugin://plugin.video.metalliq/tv/add_to_library_parsed/%s/direct.zen.q" % tvdb
+                else: sysmetalliq = "0"
+                url = '%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&tmdb=%s' % (sysaddon, systitle, year, imdb, tvdb,tmdb)
+
+
+                cm = []
+                cm.append(('Trailer', 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
+                if not action == 'tvFavourites':cm.append(('Add to Watchlist', 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
+                if action == 'tvFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
+
+                cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
+
+                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
+                if not sysmetalliq == '0' or sysmetalliq == None:cm.append(('Add To Library', 'RunPlugin(%s)' % (sysmetalliq)))
+
+                if traktCredentials == True:
+                    cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))
+
+                if isOld == True:
+                    cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
+
+
+                item = control.item(label=label)
+
+                item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
+
+                if settingFanart == 'true' and not fanart == '0':
+                    item.setProperty('Fanart_Image', fanart)
+                elif not addonFanart == None:
+                    item.setProperty('Fanart_Image', addonFanart)
+
+                item.addContextMenuItems(cm)
+                item.setInfo(type='Video', infoLabels = meta)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
+            except:
+                pass
+
+        try:
+            url = items[0]['next']
+            if url == '': raise Exception()
+
+            icon = control.addonNext()
+            url = '%s?action=tvshowPage&url=%s' % (sysaddon, urllib.quote_plus(url))
+
+            item = control.item(label=nextMenu)
+
+            item.setArt({'icon': icon, 'thumb': icon, 'poster': icon, 'tvshow.poster': icon, 'season.poster': icon, 'banner': icon, 'tvshow.banner': icon, 'season.banner': icon})
+            if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
+
+            control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
+        except:
+            pass
+
+        control.content(syshandle, 'tvshows')
+        # control.do_block_check(False)
+        control.directory(syshandle, cacheToDisc=True)
+        views.setView('tvshows', {'skin.confluence': 500})
+		
+				
+		
+		
     def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: control.idle() ; sys.exit()
 

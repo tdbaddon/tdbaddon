@@ -10,7 +10,7 @@ class Onlinemovies(Scraper):
     def __init__(self):
         self.base_link = 'http://onlinemovies.tube/'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             start_url = self.base_link+'watch/'+title.replace(' ','-')+'-'+year+'/'
             html = requests.get(start_url).text
@@ -35,14 +35,14 @@ class Onlinemovies(Scraper):
 
         return self.sources
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             if len(season) == 1:
                 season = '0'+str(season)
             if len(episode) == 1:
                 episode = '0'+str(episode)
             start_url = self.base_link+'episode/'+title.replace(' ','-')+'-s'+season+'e'+episode+'/'
-            print start_url
+            print(start_url)
             html = requests.get(start_url).text
             match = re.compile('<iframe.+?src="(.+?)"').findall(html)
             for url in match:

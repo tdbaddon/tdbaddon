@@ -67,10 +67,7 @@ class source:
             r = dom_parser.parse_dom(r, 'td', attrs={'data-title-name': re.compile('Episode %02d' % int(episode))})
             r = dom_parser.parse_dom(r, 'a', req='href')[0].attrs['href']
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return
 
@@ -164,9 +161,7 @@ class source:
             url = [i[0] for i in r if t == cleantitle.get(i[1])]
             url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
 
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(url)
 
             r = client.request(urlparse.urljoin(self.base_link, url))
             r = dom_parser.parse_dom(r, 'a', attrs={'href': re.compile('.*/tt\d+.*')}, req='href')

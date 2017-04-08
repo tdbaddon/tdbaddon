@@ -69,11 +69,9 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            t = 'http://www.imdb.com/title/%s' % imdb
-            t = client.request(t, headers={'Accept-Language':'ar-AR'})
-            t = client.parseDOM(t, 'title')[0]
-            t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
-            t = cleantitle.geturl(t.encode("utf-8"))
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            t = cleantitle.geturl(data['tvshowtitle'].encode("utf-8"))
             r = urlparse.urljoin(self.base_link, self.episode_link % (t, season, episode))
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)

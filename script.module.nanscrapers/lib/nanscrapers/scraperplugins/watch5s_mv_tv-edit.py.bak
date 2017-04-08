@@ -77,7 +77,7 @@ class source(Scraper):
                 except:
                     return self.url
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             url = {'title': title, 'year': year}
             url = urllib.urlencode(url)

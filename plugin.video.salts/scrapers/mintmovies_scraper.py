@@ -67,7 +67,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
-        if re.search('Sorry, but nothing matched', html): return results
+        if re.search('Sorry, but nothing matched', html, re.I): return results
         
         norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):

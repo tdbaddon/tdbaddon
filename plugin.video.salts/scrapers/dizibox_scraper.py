@@ -142,7 +142,19 @@ class Scraper(scraper.Scraper):
         if match:
             season_url = urlparse.urljoin(self.base_url, match.group(1))
             episode_pattern = '''href=['"]([^'"]+-%s-sezon-%s-bolum[^'"]*)''' % (video.season, video.episode)
-            return self._default_get_episode_url(season_url, video, episode_pattern)
+            ep_url = self._default_get_episode_url(season_url, video, episode_pattern)
+            if ep_url: return ep_url
+        
+        # front page fallback
+        html = self._http_get(self.base_url, cache_limit=2)
+        for slug in reversed(show_url.split('/')):
+            if slug: break
+            
+        ep_url_frag = 'href="([^"]+/{slug}-{season}-sezon-{episode}-bolum[^"]*)'.format(slug=slug, season=video.season, episode=video.episode)
+        log_utils.log(ep_url_frag)
+        match = re.search(ep_url_frag, html)
+        if match:
+            return scraper_utils.pathify_url(match.group(1))
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

@@ -30,7 +30,7 @@ class source:
         self.base_link = 'http://1movies.tv'
         self.search_link = '/movies/search?s=%s'
         self.episode_link = '/ajax/movie/load_episodes_v2?id=%s&episode_id=%s&link_id=%s&_=%s'
-        self.load_player = '/ajax/movie/load_player_v2?id=%s&quality=%s&_=%s'
+        self.load_player = '/ajax/movie/load_player_v3'
 
     def now_milliseconds(self):
         return int(time.time() * 1000)
@@ -135,49 +135,28 @@ class source:
 
             ref = urlparse.urljoin(self.base_link, url)
             #control.log("one-sources-0 %s" % ref)
-            headers= {'Referer':ref, "User-Agent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}
+            headers= {'Referer':ref, "User-Agent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"}
             r100 = client.request(ref,headers=headers, output='extended')
             cookie = r100[4] ; headers = r100[3] ; result = r100[0]
 
 
-            r = re.compile('id:.(\d+),\s.*episode_id:.(\d+),\s.*link_id:.(\d+)', ).findall(result)
+            r = re.compile('load_player\((\d+)\);', ).findall(result)
             if len(r) > 0:
-                t = urlparse.urljoin(self.base_link, self.episode_link %(r[0][0], r[0][1], r[0][2], self.now_milliseconds()))
+                t = urlparse.urljoin(self.base_link, self.load_player)
                 headers['x-requested-with'] = "XMLHttpRequest"
                 headers['cookie']=cookie
-                headers['Accept-Formating'] = 'application/json, text/javascript'
                 headers['Referer'] = ref
-                headers['Server'] = 'cloudflare-nginx'
+                post = urllib.urlencode({'id':r[0]})
 
-                r1= client.request(t, headers=headers)
-                r2 = client.parseDOM(r1, 'div', attrs = {'class': 'full server_link'})
-                r2 =  [(client.parseDOM(i, 'a', ret='onclick')[0], client.parseDOM(i, 'a')[0]) for i in r2]
-                r2 = [(re.compile("'(\d+)', (\d+)").findall(i[0])[0], i[1]) for i in r2]
+                r1= client.request(t, headers=headers, post=post)
+                r1 = json.loads(r1)
+                r1 = client.request('http:'+r1['value'], headers=headers)
+                r1 = json.loads(r1)
 
-                for i in r2:
+                for i in r1['playlist'][0]['sources']:
                     try:
-                        t = urlparse.urljoin(self.base_link,self.load_player % (i[0][0], i[0][1], self.now_milliseconds()))
-                        #control.log("sources-7 %s @ %s " % ((t), i[1]))
-                        r3 = client.request(t, headers=headers)
-                        r4 = json.loads(r3)
-                        #control.log("sources-8 %s @ " % (r4))
-                        if r4['status'] == True:
-                            if r4['link'] == False:
-                                #gvideo
-                                #control.log("sources-GV %s @ " % (r4))
-                                r5 = client.request(r4['playlist'], headers=headers)
-                                for link in json.loads(r5)['playlist'][0]['sources']:
-                                    #control.log("sources-LINK %s @ " % (link))
-                                    #ala['playlist'][0]['sources'][-1]['file']
-                                    sources.append({'source': 'gvideo', 'quality': client.googletag(link['file'])[0]['quality'],
-                                                'provider': 'OneMovies', 'url': link['file']})
-                            else:
-                                r5 = client.request(r4['link'], headers=headers, output='geturl')
-                                sources.append({'source': 'openload', 'quality': i[1],
-                                                'provider': 'OneMovies', 'url': r5})
-                            #control.log("sources-810 %s @ " % (r5))
-
-                            #sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'],'provider': 'Rainierland', 'url': i})
+                        sources.append({'source': 'gvideo', 'quality': client.googletag(i['file'])[0]['quality'],
+                                                'provider': 'OneMovies', 'url': i['file']})
 
                         #sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'provider': 'Rainierland', 'url': i})
                     except:

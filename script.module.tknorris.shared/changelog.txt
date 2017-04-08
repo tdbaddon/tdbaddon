@@ -1,3 +1,7 @@
+[B]Version 0.0.21[/B]
+- Use "content" from DOMMatch if it's passed to the parser
+- Fix fallback for non-delimitted value matching
+
 [B]Version 0.0.20[/B]
 - dom_parser wrapper fixes
 

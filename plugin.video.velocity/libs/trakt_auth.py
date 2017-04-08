@@ -1,5 +1,6 @@
 from urllib2 import Request, urlopen
 import re
+import urllib
 import json
 import ssl
 import socket
@@ -7,6 +8,12 @@ import urllib2
 import kodi
 from libs import watched_cache
 from libs import log_utils
+import time
+import trakt
+
+
+
+
 
 MY_TOKEN = kodi.get_setting('trakt_oauth_token')  # GET WITH PIN CODE
 REFRESH_TOKEN = kodi.get_setting('trakt_refresh_token') #CHANGES # MONTH
@@ -14,6 +21,21 @@ V2_API_KEY='a19aa7f7cf7fa27437254cc27fcba454664360086949e80029f83874fa455e8f'
 CLIENT_SECRET='5872236e7c198363867d89014ee334281648a7f433f9e4c362e5519e334693d1'
 REDIRECT_URL='urn:ietf:wg:oauth:2.0:oob'
 BASE_URL='api-v2launch.trakt.tv/'
+
+TEMP_ERRORS = [500, 502, 503, 504, 520, 521, 522, 524]
+COMPONENT = __name__
+
+class TraktError(Exception):
+    pass
+
+class TraktAuthError(Exception):
+    pass
+
+class TraktNotFoundError(Exception):
+    pass
+
+class TransientTraktError(Exception):
+    pass
 
 
 auth_headers = {
@@ -83,74 +105,62 @@ def stop_tv_watch(name,media):
         #return
 
 
+####################
+
+def auth_trakt():
+    trakt_api = trakt.TraktAPI()
+    start = time.time()
+    use_https = kodi.get_setting('use_https') == 'true'
+    trakt_timeout = int(kodi.get_setting('timeout'))
+    trakt_api = trakt.TraktAPI(use_https=use_https, timeout=trakt_timeout)
+    result = trakt_api.get_code()
+    kodi.log(result)
+    code, expires, interval = result['device_code'], result['expires_in'], result['interval']
+    time_left = expires - int(time.time() - start)
+    line1 = 'On ANY Device visit: ' +result['verification_url']
+    line2 = 'When promted , enter code: '+ result['user_code']
+    with kodi.CountdownDialog('Authorizer your account', line1=line1, line2=line2, countdown=time_left,
+                              interval=interval) as cd:
+        result = cd.start(__auth_trakt, [trakt_api, code,'TEST'])
+
+    try:
+
+        kodi.set_setting('trakt_oauth_token', result['access_token'])
+        kodi.set_setting('trakt_refresh_token', result['refresh_token'])
+        kodi.set_setting('trakt_authorized', "true")
+        kodi.notify(header='Trakt', msg='You are now authorized', duration=5000, sound=None)
+        trakt_api = trakt.Trakt_API(result['access_token'], use_https=True, timeout=trakt_timeout)
+        kodi.log(result['access_token'])
+        profile = trakt_api.my_username()
+        kodi.log("PROFILE RESULT " + profile)
+        kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
+        kodi.notify(msg='trakt_auth_complete', duration=3000)
+    except Exception as e:
+        log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
 
 
+def __auth_trakt(trakt_api, code, i18n):
+    try:
+        result = trakt_api.get_device_token(code)
+        return result
+    except urllib2.URLError as e:
+        # authorization is pending; too fast
+        if e.code in [400, 429]:
+            return
+        elif e.code == 418:
+            kodi.notify('Denied - user explicitly denied this code', duration=3000)
+            return True
+        elif e.code == 410:
+            return
+        else:
+            raise
 
-# STANDARD MEDIA OBJECTS
-# movie
-#
-# {
-#   "title":"Batman Begins",
-#   "year":2005,
-#   "ids":{
-#     "trakt":1,
-#     "slug":"batman-begins-2005",
-#     "imdb":"tt0372784",
-#     "tmdb":272
-#   }
-# }
-#
-# show
-#
-# {
-#   "title":"Breaking Bad",
-#   "year":2008,
-#   "ids":{
-#     "trakt":1,
-#     "slug":"breaking-bad",
-#     "tvdb":81189,
-#     "imdb":"tt0903747",
-#     "tmdb":1396,
-#     "tvrage":18164
-#   }
-# }
-#
-# season
-#
-# {
-#   "number":0,
-#   "ids":{
-#     "trakt":1,
-#     "tvdb":439371,
-#     "tmdb":3577,
-#     "tvrage":null
-#   }
-# }
-#
-# episode
-#
-# {
-#   "season":1,
-#   "number":1,
-#   "title":"Pilot",
-#   "ids":{
-#     "trakt":16,
-#     "tvdb":349232,
-#     "imdb":"tt0959621",
-#     "tmdb":62085,
-#     "tvrage":637041
-#   }
-# }
-#
-# person
-#
-# {
-#   "name":"Bryan Cranston",
-#   "ids":{
-#     "trakt":142,
-#     "slug":"bryan-cranston",
-#     "imdb":"nm0186505",
-#     "tmdb":17419,
-#     "tvrage":1797
-#   }
-# }
+
+def format_time(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    if minutes > 60:
+        hours, minutes = divmod(minutes, 60)
+        return "%02d:%02d:%02d" % (hours, minutes, seconds)
+    else:
+        return "%02d:%02d" % (minutes, seconds)
+

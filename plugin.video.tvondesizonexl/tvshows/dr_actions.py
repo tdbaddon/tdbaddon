@@ -21,7 +21,7 @@ along with XOZE.  If not, see <http://www.gnu.org/licenses/>.
 
 from xoze.context import AddonContext, SnapVideo
 from xoze.snapvideo import WatchVideo2US, Playwire, VideoWeed, CloudEC, LetWatch, \
-    TVLogy, PlayU, Streamin, Watchers
+    TVLogy, PlayU, Streamin, Watchers, VidWatch
 from xoze.utils import file, http, jsonfile
 from xoze.utils.cache import CacheManager
 from xoze.utils.http import HttpClient
@@ -972,6 +972,8 @@ def __prepareVideoLink__(video_link):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):
             new_video_url = 'http://tvlogy.to/watch.php?v=' + video_id + '&' 
+        elif re.search('vidwatch.php', video_url, flags=re.I) or re.search('vidwatch', video_source, flags=re.I):
+            new_video_url = 'http://vidwatch3.me/embed-' + video_id + '-540x304.html'
         elif re.search('(youtube|u|yt)(\d*).php', video_url, flags=re.I):
             new_video_url = 'http://www.youtube.com/watch?v=' + video_id + '&'
         elif re.search('mega.co.nz', video_url, flags=re.I):

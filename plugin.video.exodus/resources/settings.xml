@@ -109,6 +109,7 @@
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
+		<setting id="provider.streamit" type="bool" label="STREAMIT" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />
 		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
@@ -176,6 +177,10 @@
 		<setting type="lsep" label="Debrid-Link" />
 		<setting id="debridlink.user" type="text" label="32303" default="" />
 		<setting id="debridlink.pass" type="text" option="hidden" label="32307" default="" />
+		<setting type="sep" />
+		<setting type="lsep" label="Mega-Debrid" />
+		<setting id="megadebrid.user" type="text" label="32303" default="" />
+		<setting id="megadebrid.pass" type="text" option="hidden" label="32307" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="Moviesplanet.is" />
 		<setting id="moviesplanet.user" type="text" label="32303" default="" />

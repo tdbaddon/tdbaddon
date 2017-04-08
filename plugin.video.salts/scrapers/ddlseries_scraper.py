@@ -27,9 +27,10 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 import scraper
 
-BASE_URL = 'http://www.ddlseries.top'
+BASE_URL = 'http://toptvseries.co'
 QUALITY_MAP = {'SD-XVID': QUALITIES.MEDIUM, 'DVD9': QUALITIES.HIGH, 'SD-X264': QUALITIES.HIGH,
-               'HD-720P': QUALITIES.HD720, 'HD-1080P': QUALITIES.HD1080}
+               'HD-720P': QUALITIES.HD720, 'HD-1080P': QUALITIES.HD1080, '720P': QUALITIES.HD720, 'XVID': QUALITIES.MEDIUM,
+               'X264': QUALITIES.HIGH, '1080P': QUALITIES.HD1080}
 HEADER_MAP = {'ul.png': 'uploaded.net', 'tb.png': 'turbobit.net', 'utb.png': 'uptobox.com'}
 
 class Scraper(scraper.Scraper):
@@ -53,7 +54,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(link, require_debrid=True, cache_limit=0)
             item = dom_parser2.parse_dom(html, 'li')
             if item:
-                stream_url = dom_parser2.parse_dom(item[0].content, 'a', ret='href')
+                stream_url = dom_parser2.parse_dom(item[0].content, 'a', req='href')
                 if stream_url:
                     return stream_url[0].content
         else:
@@ -119,16 +120,17 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, params=params, require_debrid=True, cache_limit=48)
         
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'downpara-list'})
-        if fragment:
-            for match in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                match_url = match.attrs['href']
-                match_title_extra = match.content
-                match_title, match_season, q_str, is_pack = self.__get_title_parts(match_title_extra)
-                if is_pack: continue
-                quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
-                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality,
-                          'season': match_season, 'q_str': q_str}
-                results.append(result)
+        if not fragment: return results
+        
+        for match in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+            match_url = match.attrs['href']
+            match_title_extra = match.content
+            match_title, match_season, q_str, is_pack = self.__get_title_parts(match_title_extra)
+            if is_pack: continue
+            quality = QUALITY_MAP.get(q_str, QUALITIES.HIGH)
+            result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '', 'quality': quality,
+                      'season': match_season, 'q_str': q_str}
+            results.append(result)
         return results
 
     def __search(self, title, season):
@@ -142,7 +144,8 @@ class Scraper(scraper.Scraper):
                 if '/tv-pack/' in match_url: continue
                 match_title, match_season, q_str, is_pack = self.__get_title_parts(content)
                 if is_pack: continue
-                q_str, quality = self.__get_quality(match_url)
+                q_str2, quality = self.__get_quality(match_url)
+                if q_str2: q_str = q_str2
                 result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '',
                           'quality': quality, 'season': match_season, 'q_str': q_str}
                 results.append(result)

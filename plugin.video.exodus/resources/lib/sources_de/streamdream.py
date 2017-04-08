@@ -117,9 +117,6 @@ class source:
                 url = r[0]
 
             if url:
-                url = urlparse.urlparse(url).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
-                return url
+                return source_utils.strip_domain(url)
         except:
             return

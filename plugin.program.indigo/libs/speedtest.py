@@ -5,101 +5,111 @@
 # That code broke but it didn't take too much to fix it, if you get problems it's most likely
 # down to the fact that you need to use another download link that plays nicely with XBMC/Kodi
 
-import xbmc, xbmcplugin
-import xbmcgui
-import xbmcaddon
-import urllib
-import time
-import os
-import sys
 import datetime
+import os
+import time
+import urllib
+
+import xbmc
+import xbmcaddon
+import xbmcgui
 from libs import kodi
 
-ADDON_ID   = kodi.addon_id
-ADDON      =  xbmcaddon.Addon(id=ADDON_ID)
-HOME       =  ADDON.getAddonInfo('path')
-addon_name="Speed Test"
-AddonTitle="Indigo"
+ADDON_ID = kodi.addon_id
+ADDON = xbmcaddon.Addon(id=ADDON_ID)
+HOME = ADDON.getAddonInfo('path')
+addon_name = "Speed Test"
+AddonTitle = kodi.addon.getAddonInfo('name')
 
 max_Bps = 0.0
 currently_downloaded_bytes = 0.0
 
-#-----------------------------------------------------------------------------------------------------------------
-def download(url, dest, dp = None):
+
+# -----------------------------------------------------------------------------------------------------------------
+def download(url, dest, dp=None):
     if not dp:
         dp = xbmcgui.DialogProgress()
-        dp.create(AddonTitle,"Connecting to server",'[COLOR blue][I]Testing your network speed...[/I][/COLOR]', 'Please wait...')
+        dp.create(AddonTitle, "Connecting to server", '[COLOR blue][I]Testing your network speed...[/I][/COLOR]',
+                  'Please wait...')
     dp.update(0)
-    start_time=time.time()
+    start_time = time.time()
     try:
         urllib.urlretrieve(url, dest, lambda nb, bs, fs: _pbhook(nb, bs, fs, dp, start_time))
     except:
-        pass    
-    return ( time.time() - start_time )
-#-----------------------------------------------------------------------------------------------------------------
+        pass
+    return time.time() - start_time
+
+
+# -----------------------------------------------------------------------------------------------------------------
 def _pbhook(numblocks, blocksize, filesize, dp, start_time):
-        global max_Bps
-        global currently_downloaded_bytes
-        
-        try:
-            percent = min(numblocks * blocksize * 100 / filesize, 100) 
-            currently_downloaded_bytes = float(numblocks) * blocksize
-            currently_downloaded = currently_downloaded_bytes / (1024 * 1024) 
-            Bps_speed = currently_downloaded_bytes / (time.time() - start_time) 
-            if Bps_speed > 0:                                                 
-                eta = (filesize - numblocks * blocksize) / Bps_speed 
-                if Bps_speed > max_Bps: max_Bps = Bps_speed
-            else: 
-                eta = 0 
-            kbps_speed = Bps_speed * 8 / 1024 
-            mbps_speed = kbps_speed / 1024 
-            total = float(filesize) / (1024 * 1024) 
-            mbs = '%.02f MB of %.02f MB' % (currently_downloaded, total) 
-            dp.update(percent)
-        except: 
-            currently_downloaded_bytes = float(filesize)
-            percent = 100 
-            dp.update(percent) 
-        if dp.iscanceled(): 
-            dp.close() 
-            raise Exception("Cancelled")
-#-----------------------------------------------------------------------------------------------------------------
+    global max_Bps
+    global currently_downloaded_bytes
+
+    try:
+        percent = min(numblocks * blocksize * 100 / filesize, 100)
+        currently_downloaded_bytes = float(numblocks) * blocksize
+        currently_downloaded = currently_downloaded_bytes / (1024 * 1024)
+        Bps_speed = currently_downloaded_bytes / (time.time() - start_time)
+        if Bps_speed > 0:
+            eta = (filesize - numblocks * blocksize) / Bps_speed
+            if Bps_speed > max_Bps: max_Bps = Bps_speed
+        else:
+            eta = 0
+        kbps_speed = Bps_speed * 8 / 1024
+        mbps_speed = kbps_speed / 1024
+        total = float(filesize) / (1024 * 1024)
+        mbs = '%.02f MB of %.02f MB' % (currently_downloaded, total)
+        dp.update(percent)
+    except:
+        currently_downloaded_bytes = float(filesize)
+        percent = 100
+        dp.update(percent)
+    if dp.iscanceled():
+        dp.close()
+        raise Exception("Cancelled")
+
+
+# -----------------------------------------------------------------------------------------------------------------
 def make_dir(mypath, dirname):
     ''' Creates sub-directories if they are not found. '''
     import xbmcvfs
-    
-    if not xbmcvfs.exists(mypath): 
+
+    if not xbmcvfs.exists(mypath):
         try:
             xbmcvfs.mkdirs(mypath)
         except:
             xbmcvfs.mkdir(mypath)
-    
+
     subpath = os.path.join(mypath, dirname)
-    
-    if not xbmcvfs.exists(subpath): 
+
+    if not xbmcvfs.exists(subpath):
         try:
             xbmcvfs.mkdirs(subpath)
         except:
             xbmcvfs.mkdir(subpath)
-            
+
     return subpath
-#-----------------------------------------------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------------------------------------------
 def GetEpochStr():
-    time_now  = datetime.datetime.now()
-    epoch     = time.mktime(time_now.timetuple())+(time_now.microsecond/1000000.)
+    time_now = datetime.datetime.now()
+    epoch = time.mktime(time_now.timetuple()) + (time_now.microsecond / 1000000.)
     epoch_str = str('%f' % epoch)
-    epoch_str = epoch_str.replace('.','')
+    epoch_str = epoch_str.replace('.', '')
     epoch_str = epoch_str[:-3]
     return epoch_str
-#-----------------------------------------------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------------------------------------------
 def runfulltest(url):
     addon_profile_path = xbmc.translatePath(ADDON.getAddonInfo('profile'))
     speed_test_files_dir = make_dir(addon_profile_path, 'speedtestfiles')
     speed_test_download_file = os.path.join(speed_test_files_dir, GetEpochStr() + '.speedtest')
     timetaken = download(url, speed_test_download_file)
     os.remove(speed_test_download_file)
-    avgspeed = ((currently_downloaded_bytes / timetaken) * 8 / ( 1024 * 1024 ))
-    maxspeed = (max_Bps * 8/(1024*1024))
+    avgspeed = ((currently_downloaded_bytes / timetaken) * 8 / (1024 * 1024))
+    maxspeed = (max_Bps * 8 / (1024 * 1024))
     if avgspeed < 2:
         livestreams = 'Very low quality streams might work.'
         onlinevids = 'Expect buffering, do not try HD.'
@@ -128,8 +138,8 @@ def runfulltest(url):
     print "Max. Speed: " + str(maxspeed)
     dialog = xbmcgui.Dialog()
     ok = dialog.ok(
-    '[COLOR lightsteelblue][B]Your Result:[/COLOR][/B] ' + rating,
-    '[COLOR lightsteelblue][B]Live Streams:[/COLOR][/B] ' + livestreams,
-    '[COLOR lightsteelblue][B]Movie Streams:[/COLOR][/B] ' + onlinevids,
-	'[COLOR lightsteelblue][B]Duration:[/COLOR][/B] %.02f secs ' % timetaken + '[COLOR lightsteelblue][B]Average Speed:[/B][/COLOR] %.02f Mb/s ' % avgspeed + '[COLOR lightsteelblue][B]Max Speed:[/B][/COLOR] %.02f Mb/s ' % maxspeed,
+        '[COLOR lightsteelblue][B]Your Result:[/COLOR][/B] ' + rating,
+        '[COLOR lightsteelblue][B]Live Streams:[/COLOR][/B] ' + livestreams,
+        '[COLOR lightsteelblue][B]Movie Streams:[/COLOR][/B] ' + onlinevids,
+        '[COLOR lightsteelblue][B]Duration:[/COLOR][/B] %.02f secs ' % timetaken + '[COLOR lightsteelblue][B]Average Speed:[/B][/COLOR] %.02f Mb/s ' % avgspeed + '[COLOR lightsteelblue][B]Max Speed:[/B][/COLOR] %.02f Mb/s ' % maxspeed,
     )

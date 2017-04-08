@@ -27,7 +27,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 from resources.lib.modules import dom_parser
-
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
@@ -153,9 +153,7 @@ class source:
             r = sorted(r, key=lambda i: int(i[1]), reverse=True)  # with year > no year
             r = [i[0] for i in r if r[0]][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(r)
             if episode:
                 r = client.request(urlparse.urljoin(self.base_link, url))
                 r = dom_parser.parse_dom(r, 'div', attrs={'class': 'season-list'})
@@ -163,9 +161,7 @@ class source:
                 r = dom_parser.parse_dom(r, 'a', req='href')
                 r = [(i.attrs['href'], i.content) for i in r]
                 r = [i[0] for i in r if i[1] and int(i[1]) == int(episode)][0]
-                url = urlparse.urlparse(r).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
+                url = source_utils.strip_domain(r)
             return url
         except:
             return

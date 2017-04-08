@@ -17,9 +17,9 @@
 		<setting id="get_pin" label="Click here to Authorize Trakt.tv " type="action" action="RunPlugin(plugin://plugin.video.velocity/?mode=get_pin)" option="close" enable="eq(-1,false)"/>
 		<setting id="trakt_username" type="text" label="Authorized User:" default="" enable="eq(-2,true)"/>
 		<setting type="lsep" label="Trakt Options" />
-		<setting id="use_https" type="bool" label="Use Https" default="false" visible="false"/>
+		<setting id="use_https" type="bool" label="Use Https" default="false" visible="true"/>
 		<setting id="list_size" type="slider" label="Page Size" default="20" range="1,200" option="int"/>
-		<setting id="timeout" type="slider" label="Timeout" default="10" range="1,5" option="int"/>
+		<setting id="timeout" type="slider" label="Timeout" default="30" range="0,120" option="int"/>
 		<setting id="TV_sub_slug" type="text" visible="false"/>
 		<setting id="Movies_sub_slug" type="text" visible="false"/>
 		<setting id="TV_fav_slug" type="text" visible="false"/>

@@ -486,10 +486,10 @@ class root:
 class link:
     def __init__(self):
         self.livetv_base = 'http://livetv.sx'
-        self.livetv_nba = 'http://livetv.sx/en/videotourney/3'
-        self.livetv_nhl = 'http://livetv.sx/en/videotourney/2'
-        self.livetv_nba_teams = 'http://livetv.sx/en/leagueresults/3/'
-        self.livetv_nhl_teams = 'http://livetv.sx/en/leagueresults/2/'
+        self.livetv_nba = 'http://livetv.sx/enx/videotourney/3'
+        self.livetv_nhl = 'http://livetv.sx/enx/videotourney/2'
+        self.livetv_nba_teams = 'http://livetv.sx/enx/leagueresults/3/'
+        self.livetv_nhl_teams = 'http://livetv.sx/enx/leagueresults/2/'
 
 class pages:
     def __init__(self):
@@ -536,7 +536,7 @@ class pages:
             result = result.decode('iso-8859-1').encode('utf-8')
             result = result.replace('\n','')
 
-            pages = re.compile('(<a href="/eng/team/.+?">.+?</a>)').findall(result)
+            pages = re.compile('(<a href="/enx/team/.+?">.+?</a>)').findall(result)
         except:
             return
 

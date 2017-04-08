@@ -395,4 +395,6 @@ elif action == 'clearSources':
     from resources.lib.sources import sources
     sources().clearSources()
 
-
+elif action == 'loguploader':
+    from resources.lib.libraries import loguploader
+    loguploader.Luguploader()

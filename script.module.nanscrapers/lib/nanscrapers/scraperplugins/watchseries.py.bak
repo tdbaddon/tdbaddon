@@ -12,7 +12,7 @@ class Watchseries(Scraper):
     def __init__(self):
         self.base_link = 'http://www.watchseriesgo.to/'
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             url_try = [self.base_link + 'episode/' + title.replace(' ', '_') + "_" + show_year + '__s' + season + '_e' + episode + '.html',
                    self.base_link + 'episode/' + title.replace(' ', '_') + '_s' + season + '_e' + episode + '.html']

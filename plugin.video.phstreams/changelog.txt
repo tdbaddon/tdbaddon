@@ -1,2 +1,2 @@
-[B]3.2.6[/B]
-Fixed Numeric Title Bug and repaired several sources
+[B]3.2.7[/B]
+Reset Source file integration

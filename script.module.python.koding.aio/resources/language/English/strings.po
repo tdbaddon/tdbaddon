@@ -21,6 +21,34 @@ msgctxt "#30808"
 msgid "Checking login details and update files"
 msgstr ""
 
+msgctxt "#30809"
+msgid "WARNING"
+msgstr ""
+
+msgctxt "#30810"
+msgid "You may not have enough space:[CR]"
+msgstr ""
+
+msgctxt "#30811"
+msgid "Amount of data in source: [COLOR=dodgerblue]%sMB[/COLOR]"
+msgstr ""
+
+msgctxt "#30812"
+msgid "Amount of free space: [COLOR=dodgerblue]%sMB[/COLOR]"
+msgstr ""
+
+msgctxt "#30813"
+msgid "Continue"
+msgstr ""
+
+msgctxt "#30814"
+msgid "Quit"
+msgstr ""
+
+msgctxt "#30815"
+msgid "The path given does not exist:[CR][CR][COLOR=dodgerblue]%s[/COLOR]"
+msgstr ""
+
 msgctxt "#30825"
 msgid "Wrong Password"
 msgstr ""

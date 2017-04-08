@@ -18,7 +18,7 @@ class Miradetodo(Scraper):
         self.base_link = 'http://miradetodo.net'
         self.search_link = '/?s=%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             if imdb is None:  # TODO get imdb from title
                 return

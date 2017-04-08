@@ -28,7 +28,7 @@ from salts_lib.constants import Q_ORDER
 import scraper
 
 
-BASE_URL = 'http://www.seehd.se'
+BASE_URL = 'http://www.seehd.club'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL

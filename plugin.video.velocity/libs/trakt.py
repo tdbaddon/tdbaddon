@@ -12,11 +12,10 @@ from libs import cache_stat
 
 use_https = kodi.get_setting('use_https')
 list_size = int(kodi.get_setting('list_size'))
+TIMEOUT = int(kodi.get_setting('timeout'))
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
-if use_https =='true':
-	BASE_URL = "https://api-v2launch.trakt.tv"
-else:
-	BASE_URL = "http://api-v2launch.trakt.tv"
+
+BASE_URL = "api-v2launch.trakt.tv"
 
 
 CLIENT_ID = 'a19aa7f7cf7fa27437254cc27fcba454664360086949e80029f83874fa455e8f'
@@ -27,6 +26,18 @@ PIN_URL = 'http://trakt.tv/pin/7558'
 DAYS_TO_GET = 21
 DECAY = 2
 ADDON_NAME = 'Velocity'
+
+
+
+class TraktAuthError(Exception):
+    pass
+
+class TraktNotFoundError(Exception):
+    pass
+
+class TransientTraktError(Exception):
+    pass
+
 
 
 class TraktError(Exception):
@@ -41,21 +52,39 @@ class TraktError(Exception):
 	
 
 class TraktAPI():
-	def __init__(self):
-		self.token = None
-		self.timeout = int(kodi.get_setting('timeout'))
+	def __init__(self,token=None, use_https=False, timeout=TIMEOUT):
+		self.token = token
+		self.timeout = None if timeout == 0 else timeout
 		self.limit = int(kodi.get_setting('list_size'))
 		self.cache_limit = int(kodi.get_setting('cache_limit'))
 		self.cacheset = kodi.get_setting('cache_set')
-	def authorize(self, pin):
-		response = self._authorize(pin)
-		if response:
-			kodi.notify(header='Trakt', msg='You are now authorized' , duration=5000, sound=None)
-			the_username=self.my_username()
-			kodi.set_setting('trakt_username',the_username['username'])
-		else:
-			kodi.notify(header='Trakt', msg='Authorization Failed try again' , duration=5000, sound=None)
-		return response
+		self.protocol = 'https://' if use_https else 'http://'
+
+	def get_code(self):
+		url = '/oauth/device/code'
+		data = {'client_id': CLIENT_ID}
+		codelog = self._call(url, data=data)
+		return codelog
+
+	def get_device_token(self, code):
+		url = '/oauth/device/token'
+		data = {'client_id': CLIENT_ID, 'client_secret': SECRET_ID, 'code': code}
+		return self._call(url, data=data, auth=False)
+
+	def get_user_profile(self, username=None):
+		if username is None: username = 'me'
+		url = '/users/%s' % (kodi.to_slug(username))
+		return self._call(url,auth=True)
+
+	# def authorize(self, pin):
+	# 	response = self._authorize(pin)
+	# 	if response:
+	# 		kodi.notify(header='Trakt', msg='You are now authorized' , duration=5000, sound=None)
+	# 		the_username=self.my_username()
+	# 		kodi.set_setting('trakt_username',the_username['username'])
+	# 	else:
+	# 		kodi.notify(header='Trakt', msg='Authorization Failed try again' , duration=5000, sound=None)
+	# 	return response
 
 	def my_username(self):
 		uri = '/users/me/'
@@ -571,52 +600,54 @@ class TraktAPI():
 			return False
 
 	def _authorize(self, pin=None):
-		if kodi.get_setting('debug') == "true":
-			print "Attempting to login/refresh Trakt Account"
-		uri = '/oauth/token'
-		data = {'client_id': CLIENT_ID, 'client_secret': SECRET_ID, 'redirect_uri': REDIRECT_URI}
-		if pin:
-			data['code'] = pin
-			data['grant_type'] = 'authorization_code'
-		else:
-			refresh_token = kodi.get_setting('trakt_refresh_token')
-			if refresh_token:
-				data['refresh_token'] = refresh_token
-				data['grant_type'] = 'refresh_token'
-			else:
-				kodi.set_setting('trakt_oauth_token', '')
-				kodi.set_setting('trakt_refresh_token', '')
-				kodi.set_setting('trakt_authorized', 'false')
-				return False
-		if self.token is None: self.token = False
-		response = self._call(uri, data, auth=False)
-		if response is False or response is None:
-			return False
-		if 'access_token' in response.keys() and 'refresh_token' in response.keys():
-			kodi.set_setting('trakt_oauth_token', response['access_token'])
-			kodi.set_setting('trakt_refresh_token', response['refresh_token'])
-			kodi.set_setting('trakt_authorized', "true")
-			self.token = response['access_token']
-			if kodi.get_setting('debug') == "true":
-				print "YOU JUST AUTHORIZED TRAKT"
-				#kodi.notify('TRAKT ','Account Authorized You may continue','5000','')
-			return True
+		return kodi.get_setting('trakt_oauth_token')
+
+		# if kodi.get_setting('debug') == "true":
+		# 	print "Attempting to login/refresh Trakt Account"
+		# uri = '/oauth/token'
+		# data = {'client_id': CLIENT_ID, 'client_secret': SECRET_ID, 'redirect_uri': REDIRECT_URI}
+		# if pin:
+		# 	data['code'] = pin
+		# 	data['grant_type'] = 'authorization_code'
+		# else:
+		# 	refresh_token = kodi.get_setting('trakt_refresh_token')
+		# 	if refresh_token:
+		# 		data['refresh_token'] = refresh_token
+		# 		data['grant_type'] = 'refresh_token'
+		# 	else:
+		# 		kodi.set_setting('trakt_oauth_token', '')
+		# 		kodi.set_setting('trakt_refresh_token', '')
+		# 		kodi.set_setting('trakt_authorized', 'false')
+		# 		return False
+		# if self.token is None: self.token = False
+		# response = self._call(uri, data, auth=False)
+		# if response is False or response is None:
+		# 	return False
+		# if 'access_token' in response.keys() and 'refresh_token' in response.keys():
+		# 	kodi.set_setting('trakt_oauth_token', response['access_token'])
+		# 	kodi.set_setting('trakt_refresh_token', response['refresh_token'])
+		# 	kodi.set_setting('trakt_authorized', "true")
+		# 	self.token = response['access_token']
+		# 	if kodi.get_setting('debug') == "true":
+		# 		print "YOU JUST AUTHORIZED TRAKT"
+		# 		#kodi.notify('TRAKT ','Account Authorized You may continue','5000','')
+		# 	return True
 
 	def search_tv(self, query, media='show'):
 		uri = '/search'
 		return self._call(uri, params={'query': query, 'type': media, 'extended': 'full,images'})
 
 
-	def _call(self, uri, data=None, params=None, auth=False, cache=False, timeout=None):
-		url = '%s%s' % (BASE_URL, uri)
+	def _call(self, uri, data=None, params=None, auth=False, cache=False, timeout=None,use_https=False):
+		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
 		if timeout is not None: self.timetout = timeout
 		json_data = json.dumps(data) if data else None
 		headers = {'Content-Type': 'application/json', 'trakt-api-key': CLIENT_ID, 'trakt-api-version': 2}
 		if auth:
-			self._authorize()
-			if self.token is None:
+			set_token = kodi.get_setting('trakt_oauth_token')
+			if set_token is None or set_token =='':
 				raise TraktError('Trakt Authorization Required: 400')
-			headers.update({'Authorization': 'Bearer %s' % (self.token)})
+			headers.update({'Authorization': 'Bearer %s' % (set_token)})
 		#url = '%s%s' % (BASE_URL, uri)
 		#print "URL IS = "+url
 		if params and not uri.endswith('/token'):
@@ -627,14 +658,10 @@ class TraktAPI():
 		#START CACHE STUFF
 		created, cached_result = cache_stat.get_cached_url(url)
 		now = time.time()
-		#print "API NOW TIME IS :"+str(now)
 		limit = 60 * 60 * int(kodi.get_setting('cache_limit'))
-		#print "API LIMIT IS : "+str(limit)
 		age = now - created
-		#print "API AGE IS :"+str(age)
 		if cached_result and  age < limit:
 			result = cached_result
-			#print 'Using cached result for: %s' % (url)
 			response = json.loads(result)
 			return response
 		#END CACHE STUFF
@@ -645,21 +672,20 @@ class TraktAPI():
 				result = f.read()
 				response = json.loads(result)
 			except HTTPError as e:
-				print "ERROR IS  = "+str(e)
-				kodi.notify(header='Trakt Error',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
-				#ADDON.log(url, LOG_LEVEL.VERBOSE)
-				if not uri.endswith('/token'):
+				if e.code == 400:
+					return
+				else:
 					print "ERROR IS  = "+str(e)
-					#ADDON.show_error_dialog(['Trakt Error', 'HTTP ERROR', str(e)])
 					kodi.notify(header='Trakt Error',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
-					#raise TraktError('Trakt-HTTP-Error: %s' % e)
-				return False
+					#ADDON.log(url, LOG_LEVEL.VERBOSE)
+					if not uri.endswith('/token'):
+						print "ERROR IS  = "+str(e)
+						kodi.notify(header='Trakt Error',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
+					return False
 			except URLError as e:
 				print "URLERROR IS  = "+str(e)
-				#ADDON.log(url, LOG_LEVEL.VERBOSE)
 				kodi.notify(header='Trakt Error',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 				if not uri.endswith('/token'):
-					#ADDON.show_error_dialog(['Trakt Error', 'URLLib ERROR', str(e)])
 					kodi.notify(header='Trakt Error',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 					raise TraktError('Trakt-URL-Error: %s' % e)
 				return False
@@ -672,15 +698,15 @@ class TraktAPI():
 
 
 	def _callnetworks(self, uri, data=None, params=None, auth=False, cache=False, timeout=None):
-		url = '%s%s' % (BASE_URL, uri)
+		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
 		if timeout is not None: self.timetout = timeout
 		json_data = json.dumps(data) if data else None
 		headers = {'Content-Type': 'application/json', 'trakt-api-key': CLIENT_ID, 'trakt-api-version': 2}
 		if auth:
-			self._authorize()
-			if self.token is None:
+			set_token = kodi.get_setting('trakt_oauth_token')
+			if set_token is None or set_token == '':
 				raise TraktError('Trakt Authorization Required: 400')
-			headers.update({'Authorization': 'Bearer %s' % (self.token)})
+			headers.update({'Authorization': 'Bearer %s' % (set_token)})
 		#url = '%s%s' % (BASE_URL, uri)
 		#print "URL IS = "+url
 		if params and not uri.endswith('/token'):
@@ -734,7 +760,7 @@ class TraktAPI():
 	
 	def _delete(self, uri, data=None, params=None, auth=True):
 		json_data = json.dumps(data) if data else None
-		url = '%s%s' % (BASE_URL, uri)
+		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
 		opener = urllib2.build_opener(urllib2.HTTPHandler)
 		headers = {'Content-Type': 'application/json', 'trakt-api-key': CLIENT_ID, 'trakt-api-version': 2}
 		if auth: headers.update({'Authorization': 'Bearer %s' % (self.token)})
@@ -838,7 +864,6 @@ class TraktAPI():
 
 	def get_watched(self,media):
 		uri = '/sync/watched/%s' % (media)
-		#uri = '/sync/history/shows/tt0364845'
 		response = self._call(uri, auth=True)
 		return response
 

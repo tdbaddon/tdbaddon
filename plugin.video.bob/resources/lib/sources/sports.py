@@ -241,6 +241,7 @@ def get_nhl_games(epg_date=""):
                 try:
                     start_time = datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")
                     start_time -= timedelta(hours=5)
+                    start_time += timedelta(hours=1)
                     start_time = start_time.strftime("%I:%M %p EST")
                     if not start_time in start_xmls:
                         start_xmls[start_time] = "\n" \

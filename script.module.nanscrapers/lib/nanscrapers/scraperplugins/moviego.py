@@ -18,7 +18,7 @@ class Moviego(Scraper):
         self.search_link = '/index.php?do=search&subaction=search&full_search=1&result_from=1&story=%s+%s'
         self.ep_url = '/engine/ajax/getlink.php?id=%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             # print("MOVIEGO INIT")
             headers = {'User-Agent': random_agent()}

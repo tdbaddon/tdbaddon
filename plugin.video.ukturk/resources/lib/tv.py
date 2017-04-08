@@ -3,10 +3,19 @@ import urllib,urllib2,re,os,sys
 
 def TVShows(url):
     stringlist=''
+    fixdate=''
     link=open_url(url)
     shows=re.compile("<li class='listEpisode'(.+?)</li>",re.DOTALL).findall(link)
     for show in shows:
         name=re.compile("</span>(.+?)</a>").findall(show)[0]
+        date=re.compile("\>(.+?) \: <a target").findall(show)[0].replace(' ','/')
+        day=date.split('/')[0]
+        month=date.split('/')[1]
+        year=date.split('/')[2]
+        if len(day)==1:
+            day='0'+day
+        date='[COLOR gold]'+day+'/'+month+'/'+year+'[/COLOR]'
+        name=date+' - '+name
         url=re.compile('href="(.+?)">').findall(show)[0]
         string='<start>'+name+'<sep>'+url+'<end>'
         stringlist=stringlist+string

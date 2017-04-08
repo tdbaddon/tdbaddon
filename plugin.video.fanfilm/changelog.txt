@@ -1,7 +1,9 @@
+2017.04.03.2 - poprawki fimlmyto, loguploader
+2017.04.03.1 - dodany filister i poprawki
+
+2017.03.30.3 - dodane 2 serwisy: szukajkatv i cdahd
 2017.01.26.4 - poprawki do alltube
-
 Wersja 2016.11.01.1    - poprawia sekcji filmów
-
 Wersja 2016.09.01.2    - poprawia sekcji filmów
 ------------------------
 FanFilm v2016.05.10.5

@@ -19,7 +19,7 @@ class Pubfilm(Scraper):
         self.tvsearch_link = '/wp-admin/admin-ajax.php'
         self.scraper = cfscrape.create_scraper()
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             title = title.translate(None, '\/:*?"\'<>|!,').replace(' ', '-').replace('--', '-').lower()
             headers = {'User-Agent': random_agent()}
@@ -43,7 +43,7 @@ class Pubfilm(Scraper):
             pass
         return []
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             for try_year in [str(year), str(int(year) - 1)]:
                 tvshowtitle = '%s %s: Season %s' % (title, try_year, season)

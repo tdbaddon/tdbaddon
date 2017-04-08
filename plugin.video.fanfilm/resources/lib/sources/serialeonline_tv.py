@@ -56,7 +56,6 @@ class source:
             except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            control.log('ALLTUBE URL %s' % url)
             return url
         except:
             return
@@ -67,6 +66,7 @@ class source:
         result = result.decode('iso-8859-2')
         result = client.parseDOM(result, 'div', attrs={'class':'media menu-row margin-bottom-20'})
         result = [(client.parseDOM(i, 'a', ret='href')[0],  cleantitle.get(client.parseDOM(i, 'a', ret='title')[0])) for i in result]
+
         #print result
         return result
         #except:
@@ -74,17 +74,30 @@ class source:
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            result = cache.get(self.serialeonlinepl_cache, 120)
-            tvshowtitle = cleantitle.get(tvshowtitle)
-            print tvshowtitle
-            result = [i[0] for i in result if tvshowtitle in i[1]][0]
-            print result
+            result = cache.get(self.serialeonlinepl_cache, 20)
+            tvshowtitle = unicode(cleantitle.get(tvshowtitle), "utf-8")
+            result = [i for i in result if tvshowtitle in i[1]]
+            if len(result)>1:
+                myresult = ''
+                for i in result:
+                    if '|' in i[1]:
+                        if tvshowtitle == i[1].split('|')[0]:
+                            myresult = i[0]
+                        if tvshowtitle == i[1].split('|')[-1]:
+                            myresult = i[0]
+                    else:
+                        if tvshowtitle == i[1][0]:
+                            myresult = i[0]
+                result = myresult
+            else:
+                result = i[0]
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            print("Error %s" %e)
             return
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
@@ -95,13 +108,11 @@ class source:
             result = result.split('<div id="content"')[-1]
             result = client.parseDOM(result, 'li', attrs={'class':'media'})
             result = [(client.parseDOM(i, 'a', ret='href')[0], client.parseDOM(i, 'a',ret='title')[0]) for i in result]
-            for i in result:
-                print "b",i
             myses = 's%02de%02d' % (int(season), int(episode))
-            result = [i[0] for i in result if myses in i[0]][0]
-            print result
+            result = [i[0] for i in result if myses in i[0].lower()][0]
             return result
-        except:
+        except Exception as e:
+            print('Error %s' % e)
             return None
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
@@ -111,11 +122,9 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            print('####',url)
 
             result = client.request(url)
             r = re.compile('function ccc.*\s.*\s.*\s.*trurl=(.*)"').findall(result)
-            print r
 
             did = client.parseDOM(result, 'img',attrs={'id':'gmodal1'}, ret='data-token')
             myurl = self.info_link + '?did=%s&trurl=%s' % (did,r)
@@ -129,17 +138,13 @@ class source:
             r1 = [(client.parseDOM(result, 'a',attrs={'data-toggle':'tab'}, ret='href')[0].replace('#',''),
                    client.parseDOM(result, 'a',attrs={'data-toggle':'tab'})[0]) for i in r1]
 
-            print r1
             for j in r1:
-                print("j",j,str(j[0]), str(j[1]))
                 r2 = client.parseDOM(result, 'div', attrs={'id': str(j[0])})[0]
                 r2 = client.parseDOM(result, 'dd', attrs={'class': 'linkplayer'}, ret='onclick')
-                print r2
                 r2 = [re.compile("openplayer\('(.*?)', '(.*?)', this\);").findall(i)[0] for i in r2]
 
                 for i in r2:
                     try:
-                        print("i",i)
                         vtype = 'BD'
                         if 'LEKTOR' in str(j[1]): vtype = 'Lektor'
                         if 'NAPISY' in str(j[1]): vtype = 'Napisy'

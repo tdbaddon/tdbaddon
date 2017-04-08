@@ -160,10 +160,7 @@ class source:
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) in t and i[2] == year][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return
 

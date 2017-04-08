@@ -122,10 +122,7 @@ class source:
             r = self.__proceed_search(query)
 
             if len(r) == 1:
-                url = urlparse.urlparse(r[0][0]).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
-                return url
+                return source_utils.strip_domain(r[0][0])
         except:
             return
 
@@ -143,9 +140,7 @@ class source:
             r = self.__proceed_search(query)
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and int(i[2]) == int(season)][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(r)
             if episode:
                 r = client.request(urlparse.urljoin(self.base_link, url))
                 r = dom_parser.parse_dom(r, 'div', attrs={'class': 'season-list'})
@@ -153,9 +148,7 @@ class source:
                 r = dom_parser.parse_dom(r, 'a', req='href')
                 r = [i.attrs['href'] for i in r if i and int(i.content) == int(episode)][0]
 
-                url = urlparse.urlparse(r).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
+                url = source_utils.strip_domain(r)
             return url
         except:
             return

@@ -27,7 +27,7 @@ from libs import log_utils
 import time
 import random
 import CustomProgressDialog
-
+import re
 
 
 WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1', 'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
@@ -488,3 +488,72 @@ class CountdownDialog(object):
     def update(self, percent, line1='', line2='', line3=''):
         if self.pd is not None:
             self.pd.update(percent, line1, line2, line3)
+
+
+class CountdownDialog(object):
+    __INTERVALS = 5
+    pd = None
+
+    def __init__(self, heading, line1='', line2='', line3='', active=True, countdown=60, interval=5):
+        self.heading = heading
+        self.countdown = countdown
+        self.interval = interval
+        self.line3 = line3
+        if active:
+            if xbmc.getCondVisibility('Window.IsVisible(progressdialog)'):
+                pd = CustomProgressDialog.ProgressDialog()
+            else:
+                pd = xbmcgui.DialogProgress()
+            if not self.line3: line3 = 'Expires in: %s seconds' % (countdown)
+            pd.create(self.heading, line1, line2, line3)
+            pd.update(100)
+            self.pd = pd
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, traceback):
+        if self.pd is not None:
+            self.pd.close()
+
+    def start(self, func, args=None, kwargs=None):
+        if args is None: args = []
+        if kwargs is None: kwargs = {}
+        result = func(*args, **kwargs)
+        if result:
+            return result
+
+        start = time.time()
+        expires = time_left = int(self.countdown)
+        interval = self.interval
+        while time_left > 0:
+            for _ in range(CountdownDialog.__INTERVALS):
+                sleep(interval * 1000 / CountdownDialog.__INTERVALS)
+                if self.is_canceled(): return
+                time_left = expires - int(time.time() - start)
+                if time_left < 0: time_left = 0
+                progress = time_left * 100 / expires
+                line3 = 'Expires in: %s seconds' % (time_left) if not self.line3 else ''
+                self.update(progress, line3=line3)
+
+            result = func(*args, **kwargs)
+            if result:
+                return result
+
+    def is_canceled(self):
+        if self.pd is None:
+            return False
+        else:
+            return self.pd.iscanceled()
+
+    def update(self, percent, line1='', line2='', line3=''):
+        if self.pd is not None:
+            self.pd.update(percent, line1, line2, line3)
+
+
+def to_slug(username):
+    username = username.strip()
+    username = username.lower()
+    username = re.sub('[^a-z0-9_]', '-', username)
+    username = re.sub('--+', '-', username)
+    return username

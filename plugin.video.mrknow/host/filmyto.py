@@ -22,6 +22,8 @@ import re
 from __generic_host__ import GenericHost
 import HTMLParser
 import xbmcgui
+import urllib
+
 
 mainurl='http://filmy.to'
 lastadded = '/filmy/1'
@@ -40,6 +42,11 @@ class Filmyto(GenericHost):
 
     ]
     html_parser = HTMLParser.HTMLParser()
+
+    base_link = 'http://filmy.to'
+    search_link = '/szukaj?q=%s'
+    verify = '/ajax/view'
+    provision = '/ajax/provision/%s'
 
     def listsSearchResults(self,key):
         myurl = urlparse.urljoin(mainurl, szukajUrl % key)
@@ -184,7 +191,19 @@ class Filmyto(GenericHost):
         try:
             tab=[]
             result = self.request(urlparse.urljoin(mainurl, url))
-            result = self.control.encoding_fix(result)
+            result, headers, oth, cookie = self.client.request(urlparse.urljoin(mainurl, url), output='extended')
+            r = self.client.parseDOM(result, 'iframe', attrs={'class': 'hidden'}, ret='src')
+            headers['cookie'] = cookie
+            csrftoken = re.findall('post\("/ajax/view", {"view": "(.*?)"}\);', result)[0]
+            provision = self.client.parseDOM(result, 'meta', attrs={'property': 'provision'}, ret='content')[0]
+            post = urllib.urlencode({'view': csrftoken})
+            headers['X-CSRFToken'] = csrftoken
+            headers['X-Requested-With'] = "XMLHttpRequest"
+            r2 = self.client.request(urlparse.urljoin(self.base_link, self.verify), post=post, headers=headers)
+            # http://filmy.to/ajax/view
+            r = self.client.request(r[0])
+            result = self.client.request(urlparse.urljoin(self.base_link, self.provision % provision), headers=headers)
+            #result = self.control.encoding_fix(result)
             r = self.client.parseDOM(result, 'div', attrs={'class': 'url'}, ret='data-url')
             r = [(self.html_parser.unescape(i)) for i in r]
             r = [(self.client.parseDOM(i, 'iframe', ret='src')[0]) for i in r]

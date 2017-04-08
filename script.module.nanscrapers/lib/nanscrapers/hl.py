@@ -24,13 +24,14 @@ scraper_cache = {}
 
 
 class HostedLink:
-    def __init__(self, title, year, imdb=None, tvdb=None, host=None, include_disabled=False, timeout=30, exclude=None):
+    def __init__(self, title, year, imdb=None, tvdb=None, host=None, include_disabled=False, timeout=30, exclude=None, enable_debrid=False):
         self.title = title
         self.year = year
         self.imdb = imdb
         self.tvdb = tvdb
         self.host = host
         self.timeout = timeout
+        self.debrid = enable_debrid
         self.__scrapers = self.__get_scrapers(include_disabled, exclude)
         random.shuffle(self.__scrapers)
         xbmcvfs.mkdir(xbmc.translatePath(xbmcaddon.Addon("script.module.nanscrapers").getAddonInfo('profile')))
@@ -49,9 +50,12 @@ class HostedLink:
                 scrapers.append(scraper_cache[klass])
         return scrapers
 
+    def get_scrapers(self):
+        return self.__get_scrapers(True, None)
+
     def scrape_movie(self, maximum_age=60):
         scrape_f = lambda p: self.get_url(p, self.title, '', self.year, '', '', self.imdb, self.tvdb, "movie",
-                                          self.cache_location, maximum_age)
+                                          self.cache_location, maximum_age, debrid = self.debrid)
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -63,7 +67,7 @@ class HostedLink:
     def scrape_movie_with_dialog(self, maximum_age=60, sort_function=None, check_url=False, extended=False):
         scrape_f = lambda p: self.to_dialog_tuple(
             self.get_url(p, self.title, '', self.year, '', '', self.imdb, self.tvdb, "movie",
-                         self.cache_location, maximum_age, check_url))
+                         self.cache_location, maximum_age, check_url, debrid = self.debrid))
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -79,7 +83,7 @@ class HostedLink:
     def scrape_episode(self, show_year, season, episode, maximum_age=60):
         scrape_f = lambda p: self.get_url(p, self.title, show_year, self.year, season, episode, self.imdb, self.tvdb,
                                           "episode",
-                                          self.cache_location, maximum_age)
+                                          self.cache_location, maximum_age, debrid = self.debrid)
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -91,7 +95,7 @@ class HostedLink:
     def scrape_episode_with_dialog(self, show_year, season, episode, maximum_age=60, sort_function=None, check_url=False, extended = False):
         scrape_f = lambda p: self.to_dialog_tuple(
             self.get_url(p, self.title, show_year, self.year, season, episode, self.imdb, self.tvdb, "episode",
-                         self.cache_location, maximum_age, check_url))
+                         self.cache_location, maximum_age, check_url, debrid = self.debrid))
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -105,7 +109,7 @@ class HostedLink:
             return False
 
     def scrape_song(self, title, artist, maximum_age=60):
-        scrape_f = lambda p: self.get_muscic_url(p, title, artist, self.cache_location, maximum_age)
+        scrape_f = lambda p: self.get_muscic_url(p, title, artist, self.cache_location, maximum_age, debrid = self.debrid)
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -116,7 +120,7 @@ class HostedLink:
 
     def scrape_song_with_dialog(self, title, artist, maximum_age=60, sort_function=None, extended=False):
         scrape_f = lambda p: self.to_dialog_tuple(
-            self.get_muscic_url(p, title, artist, self.cache_location, maximum_age))
+            self.get_muscic_url(p, title, artist, self.cache_location, maximum_age, debrid = self.debrid))
         if len(self.__scrapers) > 0:
             pool_size = 10
             stop_flag = Event()
@@ -130,7 +134,7 @@ class HostedLink:
             return False
 
     @staticmethod
-    def get_url(scraper, title, show_year, year, season, episode, imdb, tvdb, type, cache_location, maximum_age, check_url = False):
+    def get_url(scraper, title, show_year, year, season, episode, imdb, tvdb, type, cache_location, maximum_age, check_url = False, debrid = False):
         cache_enabled = xbmcaddon.Addon('script.module.nanscrapers').getSetting("cache_enabled") == 'true'
         try:
             dbcon = database.connect(cache_location)
@@ -168,9 +172,9 @@ class HostedLink:
         try:
             sources = []
             if type == "movie":
-                sources = scraper.scrape_movie(title, year, imdb)
+                sources = scraper.scrape_movie(title, year, imdb, debrid = debrid)
             elif type == "episode":
-                sources = scraper.scrape_episode(title, show_year, year, season, episode, imdb, tvdb)
+                sources = scraper.scrape_episode(title, show_year, year, season, episode, imdb, tvdb, debrid = debrid)
             if sources == None:
                 sources = []
             else:
@@ -219,7 +223,7 @@ class HostedLink:
             pass
 
     @staticmethod
-    def get_muscic_url(scraper, title, artist, cache_location, maximum_age):
+    def get_muscic_url(scraper, title, artist, cache_location, maximum_age, debrid = False):
         cache_enabled = xbmcaddon.Addon('script.module.nanscrapers').getSetting("cache_enabled") == 'true'
         try:
             dbcon = database.connect(cache_location)
@@ -256,7 +260,7 @@ class HostedLink:
                 pass
 
         try:
-            sources = scraper.scrape_music(title, artist)
+            sources = scraper.scrape_music(title, artist, debrid = debrid)
             if sources == None:
                 sources = []
             else:
@@ -276,6 +280,7 @@ class HostedLink:
     def to_dialog_tuple(self, scraper_array):
         results_array = []
         if scraper_array:
+            labels = {}
             for link in scraper_array:
                 quality = ""
                 try:
@@ -283,5 +288,19 @@ class HostedLink:
                 except:
                     quality = link['quality']
                 label = link["source"] + " - " + link["scraper"] + " (" + quality + ")"
-                results_array.append((label, [link]))
+                grouping_label = link["source"] + " (" + quality + ")"
+                if not grouping_label in labels:
+                    labels[grouping_label] = []
+                labels[grouping_label].append(link)
+                #results_array.append((label, [link]))
+            for label, links in labels.iteritems():
+                if len(links) > 1:
+                    result_links = []
+                    for link in links:
+                        label2 = label.replace("(", " - " + link["scraper"] + " (")
+                        result_links.append({'label': label2, 'path': link})
+                    results_array.append((label, result_links))
+                else:
+                    label2 = label.replace("(", " - " + links[0]["scraper"] + " (")
+                    results_array.append((label2, links))
             return results_array

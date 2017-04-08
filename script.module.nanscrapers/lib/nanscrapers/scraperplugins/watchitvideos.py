@@ -15,7 +15,7 @@ class Watchitvideos(Scraper):
         self.base_link = 'http://watchitvideos.co'
         self.search_link = '/?s=%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             headers = {'User-Agent': random_agent()}
             query = self.search_link % (urllib.quote_plus(title))

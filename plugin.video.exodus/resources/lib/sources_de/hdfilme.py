@@ -26,6 +26,7 @@ import urlparse
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
 from resources.lib.modules import dom_parser
 
 
@@ -75,10 +76,7 @@ class source:
             r = [(i[0], i[1] if re.compile("^(\d+)$").match(i[1]) else '0') for i in r]
             r = [i[0] for i in r if int(i[1]) == int(episode)][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return
 
@@ -139,9 +137,7 @@ class source:
             url = [i[0] for i in r if t == cleantitle.get(i[1])]
             url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
 
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(url)
             url = url.replace('-info', '-stream')
             return url
         except:

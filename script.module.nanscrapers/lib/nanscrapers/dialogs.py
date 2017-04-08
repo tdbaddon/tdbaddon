@@ -160,7 +160,8 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
                     source += " >>"
                 listitem = xbmcgui.ListItem(source)
                 try:
-                    icon = xbmcaddon.Addon(id=links[0]['path'].split("/")[2]).getAddonInfo('icon')
+                    #icon = xbmcaddon.Addon(id=links[0]['path'].split("/")[2]).getAddonInfo('icon')
+                    icon = xbmcaddon.Addon().getAddonInfo('icon')
                     listitem.setIconImage(icon)
                 except:
                     pass
@@ -186,11 +187,11 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
             self.list.reset()
             for item in links:
                 listitem = xbmcgui.ListItem(item['label'])
-                listitem.setProperty("Path", item['path'])
+                #listitem.setProperty("Path", item['path'])
 
                 try:
-                    pluginid = item['path'].split("/")[2]
-                    icon = xbmcaddon.Addon(id=pluginid).getAddonInfo('icon')
+                    #pluginid = item['path'].split("/")[2]
+                    icon = xbmcaddon.Addon().getAddonInfo('icon')
                     listitem.setIconImage(icon)
                 except:
                     pass

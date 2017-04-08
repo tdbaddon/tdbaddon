@@ -18,12 +18,14 @@
 import re
 import urlparse
 import kodi
+import dom_parser2
+import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://allrls.net'
+BASE_URL = 'http://allrls.eu'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -79,6 +81,15 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         html = self._http_get(self.base_url, params={'s': title, 'go': 'Search'}, require_debrid=True, cache_limit=1)
-        pattern = 'href="(?P<url>[^"]+)[^>]+rel="bookmark">(?P<post_title>[^<]+).*?class="entry-date">(?P<date>\d+/\d+/\d+)'
-        date_format = '%m/%d/%Y'
-        return self._blog_proc_results(html, pattern, date_format, video_type, title, year)
+        posts = []
+        for post in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')}):
+            match = dom_parser2.parse_dom(post.content, 'a', req='href')
+            if not match: continue
+            match_url = match[0].attrs['href']
+            match_title = match[0].content
+            match_date = dom_parser2.parse_dom(post, 'span', {'class': 'entry-date'})
+            posts.append('<url>%s</url><title>%s</title><date>%s</date>' % (match_url, match_title, match_date))
+
+        pattern = '<url>(?P<url>.*?)</url><title>(?P<post_title>.*?)</title><date>(?P<post_date>.*?)</date>'
+        date_format = '%B %d, %Y'
+        return self._blog_proc_results('\n'.join(posts), pattern, date_format, video_type, title, year)

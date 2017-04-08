@@ -1,3 +1,6 @@
+[B]Version 2.8.25[/B]
+- Added vidwatch
+
 [B]Version 2.8.24[/B]
 - Fixed watchvideo
 

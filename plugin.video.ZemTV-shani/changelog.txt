@@ -1,3 +1,13 @@
+[B]Version 6.5.2[/B]
+mamahd fixed,streamhd removed
+[B]Version 6.5.1[/B]
+net tv videos
+[B]Version 6.5.0[/B]
+SC beta fix again
+[B]Version 6.4.9[/B]
+networktv back
+[B]Version 6.4.8[/B]
+SC beta fix
 [B]Version 6.4.7[/B]
 SC quicktix
 [B]Version 6.4.6[/B]

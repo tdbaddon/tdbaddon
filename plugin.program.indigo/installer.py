@@ -37,6 +37,10 @@ TxtAddonUpdater='Addon Updater'; ImgAddonUpdater=getArtworkJ('autoupdater')
 Keymaps_URL = base64.b64decode("aHR0cDovL2luZGlnby50dmFkZG9ucy5hZy9rZXltYXBzL2N1c3RvbWtleXMudHh0")
 KEYBOARD_FILE  =  xbmc.translatePath(os.path.join('special://home/userdata/keymaps/','keyboard.xml'))
 openSub="https://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/service.subtitles.opensubtitles_by_opensubtitles/service.subtitles.opensubtitles_by_opensubtitles-5.1.14.zip"
+
+quasar_path = xbmc.translatePath(os.path.join('special://home','addons','plugin.video.quasar'))
+openQuas="http://indigo.tvaddons.ag/installer/sources/quasar.txt"
+burst_url="http://burst.surge.sh/release/script.quasar.burst-0.5.8.zip"
 #****************************************************************
 def MAININDEX():
 
@@ -65,10 +69,11 @@ def MAININDEX():
 		kodi.addDir('Adult Addons',indigo_url+'xxx.php','adultlist',artwork+'adult.png',description="Must be 18 years or older! This menu can be disabled from within Add-on Settings.")
 	if settings.getSetting('repositories')=='true':
 		kodi.addDir('Repositories',base_url+'category/repositories/','addonlist',artwork+'repositories.png',description="Browse addons by repository!")
+	kodi.addItem('Enable Live Streaming', 'None', 'EnableRTMP', artwork + 'enablertmp.png',description="Enable RTMP InputStream and InputStream Adaptive modules for Live Streaming.")
 	kodi.addItem('Official OpenSubtitles Addon', openSub, 'addopensub', artwork + 'opensubicon.png',description="Install Official OpenSubtitles Addon!")
+	kodi.addItem('Install Quasar Addon', openQuas, 'InstallQuas', artwork + 'quasar.png',description="Install the Quasar torrent client addon!")
 	viewsetter.set_view("sets")
 #****************************************************************
-
 #********************************************************************
 def INTERNATIONAL(url):
 	if not '://' in url: url=base_url2+url
@@ -350,6 +355,18 @@ def FireDrive(url):
 		else: return url+'#[error]'
 	except: return url+'#[error]'
 #****************************************************************
+def EnableRTMP():
+		dialog = xbmcgui.Dialog()
+		try: addon_able.set_enabled("inputstream.adaptive")
+		except: pass
+		time.sleep(0.5)
+		try: addon_able.set_enabled("inputstream.rtmp")
+		except: pass
+		time.sleep(0.5)
+		xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
+		dialog.ok("Operation Complete!", "Live Streaming has been Enabled!",
+		"    Brought To You By %s " % siteTitle)
+#****************************************************************
 def HUBINSTALL(name,url,description,filetype,repourl):
 		path=xbmc.translatePath(os.path.join('special://home','addons','packages'))
 		dp=xbmcgui.DialogProgress();
@@ -362,8 +379,111 @@ def HUBINSTALL(name,url,description,filetype,repourl):
 			addonfolder=xbmc.translatePath(os.path.join('special://','home','addons'))
 		time.sleep(2)
 		extract.all(lib,addonfolder,'')
+        
 #****************************************************************
+def INSTALLQUASAR(url):
 
+        dialog = xbmcgui.Dialog()
+       
+        logfile_path = xbmc.translatePath('special://logpath')
+        logfile_names = ('kodi.log', 'spmc.log', 'tvmc.log', 'freetelly.log')
+        for logfile_name in logfile_names:
+            log_file_path = os.path.join(logfile_path, logfile_name)
+            if os.path.isfile(log_file_path):
+                path = log_file_path
+                temp_file = open(path, 'rb')
+                contents = temp_file.read()
+                temp_file.close()
+                try:
+                    running_on = re.compile('Running on(.+?)NOTICE',re.DOTALL).findall(contents)[0]
+                except:
+                    try:
+                        running_on = re.compile('Platform:(.+?)NOTICE',re.DOTALL).findall(contents)[0]
+                    except:
+                        dialog.ok(AddonTitle, 'Sorry we could not find the platform you are running Kodi on. Due to this we cannot download Quasar.')
+                        quit()
+                running_on = running_on.lower()
+                
+        if not running_on:
+            dialog.ok(AddonTitle, 'Sorry we could not find the platform you are running Kodi on. Due to this we cannot download Quasar.')
+            quit()
+
+        if 'android' in running_on:
+            if 'arm' in running_on: get='Android ARM'
+            elif '64' in running_on: get='Android 64'
+            elif '86' in running_on: get='Android 86'
+            else: get='decline'
+        elif 'os x' in running_on:
+            get='Darwin 64'
+        elif 'linux' in running_on:
+            if 'arm' in running_on: 
+                if '64' in running_on: get='Linux ARM 64'
+                elif 'v7' in running_on: get='Linux V7'
+                else: get='Linux ARM'
+            elif '64' in running_on: get='Linux 64'
+            elif '86' in running_on: get='Linux 86'
+            else: get='decline'
+        elif 'windows' in running_on:
+            if '64' in running_on: get='Windows 64'
+            elif '86' in running_on: get='Windows 86'
+            else: get='decline'
+
+        if get == 'decline': 
+            dialog.ok(AddonTitle, 'Sorry we could not find the version of the plugin for your operating system.')
+            quit()
+                
+        choice = dialog.yesno(AddonTitle,'Please note that we discourage the use of torrents without a VPN service for security reasons!','Would you like to download Quasar for ' + get.title() + '?')
+        if choice:
+            
+            link=OPEN_URL(url)
+        
+            plugins=re.compile('<link>(.+?)</link>',re.DOTALL).findall(link)
+
+            for item in plugins:
+                url=item.split('(')[0]
+                opsys=str(item.split('(')[1].replace(')',''))
+                if get == opsys:
+                    install_me = url
+                    found = 1
+
+            if found == 0:
+                dialog.ok(AddonTitle, 'Sorry we could not find the version of the plugin for your operating system.')
+                quit()
+            else:
+                try:
+                    filetype = 'addon'
+                    folder = xbmc.translatePath('special://home/addons/packages')
+                    dp=xbmcgui.DialogProgress();
+                    dp.create("Please Wait"," ",'','Installing Quasar Addon')
+                    lib=os.path.join(folder,'quasar.zip')
+                    try: os.remove(lib)
+                    except: pass
+                    downloader.download(install_me,lib,dp)
+                    addonfolder=xbmc.translatePath(os.path.join('special://','home','addons'))
+                    time.sleep(2)
+                    extract.all(lib,addonfolder,'')
+                    # dp.create("Please Wait"," ",'','Installing Quasar Burst')
+                    # lib=os.path.join(folder,'quasar_burst.zip')
+                    # try: os.remove(lib)
+                    # except: pass
+                    # downloader.download(burst_url,lib,dp)
+                    # addonfolder=xbmc.translatePath(os.path.join('special://','home','addons'))
+                    # time.sleep(2)
+                    # extract.all(lib,addonfolder,'')
+                    xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
+                    time.sleep(2)
+                    addon_able.set_enabled("plugin.video.quasar")
+                    #addon_able.set_enabled("script.quasar.burst")
+                    time.sleep(0.5)
+                    xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
+                    dialog.ok("Installation Complete!", "Kodi must now quit to refresh the Quasar providers. Press OK to quit kodi!",
+                        "    Brought To You By %s " % siteTitle)
+                    xbmc.executebuiltin("XBMC.Quit()")
+                except:
+                    dialog.ok(AddonTitle, 'Sorry there was an error installing Quasar. Please try again later.')
+                    quit()
+        else: quit()
+#****************************************************************
 
 def OPENSUBINSTALL(url):
 		filetype = 'addon'
@@ -718,5 +838,3 @@ def make_lib(path,name):
 	downloader.download(url, lib, dp)
 	dialog = xbmcgui.Dialog()
 	dialog.ok(AddonTitle, "[COLOR gold]Download complete, File can be found at: [/COLOR][COLOR blue]" + lib + "[/COLOR]")
-
-

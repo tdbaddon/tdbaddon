@@ -40,7 +40,6 @@ class source:
         try:
             r = 'search/tvdb/%s?type=show&extended=full' % tvdb
             r = json.loads(trakt.getTrakt(r))
-            print "r1",r
             if not r: return '0'
 
             d = r[0]['show']['genres']
@@ -49,14 +48,11 @@ class source:
             tv_maze = tvmaze.tvMaze()
             t = tv_maze.showLookup('thetvdb', tvdb)
             t = tv_maze.showID()
-            print "r2",t, tvshowtitle
             if not t: return '0'
 
             url = self.searchTitle(tvshowtitle)
-            print "r3",url
             url = {'tvMazeID': t, 'title': tvshowtitle, 'items': url}
             url = json.dumps(url).encode('base64')
-            print "URL",url
 
             return url
         except:
@@ -137,9 +133,7 @@ class source:
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
-            print "r4",q, post
             r = client.request(q, post=post, headers=headers)
-            print "r5",r
 
             # Sometimes the search result returns nothing or the only searched item,
             # This changes the content of show instead of search results

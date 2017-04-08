@@ -15,7 +15,7 @@ class Dizigold(Scraper):
         self.base_link = 'http://www.dizigold.net'
         self.player_link = 'http://player.dizigold.net/?id=%s&s=1&dil=or'
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
 
         url_title = title.replace(' ', '-').replace('.', '-').replace(":","").replace("!","").replace("?","").lower()
         episode_url = '/%s/%01d-sezon/%01d-bolum' % (url_title, int(season), int(episode))

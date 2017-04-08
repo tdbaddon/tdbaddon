@@ -29,41 +29,47 @@ class Scraper:
         ]
         return xml
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         """
-scrapes scraper site for movie links
-        :param str title: movie title
-        :param str year: year the movie came out
-        :param str imdb: imdb identifier
-        :return: a list of video sources represented by dicts with format:
+    scrapes scraper site for movie links
+    Args:
+        title: movie title -> str
+        year: year the movie came out -> str
+        imdb: imdb identifier -> str
+        debrid: boolean indicating whether to use debrid links if available -> bool
+    Returns:
+        a list of video sources represented by dicts with format:
           {'source': video source (str), 'quality': quality (str), 'scraper': scraper name (str) , 'url': url (str), 'direct': bool}
-        :rtype: list(dict[str,str or bool])
         """
         pass
 
-    def scrape_episode(self,title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self,title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         """
-scrapes scraper site for episode links
-        :param str title: title of the tv show
-        :param str show_year: year tv show started
-        :param str year: year episode premiered
-        :param str season: season number of the episode
-        :param str episode: episode number
-        :param str imdb: imdb identifier
-        :param str tvdb: tvdb identifier
-        :return: a list of video sources represented by dicts with format:
+    scrapes scraper site for episode links
+    Args:
+        title: title of the tv show -> str
+        show_year: year tv show started -> str
+        year: year episode premiered -> str
+        season: season number of the episode -> str
+        episode: episode number -> str
+        imdb: imdb identifier -> str
+        tvdb: tvdb identifier -> str
+        debrid: boolean indicating whether to use debrid links if available -> bool
+    Returns:
+        a list of video sources represented by dicts with format:
           {'source': video source (str), 'quality': quality (str), 'scraper': scraper name (str) , 'url': url (str), 'direct': bool}
-        :rtype: list(dict[str,str or bool])
         """
         pass
 
-    def scrape_music(self, title, artist):
+    def scrape_music(self, title, artist, debrid = False):
         """
-scrapes scraper site for song links
-        :param title: song title
-        :param artist: song artist
-        :return: a list of music sources represented by dicts with format:
+    scrapes scraper site for song links
+    Args:
+        title: song title -> str
+        artist: song artist -> str
+        debrid: boolean indicating whether to use debrid links if available -> bool
+    Returns:
+        a list of music sources represented by dicts with format:
           {'source': music source (str), 'quality': quality (str), 'scraper': scraper name (str) , 'url': url (str), 'direct': bool}
-        :rtype: list(dict[str,str or bool])
         """
         pass

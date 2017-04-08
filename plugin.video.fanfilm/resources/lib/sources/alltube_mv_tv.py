@@ -41,12 +41,9 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
-        print("ALLtube originaltitle:%s" % title)
-        print cleantitle.query(title)
         try:
             query = self.moviesearch_link % urllib.quote_plus(cleantitle.query2(title))
             query = urlparse.urljoin(self.base_link, query)
-            control.log('ALLTUBE T URL %s' % query)
             result = client.source(query)
             result = json.loads(result)
 
@@ -55,35 +52,29 @@ class source:
             result = [(i['data'].encode('utf8'),i['value'].encode('utf8')) for i in result]
             result = [i for i in result if cleantitle.movie(title) in cleantitle.movie(i[1])]
             result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-            print("ALLtube result :", result)
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            control.log('ALLTUBE URL %s' % url)
             return url
         except:
             try:
                 query = self.moviesearch_link % cleantitle.query_quote(originaltitle)
                 query = urlparse.urljoin(self.base_link, query)
-                control.log('ALLTUBE T URL %s' % query)
                 result = client.source(query)
                 result = json.loads(result)
 
                 result = [i for i in result['suggestions'] if len(i) > 0]
                 years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
                 result = [(i['data'].encode('utf8'),i['value'].encode('utf8')) for i in result]
-                print result
                 result = [i for i in result if cleantitle.movie(originaltitle) in cleantitle.movie(i[1])]
                 result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-                print("ALLtube result :", result)
 
                 try: url = re.compile('//.+?(/.+)').findall(result)[0]
                 except: url = result
                 url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
-                control.log('ALLTUBE URL %s' % url)
                 return url
             except:
                 return
@@ -114,18 +105,16 @@ class source:
             if url == None: return
 
             url = urlparse.parse_qs(url)
-            print url
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            print url
             result = cache.get(self.tvshow_cache, 120)
             tvshowtitle = cleantitle.get(url['tvshowtitle'])
             for i in result:
                 if cleantitle.get(tvshowtitle) in cleantitle.get(i[1]):
-                    print("MAM", i)
+                    #print("MAM", i)
+                    a=1
 
             result = [i[0] for i in result if cleantitle.get(tvshowtitle) in cleantitle.get(i[1])][0]
             txts = 's%02de%02d' % (int(season),int(episode))
-            print result,title,txts
 
             result = client.source(result)
             result = client.parseDOM(result, 'li', attrs = {'class': 'episode'})

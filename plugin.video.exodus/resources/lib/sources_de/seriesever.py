@@ -59,6 +59,7 @@ class source:
             if not url:
                 return
 
+            url = re.sub('\.\w+$', '', url)
             return url + '/staffel-%s-episode-%s.html' % (season, episode)
         except:
             return
@@ -153,9 +154,7 @@ class source:
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(r)
             url = url.replace('serien/', '')
             return url
         except:

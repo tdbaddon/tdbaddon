@@ -367,7 +367,6 @@ class indexer:
                             except: name = re.findall('<name>(.+?)</name>', name)[0]
                             try: title = name
                             except: title = '0'
-
                             if title == '0' and not tvshowtitle == '0': title = tvshowtitle
 
                     except:
@@ -376,8 +375,12 @@ class indexer:
                         except: name = re.findall('<name>(.+?)</name>', name)[0]
                         try: title = name
                         except: title = '0'
+                        
                         if title == '0' and not tvshowtitle == '0': title = tvshowtitle
-                            
+
+                    if '<title></title>' in item:
+                        item = item.replace('<title></title>','<title>'+title+'</title>')
+                                
                     try:
                         if item_json['release_date'] is not None: year = item_json['release_date']; year = year.split('-')[0]; name = title + ' (' + year + ')'
                         else: 
@@ -386,7 +389,10 @@ class indexer:
                     except:
                         try: year = re.findall('<year>(.+?)</year>', meta)[0]
                         except: year = '0'
-                            
+                        
+                    if '<year></year>' in item:
+                        item = item.replace('<year></year>','<year>'+title+'</year>')
+                                                        
                     try:
                         if item_json['backdrop_path'] is not None: fanart2 = 'http://image.tmdb.org/t/p/original/' + item_json['backdrop_path']
                         else: 
@@ -429,7 +435,9 @@ class indexer:
                 try: date = re.findall('<date>(.+?)</date>', item)[0]
                 except: date = ''
                 if re.search(r'\d+', date): name += ' [COLOR red] Updated %s[/COLOR]' % date
-
+                
+                try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
+                except: meta = '0'
                 try: url = re.findall('<link>(.+?)</link>', item)[0]
                 except: url = '0'
                 url = url.replace('>search<', '><preset>search</preset>%s<' % meta)

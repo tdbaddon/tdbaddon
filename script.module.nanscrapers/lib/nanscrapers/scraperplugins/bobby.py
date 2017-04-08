@@ -37,12 +37,17 @@ class Bobby(Scraper):
         self.search_link = '/search.php?keyword=%s+%s'
         self.simple_link = '/search.php?keyword=%s'
 
-    def scrape_movie(self, title, year, imdb):
-        url = self.movie(imdb, title, year)
-        sources = self.sources(url, [], [])
-        for source in sources:
-            source["scraper"] = source["provider"]
-        return sources
+    def scrape_movie(self, title, year, imdb, debrid = False):
+        try:
+            url = self.movie(imdb, title, year)
+            sources = self.sources(url, [], [])
+            if not sources:
+                return []
+            for source in sources:
+                source["scraper"] = source["provider"]
+            return sources
+        except:
+            return []
 
     def movie(self, imdb, title, year):
         self.zen_url = []
@@ -74,7 +79,7 @@ class Bobby(Scraper):
         except:
             return
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             show_url = self.tvshow(imdb, tvdb, title, show_year)
             url = self.episode(show_url, imdb, tvdb, title, year, season, episode)
@@ -83,7 +88,7 @@ class Bobby(Scraper):
                 source["scraper"] = source["provider"]
             return sources
         except:
-            return
+            return []
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
@@ -149,7 +154,7 @@ class Bobby(Scraper):
                 r = session.get(html, headers=headers).content
                 if type == 'tv_episodes':
                     match = re.compile('changevideo\(\'(.+?)\'\)".+?data-toggle="tab">(.+?)\..+?</a>').findall(r)
-                    print match
+                    print(match)
                 else:
                     match = re.compile('changevideo\(\'(.+?)\'\)".+?data-toggle="tab">(.+?)</a>').findall(r)
                 for href, res in match:

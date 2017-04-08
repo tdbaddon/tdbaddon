@@ -33,7 +33,7 @@ from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
 from resources.lib.modules import favourites
-
+from schism_net import OPEN_URL
 
 class movies:
     def __init__(self):
@@ -110,7 +110,7 @@ class movies:
         self.mycustomlist9_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist9_link, self.tmdb_key)
         self.mycustomlist10_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist10_link, self.tmdb_key)
 		
-		
+        self.tmdb_by_query_imdb = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ("%s", self.tmdb_key)		
         # self.traktlists_link = 'http://api-v2launch.trakt.tv/users/%s/lists' % self.trakt_user
         # self.traktlikedlists_link = 'http://api-v2launch.trakt.tv/users/likes/lists?limit=1000000'
         # self.traktlist_link = 'http://api-v2launch.trakt.tv/users/%s/lists/%s/items'
@@ -174,6 +174,111 @@ class movies:
             return self.list
         except:
             pass
+			
+			
+			
+
+    def similar_movies(self, imdb):
+		url = '%s?action=get_similar_movies&imdb=%s' % (sys.argv[0], imdb)
+		control.execute('Container.Update(%s)' % url)
+
+	
+			
+    def get_similar_movies(self, imdb):
+				self.list = []
+				try:
+					imdb_page = "http://www.imdb.com/title/%s/" % imdb
+					r = OPEN_URL(imdb_page).content
+					r = client.parseDOM(r, 'div', attrs = {'class': 'rec_item'})[:20]
+				except:
+					return
+				for u in r:
+						imdb = client.parseDOM(u, 'a', ret='href')[0]
+						imdb = imdb.encode('utf-8')
+						imdb = re.findall('/tt(\d+)/', imdb)[0]
+						imdb = imdb.encode('utf-8')
+						if imdb == '0' or imdb == None or imdb == '': raise Exception()
+						imdb = 'tt' + imdb
+						
+						try:
+							url_tmdb = self.tmdb_by_query_imdb % imdb
+							if not len(self.list) >= 40:
+								self.list = cache.get(self.tmdb_similar_list, 720, url_tmdb, imdb)
+						except:
+							pass
+					
+				self.list = self.list[:40]
+				self.movieDirectory(self.list)
+		
+
+
+    def tmdb_similar_list(self, url, imdb):
+        
+        
+        try:
+            result = OPEN_URL(url).content
+            result = json.loads(result)
+            item = result['movie_results'][0]
+            
+        except:
+            return
+
+        next = ''
+
+
+        try:
+                title = item['title']
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                year = item['release_date']
+                year = re.compile('(\d{4})').findall(year)[-1]
+                year = year.encode('utf-8')
+
+                tmdb = item['id']
+                tmdb = re.sub('[^0-9]', '', str(tmdb))
+                tmdb = tmdb.encode('utf-8')
+
+                poster = item['poster_path']
+                if poster == '' or poster == None: raise Exception()
+                else: poster = '%s%s' % (self.tmdb_poster, poster)
+                poster = poster.encode('utf-8')
+
+                fanart = item['backdrop_path']
+                if fanart == '' or fanart == None: fanart = '0'
+                if not fanart == '0': fanart = '%s%s' % (self.tmdb_image, fanart)
+                fanart = fanart.encode('utf-8')
+
+                premiered = item['release_date']
+                try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
+                except: premiered = '0'
+                premiered = premiered.encode('utf-8')
+
+                rating = str(item['vote_average'])
+                if rating == '' or rating == None: rating = '0'
+                rating = rating.encode('utf-8')
+
+                votes = str(item['vote_count'])
+                try: votes = str(format(int(votes),',d'))
+                except: pass
+                if votes == '' or votes == None: votes = '0'
+                votes = votes.encode('utf-8')
+
+                plot = item['overview']
+                if plot == '' or plot == None: plot = '0'
+                plot = client.replaceHTMLCodes(plot)
+                plot = plot.encode('utf-8')
+
+                tagline = re.compile('[.!?][\s]{1,2}(?=[A-Z])').split(plot)[0]
+                try: tagline = tagline.encode('utf-8')
+                except: pass
+
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'studio': '0', 'genre': '0', 'duration': '0', 'rating': rating, 'votes': votes, 'mpaa': '0', 'director': '0', 'writer': '0', 'cast': '0', 'plot': plot, 'tagline': tagline, 'code': '0', 'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'poster': poster, 'banner': '0', 'fanart': fanart, 'next': next})
+        except:
+                pass
+        return self.list
+
+					
 
 
     def widget(self):
@@ -1211,7 +1316,7 @@ class movies:
 
 
                 cm = []
-
+                if "tt" in imdb: cm.append(('People Also Liked...', 'RunPlugin(%s?action=similar_movies&imdb=%s)' % (sysaddon, imdb)))
                 # cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
                 cm.append(('Trailer', 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
                 cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, urllib.quote_plus(url_alt), sysmeta)))

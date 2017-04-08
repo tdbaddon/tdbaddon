@@ -1,5 +1,9 @@
 Official Velocity addon For Kodi
 
+V1.0.9
+Added Device Autorization
+Code Cleanup
+Faster searching
 
 V1.0.8
 Slimmed down addon size

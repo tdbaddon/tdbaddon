@@ -1,3 +1,9 @@
+v0.5.12
+- new optional parameter: enable_debrid
+- added debrid capabilities to alluc scraper
+- add calling addons icon to with_dialog functions
+- bugfixes
+
 v0.5.11
 - removed 123moviescraper at md's request
 - fixed some scrapers

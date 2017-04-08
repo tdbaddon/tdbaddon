@@ -124,6 +124,17 @@ elif action == 'clearCache':
 elif action == 'movies':
     from resources.lib.indexers import movies
     movies.movies().get(url)
+	
+elif action == 'similar_movies':
+    from resources.lib.indexers import movies
+    movies.movies().similar_movies(imdb)
+	
+elif action == 'get_similar_movies':
+    from resources.lib.indexers import movies
+    movies.movies().get_similar_movies(imdb)	
+	
+
+
 
 elif action == 'moviePage':
     from resources.lib.indexers import movies
@@ -172,6 +183,14 @@ elif action == 'channels':
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().get(url)
+	
+elif action == 'similar_shows':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().similar_shows(imdb)
+	
+elif action == 'get_similar_shows':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().get_similar_shows(imdb)	
 
 elif action == 'tvshowPage':
     from resources.lib.indexers import tvshows

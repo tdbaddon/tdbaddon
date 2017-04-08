@@ -61,7 +61,7 @@ class Scraper(scraper.Scraper):
         
         iframe_urls = []
         if video.video_type == VIDEO_TYPES.MOVIE:
-            iframe_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
+            iframe_urls = [r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': ['orange', 'abutton']}, req='href')]
         else:
             for label, link in self.__get_episode_links(html):
                 if int(label) == int(video.episode):
@@ -124,7 +124,7 @@ class Scraper(scraper.Scraper):
                 return season_url
     
     def __get_episode_links(self, html):
-        episodes = [(re.sub('[^\d]', '', label), attrs['href']) for attrs, label in dom_parser2.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, req='href')]
+        episodes = [(re.sub('[^\d]', '', label), attrs['href']) for attrs, label in dom_parser2.parse_dom(html, 'a', {'class': ['orange', 'abutton']}, req='href')]
         return [episode for episode in episodes if episode[0].isdigit()]
     
     def search(self, video_type, title, year, season=''):

@@ -198,6 +198,14 @@ msgctxt "#30744"
 msgid "Enable Link Selection Dialog"
 msgstr ""
 
+msgctxt "#30745"
+msgid "Enable Link Selection Dialog Url Checking"
+msgstr ""
+
+msgctxt "#30746"
+msgid "Enable Link Selection Dialog Link Fallthrough"
+msgstr ""
+
 msgctxt "#30751"
 msgid "Scoreboard"
 msgstr ""

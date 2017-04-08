@@ -24,7 +24,7 @@ import re,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
-
+from resources.lib.modules import jsunpack
 
 class source:
     def __init__(self):
@@ -72,6 +72,13 @@ class source:
             r = client.parseDOM(r, 'title')
 
             if not r:
+                url = self.tvsearch_link % cleantitle.geturl(tvshowtitle + '-')
+                r = urlparse.urljoin(self.base_link, url)
+                r = client.request(r, limit='1')
+                r = client.parseDOM(r, 'title')
+                url = self.tvsearch_link % cleantitle.geturl(tvshowtitle)
+
+            if not r:
                 url = 'http://www.imdb.com/title/%s' % imdb
                 url = client.request(url, headers={'Accept-Language':'es-ES'})
                 url = client.parseDOM(url, 'title')[0]
@@ -94,8 +101,29 @@ class source:
         try:
             if url == None: return
 
-            url = '/pelicula/%s-season-%01d-episode-%01d/' % (url.strip('/').split('/')[-1], int(season), int(episode))
-            return url 
+
+            ep_url = '/pelicula/%s-season-%01d-episode-%01d/' % (url.strip('/').split('/')[-1], int(season), int(episode))
+            ep_url = urlparse.urljoin(self.base_link, ep_url)
+            r = client.request(ep_url, limit=1)
+
+            if not r:
+                ep_url = '/pelicula/%s-season-%01d-episode-%01d-/' % (url.strip('/').split('/')[-1], int(season), int(episode))
+                ep_url = urlparse.urljoin(self.base_link, ep_url)
+                r = client.request(ep_url, limit=1)
+
+            if not r:
+                url = 'http://www.imdb.com/title/%s' % imdb
+                url = client.request(url, headers={'Accept-Language':'es-ES'})
+                url = client.parseDOM(url, 'title')[0]
+                url = re.sub('\((?:.+?|)\d{4}.+', '', url).strip()
+                url = cleantitle.geturl(url.encode("utf-8"))
+                url = '/pelicula/%s-season-%01d-episode-%01d/' % (url.strip('/').split('/')[-1], int(season), int(episode))
+                ep_url = urlparse.urljoin(self.base_link, url)
+                r = client.request(ep_url, limit=1)
+
+            if not r:
+                raise Exception()
+            return ep_url
         except:
             return
 
@@ -142,8 +170,10 @@ class source:
                     url = re.findall('file\s*:\s*(?:\"|\')(.+?)(?:\"|\')', url)
 
                     for i in url:
-                        try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True})
-                        except: pass
+                        try:
+                            links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True})
+                        except:
+                            pass
                 except:
                     pass
 
@@ -170,6 +200,22 @@ class source:
                     url = json.loads(url)[0]['url']
 
                     links.append({'source': 'cdn', 'quality': 'HD', 'url': url, 'direct': True})
+                except:
+                    pass
+
+                try:
+                    if not jsunpack.detect(result): raise Exception()
+
+                    result = jsunpack.unpack(result)
+                    url = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
+                    url = re.findall('file\s*:\s*.*?\'(.+?)\'', url)
+                    for i in url:
+                        try:
+                            i = client.request(i, headers={'Referer': f}, output='geturl')
+                            links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i,
+                                          'direct': True})
+                        except:
+                            pass
                 except:
                     pass
 

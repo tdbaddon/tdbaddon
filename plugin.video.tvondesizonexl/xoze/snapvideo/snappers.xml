@@ -326,6 +326,10 @@
     <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.WatchVideo2US">
     	<video-id regex="watchvideo2.us/embed-(.+?)-"/>
     </snapper>
+	
+    <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.VidWatch">
+    	<video-id regex="vidwatch3.me/embed-(.+?)-"/>
+    </snapper>	
 
     <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.Streamin">
     	<video-id regex="streamin.to/embed-(.+?)-"/>

@@ -69,9 +69,15 @@ class Scraper(scraper.Scraper):
         else:
             page_quality = QUALITIES.HIGH
         
+        if video.video_type == VIDEO_TYPES.EPISODE:
+            fragment = dom_parser2.parse_dom(html, 'div', {'id': 'servers-list'})
+            gk_html = fragment[0].content if fragment else ''
+        else:
+            gk_html = html
+
         link_url = urlparse.urljoin(self.base_url, LINK_URL)
         player_url = urlparse.urljoin(self.base_url, PLAYER_URL)
-        for stream_url, quality in scraper_utils.get_gk_links(self, html, page_url, page_quality, link_url, player_url).iteritems():
+        for stream_url, quality in scraper_utils.get_gk_links(self, gk_html, page_url, page_quality, link_url, player_url).iteritems():
             host = scraper_utils.get_direct_hostname(self, stream_url)
             if host == 'gvideo':
                 direct = True

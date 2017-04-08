@@ -20,7 +20,7 @@ class Xmovies(Scraper):
         self.search_link = '/movies/search?s=%s'
         self.scraper = cfscrape.create_scraper()
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             headers = {'User-Agent': random_agent()}
             query = urlparse.urljoin(self.base_link, self.search_link)

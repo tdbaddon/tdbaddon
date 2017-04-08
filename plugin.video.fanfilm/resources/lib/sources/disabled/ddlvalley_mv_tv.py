@@ -89,7 +89,6 @@ class source:
 
             r = client.request(url)
             posts = client.parseDOM(r, 'item')
-            print "POST",posts
 
             items = []
 
@@ -98,7 +97,6 @@ class source:
                     t = client.parseDOM(post, 'title')[0]
 
                     u = client.parseDOM(post, 'enclosure', ret='url')
-                    print "U>",u
                     u = [i for i in u if not 'openload' in i]
 
                     if 'tvshowtitle' in data:
@@ -109,7 +107,6 @@ class source:
                     items += u
                 except:
                     pass
-            print "ITEMS",items
 
             for item in items:
                 try:

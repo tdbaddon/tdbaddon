@@ -15,7 +15,7 @@ class Animetoon(Scraper):
     def __init__(self):
         self.base_link = 'http://www.animetoon.org/'
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             if season == '1':
                 url = self.base_link + title.replace(' ', '-').replace('!', '') + '-episode-' + episode
@@ -32,7 +32,7 @@ class Animetoon(Scraper):
         except:
             pass
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             start_url = 'http://www.animetoon.org/toon/search?key=' + title.replace(' ', '+').lower()
             html = BeautifulSoup(requests.get(start_url).text)

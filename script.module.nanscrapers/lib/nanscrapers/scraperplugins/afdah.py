@@ -16,7 +16,7 @@ class Afdah(Scraper):
         self.base_link = 'http://fmovie.co'
         self.search_link = '/results?q=%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             headers = {'User-Agent': random_agent()}
             query = self.search_link % (urllib.quote_plus(title))

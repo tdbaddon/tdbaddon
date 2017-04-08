@@ -19,7 +19,7 @@ class Pelispedia(Scraper):
         self.movie_link = '/pelicula/%s'
         self.tv_link = '/serie/%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             if imdb is None:  # TODO get imdb from title
                 return
@@ -47,7 +47,7 @@ class Pelispedia(Scraper):
             pass
         return []
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             if imdb is None:  # TODO get imdb from title
                 return

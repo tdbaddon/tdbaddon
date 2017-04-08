@@ -25,6 +25,7 @@ import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -90,8 +91,6 @@ class source:
             r = [(i[0], i[1][0], i[2][0], re.findall('.+?(tt\d+).*?', i[3][0])) for i in r if i[0] and i[1] and i[2] and i[3]]
             r = [i[1] for i in r if imdb in i[3] or (t == cleantitle.get(i[0]) and i[2] in y)][0]
 
-            url = client.replaceHTMLCodes(r)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return

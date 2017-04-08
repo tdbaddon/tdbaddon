@@ -36,7 +36,7 @@ class Moviefree(Scraper):
         self.search_link = '/search/%s.html'
         self.scraper = cfscrape.create_scraper()
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         url = self.movie(imdb, title, year)
         sources = self.sources(url, [], [])
         for source in sources:

@@ -1,5 +1,7 @@
-﻿# script.module.python.koding.aio
-# Python Koding AIO (c) by whufclee
+﻿# -*- coding: utf-8 -*-
+
+# script.module.python.koding.aio
+# Python Koding AIO (c) by whufclee (info@totalrevolution.tv)
 
 # Python Koding AIO is licensed under a
 # Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
@@ -29,12 +31,16 @@ try:
 except:
     import json
 
+from directory      import *
 from filetools      import *
+from guitools       import *
 from systemtools    import *
+from tutorials      import *
 from video          import *
 from web            import *
 
 def converthex(url):
+    """ internal command ~"""
     import binascii
     return binascii.unhexlify(url)
 
@@ -51,12 +57,16 @@ try:
 except:
     pass
 
+if ADDON_ID.endswith(converthex('2e74657374')):
+    ORIG_ID      =  ADDON_ID[:-5]
+else:
+    ORIG_ID      = ADDON_ID
+
 TestID           =  ADDON_ID
 if not ADDON_ID.endswith(converthex('2e74657374')):
     TestID       =  ADDON_ID+converthex('2e74657374')
 
 MODULE_ID        =  'script.module.python.koding.aio'
-ORIG_ID          =  ADDON_ID.replace(converthex('2e74657374'),'')
 ADDON            =  xbmcaddon.Addon(id=ADDON_ID)
 ADDON_ORIG       =  xbmcaddon.Addon(id=ORIG_ID)
 THIS_MODULE      =  xbmcaddon.Addon(id=MODULE_ID)
@@ -100,19 +110,39 @@ if FORUM == converthex('436f6d6d756e697479204275696c647320537570706f7274'):
 
 if not os.path.exists(os.path.join(ADDON_DATA,ORIG_ID,converthex('636f6f6b696573'))):
     os.makedirs(os.path.join(ADDON_DATA,ORIG_ID,converthex('636f6f6b696573')))
-
 #----------------------------------------------------------------
-def dolog(url):
-    if DEBUG == 'true':
-        xbmc.log(ADDON_ID+': '+url)
+# TUTORIAL #
+def dolog(string, my_debug = False):
+    """
+Print to the Kodi log but only if debugging is enabled in settings.xml
+
+CODE: koding.dolog(string, [my_debug])
+
+AVAILABLE PARAMS:
+
+    (*) string  -  This is your text you want printed to log.
+
+    my_debug  -  This is optional, if you set this to True you will print
+    to the log regardless of what the debug setting is set at in add-on settings.
+
+EXAMPLE CODE:
+koding.dolog(string='Quick test to see if this gets printed to the log', my_debug=True)~"""
+
+    import xbmc
+    global DEBUG
+    global ADDON_ID
+    if DEBUG == 'true' or my_debug:
+        xbmc.log(ADDON_ID+': '+string, 2)
 #----------------------------------------------------------------
 def Check_Addons(addons):
+    """ internal command ~"""
     if ',' in addons and INSTALL_ADDONS != '0':
         addon_array = addons.split(',')
         for addon in addon_array:
             Main('addoninstall|id:%s~version:%s~repo:%s~silent:%s~installtype:%s' % (addon,KODI_VER,INSTALL_REPOS,SILENT_MODE,INSTALL_ADDONS))
 #----------------------------------------------------------------
 def Check_Cookie(mode = ''):
+    """ internal command ~"""
     if not os.path.exists(COOKIE):
         cookie_folder = os.path.join(ADDON_DATA,ORIG_ID,converthex('636f6f6b696573'))
         if not os.path.exists(cookie_folder):
@@ -169,6 +199,7 @@ def Check_Cookie(mode = ''):
             return True
 #----------------------------------------------------------------
 def Check_File_Date(url, datefile, localdate, dst):
+    """ internal command ~"""
     try:
         req = urllib2.Request(url)
         req.add_header('User-Agent','Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -195,6 +226,7 @@ def Check_File_Date(url, datefile, localdate, dst):
         pass
 #----------------------------------------------------------------
 def Check_Updates(url, datefile, dst):
+    """ internal command ~"""
     if os.path.exists(datefile):
         readfile  = open(datefile,'r')
         localdate = readfile.read()
@@ -204,6 +236,7 @@ def Check_Updates(url, datefile, dst):
     Check_File_Date(url, datefile, int(localdate), dst)
 #----------------------------------------------------------------    
 def Encryption(mode='', message=''):
+    """ internal command ~"""
     finaltext   = ''
     translated  = ''
     finalstring = ''
@@ -227,13 +260,29 @@ def Encryption(mode='', message=''):
         return finaltext
 #----------------------------------------------------------------
 def Get_IP():
+    """ internal command ~"""
     link          = Open_URL(converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f636f6f6b69652e706870'), 'post').replace('\r','').replace('\n','').replace('\t','')
     link          = Encryption('d',link)
     ipmatch       = re.compile('i="(.+?)"').findall(link)
     ipfinal       = ipmatch[0] if (len(ipmatch) > 0) else ''
     return ipfinal
 #----------------------------------------------------------------
+# TUTORIAL #
 def Main(url='', post_type = 'get'):
+    """
+If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
+
+CODE:   koding.Main(url,[post_type])
+post_type is optional, by default it's set as 'get'
+
+AVAILABLE VALUES:
+
+    'get'  -  This is already the default so no real need to add this but this uses a standard query string
+    
+    'post' -  This will convert the query string into a post
+
+EXAMPLE CODE:
+koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
     try:
         url = converthex(url)
     except:
@@ -273,43 +322,16 @@ def Main(url='', post_type = 'get'):
                 dialog.ok(converthex('5345525649434520554e415641494c41424c45'),converthex("536f7272792069742773206e6f7420706f737369626c6520746f2072756e2074686973206164642d6f6e207269676874206e6f772c206974206d61792062652077652772652063757272656e746c79207570646174696e672074686520636f64652e204966207468652070726f626c656d20706572736973747320706c65617365206c657420746865207465616d206b6e6f77206f6e2074686520666f72756d206174206e6f6f6273616e646e657264732e636f6d2f737570706f72742e205468616e6b20796f752e"))
 
     dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
-#----------------------------------------------------------------
-def Open_Settings(show_dialog = True):
-    ADDON.openSettings()
-    sys.exit()
-#----------------------------------------------------------------
-def Open_URL(url='', post_type = 'get'):
-
-    import requests
-    payload = {}
-
-# If the url sent through is not http then we presume it's hitting the NaN page
-    if not url.startswith(converthex('68747470')):
-        NaN_URL = True
-        args = url
-        post_type = 'post'
-        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e332e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, AddonVersion, KODI_VER, args)
-    else:
-        NaN_URL = False
-    if '?' in url:
-        url, args = url.split('?')
-        args = args.split('&')
-        for item in args:
-            var, data = item.split('=')
-            if NaN_URL:
-                payload[var] = Encryption('e', data)
-            else:
-                payload[var] = data
-    if post_type == 'post':
-        r = requests.post(url, payload)
-    else:
-        r = requests.get(url, payload)
-    dolog('### CODE: %s   |   REASON: %s' % (r.status_code, r.reason))
-    if r.status_code == 200:
-        content = r.text.encode('utf-8')
-        return content
 #-----------------------------------------------------------------------------
+# TUTORIAL #
 def User_Info(mode = ''):
+    """
+THIS MUST BE CALLED AT START OF CODE IF USING NOOBSANDNERDS FRAMEWORK.
+
+This is only required for developers who want to use the special
+noobsandnerds features, this will create a cookie file containing cached
+details. It's important you do this somewhere at the start of your code as
+it will initialise your variables on first run.~"""
     global main_counter
 
     if not Check_Cookie():
@@ -414,10 +436,14 @@ def User_Info(mode = ''):
                 return
 
 # If this was called to recreate a COOKIE file just to return base url then we call that function again
-    if mode == 'cookie_check':
+    elif mode == 'cookie_check':
         Check_Cookie('base')
+
+    else:
+        Verify()
 #----------------------------------------------------------------
 def Verify(testmode = ''):
+    """ internal command ~"""
     ADDON_ID = xbmcaddon.Addon().getAddonInfo('id') 
     try:
         if sys.argv[1] == converthex('7465737466696c65'):

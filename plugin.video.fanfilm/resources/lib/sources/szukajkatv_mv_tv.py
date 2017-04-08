@@ -44,16 +44,18 @@ class source:
         return result.strip()
 
     def get_movie(self, imdb, title, year):
-        return self.clean_search(title) + ' ' + year
+        mytitle =  self.clean_search(title) + '+' + year
+        return mytitle.replace(' ','+')
 
 
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
-        return self.clean_search(tvshowtitle)
+        mytitle =  self.clean_search(tvshowtitle)
+        return mytitle.replace(' ','+')
 
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
-        return url + ' s' + season.zfill(2) + 'e' + episode.zfill(2)
+        return url + '+s' + season.zfill(2) + 'e' + episode.zfill(2)
 
     def contains_word(self, str_to_check, word):
         return re.search(r'\b' + word + r'\b', str_to_check, re.IGNORECASE)
@@ -68,7 +70,7 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
-            words = url.split(' ')
+            words = url.split('+')
             search_str = urllib.quote(url)
 
             search_url = urlparse.urljoin(self.base_link, self.search_link) % search_str
@@ -78,26 +80,25 @@ class source:
             for el in result:
 
                 found_title = client.parseDOM(el, 'span', attrs={'class': 'title'})[0]
-                if not self.contains_all_wors(found_title, words):
-                    break
+                if self.contains_all_wors(found_title, words):
 
-                q = 'SD'
-                if self.contains_word(found_title, '1080p'):
-                    q = '1080p'
-                elif self.contains_word(found_title, '720p'):
-                    q = 'HD'
+                    q = 'SD'
+                    if self.contains_word(found_title, '1080p'):
+                        q = '1080p'
+                    elif self.contains_word(found_title, '720p'):
+                        q = 'HD'
 
-                link = client.parseDOM(el, 'a', attrs={'class': 'link'}, ret='href')[0]
-                fields = client.parseDOM(el, 'span', attrs={'class': 'fields'})[0]
-                transl_type = client.parseDOM(fields, 'span', attrs={'class': 'version'})[0]
-                transl_type = transl_type.split(' ')
-                transl_type = transl_type[-1]
+                    link = client.parseDOM(el, 'a', attrs={'class': 'link'}, ret='href')[0]
+                    fields = client.parseDOM(el, 'span', attrs={'class': 'fields'})[0]
+                    transl_type = client.parseDOM(fields, 'span', attrs={'class': 'version'})[0]
+                    transl_type = transl_type.split(' ')
+                    transl_type = transl_type[-1]
 
-                host = client.parseDOM(fields, 'img', ret='src')[0]
-                host = host[36:-4]
+                    host = client.parseDOM(fields, 'img', ret='src')[0]
+                    host = host[36:-4]
 
-                lang, info = self.get_lang_by_type(transl_type)
-                sources.append({'source': host, 'quality': q, 'provider': 'SzukajkaTV', 'url': link, 'vtype':info})
+                    lang, info = self.get_lang_by_type(transl_type)
+                    sources.append({'source': host, 'quality': q, 'provider': 'SzukajkaTV', 'url': link, 'vtype':info})
 
             return sources
         except Exception as e:
@@ -122,8 +123,6 @@ class source:
             r = client.request(url, output='extended')
             url_res = client.parseDOM(r[0], 'a', attrs={'class': 'submit'}, ret='href')[0]
             mycookie = self.crazy_cookie_hash(r[3])
-            print mycookie
-            print url_res
 
             r = client.request(url_res, cookie=mycookie)
 

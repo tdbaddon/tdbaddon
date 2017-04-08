@@ -34,7 +34,9 @@ def retrieveVideoInfo(video_id):
 
         if ('.m3u8' in video_link):
             try:
-                html = cache_page(url=video_link);
+                html = http.HttpClient().get_html_content(url=video_link)
+                html = html.replace(' ', '')
+                html = html.replace('\'', '"')
                 final_video_link = 'http' + re.compile('http(.+?)m3u8').findall(html)[0] + 'm3u8'
             except:
                 final_video_link = video_link

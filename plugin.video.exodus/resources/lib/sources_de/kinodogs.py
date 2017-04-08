@@ -64,10 +64,7 @@ class source:
             r = [i[0] for i in r if i[1].upper() == 'E%s' % episode]
 
             if len(r) >= 1:
-                url = urlparse.urlparse(r[0]).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
-                return url
+                return source_utils.strip_domain(r[0])
         except:
             return
 
@@ -106,7 +103,6 @@ class source:
         except:
             return url
 
-
     def __search(self, title, year, imdb):
         try:
             query = self.search_link % (urllib.quote_plus(title))
@@ -142,9 +138,6 @@ class source:
                 url = r[0]
 
             if url:
-                url = urlparse.urlparse(url).path
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
-                return url
+                return source_utils.strip_domain(url)
         except:
             return

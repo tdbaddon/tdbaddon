@@ -136,7 +136,6 @@ except:
     uncached = False
 
 if action is None:
-    xbmc.log('### user info initiated')
     from resources.lib.indexers import bob
     bob.Indexer().root()
 elif action == 'directory':
@@ -257,10 +256,10 @@ elif action == 'queueItem':
                 control.execute('ActivateWindow(busydialog)')
             if retrying:
                 resolved = Resolver().process(Resolver().get(item_url['url']), name=item_url['name'],
-                                              hide_progress=hide_progress)
+                                              hide_progress=hide_progress, queueing=True)
             else:
                 link = Resolver().get(item_url['url'], link=selected_link)
-                resolved = Resolver().process(link, name=item_url['name'], hide_progress=hide_progress)
+                resolved = Resolver().process(link, name=item_url['name'], hide_progress=hide_progress, queueing=True)
             if not hide_progress:
                 control.execute('Dialog.Close(busydialog)')
             if resolved:
@@ -348,3 +347,6 @@ elif action == "markwatched":
     elif content == "movie":
         metacache.movies_set_watched(imdb, tmdb, tvdb, mark_unwatched)
     control.refresh()
+elif action == "realdebridauth":
+    from resources.lib.modules import debrid
+    debrid.rdAuthorize()

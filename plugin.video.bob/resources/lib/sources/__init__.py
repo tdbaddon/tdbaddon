@@ -28,7 +28,7 @@ import xbmc
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
-
+from resources.lib.modules import debrid
 try:
     from sqlite3 import dbapi2 as database
 except:
@@ -38,49 +38,97 @@ except:
 class sources:
     @staticmethod
     def getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30,
-                   progress=True, preset="search", dialog=None, exclude=None, scraper_title=False):
+                   progress=True, preset="search", dialog=None, exclude=None, scraper_title=False, queueing=False):
 
         year = str(year)
-
         content = 'movie' if tvshowtitle == None else 'episode'
+        allow_debrid = bool(control.setting('allow_debrid'))
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            links_scraper = nanscrapers.scrape_movie(title, year, imdb, timeout=timeout, exclude=exclude)
+            links_scraper = nanscrapers.scrape_movie(title, year, imdb, timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
         elif content == 'episode':
             if scraper_title:
                 tvshowtitle = title
             tvshowtitle = cleantitle.normalize(tvshowtitle)
             links_scraper = nanscrapers.scrape_episode(tvshowtitle, year, premiered, season, episode, imdb, tvdb,
-                                                       timeout=timeout, exclude=exclude)
+                                                           timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
         else:
             return
 
-        allow_debrid = bool(control.setting('allow_debrid'))
-
-        if control.setting('use_link_dialog') == 'true':
+        if not queueing and control.setting('use_link_dialog') == 'true':
+            if control.setting('check_url') == "true":
+                check_url = True
+            else:
+                check_url = False
             if content == 'movie':
-                link = nanscrapers.scrape_movie_with_dialog(title, year, imdb, timeout=timeout, exclude=exclude, sort_function=sources.sort_function)
+                link, items = nanscrapers.scrape_movie_with_dialog(title, year, imdb, timeout=timeout, exclude=exclude,
+                                                                   sort_function=sources.sort_function,
+                                                                   check_url=check_url, extended=True, enable_debrid=allow_debrid)
             elif content == "episode":
-                link = nanscrapers.scrape_episode_with_dialog(tvshowtitle, year, premiered, season, episode, imdb, tvdb,
-                                                       timeout=timeout, exclude=exclude, sort_function=sources.sort_function)
+                link, items = nanscrapers.scrape_episode_with_dialog(tvshowtitle, year, premiered, season, episode,
+                                                                     imdb, tvdb,
+                                                                     timeout=timeout, exclude=exclude,
+                                                                     sort_function=sources.sort_function,
+                                                                     check_url=check_url, extended=True, enable_debrid=allow_debrid)
             else:
                 return
 
+
+            if link is None:
+                return False
+
+            if type(link) == dict and "path" in link:
+                link = link["path"]
             url = link['url']
+            if allow_debrid:
+                new_url = debrid.resolve(url)
+                if new_url:
+                    url = new_url
             import urlresolver9
-            hmf = urlresolver9.HostedMediaFile(url=url, include_disabled=False,
-                                               include_universal=allow_debrid)
-            if hmf.valid_url() == True:
-                resolved_url = hmf.resolve()
-            else:
+            try:
+                hmf = urlresolver9.HostedMediaFile(url=url, include_disabled=False,
+                                                   include_universal=allow_debrid)
+                if hmf.valid_url() == True:
+                    resolved_url = hmf.resolve()
+                else:
+                    resolved_url = url
+            except:
                 resolved_url = None
+
             if resolved_url and sources().check_playable(resolved_url) is not None:
                 url = resolved_url
+            else:
+                if control.setting('link_fallthtough') == 'true':
+                    try:
+                        links = []
+                        for item in items:
+                            if type(item) == dict and "path" in item:
+                                links.extend(item["path"][1])
+                            else:
+                                links.extend(item[1])
+                        index = links.index(link)
+                        links = links[index + 1:]
+                        for link in links:
+                            try:
+                                hmf = urlresolver9.HostedMediaFile(url=link["url"], include_disabled=False,
+                                                                   include_universal=allow_debrid)
+                                if hmf.valid_url() == True:
+                                    resolved_url = hmf.resolve()
+                                else:
+                                    resolved_url = None
+                            except:
+                                resolved_url = None
+
+                            if resolved_url and sources().check_playable(resolved_url) is not None:
+                                url = resolved_url
+                                return url
+                        url = None
+                    except:
+                        pass
+                else:
+                    url = None
             return url
-
-
-
 
         sd_links = []
         non_direct = []
@@ -92,6 +140,11 @@ class sources:
                 for scraper_link in scraper_links:
                     if dialog is not None and dialog.iscanceled():
                         return
+
+                    if allow_debrid:
+                        new_url = debrid.resolve(scraper_link['url'])
+                        if new_url:
+                            scraper_link['url'] = new_url
 
                     if (not control.setting('allow_openload') == 'true' and 'openload' in scraper_link['url']) or (
                                 not control.setting('allow_the_video_me') == 'true' and 'thevideo.me' in scraper_link[
@@ -109,11 +162,17 @@ class sources:
                         try:
                             quality = int(scraper_link['quality'])
                             if quality <= 576:
-                                sd_links.append(scraper_link)
+                                if scraper_link["direct"]:
+                                    sd_links.append(scraper_link)
+                                else:
+                                    sd_non_direct.append(scraper_link)
                                 continue
                         except:
                             if scraper_link['quality'] in ["SD", "CAM", "SCR"]:
-                                sd_links.append(scraper_link)
+                                if scraper_link["direct"]:
+                                    sd_links.append(scraper_link)
+                                else:
+                                    sd_non_direct.append(scraper_link)
                                 continue
 
                     if "m4u" in scraper_link['url']:
@@ -239,7 +298,7 @@ class sources:
                 return url
 
     @staticmethod
-    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude=None):
+    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude=None, queueing=False):
         title = cleantitle.normalize(title)
         links_scraper = nanscrapers.scrape_song(title, artist, timeout=timeout, exclude=exclude)
 
@@ -373,7 +432,10 @@ class sources:
 
     @staticmethod
     def sort_function(item):
-        quality = item[1][0]["quality"]
+        if 'quality' in item[1][0]:
+            quality = item[1][0]["quality"]
+        else:
+            quality = item[1][0]["path"]["quality"]
         if quality == "1080": quality = "HDa"
         if quality == "720": quality = "HDb"
         if quality == "560": quality = "HDc"
@@ -383,74 +445,3 @@ class sources:
         if quality == "SD": quality = "SDc"
 
         return quality
-
-    @staticmethod
-    def get_vk_token():
-        import xbmcgui
-        import xbmcaddon
-        from resources.lib.modules import vkAuth
-
-        if not bool(control.setting("enable_vk")):
-            return False
-
-        # flag if a vk.com token is valid
-        validVKToken = False
-
-        # if empty vk.com email xor password
-        if bool(control.setting('vk_email') == "") ^ bool(control.setting('vk_password') == ""):
-            dialog = xbmcgui.Dialog()
-            ok = dialog.ok("VK", "Please enter your VK.com credentials")
-            control.setSetting('vk_token', '')
-            xbmcaddon.Addon().openSettings()
-            return False
-            # if empty vk.com email and password
-        elif control.setting('vk_email') == "" and control.setting('vk_password') == "":
-            control.setSetting('vk_token_email', '')
-            control.setSetting('vk_token_password', '')
-            control.setSetting('vk_token', '')
-            # display vk.com account need message
-            dialog = xbmcgui.Dialog()
-            ok = dialog.ok("VK", "Please Enter your VK.com credentials")
-            xbmcaddon.Addon().openSettings()
-            return False
-        # if credentials are given
-        else:
-            # check if user changed vk_email/vk_password or if vk_token_email/vk_token_password is empty (need reauth)
-            if control.setting('vk_token_email') != control.setting('vk_email') or control.setting(
-                    'vk_token_password') != control.setting('vk_password'):
-                control.setSetting('vk_token_email', '')
-                control.setSetting('vk_token_password', '')
-                control.setSetting('vk_token', '')
-            # check current token
-            if control.setting('vk_token'): validVKToken = vkAuth.isTokenValid(control.setting('vk_token'))
-            # if the token provided is not valid, login and generate a new one
-            if validVKToken != True:
-                # login in vk.com - get the token
-                email = control.setting('vk_email')
-                passw = control.setting('vk_password')
-                try:
-                    token = vkAuth.auth(email, passw, 2648691, 'audio,offline,video')
-                except:
-                    token = False
-                # check login status
-                if token == False:
-                    dialog = xbmcgui.Dialog()
-                    ok = dialog.ok("VK Log in Failed", "Please enter your VK.com credentials")
-                    xbmcaddon.Addon().openSettings()
-                    return False
-                else:
-                    # test the new token
-                    validVKToken = vkAuth.isTokenValid(token)
-                    # if there was an error, inform the user
-                    if validVKToken != True:
-                        dialog = xbmcgui.Dialog()
-                        ok = dialog.ok("VK Log in Failed", "Reason" + validVKToken)
-                        xbmcaddon.Addon().openSettings()
-                        return False
-                    else:
-                        control.setSetting('vk_token_email', email)
-                        control.setSetting('vk_token_password', passw)
-                        control.setSetting('vk_token', token)
-                        return token
-            else:
-                return control.setting('vk_token')

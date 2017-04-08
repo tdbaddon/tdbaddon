@@ -20,7 +20,7 @@ class Primewire(Scraper):
         self.moviesearch_link = '/index.php?search_keywords=%s&key=%s&search_section=1'
         self.tvsearch_link = '/index.php?search_keywords=%s&key=%s&search_section=2'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             html = BeautifulSoup(self.get_html(title, self.moviesearch_link))
             index_items = html.findAll('div', attrs={'class': 'index_item index_item_ie'})
@@ -59,7 +59,7 @@ class Primewire(Scraper):
             pass
         return []
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             html = BeautifulSoup(self.get_html(title, self.tvsearch_link))
             index_items = html.findAll('div', attrs={'class': re.compile('index_item.+?')})

@@ -34,6 +34,9 @@ class source:
     def __init__(self):
         self.base_link = 'http://filmy.to'
         self.search_link = '/szukaj?q=%s'
+        self.verify = '/ajax/view'
+        self.provision = '/ajax/provision/%s'
+
         self.html_parser = HTMLParser.HTMLParser()
 
     def get_movie(self, imdb, title, year):
@@ -86,7 +89,6 @@ class source:
             years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
             result = [i[0] for i in result if any(x in i[2] for x in years)][0]
             url = result
-            print "xxx", result
             return url
         except:
             return
@@ -97,10 +99,7 @@ class source:
             if url == None: return
             myurl = re.findall('(s\d{2}e\d{2})',url)[0]
             myepisode = 's%02de%02d' % (int(season), int(episode))
-            print "myurl", myurl, myepisode
             url = url.replace(myurl,myepisode)
-
-            print "r",url
 
             return url
         except:
@@ -116,8 +115,20 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            result = client.request(url)
-            r = client.parseDOM(result, 'div',attrs={'class':'host btn btn-default.+?'})
+            result,headers,oth,cookie = client.request(url, output='extended')
+            r = client.parseDOM(result, 'iframe',attrs={'class':'hidden'}, ret='src')
+            headers['cookie']=cookie
+            csrftoken = re.findall('post\("/ajax/view", {"view": "(.*?)"}\);', result)[0]
+            provision = client.parseDOM(result, 'meta', attrs={'property':'provision'}, ret='content')[0]
+            post = urllib.urlencode({'view': csrftoken})
+            headers['X-CSRFToken'] = csrftoken
+            headers['X-Requested-With']="XMLHttpRequest"
+            r2 = client.request(urlparse.urljoin(self.base_link, self.verify), post=post, headers=headers)
+            #http://filmy.to/ajax/view
+            r = client.request(r[0])
+            r = client.request(urlparse.urljoin(self.base_link, self.provision % provision), headers=headers)
+            r = client.parseDOM(r, 'div', attrs={'class':'host-container pull-left'})
+
             r = [(client.parseDOM(i, 'div', attrs={'class': 'url'}, ret='data-url'),
                   client.parseDOM(i, 'span', attrs={'class':'label label-default'}),
                   client.parseDOM(i, 'img', attrs={'class': 'ttip'}, ret='title'),

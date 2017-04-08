@@ -34,64 +34,38 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://filiser.pl/'
-        self.search_link = '/scripts/searchEngine'
+        self.base_link = 'http://filiser.tv/'
+        self.search_link = '/szukaj?q=%s'
         self.tvsearch_cache = 'http://alltube.tv/seriale-online/'
         self.episode_link = '-Season-%01d-Episode-%01d'
+        self.url_transl = 'embed?salt=%s'
+
 
 
     def get_movie(self, imdb, title, year):
-        print("ALLtube originaltitle:%s" % title)
-        print cleantitle.query(title)
         try:
-            url = urlparse.urljoin(self.base_link, self.search_link)
-            #control.log('ALLTUBE T URL %s' % query)
-            post = urllib.urlencode({'value':urllib.unquote(title)})
-            result = client.request(url, post=post)
+            query = self.search_link % (urllib.quote_plus(cleantitle.query2(title)))
+            query = urlparse.urljoin(self.base_link, query)
+            result = client.request(query)
             result = result.decode('utf-8-sig')
-            print("R",result)
+            result = client.parseDOM(result, 'ul', attrs={'id': 'resultList2'})[0]
+            result = client.parseDOM(result, 'li')
+            result = [(client.parseDOM(i,'div', attrs={'class':'title'}),
+                       client.parseDOM(i, 'div', attrs={'class': 'info'}),
+                       client.parseDOM(i, 'a', ret='href')[0]) for i in result]
+            result = [(i[0][0], re.findall(r"(\d{4})", i[1][0])[0], i[2]) for i in result]
 
-            result = json.loads(result)
-            print("R",result['data'])
-            exit()
-
-            result = [i for i in result['suggestions'] if len(i) > 0]
             years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
-            result = [(i['data'].encode('utf8'),i['value'].encode('utf8')) for i in result]
-            result = [i for i in result if cleantitle.movie(title) in cleantitle.movie(i[1])]
-            result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-            print("ALLtube result :", result)
+            result = [i for i in result if cleantitle.movie(title) in cleantitle.movie(i[0])]
+            result = [i[2] for i in result if any(x in i[1] for x in years)][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            control.log('ALLTUBE URL %s' % url)
             return url
         except:
-            try:
-                query = self.moviesearch_link % cleantitle.query_quote(originaltitle)
-                query = urlparse.urljoin(self.base_link, query)
-                control.log('ALLTUBE T URL %s' % query)
-                result = client.source(query)
-                result = json.loads(result)
-
-                result = [i for i in result['suggestions'] if len(i) > 0]
-                years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
-                result = [(i['data'].encode('utf8'),i['value'].encode('utf8')) for i in result]
-                print result
-                result = [i for i in result if cleantitle.movie(originaltitle) in cleantitle.movie(i[1])]
-                result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-                print("ALLtube result :", result)
-
-                try: url = re.compile('//.+?(/.+)').findall(result)[0]
-                except: url = result
-                url = client.replaceHTMLCodes(url)
-                url = url.encode('utf-8')
-                control.log('ALLTUBE URL %s' % url)
-                return url
-            except:
-                return
+            return
 
 
     def tvshow_cache(self):
@@ -108,9 +82,28 @@ class source:
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
+            query = self.search_link % (urllib.quote_plus(cleantitle.query2(tvshowtitle)))
+            query = urlparse.urljoin(self.base_link, query)
+            result = client.request(query)
+            result = result.decode('utf-8-sig')
+            result = client.parseDOM(result, 'ul', attrs={'id': 'resultList2'})[0]
+            result = client.parseDOM(result, 'li')
+            result = [(client.parseDOM(i,'div', attrs={'class':'title'}),
+                       client.parseDOM(i, 'div', attrs={'class': 'info'}),
+                       client.parseDOM(i, 'a', ret='href')[0]) for i in result]
+            result = [(i[0][0], re.findall(r"(\d{4})", i[1][0])[0], i[2]) for i in result]
+
+            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            result = [i for i in result if cleantitle.movie(tvshowtitle) in cleantitle.movie(i[0])]
+            result = [i[2] for i in result if any(x in i[1] for x in years)][0]
+
+            try: url = re.compile('//.+?(/.+)').findall(result)[0]
+            except: url = result
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            print url
             return url
+
         except:
             return
 
@@ -118,65 +111,86 @@ class source:
         try:
             if url == None: return
 
-            url = urlparse.parse_qs(url)
-            print url
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            print url
-            result = cache.get(self.tvshow_cache, 120)
-            tvshowtitle = cleantitle.get(url['tvshowtitle'])
+            url = urlparse.urljoin(self.base_link, url)
+            result = client.request(url)
+            result = client.parseDOM(result, 'ul', attrs={'data-season-num': season})[0]
+            result = client.parseDOM(result, 'li')
             for i in result:
-                if cleantitle.get(tvshowtitle) in cleantitle.get(i[1]):
-                    print("MAM", i)
+                s = client.parseDOM(i, 'a', attrs={'class': 'episodeNum'})[0]
+                e = int(s[7:-1])
+                if e == int(episode):
+                    return client.parseDOM(i, 'a', attrs={'class': 'episodeNum'}, ret='href')[0]
 
-            result = [i[0] for i in result if cleantitle.get(tvshowtitle) in cleantitle.get(i[1])][0]
-            txts = 's%02de%02d' % (int(season),int(episode))
-            print result,title,txts
-
-            result = client.source(result)
-            result = client.parseDOM(result, 'li', attrs = {'class': 'episode'})
-            result = [i for i in result if txts in i][0]
-            url = client.parseDOM(result, 'a', ret='href')[0]
-            url = url.encode('utf-8')
-            return url
         except:
             return
 
-
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        #sources.append({'source': i[1], 'quality': 'SD', 'provider': 'Alltube', 'url': url, 'vtype':i[2]})
+        sources = []
         try:
-            sources = []
 
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
-            links = client.parseDOM(result, 'tr')
-            links = [(client.parseDOM(i, 'a', attrs = {'class': 'watch'}, ret='data-iframe')[0],
-                    client.parseDOM(i, 'img', ret='alt')[0],
-                    client.parseDOM(i, 'td', attrs={'class':'text-center'})[0]) for i in links]
-
-            for i in links:
-                try:
-                    result = client.source(i[0].decode('base64'))
-                    url= client.parseDOM(result, 'iframe', ret='src')[0]
-                    url = url.encode('utf-8')
-                    print ("Q",videoquality.solvequality(url),url)
-                    sources.append({'source': i[1], 'quality': 'SD', 'provider': 'Alltube', 'url': url, 'vtype':i[2]})
-                except:
-                    pass
+            result = client.request(url)
+            result = client.parseDOM(result, 'div', attrs={'id': 'links'})
+            attr = client.parseDOM(result, 'ul', ret='data-type')
+            result = client.parseDOM(result, 'ul')
+            for x in range(0, len(result)):
+                transl_type = attr[x]
+                links = result[x]
+                sources += self.extract_sources(transl_type, links)
 
             return sources
         except:
             return sources
 
-
     def resolve(self, url):
         try:
-            control.log('ALLTUBE RESOLVE URL %s' % url)
-            #url = client.request(url, output='geturl')
-            url = resolvers.request(url)
+            url_to_exec = urlparse.urljoin(self.base_link, self.url_transl) % url
+            result = client.request(url_to_exec)
+
+            m = re.search("(?<=var url = ')(.*\n?)(?=')", result)
+
+            result_url = m.group(0)
+            result_url = result_url.replace('#WIDTH', '100')
+            result_url = result_url.replace('#HEIGHT', '100')
+            url = resolvers.request(result_url)
             return url
         except:
             return
 
+
+    def extract_sources(self, transl_type, links):
+        sources = []
+        data_refs = client.parseDOM(links, 'li', ret='data-ref')
+        result = client.parseDOM(links, 'li')
+
+        lang, info = self.get_lang_by_type(transl_type)
+
+        for i in range(0, len(result)):
+
+            el = result[i];
+            host = client.parseDOM(el, 'span', attrs={'class': 'host'})[0]
+            quality = client.parseDOM(el, 'span', attrs={'class': 'quality'})[0]
+            q = 'SD'
+            if quality.endswith('720p'):
+                q = 'HD'
+            elif quality.endswith('1080p'):
+                q = '1080p'
+
+            sources.append({'provider': 'Filister', 'source': host, 'quality': q, 'url': data_refs[i], 'vtype': info})
+
+        return sources
+
+    def get_lang_by_type(self, lang_type):
+        if lang_type == 'DUBBING':
+            return 'pl', 'Dubbing'
+        elif lang_type == 'NAPISY_PL':
+            return 'pl', 'Napisy'
+        if lang_type == 'LEKTOR_PL':
+            return 'pl', 'Lektor'
+        elif lang_type == 'POLSKI':
+            return 'pl', None
+        return 'en', None

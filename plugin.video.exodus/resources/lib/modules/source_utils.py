@@ -21,6 +21,8 @@
 import urlparse
 import re
 
+from resources.lib.modules import client
+
 def get_release_quality(release_name):
     if release_name is None: return
     try: release_name = release_name.encode('utf-8')
@@ -46,6 +48,17 @@ def get_release_quality(release_name):
         return quality, info
     except:
         return 'SD', []
+
+
+def strip_domain(url):
+    try:
+        if url.lower().startswith('http') or url.startswith('/'):
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
+        url = client.replaceHTMLCodes(url)
+        url = url.encode('utf-8')
+        return url
+    except:
+        return
 
 
 def is_host_valid(url, domains):

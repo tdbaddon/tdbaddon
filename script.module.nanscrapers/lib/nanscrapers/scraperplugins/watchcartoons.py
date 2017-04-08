@@ -15,7 +15,7 @@ class Watchcartoons(Scraper):
         self.base_link_cartoons = 'http://www.watchcartoononline.io/cartoon-list'
         self.base_link_movies = 'https://www.watchcartoononline.io/movie-list'
         
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             html = requests.get(self.base_link_cartoons).text
             match = re.compile('<a href="(.+?)" title=".+?">(.+?)</a>').findall(html)
@@ -39,7 +39,7 @@ class Watchcartoons(Scraper):
             return []
             pass
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             cleaned_title = clean_title(title)
             html = BeautifulSoup(requests.get(self.base_link_movies).text)

@@ -11,7 +11,7 @@ class Hddizi(Scraper):
     def __init__(self):
         self.base_link = 'http://www.hddizifilmbox.com/'
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             new_no = int(episode)+1
             start_url = self.base_link+title.replace(' ','-')+'-'+season+'-sezon-izle/'+str(new_no)
@@ -39,13 +39,13 @@ class Hddizi(Scraper):
             elif 'estream' in url:
                 self.sources.append({'source': 'estream', 'quality': 'SD', 'scraper': self.name, 'url': url,'direct': False})
             elif 'videomega' in url:
-                print 'videomega - non direct'
+                print( 'videomega - non direct')
             elif 'vk' in url:
                 if 'vkpass' in url:
-                    print 'wont play - '+url
+                    print( 'wont play - '+url)
                 else:
                     self.sources.append({'source': 'vk', 'quality': 'SD', 'scraper': self.name, 'url': url,'direct': False})
             else:
-                print url
+                print(url)
 
 

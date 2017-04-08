@@ -45,12 +45,17 @@ class Alluc(Scraper):
         self.max_items = int(xbmcaddon.Addon('script.module.nanscrapers').getSetting("%s_max" % (self.name)))
         self.max_result_string = '&count=%s' % self.max_items
 
-    def scrape_movie(self, title, year, imdb):
-        url = self.movie(imdb, title, year)
-        sources = self.sources(url, [], [])
-        for source in sources:
-            source["scraper"] = source["provider"]
-        return sources
+    def scrape_movie(self, title, year, imdb, debrid = False):
+        try:
+            if debrid:
+                self.api_link = 'http://www.alluc.ee/api/search/download/?user=%s&password=%s&query=%s'
+            url = self.movie(imdb, title, year)
+            sources = self.sources(url, [], [])
+            for source in sources:
+                source["scraper"] = source["provider"]
+            return sources
+        except:
+            return []
 
     def movie(self, imdb, title, year):
         self.zen_url = []
@@ -88,8 +93,10 @@ class Alluc(Scraper):
         except:
             return
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
+            if debrid:
+                self.api_link = 'http://www.alluc.ee/api/search/download/?user=%s&password=%s&query=%s'
             show_url = self.tvshow(imdb, tvdb, title, show_year)
             url = self.episode(show_url, imdb, tvdb, title, year, season, episode)
             sources = self.sources(url, [], [])
@@ -97,7 +104,7 @@ class Alluc(Scraper):
                 source["scraper"] = source["provider"]
             return sources
         except:
-            return
+            return []
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:

@@ -78,26 +78,29 @@ class Scraper(scraper.Scraper):
         sign, alias, now = self.__get_attributes(html)
         server_list, streams = self.__get_streams(sign, alias, now, server, page_url)
         if video.video_type == VIDEO_TYPES.MOVIE:
-            sources.update(self.__extract_sources(streams))
+            sources.update(self.__extract_sources(streams, video.video_type))
         else:
             if int(video.episode) == 1:
-                sources.update(self.__extract_sources(streams))
+                sources.update(self.__extract_sources(streams, video.video_type))
             elif self.__episode_match(streams.get('html', ''), video):
                 sign = self.__get_sign(sign, now, page_url)
                 if sign.get('code') == 1:
                     streams = self.__get_episode_streams(sign['ke'], alias, now, server, video.episode, page_url)
-                    sources.update(self.__extract_sources(streams))
+                    sources.update(self.__extract_sources(streams, video.video_type))
                     
         return server_list, sources
     
-    def __extract_sources(self, streams):
+    def __extract_sources(self, streams, video_type):
         stream_url = streams.get('streaming', '')
         if not stream_url: return {}
         
         if scraper_utils.get_direct_hostname(self, stream_url) == 'gvideo':
             source = {stream_url: {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}}
         else:
-            meta = scraper_utils.parse_movie_link(stream_url)
+            if video_type == VIDEO_TYPES.MOVIE:
+                meta = scraper_utils.parse_movie_link(stream_url)
+            else:
+                meta = scraper_utils.parse_episode_link(stream_url)
             source = {stream_url: {'quality': scraper_utils.height_get_quality(meta['height']), 'direct': False}}
         return source
                 
@@ -118,7 +121,12 @@ class Scraper(scraper.Scraper):
         if not match: return '', ''
         alias = match.group(1)
 
-        now = int(time.time())
+        match = re.search("time\s*=\s*'([^']+)", html)
+        if match:
+            now = match.group(1)
+        else:
+            now = int(time.time())
+            
         return sign_new, alias, now
         
     def __get_server_list(self, sign, alias, now, server, page_url):

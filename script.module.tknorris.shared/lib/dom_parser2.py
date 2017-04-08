@@ -73,7 +73,7 @@ def __get_dom_elements(item, name, attrs):
                 temp_value = [value] if value_is_str else value
                 this_list = [r[0] for r in re_list if set(temp_value) <= set(r[2].split(' '))]
                 
-            if not re_list:
+            if not this_list:
                 has_space = (value_is_regex and ' ' in value.pattern) or (value_is_str and ' ' in value)
                 if not has_space:
                     pattern = '''(<{tag}[^>]*\s{key}=([^\s/>]*)[^>]*>)'''.format(tag=name, key=key)
@@ -106,7 +106,7 @@ def parse_dom(html, name='', attrs=None, req=False):
     if attrs is None: attrs = {}
     name = name.strip()
     # log_utils.log('parse_dom: Name: |%s| Attrs: |%s| Ret: |%s| - HTML: %s' % (name, attrs, req, type(html)), log_utils.LOGDEBUG)
-    if isinstance(html, unicode):
+    if isinstance(html, unicode) or isinstance(html, DomMatch):
         html = [html]
     elif isinstance(html, str):
         try:
@@ -137,6 +137,9 @@ def parse_dom(html, name='', attrs=None, req=False):
         
     all_results = []
     for item in html:
+        if isinstance(item, DomMatch):
+            item = item.content
+            
         results = []
         for element in __get_dom_elements(item, name, attrs):
             attribs = __get_attribs(element)

@@ -1,5 +1,10 @@
 Official Indigo addon For Kodi
 
+V 1.0.4
+Echo Additions
+
+V 1.0.3
+Code and art optimization (Twilight)
 
 V1.0.2
 Fixed broken Next Page function in installer

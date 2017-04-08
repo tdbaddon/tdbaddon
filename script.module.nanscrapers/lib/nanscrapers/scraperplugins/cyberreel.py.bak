@@ -10,7 +10,7 @@ class Cyberreel(Scraper):
     def __init__(self):
         self.base_link = 'http://cyberreel.com/'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             if 'the' in title[0:3]:
                 title = title[4:]

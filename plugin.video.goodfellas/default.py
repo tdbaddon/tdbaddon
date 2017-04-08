@@ -717,10 +717,15 @@ def getItems(items,fanart):
                     for i in item('sportsdevil'):
                         if not i.string == None:
                             sportsdevil = 'plugin://plugin.video.SportsDevil/?mode=1&amp;item=catcher%3dstreams%26url=' +i.string
+                            title = item('title')[0].string
+                            if title:
+                                sportsdevil = sportsdevil + '%26title=' + title
+                            else:
+                                sportsdevil = sportsdevil + '%26title=' + 'N/A'
                             referer = item('referer')[0].string
                             if referer:
                                 #print 'referer found'
-                                sportsdevil = sportsdevil + '%26referer=' +referer
+                                sportsdevil = sportsdevil + '%26referer=' + referer
                             url.append(sportsdevil)
                 elif len(item('p2p')) >0:
                     for i in item('p2p'):

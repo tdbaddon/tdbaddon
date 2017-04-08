@@ -477,7 +477,7 @@ def AddSports(url):
     addDir('Slow TV' ,'sss',96,os.path.join(home,'icons','slowtv.png'))
     #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,os.path.join(home,'icons','tvplayer.png'))
-    addDir('StreamHD','sss',75,os.path.join(home,'icons','streamhd.png'))
+    #addDir('StreamHD','sss',75,os.path.join(home,'icons','streamhd.png')) #website bust
     addDir('Mama HD','http://mamahd.com/',79,os.path.join(home,'icons','mamahd.png'))
     addDir('HDfree','sss',77,os.path.join(home,'icons','HDFree.png'))
     addDir('inFinite Streams','sss',78,os.path.join(home,'icons','Infinite Streams.png'))
@@ -1232,15 +1232,21 @@ def getNetworkTVData():
     fname='Networkdata.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,30*60)
+        jsondata=getCacheData(fname,60*60)
         if not jsondata==None:
             return json.loads(base64.b64decode(jsondata))
     except:
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
 
-    headers=[('application-id',base64.b64decode('QUYxMkY0N0YtMEM5Qy0zQkMxLUZGNkYtNzkzNUUwQzBDQzAw')),('secret-key',base64.b64decode('MTAzQ0JFNkYtNEYyMi0yRTlCLUZGQzEtMjVCRUNEM0QyRjAw')),('application-type','REST')]
-    link=getUrl(base64.b64decode('aHR0cHM6Ly9hcGkuYmFja2VuZGxlc3MuY29tL3YxL2RhdGEvQXBwQ29uZmlnQWxwaGE='),headers=headers)
+    post='{"returnSecureToken":true}'
+   # post = urllib.urlencode(post)
+    
+    udata=getUrl(base64.b64decode('aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vaWRlbnRpdHl0b29sa2l0L3YzL3JlbHlpbmdwYXJ0eS9zaWdudXBOZXdVc2VyP2tleT1BSXphU3lEdEFIaXlxa3ZaT09reURNdjNQb1R0dVI5bzVEN1Vxenc='), post=post,jsonpost=True)
+    print     udata
+    udata=json.loads(udata)
+    #headers=[('application-id',base64.b64decode('QUYxMkY0N0YtMEM5Qy0zQkMxLUZGNkYtNzkzNUUwQzBDQzAw')),('secret-key',base64.b64decode('MTAzQ0JFNkYtNEYyMi0yRTlCLUZGQzEtMjVCRUNEM0QyRjAw')),('application-type','REST')]
+    link=getUrl(base64.b64decode('aHR0cHM6Ly9saXZlbmV0LWlwdHYuZmlyZWJhc2Vpby5jb20vQXBwQ29uZmlnQWxwaGEuanNvbj9wcmludD1wcmV0dHkmYXV0aD0lcw==')%udata["idToken"])
     jsondata=None
     try:
         jsondata=json.loads(link.replace('\x0a',''))
@@ -1251,11 +1257,7 @@ def getNetworkTVData():
         traceback.print_exc(file=sys.stdout)
     return jsondata    
 
-
-
-    
-    
-    
+  
 def getFootballData():
     fname='footballdata.json'
     fname=os.path.join(profile_path, fname)
@@ -1987,7 +1989,10 @@ def playHDCast(url, mainref, altref=None):
             if len(streamurl)>0:
                 headers=[('Referer',embedUrl),('User-Agent',agent)]                             
                 html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers, cookieJar=cookieJar)
-                streamurl = re.findall('file:["\'](.*?)["\']',html)[0]
+                streamurl = re.findall('file:["\'](.*?)["\']',html)
+                if len(streamurl)==0:
+                    streamurl = re.findall('hls.?:.?["\'](.*?)["\']',html)
+                streamurl=streamurl[0]
                 cookieJar.save (HDCASTCookie,ignore_discard=True)
                 return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent+'&Referer='+embedUrl))
             if 'rtmp' in result:
@@ -3174,8 +3179,52 @@ def AddWatchCric(url):
 
 
 
-def smpk(frompk):
-    return frompk[0:2]+frompk[3:]
+def smpk(frompk, jsdata):
+    if jsdata[0]=='v2':
+        return smpk2(frompk,jsdata);
+    refind='hash.*?(oh.*)'
+    jsline=re.findall(refind, jsdata)[0].split(' ')
+    oh=''
+    oh=frompk
+    fv=[]
+    
+    for ln in jsline:
+        if 'substring' in ln:
+            ln=ln.replace('oh.substring(','oh[')
+            ln=ln.replace(',',':')
+            ln=ln.replace(')',']')
+        if 'oh.length' in ln:
+            ln=ln.replace('oh.length','len(oh)')
+        fv.append(ln.strip().replace(';',''))
+    print fv
+    s=' '.join(fv)
+    print s
+    return eval(s)
+    
+
+def smpk2(frompk, jsdata):
+    #refind='hash.*?(oh.*)'
+    jsline=jsdata[2].split('+');#re.findall(refind, jsdata)[0].split(' ')
+    
+    oh=''
+    oh=frompk
+    fv=[]
+    print jsline
+    for ln in jsline:
+        if len(re.findall('(\([0-9]+?,[0-9]+?\))',ln))>0:
+            ln='oh['+ln.split('(')[1].split(')')[0]+']'
+            ln=ln.replace(',',':')
+        if len(re.findall('(\([0-9]+?,_.*?\])',ln))>0:
+            ln='oh['+ln.split('(')[1].split(',')[0]+':]'
+        fv.append(ln.strip().replace(';',''))
+    print fv
+    s='+'.join(fv)
+    print s
+    return eval(s)
+    
+def parseSmartCricJS():
+    import scdec
+    return scdec.gettext()
     
 def AddSmartCric(url):
     req = urllib2.Request(base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29tLw=='))
@@ -3187,27 +3236,33 @@ def AddSmartCric(url):
     rnd3=str(int(math.floor(random.random()*1000000) ))
     req.add_header('Cookie', '_ga=GA1.%s.%s.%s'%(rnd1,rnd2,rnd3))
 
-
+    jsdata=parseSmartCricJS()
     response = urllib2.urlopen(req)
     link=response.read()
 #    print link
     response.close()
-    patt='performGet\(\'(.+)\''
-    #match_url =re.findall(patt,link)[0]
-    match_url='http://webaddress:8087/mobile/channels/live/'
+    if jsdata[0]=='v1':
+        patt='performGet\(\'(.+)\''
+        match_url =re.findall(patt,jsdata[1])[0]
+    else:
+        patt='(http.*?live/)'
+        match_url =re.findall(patt,jsdata[1])[0]        
+    #match_url='http://webaddress:8087/mobile/channels/live/'
     channeladded=False
     patt_sn='sn = "(.*?)"'
-    patt_pk='showChannels\([\'"](.*?)[\'"]'
+    patt_pk='showChannels.?\([\'"](.*?)[\'"]'
     try:
         match_sn =re.findall(patt_sn,link)[0]
         match_pk =re.findall(patt_pk,link)[0]
-        match_pk=smpk(match_pk)
+        print match_pk
+        match_pk=smpk(match_pk,jsdata)
+        print 'match_pk',match_pk
         ref=[('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1'),
             ('Referer','http://smartcric.com/')]
-        lburl=re.findall('(http.*?loadbalancer)',link)[0]
-        fms=getUrl(lburl,headers=ref).split('=')[1]
-        sourcelb=lburl.split('/')[2].split(':')[0]
-        match_url=match_url.replace('webaddress',sourcelb)
+        #lburl=re.findall('(http.*?loadbalancer)',link)[0]
+        #fms=getUrl(lburl,headers=ref).split('=')[1]
+        #sourcelb=lburl.split('/')[2].split(':')[0]
+        #match_url=match_url.replace('webaddress',sourcelb)
         final_url=  match_url+   match_sn
         req = urllib2.Request(final_url)
         req.add_header('User-Agent', 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')
@@ -3230,7 +3285,7 @@ def AddSmartCric(url):
 #                print source
                 curl=''
                 cname=source["caption"]
-                #fms=source["fmsUrl"]
+                fms=source["fmsUrl"]
 #                print curl
                 #if ctype<>'': cname+= '[' + ctype+']'
                 addDir(cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
@@ -5478,14 +5533,15 @@ def getNetworkTVPage():
     fname='network_page.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,3*60*60)
+        jsondata=getCacheData(fname,2*60*60)
         if not jsondata==None:
             return json.loads(jsondata)
     except:
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
     
-    netData=getNetworkTVData()["data"][0]
+    #netData=getNetworkTVData()["data"][0]
+    netData=getNetworkTVData()
     print netData
     baseurl=netData["YmFzZXVybG5ld3gw"]
     baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
@@ -6293,7 +6349,7 @@ def PlayNetworkTVLink(url,progress=None):
     if token=="0":
         finalurl=url["streamurl"]
     elif token=="33":
-        netData=getNetworkTVData()["data"][0]        
+        netData=getNetworkTVData()
         posturl=netData["ZmFtYW50YXJhbmFfdGF0aTAw"][1:].decode("base64")
         auth=netData["dGVydHRleWFj"][1:].decode("base64")
         ref=url["referer"]
@@ -6325,7 +6381,7 @@ def PlayNetworkTVLink(url,progress=None):
             tryplay( finalurl2 , listitem,pdialogue= progress, timetowait=12)
         return
     elif token=="18":
-        netData=getNetworkTVData()["data"][0]        
+        netData=getNetworkTVData()    
         posturl=url["streamurl"]
         ref=url["referer"]
         authua=url["user_agent"]
@@ -6351,7 +6407,7 @@ def PlayNetworkTVLink(url,progress=None):
             defplayua=playua
         finalurl=playurl[0].split('\'')[0]+"|User-Agent="+defplayua
     elif token=="38":
-        netData=getNetworkTVData()["data"][0]        
+        netData=getNetworkTVData()    
         posturl=netData["YmVsZ2lfMzgw"][1:].decode("base64")
         auth=netData["Z2Vsb29mc2JyaWVm"][1:].decode("base64")
         ref=url["referer"]
@@ -6376,12 +6432,12 @@ def PlayNetworkTVLink(url,progress=None):
         finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
         finalurl2=url["streamurl"]+authdata2+"|User-Agent="+defplayua
         
-        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-        listitem.setMimeType("flv-application/octet-stream");
-        listitem.setContentLookup(False)
-        if not tryplay( finalurl , listitem,pdialogue= progress, timetowait=12):
-            tryplay( finalurl2 , listitem,pdialogue= progress, timetowait=12)
-        return
+        #listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+        #listitem.setMimeType("flv-application/octet-stream");
+        #listitem.setContentLookup(False)
+        #if not tryplay( finalurl , listitem,pdialogue= progress, timetowait=12):
+         #   tryplay( finalurl2 , listitem,pdialogue= progress, timetowait=12)
+        #return
         
     elif token in ["24","25","28","29","30","31","32"]:
         mapping={"24":   ["YW1pX2NoYmlz","TWVuX2Nob2Jpc18w","",0],
@@ -6394,7 +6450,7 @@ def PlayNetworkTVLink(url,progress=None):
                 }
         tokenLinkKey,tokenCredsKey,decryptorLinkKey,decryptorKeyKey=mapping[token]
 
-        netData=getNetworkTVData()["data"][0]   
+        netData=getNetworkTVData()
         
         tokenLink=netData[tokenLinkKey][1:].decode("base64")
         tokenCreds=netData[tokenCredsKey][1:].decode("base64")
@@ -6458,7 +6514,7 @@ def PlayNetworkTVLink(url,progress=None):
         settingsecuritykey="UGFrX3VrdWJ1bmdhemEx"
         
 
-        netData=getNetworkTVData()["data"][0]   
+        netData=getNetworkTVData()
         settingslink=netData[settingslinkkey][1:].decode("base64")
         settingsecurity=netData[settingsecuritykey][1:].decode("base64")
         print settingslink,settingsecurity

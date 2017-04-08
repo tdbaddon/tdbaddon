@@ -30,12 +30,15 @@ class Solar(Scraper):
         self.movie_link = '/%s.html'
         self.ep_link = '/%s.html'
 
-    def scrape_movie(self, title, year, imdb):
-        url = self.movie(imdb, title, year)
-        sources = self.sources(url, [], [])
-        for source in sources:
-            source["scraper"] = source["provider"]
-        return sources
+    def scrape_movie(self, title, year, imdb, debrid = False):
+        try:
+            url = self.movie(imdb, title, year)
+            sources = self.sources(url, [], [])
+            for source in sources:
+                source["scraper"] = source["provider"]
+            return sources
+        except:
+            return []
 
     def movie(self, imdb, title, year):
         self.zen_url = []
@@ -50,7 +53,7 @@ class Solar(Scraper):
         except:
             return
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             show_url = self.tvshow(imdb, tvdb, title, show_year)
             url = self.episode(show_url, imdb, tvdb, title, year, season, episode)

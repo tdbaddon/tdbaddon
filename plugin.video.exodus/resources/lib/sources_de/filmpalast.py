@@ -129,9 +129,6 @@ class source:
             r = [(i.attrs['href'], i.content) for i in r]
             r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return

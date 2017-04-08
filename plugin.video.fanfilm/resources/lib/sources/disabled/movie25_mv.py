@@ -100,11 +100,9 @@ class source:
             #print result
 
             result = result.replace('\n','')
-            print result
 
             quality = re.compile('>Links - Quality(.+?)<').findall(result)[0]
             quality = quality.strip()
-            print("Q",quality)
 
             if quality == 'CAM' or quality == 'TS': quality = 'CAM'
             elif quality == 'SCREENER': quality = 'SCR'
@@ -125,7 +123,6 @@ class source:
                     url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
-                    print("URL1",url)
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
@@ -134,7 +131,6 @@ class source:
 
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
-                    print("URL4", host)
 
                     sources.append({'source': host.split('.')[0], 'quality': 'SD', 'provider': 'Movie25', 'url': url})
 

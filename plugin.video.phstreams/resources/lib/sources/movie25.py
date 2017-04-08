@@ -19,55 +19,22 @@
 '''
 
 
-import re,os,urllib,urlparse,json,zipfile,StringIO,datetime
+import re,urllib,urlparse,json
 
-try:
-    from sqlite3 import dbapi2 as database
-except:
-    from pysqlite2 import dbapi2 as database
-
-from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import proxy
 
 
 class source:
     def __init__(self):
         self.priority = 0
         self.language = ['en']
-        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag']
-        self.base_link = 'http://tinklepad.ag'
-        self.search_link = 'http://tinklepad.ag/search.php?q=%s'
+        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag', 'movie25.ag']
+        self.base_link = 'https://movie25.ag'
         self.search_link_2 = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwODQ5Mjc2ODA5NjE4MzM5MDAwMzowdWd1c2phYm5scSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 
     def movie(self, imdb, title, localtitle, year):
-        try:
-            download = True
-
-            data = os.path.join(control.dataPath, 'provider.movie25.db')
-            data_link = 'http://offshoregit.com/extest/provider.movie25.zip'
-
-            try: download = abs(datetime.datetime.fromtimestamp(os.path.getmtime(data)) - (datetime.datetime.now())) > datetime.timedelta(days=7)
-            except: pass
-
-            if download == True:
-                r = client.request(data_link)
-                zip = zipfile.ZipFile(StringIO.StringIO(r))
-                zip.extractall(control.dataPath)
-                zip.close()
-
-            dbcon = database.connect(data)
-            dbcur = dbcon.cursor()
-            dbcur.execute("SELECT * FROM movies WHERE imdb = '%s'" % imdb)
-            url = dbcur.fetchone()[0]
-            dbcon.close()
-
-            return url
-        except:
-            pass
-
         try:
             q = self.search_link_2.decode('base64') % urllib.quote_plus(title)
 
@@ -86,7 +53,7 @@ class source:
 
             r = [i for i in r if any(x in i[1] for x in years)]
 
-            match = [i[0] for i in r if t == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+            match = [i[0] for i in r if t in cleantitle.get(i[1]) and '(%s)' % str(year) in i[1] and self.base_link in i[0]]
 
             match2 = [i[0] for i in r]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
@@ -94,14 +61,10 @@ class source:
 
             for i in match2[:5]:
                 try:
-                    if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'ovie')
-                    r = re.findall('(tt\d+)', r)
-                    if imdb in r: url = i ; break
+                    if len(match) > 0 : url = match[0] ; break
                 except:
                     pass
 
-            url = re.findall('(\d+)', url)[-1]
             return url
         except:
             pass
@@ -113,11 +76,7 @@ class source:
 
             if url == None: return sources
 
-            if url.isdigit(): url = '/watch-%s-online-free-%s.html' % (url, url)
-
-            url = urlparse.urljoin(self.base_link, url)
-
-            result = proxy.request(url, 'ovie')
+            result = client.request(url);
 
             quality = re.compile('Quality(.+?)<').findall(result.replace('\n',''))
             quality = quality[0].strip() if quality else 'SD'
@@ -125,16 +84,15 @@ class source:
             elif quality == 'SCREENER': quality = 'SCR'
             else: quality = 'SD'
 
+            result = client.parseDOM(result, 'a', ret='href')
+            links = [i for i in result if 'movie25.ag/link' in i]
+
             dupes = []
-            links = re.findall('\'(.+?)\'', result) + re.findall('\"(.+?)\"', result)
-            links = ['http:' + i if not i.startswith('http') else i for i in links]
-            links = [proxy.parse(i) for i in links]
-            links = [x for y,x in enumerate(links) if x not in links[:y]]
 
             for i in links:
                 try:
                     url = i
-                    url = urlparse.urlparse(url).query
+                    url = url.split('/')[4]
                     url = url.decode('base64')
                     url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
@@ -158,5 +116,3 @@ class source:
 
     def resolve(self, url):
         return url
-
-

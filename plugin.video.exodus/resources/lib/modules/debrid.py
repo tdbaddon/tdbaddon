@@ -150,13 +150,27 @@ def dlDict():
         return []
 
 
+def mdDict():
+    try:
+        if '' in credentials().get('megadebrid', {}).values(): raise Exception()
+        url = 'https://www.mega-debrid.eu/api.php?action=getHostersList'
+        result = cache.get(client.request, 24, url)
+        result = json.loads(result)
+        host_list = result.get('hosters', [])
+        hosts = [domain for host in host_list for domain in host.get('domains', [])]
+        return hosts
+    except:
+        return []
+
+
 def debridDict():
     return {
         'realdebrid': rdDict(),
         'premiumize': pzDict(),
         'alldebrid': adDict(),
         'rpnet': rpDict(),
-        'debridlink': dlDict()
+        'debridlink': dlDict(),
+        'megadebrid': mdDict()
     }
 
 
@@ -183,6 +197,10 @@ def credentials():
         'debridlink': {
             'user': control.setting('debridlink.user'),
             'pass': control.setting('debridlink.pass')
+        },
+        'megadebrid': {
+            'user': control.setting('megadebrid.user'),
+            'pass': control.setting('megadebrid.pass')
         }}
 
 
@@ -306,8 +324,30 @@ def resolver(url, debrid):
             if result.get('result') == 'OK':
                 return result.get('value', {}).get('downloadLink')
     except:
-        import traceback
-        traceback.print_exc()
+        pass
+
+
+    try:
+        if not debrid == 'megadebrid' and not debrid == True: raise Exception()
+
+        cred = credentials().get('megadebrid', {})
+
+        if '' in cred.values(): raise Exception()
+        user, password = cred.get('user'), cred.get('pass')
+
+        result = client.request('https://www.mega-debrid.eu/api.php?action=connectUser&login=%s&password=%s' % (user, password))
+        result = json.loads(result)
+
+        if result.get('response_code') == 'ok':
+            token = result.get('token')
+
+            post = urllib.urlencode({'link': u})
+            result = client.request('https://www.mega-debrid.eu/api.php?action=getLink&token=%s' % token, post=post)
+            result = json.loads(result)
+
+            if result.get('response_code') == 'ok':
+                return result.get('debridLink', '').strip('"')
+    except:
         pass
 
     return None

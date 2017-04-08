@@ -1,3 +1,8 @@
+[B]3.1.7[/B]
+- Updated existing providers (satanuke, somebody)
+- Tweaked German providers
+- Added Mega-Debrid
+
 [B]3.1.6[/B]
 - Updated existing providers (satanuke)
 - Tweaked French providers

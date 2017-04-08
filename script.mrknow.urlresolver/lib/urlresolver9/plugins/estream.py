@@ -23,14 +23,60 @@
 from lib import helpers
 from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
+from lib import jsunpack
+import re
 
 class EstreamResolver(UrlResolver):
     name = "estream"
     domains = ['estream.to']
     pattern = '(?://|\.)(estream\.to)/(?:embed-)?([a-zA-Z0-9]+)'
 
+    def __init__(self):
+        self.net = common.Net()
+
     def get_media_url(self, host, media_id):
-        return helpers.get_media_url(self.get_url(host, media_id))
+        web_url = self.get_url(host, media_id)
+        response = self.net.http_GET(web_url)
+        html = response.content
+        file_id = re.findall("'file_id', '(\d+)',", html)[0]
+        headers = {'X-Requested-With': "XMLHttpRequest", 'Referer': web_url}
+
+        if html:
+            video_url = None
+            js = html
+
+            packed = re.search('(eval\(function.*?)\s*</script>', html, re.DOTALL)
+            if packed:
+                js1 = jsunpack.unpack(packed.group(1))
+            else:
+                js1 = html
+
+            video_url = None
+
+            link = re.search("(/dl\?op=view&file_code=[^']+)", js1)
+            if link:
+                #$.cookie('file_id', '1675923', {expires: 10});
+
+                headers['Cookie'] = {'file_id':file_id}
+                response = self.net.http_GET('https://%s%s'% (host,link.group(1)) , headers=headers).content
+
+                common.log_utils.log_debug('to Link Found: %s' % video_url)
+            headers = {'Referer': web_url}
+
+            if video_url == None:
+                link = re.search('(http[^"]*.mp4)', js)
+                if link:
+                    video_url = link.group(1)
+                    common.log_utils.log_debug('watchers.to Link Found: %s' % video_url)
+
+            if video_url != None:
+                return video_url+ helpers.append_headers(headers)
+            else:
+                raise ResolverError('No playable video found.')
+
+
+        return helpers.get_media_url(self.get_url(host, media_id)) + helpers.append_headers(headers)
 
     def get_url(self, host, media_id):
+        return 'https://estream.to/%s.html' % media_id
         return self._default_get_url(host, media_id)

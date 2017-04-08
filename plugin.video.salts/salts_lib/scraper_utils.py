@@ -541,7 +541,7 @@ def get_gk_links(scraper, html, page_url, page_quality, link_url, player_url):
         html = scraper._http_get(player_url, params=params, headers=XHR, cache_limit=.25)
         js_data = parse_json(html, player_url)
         data = js_data.get('data', {})
-        if 'files' in data:
+        if data is not None and 'files' in data:
             return data['files']
         else:
             return data

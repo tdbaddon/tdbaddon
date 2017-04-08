@@ -76,6 +76,8 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
+        if re.search('Sorry, but nothing matched', html, re.I): return results
+        
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'listing-videos'})
         if not fragment: return results
         
@@ -83,7 +85,8 @@ class Scraper(scraper.Scraper):
             match_url = attrs['href']
             match_title_year = re.sub('</?[^>]*>', '', match_title_year)
             match_title, match_year = scraper_utils.extra_year(match_title_year)
-            result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-            results.append(result)
+            if not year or not match_year or year == match_year:
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                results.append(result)
 
         return results

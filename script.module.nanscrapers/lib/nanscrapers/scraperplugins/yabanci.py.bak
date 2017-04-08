@@ -11,7 +11,7 @@ class Yabanci(Scraper):
     def __init__(self):
         self.base_link = 'http://www.yabancidizilerizle.com/'
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             start_url = self.base_link+title.replace(' ','-')+'/'+title.replace(' ','-')+'-'+season+'-sezon-'+episode+'-bolum'
             html = requests.get(start_url).text

@@ -35,7 +35,7 @@ from t0mm0.common.net import Net
 from t0mm0.common.addon import Addon
 from scrapers import main_scrape,primewire,iwatchonline,icefilms
 import json
-
+from libs import trakt_auth
 
 
 
@@ -47,7 +47,9 @@ artwork = xbmc.translatePath(os.path.join('special://home','addons',addon_id,'re
 fanart = artwork+'fanart.jpg'
 messages = xbmc.translatePath(os.path.join('special://home','addons',addon_id,'resources','messages/'))
 execute = xbmc.executebuiltin
-trakt_api=trakt.TraktAPI()
+use_https = kodi.get_setting('use_https') == 'false'
+trakt_api = trakt.TraktAPI(use_https=use_https)
+
 
 
 orig_ids = addon.queries.get('orig_ids', [])
@@ -109,10 +111,9 @@ def menu():
 	#kodi.addDir("VERSION TEST ",'','get_kversion',artwork+'update.png','',1,'','',fanart=fanart)
 
 	if  kodi.get_setting('trakt_authorized') =='true':
-		kodi.addDir("Clear Trakt User ",'','de_auth',artwork+'sign_out.png','',1,'','',fanart=fanart,description="Clear and Log Out Your Trakt Account.")
+		kodi.addItem("[COLOR gold]Clear Trakt User[/COLOR] ",'','de_auth',artwork+'sign_out.png',fanart=fanart,description="Clear and Log Out Your Trakt Account.")
 	if  kodi.get_setting('trakt_authorized') =='false':
-		kodi.addDir("[COLOR gold]Trakt Integration[/COLOR]",messages+'trakt_auth.txt','get_pin',artwork+'trakt.png','',1,'','',fanart=fanart,description="Authorize your Trakt Account.")
-
+		kodi.addItem("[COLOR gold]Trakt Integration[/COLOR]",'','get_pin',artwork+'trakt.png', fanart=fanart,description="Authorize your Trakt Account.")
 	viewsetter.set_view("sets")
 	#xbmc.executebuiltin("Container.SetViewMode()")
 
@@ -285,7 +286,6 @@ def call_trakt_tv(url):
 					#link = trakt_api.get_calendar_episodes(delta=1, number=2)
 					#link = trakt_api.get_calendar_daily_shows(delta=0, number=1)
 					for e in link:
-						kodi.log(e)
 						infoLabels={}
 						infoLabels.update(make_infoLabels(e,media=media))
 						orig_ids1 = e
@@ -1440,6 +1440,7 @@ def de_auth():
 	kodi.set_setting('trakt_username',"")
 
 
+
 #################
 
 
@@ -1560,6 +1561,7 @@ if mode==None :
 
 elif mode=='de_auth':
 		de_auth()
+		xbmc.executebuiltin("XBMC.Container.Refresh")
 
 elif mode=='call_trakt_movies':
 		call_trakt_movies(url)
@@ -1759,7 +1761,8 @@ elif mode=='flush_url_cache':
 
 #############WINDOW UTILS#########
 elif mode=='get_pin':
-		window_utils.get_pin()
+		trakt_auth.auth_trakt()
+		xbmc.executebuiltin("XBMC.Container.Refresh")
 
 
 #########TEsting Functions
@@ -1770,16 +1773,6 @@ xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
 
-# TODO  PutMV and 9Movies
-'''
-http://miradetodo.com.ar/videos/
-http://movie.pubfilmno1.com
-http://xmovies8.tv
-http://www.izlemeyedeger.com
-http://tunemovie.is
-http://cyberreel.com
-http://123movies.to
-'''
 
 '''
 .decode('utf-8')

@@ -1,3 +1,25 @@
+[B]Version 2.0.171[/B]
+- Fix onlinediz
+- Fix DDLSeries
+- Fix OLMovies
+- Improve OnlineMovies
+- Fix Xmovies8
+- Merge afdah.org into xmovies8
+- Improve WatchItVideos
+- Fix MVL
+- Improve Kohi
+
+[B]Version 2.0.170[/B]
+- Add WatchOnline
+- Fix SeeHD
+- Fix RLSource
+- Fix MovieSub
+- Fix PubFilm
+- Fix Vivo
+- Fix MovieXK
+- Improve Dizibox
+- Fix IceFilms
+
 [B]Version 2.0.169[/B]
 - Fix bug in image scraper and fix proxy cache causing Refresh to not work
 - Fix RLSBB

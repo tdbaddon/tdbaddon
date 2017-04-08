@@ -17,7 +17,7 @@ class Moviexk(Scraper):
         self.base_link = 'http://moviexk.com'
         self.search_link = '/search/%s'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             print("MOVIEXK")
             headers = {'User-Agent': random_agent()}
@@ -52,7 +52,7 @@ class Moviexk(Scraper):
             pass
         return []
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             print("MOVIEXK")
             headers = {'User-Agent': random_agent()}

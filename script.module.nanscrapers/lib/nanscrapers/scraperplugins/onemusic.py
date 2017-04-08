@@ -20,7 +20,7 @@ class Onemusic(Scraper):
         self.sources_link = '/ajax/song/sources/%s'
         self.tv_search_link = '/tagtvs/%s'
 
-    def scrape_music(self, title, artist):
+    def scrape_music(self, title, artist, debrid = False):
         try:
             # print("ONEMUSIC")
             headers = {'User-Agent': random_agent()}

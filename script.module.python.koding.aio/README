@@ -19,11 +19,177 @@ IF you're using the noobsandnerds features (see below) then you will also need t
 
 UNIVERSAL MODULES (ANYONE CAN USE, NOT LINKED TO NAN SERVER)
 ============================================================
+
+This allows you to create a list item/folder inside your add-on.
+Please take a look at your addon default.py comments for more information
+(presuming you created one at http://totalrevolution.tv)
+
+	CODE: Add_Dir(name, url, mode, [folder, icon, fanart, description, info_labels, content_type]))
+
+	AVAILABLE PARAMS:
+
+	    (*) name  -  This is the name you want to show for the list item
+
+	    (*) url   -  This is a temporary global variable (string), when you click on
+	    another list item it will change to whatever you have that set to
+
+	    (*) mode  -  The mode you want to open when this item is clicked, this is set
+	    in your master_modes dictionary (see template add-on linked above)
+
+	    folder       -  This is an optional boolean, by default it's set to False.
+	    True will open into a folder rather than an executable command
+
+	    icon         -  The path to the thumbnail you want to use for this list item
+
+	    fanart       -  The path to the fanart you want to use for this list item
+
+	    description  - A description of your list item, it's skin dependant but this
+	    usually appears below the thumbnail
+
+	    info_labels  - You can send through any number of info_labels via this option.
+	    For full details on the infolabels available please check the pydocs.
+	    When passing through infolabels you need to use this format:
+	    info_labels='genre : comedy ~ title : test video'
+	    
+	    IMPORTANT: The colon separating the key from value and the tilda separating each
+	    infolabel MUST have a space either side.
+
+	    content_type - By default this will set the content_type for kodi to a blank string
+	    which is what Kodi expects for generic category listings. There are plenty of different
+	    types though and when set Kodi will perform different actions (such as access the
+	    database looking for season/episode information for the list item).
+
+	    WARNING: Setting the wrong content type for your listing can cause the system to
+	    log thousands of error reports in your log, cause the system to lag and make
+	    thousands of unnecessary db calls - sometimes resulting in a crash. You can find
+	    details on the content_types available here: http://forum.kodi.tv/showthread.php?tid=299107
+
+------------------------------------------------------------------------------------------
+
+ADDON SETTINGS:
+By default this will open the current add-on settings but if you pass through an addon_id it will open the settings for that add-on.
+
+	CODE: Open_Settings([addon_id, stop_script])
+
+	AVAILABLE PARAMS:
+
+		addon_id    - This optional, it can be any any installed add-on id. If nothing is passed through the current add-on settings will be opened.
+
+		stop_script - By default this is set to True, as soon as the addon settings are opened the current script will stop running. If you pass through as False then the script will continue running in the background - opening settings does not pause a script, Kodi just see's it as another window being opened.
+
+------------------------------------------------------------------------------------------
+
+FREE SPACE:
+Show the amount of available free space in a path, this can be returned in a number of different formats.
+
+	CODE: Free_Space([dirname, filesize])
+
+	AVAILABLE PARAMS:
+
+		dirname  - This optional, by default it will tell you how much space is available in your special://home folder. If you require information for another path (such as a different partition or storage device) then enter the physical path. This currently only works for local paths and not networked drives.
+
+		filesize - By default you'll get a return of total bytes, however you can get the value as bytes, kilobytes, megabytes, gigabytes and terabytes..
+
+			VALUES:
+			'b'	 = bytes (integer)
+			'kb' = kilobytes (float to 1 decimal place)
+			'mb' = kilobytes (float to 2 decimal places)
+			'gb' = kilobytes (float to 3 decimal places)
+			'tb' = terabytes (float to 4 decimal places)
+
+------------------------------------------------------------------------------------------
+
+CONVERT A STRING (URL) INTO MULTIPLE VARIABLES
+This will allow you to send multiple values through via the Add_Dir
+function just as one string (url). This is then split up into however
+many values you want.
+
+	CODE: Grab_Params(extras, keys, [separator]))
+
+	AVAILABLE PARAMS:
+	    (*) extras  -  This is the string you want to split into a list of values.
+	    Each value needs to be split by <~> (unless a different separator is sent through).
+	    A good example of sending through name, DOB and sex would be: 'Mark<~>01.02.1976<~>male'
+
+	    (*) keys    -  These are the keys (variable names) you want to assign the split
+	    extras to. They need to be comma separated so using the above extras example
+	    you could use something like this: key='name,DOB,sex'.
+
+	    separator  -  This is optional, if you want to change the default separator you can do
+	    so here. Make sure it's something unique not used anywhere else in the string.
+
+	EXAMPLE CODE:
+		raw_string = 'Mark<~>01.02.1976<~>male'
+		vars = 'name,DOB,sex'
+		params = koding.Grab_Params(extras=raw_string, keys=vars)
+		dialog.ok('GRAB PARAMS RESULTS','Name: %s'%params["name"], 'DOB: %s'%params["DOB"], 'Sex: %s'%params["sex"])
+
+------------------------------------------------------------------------------------------
+
+LAST ERROR:
+Return details of the last error produced, perfect for try/except statements
+
+	CODE: Last_Error()
+
+	EXAMPLE CODE: xbmc.log(Last_Error())
+
+------------------------------------------------------------------------------------------
+
+PATH TO CURRENT "LIVE" DATABASE:
+If you need to find out the current "real" database in use then this is the function for you. It will scan for a specific database type (e.g. addons) and return the path to the one which was last updated. This is particularly useful if the system's previously updated to a newer version rather than a fresh install - or if they've installed a "build" which contained old databases.
+
+	CODE: DB_Path_Check(db_path)
+
+	AVAILABLE VALUES:
+		The db_path can be any string you want, it needs to be the string the database starts with. If you want to find the path for the addons*.db you would use "addons" as the value, if you wanted to find the path of the MyVideos*.db you would use "myvideos" etc. - it is not case sensitive.
+
+------------------------------------------------------------------------------------------
+
+BROWSE TO A FILE AND RETURN PATH
+
+	CODE: koding.Browse_To_File([header, path, extension])
+
+	AVAILABLE PARAMS:
+	    header    -  As the name suggests this is a string to be used for the header/title
+	    of the window. The default is "Select the file you want to use".
+
+	    path      -  Optionally you can add a default path for the browse start folder.
+	    The default start position is the Kodi HOME folder.
+
+	    extension -  Optionally set extensions to filter by, let's say you only wanted
+	    zip and txt files to show you would send through '.zip|.txt'
+
+	EXAMPLE CODE:
+		folder = koding.Browse_To_File(header='Choose a file you want to use', path='special://home/userdata')
+		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
+
+------------------------------------------------------------------------------------------
+
+BROWSE TO A FOLDER AND RETURN PATH
+
+	CODE: koding.Browse_To_Folder(header, path)
+
+	AVAILABLE PARAMS:
+	    header  -  As the name suggests this is a string to be used for the header/title
+	    of the window. The default is "Select the folder you want to use".
+
+	    path    -  Optionally you can add a default path for the browse start folder.
+	    The default start position is the Kodi HOME folder.
+
+	
+	EXAMPLE CODE:
+		folder = koding.Browse_To_Folder(header='Choose a folder you want to use', path='special://home/userdata')
+		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
+
+------------------------------------------------------------------------------------------
+
 CHECK IF VIDEO PLAYBACK IS SUCCESSFUL:
 This function will return true or false based on video playback. Simply start a stream (whether via an add-on, direct link to URL or local storage doesn't matter), the code will then work out if playback is successful. This uses a number of checks and should take into account all potential glitches which can occur during playback. The return should happen within a second or two of playback being successful (or not).
 
 	CODE: Check_Playback()
+
 ------------------------------------------------------------------------------------------
+
 PULL CONTENTS FROM A WEB PAGE:
 If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
 
@@ -31,22 +197,40 @@ If you need to pull the contents of a webpage it's very simple to do so by using
 	post_type is optional, by default it's set as 'get'
 
 	AVAILABLE VALUES:
-
 		'get'  -  This is already the default so no real need to add this but this uses a standard query string
 		
 		'post' -  This will convert the query string into a post
 
-	EXAMPLE CODE:	koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+	EXAMPLE CODE:
+		koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+
 ------------------------------------------------------------------------------------------
+
+GRAB THE EXTENSION OF A URL:
+Return the extension of any given url
+
+	CODE:   koding.Get_Extension(url)
+
+	AVAILABLE PARAMS:
+	    (*) url  -  This is the url you want to grab the extension from
+
+	EXAMPLE CODE:
+		url_extension = koding.Get_Extension('http://testpage.com/myfile.mp4')
+		dialog.ok('FILE EXTENSION',The file extension of http://testpage.com/myfile.mp4 is:','','[COLOR=dodgerblue]%s[/COLOR]'%url_extension)
+
+------------------------------------------------------------------------------------------
+
 DEBUG MODE:
-Print the the Kodi log but only if debugging is enabled in settings.xml
+Print to the Kodi log but only if debugging is enabled in settings.xml
 
 	CODE: koding.dolog(string)
 	string is your text you want printed to log.
 
 	EXAMPLE CODE:	koding.dolog('Quick test to see if this gets printed to the log')
 	EXAMPLE OUTPUT:		<addon_id>: Quick test to see if this gets printed to the log
+
 ------------------------------------------------------------------------------------------
+
 RUN CODE FROM YOUR OWN SERVER:
 If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
 
@@ -54,13 +238,15 @@ If you have web pages of your own then you can hook into them using koding.Main(
 	post_type is optional, by default it's set as 'get'
 
 	AVAILABLE VALUES:
-
 		'get'  -  This is already the default so no real need to add this but this uses a standard query string
 		
 		'post' -  This will convert the query string into a post
 
-	EXAMPLE CODE:	koding.Main('http://testpage.com?query1=value1&query2=value2', post_type='post')
+	EXAMPLE CODE:
+		koding.Main('http://testpage.com?query1=value1&query2=value2', post_type='post')
+
 ------------------------------------------------------------------------------------------
+
 CURRENT TIMESTAMP:
 This will return the timestamp in various formats. By default it returns as "integer" mode but other options are listed below:
 
@@ -68,13 +254,14 @@ This will return the timestamp in various formats. By default it returns as "int
 	mode is optional, by default it's set as integer
 
 	AVAILABLE VALUES:
-
 	    'integer' -  An integer which is nice and easy to work with in Python (especially for finding out human readable diffs). The format returned is [year][month][day][hour][minutes][seconds]. 
 	    
 	    'epoch'   -  Unix Epoch format (calculated in seconds passed since 12:00 1st Jan 1970).
 
 	    'clean'   -  A clean user friendly time format: Tue Jan 13 10:17:09 2009
+
 ------------------------------------------------------------------------------------------
+
 DOWNLOAD:
 This will download a file, currently this has to be a standard download link which doesn't require cookies/login.
 
@@ -82,42 +269,143 @@ This will download a file, currently this has to be a standard download link whi
 	dp is optional, by default it is set to false
 
 	AVAILABLE PARAMS:
+		(*) src    - This is the source file, the URL to your download. If you attempted to download an item but it's not behaving the way you think it should (e.g. a zip file not unzipping) then change the extension of the downloaded file to .txt and open up in a text editor. You'll most likely find it's just a piece of text that was returned from the URL you gave and it should have details explaining why it failed. Could be that's the wrong URL, it requires some kind of login, it only accepts certain user-agents etc.
 
-		src    - This is the source file, the URL to your download. If you attempted to download an item but it's not behaving the way you think it should (e.g. a zip file not unzipping) then change the extension of the downloaded file to .txt and open up in a text editor. You'll most likely find it's just a piece of text that was returned from the URL you gave and it should have details explaining why it failed. Could be that's the wrong URL, it requires some kind of login, it only accepts certain user-agents etc.
+		(*) dst    - This is the destination file, make sure it's a physical path and not "special://...". Also remember you need to add the actual filename to the end of the path, so if we were downloading something to the "downloads" folder and we wanted the file to be called "test.txt" we would use this path: dst = "downloads/test.txt". Of course the downloads folder would actually need to exist otherwise it would fail and based on this poor example the downloads folder would be at root level of your device as we've not specified a path prior to that so it just uses the first level that's accessible.
 
-		dst    - This is the destination file, make sure it's a physical path and not "special://...". Also remember you need to add the actual filename to the end of the path, so if we were downloading something to the "downloads" folder and we wanted the file to be called "test.txt" we would use this path: dst = "downloads/test.txt". Of course the downloads folder would actually need to exist otherwise it would fail and based on this poor example the downloads folder would be at root level of your device as we've not specified a path prior to that so it just uses the first level that's accessible.
-
-		(*) dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the progress of the download. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the progress of the download. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
 
 	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
-
 		dp = xbmcgui.DialogProgress()
 		dp.create('Downloading File','Please Wait')
 		koding.Download(src,dst,dp)
+
 ------------------------------------------------------------------------------------------
+
 EXTRACT:
-This function extract a zip file and return true or false so unlike the builtin xbmc function "Extract" this one will pause code until it's completed the action.
+This function extract a zip or tar file and return true or false so unlike the builtin xbmc function "Extract" this one will pause code until it's completed the action.
 
 	CODE: koding.Extract(src,dst,[dp])
 	dp is optional, by default it is set to false
 
 	AVAILABLE PARAMS:
+		(*) src    - This is the source file, the actual zip/tar. Make sure this is a full path to your zip file and also make sure you're not using "special://". This extract function is only compatible with .zip/.tar/.tar.gz files
 
-		src    - This is the source file, the actual zip. Make sure this is a full path to your zip file and also make sure you're not using "special://". This extract function is only compatible with zip files (currently) so make sure it's a valid zip.
+		(*) dst    - This is the destination folder, make sure it's a physical path and not "special://...". This needs to be a FULL path, if you want it to extract to the same location as where the zip is located you still have to enter the full path.
 
-		dst    - This is the destination folder, make sure it's a physical path and not "special://...". This needs to be a FULL path, if you want it to extract to the same location as where the zip is located you still have to enter the full path.
-
-		(*) dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the status of the extraction process. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the status of the extraction process. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
 
 	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
-
 		dp = xbmcgui.DialogProgress()
 		dp.create('Extracting Zip','Please Wait')
 		if koding.Extract(src,dst,dp):
 		    xbmc.log('YAY IT WORKED!')
 		else:
 		    xbmc.log('UH OH SOMETHING WENT HORRIBLY WRONG')
+
 ------------------------------------------------------------------------------------------
+
+ARCHIVE (CREATE A ZIP):
+Archive a folder path including all sub-folders. Optional exclude_dirs and exclude_files lists can be sent through and these will be skipped.
+
+IMPORTANT: There is a known bug where some certain compressed tar.gz files can cause the system to hang
+and a bad zipfile will continue to be made until it runs out of space on your storage device. In the unlikely
+event you encounter this issue just add the file(s) to your exclude list.
+
+	CODE: Archive_Tree(sourcefile, destfile, [exclude_dirs, exclude_files, message_header, message]):
+
+	AVAILABLE PARAMS:
+	    (*) sourcefile   - This is the source folder of where you want to start the archive process
+
+	    (*) destfile     - This is the file path you want to save the archive as (don't forget to add the actual filename at end of path)
+
+	    exclude_dirs   - This is optional, if you have folder names you want to exclude just add them here as a list item
+
+	    exclude_files  - This is optional, if you have specific file names you want to exclude just add them here as a list item
+
+	    message_header - This is optional, you can give the dialog progress window a title. The default is "ARCHIVING"
+
+	    message        - This is optional, the default text in the dialog progress window will be "Creating archive" unless changed here.
+
+
+	EXAMPLE CODE:
+		HOME = xbmc.translatePath('special://home')
+		DST = os.path.join(HOME,'test.zip')
+		koding.Archive_Tree(HOME, DST)
+
+------------------------------------------------------------------------------------------
+
+CONVERT PHYSICAL PATHS TO SPECIAL
+Convert physcial paths stored in text files to their special:// equivalent.
+
+	CODE: Convert_Special([filepath])
+
+	AVAILABLE PARAMS
+	    filepath  -  This is the path you want to scan, by default it's set to the Kodi HOME directory.
+
+	EXAMPLE CODE:
+		koding.Convert_Special()
+
+------------------------------------------------------------------------------------------
+
+DELETE FILES IN PATH
+Delete all specific filetypes in a path (including sub-directories)
+
+	CODE: Delete_Files([filepath, filetype, subdirectories])
+
+	AVAILABLE PARAMS:  
+	    filepath  -  By default this points to the Kodi HOME folder (special://home).
+	    The path you send through must be a physical path and not special://
+
+	    filetype  -  The type of files you want to delete, by default it's set to *.txt
+
+	    subdirectories  -  By default it will only search the folder given, if set to True
+	    all filetypes listed above will be deleted in the sub-directories too.
+
+	WARNING: This is an extremely powerful and dangerous tool! If you wipe your whole system
+	by putting in the wrong path then it's your own stupid fault!
+
+	EXAMPLE CODE:
+		delete_path = xbmc.translatePath('special://profile/addon_data/test')
+		dialog.ok('DELETE FILES','All *.txt files will be deleted from:', '', '/userdata/addon_data/test/')
+		Delete_Files(filepath=delete_path, filetype='.txt', subdirectories=True)
+
+------------------------------------------------------------------------------------------
+
+DELETE A FOLDER PATH
+Completely delete a folder and all it's sub-folders
+
+	CODE: Delete_Folders(filepath)
+
+	AVAILABLE PARAMS:    
+	    (*) filepath  -  Use the physical path you want to remove (not special://)
+
+	WARNING: This is an extremely powerful and dangerous tool! If you wipe your whole system
+	by putting in the wrong path then it's your own stupid fault!
+
+	EXAMPLE CODE:
+		delete_path = xbmc.translatePath('special://profile/addon_data/test')
+		if dialog.yesno('DELETE FOLDER','The following folder will now be removed:', '/userdata/addon_data/test/','Do you want to continue?'):
+		    Delete_Files(filepath)
+
+------------------------------------------------------------------------------------------
+
+READ/WRITE TEXT FILES
+Open/create a text file and read/write to it.
+
+	CODE: koding.Text_File(path, mode, [text])
+
+	AVAILABLE PARAMS:    
+	    (*) path  -  This is the path to the text file
+
+	    (*) mode  -  This can be 'r' (for reading) or 'w' (for writing)
+
+	    text  -  This is only required if you're writing to a file, this
+	    is the text you want to enter. This will completely overwrite any
+	    text already in the file.
+
+------------------------------------------------------------------------------------------
+
 GENERATE RANDOM PASSWORD:
 This will generate a random string made up of uppercase & lowercase ASCII characters and digits - it does not contain special characters.
 
@@ -125,26 +413,26 @@ This will generate a random string made up of uppercase & lowercase ASCII charac
 	size is an optional paramater.
 
 	AVAILABLE PARAMS:
+		Size - just send through an integer, this is the length of the string you'll get returned. So if you want a password generated that's 20 characters long just use ID_Generator(20). The default is 15.
 
-		(*) size - just send through an integer, this is the length of the string you'll get returned. So if you want a password generated that's 20 characters long just use ID_Generator(20). The default is 15.
 ------------------------------------------------------------------------------------------
+
 ENABLE/DISABLE/SET VARIOUS KODI SETTINGS:
 Use this to set built-in kodi settings via JSON or set skin settings. The value paramater is only required for JSON and string commands. Available options are below:
 
 	CODE: koding.Set_Setting(setting, setting_type, [value])
 
-	AVAILABLE PARAMS:
-		
+	AVAILABLE PARAMS:	
 		setting_type - The type of setting type you want to change, available types are:
 
 			string (sets a skin string, requires a value)
 			bool_true (sets a skin boolean to true, no value required)
 			bool_false (sets a skin boolean to false, no value required)
-			(*) kodi_setting (sets values found in guisettings.xml)
-			(*) addon_enable (enables/disables an addon. setting = addon_id, value = true/false)
-			(*) json (WIP - setitng = method, value = params, see documentation on JSON-RPC API here: http://kodi.wiki/view/JSON-RPC_API)
+			(!) kodi_setting (sets values found in guisettings.xml)
+			(!) addon_enable (enables/disables an addon. setting = addon_id, value = true/false)
+			(!) json (WIP - setitng = method, value = params, see documentation on JSON-RPC API here: http://kodi.wiki/view/JSON-RPC_API)
 
-			(*) = These will return True or False if successful
+			(!) = These will return True or False if successful
 
 	setting - This is the name of the setting you want to change, it could be a setting from the kodi settings or a skin based setting.
 
@@ -155,7 +443,41 @@ Use this to set built-in kodi settings via JSON or set skin settings. The value 
 	Below is an example of how to disable the RSS feed. To find the setting you need the simplest way is to open the guisettings.xml and find the value you want to change. In the example below you'll notice the setting is split by a dot - this is because it exists in a sub-section in guisettings (lookandfeel > enablerssfeeds).
 
 		koding.Set_Setting('kodi_setting', 'lookandfeel.enablerssfeeds', 'false')
+
 ------------------------------------------------------------------------------------------
+
+ENABLE/DISABLE THE BUSY (WORKING) SYMBOL
+This will show/hide a "working" symbol.
+
+	CODE: Show_Busy(True)
+
+	AVAILABLE PARAMS:
+    	status - This optional, by default it's True which means the "working" symbol appears. False will disable.
+
+	EXAMPLE CODE:
+		dialog.ok('BUSY SYMBOL','Press OK to show a busy dialog which restricts any user interaction. We have added a sleep of 5 seconds at which point it will disable.')
+		koding.Show_Busy()
+		xbmc.sleep(5000)
+		koding.Show_Busy(False)
+
+------------------------------------------------------------------------------------------
+
+SHOW TEXT IN A LARGE WINDOW:
+This will allow you to open a blank window and fill it with some text.
+
+	CODE: koding.Text_Box(header, message)
+
+	AVAILABLE PARAMS:
+		header 	-  As the name suggests this is a string to be used for the header/title of the window
+
+		message -  Yes you've probably already gussed it, this is the main message text
+
+
+	EXAMPLE CODE:
+		koding.Text_Box('TEST HEADER','Just some random text[CR][CR]Use kodi tags for new lines, colours etc.')
+
+------------------------------------------------------------------------------------------
+
 RETURN INSTALLED ADD-ON DETAILS:
 koding.Installed_Addons([types],[content],[properties])
 All the three paramaters you can send through to this function are optional, by default (without any params) this function will return a dictionary of all installed add-ons. The dictionary will contain "addonid" and "type" e.g. 'xbmc.python.pluginsource'.
@@ -175,6 +497,25 @@ Of course you can use as many of these params as you wish, they are all optional
 
 koding.Installed_Addons(types='xbmc.python.script', content='video', properties='name')
 This would show all scripts that also appear in the video section and it would return the defaults of "addonid" & "types" plus a third dictionary item of "name".
+
+------------------------------------------------------------------------------------------
+
+PERFORM DATABASE FUNCTIONS:
+Open a database and either return an array of results with the SELECT command or perform an action such as INSERT, UPDATE, CREATE.
+
+	CODE:  DB_Query(db_path, query, [values])
+
+	AVAILABLE PARAMS:
+	    (*) db_path -  the full path to the database file you want to access.
+	    (*) query   -  this is the actual db query you want to process, use question marks for values
+
+	    values  -  a list of values, even if there's only one value it must be sent through as a list item.
+
+	EXAMPLE CODE:
+		dbpath = koding.DB_Path_Check('addons')
+		db_query = koding.DB_Query(db_path=dbpath, query='SELECT * FROM addons WHERE addonID LIKE ? AND addonID NOT LIKE ?', values=['%youtube%',%script.module%])
+		koding.Text_Box('DB SEARCH RESULTS',str(db_query))
+
 ------------------------------------------------------------------------------------------
 
 
@@ -212,6 +553,10 @@ If you want to offer a test version only available to donators or a specific tes
 		<setting id="testver" label="Use test version" type="bool" default="true" />
 		<setting id="testsettings" label="Test version settings" type="action"	action="RunScript(special://home/addons/script.module.python.koding.aio/lib/koding/__init__.py,settings,your.plugin.id)" option="close" />
 
+CREATE DEVELOPMENT VERSIONS RUNNING OFF YOUR OWN SERVER
+=======================================================
+If your add-on relies on grabbing content you've added to the NaN servers but you don't want to mess around with the live environment you can create a development version of the add-on and have it hit your own server instead. The development version can just be a duplicate of your existing add-on but with a new id, contact a member of the admin team at NaN to get it approved and then you'll be able to edit the base domain as you wish.
+
 SETTINGS - CLEAR DATA
 =====================
 If you want to offer the option to clear the cookie data then you can add the following code. This will wipe the cookies folder - could be useful if things like initial run code sent back from server changes or the base urls have changed.
@@ -237,15 +582,15 @@ You can upload as many segments of code as you want and they can run by using th
 RUN UNIVERSAL NAN CODE :
 You can run a variety of universal NaN modules, if you want to submit new ones then you're free to do so, just get in touch with a member of admin. Below are a list of the current functions available to anyone who's add-on has been accepted on the system.
 
----------------
+------------------------------------------------------------------------------------------
 
 RETURN THE BASE URL: koding.Check_Cookie('base') - NaN uses a special load balancing system whereby multiple servers are used, all sync'd with access to the same content. If you need to hook into files hosted on your NaN account then using this function will return the base url. This may change from day to day, every add-on that uses koding.py will automatically get a new randomised server to use for the following 24 hours. This helps prevent ddos attacks, gives fallback options for any slow servers and also makes sure there are sufficient backups of your important files.
 
----------------
+------------------------------------------------------------------------------------------
 
 CLEAR COOKIE DATA: koding.Clear_Data() - If you're having any problems with the temporary cached files or you're testing in a dev environment and need to clear any cache you can call this function and it will simply wipe the whole cookie folder in your relevant addon_data folder. This is the folder that will always be used for any future temporary cache files used by koding.py. You can also call this function in the settings.xml - see the settings.xml section above.
 
----------------
+------------------------------------------------------------------------------------------
 
 ADDON INSTALL: koding.Main('addoninstall|id:<addon_id>~version:<kodi_version>~repo:1~silent:1') - This will install the relevant add-on and modules for the kodi version you're running.
 

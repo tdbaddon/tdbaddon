@@ -9,10 +9,10 @@ selfAddon       = xbmcaddon.Addon(id=addon_id)
 fanart          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 fanarts         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-searchicon      = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/search.jpg'))
-newicon         = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/whatsnew.jpg'))
-walloffameicon  = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/walloffame.png'))
-nextpage        = xbmc.translatePath(os.path.join('http://pbear90repo.netai.net/addons/wweondemand/images/next.png'))
+searchicon      = xbmc.translatePath(os.path.join('https://i.imgur.com/Oyig8b3.jpg'))
+newicon         = xbmc.translatePath(os.path.join('https://i.imgur.com/1EwraV5.jpg'))
+schedule        = xbmc.translatePath(os.path.join('https://i.imgur.com/iFW0hzz.jpg'))
+nextpage        = xbmc.translatePath(os.path.join('https://i.imgur.com/x5Jo4v4.jpg'))
 sd_path         = xbmc.translatePath(os.path.join('special://home/addons/', 'plugin.video.sportsdevil'))
 baseurl         = 'http://pbear90repo.netai.net/addons/wweondemand/pbearmain.xml'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
@@ -23,7 +23,7 @@ ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
 messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.xml'
-walloffame      = 'http://pbear90repo.netai.net/addons/wweondemand/walloff.xml'
+wweschedule      = 'http://pbear90repo.netai.net/addons/wweondemand/schedule.xml'
 RUNNER 			= base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
                                                                
@@ -35,6 +35,41 @@ def GetMenu():
         match= re.compile('<item>(.+?)</item>').findall(link)
         for item in match:
             try:
+                if '<regex>' in item:
+                    regdata = re.compile('(<regex>.+?</regex>)', re.MULTILINE|re.DOTALL).findall(item)
+                    regdata = ''.join(regdata)
+                    reglist = re.compile('(<listrepeat>.+?</listrepeat>)', re.MULTILINE|re.DOTALL).findall(regdata)
+                    regdata = urllib.quote_plus(regdata)
+                    reghash = hashlib.md5()
+                    for i in regdata: reghash.update(str(i))
+                    reghash = str(reghash.hexdigest())
+                    item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+                    item = re.sub('<regex>.+?</regex>','', item)
+                    item = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', item)
+                    item = re.sub('<link></link>','', item)
+                    name = re.sub('<meta>.+?</meta>','', item)
+                    try: name = re.findall('<title>(.+?)</title>', name)[0]
+                    except: name = re.findall('<name>(.+?)</name>', name)[0]
+                    try: date = re.findall('<date>(.+?)</date>', item)[0]
+                    except: date = ''
+                    if re.search(r'\d+', date): name += ' [COLOR red] Updated %s[/COLOR]' % date
+                    try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
+                    except: image2 = icon
+                    try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
+                    except: fanart2 = fanarts
+                    try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
+                    except: meta = '0'
+                    try: url = re.findall('<link>(.+?)</link>', item)[0]
+                    except: url = '0'
+                    url = url.replace('>search<', '><preset>search</preset>%s<' % meta)
+                    url = '<preset>search</preset>%s' % meta if url == 'search' else url
+                    url = url.replace('>searchsd<', '><preset>searchsd</preset>%s<' % meta)
+                    url = '<preset>searchsd</preset>%s' % meta if url == 'searchsd' else url
+                    url = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', url)
+                    if not regdata == '':
+                        hash.append({'regex': reghash, 'response': regdata})
+                        url += '|regex=%s' % regdata
+                    addLinkRegex(name,url,12,image2,fanart2,"")
                 if '<channel>' in item:
                         name=re.compile('<title>(.+?)</title>').findall(item)[0]
                         iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
@@ -83,7 +118,7 @@ def GetMenu():
                                         addLink(name,url2,3,iconimage,fanart)
             except:pass
             view(link)
-        #addDir('[B][COLOR silver]Wall Of Fame[/COLOR][/B]',url,11,walloffameicon,fanarts)
+        addDir('[B][COLOR silver]WWE Schedule[/COLOR][/B]',url,11,schedule,fanarts)
         addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)		
 
 def popup():
@@ -170,11 +205,11 @@ def NEW():
                 showText('[B][COLOR gold]Whats New[/COLOR][/B]', message)
                 quit()
 
-def WALLOFFAME():
-        message=open_url3(walloffame)
+def WWESCHEDULE():
+        message=open_url3(wweschedule)
         if len(message)>1:
                 path = xbmcaddon.Addon().getAddonInfo('path')
-                showText('[B][COLOR silver]Wall Of Fame[/COLOR][/B]', message)
+                showText('[B][COLORsnow]WWE SCHEDULE[/COLOR][/B]', message)
                 quit()
 
 def YOUTUBE_CHANNEL(url):
@@ -330,6 +365,31 @@ def PLAYSD(name,url,iconimage):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         xbmc.Player ().play(url, liz, False)
+
+def PLAYREGEX(name,url,iconimage):
+
+	name = name.replace('  ','')
+	if not 'f4m'in url:
+		if '.m3u8' in url:
+			url = 'plugin://plugin.video.f4mTester/?streamtype=HLSRETRY&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
+		elif '.ts'in url:
+			url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
+	else: url = url + '|User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+	
+	import urlresolver
+	if urlresolver.HostedMediaFile(url).valid_url(): 
+		stream_url = urlresolver.HostedMediaFile(url).resolve()
+		liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
+		liz.setPath(stream_url)
+		xbmc.Player ().play(stream_url, liz, False)
+		quit()
+	else:
+		stream_url=url
+		liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
+		liz.setPath(stream_url)
+		xbmc.Player ().play(stream_url, liz, False)
+		quit()
+
         
 def PLAYLINK(name,url,iconimage):
         if not'http'in url:url='http://'+url
@@ -482,6 +542,14 @@ def addLink(name, url, mode, iconimage, fanart, description=''):
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
     return ok
 
+def addLinkRegex(name, url, mode, iconimage, fanart, description=''):
+    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)+"&fanart="+urllib.quote_plus(fanart)
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+    liz.setProperty('fanart_image', fanart)
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+    return ok
+
 def addItem(name,url,mode,iconimage,fanart, description=''):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
 	ok=True
@@ -498,15 +566,24 @@ def SHOW_PICTURE(url):
     sys.exit(1)
 
 def find_single_match(text,pattern):
-
     result = ""
     try:    
         single = re.findall(pattern,text, flags=re.DOTALL)
         result = single[0]
     except:
         result = ""
-
     return result
+
+def GetEncodeString(str):
+    try:
+        import chardet
+        str = str.decode(chardet.detect(str)["encoding"]).encode("utf-8")
+    except:
+        try:
+            str = str.encode("utf-8")
+        except:
+            pass
+    return str
 
 def showText(heading, text):
     id = 10147
@@ -556,6 +633,8 @@ elif mode==7:PLAYVIDEO(url)
 elif mode==8:GETMULTI_SD(name,url,iconimage)
 elif mode==9:SHOW_PICTURE(url)
 elif mode==10:NEW()
-elif mode==11:WALLOFFAME()
+elif mode==11:WWESCHEDULE()
+elif mode==12:GET_REGEX(name,url,iconimage)
+
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

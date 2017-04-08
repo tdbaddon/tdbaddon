@@ -19,7 +19,7 @@ class Watchfree(Scraper):
         self.moviesearch_link = '/?keyword=%s&search_section=1'
         self.tvsearch_link = '/?keyword=%s&search_section=2'
 
-    def scrape_movie(self, title, year, imdb):
+    def scrape_movie(self, title, year, imdb, debrid = False):
         try:
             query = self.moviesearch_link % urllib.quote_plus(title.replace('\'', '').rsplit(':', 1)[0])
             query = urlparse.urljoin(self.base_link, query)
@@ -41,7 +41,7 @@ class Watchfree(Scraper):
             pass
         return []
 
-    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb):
+    def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             query = urlparse.urljoin(self.base_link,
                                      self.tvsearch_link % urllib.quote_plus(title.replace('\'', '').rsplit(':', 1)[0]))

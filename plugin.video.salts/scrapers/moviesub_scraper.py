@@ -55,9 +55,13 @@ class Scraper(scraper.Scraper):
         
         page_url = urlparse.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
+        if video.video_type == VIDEO_TYPES.EPISODE:
+            gk_html = ''.join(match.group(0) for match in re.finditer('<a[^>]*>%s</a>' % (video.episode), html))
+        else:
+            gk_html = html
         link_url = urlparse.urljoin(self.base_url, LINK_URL)
         player_url = urlparse.urljoin(self.base_url, PLAYER_URL)
-        sources = scraper_utils.get_gk_links(self, html, page_url, QUALITIES.HIGH, link_url, player_url)
+        sources = scraper_utils.get_gk_links(self, gk_html, page_url, QUALITIES.HIGH, link_url, player_url)
         sources.update(self.__get_ht_links(html, page_url))
         
         for stream_url, quality in sources.iteritems():
