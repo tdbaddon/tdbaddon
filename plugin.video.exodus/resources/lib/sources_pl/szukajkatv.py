@@ -60,7 +60,7 @@ class source:
         try:
             
             words = url.split(' ')
-            search_str = urllib.quote(url)
+            search_str = url.replace(" ","-")
                 
             search_url = urlparse.urljoin(self.base_link, self.search_link) % search_str
             result = client.request(search_url)

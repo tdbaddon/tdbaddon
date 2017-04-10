@@ -9,17 +9,17 @@ from difflib import SequenceMatcher
 
 # ========================= MATCH TITLES OR PORTIONS OF IT ===============================
 def __matchClean(value):
-	value = re.sub(r'[^\w]', '', value)
-	return cleantitle_get(value)
+	value = cleantitle_get(value)
+	return value
 
 def title_match(txt, txt2, amount=None):
-	# print ("TITLEMATCH AMOUNT", int(amount))	
+	print ("TITLEMATCH AMOUNT", amount)	
 	if amount == None: MatchValue = 0.8
 	else: MatchValue = amount
 	value1 = __matchClean(txt)
 	value2 = __matchClean(txt2)
-	# ratio_diff = SequenceMatcher(None, value1, value2).ratio()
-	# print ("RATIO MATCHES ratio_diff", ratio_diff)
+	ratio_diff = SequenceMatcher(None, value1, value2).ratio()
+	print ("RATIO MATCHES ratio_diff", ratio_diff, value1, value2)
 	if SequenceMatcher(None, value1, value2).ratio() >= MatchValue:
 		print ("RATIO MATCHES PASSED ", value1, value2)
 		
@@ -133,5 +133,12 @@ def title_normalize(title):
 	title = title.replace('&quot;', '\"').replace('&amp;', '&')
 	title = re.sub(r'\<[^>]*\>','', title)
 	title = re.sub('\n|\t|\(|\)|\[|\]|\{|\}', '', title)
+	title = ' '.join(title.split())
+	return title
+	
+def clean_html(title):
+	title = title.replace('&quot;', '\"').replace('&amp;', '&')
+	title = title.replace('\\n','').replace('\\t','')
+	title = title.replace('\\','')
 	title = ' '.join(title.split())
 	return title

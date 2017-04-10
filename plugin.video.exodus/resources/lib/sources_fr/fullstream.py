@@ -115,7 +115,7 @@ class source:
                 host = client.replaceHTMLCodes(host)
                 host = host.encode('utf-8')
 
-                langue = 'VF'
+                langue = 'FR'
 
                 quality2 = 'SD'
                 quality2 = re.sub('-', '', quality2)

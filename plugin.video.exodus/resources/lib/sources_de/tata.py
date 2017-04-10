@@ -64,9 +64,9 @@ class source:
             year = re.findall('(\d{4})', premiered)
             year = year[0] if year else data['year']
 
-            url = self.__search(data['tvshowtitle'], year, season, episode)
+            url = self.__search(data['localtvshowtitle'], year, season, episode)
             if not url and data['tvshowtitle'] != data['localtvshowtitle']:
-                url = self.__search(data['localtvshowtitle'], year, season, episode)
+                url = self.__search(data['tvshowtitle'], year, season, episode)
             return url
         except:
             return

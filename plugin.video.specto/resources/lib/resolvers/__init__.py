@@ -121,7 +121,7 @@ def info():
         'class': 'clicknupload',
         'netloc': ['clicknupload.com', 'clicknupload.link'],
         'host': ['Clicknupload'],
-        'quality': 'High',
+        'quality': 'Medium',
         'captcha': False,
         'a/c': False
     }, {

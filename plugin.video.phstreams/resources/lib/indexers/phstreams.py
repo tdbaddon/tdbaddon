@@ -307,9 +307,8 @@ class indexer:
             try: fanart = re.findall('<fanart>(.+?)</fanart>', info)[0]
             except: fanart = '0'
             
-            if '<tmdb_data>true</tmdb_data>' in result.lower():
-                api_data = client.request(base64.b64decode('aHR0cDovL3Bob2VuaXh0di5vZmZzaG9yZXBhc3RlYmluLmNvbS9hcGkvdG1kYi1hcGkudHh0'), timeout='5')
-                tmdb_api = re.compile('<api>(.+?)</api>').findall(api_data)[0]
+            api_data = client.request(base64.b64decode('aHR0cDovL3Bob2VuaXh0di5vZmZzaG9yZXBhc3RlYmluLmNvbS9hcGkvdG1kYi1hcGkudHh0'), timeout='5')
+            tmdb_api = re.compile('<api>(.+?)</api>').findall(api_data)[0]
 
             items = re.compile('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))', re.MULTILINE|re.DOTALL).findall(result)
         except:
@@ -327,7 +326,7 @@ class indexer:
                 for i in regdata: reghash.update(str(i))
                 reghash = str(reghash.hexdigest())
 
-                item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+                item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('<tmdb_data>true</tmdb_data>','<tmdb_data>all</tmdb_data>')
 
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
@@ -348,8 +347,7 @@ class indexer:
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
                 
-                if tmdb_get.lower() == 'true':
-                
+                if any(f for f in ['all','data','images'] if f == tmdb_get.lower()):         
                     try:
                         url_api = 'http://api.themoviedb.org/3/movie/' + imdb + '?api_key=' + tmdb_api
                         item_json = client.request(url_api, timeout='5')
@@ -357,60 +355,79 @@ class indexer:
                         item_json = json.loads(item_json)
                     except: pass
 
-                    try:
-                        if item_json['original_title'] is not None: 
-                           title = item_json['original_title']
-                           name = title
-                        else:        
+                    if any(f for f in ['all','data'] if f == tmdb_get.lower()):         
+                        try:
+                            if item_json['original_title'] is not None: 
+                               title = item_json['original_title']
+                               name = title
+                            else:        
+                                name = re.sub('<meta>.+?</meta>','', item)
+                                try: name = re.findall('<title>(.+?)</title>', name)[0]
+                                except: name = re.findall('<name>(.+?)</name>', name)[0]
+                                try: title = name
+                                except: title = '0'
+                                if title == '0' and not tvshowtitle == '0': title = tvshowtitle
+
+                        except:
                             name = re.sub('<meta>.+?</meta>','', item)
                             try: name = re.findall('<title>(.+?)</title>', name)[0]
                             except: name = re.findall('<name>(.+?)</name>', name)[0]
                             try: title = name
                             except: title = '0'
+                            
                             if title == '0' and not tvshowtitle == '0': title = tvshowtitle
 
-                    except:
+                        if '<title></title>' in item:
+                            item = item.replace('<title></title>','<title>'+title+'</title>')
+                                    
+                        try:
+                            if item_json['release_date'] is not None: year = item_json['release_date']; year = year.split('-')[0]; name = title + ' (' + year + ')'
+                            else: 
+                                try: year = re.findall('<year>(.+?)</year>', meta)[0]
+                                except: year = '0'
+                        except:
+                            try: year = re.findall('<year>(.+?)</year>', meta)[0]
+                            except: year = '0'
+                            
+                        if '<year></year>' in item:
+                            item = item.replace('<year></year>','<year>'+title+'</year>')
+                    else:
                         name = re.sub('<meta>.+?</meta>','', item)
                         try: name = re.findall('<title>(.+?)</title>', name)[0]
                         except: name = re.findall('<name>(.+?)</name>', name)[0]
                         try: title = name
                         except: title = '0'
-                        
-                        if title == '0' and not tvshowtitle == '0': title = tvshowtitle
-
-                    if '<title></title>' in item:
-                        item = item.replace('<title></title>','<title>'+title+'</title>')
-                                
-                    try:
-                        if item_json['release_date'] is not None: year = item_json['release_date']; year = year.split('-')[0]; name = title + ' (' + year + ')'
-                        else: 
-                            try: year = re.findall('<year>(.+?)</year>', meta)[0]
-                            except: year = '0'
-                    except:
+                        if '<title></title>' in item:
+                            item = item.replace('<title></title>','<title>'+title+'</title>')
                         try: year = re.findall('<year>(.+?)</year>', meta)[0]
                         except: year = '0'
-                        
-                    if '<year></year>' in item:
-                        item = item.replace('<year></year>','<year>'+title+'</year>')
-                                                        
-                    try:
-                        if item_json['backdrop_path'] is not None: fanart2 = 'http://image.tmdb.org/t/p/original/' + item_json['backdrop_path']
-                        else: 
+                        if '<year></year>' in item:
+                            item = item.replace('<year></year>','<year>'+title+'</year>')
+                    
+                    if any(f for f in ['all','images'] if f == tmdb_get.lower()):         
+
+                        try:
+                            if item_json['backdrop_path'] is not None: fanart2 = 'http://image.tmdb.org/t/p/original/' + item_json['backdrop_path']
+                            else: 
+                                try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
+                                except: fanart2 = fanart
+                        except:
                             try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
                             except: fanart2 = fanart
-                    except:
-                        try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                        except: fanart2 = fanart
-                        
-                    try:
-                        if item_json['poster_path'] is not None: image2 = 'http://image.tmdb.org/t/p/original/' + item_json['poster_path']
-                        else: 
+                            
+                        try:
+                            if item_json['poster_path'] is not None: image2 = 'http://image.tmdb.org/t/p/original/' + item_json['poster_path']
+                            else: 
+                                try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
+                                except: image2 = image
+                        except:
                             try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
                             except: image2 = image
-                    except:
+                    else:
+                        try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
+                        except: fanart2 = fanart
                         try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
                         except: image2 = image
-
                 else:
 
                     name = re.sub('<meta>.+?</meta>','', item)

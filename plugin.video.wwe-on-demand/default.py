@@ -14,7 +14,7 @@ newicon         = xbmc.translatePath(os.path.join('https://i.imgur.com/1EwraV5.j
 schedule        = xbmc.translatePath(os.path.join('https://i.imgur.com/iFW0hzz.jpg'))
 nextpage        = xbmc.translatePath(os.path.join('https://i.imgur.com/x5Jo4v4.jpg'))
 sd_path         = xbmc.translatePath(os.path.join('special://home/addons/', 'plugin.video.sportsdevil'))
-baseurl         = 'http://pbear90repo.netai.net/addons/wweondemand/pbearmain.xml'
+baseurl         = 'http://pbear90.offshorepastebin.com/wweondemand/pbearmain.xml'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
 ytpl2           = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 ytplpg1         = 'https://www.googleapis.com/youtube/v3/playlistItems?pageToken='
@@ -22,8 +22,8 @@ ytplpg2         = '&part=snippet&playlistId='
 ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
-messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.xml'
-wweschedule      = 'http://pbear90repo.netai.net/addons/wweondemand/schedule.xml'
+messagetext     = 'http://pbear90.offshorepastebin.com/wweondemand/info.xml'
+wweschedule      = 'http://pbear90.offshorepastebin.com/wweondemand/schedule.xml'
 RUNNER 			= base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
                                                                
@@ -238,7 +238,7 @@ def SEARCH():
 		searchterm=keyb.getText()
 		searchterm=searchterm.upper()
 	else:quit()
-	link=open_url('http://pbear90repo.netai.net/addons/wweondemand/search.xml')
+	link=open_url('http://pbear90.offshorepastebin.com/wweondemand/search.xml')
 	slist=re.compile('<link>(.+?)</link>').findall(link)
 	for url in slist:
                 url2=url

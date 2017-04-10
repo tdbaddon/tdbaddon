@@ -1039,9 +1039,9 @@ msgstr "Library"
 
 msgctxt "#30921"
 msgid ""
-"Specto folderswill be imported to library if they are added to media "
+"Specto folders will be imported to library if they are added to media "
 "sources."
-msgstr "Specto folderswill be imported to library if they are added to media sources."
+msgstr "Specto folders will be imported to library if they are added to media sources."
 
 msgctxt "#30922"
 msgid "Movies"

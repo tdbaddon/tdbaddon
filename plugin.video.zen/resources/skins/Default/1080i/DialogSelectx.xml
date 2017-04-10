@@ -2,7 +2,7 @@
 <window type="dialog">
 	<defaultcontrol always="true">3</defaultcontrol>
 	<coordinates>
-		<left>1400</left>
+		<left>1325</left>
 		<top>0</top>
 	</coordinates>
 
@@ -20,7 +20,7 @@
 			<control type="progress" id="2">
                 <left>-30</left>
 				<top>40</top>
-				<width>550</width>
+				<width>650</width>
 				<height>20</height>
 				<texturebg border="2">progressback.png</texturebg>
 				<lefttexture>-</lefttexture>
@@ -108,7 +108,7 @@
 			<control type="list" id="6">
 				<left>-30</left>
 				<top>75</top>
-				<width>550</width>
+				<width>650</width>
 				<height>950</height>
 				<onup>6</onup>
 				<ondown>6</ondown>

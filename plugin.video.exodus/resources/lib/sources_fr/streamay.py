@@ -80,7 +80,7 @@ class source:
                 host = [x[1] for x in hostDict if x[0] == host][0]
                 link = urlparse.urljoin(self.base_link, '/%s/%s/%s' % (('streamerSerie' if '/series/' in url else 'streamer'), id, streamer))
 
-                sources.append({'source': host, 'quality': 'SD', 'url': link, 'info': info if info else '', 'direct': False, 'debridonly': False})
+                sources.append({'source': host, 'quality': 'SD', 'url': link, 'language': 'FR', 'info': info if info else '', 'direct': False, 'debridonly': False})
 
             return sources
         except:
@@ -104,19 +104,20 @@ class source:
 
             query = urlparse.urljoin(self.base_link, self.search_link)
 
-            r = urllib.urlencode({'k': cleantitle.query(localtitle)})
-            r = client.request(query, post=r)
+            post = urllib.urlencode({'k': "%s"}) % tq
+            r = client.request('https://streamay.bz/search', post=post)
             r = json.loads(r)
 
             r = [i.get('result') for i in r if i.get('type', '').encode('utf-8') == content_type]
             r = [(i.get('url'), i.get('originalTitle'), i.get('title'), i.get('anneeProduction', 0), i.get('dateStart', 0)) for i in r]
             r = [(i[0], re.sub('<.+?>|</.+?>', '', i[1] if i[1] else ''), re.sub('<.+?>|</.+?>', '', i[2] if i[2] else ''), i[3] if i[3] else re.findall('(\d{4})', i[4])[0]) for i in r if i[3] or i[4]]
             r = sorted(r, key=lambda i: int(i[3]), reverse=True)  # with year > no year
-            r = [i[0] for i in r if i[3] in y and (t == cleantitle.get(i[1]) or tq == cleantitle.query(i[2]))][0]
+            r = [i[0] for i in r if i[3] in y and (t.lower() == cleantitle.get(i[1].lower()) or tq.lower() == cleantitle.query(i[2].lower()))][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
+
             return url
         except:
             return

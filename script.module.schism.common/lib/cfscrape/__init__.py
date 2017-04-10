@@ -12,15 +12,12 @@ except ImportError:
     from urllib.parse import urlparse
 
 DEFAULT_USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0"
 ]
-
-DEFAULT_USER_AGENT = random.choice(DEFAULT_USER_AGENTS)
-
 
 class CloudflareScraper(Session):
     def __init__(self, *args, **kwargs):
@@ -28,20 +25,27 @@ class CloudflareScraper(Session):
 
         if "requests" in self.headers["User-Agent"]:
             # Spoof Firefox on Linux if no custom User-Agent has been set
-            self.headers["User-Agent"] = random_agent()
+            self.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36"
 
     def request(self, method, url, *args, **kwargs):
-        resp = super(CloudflareScraper, self).request(method, url, *args, **kwargs)
+        resp = super(CloudflareScraper, self).request(method, url, timeout=3, *args, **kwargs)
 
         # Check if Cloudflare anti-bot is on
         if (resp.status_code == 503 and resp.headers.get("Server") == "cloudflare-nginx"):
-            return self.solve_cf_challenge(resp, **kwargs)
+            cf_solve = self.solve_cf_challenge(resp, **kwargs)
+            if "s,t,o,p,b,r,e,a,k,i,n,g" in cf_solve.content or "jschl_vc" in cf_solve.content:
+				print ("ZEN CLOUDFLARE TRIES")
+				resp = super(CloudflareScraper, self).request(method, url, *args, **kwargs)
+				cf_solve = self.solve_cf_challenge(resp, **kwargs)
+				
+
+            return cf_solve
 
         # Otherwise, no Cloudflare anti-bot detected
         return resp
 
     def solve_cf_challenge(self, resp, **original_kwargs):
-        sleep(6.1)  # Cloudflare requires a delay before solving the challenge
+        sleep(6)  # Cloudflare requires a delay before solving the challenge
 
         body = resp.text
         parsed_url = urlparse(resp.url)

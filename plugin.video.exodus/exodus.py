@@ -274,9 +274,10 @@ elif action == 'authTrakt':
     from resources.lib.modules import trakt
     trakt.authTrakt()
 
-elif action == 'rdAuthorize':
-    from resources.lib.modules import debrid
-    debrid.rdAuthorize()
+elif action == 'smuSettings':
+    try: import urlresolver
+    except: pass
+    urlresolver.display_settings()
 
 elif action == 'download':
     import json

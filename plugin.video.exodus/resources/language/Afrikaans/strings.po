@@ -18,12 +18,13 @@
 # Translators:
 # Translators:
 # Translators:
+# fran van, 2017
 # Johan Swanevelder, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-03-17 20:20+0000\n"
+"PO-Revision-Date: 2017-04-08 18:34+0000\n"
 "Last-Translator: Viper2k4\n"
 "Language-Team: Afrikaans (http://www.transifex.com/tv-addons/exodus/language/af/)\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +123,7 @@ msgstr "In die Teater"
 
 msgctxt "#32023"
 msgid "Highly Rated"
-msgstr "Meeste Stemme"
+msgstr "Hoogs Aanbeveel"
 
 msgctxt "#32024"
 msgid "Airing today"
@@ -170,7 +171,7 @@ msgstr "IMDb"
 
 msgctxt "#32035"
 msgid "Featured"
-msgstr "Soeklig"
+msgstr "Gewilde"
 
 msgctxt "#32036"
 msgid "History"
@@ -178,7 +179,7 @@ msgstr "Geskiedenis"
 
 msgctxt "#32037"
 msgid "Progress"
-msgstr "In-proses"
+msgstr "Vordering"
 
 msgctxt "#32038"
 msgid "Episodes"
@@ -198,7 +199,7 @@ msgstr "Episode lyste"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
-msgstr "Geen Trakt of IMDb opstelling gevind nie"
+msgstr "Geen Trakt of IMDb rekening gevind nie"
 
 msgctxt "#32043"
 msgid "[B]SETTINGS[/B] : General"
@@ -287,11 +288,11 @@ msgstr "Speel met..."
 
 msgctxt "#32064"
 msgid "Auto Play"
-msgstr "Auto-speel"
+msgstr "Speel Automaties"
 
 msgctxt "#32065"
 msgid "Queue item"
-msgstr "Waglys Item"
+msgstr "Tou Item"
 
 msgctxt "#32066"
 msgid "Watched in Exodus"
@@ -311,11 +312,11 @@ msgstr "Ongekyk in Trakt"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
-msgstr "Trakt Manager"
+msgstr "Trakt Bestuurder"
 
 msgctxt "#32071"
 msgid "Browse Series"
-msgstr "Blaai Reekse"
+msgstr "Snuffel Reekse"
 
 msgctxt "#32072"
 msgid "Refresh"
@@ -331,11 +332,11 @@ msgstr "[B]HELP[/B]"
 
 msgctxt "#32301"
 msgid "Enabled"
-msgstr "Aangeskakel"
+msgstr "Instaatstel"
 
 msgctxt "#32302"
 msgid "Disabled"
-msgstr "Afgeskakel"
+msgstr "Gestrem"
 
 msgctxt "#32303"
 msgid "User"
@@ -375,7 +376,7 @@ msgstr "Voorkoms"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
-msgstr "Verskaffers Soektyd"
+msgstr "Verskaffers Tydverstryk"
 
 msgctxt "#32313"
 msgid "Indicators"
@@ -391,7 +392,7 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Info Taal"
+msgstr "Taal Informasie "
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
@@ -411,7 +412,7 @@ msgstr "Nuwe Flieks"
 
 msgctxt "#32321"
 msgid "Featured"
-msgstr "Soeklig"
+msgstr "Gewilde"
 
 msgctxt "#32322"
 msgid "People Watching"
@@ -463,7 +464,7 @@ msgstr "Gids"
 
 msgctxt "#32334"
 msgid "Auto Play"
-msgstr "Auto Speel"
+msgstr "Speel Automaties "
 
 msgctxt "#32335"
 msgid "Progress Dialog"
@@ -487,7 +488,7 @@ msgstr "Maksimum Kwaliteit"
 
 msgctxt "#32340"
 msgid "SD Hosters in Auto Play"
-msgstr "SD Verskaffers in Auto Speel"
+msgstr "SD Verskaffers in Automatiese Speel"
 
 msgctxt "#32341"
 msgid "Hosters with captchas"
@@ -495,7 +496,7 @@ msgstr "Verskaffers met captchas"
 
 msgctxt "#32342"
 msgid "Sort by Provider"
-msgstr "Sorteer teen Verskaffer"
+msgstr "Sorteer by Verskaffer"
 
 msgctxt "#32343"
 msgid "When playback starts..."
@@ -631,7 +632,7 @@ msgstr "Wanneer u gevra word, tik : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32515"
 msgid "Trakt Manager"
-msgstr "Trakt Manager"
+msgstr "Trakt Bestuurder"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
@@ -679,5 +680,13 @@ msgstr "Wanneer u gevra word, tik : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32535"
 msgid "Play Random"
-msgstr "Speel lukraak"
+msgstr "Speel Deurmekaar"
+
+msgctxt "#32536"
+msgid "Playing"
+msgstr "Speel"
+
+msgctxt "#32537"
+msgid "Nothing found to play"
+msgstr "Niks gevind om te speel nie"
 

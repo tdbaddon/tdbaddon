@@ -78,8 +78,8 @@ class source:
 
             alt_title = anilist.getAlternativTitle(tvshowtitle)
             links = self.__search(alt_title, episode)
-            if not links and tvshowtitle != alt_title: links = self.__search(tvshowtitle, episode)
-            if not links and tvshowtitle != localtvshowtitle: links = self.__search(localtvshowtitle, episode)
+            if not links and localtvshowtitle != alt_title: links = self.__search(localtvshowtitle, episode)
+            if not links and tvshowtitle != localtvshowtitle: links = self.__search(tvshowtitle, episode)
 
             for link in links:
                 valid, host = source_utils.is_host_valid(link, hostDict)

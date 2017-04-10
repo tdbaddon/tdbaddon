@@ -29,9 +29,8 @@ from resources.lib.modules import control
 
 class source:
     def __init__(self):
-        testurl = "http://flixanity.watch"
-        self.base_link = control.setting('movieshd_base')
-        if self.base_link == '' or self.base_link == None: self.base_link = 'http://flixanity.watch'
+        testurl = "https://flixanity.watch"
+        self.base_link = 'https://flixanity.watch'
         self.social_lock = '0A6ru35yevokjaqbb8'
         self.search_link = "http://api.flixanity.watch/api/v1/" + self.social_lock
         self.shows_link = '/tv-show/%s/season/%s/episode/%s'

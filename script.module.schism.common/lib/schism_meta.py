@@ -29,6 +29,7 @@ VIDEO_3D = ['3d', 'sbs', 'hsbs', 'sidebyside', 'side by side', 'stereoscopic', '
 # ============================================== META QUALITY ==================================================================	
 
 def meta_quality(txt):
+	txt = txt.lower()
 	if any(value in txt for value in RES_4K): quality = "4K"
 	elif any(value in txt for value in RES_2K): quality = "2K"
 	elif any(value in txt for value in RES_1080): quality = "1080p"
@@ -41,6 +42,7 @@ def meta_quality(txt):
 # ============================================== META INFO  ==================================================================	
 
 def meta_info(txt):
+	txt = txt.lower()
 	info = ''
 	codec = get_codec(txt)
 	audio = get_audio(txt)
@@ -54,13 +56,20 @@ def meta_info(txt):
 	return info	
 
 def get_codec(txt):
+	txt = txt.lower()
 	if any(value in txt for value in CODEC_H265): txt = "HEVC | "
 	elif any(value in txt for value in CODEC_MKV): txt = "MKV | "
 	elif any(value in txt for value in CODEC_DIVX): txt = "DIVX | "
+	elif any(value in txt for value in CODEC_MPEG): txt = "MPEG | "
+	elif any(value in txt for value in CODEC_XVID): txt = "XVID | "
+	elif any(value in txt for value in CODEC_AVI): txt = "AVI | "
+				
+	 
 	else: txt = '0'
 	return txt
 	
 def get_audio(txt):
+	txt = txt.lower()
 	if any(value in txt for value in AUDIO_8CH): txt = "7.1 "
 	elif any(value in txt for value in AUDIO_6CH): txt = "5.1 "
 	elif any(value in txt for value in AUDIO_2CH): txt = "2.0 "
@@ -69,13 +78,15 @@ def get_audio(txt):
 	return txt
 	
 def get_3D(txt):
+	txt = txt.lower()
 	if any(value in txt for value in VIDEO_3D): txt = "3D | "
 	else: txt = '0'
 	return txt
 	
 def get_size(txt):
+	txt = txt.lower()
 	try:
-		txt = re.findall('(\d+(?:\.|/,|)?\d+(?:\s+|)(?:GB|GiB|MB|MiB))', txt)
+		txt = re.findall('(\d+(?:\.|/,|)?\d+(?:\s+|)(?:gb|GiB|mb|MiB|GB|MB))', txt)
 		txt = txt[0].encode('utf-8')
 		txt = txt + " | "
 	except:

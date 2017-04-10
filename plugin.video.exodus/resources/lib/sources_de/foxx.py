@@ -44,8 +44,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title, year)
-            if not url and title != localtitle: url = self.__search(localtitle, year)
+            url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(title, year)
             if not url and self.__is_anime('movie', 'imdb', imdb): url = self.__search(anilist.getAlternativTitle(title), year)
             return url
         except:
@@ -53,8 +53,8 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = self.__search(tvshowtitle, year)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle, year)
+            url = self.__search(localtvshowtitle, year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
             if not url and self.__is_anime('show', 'tvdb', tvdb): url = self.__search(tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name'), year)
             return url
         except:
@@ -98,15 +98,17 @@ class source:
             rels = [i[0] for i in rels if len(i[1]) > 0 and i[1][0].lower() == 'de']
 
             r = [dom_parser.parse_dom(r, 'div', attrs={'id': i}) for i in rels]
-            r = [(re.findall('''(?:link|file)["']?\s*:\s*["'](.+?)["']''', i[0].content), dom_parser.parse_dom(i, 'iframe', attrs={'class': 'metaframe'}, req='src')) for i in r]
-            r = [i[0][0] if len(i[0]) > 0 else i[1][0].attrs['src'] for i in r if i[0] or i[1]]
 
-            for i in r:
+            links = re.findall('''(?:link|file)["']?\s*:\s*["'](.+?)["']''', ''.join([i[0].content for i in r]))
+            links += [l.attrs['src'] for l in dom_parser.parse_dom(i, 'iframe', attrs={'class': 'metaframe'}, req='src') for i in r]
+            links += [l.attrs['src'] for l in dom_parser.parse_dom(i, 'source', req='src') for i in r]
+
+            for i in links:
                 try:
                     i = re.sub('\[.+?\]|\[/.+?\]', '', i)
                     i = client.replaceHTMLCodes(i)
 
-                    if self.base_link in i:
+                    if self.domains[0] in i:
                         i = client.request(i, referer=url)
 
                         s = re.compile('(eval\(function.*?)</script>', re.DOTALL).findall(i)

@@ -24,11 +24,13 @@ import re,unicodedata
 
 def movie(title):
     title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = title.replace('&#39','')
     return title
 
 
 def tv(title):
     title = re.sub('\n|\s(|[(])(UK|US|AU|\d{4})(|[)])$|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = title.replace('&#39','')
     return title
 
 def get(title):
@@ -36,6 +38,7 @@ def get(title):
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
     title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = title.replace('&#39','')
     return title
 
 def query(title):

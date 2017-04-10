@@ -120,7 +120,7 @@ class source:
                 host = client.replaceHTMLCodes(host)
                 host = host.encode('utf-8')
 
-                sources.append({'source': host, 'quality': 'SD', 'language': 'VF', 'url': url, 'direct': False, 'debridonly': False})
+                sources.append({'source': host, 'quality': 'SD', 'language': 'FR', 'url': url, 'direct': False, 'debridonly': False})
 
             return sources
         except:

@@ -35,6 +35,7 @@ class source:
         
         self.base_link = 'http://filmy.to'
         self.search_link = '/szukaj?q=%s'
+        self.ajax_link = '/ajax/provision/%s'
         self.html_parser = HTMLParser.HTMLParser()
 
     def movie(self, imdb, title, localtitle, year):
@@ -119,8 +120,17 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            result = client.request(url)
-            r = client.parseDOM(result, 'div', attrs={'class':'host btn btn-default.+?'})
+            h = {'User-Agent': client.randomagent()}
+            
+            result = client.request(url, output='extended', headers=h)
+            cookie = result[4]
+            ajax_prov = client.parseDOM(result[0], 'meta', attrs={'property': 'provision'}, ret='content')[0]
+            
+            ajax_url = urlparse.urljoin(self.base_link, self.ajax_link) % ajax_prov
+            h['X-CSRFToken']=re.findall ('csrftoken=(.*?);', cookie)[0]
+            result = client.request(ajax_url, cookie=cookie, XHR=True, headers=h)
+            
+            r = client.parseDOM(result, 'div', attrs={'class':'host-container pull-left'})
             r = [(client.parseDOM(i, 'div', attrs={'class': 'url'}, ret='data-url'),
                   client.parseDOM(i, 'span', attrs={'class':'label label-default'}),
                   client.parseDOM(i, 'img', attrs={'class': 'ttip'}, ret='title'),
@@ -156,4 +166,3 @@ class source:
 
     def resolve(self, url):
         return url;
-

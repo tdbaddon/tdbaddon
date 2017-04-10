@@ -32,7 +32,7 @@ cj = cookielib.LWPCookieJar()
 class source:
     def __init__(self):
         self.base_link = 'http://www.pelispedia.tv'
-        self.movie_link = '/pelicula/%s/'
+        self.moviesearch_link = '/pelicula/%s/'
         self.tvsearch_link = '/serie/%s/'
 
 
@@ -148,13 +148,11 @@ class source:
                     pass
 
                 try:
-                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
-
                     post = re.findall('gkpluginsphp.*?link\s*:\s*"([^"]+)', result)[0]
                     post = urllib.urlencode({'link': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_flsh/plugins/gkpluginsphp.php')
-                    url = client.request(url, post=post, headers=headers)
+                    url = client.request(url, post=post, XHR=True, referer=u)
                     url = json.loads(url)['link']
 
                     links.append({'source': 'gvideo', 'quality': 'HD', 'url': url})
@@ -162,16 +160,13 @@ class source:
                     pass
 
                 try:
-                    headers = {'X-Requested-With': 'XMLHttpRequest'}
-
                     post = re.findall('var\s+parametros\s*=\s*"([^"]+)', result)[0]
-
 
                     post = urlparse.parse_qs(urlparse.urlparse(post).query)['pic'][0]
                     post = urllib.urlencode({'sou': 'pic', 'fv': '23', 'url': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_Player_Html5/pk/pk_2/plugins/protected.php')
-                    url = client.request(url, post=post, headers=headers)
+                    url = client.request(url, post=post, XHR=True)
                     url = json.loads(url)[0]['url']
 
                     links.append({'source': 'cdn', 'quality': 'HD', 'url': url})

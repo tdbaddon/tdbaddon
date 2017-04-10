@@ -18,11 +18,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re,urllib,urlparse,base64
+import re,urllib,urlparse,base64,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import cache
 
 
 class source:
@@ -31,6 +32,17 @@ class source:
         self.language = ['en']
         self.domains = ['123movieshd.tv']
         self.base_link = 'https://123movieshd.tv'
+        self.search_link = '/movie/search/%s'
+
+    def getImdbTitle(self, imdb):
+        try:
+            t = 'http://www.omdbapi.com/?i=%s' % imdb
+            t = client.request(t)
+            t = json.loads(t)
+            t = cleantitle.normalize(t['Title'])
+            return t
+        except:
+            return
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -60,6 +72,32 @@ class source:
         except:
             return
 
+    def searchShow(self, title, season):
+        try:
+            title = cleantitle.normalize(title)
+            search = '%s Season %01d' % (title, int(season))
+            url = urlparse.urljoin(self.base_link, self.search_link % cleantitle.geturl(search))
+            r = client.request(url, timeout='10')
+            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'h2'))
+            r = [i[0] for i in r if cleantitle.get(search) == cleantitle.get(i[1])][0]
+            url = urlparse.urljoin(self.base_link, '%s/watching.html' % r)
+            return url
+        except:
+            return
+
+    def searchMovie(self, title):
+        try:
+            title = cleantitle.normalize(title)
+            url = urlparse.urljoin(self.base_link, self.search_link % cleantitle.geturl(title))
+            r = client.request(url, timeout='10')
+            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'h2'))
+            r = [i[0] for i in r if cleantitle.get(title) == cleantitle.get(i[1])][0]
+            url = urlparse.urljoin(self.base_link, '%s/watching.html' % r)
+            return url
+        except:
+            return
 
     def sources(self, url, hostDict, hostprDict):
         try:
@@ -74,15 +112,32 @@ class source:
 
                 if 'tvshowtitle' in data:
                     url = '%s/film/%s-season-%01d/watching.html' % (self.base_link, cleantitle.geturl(data['tvshowtitle']), int(data['season']))
+                    url = client.request(url, timeout='10', output='geturl')
+
+                    if url == None:
+                        url = self.searchShow(data['tvshowtitle'], data['season'])
+
+                    if url == None:
+                        t = cache.get(self.getImdbTitle, 900, data['imdb'])
+                        if data['tvshowtitle'] != t:
+                            url = self.searchShow(t, data['season'])
+
                 else:
                     url = '%s/film/%s/watching.html' % (self.base_link, cleantitle.geturl(data['title']))
+                    url = client.request(url, timeout='10', output='geturl')
 
-                url = client.request(url, timeout='10', output='geturl')
+                    if url == None:
+                        url = self.searchMovie(data['title'])
+
+                    if url == None:
+                        t = cache.get(self.getImdbTitle, 900, data['imdb'])
+                        if data['title'] != t:
+                            url = self.searchMovie(t)
+
                 if url == None: raise Exception()
 
             else:
                 url = urlparse.urljoin(self.base_link, url)
-                r = client.request(url, timeout='10')
 
             r = client.request(url, timeout='10')
             r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})

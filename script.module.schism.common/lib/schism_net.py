@@ -87,8 +87,10 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
 			
         if 'referer' in headers or 'Referer' in headers: pass
         else: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-			
-        link = session.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        if 'User-Agent' in headers or 'user-agent' in headers: pass
+        else: headers['User-Agent'] = random_agent()	
+		
+        link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         response_code = link.status_code
         print ("RESPONSE CODE", response_code)
         try: resp_header = link.headers['Server']
@@ -121,41 +123,107 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
         return link
 		
 		
-def OPEN_URL_POST(url, method='post', headers=None, params=None, data=None, redirects=True, verify=True, timeout=None):
-        if timeout == None: timeout= '30'	
+def OPEN_URL_POST(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None, output=None, XHR=False):
+        if timeout == None: timeout = 30	
         if headers == None:
 
                 headers = {}
                 headers['User-Agent'] = random_agent()
-        resp = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
-        link = requests.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
-        response_code = resp.status_code
+				
+        elif  mobile == True:			
+				headers['User-Agent'] = ''
+				headers['User-Agent'] = 'Apple-iPhone/701.341'
+				
+        if output == 'geturl':
+                link = requests.head(url, allow_redirects=True)
+                link = str(link.url)	
+                return link	
+
+        if output == 'cookie':
+                cookie = [] 
+                r = session.get(url, headers=headers)
+                cookie_dict = session.cookies.get_dict()
+                for k,v in cookie_dict.items(): cookie ="%s=%s" % (k,v)
+                return cookie
+        if XHR == True:
+			print ("REQUESTING WITH XMLHttpRequest")
+			headers['X-Requested-With'] = 'XMLHttpRequest'
+			
+        if not 'Accept-Language' in headers:
+            headers['Accept-Language'] = 'en-US'
+			
+        if 'referer' in headers or 'Referer' in headers: pass
+        else: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+        if 'User-Agent' in headers or 'user-agent' in headers: pass
+        else: headers['User-Agent'] = random_agent()				
+        link = session.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        response_code = link.status_code
         print ("RESPONSE CODE", response_code)
-        try: resp_header = resp.headers['Server']
+        try: resp_header = link.headers['Server']
         except: resp_header = 'none'
 
 				
         try:
-                if resp_header.lower() == 'cloudflare-nginx' and response_code == 503 and not "sucuri_cloudproxy_js" in resp.content:
+                if resp_header.lower() == 'cloudflare-nginx' and response_code == 503 and not "sucuri_cloudproxy_js" in link.content:
                     print ("DETECTED CLOUDFLARE", url)
-                    link = scraper.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, timeout=int(timeout))
+                    link = scraper.get(url)
         except:
                 pass
 				
         try:
-                if "sucuri_cloudproxy_js" in resp.content:
+                if "sucuri_cloudproxy_js" in link.content:
                         print ("DETECTED SUCURI", url)
                         su = sucuri().get(link.content)
                         headers['Cookie'] = su
-
-                        if not url[-1] == '/':
-                                url = '%s/' %url
-
-                        link = requests.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+                        link = session.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         except:
                 pass
 
 
+        if '_Incapsula_' in link.content:
+                print ("DETECTED _Incapsula_", url)
+                response = session.get(url)  # url is blocked by incapsula
+                link = crack(session, response)
+               
+
+        return link
+
+
+def OPEN_POST(url, method='post', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None, output=None, XHR=False):
+        if timeout == None: timeout = 30	
+
+        if headers == None:
+                headers = {}
+                headers['User-Agent'] = random_agent()
+				
+        elif  mobile == True:			
+				headers['User-Agent'] = ''
+				headers['User-Agent'] = 'Apple-iPhone/701.341'
+				
+        if output == 'geturl':
+                link = requests.head(url, allow_redirects=True)
+                link = str(link.url)	
+                return link	
+
+        if output == 'cookie':
+                cookie = [] 
+                r = session.get(url, headers=headers)
+                cookie_dict = session.cookies.get_dict()
+                for k,v in cookie_dict.items(): cookie ="%s=%s" % (k,v)
+                return cookie
+        if XHR == True:
+			print ("REQUESTING WITH XMLHttpRequest")
+			headers['X-Requested-With'] = 'XMLHttpRequest'
+			
+        if not 'Accept-Language' in headers:
+            headers['Accept-Language'] = 'en-US'
+			
+        if 'referer' in headers or 'Referer' in headers: pass
+        else: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+        if 'User-Agent' in headers or 'user-agent' in headers: pass
+        else: headers['User-Agent'] = random_agent()		
+        link = requests.post(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
+        return link
 		
 		
 

@@ -46,6 +46,10 @@ class sources:
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality='HD', timeout=20):
         u = None
 
+        progressDialog = control.progressDialog
+        progressDialog.create(control.addonInfo('name'), '')
+        progressDialog.update(0)
+        
         self.prepareSources()
 
         sourceDict = self.sourceDict
@@ -76,23 +80,32 @@ class sources:
         s = [(i[3].getName(), i[0], i[2]) for i in s]
 
         mainsourceDict = [i[0] for i in s if i[2] == 0]
+        sourcelabelDict = dict([(i[0], i[1].upper()) for i in s])
 
         [i.start() for i in threads]
 
-        progressDialog = control.progressDialog
-        progressDialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
-        progressDialog.update(0)
-
-        progressDialog.update(0, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        string1 = control.lang(32404).encode('utf-8')
+        string2 = control.lang(32405).encode('utf-8')
+        string3 = control.lang(32406).encode('utf-8')
 
         for i in range(0, (timeout * 2) + 60):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
 
+                try: info = [sourcelabelDict[x.getName()] for x in threads if x.is_alive() == True]
+                except: info = []
+
                 timerange = int(i * 0.5)
 
                 try:
                     if progressDialog.iscanceled(): break
+                except:
+                    pass
+                try:
+                    string4 = string1 % str(timerange)
+                    if len(info) > 5: string5 = string3 % str(len(info))
+                    else: string5 = string3 % str(info).translate(None, "[]'")
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
                 except:
                     pass
 
@@ -107,7 +120,7 @@ class sources:
             except:
                 pass
 
-        progressDialog.update(50, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
 
         items = self.sourcesFilter()
 

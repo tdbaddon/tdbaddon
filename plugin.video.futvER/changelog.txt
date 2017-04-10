@@ -1,7 +1,13 @@
-[B]Version 0.0.7[/B]
-- fixed change to url
+[B]Version 0.0.9[/B]
+- added 2017 
 -
 - *Do Not Post About This Add-on On Blogs or Youtube*
+
+[B]Version 0.0.8[/B]
+- fixed search 
+
+[B]Version 0.0.7[/B]
+- fixed change to url
 
 [B]Version 0.0.6[/B]
 - fixed Series, Genre and Year

@@ -5,7 +5,6 @@ import HTMLParser
 from TheYid.common.addon import Addon
 from TheYid.common.net import Net
 
-#BASE_URL = fuck you TK stop copying the sites i use into salts go finded your own you are killing the site i spend hours looking for site and building the addon you take to min to copy the site and bring it down#
 addon_id = 'plugin.video.futvER'
 plugin = xbmcaddon.Addon(id=addon_id)
 DB = os.path.join(xbmc.translatePath("special://database"), 'futvER.db')
@@ -280,6 +279,8 @@ def GenreMenu():
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def YearMenu(): 
+        addon.add_directory({'mode': 'GetTitles6', 'section': 'ALL', 'url': BASE_URL + '/year/2017',
+                             'startPage': '1', 'numOfPages': '1'}, {'title':  '[B]2017[/B]'}, img=IconPath + 'icon.png', fanart=FanartPath + 'fanart.jpg')
         addon.add_directory({'mode': 'GetTitles6', 'section': 'ALL', 'url': BASE_URL + '/year/2016',
                              'startPage': '1', 'numOfPages': '1'}, {'title':  '[B]2016[/B]'}, img=IconPath + 'icon.png', fanart=FanartPath + 'fanart.jpg')
         addon.add_directory({'mode': 'GetTitles6', 'section': 'ALL', 'url': BASE_URL + '/year/2015',
@@ -397,7 +398,7 @@ def GetSearchQuery():
                 return
 
 def Search(query):
-        url = 'http://www.watchepisodes.to/' + query
+        url = 'http://www.watchepisodes4.com/' + query
         url = url.replace(' ', '-')
         print url
         html = net.http_GET(url).content

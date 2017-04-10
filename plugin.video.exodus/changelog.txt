@@ -1,3 +1,13 @@
+[B]3.1.8[/B]
+- Updated existing providers (satanuke)
+- Added and Updated French providers
+- Added and Updated German providers
+- Updated Polish providers (homik)
+- Add Blazingfast support
+- Remove old Debrid-Code
+- Note: You might have to reconfigure your Debrid Service in URLResolver Settings
+
+
 [B]3.1.7[/B]
 - Updated existing providers (satanuke, somebody)
 - Tweaked German providers

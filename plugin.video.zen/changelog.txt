@@ -1,3 +1,12 @@
+[B]2017.04.09[/B]
+- Update Providers
+- Easter Break fixes
+
+[B]2017.04.07[/B]
+- Update Providers
+- Added support for 4k in skins dialogs
+- code improvements
+
 [B]2017.03.31[/B]
 - Added "People also liked" option from the contextmenu... suggestions based on imdb
 

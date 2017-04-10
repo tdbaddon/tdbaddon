@@ -562,7 +562,7 @@ class sources:
 
         for i in self.sources:
             if 'checkquality' in i and i['checkquality'] == True: 
-                if not i['source'].lower() in self.hosthqDict: i.update({'quality': 'SD'})
+                if not i['source'].lower() in self.hosthqDict and i['quality'] not in ['SD', 'SCR', 'CAM']: i.update({'quality': 'SD'})
 
         local = [i for i in self.sources if 'local' in i and i['local'] == True]
         self.sources = [i for i in self.sources if not i in local]
@@ -573,7 +573,8 @@ class sources:
         self.sources = filter
 
         filter = []
-        for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
+        for d in [resolver() for resolver in urlresolver.relevant_resolvers(order_matters=True) if resolver.isUniversal()]:
+            filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if d.valid_url('', i['source'])]
         filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] == False]
         self.sources = filter
 
@@ -906,7 +907,5 @@ class sources:
         self.hosthqDict = ['openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com', 'raptu.com', 'filez.tv']
 
         self.hostblockDict = []
-
-        self.debridDict = debrid.debridDict()
 
 

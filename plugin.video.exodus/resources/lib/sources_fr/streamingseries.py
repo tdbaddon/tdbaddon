@@ -86,7 +86,7 @@ class source:
 
             for links, lang in r:
                 for link, host in links.iteritems():
-                    sources.append({'source': host, 'quality': 'SD', 'language': 'fr', 'info': lang, 'url': link, 'direct': False, 'debridonly': False})
+                    sources.append({'source': host, 'quality': 'SD', 'language': 'FR', 'info': lang, 'url': link, 'direct': False, 'debridonly': False})
 
             return sources
         except:

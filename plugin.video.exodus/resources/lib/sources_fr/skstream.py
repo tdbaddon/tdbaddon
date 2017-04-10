@@ -33,8 +33,8 @@ class source:
         self.language = ['fr']
         self.domains = ['skstream.org']
         self.base_link = 'http://www.skstream.org'
-        self.key_link = '/recherche/films?'
-        self.moviesearch_link = '/recherche/films?r_film=%s'
+        self.key_link = '/recherche?'
+        self.moviesearch_link = '/recherche/films?s=%s'
         self.tvsearch_link = '/recherche/series?r_serie=%s'
 
     def movie(self, imdb, title, localtitle, year):
@@ -83,12 +83,6 @@ class source:
             episode = data['episode'] if 'episode' in data else False
             localtitle =  data['localtitle'] if 'localtitle' in data else False
 
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-            year = data['year'] if 'year' in data else data['year']
-            season = data['season'] if 'season' in data else False
-            episode = data['episode'] if 'episode' in data else False
-            localtitle =  data['localtitle'] if 'localtitle' in data else False
-
             if season and episode:
                 aTitle = tvmaze.tvMaze().getTVShowTranslation(data['tvdb'], 'fr')
             else:
@@ -100,11 +94,13 @@ class source:
                     aTitle = title
 
             if season and episode:
-                query = 'http://www.skstream.org/recherche/series?r_serie=' + urllib.quote_plus(aTitle)
+                query = 'http://www.skstream.org/recherche/?s=' + urllib.quote_plus(aTitle)
                 query = urlparse.urljoin(self.base_link, query)
             else:
-                query = self.key_link + 'r_film=' + urllib.quote_plus(aTitle)
+                query = self.key_link + 's=' + urllib.quote_plus(aTitle)
                 query = urlparse.urljoin(self.base_link, query)
+
+            print query
 
 
             r = client.request(query)
@@ -124,15 +120,9 @@ class source:
             print query
 
             aTitle = cleantitle.get(cleantitle.normalize(aTitle))
-
-            if season and episode:
-                post = 'r_serie=%s' % urllib.quote_plus(aTitle)
-            else:
-                post = 'r_film=%s' % urllib.quote_plus(aTitle)
-
             t = cleantitle.get(cleantitle.normalize(aTitle))
 
-            r = client.request(query)
+            r = client.parseDOM(r, 'div', attrs={'class': 'panel-body'})
             r = client.parseDOM(r, 'div', attrs={'class': 'col-xs-3 col-sm-3 col-md-3 col-lg-3  movie_single'})
             r = [(client.parseDOM(client.parseDOM(i, 'div', attrs={'class': 'text-center'}), 'a', ret='href'), client.parseDOM(i, 'img', attrs={'class': 'img-responsive img-thumbnail'}, ret='title')) for i in r]
             r = [(i[0][0], i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
@@ -145,7 +135,11 @@ class source:
                     if t == cleantitle.normalize(cleantitle.get(i[1])):
                         r = i[0]
 
-            url = '%s/%s' % (self.base_link , r)
+            if season and episode:
+                url = '%s%s' % (self.base_link , r)
+            else:
+                url = '%s/%s' % (self.base_link, r)
+
             url = client.replaceHTMLCodes(url)
             #url = url.encode('utf-8')
 
@@ -158,8 +152,11 @@ class source:
             if season and episode:
                 r = client.request(url)
                 r = r.replace(' = ', '=')
+
+                unChunk = client.parseDOM(r, 'div', attrs={'class': 'jumbotron'})
                 desSaisons = client.parseDOM(r, 'i', attrs={'class': 'fa fa-television'}, ret='id')
-                desLiens = client.parseDOM(r, 'a', attrs={'class': 'btn btn-default'}, ret='href')
+                desLiens = client.parseDOM(r, 'div', attrs={'class': 'btn-group'})
+                desLiens = client.parseDOM(desLiens, 'a',ret='href')
 
                 for unLienTV in desLiens:
                     tempSaisonEpisode = '/saison-%s/episode-%s/' % (season, episode)
@@ -171,28 +168,35 @@ class source:
 
                 s = client.request(urlTV)
                 urlLoop = urlTV
+
+                s = client.parseDOM(s, 'table', attrs={'class': 'players table table-striped table-hover'})
             else:
                 s = client.request(url)
                 urlLoop = url
 
+                s = client.parseDOM(r, 'table', attrs={'class': 'players table table-striped table-hover'})
+
+
             leVideo = client.parseDOM(s, 'input', attrs={'name': 'levideo'}, ret='value')
-            leHost = re.compile('\">&nbsp;(.+?)</a></form>', re.MULTILINE | re.DOTALL).findall(s)
-            uneLangue = client.parseDOM(s, 'span', attrs={'class': 'badge'})
-            uneQualite = re.compile('</span></td>\n\s+<td>(.+?)</td>', re.MULTILINE | re.DOTALL).findall(s)
+            leHost = re.compile('&nbsp;(.+?)</a></form>').findall(s[0])
+            #uneLangue = client.parseDOM(s, 'span', attrs={'class': 'badge'})
+            #uneQualite = re.compile('</span></td>\n\s+<td>(.+?)</td>', re.MULTILINE | re.DOTALL).findall(s)
 
             leHost = [x.lower() for x in leHost]
-            uneLangue = [x.lower() for x in uneLangue]
-            uneQualite = [x.lower() for x in uneQualite]
-
+            #uneLangue = [x.lower() for x in uneLangue]
+            #uneQualite = [x.lower() for x in uneQualite]
 
             counter = 0
             for unVideo in leVideo:
 
-                url = urlLoop + '***' + unVideo
+                if season and episode:
+                    url = urlLoop + '***' + unVideo + '***' + 'TV'
+                else:
+                    url = urlLoop + '***' + unVideo + '***' + 'Movie'
+
                 url = url.encode('utf-8')
 
                 try:
-                    # openload.co
                     if leHost[counter] == 'openload':
                         host = filter(lambda s: leHost[counter] in str(s), hostDict)[1]
                     else:
@@ -203,10 +207,11 @@ class source:
 
                 host = host.encode('utf-8')
 
-                langue = uneLangue[counter]
+                #langue = uneLangue[counter]
 
-                quality2 = uneQualite[counter]
-                quality2 = re.sub('-', '', quality2)
+                #quality2 = uneQualite[counter]
+                #quality2 = re.sub('-', '', quality2)
+                quality2 = ''
 
                 if '1080p' in quality2:
                     quality = '1080p'
@@ -220,9 +225,7 @@ class source:
                 elif 'camrip' in quality2 or 'tsrip' in quality2 or 'hdcam' in quality2 or 'hdts' in quality2 or 'dvdcam' in quality2 or 'dvdts' in quality2 or 'cam' in quality2 or 'telesync' in quality2 or 'ts' in quality2:
                     quality2 = 'CAM'
 
-                print counter, leVideo[counter], host, quality, langue, url
-
-                sources.append({'source': host, 'quality': quality, 'language': langue, 'url': url, 'info': langue, 'direct': False, 'debridonly': False})
+                sources.append({'source': host, 'quality': quality, 'language': 'FR', 'url': url, 'info': '', 'direct': False, 'debridonly': False})
 
                 counter = counter + 1
 
@@ -252,9 +255,13 @@ class source:
         post = 'levideo=%s' % unVideo
         result3 = client.request(url, post=post)
 
-        u = client.parseDOM(result3, 'div', attrs={'class': 'embed.+?'})[0]
-        u1 = client.parseDOM(u, 'iframe', ret='src')[0]
-        url = client.request(u1, referer='http://www.skstream.org', timeout='5', output='geturl')
+        if parts[2] == 'TV':
+            u1 = client.parseDOM(result3, 'a', attrs={'class': 'btn btn-primary'}, ret='href')[0]
+        else:
+            u = client.parseDOM(result3, 'div', attrs={'class': 'tab-content'})[0]
+            u1 = client.parseDOM(u, 'iframe', ret='src')[0]
+
+        url = client.request(u1, referer='http://www.skstream.org', output='geturl')
 
         if 'coo5shaine' in url:
             url = re.sub('http://coo5shaine.com', 'http://allvid.ch', url)

@@ -681,8 +681,20 @@ msgstr ""
 
 msgctxt "#32536"
 msgid "Playing"
-msgstr "Playing"
+msgstr ""
 
 msgctxt "#32537"
 msgid "Nothing found to play"
-msgstr "Nothing found to play"
+msgstr ""
+
+msgctxt "#32538"
+msgid "DEBRID-SERVICE"
+msgstr ""
+
+msgctxt "#32539"
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr ""
+
+msgctxt "#32540"
+msgid "URLResolver Settings"
+msgstr ""

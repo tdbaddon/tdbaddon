@@ -19,9 +19,7 @@
 '''
 
 
-import re,sys,urllib2,HTMLParser, urllib, urlparse
-import xbmc, random, time, cookielib
-import base64, gzip, StringIO
+import re,sys,cookielib,urllib,urllib2,urlparse,gzip,StringIO,HTMLParser,time,random,base64
 
 from resources.lib.libraries import cache
 from resources.lib.libraries import control
@@ -43,7 +41,7 @@ ANDROID_USER_AGENT = 'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) A
 #SMU_USER_AGENT = 'URLResolver for Kodi/%s' % (addon_version)
 
 
-def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30', XHR=False):
+def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, compression=True, output='', timeout='30', XHR=False):
     try:
         #control.log('@@@@@@@@@@@@@@ - URL:%s POST:%s' % (url, post))
 
@@ -61,18 +59,18 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
 
+        if (2, 7, 9) <= sys.version_info < (2, 7, 11):
+            try:
+                import ssl; ssl_context = ssl.create_default_context()
+                ssl_context.check_hostname = False
+                ssl_context.verify_mode = ssl.CERT_NONE
+                handlers += [urllib2.HTTPSHandler(context=ssl_context)]
+                opener = urllib2.build_opener(*handlers)
+                opener = urllib2.install_opener(opener)
+            except:
+                pass
 
-        try:
-            if sys.version_info < (2, 7, 9): raise Exception()
-            import ssl; ssl_context = ssl.create_default_context()
-            ssl_context.check_hostname = False
-            ssl_context.verify_mode = ssl.CERT_NONE
-            handlers += [urllib2.HTTPSHandler(context=ssl_context)]
-            opener = urllib2.build_opener(*handlers)
-            opener = urllib2.install_opener(opener)
-        except:
-            pass
-
+        if url.startswith('//'): url = 'http:' + url
 
         try: headers.update(headers)
         except: headers = {}
@@ -99,6 +97,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             pass
         elif not cookie == None:
             headers['Cookie'] = cookie
+        if 'Accept-Encoding' in headers:
+            pass
+        elif compression and limit is None:
+            headers['Accept-Encoding'] = 'gzip'
 
 
         if redirect == False:
@@ -195,11 +197,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
             request = urllib2.Request(url, data=post, headers=headers)
 
-            try:
-                response = urllib2.urlopen(request, timeout=int(timeout))
-            except Exception as e:
-                control.log('Sucuri url: %s Error: %s' % (url,e))
-                ValueError('Sucuri url: %s Error: %s' % (url,e))
+            response = urllib2.urlopen(request, timeout=int(timeout))
 
             if limit == '0':
                 result = response.read(224 * 1024)
@@ -226,7 +224,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         else:
             if close == True: response.close()
             return result
-    except:
+    except Exception as e:
+        control.log('Client Error %s' % e)
         return
 
 
@@ -354,16 +353,21 @@ def agent():
 
 def randomagent():
     BR_VERS = [
-        ['%s.0' % i for i in xrange(18, 43)],
-        ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101', '38.0.2125.104', '38.0.2125.111', '39.0.2171.71', '39.0.2171.95', '39.0.2171.99', '40.0.2214.93', '40.0.2214.111',
-         '40.0.2214.115', '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81', '43.0.2357.124', '44.0.2403.155', '44.0.2403.157', '45.0.2454.101', '45.0.2454.85', '46.0.2490.71',
-         '46.0.2490.80', '46.0.2490.86', '47.0.2526.73', '47.0.2526.80'],
-        ['11.0']]
+        ['%s.0' % i for i in xrange(18, 50)],
+        ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101', '38.0.2125.104', '38.0.2125.111', '39.0.2171.71', '39.0.2171.95', '39.0.2171.99',
+         '40.0.2214.93', '40.0.2214.111',
+         '40.0.2214.115', '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81', '43.0.2357.124', '44.0.2403.155', '44.0.2403.157', '45.0.2454.101',
+         '45.0.2454.85', '46.0.2490.71',
+         '46.0.2490.80', '46.0.2490.86', '47.0.2526.73', '47.0.2526.80', '48.0.2564.116', '49.0.2623.112', '50.0.2661.86', '51.0.2704.103', '52.0.2743.116',
+         '53.0.2785.143', '54.0.2840.71'],
+        ['11.0'],
+        ['8.0', '9.0', '10.0', '10.6']]
     WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1', 'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
     FEATURES = ['; WOW64', '; Win64; IA64', '; Win64; x64', '']
     RAND_UAS = ['Mozilla/5.0 ({win_ver}{feature}; rv:{br_ver}) Gecko/20100101 Firefox/{br_ver}',
                 'Mozilla/5.0 ({win_ver}{feature}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{br_ver} Safari/537.36',
-                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko']
+                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko',
+                'Mozilla/5.0 (compatible; MSIE {br_ver}; {win_ver}{feature}; Trident/6.0)']
     index = random.randrange(len(RAND_UAS))
     return RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES), br_ver=random.choice(BR_VERS[index]))
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.futvER" version="0.0.7" name="F U TV" provider-name="@MrEntertainRepo">
+<addon id="plugin.video.futvER" version="0.0.9" name="F U TV" provider-name="@MrEntertainRepo">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.TheYid.common" version="0.1.1"/>

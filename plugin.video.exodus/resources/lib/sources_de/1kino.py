@@ -40,8 +40,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title, year)
-            if not url and title != localtitle: url = self.__search(localtitle, year)
+            url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(title, year)
             return url
         except:
             return

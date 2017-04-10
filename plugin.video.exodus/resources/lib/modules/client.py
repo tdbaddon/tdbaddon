@@ -97,6 +97,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             try: del headers['Referer']
             except: pass
 
+        if isinstance(post, dict):
+            post = urllib.urlencode(post)
 
         request = urllib2.Request(url, data=post, headers=headers)
 
@@ -194,6 +196,12 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             if encoding == 'gzip':
                 result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
 
+        if 'Blazingfast.io' in result and 'xhr.open' in result:
+            netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+            ua = headers['User-Agent']
+            headers['Cookie'] = cache.get(bfcookie().get, 168, netloc, ua, timeout)
+
+            result = _basic_request(url, headers=headers, timeout=timeout, limit=limit)
 
         if output == 'extended':
             response_headers = response.headers
@@ -210,6 +218,35 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
     except:
         return
 
+
+def _basic_request(url, headers=None, post=None, timeout='30', limit=None):
+    try:
+        try: headers.update(headers)
+        except: headers = {}
+
+        request = urllib2.Request(url, data=post,  headers=headers)
+        response = urllib2.urlopen(request, timeout=int(timeout))
+        return _get_result(response, limit)
+    except:
+        return
+
+
+def _get_result(response, limit=None):
+    if limit == '0':
+        result = response.read(224 * 1024)
+    elif limit:
+        result = response.read(int(limit) * 1024)
+    else:
+        result = response.read(5242880)
+
+    try:
+        encoding = response.info().getheader('Content-Encoding')
+    except:
+        encoding = None
+    if encoding == 'gzip':
+        result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
+
+    return result
 
 def parseDOM(html, name='', attrs=None, ret=False):
     if attrs: attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in attrs.iteritems())
@@ -338,6 +375,55 @@ class cfcookie:
             return val
         except:
             pass
+
+
+class bfcookie:
+
+    def __init__(self):
+        self.COOKIE_NAME = 'BLAZINGFAST-WEB-PROTECT'
+
+    def get(self, netloc, ua, timeout):
+        try:
+            headers = {'User-Agent': ua, 'Referer': netloc}
+            result = _basic_request(netloc, headers=headers, timeout=timeout)
+
+            match = re.findall('xhr\.open\("GET","([^,]+),', result)
+            if not match:
+                return False
+
+            url_Parts = match[0].split('"')
+            url_Parts[1] = '1680'
+            url = urlparse.urljoin(netloc, ''.join(url_Parts))
+
+            match = re.findall('rid=([0-9a-zA-Z]+)', url_Parts[0])
+            if not match:
+                return False
+
+            headers['Cookie'] = 'rcksid=%s' % match[0]
+            result = _basic_request(url, headers=headers, timeout=timeout)
+            return self.getCookieString(result, headers['Cookie'])
+        except:
+            return
+
+    # not very robust but lazieness...
+    def getCookieString(self, content, rcksid):
+        vars = re.findall('toNumbers\("([^"]+)"', content)
+        value = self._decrypt(vars[2], vars[0], vars[1])
+        cookie = "%s=%s;%s" % (self.COOKIE_NAME, value, rcksid)
+        return cookie
+
+    def _decrypt(self, msg, key, iv):
+        from binascii import unhexlify, hexlify
+        import pyaes
+        msg = unhexlify(msg)
+        key = unhexlify(key)
+        iv = unhexlify(iv)
+        if len(iv) != 16: return False
+        decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(key, iv))
+        plain_text = decrypter.feed(msg)
+        plain_text += decrypter.feed()
+        f = hexlify(plain_text)
+        return f
 
 
 class sucuri:

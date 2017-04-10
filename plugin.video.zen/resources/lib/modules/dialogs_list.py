@@ -163,14 +163,33 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
             self.setFocus(self.list)
             for links in self.items:
                 self.providers_name = links['provider']
-                try: quality = links['quality']
-                except: quality = "SD"
+                print ("ZEN QUALITY", links['quality'])
+                quality = str(links['quality'])
+                
+                if "k" in quality.lower():  q_icon = "4k.png"
                 if "1080" in quality:  q_icon = "1080.png"
                 elif "HD" in quality: q_icon = "720.png"
-                else: q_icon = "480.png"
-                label = '%s | %s' % (quality, links['provider'])
+                else: q_icon = "sd.png"
+                
+                # if self.providers_name.lower() == 'kat': q_icon = "kat.jpg"
+                # if self.providers_name.lower() == 'thepiratebay': q_icon = "thepiratebay.png"
+                # if self.providers_name.lower() == 'yify': q_icon = "yify.jpg"
+                # if self.providers_name.lower() == 'leetx': q_icon = "leetx.png"
+                # if self.providers_name.lower() == 'idope': q_icon = "idope.jpg"
+                # if self.providers_name.lower() == 'limetorrent': q_icon = "lime.png"
+                # if self.providers_name.lower() == 'eztv': q_icon = "eztv.png"
+
+                if "torrent" in str(links['source']): q_icon = "torrent.png"
+                if quality == '4k' or quality == '4K': 	q_icon = "4k.png"					
+                try: info = links['info']
+                except: info = ""	
+                if not info == "": info = " | %s" % info
+                
                 if links['debridonly'] == True: label = '[I]DEB[/I] | %s | %s' % (quality, links['provider'])
+                else: label = '%s | %s' % (quality, links['provider'])
                 label2 = "[I]" + str(links['source']) + "[/I]"
+                label = label + info
+				
                 listitem = xbmcgui.ListItem(label=label.upper(), label2=label2.upper())
                 try:
                     pluginid = "plugin.video.zen"

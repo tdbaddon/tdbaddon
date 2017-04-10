@@ -31,12 +31,10 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['watch5s.to', 'cmovieshd.com', 'pmovies.to']
-        self.base_link = 'http://watch5s.to'
-        self.random_link = ['watch5s.to', 'cmovieshd.com', 'pmovies.to']
-        self.random_link = ['pmovies.to']
+        self.domains = ['watch5s.to', 'cmovieshd.com', 'pmovies.to', 'watch5s.is']
+        self.base_link = 'https://watch5s.is'
         self.info_link = '/ajax/movie_qtip/%s'
-
+        self.strm_link = 'http://play.watch5s.is/grabber-api/episode/%s?token=%s'
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -75,10 +73,6 @@ class source:
 
             if url == None: return sources
 
-            choice = random.choice(self.random_link)
-            base_link = 'http://%s' % choice
-            strm_link = 'http://play.%s' % choice + '/grabber-api/episode/%s?token=%s'
-
             if not str(url).startswith('http'):
 
                 data = urlparse.parse_qs(url)
@@ -96,7 +90,7 @@ class source:
                     year = data['year']
                     episode = None
 
-                url = urlparse.urljoin(base_link, url)
+                url = urlparse.urljoin(self.base_link, url)
                 referer = url
 
                 r = client.request(url)
@@ -108,7 +102,7 @@ class source:
                 try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
                 except: episode = None
 
-                url = urlparse.urljoin(base_link, url)
+                url = urlparse.urljoin(self.base_link, url)
                 url = re.sub('/watch$', '', url.strip('/')) + '/watch/'
                 referer = url
 
@@ -137,7 +131,7 @@ class source:
                     k = hashlib.md5('!@#$%^&*(' + s + t).hexdigest()
                     v = hashlib.md5(t + referer + s).hexdigest()
 
-                    stream = strm_link % (s, t)
+                    stream = self.strm_link % (s, t)
                     cookie = '%s=%s' % (k, v)
 
                     u = client.request(stream, referer=referer, cookie=cookie, timeout='10')

@@ -83,31 +83,38 @@ class source:
                 localtitle = data['localtvshowtitle'] if 'localtvshowtitle' in data else False
 
             t = cleantitle.get(title)
-            tq = cleantitle.get(localtitle)
+            tq = cleantitle.query(localtitle)
+            tq2 =  re.sub(' ', '', cleantitle.query(localtitle).lower())
+            tq = re.sub(' ', '%20', tq)
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             query = 'http://www.cinemay.com'
 
             r = client.request('http://www.cinemay.com/?s=%s' % tq)
+            print 'http://www.cinemay.com/?s=%s' % tq
             r = client.parseDOM(r, 'div', attrs={'class': 'unfilm'})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-            r = [(i[0][0], re.sub('(film| en streaming vf| en streaming vostfr)', '', i[1][0]).lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(i[0][0], re.sub('(film| en streaming vf| en streaming vostfr|&rsquo;| )', '', i[1][0]).lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], re.findall('(.+?) \(*(\d{4})', i[1])) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
             r = [(i[0], i[1], i[2], re.findall('(.+?)\s+(?:saison|s)\s+(\d+)', i[1])) for i in r]
             r = [(i[0], i[3][0][0] if len(i[3]) > 0 else i[1], i[2], i[3][0][1] if len(i[3]) > 0 else '0') for i in r]
             r = [(i[0], re.sub(' \&\#[0-9]{4,6};', '', i[1]), i[2], i[3]) for i in r]
-            r = [i[0] for i in r if tq == cleantitle.get(i[1]) and i[2] in y][0]
+            r = [i[0] for i in r if tq2 == cleantitle.get(i[1])][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
             r = client.request('http://www.cinemay.com' + url)
+            print 'http://www.cinemay.com' + url
             r = client.parseDOM(r, 'div', attrs={'class': 'module-actionbar'})
             r = client.parseDOM(r, 'a', ret='href')
 
             for i in r:
+                if i =='#':
+                    continue
+
                 url = client.request('http://www.cinemay.com' + i)
                 url = client.parseDOM(url, 'div', attrs={'class': 'wbox2 video dark'})
                 url = client.parseDOM(url, 'iframe', ret='src')[0]
@@ -117,7 +124,7 @@ class source:
                 host = client.replaceHTMLCodes(host)
                 host = host.encode('utf-8')
 
-                sources.append({'source': host, 'quality': 'SD', 'language': 'VF', 'url': url, 'direct': False, 'debridonly': False})
+                sources.append({'source': host, 'quality': 'SD', 'language': 'FR', 'url': url, 'direct': False, 'debridonly': False})
 
             return sources
         except:

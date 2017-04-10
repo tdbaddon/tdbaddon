@@ -37,8 +37,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title)
-            if not url and title != localtitle: url = self.__search(localtitle)
+            url = self.__search(localtitle)
+            if not url and title != localtitle: url = self.__search(title)
             return url
         except:
             return
@@ -58,12 +58,12 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = data['tvshowtitle']
+            title = data['localtvshowtitle']
             title += ' S%02dE%02d' % (int(season), int(episode))
 
             url = self.__search(title)
             if not url and data['tvshowtitle'] != data['localtvshowtitle']:
-                title = data['localtvshowtitle']
+                title = data['tvshowtitle']
                 title += ' S%02dE%02d' % (int(season), int(episode))
                 url = self.__search(title)
             return url

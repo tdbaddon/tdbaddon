@@ -123,7 +123,7 @@ class source:
 
             langue = re.compile('<b class=\"fa fa-cc\"></b><span>(.+?)</span>', re.MULTILINE | re.DOTALL).findall(r)[0]
             if langue == 'VF':
-                langue = 'fr'
+                langue = 'FR'
 
             quality2 = re.compile('<div class=\"kalite\">(.+?)</div>', re.MULTILINE | re.DOTALL).findall(r)[0]
             quality2 = re.sub('-', '', quality2)

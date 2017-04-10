@@ -26,26 +26,35 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
-
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
         self.domains = ['sezonlukdizi.net', 'sezonlukdizi.com']
         self.base_link = 'http://sezonlukdizi.net'
-        self.search_link = '/js/dizi3.js'
+        self.search_link = '/js/dizi4.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
+    def getImdbTitle(self, imdb):
+        try:
+            t = 'http://www.omdbapi.com/?i=%s' % imdb
+            t = client.request(t)
+            t = json.loads(t)
+            t = cleantitle.normalize(t['Title'])
+            return t
+        except:
+            return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            result = cache.get(self.sezonlukdizi_tvcache, 120)
+            list = cache.get(self.sezonlukdizi_tvcache, 120)
+            url = [i[0] for i in list if cleantitle.query(tvshowtitle) == i[1]]
 
-            tvshowtitle = cleantitle.get(tvshowtitle)
+            if not url:
+                t = cache.get(self.getImdbTitle, 900, imdb)
+                url = [i[0] for i in list if cleantitle.query(t) == i[1]]
 
-            result = [i[0] for i in result if tvshowtitle == i[1]][0]
-
-            url = urlparse.urljoin(self.base_link, result)
+            url = urlparse.urljoin(self.base_link, url[0])
             url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -58,15 +67,20 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            for i in range(3):
+            result = client.request(url, redirect=False)
+
+            if not result:
+                r = client.request(self.base_link)
+                r = client.parseDOM(r, 'script', attrs={'type':'text/javascript'}, ret='src')
+                url = [s for s in r if '/js/dizi' in s][0]
+                url = urlparse.urljoin(self.base_link, url)
                 result = client.request(url)
-                if not result == None: break
 
             result = re.compile('{(.+?)}').findall(result)
             result = [(re.findall('u\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i), re.findall('d\s*:\s*(?:\'|\")(.+?)(?:\',|\")', i)) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [(re.compile('/diziler(/.+?)(?://|\.|$)').findall(i[0]), re.sub('&#\d*;','', i[1])) for i in result]
-            result = [(i[0][0] + '/', cleantitle.get(i[1])) for i in result if len(i[0]) > 0]
+            result = [(i[0][0] + '/', cleantitle.query(i[1])) for i in result if len(i[0]) > 0]
 
             return result
         except:
@@ -110,12 +124,10 @@ class source:
 
                     url = client.parseDOM(result, 'iframe', ret='src')[0]
 
-                    if 'openload.co' in url: sources.append({'source': 'openload.co', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
+                    if 'openload.io' in url or 'openload.co' in url or 'oload.tv' in url:
+                        sources.append({'source': 'openload.co', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
 
                     if not '.asp' in url: raise Exception()
-
-                    if not url.startswith('http'):
-                        url = 'http:' + url
 
                     for i in range(3):
                         result = client.request(url)
@@ -124,23 +136,17 @@ class source:
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()
 
-                    r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*.*?label"?\s*:\s*"(\d+)p?[^"]*"', result)
+                    links = re.findall('"?file"?\s*:\s*"([^"]+)"', result)
 
-                    links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
-                    links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
-                    links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
-
-                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
-                    if r: break
-
-                    r = re.findall('"?label"?\s*:\s*(\d*)\s*.*?file"?\s*:\s*"([^"]+)"\s*', result)
-
-                    links = [(i[1], '1080p') for i in r if int(i[0]) >= 1080]
-                    links += [(i[1], 'HD') for i in r if 720 <= int(i[0]) < 1080]
-                    links += [(i[1], 'SD') for i in r if 480 <= int(i[0]) < 720]
-
-                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'language': 'en', 'url': i[0], 'direct': True, 'debridonly': False})
-                    if r: break
+                    for url in links:
+                        try:
+                            if not url.startswith('http'):
+                                url = client.request(url, output='geturl')
+                            url = url.replace('\\', '')
+                            url = directstream.googletag(url)[0]
+                            sources.append({'source': 'gvideo', 'quality': url['quality'], 'language': 'en', 'url': url['url'], 'direct': True, 'debridonly': False})
+                        except:
+                            pass
 
                 except:
                     pass
@@ -152,13 +158,9 @@ class source:
 
     def resolve(self, url):
         try:
-            if not url.startswith('http'):
-                url = 'http:' + url
-
             for i in range(3):
                 u = directstream.googlepass(url)
                 if not u == None: break
-
             return u
         except:
             return
