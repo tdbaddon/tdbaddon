@@ -41,7 +41,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
 
 class source:
     def __init__(self):
-        self.base_link = 'http://watchseriesfree.to'
+        self.base_link = 'https://watchseriesfree.to'
         self.search_link = '/AdvancedSearch/%s-%s/by_popularity/%s'
         self.episode_link = '/episode/%s_s%s_e%s.html'
         self.headers = {}

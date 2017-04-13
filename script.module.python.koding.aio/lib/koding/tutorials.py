@@ -24,11 +24,12 @@ import xbmcaddon
 import xbmcgui
 import xbmcplugin
 
-from directory  import Add_Dir, Grab_Params
-from filetools  import Find_In_Text, Text_File
-from guitools   import Text_Box
-from video      import Play_Video
-from web        import Open_URL
+from directory      import Add_Dir, Grab_Params
+from filetools      import Find_In_Text, Text_File
+from guitools       import Text_Box, Show_Busy
+from systemtools    import Sleep_If_Window_Active
+from video          import Play_Video
+from web            import Open_URL
 
 dialog     = xbmcgui.Dialog()
 py_path    = xbmc.translatePath('special://home/addons/script.module.python.koding.aio/lib/koding')
@@ -36,12 +37,14 @@ video_base = 'http://totalrevolution.tv/videos/python_koding/'
 #----------------------------------------------------------------
 def Grab_Tutorials():
     """ internal command ~"""
+    import re
     full_array = []
 # Check all the modules for functions with tutorial info
     for file in os.listdir(py_path):
         file_path = os.path.join(py_path,file)
         if not os.path.isdir(file_path) and file.endswith('.py'):
             content = Text_File(file_path,'r')
+            # content_array = re.compile('# TUTORIAL #\ndef (.+?)\(').findall(content)
             content_array = Find_In_Text(content=content, start='# TUTORIAL #\ndef ', end='\(', show_errors=False)
             if content_array:
                 for item in content_array:
@@ -63,19 +66,24 @@ def Show_Tutorial(url):
 # Check if an example code segment exists in the comments    
     if 'EXAMPLE CODE:' in raw_find:
         code = re.findall(r'(?<=EXAMPLE CODE:)(?s)(.*$)', raw_find)[0]
+        code = code.replace('script.module.python.koding.aio','temp_replace_string')
         code = code.replace('koding.','').strip()
+        code = code.replace('temp_replace_string','script.module.python.koding.aio')
 
     else:
         code = None
 
 # Check if a video exists in the comments
-    video_page = Open_URL(video_base)
-    extension = Find_In_Text(video_page, params["name"], '"', False)
-    if extension != '' and extension != None:
-        video = video_base+params["name"]+extension[0]
+    internetstate = xbmc.getInfoLabel('System.InternetState')
+    if internetstate:
+        video_page = Open_URL(video_base)
+        extension = Find_In_Text(video_page, params["name"], '"', False)
+        if extension != '' and extension != None:
+            video = video_base+params["name"]+extension[0]
+        else:
+            video = None
     else:
         video = None
-    xbmc.log('VIDEO: %s'%video,2)
 
     counter  = 0
     removal_string = ''
@@ -132,7 +140,8 @@ def Show_Tutorial(url):
         elif choice == 'Run Example Code':
             codefile = params["filepath"].split(os.sep)
             codefile = codefile[len(codefile)-1].replace('.py','')
-            exec('from %s import %s' % (codefile, params["name"]))
+            exec('from %s import *' % codefile)
+            # exec('from %s import %s' % (codefile, params["name"]))
             exec(code)
         elif choice == 'Watch Video':
             Play_Video(video)

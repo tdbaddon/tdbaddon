@@ -138,7 +138,7 @@ class source:
                         try:
                             url = url.replace('\\', '')
                             url = client.googletag(url)[0]
-                            sources.append({'source': 'gvideo', 'quality': url['quality'], 'language': 'en', 'url': url['url'], 'direct': True, 'debridonly': False})
+                            sources.append({'source': 'gvideo', 'quality': url['quality'], 'url': url['url'], 'provider': 'Pubfilm'})
                         except:
                             pass
                 except:

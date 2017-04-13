@@ -26,7 +26,7 @@ msgid "WARNING"
 msgstr ""
 
 msgctxt "#30810"
-msgid "You may not have enough space:[CR]"
+msgid "You may not have enough space:"
 msgstr ""
 
 msgctxt "#30811"
@@ -95,6 +95,10 @@ msgstr ""
 
 msgctxt "#30836"
 msgid "You have enabled the login feature but not entered any details. Please add your login details or disable the option."
+msgstr ""
+
+msgctxt "#30837"
+msgid "No information available"
 msgstr ""
 
 msgctxt "#30901"

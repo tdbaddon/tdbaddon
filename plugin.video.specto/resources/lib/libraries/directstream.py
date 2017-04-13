@@ -19,7 +19,7 @@
 '''
 
 import re, os, urllib, urlparse, json, binascii
-from resources.lib.modules import client
+from resources.lib.libraries import client
 
 
 def google(url):

@@ -129,7 +129,7 @@ class source:
                     #if not host in hostDict: raise Exception()
 
                     host = host.encode('utf-8')
-                    control.log('Host onseries "%s"' % host)
+                    #control.log('Host onseries "%s"' % host)
 
                     sources.append({'source': host, 'quality': 'SD', 'provider': 'OnSeries','url': url})
                 except:

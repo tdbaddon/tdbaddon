@@ -21,7 +21,8 @@ import xbmc
 import xbmcgui
 
 from __init__    import dolog
-from systemtools import Last_Error, Show_Busy
+from guitools    import Show_Busy
+from systemtools import Last_Error
 
 dp            = xbmcgui.DialogProgress()
 check_started = xbmc.translatePath('special://profile/addon_data/script.module.python.koding.aio/temp/playback_in_progress')
@@ -44,8 +45,8 @@ if isplaying:
     dialog.ok('PLAYBACK SUCCESSFUL','Congratulations, playback was successful')
     xbmc.Player().stop()
 else:
-    dialog.ok('PLAYBACK FAILED','Sorry, playback failed :(')~"""
-
+    dialog.ok('PLAYBACK FAILED','Sorry, playback failed :(')
+~"""
     if not os.path.exists(check_started):
         os.makedirs(check_started)
     isdialog = True
@@ -93,7 +94,8 @@ else:
         xbmc.sleep(1000)
         while not success and counter < 10:
             try:
-                infotag = xbmc.Player().getVideoInfoTag()
+                if xbmc.Player().isPlayingVideo():
+                    infotag = xbmc.Player().getVideoInfoTag()
                 vidtime = xbmc.Player().getTime()
                 if vidtime > 0:
                     success = 1
@@ -133,11 +135,69 @@ else:
         shutil.rmtree(check_started)
         return True
 #----------------------------------------------------------------    
-def Play_Video(video, showbusy=True):
+# TUTORIAL #
+def Play_Video(video, showbusy=True, content='video'):
+    """
+This will attempt to play a video and return True or False on
+whether or not playback was successful. This function is similar
+to Check_Playback but this actually tries a number of methods to
+play the video whereas Check_Playback does not actually try to
+play a video - it will just return True/False on whether or not
+a video is currently playing.
+
+CODE: Play_Video(video, [showbusy, content])
+
+AVAILABLE PARAMS:
+
+    (*) video  -  This is the path to the video, this can be a local
+    path, online path or a channel number from the PVR.
+
+    showbusy  -  By default this is set to True which means while the
+    function is attempting to playback the video the user will see the
+    busy dialog. Set to False if you prefer this not to appear but do
+    bare in mind a user may navigate to another section and try playing
+    something else if they think this isn't doing anything.
+
+    content  -  By default this is set to 'video', however if you're
+    passing through audio you may want to set this to 'music' so the
+    system can correctly set the tags for artist, song etc.
+
+EXAMPLE CODE:
+isplaying = koding.Play_Video('http://totalrevolution.tv/videos/python_koding/Browse_To_Folder.mov')
+if isplaying:
+    dialog.ok('PLAYBACK SUCCESSFUL','Congratulations, playback was successful')
+    xbmc.Player().stop()
+else:
+    dialog.ok('PLAYBACK FAILED','Sorry, playback failed :(')
+~"""
+
     dolog('### ORIGINAL VIDEO: %s'%video)
     import urlresolver
     try:    import simplejson as json
     except: import json
+
+    meta = {}
+    for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes',
+              'director', 'writer', 'plot', 'tagline']:
+        try:
+            meta[i] = xbmc.getInfoLabel('listitem.%s' % i)
+        except:
+            pass
+    meta = dict((k, v) for k, v in meta.iteritems() if not v == '')
+    if 'title' not in meta:
+        meta['title'] = xbmc.getInfoLabel('listitem.label')
+    icon = xbmc.getInfoLabel('listitem.icon')
+    icon = xbmc.getInfoLabel('listitem.icon')
+    item = xbmcgui.ListItem(path=video, iconImage=icon, thumbnailImage=icon)
+    if content == "music":
+        try:
+            meta['artist'] = xbmc.getInfoLabel('listitem.artist')
+            item.setInfo(type='Music', infoLabels={'title': meta['title'], 'artist': meta['artist']})
+        except:
+            item.setInfo(type='Video', infoLabels=meta)
+
+    else:
+        item.setInfo(type='Video', infoLabels=meta)
 
     playback = False
     if showbusy:
@@ -195,7 +255,7 @@ def Play_Video(video, showbusy=True):
 # Standard xbmc.player method (a comma in url seems to throw urlresolver off)
         try:
             dolog('Attempting to play via xbmc.Player.play() method')
-            xbmc.Player().play('%s'%video)
+            xbmc.Player().play('%s'%video, item)
             playback = Check_Playback()
             is_in_progress = True
             progress_count = 0
@@ -214,7 +274,7 @@ def Play_Video(video, showbusy=True):
                 if hmf.valid_url() == True:
                     video = hmf.resolve()
                     dolog('### VALID URL, RESOLVED: %s'%video)
-                xbmc.executebuiltin('PlayMedia(%s)'%video)
+                xbmc.Player().play('%s' % video, item)
                 playback = Check_Playback()
                 is_in_progress = True
                 progress_count = 0
@@ -236,7 +296,7 @@ def Play_Video(video, showbusy=True):
             if hmf.valid_url() == True:
                 video = hmf.resolve()
                 dolog('### VALID URL, RESOLVED: %s'%video)
-            xbmc.executebuiltin('PlayMedia(%s)'%video)
+            xbmc.Player().play('%s' % video, item)
             playback = Check_Playback()
             is_in_progress = True
             progress_count = 0
@@ -250,7 +310,7 @@ def Play_Video(video, showbusy=True):
         except:
             try:
                 dolog('Attempting to play via xbmc.Player.play() method')
-                xbmc.Player().play('%s'%video)
+                xbmc.Player().play('%s' % video, item)
                 playback = Check_Playback()
                 is_in_progress = True
                 progress_count = 0

@@ -81,6 +81,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             headers['User-Agent'] = cache.get(randomagent, 1)
         else:
             headers['User-Agent'] = 'Apple-iPhone/701.341'
+            headers['User-Agent'] = 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
         if 'Referer' in headers:
             pass
         elif referer == None:
@@ -225,7 +226,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             if close == True: response.close()
             return result
     except Exception as e:
-        control.log('Client Error %s' % e)
+        control.log('Client connect url:%s Error %s' % (url,e))
         return
 
 

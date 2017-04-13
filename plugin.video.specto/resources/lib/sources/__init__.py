@@ -178,7 +178,8 @@ class sources:
             control.directory(int(sys.argv[1]), cacheToDisc=True)
             try: self.progressDialog.close()
             except: pass
-        except:
+        except Exception as e:
+            control.log('ERROR Sources.addItem2 %s ' % (e))
             control.infoDialog(control.lang(30501).encode('utf-8'))
             try: self.progressDialog.close()
             except: pass
@@ -755,9 +756,9 @@ class sources:
 
     def sourcesResolve(self, url, provider):
         try:
-            control.log('Provider:%s URL:%s' % (provider,url))
+            #control.log('Provider:%s URL:%s' % (provider,url))
             provider = provider.lower()
-            control.log('XXX Provider:%s url:%s' %(provider,url))
+            #control.log('XXX Provider:%s url:%s' %(provider,url))
 
             if not provider.endswith(('_mv', '_tv', '_mv_tv')):
                 sourceDict = []

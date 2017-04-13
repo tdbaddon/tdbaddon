@@ -29,11 +29,12 @@ CODE: Cleanup_URL(url)
     AVAILABLE PARAMS:
         
         (*) url   -  This is the main url you want cleaned up.
+
 EXAMPLE CODE:
 raw_url = '" http://test.com/video/"/'
 clean_url = koding.Cleanup_URL(raw_url)
-dialog.ok('CLEANUP URL', 'Orig: %s'%raw_url,'Clean: %s'%clean_url)~"""
-
+dialog.ok('CLEANUP URL', 'Orig: %s'%raw_url,'Clean: %s'%clean_url)
+~"""
     from HTMLParser import HTMLParser
 
     bad_chars = ['/','\\',':',';','"',"'"]
@@ -146,50 +147,18 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)~"""
     import xbmc
     import xbmcaddon
 
-    from __init__ import converthex, dolog, Encryption
+    from __init__       import converthex, dolog, Encryption, ADDON_ID, ADDON_ORIG, LOGIN, FORUM, USERNAME, PASSWORD, KODI_VER
+    from systemtools    import Caller
 
-    try:
-        ADDON_ID     =  xbmcaddon.Addon().getAddonInfo('id')
-    except:
-        ADDON_ID     =  sys.argv[2]
-
-    AddonVersion    =  xbmcaddon.Addon(id=ADDON_ID).getAddonInfo('version')
-
-    try:
-        if sys.argv[1] == converthex('7465737466696c65'):
-            ADDON_ID  =  ADDON_ID+'.test'
-    except:
-        pass
-
-    if ADDON_ID.endswith(converthex('2e74657374')):
-        ORIG_ID      =  ADDON_ID[:-5]
-    else:
-        ORIG_ID      = ADDON_ID
-
-    TestID           =  ADDON_ID
-    if not ADDON_ID.endswith(converthex('2e74657374')):
-        TestID       =  ADDON_ID+converthex('2e74657374')
-
-    ADDON_ORIG       =  xbmcaddon.Addon(id=ORIG_ID)
-    LOGIN            =  ADDON_ORIG.getSetting(converthex('6c6f67696e'))
-    FORUM            =  ADDON_ORIG.getSetting(converthex('666f72756d'))
-    USERNAME         =  ADDON_ORIG.getSetting(converthex('757365726e616d65')).replace(' ','%20') if LOGIN == 'true' else ''
-    PASSWORD         =  ADDON_ORIG.getSetting(converthex('70617373776f7264')) if LOGIN == 'true' else ''
-    KODI_VER         =  int(float(xbmc.getInfoLabel("System.BuildVersion")[:2]))
-
-    if FORUM == converthex('556e6f6666696369616c204b6f646920537570706f7274'):
-        FORUM = 'k'
-    if FORUM == converthex('436f6d6d756e697479204275696c647320537570706f7274'):
-        FORUM = 'c'
-
-    payload = {}
+    AddonVersion = xbmcaddon.Addon(id=ADDON_ID).getAddonInfo('version')
+    payload      = {}
 
 # If the url sent through is not http then we presume it's hitting the NaN page
     if not url.startswith(converthex('68747470')):
         NaN_URL = True
         args = url
         post_type = 'post'
-        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e342e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, AddonVersion, KODI_VER, args)
+        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f74657374696e672e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, AddonVersion, KODI_VER, args)
     else:
         NaN_URL = False
     if '?' in url:
@@ -231,8 +200,8 @@ url_code = koding.Validate_Link('http://totalrevolution.tv')
 if url_code == 200:
     dialog.ok('WEBSITE STATUS','The website [COLOR=dodgerblue]totalrevolution.tv[/COLOR] is [COLOR=lime]ONLINE[/COLOR]')
 else:
-    dialog.ok('WEBSITE STATUS','The website [COLOR=dodgerblue]totalrevolution.tv[/COLOR] is [COLOR=red]OFFLINE[/COLOR]')~"""
-
+    dialog.ok('WEBSITE STATUS','The website [COLOR=dodgerblue]totalrevolution.tv[/COLOR] is [COLOR=red]OFFLINE[/COLOR]')
+~"""
     import requests
     import xbmc
 

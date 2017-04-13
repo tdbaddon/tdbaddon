@@ -12,28 +12,458 @@ addon.xml - just import as you would any other module, the following code would 
 
 default.py (or whatever your initial opening py document is called) - all you need is to import koding.py
 
-IF you're using the noobsandnerds features (see below) then you will also need to add the following in your default.py file:
+IF you're using the special features which hook into the noobsandnerds framework then you will also need to add the following line in your default.py file. Please note this is not for the majority of users, it is only required for developers who wish to use NaN as for their support and would like access to their own framework which has some excellent features.
 
 	koding.User_Info() - This will create a cookie file containing cached details. It's important you do this somewhere at the start of your code as it will initialise your variables on first run.
 
+------------------------------------------------------------------------------------------
 
-UNIVERSAL MODULES (ANYONE CAN USE, NOT LINKED TO NAN SERVER)
-============================================================
+A N D R O I D   S P E C I F I C
 
-This allows you to create a list item/folder inside your add-on.
-Please take a look at your addon default.py comments for more information
-(presuming you created one at http://totalrevolution.tv)
+------------------------------------------------------------------------------------------
 
-	CODE: Add_Dir(name, url, mode, [folder, icon, fanart, description, info_labels, content_type]))
+ANDROID APP SETTINGS:
+Open up the settings for an installed Android app.
+
+	CODE: App_Settings(apk_id)
+
+	AVAILABLE PARAMS:
+
+	    (*) apk_id  -  The id of the app you want to open the settings for.
+
+	EXAMPLE CODE:
+		dialog.ok('FACEBOOK SETTINGS','We will now open the settings for the Facebook app')
+		koding.App_Settings(apk_id='com.facebook.katana')
+
+------------------------------------------------------------------------------------------
+
+INSTALLED APPS:
+Return a list of apk id's installed on system
+
+	CODE: My_Apps()
+
+	EXAMPLE CODE:
+		my_apps = koding.My_Apps()
+		choice = dialog.select('CHOOSE AN APK', my_apps)
+		if choice >= 0:
+		    koding.App_Settings(apk_id=my_apps[choice])
+
+------------------------------------------------------------------------------------------
+
+START ANDROID APP:
+Open an Android application
+
+	CODE: Start_App(apk_id)
+
+	AVAILABLE PARAMS:
+
+	    (*) apk_id  -  The id of the app you want to open.
+
+	EXAMPLE CODE:
+		dialog.ok('OPEN FACEBOOK','Presuming you have Facebook installed and this is an Android system we will now open that apk')
+		koding.Start_App(apk_id='com.facebook.katana')
+
+------------------------------------------------------------------------------------------
+
+UNINSTALL ANDROID APP
+Uninstall and Android app
+
+	CODE: Uninstall_APK(apk_id)
+
+	EXAMPLE CODE:
+		if dialog.yesno('UNINSTALL FACEBOOK','Would you like to uninstall the Facebook app from your system?'):
+		    koding.Uninstall_APK(apk_id='com.facebook.katana')
+
+------------------------------------------------------------------------------------------
+
+D A T A B A S E S
+
+------------------------------------------------------------------------------------------
+
+A GENERIC QUERY:
+Open a database and either return an array of results with the SELECT command or perform an action such as INSERT, UPDATE, CREATE.
+
+	CODE:  DB_Query(db_path, query, [values])
+
+	AVAILABLE PARAMS:
+	    (*) db_path -  the full path to the database file you want to access.
+	    (*) query   -  this is the actual db query you want to process, use question marks for values
+
+	    values  -  a list of values, even if there's only one value it must be sent through as a list item.
+
+	EXAMPLE CODE:
+		dbpath = koding.DB_Path_Check('addons')
+		db_query = koding.DB_Query(db_path=dbpath, query='SELECT * FROM addons WHERE addonID LIKE ? AND addonID NOT LIKE ?', values=['%youtube%',%script.module%])
+		koding.Text_Box('DB SEARCH RESULTS',str(db_query))
+
+------------------------------------------------------------------------------------------
+
+ADD TO TABLE:
+Add a row to the table in /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Add_To_Table(table, spec)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	    (*) spec   -  Sent through as a dictionary this is the colums and constraints.
+
+	EXAMPLE CODE:
+		create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+		koding.Create_Table("test_table", create_specs)
+		add_specs1 = {"name":"YouTube", "id":"plugin.video.youtube"}
+		add_specs2 = {"name":"vimeo","id":"plugin.video.vimeo"}
+		koding.Add_To_Table("test_table", add_specs1)
+		koding.Add_To_Table("test_table", add_specs2)
+		results = koding.Get_All_From_Table("test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB RESULTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+CREATE A NEW TABLE:
+Create a new table in the database at /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Create_Table(table, spec)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	    (*) spec   -  Sent through as a dictionary this is the colums and constraints.
+
+	EXAMPLE CODE:
+		create_specs = { "columns":{"name":"TEXT", "id":"TEXT"}, "constraints":{"unique":"id"} }
+		koding.Create_Table("test_table", create_specs)
+		dialog.ok('TABLE CREATED','A new table has been created in your database and the id column has been set as UNIQUE.')
+		my_specs = {"name":"YouTube", "id":"plugin.video.youtube"}
+		try:
+		    koding.Add_To_Table("test_table", my_specs)
+		    koding.Add_To_Table("test_table", my_specs)
+		except:
+		    dialog.ok('FAILED TO ADD','Could not add duplicate items because the the column "id" is set to be UNIQUE')
+		results = koding.Get_All_From_Table("test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB RESULTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+GET ALL RESULTS FROM A TABLE:
+Return a list of all entries from a specific table in /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Get_All_From_Table(table)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	EXAMPLE CODE:
+		create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+		koding.Create_Table("test_table", create_specs)
+		add_specs1 = {"name":"YouTube", "id":"plugin.video.youtube"}
+		add_specs2 = {"name":"vimeo","id":"plugin.video.vimeo"}
+		koding.Add_To_Table("test_table", add_specs1)
+		koding.Add_To_Table("test_table", add_specs2)
+		results = koding.Get_All_From_Table("test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB RESULTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+GET SPECIFIC RESULTS FROM A TABLE:
+Return a list of all entries matching a specific criteria from the
+database stored at: /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Get_From_Table(table, spec, compare_operator)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	    spec  -  This is the query value, sent through as a dictionary.
+
+	    compare_operator  -  By default this is set to '=' but could be any
+	    other SQL query string such as 'LIKE', 'NOT LIKE', '!=' etc.
+
+	EXAMPLE CODE:
+		create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+		koding.Create_Table("test_table", create_specs)
+		add_specs1 = {"name":"YouTube", "id":"plugin.video.youtube"}
+		add_specs2 = {"name":"vimeo","id":"plugin.video.vimeo"}
+		koding.Add_To_Table("test_table", add_specs1)
+		koding.Add_To_Table("test_table", add_specs2)
+		results = koding.Get_From_Table(table="test_table", spec={"name":"%vim%"}, compare_operator="LIKE")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB CONTENTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+REMOVE ROW FROM TABLE:
+Remove entries in the db table at /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Remove_From_Table(table, spec, [compare_operator])
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	    spec              -  This is the query value, sent through as a dictionary.
+
+	    compare_operator  -  By default this is set to '=' but could be any
+	    other SQL query string such as 'LIKE', 'NOT LIKE', '!=' etc.
+
+	EXAMPLE CODE:
+		create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+		koding.Create_Table(table="test_table", spec=create_specs)
+		add_specs1 = {"name":"YouTube", "id":"plugin.video.youtube"}
+		add_specs2 = {"name":"vimeo","id":"plugin.video.vimeo"}
+		koding.Add_To_Table(table="test_table", spec=add_specs1)
+		koding.Add_To_Table(table="test_table", spec=add_specs2)
+		results = koding.Get_All_From_Table(table="test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB CONTENTS', final_results)
+		dialog.ok('REMOVE ITEM','We will now remove vimeo from the table, lets see if it worked...')
+		koding.Remove_From_Table(table="test_table", spec={"name":"vimeo"})
+		results = koding.Get_All_From_Table(table="test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('NEW DB CONTENTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+D I A L O G S
+
+------------------------------------------------------------------------------------------
+
+BROWSE TO A FILE AND RETURN PATH:
+This will allow the user to browse to a specific file and return the path.
+
+IMPORTANT: Do not confuse this with the Browse_To_Folder function
+
+	CODE: koding.Browse_To_File([header, path, extension])
+
+	AVAILABLE PARAMS:
+	    header    -  As the name suggests this is a string to be used for the header/title
+	    of the window. The default is "Select the file you want to use".
+
+	    path      -  Optionally you can add a default path for the browse start folder.
+	    The default start position is the Kodi HOME folder.
+
+	    extension -  Optionally set extensions to filter by, let's say you only wanted
+	    zip and txt files to show you would send through '.zip|.txt'
+
+	EXAMPLE CODE:
+		folder = koding.Browse_To_File(header='Choose a file you want to use', path='special://home/userdata')
+		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
+
+------------------------------------------------------------------------------------------
+
+BROWSE TO A FOLDER AND RETURN PATH:
+As the title suggests this will bring up a dialog that allows the user to browse to a folder
+and the path is then returned.
+
+IMPORTANT: Do not confuse this with the Browse_To_File function
+
+	CODE: koding.Browse_To_Folder(header, path)
+
+	AVAILABLE PARAMS:
+	    header  -  As the name suggests this is a string to be used for the header/title
+	    of the window. The default is "Select the folder you want to use".
+
+	    path    -  Optionally you can add a default path for the browse start folder.
+	    The default start position is the Kodi HOME folder.
+
+	
+	EXAMPLE CODE:
+		folder = koding.Browse_To_Folder(header='Choose a folder you want to use', path='special://home/userdata')
+		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
+
+------------------------------------------------------------------------------------------
+
+CALLER(S) OF FUNCTION:
+Return the add-on id or path of the script which originally called your function. If it's been called through
+a number of add-ons/scripts you can grab a list of paths that have been called.
+
+	CODE: Caller(my_return)
+
+	AVAILABLE PARAMS:
+	    
+	    my_return  -  By default this is set to 'addon', view the options below:
+	        
+	        'addon' : Return the add-on id of the add-on to call this function.
+	        
+	        'addons': Return a list of all add-on id's called to get to this function.
+	        
+	        'path'  : Return the full path to the script which called this funciton.
+	        
+	        'paths' : Return a list of paths which have been called to get to this
+	        final function.
+	        
+	EXAMPLE CODE:
+		my_addon = koding.Caller(my_return='addon')
+		my_addons = koding.Caller(my_return='addons')
+		my_path = koding.Caller(my_return='path')
+		my_paths = koding.Caller(my_return='paths')
+
+		dialog.ok('ADD-ON ID', 'Addon id you called this function from:','[COLOR=dodgerblue]%s[/COLOR]' % my_addon)
+		dialog.ok('SCRIPT PATH', 'Script which called this function:','[COLOR=dodgerblue]%s[/COLOR]' % my_path)
+
+		addon_list = 'Below is a list of add-on id\'s which have been called to get to this final piece of code:\n\n'
+		for item in my_addons:
+		    addon_list += item+'\n'
+		koding.Text_Box('ADD-ON LIST', addon_list)
+		koding.Sleep_If_Window_Active(10147)
+		path_list = 'Below is a list of scripts which have been called to get to this final piece of code:\n\n'
+		for item in my_paths:
+		    path_list += item+'\n'
+		koding.Text_Box('ADD-ON LIST', path_list)
+
+------------------------------------------------------------------------------------------
+
+COUNTDOWN TIMER:
+Bring up a countdown timer and return true if waited or false if cancelled.
+
+	CODE: Countdown(title, message, update_msg, wait_time, allow_cancel, cancel_msg):
+
+	AVAILABLE PARAMS:
+
+	    title  -  The header string in the dialog window, the default is:
+	    'COUNTDOWN STARTED'
+
+	    message   -  A short line of info which will show on the first line
+	    of the dialog window just below the title. Default is:
+	    'A quick simple countdown example.'
+
+	    update_msg  - The message you want to update during the countdown.
+	    This must contain a %s which will be replaced by the current amount
+	    of seconds that have passed. The default is:
+	    'Please wait, %s seconds remaining.'
+
+	    wait_time  -  This is the amount of seconds you want the countdown to
+	    run for. The default is 10.
+
+	    allow_cancel  -  By default this is set to true and the user can cancel
+	    which will result in False being returned. If this is set to True
+	    they will be unable to cancel.
+
+	    cancel_msg  -  If allow_cancel is set to False you can add a custom
+	    message when the user tries to cancel. The default string is:
+	    '[COLOR=gold]Sorry, this process cannot be cancelled[/COLOR]'
+
+	EXAMPLE CODE:
+		dialog.ok('COUNTDOWN EXAMPLE', 'Press OK to bring up a countdown timer', '', 'Try cancelling the process.')
+		my_return = koding.Countdown(title='COUNTDOWN EXAMPLE', message='Quick simple countdown message (cancel enabled).', update_msg='%s seconds remaining', wait_time=5)
+		if my_return:
+		    dialog.ok('SUCCESS!','Congratulations you actually waited through the countdown timer without cancelling!')
+		else:
+		    dialog.ok('BORED MUCH?','What happened, did you get bored waiting?', '', '[COLOR=dodgerblue]Let\'s set off another countdown you CANNOT cancel...[/COLOR]')
+		    koding.Countdown(title='COUNTDOWN EXAMPLE', message='Quick simple countdown message (cancel disabled).', update_msg='%s seconds remaining', wait_time=5, allow_cancel=False, cancel_msg='[COLOR=gold]Sorry, this process cannot be cancelled[/COLOR]')
+
+------------------------------------------------------------------------------------------
+
+ENABLE/DISABLE THE BUSY (WORKING) SYMBOL:
+This will show/hide a "working" symbol.
+
+	CODE: Show_Busy([status, sleep])
+
+	AVAILABLE PARAMS:
+
+	    status - This optional, by default it's True which means the "working"
+	    symbol appears. False will disable.
+
+	    sleep  -  If set the busy symbol will appear for <sleep> amount of
+	    milliseconds and then disappear.
+
+	EXAMPLE CODE:
+		dialog.ok('BUSY SYMBOL','Press OK to show a busy dialog which restricts any user interaction. We have added a sleep of 5 seconds at which point it will disable.')
+		koding.Show_Busy(sleep=5000)
+		dialog.ok('BUSY SYMBOL','We will now do the same but with slightly different code')
+		koding.Show_Busy(status=True)
+		xbmc.sleep(5000)
+		koding.Show_Busy(status=False)
+
+------------------------------------------------------------------------------------------
+
+SHOW TEXT IN A LARGE WINDOW:
+This will allow you to open a blank window and fill it with some text.
+
+	CODE: koding.Text_Box(header, message)
+
+	AVAILABLE PARAMS:
+		header 	-  As the name suggests this is a string to be used for the header/title of the window
+
+		message -  Yes you've probably already gussed it, this is the main message text
+
+
+	EXAMPLE CODE:
+		koding.Text_Box('TEST HEADER','Just some random text[CR][CR]Use kodi tags for new lines, colours etc.')
+
+------------------------------------------------------------------------------------------
+
+NOTIFICATION POPUP:
+Show a short notification for x amount of seconds
+
+	CODE: koding.Notify(title, message, [duration, icon])
+
+	AVAILABLE PARAMS:
+
+	    (*) title    -  A short title to show on top line of notification
+
+	    (*) message  -  A short message to show on the bottom line of notification
+
+	    duration  -  An integer in milliseconds, the default to show the notification for is 2000
+
+	    icon      -  The icon to show in notification bar, default is the update icon from this module. 
+
+	EXAMPLE CODE:
+		koding.Notify(title='TEST NOTIFICATION', message='This is a quick 5 second test', duration=5000)
+
+------------------------------------------------------------------------------------------
+
+D I R E C T O R Y   F U N C T I O N S
+
+------------------------------------------------------------------------------------------
+
+ADD DIRECTORY ITEM:
+This allows you to create a list item/folder inside your add-on. Please take a look at your addon
+default.py comments for more information (presuming you created one at http://totalrevolution.tv)
+
+TOP TIP: If you want to send multiple variables through to a function just send through as a dictionary
+encapsulated in quotation marks. In the function you can then use the following code to access them:
+
+params = eval(url)
+
+^ That will then give you a dictionary where you can just pull each variable and value from.
+
+	CODE: Add_Dir(name, url, mode, [folder, icon, fanart, description, info_labels, content_type, context_items, context_override, playable]))
 
 	AVAILABLE PARAMS:
 
 	    (*) name  -  This is the name you want to show for the list item
 
-	    (*) url   -  This is a temporary global variable (string), when you click on
-	    another list item it will change to whatever you have that set to
+	    url   -  This is a temporary global variable (string), when you click on
+	    another list item it will change to whatever you have that set to. If you
+	    send through a url starting with plugin:// the item will open up into
+	    that plugin path.
 
-	    (*) mode  -  The mode you want to open when this item is clicked, this is set
+	    mode  -  The mode you want to open when this item is clicked, this is set
 	    in your master_modes dictionary (see template add-on linked above)
 
 	    folder       -  This is an optional boolean, by default it's set to False.
@@ -47,12 +477,19 @@ Please take a look at your addon default.py comments for more information
 	    usually appears below the thumbnail
 
 	    info_labels  - You can send through any number of info_labels via this option.
-	    For full details on the infolabels available please check the pydocs.
-	    When passing through infolabels you need to use this format:
-	    info_labels='genre : comedy ~ title : test video'
+	    For full details on the infolabels available please check the pydocs here:
+	    http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem-setInfo
+
+	    When passing through infolabels you need to use a dictionary in this format:
+	    {"genre":"comedy", "title":"test video"}
 	    
-	    IMPORTANT: The colon separating the key from value and the tilda separating each
-	    infolabel MUST have a space either side.
+	    set_art  -  Using the same format as info_labels you can set your artwork via
+	    a dictionary here. Full details can be found here:
+	    http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem-setArt
+
+	    set_property  -  Using the same format as info_labels you can set your artwork via
+	    a dictionary here. Full details can be found here:
+	    http://kodi.wiki/view/InfoLabels#ListItem
 
 	    content_type - By default this will set the content_type for kodi to a blank string
 	    which is what Kodi expects for generic category listings. There are plenty of different
@@ -64,42 +501,32 @@ Please take a look at your addon default.py comments for more information
 	    thousands of unnecessary db calls - sometimes resulting in a crash. You can find
 	    details on the content_types available here: http://forum.kodi.tv/showthread.php?tid=299107
 
-------------------------------------------------------------------------------------------
+	    context_items - Add context items to your directory. The params you need to send through
+	    need to be in a list format of [(label, action,),] look at the example code below for
+	    more details.
 
-ADDON SETTINGS:
-By default this will open the current add-on settings but if you pass through an addon_id it will open the settings for that add-on.
+	    context_override - By default your context items will be added to the global context
+	    menu items but you can override this by setting this to True and then only your
+	    context menu items will show.
 
-	CODE: Open_Settings([addon_id, stop_script])
+	    playable  -  By default this is set to False but if set to True kodi will just try
+	    and play this item natively with no extra fancy functions.
 
-	AVAILABLE PARAMS:
+	EXAMPLE:
+		my_context = [('Music','xbmc.executebuiltin("ActivateWindow(music)")'),('Programs','xbmc.executebuiltin("ActivateWindow(programs)")')]
+		# ^ This is our two basic context menu items (music and programs)
 
-		addon_id    - This optional, it can be any any installed add-on id. If nothing is passed through the current add-on settings will be opened.
+		Add_Dir(name='TEST DIRECTORY', url='', mode='test_directory', folder=True, context_items=my_context, context_override=True)
+		# ^ This will add a folder AND a context menu item for when bring up the menu (when focused on this directory).
+		# ^^ The context_override is set to True which means it will override the default Kodi context menu items.
 
-		stop_script - By default this is set to True, as soon as the addon settings are opened the current script will stop running. If you pass through as False then the script will continue running in the background - opening settings does not pause a script, Kodi just see's it as another window being opened.
-
-------------------------------------------------------------------------------------------
-
-FREE SPACE:
-Show the amount of available free space in a path, this can be returned in a number of different formats.
-
-	CODE: Free_Space([dirname, filesize])
-
-	AVAILABLE PARAMS:
-
-		dirname  - This optional, by default it will tell you how much space is available in your special://home folder. If you require information for another path (such as a different partition or storage device) then enter the physical path. This currently only works for local paths and not networked drives.
-
-		filesize - By default you'll get a return of total bytes, however you can get the value as bytes, kilobytes, megabytes, gigabytes and terabytes..
-
-			VALUES:
-			'b'	 = bytes (integer)
-			'kb' = kilobytes (float to 1 decimal place)
-			'mb' = kilobytes (float to 2 decimal places)
-			'gb' = kilobytes (float to 3 decimal places)
-			'tb' = terabytes (float to 4 decimal places)
+		Add_Dir(name='TEST ITEM', url='', mode='test_item', folder=False, context_items=my_context, context_override=False)
+		# ^ This will add an item to the list AND a context menu item for when bring up the menu (when focused on this item).
+		# ^^ The context_override is set to False which means the new items will appear alongside the default Kodi context menu items.
 
 ------------------------------------------------------------------------------------------
 
-CONVERT A STRING (URL) INTO MULTIPLE VARIABLES
+CONVERT A STRING (URL) INTO MULTIPLE VARIABLES:
 This will allow you to send multiple values through via the Add_Dir
 function just as one string (url). This is then split up into however
 many values you want.
@@ -126,182 +553,43 @@ many values you want.
 
 ------------------------------------------------------------------------------------------
 
-LAST ERROR:
-Return details of the last error produced, perfect for try/except statements
+POPULATE A LIST FROM AN ONLINE SCRAPE:
+If you have a basic index web page or a webpage with a common
+format for displaying links (on all pages) then you can use this
+to populate an add-on. It's capable of cleverly working out what
+needs to be sent through as a directory and what's a playable item.
+Take a look at the example below for a working example which explains
+this a little better.
 
-	CODE: Last_Error()
-
-	EXAMPLE CODE: xbmc.log(Last_Error())
-
-------------------------------------------------------------------------------------------
-
-PATH TO CURRENT "LIVE" DATABASE:
-If you need to find out the current "real" database in use then this is the function for you. It will scan for a specific database type (e.g. addons) and return the path to the one which was last updated. This is particularly useful if the system's previously updated to a newer version rather than a fresh install - or if they've installed a "build" which contained old databases.
-
-	CODE: DB_Path_Check(db_path)
-
-	AVAILABLE VALUES:
-		The db_path can be any string you want, it needs to be the string the database starts with. If you want to find the path for the addons*.db you would use "addons" as the value, if you wanted to find the path of the MyVideos*.db you would use "myvideos" etc. - it is not case sensitive.
-
-------------------------------------------------------------------------------------------
-
-BROWSE TO A FILE AND RETURN PATH
-
-	CODE: koding.Browse_To_File([header, path, extension])
+	CODE: Populate_List(url, [start_point, end_point, separator, skip]):
 
 	AVAILABLE PARAMS:
-	    header    -  As the name suggests this is a string to be used for the header/title
-	    of the window. The default is "Select the file you want to use".
+	    (*) url  -  The start page of where to pull the first links from
 
-	    path      -  Optionally you can add a default path for the browse start folder.
-	    The default start position is the Kodi HOME folder.
+	    start_point  -  Send through the code tags you want to search for in the
+	    webpage. By default it's setup for a standard indexed site so the start_point
+	    is '<li+.<a href="'. The code will then grab every instance of start_point to end_point.
 
-	    extension -  Optionally set extensions to filter by, let's say you only wanted
-	    zip and txt files to show you would send through '.zip|.txt'
+	    end_point    -  Send through the code tags you want to search for in the
+	    webpage. By default it's setup for a standard indexed site so the end_point
+	    is '</a+.</li>'. The code will then grab every instance of start_point to end_point.
 
-	EXAMPLE CODE:
-		folder = koding.Browse_To_File(header='Choose a file you want to use', path='special://home/userdata')
-		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
+	    separator  -  This is the point in the grabbed links (from above) where you want
+	    to split the string into a url and a display name. The default is ">".
 
-------------------------------------------------------------------------------------------
-
-BROWSE TO A FOLDER AND RETURN PATH
-
-	CODE: koding.Browse_To_Folder(header, path)
-
-	AVAILABLE PARAMS:
-	    header  -  As the name suggests this is a string to be used for the header/title
-	    of the window. The default is "Select the folder you want to use".
-
-	    path    -  Optionally you can add a default path for the browse start folder.
-	    The default start position is the Kodi HOME folder.
-
-	
-	EXAMPLE CODE:
-		folder = koding.Browse_To_Folder(header='Choose a folder you want to use', path='special://home/userdata')
-		dialog.ok('FOLDER DETAILS','Folder path: [COLOR=dodgerblue]%s[/COLOR]'%folder)
-
-------------------------------------------------------------------------------------------
-
-CHECK IF VIDEO PLAYBACK IS SUCCESSFUL:
-This function will return true or false based on video playback. Simply start a stream (whether via an add-on, direct link to URL or local storage doesn't matter), the code will then work out if playback is successful. This uses a number of checks and should take into account all potential glitches which can occur during playback. The return should happen within a second or two of playback being successful (or not).
-
-	CODE: Check_Playback()
-
-------------------------------------------------------------------------------------------
-
-PULL CONTENTS FROM A WEB PAGE:
-If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
-
-	CODE:	koding.Open_URL(url,[post_type])
-	post_type is optional, by default it's set as 'get'
-
-	AVAILABLE VALUES:
-		'get'  -  This is already the default so no real need to add this but this uses a standard query string
-		
-		'post' -  This will convert the query string into a post
+	    skip       -  By default this is set to ['..', '.', 'Parent Directory']. This is
+	    a list of links you don't want to appear in your add-on listing.
 
 	EXAMPLE CODE:
-		koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+		link ='http://totalrevolution.tv/videos/'
+		sp   ='<a href="'
+		ep   ='</a>'
+		sep  = '">'
+		koding.Populate_List(url=link, start_point=sp, end_point=ep, separator=sep)
 
 ------------------------------------------------------------------------------------------
 
-GRAB THE EXTENSION OF A URL:
-Return the extension of any given url
-
-	CODE:   koding.Get_Extension(url)
-
-	AVAILABLE PARAMS:
-	    (*) url  -  This is the url you want to grab the extension from
-
-	EXAMPLE CODE:
-		url_extension = koding.Get_Extension('http://testpage.com/myfile.mp4')
-		dialog.ok('FILE EXTENSION',The file extension of http://testpage.com/myfile.mp4 is:','','[COLOR=dodgerblue]%s[/COLOR]'%url_extension)
-
-------------------------------------------------------------------------------------------
-
-DEBUG MODE:
-Print to the Kodi log but only if debugging is enabled in settings.xml
-
-	CODE: koding.dolog(string)
-	string is your text you want printed to log.
-
-	EXAMPLE CODE:	koding.dolog('Quick test to see if this gets printed to the log')
-	EXAMPLE OUTPUT:		<addon_id>: Quick test to see if this gets printed to the log
-
-------------------------------------------------------------------------------------------
-
-RUN CODE FROM YOUR OWN SERVER:
-If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
-
-	CODE:	koding.Main(url,[post_type])
-	post_type is optional, by default it's set as 'get'
-
-	AVAILABLE VALUES:
-		'get'  -  This is already the default so no real need to add this but this uses a standard query string
-		
-		'post' -  This will convert the query string into a post
-
-	EXAMPLE CODE:
-		koding.Main('http://testpage.com?query1=value1&query2=value2', post_type='post')
-
-------------------------------------------------------------------------------------------
-
-CURRENT TIMESTAMP:
-This will return the timestamp in various formats. By default it returns as "integer" mode but other options are listed below:
-
-	CODE: koding.Timestamp(mode)
-	mode is optional, by default it's set as integer
-
-	AVAILABLE VALUES:
-	    'integer' -  An integer which is nice and easy to work with in Python (especially for finding out human readable diffs). The format returned is [year][month][day][hour][minutes][seconds]. 
-	    
-	    'epoch'   -  Unix Epoch format (calculated in seconds passed since 12:00 1st Jan 1970).
-
-	    'clean'   -  A clean user friendly time format: Tue Jan 13 10:17:09 2009
-
-------------------------------------------------------------------------------------------
-
-DOWNLOAD:
-This will download a file, currently this has to be a standard download link which doesn't require cookies/login.
-
-	CODE: koding.Download(src,dst,[dp])
-	dp is optional, by default it is set to false
-
-	AVAILABLE PARAMS:
-		(*) src    - This is the source file, the URL to your download. If you attempted to download an item but it's not behaving the way you think it should (e.g. a zip file not unzipping) then change the extension of the downloaded file to .txt and open up in a text editor. You'll most likely find it's just a piece of text that was returned from the URL you gave and it should have details explaining why it failed. Could be that's the wrong URL, it requires some kind of login, it only accepts certain user-agents etc.
-
-		(*) dst    - This is the destination file, make sure it's a physical path and not "special://...". Also remember you need to add the actual filename to the end of the path, so if we were downloading something to the "downloads" folder and we wanted the file to be called "test.txt" we would use this path: dst = "downloads/test.txt". Of course the downloads folder would actually need to exist otherwise it would fail and based on this poor example the downloads folder would be at root level of your device as we've not specified a path prior to that so it just uses the first level that's accessible.
-
-		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the progress of the download. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
-
-	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
-		dp = xbmcgui.DialogProgress()
-		dp.create('Downloading File','Please Wait')
-		koding.Download(src,dst,dp)
-
-------------------------------------------------------------------------------------------
-
-EXTRACT:
-This function extract a zip or tar file and return true or false so unlike the builtin xbmc function "Extract" this one will pause code until it's completed the action.
-
-	CODE: koding.Extract(src,dst,[dp])
-	dp is optional, by default it is set to false
-
-	AVAILABLE PARAMS:
-		(*) src    - This is the source file, the actual zip/tar. Make sure this is a full path to your zip file and also make sure you're not using "special://". This extract function is only compatible with .zip/.tar/.tar.gz files
-
-		(*) dst    - This is the destination folder, make sure it's a physical path and not "special://...". This needs to be a FULL path, if you want it to extract to the same location as where the zip is located you still have to enter the full path.
-
-		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the status of the extraction process. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
-
-	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
-		dp = xbmcgui.DialogProgress()
-		dp.create('Extracting Zip','Please Wait')
-		if koding.Extract(src,dst,dp):
-		    xbmc.log('YAY IT WORKED!')
-		else:
-		    xbmc.log('UH OH SOMETHING WENT HORRIBLY WRONG')
+F I L E   T O O L S
 
 ------------------------------------------------------------------------------------------
 
@@ -335,7 +623,27 @@ event you encounter this issue just add the file(s) to your exclude list.
 
 ------------------------------------------------------------------------------------------
 
-CONVERT PHYSICAL PATHS TO SPECIAL
+CLEAN CACHED IMAGES:
+This will check for any cached artwork and wipe if it's not been accessed more than 10 times in the past x amount of days.
+
+	CODE: Cleanup_Textures([frequency, use_count])
+
+	    AVAILABLE PARAMS:
+	        
+	        frequency  -  This is an optional integer, be default it checks for any
+	        images not accessed in 14 days but you can use any amount of days here.
+
+	        use_count   -  This is an optional integer, be default it checks for any
+	        images not accessed more than 10 times. If you want to be more ruthless
+	        and remove all images not accessed in the past x amount of days then set this very high.
+
+	EXAMPLE CODE:
+		dialog.ok('Clean Textures','We are going to clear any old cached images not accessed at least 10 times in the past 5 days')
+		koding.Cleanup_Textures(frequency=5)
+
+------------------------------------------------------------------------------------------
+
+CONVERT PHYSICAL PATHS TO SPECIAL:
 Convert physcial paths stored in text files to their special:// equivalent.
 
 	CODE: Convert_Special([filepath])
@@ -348,7 +656,82 @@ Convert physcial paths stored in text files to their special:// equivalent.
 
 ------------------------------------------------------------------------------------------
 
-DELETE FILES IN PATH
+CREATE A DUMMY FILE:
+Create a dummy file in whatever location you want and with the size you want.
+Use very carefully, this is designed for testing purposes only. Accidental
+useage can result in the devices storage becoming completely full in just a
+few seconds. If using a cheap poor quality device (like many android units)
+then you could even end up killing the device as some of them are made
+with very poor components which are liable to irreversable corruption.
+
+	CODE: koding.Dummy_File(dest, [size, size_format])
+
+	AVAILABLE PARAMS:
+
+	    dst          - This is the destination folder, make sure it's a physical path and not
+	    "special://...". This needs to be a FULL path including the file extension. By default
+	    this is set to special://home/dummy.txt
+
+	    size         -  This is an optional integer, by default a file of 10 MB will be created.
+
+	    size_format  -  By default this is set to 'mb' (megabytes) but you can change this to
+	    'b' (bytes), 'kb' (kilobytes), 'gb' (gigabytes)
+
+	EXAMPLE CODE:
+		dummy = xbmc.translatePath('special://home/test_dummy.txt')
+		koding.Dummy_File(dst=dummy, size=100, size_format='b')
+		dialog.ok('DUMMY FILE CREATED','Check your Kodi home folder and you should see a 100 byte test_dummy.txt file.','[COLOR=gold]Press OK to delete this file.[/COLOR]')
+		os.remove(dummy)
+
+------------------------------------------------------------------------------------------
+
+CREATE PATHS:
+Send through a path to a file, if the directories required do not exist this will create them.
+
+CODE: Create_Paths(path)
+
+	AVAILABLE PARAMS:
+
+	    (*) path  -  This is the full path including the filename. The path
+	    sent through will be split up at every instance of '/' so if you
+	    only want to send through a directory you MUST include a trailing '/'
+
+	EXAMPLE CODE:
+		my_path = xbmc.translatePath('special://home/test/testing/readme.txt')
+		koding.Create_Paths(path=my_path)
+		dialog.ok('PATH CREATED','Check in your Kodi home folder and you should now have sub-folders of /test/testing/.','[COLOR=gold]Press ok to remove these folders.[/COLOR]')
+		shutil.rmtree(xbmc.translatePath('special://home/test'))
+
+------------------------------------------------------------------------------------------
+
+DELETE CRASHLOGS
+Delete all kodi crashlogs. This function will retun the amount of successfully removed crashlogs.
+
+	CODE: Delete_Crashlogs([extra_paths])
+
+	AVAILABLE PARAMS:
+	    extra_paths  -  By default this will search for crashlogs for xbmc,
+	    kodi and spmc. If you want to add compatibility for other forks of
+	    Kodi please send through a list of the files you want deleted. The
+	    format to use needs to be like example shown below.
+
+
+	EXAMPLE CODE:
+		# Lets setup some extra crashlog types for tvmc and ftmc kodi forks
+		log_path =  xbmc.translatePath('special://logpath/')
+		tvmc_path = os.path.join(log_path,'tvmc_crashlog*.*')
+		ftmc_path = os.path.join(log_path,'ftmc_crashlog*.*')
+
+
+		deleted_files = koding.Delete_Crashlogs(extra_paths=[tvmc_path, ftmc_path])
+		if deleted_files > 0:
+		    dialog.ok('CRASHLOGS DELETED','Congratulations, a total of %s crashlogs have been deleted.')
+		else:
+		    dialog.ok('NO CRASHLOGS','No crashlogs could be found on the system.')
+
+------------------------------------------------------------------------------------------
+
+DELETE FILES IN PATH:
 Delete all specific filetypes in a path (including sub-directories)
 
 	CODE: Delete_Files([filepath, filetype, subdirectories])
@@ -372,25 +755,107 @@ Delete all specific filetypes in a path (including sub-directories)
 
 ------------------------------------------------------------------------------------------
 
-DELETE A FOLDER PATH
-Completely delete a folder and all it's sub-folders
+DELETE A FOLDER PATH:
+Completely delete a folder and all it's sub-folders. With the ability to add an ignore list for
+any folders/files you don't want removed.
 
-	CODE: Delete_Folders(filepath)
+	CODE: Delete_Folders(filepath, [ignore])
 
-	AVAILABLE PARAMS:    
+	AVAILABLE PARAMS:
+	    
 	    (*) filepath  -  Use the physical path you want to remove (not special://)
 
-	WARNING: This is an extremely powerful and dangerous tool! If you wipe your whole system
-	by putting in the wrong path then it's your own stupid fault!
+	    ignore  -  A list of paths you want to ignore. These need to be sent
+	    through as physical paths so just use xbmc.translatePath when creating
+	    your list and these can be folder paths or filepaths.
+
+	WARNING: This is an extremely powerful and dangerous tool! If you wipe important
+	system files from your system by putting in the wrong path then I'm afraid that's
+	your own stupid fault! A check has been put in place so you can't accidentally
+	wipe the whole root.
 
 	EXAMPLE CODE:
-		delete_path = xbmc.translatePath('special://profile/addon_data/test')
-		if dialog.yesno('DELETE FOLDER','The following folder will now be removed:', '/userdata/addon_data/test/','Do you want to continue?'):
-		    Delete_Files(filepath)
+		delete_path = xbmc.translatePath('special://profile/py_koding_test')
+
+		# Create new test directory to remove
+		if not os.path.exists(delete_path):
+		    os.makedirs(delete_path)
+
+		# Fill it with some dummy files
+		file1 = os.path.join(delete_path,'file1.txt')
+		file2 = os.path.join(delete_path,'file2.txt')
+		file3 = os.path.join(delete_path,'file3.txt')
+		koding.Dummy_File(dst=file1, size=10, size_format='kb')
+		koding.Dummy_File(dst=file2, size=10, size_format='kb')
+		koding.Dummy_File(dst=file3, size=10, size_format='kb')
+
+		dialog.ok('TEST FILE CREATED','If you look in your addon_data folder you should now see a new test folder containing 3 dummy files. The folder name is \'py_koding_test\'.')
+		if dialog.yesno('DELETE FOLDER','Everything except file1.txt will now be removed from:', '/userdata/py_koding_test/','Do you want to continue?'):
+		    koding.Delete_Folders(filepath=delete_path, ignore=[file1])
 
 ------------------------------------------------------------------------------------------
 
-READ/WRITE TEXT FILES
+EXTRACT:
+This function extract a zip or tar file and return true or false so unlike the builtin xbmc function "Extract" this one will pause code until it's completed the action.
+
+	CODE: koding.Extract(src,dst,[dp])
+	dp is optional, by default it is set to false
+
+	AVAILABLE PARAMS:
+		(*) src    - This is the source file, the actual zip/tar. Make sure this is a full path to your zip file and also make sure you're not using "special://". This extract function is only compatible with .zip/.tar/.tar.gz files
+
+		(*) dst    - This is the destination folder, make sure it's a physical path and not "special://...". This needs to be a FULL path, if you want it to extract to the same location as where the zip is located you still have to enter the full path.
+
+		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the status of the extraction process. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+
+	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
+		dp = xbmcgui.DialogProgress()
+		dp.create('Extracting Zip','Please Wait')
+		if koding.Extract(src,dst,dp):
+		    xbmc.log('YAY IT WORKED!')
+		else:
+		    xbmc.log('UH OH SOMETHING WENT HORRIBLY WRONG')
+
+------------------------------------------------------------------------------------------
+
+FRESH INSTALL:
+Attempt to completely wipe your install. Currently this only supports LE/OE/Android. On LE/OE it will
+perform a hard reset and on Android it will wipe the data for the current running app (untested).
+
+	CODE:  Fresh_Install()
+
+	EXAMPLE CODE:
+		if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh install of Kodi.','Are you sure you want to continue?'):
+		    if dialog.yesno('[COLOR=gold]FINAL CHANCE!!![/COLOR]','If you click Yes this WILL attempt to wipe your install', '[COLOR=dodgerblue]ARE YOU 100% CERTAIN YOU WANT TO WIPE?[/COLOR]'):
+		        clean_state = koding.Fresh_Install()
+		        if not clean_state:
+		            dialog.ok('SYSTEM NOT SUPPORTED','Your platform is not yet supported by this function, you will have to manually wipe.')
+
+------------------------------------------------------------------------------------------
+
+MOVE A DIRECTORY:
+Move a directory including all sub-directories to a new location.
+This will automatically create the new location if it doesn't already
+exist and it wierwrite any existing entries if they exist.
+
+CODE: koding.Move_Tree(src, dst)
+
+AVAILABLE PARAMS:
+
+    (*) src  -  This is source directory that you want to copy
+
+    (*) dst  -  This is the destination location you want to copy a directory to.
+
+EXAMPLE CODE:
+source = xbmc.translatePath('special://home/addons/script.module.python.koding.aio')
+destination = xbmc.translatePath('special://home/Python Koding')
+koding.Move_Tree(source, destination)
+dialog.ok('CHECK YOUR KODI HOME FOLDER','Please check your Kodi home folder, you should now have the Python Koding add-on in there. When you press OK it will be moved back to addons')
+koding.Move_Tree(destination, source)
+
+------------------------------------------------------------------------------------------
+
+READ/WRITE TEXT FILES:
 Open/create a text file and read/write to it.
 
 	CODE: koding.Text_File(path, mode, [text])
@@ -406,14 +871,178 @@ Open/create a text file and read/write to it.
 
 ------------------------------------------------------------------------------------------
 
-GENERATE RANDOM PASSWORD:
-This will generate a random string made up of uppercase & lowercase ASCII characters and digits - it does not contain special characters.
+RETURN END OF A PATH:
+Split the path at every '/' and return the final file/folder name. If your path uses backslashes rather than forward
+slashes it will use that as the separator.
 
-	CODE:  ID_Generator([size])
-	size is an optional paramater.
+	CODE:  End_Path(path)
 
 	AVAILABLE PARAMS:
-		Size - just send through an integer, this is the length of the string you'll get returned. So if you want a password generated that's 20 characters long just use ID_Generator(20). The default is 15.
+
+	    path  -  This is the path where you want to grab the end item name.
+
+	EXAMPLE CODE:
+		addons_path = xbmc.translatePath('special://home/addons')
+		file_name = koding.End_Path(path=addons_path)
+		dialog.ok('ADDONS FOLDER','Path checked:',addons_path,'Folder Name: [COLOR=dodgerblue]%s[/COLOR]'%file_name)
+		file_path = xbmc.translatePath('special://home/addons/script.module.python.koding.aio/addon.xml')
+		file_name = koding.End_Path(path=file_path)
+		dialog.ok('FILE NAME','Path checked:',file_path,'File Name: [COLOR=dodgerblue]%s[/COLOR]'%file_name)
+
+------------------------------------------------------------------------------------------
+
+S Y S T E M   B A S E D   F U N C T I O N S
+
+------------------------------------------------------------------------------------------
+
+ADDON LISTS:
+Return a list of enabled or disabled add-ons found in the database.
+
+	CODE: Addon_List([enabled, inc_new])
+
+    AVAILABLE PARAMS:
+        
+        enabled  -  By default this is set to True which means you'll
+        get a list of all the enabled add-ons found in addons*.db but
+        if you want a list of all the disabled ones just set this to
+        False.
+
+        inc_new  -  This will also add any new add-on folders found on
+        your system that aren't yet in the database (ie ones that have
+        been recently been manually extracted but not scanned in). By
+        default this is set to False.
+	        
+	EXAMPLE CODE:
+		enabled_list = Addon_List(enabled=True)
+		disabled_list = Addon_List(enabled=False)
+		my_return = ''
+
+		for item in enabled_list:
+		    my_return += '[COLOR=lime]ENABLED:[/COLOR] %s\n' % item
+		for item in disabled_list:
+		    my_return += '[COLOR=red]DISABLED:[/COLOR] %s\n' % item
+		Text_Box('ADDON STATUS',my_return)
+
+------------------------------------------------------------------------------------------
+
+ADDON SETTINGS:
+By default this will open the current add-on settings but if you pass through an addon_id it will open the settings for that add-on.
+
+	CODE: Open_Settings([addon_id, stop_script])
+
+	AVAILABLE PARAMS:
+
+		addon_id    - This optional, it can be any any installed add-on id. If nothing is passed through the current add-on settings will be opened.
+
+		stop_script - By default this is set to True, as soon as the addon settings are opened the current script will stop running. If you pass through as False then the script will continue running in the background - opening settings does not pause a script, Kodi just see's it as another window being opened.
+
+------------------------------------------------------------------------------------------
+
+ASCII CHECK:
+Return a list of files found containing non ASCII characters in the filename.
+
+	CODE: ASCII_Check([sourcefile, dp])
+
+	AVAILABLE PARAMS:
+	    
+	    sourcefile  -  The folder you want to scan, by default it's set to the
+	    Kodi home folder.
+	        
+	    dp  -  Optional DialogProgress, by default this is False. If you want
+	    to show a dp make sure you initiate an instance of xbmcgui.DialogProgress()
+	    and send through as the param.
+	        
+	EXAMPLE CODE:
+		home = xbmc.translatePath('special://home')
+		progress = xbmcgui.DialogProgress()
+		progress.create('ASCII CHECK')
+		my_return = ASCII_Check(sourcefile=home, dp=progress)
+		if len(my_return) > 0:
+		    dialog.select('NON ASCII FILES', my_return)
+		else:
+		    dialog.ok('ASCII CHECK CLEAN','Congratulations!','There weren\'t any non-ASCII files found on this system.')
+
+------------------------------------------------------------------------------------------
+
+CLEANUP A STRING:
+Clean a string, removes whitespaces and common buggy formatting when pulling from websites
+
+	CODE: Cleanup_String(my_string)
+
+	    AVAILABLE PARAMS:
+	        
+	        (*) my_string   -  This is the main text you want cleaned up.
+
+	EXAMPLE CODE:
+		current_text = '" This is a string of text which should be cleaned up   /'
+		clean_text = koding.Cleanup_String(current_text)
+		xbmc.log(clean_text)
+		dialog.ok('CLEAN', clean_text)
+
+------------------------------------------------------------------------------------------
+
+CURRENT PROFILE:
+This will return the current running profile, it's only one line of code but this is for my benefit as much as
+anyone else's. I use this function quite a lot and keep forgetting the code so figured it would be easier to
+just write a simple function for it :)
+
+CODE:  Current_Profile()
+
+EXAMPLE CODE:
+profile = koding.Current_Profile()
+dialog.ok('CURRENT PROFILE','Your current running profile is:','[COLOR=dodgerblue]%s[/COLOR]' % profile)
+
+------------------------------------------------------------------------------------------
+
+CURRENT TIMESTAMP:
+This will return the timestamp in various formats. By default it returns as "integer" mode but other options are listed below:
+
+	CODE: koding.Timestamp(mode)
+	mode is optional, by default it's set as integer
+
+	AVAILABLE VALUES:
+	    'integer' -  An integer which is nice and easy to work with in Python (especially for finding out human readable diffs). The format returned is [year][month][day][hour][minutes][seconds]. 
+	    
+	    'epoch'   -  Unix Epoch format (calculated in seconds passed since 12:00 1st Jan 1970).
+
+	    'clean'   -  A clean user friendly time format: Tue Jan 13 10:17:09 2009
+
+------------------------------------------------------------------------------------------
+
+DEBUG MODE:
+Print to the Kodi log but only if debugging is enabled in settings.xml
+
+	CODE: koding.dolog(string)
+	string is your text you want printed to log.
+
+	EXAMPLE CODE:	koding.dolog('Quick test to see if this gets printed to the log')
+	EXAMPLE OUTPUT:		<addon_id>: Quick test to see if this gets printed to the log
+
+------------------------------------------------------------------------------------------
+
+DEPENDENCY CHECK:
+This will return a list of all dependencies required by an add-on.
+This information is grabbed directly from the currently installed addon.xml for that id.
+
+CODE:  Dependency_Check([addon_id, recursive])
+
+AVAILABLE PARAMS:
+
+    addon_id  -  This is optional, if not set it will return a list of every
+    dependency required from all installed add-ons. If you only want to
+    return results of one particular add-on then send through the id.
+
+    recursive  -  By default this is set to False but if set to true and you
+    also send through an individual addon_id it will return all dependencies
+    required for that addon id AND the dependencies of the dependencies.
+
+	EXAMPLE CODE:
+		current_id = xbmcaddon.Addon().getAddonInfo('id')
+		dependencies = koding.Dependency_Check(addon_id=current_id, recursive=True)
+		clean_text = ''
+		for item in dependencies:
+		    clean_text += item+'\n'
+		koding.Text_Box('Modules required for %s'%current_id,clean_text)
 
 ------------------------------------------------------------------------------------------
 
@@ -446,75 +1075,625 @@ Use this to set built-in kodi settings via JSON or set skin settings. The value 
 
 ------------------------------------------------------------------------------------------
 
-ENABLE/DISABLE THE BUSY (WORKING) SYMBOL
-This will show/hide a "working" symbol.
+FANCY TEXT:
+Capitalize a string and make the first colour of each string blue and the rest of text white.
+That's the default colours but you can change to whatever colours you want.
 
-	CODE: Show_Busy(True)
+	CODE: Colour_Text(text, [color1, color2])
 
-	AVAILABLE PARAMS:
-    	status - This optional, by default it's True which means the "working" symbol appears. False will disable.
+	    AVAILABLE PARAMS:
+	        
+	        (*) text   -  This is the main text you want to change
+
+	        colour1 -  This is optional and is set as dodgerblue by default.
+	        This is the first letter of each word in the string
+
+	        colour2 -  This is optional and is set as white by default. 
+	        This is the colour of the text
+
+	IMPORTANT: I use the Queens English so please note the word "colour" has a 'u' in it!
 
 	EXAMPLE CODE:
-		dialog.ok('BUSY SYMBOL','Press OK to show a busy dialog which restricts any user interaction. We have added a sleep of 5 seconds at which point it will disable.')
-		koding.Show_Busy()
+		current_text = 'This is a string of text which should be changed to dodgerblue and white with every first letter capitalised'
+		mytext = koding.Colour_Text(text=current_text, colour1='dodgerblue', colour2='white')
+		xbmc.log(current_text)
+		xbmc.log(mytext)
+		dialog.ok('CURRENT TEXT', current_text)
+		dialog.ok('NEW TEXT', mytext)~"""
+
+------------------------------------------------------------------------------------------
+
+FIND IN TEXT:
+Regex through some text and return a list of matches. Please note this will return a LIST so even if
+only one item is found you will still need to access it as a list, see example below.
+
+	CODE: koding.Find_In_Text(content, start, end, [show_errors])
+
+	AVAILABLE PARAMS:
+	    
+	    (*) content  -  This is the string to search
+
+	    (*) start    -  The start search string
+
+	    (*) end      -  The end search string
+
+	    show_errors  -  Default is True, the code will show help dialogs for bad code.
+	    Set to False if you want to hide these messages
+
+	EXAMPLE CODE:
+		textsearch = 'This is some text so lets have a look and see if we can find the words "lets have a look"'
+		search_result = koding.Find_In_Text(textsearch, 'text so ', ' and see')
+		dialog.ok('SEARCH RESULT','You searched for the start string of "text so " and the end string of " and see". Your result is: %s' % search_result[0])
+
+		# Please note: we know for a fact there is only one result which is why we're only accessing list item zero.
+		# If we were expecting more than one return we would probably do something more useful and loop through in a for loop.
+
+------------------------------------------------------------------------------------------
+
+FOLDER SIZE:
+Return the size of a folder path including sub-directories, this can be returned in a number of different formats.
+
+	CODE: koding.Folder_Size([dirname, filesize])
+
+	AVAILABLE PARAMS:
+
+	    dirname  - This optional, by default it will tell you how much space is available in your
+	    special://home folder. If you require information for another path (such as a different
+	    partition or storage device) then enter the physical path. This currently only works for
+	    local paths and not networked drives.
+
+	    filesize - By default you'll get a return of total bytes, however you can get the value as
+	    bytes, kilobytes, megabytes, gigabytes and terabytes..
+
+	        VALUES:
+	        'b'  = bytes (integer)
+	        'kb' = kilobytes (float to 1 decimal place)
+	        'mb' = kilobytes (float to 2 decimal places)
+	        'gb' = kilobytes (float to 3 decimal places)
+	        'tb' = terabytes (float to 4 decimal places)
+
+	EXAMPLE CODE:
+		HOME = xbmc.translatePath('special://home')
+		home_size = Folder_Size(HOME, 'mb')
+		dialog.ok('Folder Size','KODI HOME: %s MB' % home_size)
+
+------------------------------------------------------------------------------------------
+
+FORCE CLOSE:
+Force close Kodi, should only be used in extreme circumstances.
+
+	CODE: Force_Close()
+
+	EXAMPLE CODE:
+		if dialog.yesno('FORCE CLOSE','Are you sure you want to forcably close Kodi? This could potentially cause corruption if system tasks are taking place in background.'):
+		    koding.Force_Close()
+
+------------------------------------------------------------------------------------------
+
+FREE SPACE:
+Show the amount of available free space in a path, this can be returned in a number of different formats.
+
+	CODE: Free_Space([dirname, filesize])
+
+	AVAILABLE PARAMS:
+
+		dirname  - This optional, by default it will tell you how much space is available in your special://home folder. If you require information for another path (such as a different partition or storage device) then enter the physical path. This currently only works for local paths and not networked drives.
+
+		filesize - By default you'll get a return of total bytes, however you can get the value as bytes, kilobytes, megabytes, gigabytes and terabytes..
+
+			VALUES:
+			'b'	 = bytes (integer)
+			'kb' = kilobytes (float to 1 decimal place)
+			'mb' = kilobytes (float to 2 decimal places)
+			'gb' = kilobytes (float to 3 decimal places)
+			'tb' = terabytes (float to 4 decimal places)
+
+------------------------------------------------------------------------------------------
+
+GENERATE RANDOM PASSWORD:
+This will generate a random string made up of uppercase & lowercase ASCII characters and digits - it does not contain special characters.
+
+	CODE:  ID_Generator([size])
+	size is an optional paramater.
+
+	AVAILABLE PARAMS:
+		Size - just send through an integer, this is the length of the string you'll get returned. So if you want a password generated that's 20 characters long just use ID_Generator(20). The default is 15.
+
+------------------------------------------------------------------------------------------
+
+GET ADD-ON ID:
+If you know the folder name of an add-on but want to find out the addon id (it may not necessarily be the same as folder name)
+then you can use this function. Even if the add-on isn't enabled on the system this will regex out the add-on id.
+
+	CODE:  Get_Addon_ID(folder)
+
+	AVAILABLE PARAMS:
+	    
+	    folder  -  This is folder name of the add-on. Just the name not the path.
+
+	EXAMPLE CODE:
+		my_id = koding.Get_Addon_ID(folder='script.module.python.koding.aio')
+		dialog.ok('ADDON ID','The add-on id found is:','[COLOR=dodgerblue]%s[/COLOR]'%my_id)
+
+------------------------------------------------------------------------------------------
+
+GRAB LOG:
+This will grab the log file contents, works on all systems even forked kodi.
+
+	CODE:  Grab_Log([log_type, formatting, sort_order])
+
+	AVAILABLE PARAMS:
+	    
+	    log_type    -  This is optional, if not set you will get the current log.
+	    If you would prefer the old log set this to 'old'
+
+	    formatting  -  By default you'll just get a default log but you can set
+	    this to 'warnings', 'notices', 'errors' to filter by only those error types.
+	    Notices will return in blue, warnings in gold and errors in red.
+	    You can use as many of the formatting values as you want, just separate by an
+	    underscore such as 'warnings_errors'. If using anything other than the
+	    default in here your log will returned in order of newest log activity first
+	    (reversed order). You can also use 'clean' as an option and that will just
+	    return the full log but with clean text formatting and in reverse order.
+
+	    sort_order   -  This will only work if you've sent through an argument other
+	    than 'original' for the formatting. By default the log will be shown in
+	    'reverse' order but you can set this to 'original' if you prefer ascending
+	    timestamp ordering like a normal log.
+
+	EXAMPLE CODE:
+		my_log = koding.Grab_Log()
+		dialog.ok('KODI LOG LOOP','Press OK to see various logging options, every 5 seconds it will show a new log style.')
+		koding.Text_Box('CURRENT LOG FILE (ORIGINAL)',my_log)
 		xbmc.sleep(5000)
-		koding.Show_Busy(False)
+		my_log = koding.Grab_Log(formatting='clean', sort_order='reverse')
+		koding.Text_Box('CURRENT LOG FILE (clean in reverse order)',my_log)
+		xbmc.sleep(5000)
+		my_log = koding.Grab_Log(formatting='errors_warnings', sort_order='reverse')
+		koding.Text_Box('CURRENT LOG FILE (erros & warnings only - reversed)',my_log)
+		xbmc.sleep(5000)
+		old_log = koding.Grab_Log(log_type='old')
+		koding.Text_Box('OLD LOG FILE',old_log)
 
 ------------------------------------------------------------------------------------------
 
-SHOW TEXT IN A LARGE WINDOW:
-This will allow you to open a blank window and fill it with some text.
+INSTALLED ADD-ON DETAILS:
+This will send back a list of currently installed add-ons on the system.
+All the three paramaters you can send through to this function are optional,
+by default (without any params) this function will return a dictionary of all
+installed add-ons. The dictionary will contain "addonid" and "type" e.g. 'xbmc.python.pluginsource'.
 
-	CODE: koding.Text_Box(header, message)
+	CODE: Installed_Addons([types, content, properties]):
 
 	AVAILABLE PARAMS:
-		header 	-  As the name suggests this is a string to be used for the header/title of the window
 
-		message -  Yes you've probably already gussed it, this is the main message text
+	    types       -  If you only want to retrieve details for specific types of add-ons
+	    then use this filter. Unfortunately only one type can be filtered at a time,
+	    it is not yet possible to filter multiple types all in one go. Please check
+	    the official wiki for the add-on types avaialble but here is an example if
+	    you only wanted to show installed repositories: koding.Installed_Addons(types='xbmc.addon.repository')
+
+	    content     -  Just as above unfortunately only one content type can be filtered
+	    at a time, you can filter by video,audio,image and executable. If you want to
+	    only return installed add-ons which appear in the video add-ons section you
+	    would use this: koding.Installed_Addons(content='video')
+
+	    properties  -  By default a dictionary containing "addonid" and "type" will be
+	    returned for all found add-ons meeting your criteria. However you can add any
+	    properties in here available in the add-on xml (check official Wiki for properties
+	    available). Unlike the above two options you can choose to add multiple properties
+	    to your dictionary, see example below:
+	    koding.Installed_Addons(properties='name,thumbnail,description')
 
 
 	EXAMPLE CODE:
-		koding.Text_Box('TEST HEADER','Just some random text[CR][CR]Use kodi tags for new lines, colours etc.')
+		my_video_plugins = koding.Installed_Addons(types='xbmc.python.pluginsource', content='video', properties='name')
+		final_string = ''
+		for item in my_video_plugins:
+		    final_string += 'ID: %s | Name: %s\n'%(item["addonid"], item["name"])
+		koding.Text_Box('LIST OF VIDEO PLUGINS',final_string)
 
 ------------------------------------------------------------------------------------------
 
-RETURN INSTALLED ADD-ON DETAILS:
-koding.Installed_Addons([types],[content],[properties])
-All the three paramaters you can send through to this function are optional, by default (without any params) this function will return a dictionary of all installed add-ons. The dictionary will contain "addonid" and "type" e.g. 'xbmc.python.pluginsource'.
+LAST ERROR:
+Return details of the last error produced, perfect for try/except statements
 
-Available filters:
+	CODE: Last_Error()
 
-types: If you only want to retrieve details for specific types of add-ons then use this filter. Unfortunately only one type can be filtered at a time, it is not yet possible to filter multiple types all in one go. Please check the official wiki for the add-on types avaialble but here is an example if you only wanted to show installed repositories:
-koding.Installed_Addons(types='xbmc.addon.repository')
-
-content: Just as above unfortunately only one content type can be filtered at a time, you can filter by video,audio,image and executable. If you want to only return installed add-ons which appear in the video add-ons section you would use this:
-koding.Installed_Addons(content='video')
-
-properties: By default a dictionary containing "addonid" and "type" will be returned for all found add-ons meeting your criteria. However you can add any properties in here available in the add-on xml (check official Wiki for properties available). Unlike the above two options you can choose to add multiple properties to your dictionary, see example below:
-koding.Installed_Addons(properties='name,thumbnail,description')
-
-Of course you can use as many of these params as you wish, they are all optional but if you wanted you could use something like this:
-
-koding.Installed_Addons(types='xbmc.python.script', content='video', properties='name')
-This would show all scripts that also appear in the video section and it would return the defaults of "addonid" & "types" plus a third dictionary item of "name".
+	EXAMPLE CODE: xbmc.log(Last_Error())
 
 ------------------------------------------------------------------------------------------
 
-PERFORM DATABASE FUNCTIONS:
-Open a database and either return an array of results with the SELECT command or perform an action such as INSERT, UPDATE, CREATE.
+MD5 CHECK:
+Return the md5 value of file or directory, this will return just one unique value.
 
-	CODE:  DB_Query(db_path, query, [values])
+	CODE: md5_check(src)
 
 	AVAILABLE PARAMS:
-	    (*) db_path -  the full path to the database file you want to access.
-	    (*) query   -  this is the actual db query you want to process, use question marks for values
 
-	    values  -  a list of values, even if there's only one value it must be sent through as a list item.
+	    (*) src  -  This is source directory/file you want the md5 value of.
 
 	EXAMPLE CODE:
-		dbpath = koding.DB_Path_Check('addons')
-		db_query = koding.DB_Query(db_path=dbpath, query='SELECT * FROM addons WHERE addonID LIKE ? AND addonID NOT LIKE ?', values=['%youtube%',%script.module%])
-		koding.Text_Box('DB SEARCH RESULTS',str(db_query))
+		home = xbmc.translatePath('special://home')
+		home_md5 = koding.md5_check(home)
+		dialog.ok('md5 Check', 'The md5 of your home folder is:', home_md5)
+
+		guisettings = xbmc.translatePath('special://profile/guisettings.xml')
+		guisettings_md5 = koding.md5_check(guisettings)
+		dialog.ok('md5 Check', 'The md5 of your guisettings.xml:', guisettings_md5)
+
+------------------------------------------------------------------------------------------
+
+PATH TO CURRENT "LIVE" DATABASE:
+If you need to find out the current "real" database in use then this is the function for you. It will scan for a specific database type (e.g. addons) and return the path to the one which was last updated. This is particularly useful if the system's previously updated to a newer version rather than a fresh install - or if they've installed a "build" which contained old databases.
+
+	CODE: DB_Path_Check(db_path)
+
+	AVAILABLE VALUES:
+		The db_path can be any string you want, it needs to be the string the database starts with. If you want to find the path for the addons*.db you would use "addons" as the value, if you wanted to find the path of the MyVideos*.db you would use "myvideos" etc. - it is not case sensitive.
+
+------------------------------------------------------------------------------------------
+
+REFRESH/RELOAD VARIOUS SECTIONS:
+Refresh a number of items in kodi, choose the order they are executed in by putting first in your r_mode.
+For example if you want to refresh addons then repo and then the profile you would send through a list in
+the order you want them to be executed.
+
+	CODE: koding.Refresh(r_mode, [profile])
+
+	AVAILABLE PARAMS:
+
+	    r_mode  -  This is the types of "refresh you want to perform",
+	    you can send through just one item or a list of items from the
+	    list below. If you want a sleep between each action just put a
+	    '~' followed by amount of milliseconds after the r_mode. For example
+	    r_mode=['addons~3000', 'repos~2000', 'profile']. This would refresh
+	    the addons, wait 2 seconds then refresh the repos, wait 3 seconds then
+	    reload the profile. The default is set to do a force refresh on
+	    addons and repositories - ['addons', 'repos'].
+	      
+	       'addons': This will perform the 'UpdateLocalAddons' command.
+
+	       'container': This will refresh the contents of the page.
+
+	       'profile': This will refresh the current profile or if
+	       the profile_name param is set it will load that.
+
+	       'repos': This will perform the 'UpdateAddonRepos' command.
+
+	       'skin': This will perform the 'ReloadSkin' command.
+
+	    profile_name -  If you're sending through the option to refresh
+	    a profile it will reload the current running profile by default
+	    but you can pass through a profile name here.
+
+	EXAMPLE CODE:
+		dialog.ok('RELOAD SKIN','We will now attempt to update the addons, pause 3s, update repos and pause 2s then reload the default profile. Press OK to continue.')
+		koding.Refresh(r_mode=['addons~3000', 'repos~2000', 'profile'], profile_name='default')
+
+------------------------------------------------------------------------------------------
+
+RUNNING APP:
+Return the Kodi app name you're running, useful for fork compatibility
+
+	CODE: Running_App()
+
+	EXAMPLE CODE:
+		my_kodi = koding.Running_App()
+		kodi_ver = xbmc.getInfoLabel("System.BuildVersion")
+		dialog.ok('KODI VERSION','You are running:','[COLOR=dodgerblue]%s[/COLOR] - v.%s' % (my_kodi, kodi_ver))
+
+------------------------------------------------------------------------------------------
+
+SLEEP IF FUNCTION ACTIVE:
+This will allow you to pause code while a specific function is running in the background.
+
+	CODE: koding.Sleep_If_Function_Active(function, args, kill_time, show_busy)
+
+	AVAILABLE PARAMS:
+
+	    function  -  This is the function you want to run. This does
+	    not require brackets, you only need the function name.
+
+	    args  -  These are the arguments you want to send through to
+	    the function, these need to be sent through as a list.
+
+	    kill_time - By default this is set to 30. This is the maximum
+	    time in seconds you want to wait for a response. If the max.
+	    time is reached before the function completes you will get
+	    a response of False.
+
+	    show_busy - By default this is set to True so you'll get a busy
+	    working dialog appear while the function is running. Set to
+	    false if you'd rather not have this.
+
+	EXAMPLE CODE:
+		# Create a basic function
+		def Open_Test_URL(url):
+		    koding.Open_URL(url)
+
+		# Main Code
+		dialog.ok('SLEEP IF FUNCTION ACTIVE','We will now attempt to read a 20MB zip and then give up after 10 seconds.','Press OK to continue.')
+		koding.Sleep_If_Function_Active(function=Open_Test_URL, args=['http://download.thinkbroadband.com/20MB.zip'], kill_time=10, show_busy=True)
+		dialog.ok('FUNCTION COMPLETE','Of course we cannot read that file in just 10 seconds so we\'ve given up!')
+
+------------------------------------------------------------------------------------------
+
+SLEEP IF WINDOW/DIALOG IS ACTIVE:
+This will allow you to pause code while a specific window or dialog is open.
+
+	CODE: koding.Sleep_If_Active(window_type)
+
+	AVAILABLE PARAMS:
+
+	    window_type  -  This is the window xml name you want to check for, if it's
+	    active then the code will sleep until it becomes inactive. By default this
+	    is set to 10147 which is the custom text window. For a list of available
+	    Window ID's please take a look at this page: http://kodi.wiki/view/Window_IDs
+
+	EXAMPLE CODE:
+		koding.Text_Box('EXAMPLE TEXT','This is just an example, normally a text box would not pause code and the next command would automatically run immediately over the top of this.')
+		koding.Sleep_If_Window_Active(10147) # This is the window id for the text box
+		dialog.ok('WINDOW CLOSED','The window has now been closed so this dialog code has now been initiated')
+
+------------------------------------------------------------------------------------------
+
+SPLIT STRING INTO LINES OF X AMOUNT OF CHARACTERS:
+Splits up a piece of text into a list of lines x amount of chars in length.
+
+	CODE: koding.Split_Lines(raw_string, size)
+
+	AVAILABLE PARAMS:
+
+	    (*) raw_string  -  This is the text you want split up into lines
+
+	    (*) size        -  This is the maximum size you want the line length to be (in characters)
+
+	EXAMPLE CODE:
+		raw_string = 'This is some test code, let\'s take a look and see what happens
+		if we split this up into lines of 20 chars per line'
+		my_list = koding.Split_Lines(raw_string,20)
+		koding.Text_Box('List of lines',str(my_list))
+
+------------------------------------------------------------------------------------------
+
+SYSTEM COMMANDS:
+This is just a simplified method of grabbing certain Kodi infolabels, paths and booleans as well as performing
+some basic built in kodi functions. We have a number of regularly used functions added to a dictionary which can
+quickly be called via this function or you can use this function to easily run a command not currently in the dictionary.
+Just use one of the many infolabels, builtin commands or conditional visibilities available:
+
+info: http://kodi.wiki/view/InfoLabels
+bool: http://kodi.wiki/view/List_of_boolean_conditions
+exec: http://kodi.wiki/view/List_of_Built_In_Functions
+
+	CODE: System(command, [function])
+
+	AVAILABLE PARAMS:
+	    
+	    (*) command  -  This is the command you want to perform, below is a list
+	    of all the default commands you can choose from, however you can of course
+	    send through your own custom command if using the function option (details
+	    at bottom of page)
+
+	    AVAILABLE VALUES:
+
+	        'addonid'       : Returns the FOLDER id of the current add-on. Please note could differ from real add-on id.
+	        'addonname'     : Returns the current name of the add-on
+	        'builddate'     : Return the build date for the current running version of Kodi
+	        'cpu'           : Returns the CPU usage as a percentage
+	        'cputemp'       : Returns the CPU temperature in farenheit or celcius depending on system settings
+	        'currentlabel'  : Returns the current label of the item in focus
+	        'currenticon'   : Returns the name of the current icon
+	        'currentpos'    : Returns the current list position of focused item
+	        'currentpath'   : Returns the url called by Kodi for the focused item
+	        'currentrepo'   : Returns the repo of the current focused item
+	        'currentskin'   : Returns the FOLDER id of the skin. Please note could differ from actual add-on id
+	        'date'          : Returns the date (Tuesday, April 11, 2017)
+	        'debug'         : Toggles debug mode on/off
+	        'freeram'       : Returns the amount of free memory available (in MB)
+	        'freespace'     : Returns amount of free space on storage in this format: 10848 MB Free
+	        'hibernate'     : Hibernate system, please note not all systems are capable of waking from hibernation
+	        'internetstate' : Returns True or False on whether device is connected to internet
+	        'ip'            : Return the current LOCAL IP address (not your public IP)
+	        'kernel'        : Return details of the system kernel
+	        'language'      : Return the language currently in use
+	        'mac'           : Return the mac address, will only return the mac currently in use (Wi-Fi OR ethernet, not both)
+	        'numitems'      : Return the total amount of list items curently in focus
+	        'profile'       : Return the currently running profile name
+	        'quit'          : Quit Kodi
+	        'reboot'        : Reboot the system
+	        'restart'       : Restart Kodi (Windows/Linux only)
+	        'shutdown'      : Shutdown the system
+	        'sortmethod'    : Return the current list sort method
+	        'sortorder'     : Return the current list sort order
+	        'systemname'    : Return a clean friendly name for the system
+	        'time'          : Return the current time in this format: 2:05 PM
+	        'usedspace'     : Return the amount of used space on the storage in this format: 74982 MB Used
+	        'version'       : Return the current version of Kodi, this may need cleaning up as it contains full file details
+	        'viewmode'      : Return the current list viewmode
+	        'weatheraddon'  : Return the current plugin being used for weather
+
+
+	    function  -  This is optional and default is set to a blank string which will
+	    allow you to use the commands listed above but if set you can use your own
+	    custom commands by setting this to one of the values below.
+
+	    AVAILABLE VALUES:
+
+	        'bool' : This will allow you to send through a xbmc.getCondVisibility() command
+	        'info' : This will allow you to send through a xbmc.getInfoLabel() command
+	        'exec' : This will allow you to send through a xbmc.executebuiltin() command
+
+	EXAMPLE CODE:
+		current_time = koding.System(command='time')
+		current_label = koding.System(command='currentlabel')
+		is_folder = koding.System(command='ListItem.IsFolder', function='bool')
+		dialog.ok('PULLED DETAILS','The current time is %s' % current_time, 'Folder status of list item [COLOR=dodgerblue]%s[/COLOR]: %s' % (current_label, is_folder),'^ A zero means False, as in it\'s not a folder.')
+
+------------------------------------------------------------------------------------------
+
+TOGGLE ADD-ONS:
+Send through either a list of add-on ids or one single add-on id. The add-ons sent through will then
+be added to the addons*.db and enabled or disabled (depending on state sent through).
+
+WARNING: If safe_mode is set to False this directly edits the addons*.db rather than using JSON-RPC.
+Although directly amending the db is a lot quicker there is no guarantee it won't cause severe problems
+in later versions of Kodi (this was created for v.17). DO NOT set safe_mode to False unless you 100%
+understand the consequences!
+
+	CODE:  Toggle_Addons([addon, enable, safe_mode, exclude_list, new_only])
+
+	AVAILABLE PARAMS:
+
+	    (*) addon  -  This can be a list of addon ids, one single id or
+	    'all' to enable/disable all. If enabling all you can still use
+	    the exclude_list for any you want excluded from this function.
+
+	    enable  -  By default this is set to True, if you want to disable
+	    the add-on(s) then set this to False.
+
+	    safe_mode  -  By default this is set to True which means the add-ons
+	    are enabled/disabled via JSON-RPC which is the method recommended by
+	    the XBMC foundation. Setting this to False will result in a much
+	    quicker function BUT there is no guarantee this will work on future
+	    versions of Kodi and it may even cause corruption in future versions.
+	    Setting to False is NOT recommended and you should ONLY use this if
+	    you 100% understand the risks that you could break multiple setups.
+
+	    exclude_list  -  Send through a list of any add-on id's you do not
+	    want to be included in this command.
+
+	    new_only  -  By default this is set to True so only newly extracted
+	    add-on folders will be enabled/disabled. This means that any existing
+	    add-ons which have deliberately been disabled by the end user are
+	    not affected.
+
+	EXAMPLE CODE:
+		xbmc.executebuiltin('ActivateWindow(Videos, addons://sources/video/)')
+		xbmc.sleep(2000)
+		dialog.ok('DISABLE YOUTUBE','We will now disable YouTube (if installed)')
+		koding.Toggle_Addons(addon='plugin.video.youtube', enable=False, safe_mode=True, exclude_list=[], new_only=False)
+		koding.Refresh('container')
+		xbmc.sleep(2000)
+		dialog.ok('ENABLE YOUTUBE','When you click OK we will enable YouTube (if installed)')
+		koding.Toggle_Addons(addon='plugin.video.youtube', enable=True, safe_mode=True, exclude_list=[], new_only=False)
+		koding.Refresh('container')
+
+------------------------------------------------------------------------------------------
+
+V I D E O   T O O L S
+
+------------------------------------------------------------------------------------------
+
+CHECK IF VIDEO PLAYBACK IS SUCCESSFUL:
+This function will return true or false based on video playback. Simply start a stream (whether via an add-on, direct link to URL or local storage doesn't matter), the code will then work out if playback is successful. This uses a number of checks and should take into account all potential glitches which can occur during playback. The return should happen within a second or two of playback being successful (or not).
+
+	CODE: Check_Playback()
+
+------------------------------------------------------------------------------------------
+
+PLAY VIDEO:
+This will attempt to play a video and return True or False on whether or not playback was successful. This function is similar
+to Check_Playback but this actually tries a number of methods to play the video whereas Check_Playback does not actually try to
+play a video - it will just return True/False on whether or not a video is currently playing.
+
+	CODE: Play_Video(video, [showbusy, content])
+
+	AVAILABLE PARAMS:
+
+	    (*) video  -  This is the path to the video, this can be a local
+	    path, online path or a channel number from the PVR.
+
+	    showbusy  -  By default this is set to True which means while the
+	    function is attempting to playback the video the user will see the
+	    busy dialog. Set to False if you prefer this not to appear but do
+	    bare in mind a user may navigate to another section and try playing
+	    something else if they think this isn't doing anything.
+
+	    content  -  By default this is set to 'video', however if you're
+	    passing through audio you may want to set this to 'music' so the
+	    system can correctly set the tags for artist, song etc.
+
+	EXAMPLE CODE:
+		isplaying = koding.Play_Video('http://totalrevolution.tv/videos/python_koding/Browse_To_Folder.mov')
+		if isplaying:
+		    dialog.ok('PLAYBACK SUCCESSFUL','Congratulations, playback was successful')
+		    xbmc.Player().stop()
+		else:
+		    dialog.ok('PLAYBACK FAILED','Sorry, playback failed :(')
+
+------------------------------------------------------------------------------------------
+
+W E B   T O O L S
+
+------------------------------------------------------------------------------------------
+
+DOWNLOAD:
+This will download a file, currently this has to be a standard download link which doesn't require cookies/login.
+
+	CODE: koding.Download(src,dst,[dp])
+	dp is optional, by default it is set to false
+
+	AVAILABLE PARAMS:
+		(*) src    - This is the source file, the URL to your download. If you attempted to download an item but it's not behaving the way you think it should (e.g. a zip file not unzipping) then change the extension of the downloaded file to .txt and open up in a text editor. You'll most likely find it's just a piece of text that was returned from the URL you gave and it should have details explaining why it failed. Could be that's the wrong URL, it requires some kind of login, it only accepts certain user-agents etc.
+
+		(*) dst    - This is the destination file, make sure it's a physical path and not "special://...". Also remember you need to add the actual filename to the end of the path, so if we were downloading something to the "downloads" folder and we wanted the file to be called "test.txt" we would use this path: dst = "downloads/test.txt". Of course the downloads folder would actually need to exist otherwise it would fail and based on this poor example the downloads folder would be at root level of your device as we've not specified a path prior to that so it just uses the first level that's accessible.
+
+		dp - This is optional, if you pass through the dp function as a DialogProgress() then you'll get to see the progress of the download. If you choose not to add this paramater then you'll just get a busy spinning circle icon until it's completed. See the example below for a dp example.
+
+	EXAMPLE CODE WITH A DIALOG PROGRESS WINDOW:
+		dp = xbmcgui.DialogProgress()
+		dp.create('Downloading File','Please Wait')
+		koding.Download(src,dst,dp)
+
+------------------------------------------------------------------------------------------
+
+GRAB THE EXTENSION OF A URL:
+Return the extension of any given url
+
+	CODE:   koding.Get_Extension(url)
+
+	AVAILABLE PARAMS:
+	    (*) url  -  This is the url you want to grab the extension from
+
+	EXAMPLE CODE:
+		url_extension = koding.Get_Extension('http://testpage.com/myfile.mp4')
+		dialog.ok('FILE EXTENSION',The file extension of http://testpage.com/myfile.mp4 is:','','[COLOR=dodgerblue]%s[/COLOR]'%url_extension)
+
+------------------------------------------------------------------------------------------
+
+PULL CONTENTS FROM A WEB PAGE:
+If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
+
+	CODE:	koding.Open_URL(url,[post_type])
+	post_type is optional, by default it's set as 'get'
+
+	AVAILABLE VALUES:
+		'get'  -  This is already the default so no real need to add this but this uses a standard query string
+		
+		'post' -  This will convert the query string into a post
+
+	EXAMPLE CODE:
+		koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+
+------------------------------------------------------------------------------------------
+
+RUN CODE FROM YOUR OWN SERVER:
+If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
+
+WARNING: Running code directly from a server is generally discouraged, any add-ons using such code will certainly not be accepted on the official kodi.tv forum as it is strictly against their rules. By having add-ons capable of self updating and bypassing their highly vetted repository system it would be a security breach for the foundation so their stance on this is completely understandable. For third party development you are presumably in control of your own repository so it really shouldn't make much difference, however do note that running code directly from a server is slower than running locally and you'll find it's discouraged by a number of devs. Can certainly be useful for quick dynamic updates which need to take place though.
+
+	CODE:	koding.Main(url,[post_type])
+	post_type is optional, by default it's set as 'get'
+
+	AVAILABLE VALUES:
+		'get'  -  This is already the default so no real need to add this but this uses a standard query string
+		
+		'post' -  This will convert the query string into a post
+
+	EXAMPLE CODE:
+		koding.Main('http://testpage.com?query1=value1&query2=value2', post_type='post')
 
 ------------------------------------------------------------------------------------------
 

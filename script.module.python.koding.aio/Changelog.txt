@@ -1,1 +1,49 @@
+v.0.6:
+- Added ability to run another plugin via Add_Dir, just send mode as a blank string.
+- Added System() function which allow easy access to various xbmc commands.
+- Cleaned up the README file.
+- Added ASCII_Check() function, will return a list of non-ASCII filenames found.
+- Added md5_check() function to return md5 value of file or folder.
+- Added Android functions for opening, uninstalling and listing installed apps.
+- Added Android function for opening into a specific apps settings.
+- Added Force_Close() function
+- Added Running_App() function which returns the name of current running app.
+- Added Fresh_Install() function which will wipe your current install.
+- Added Delete_Crashlogs() function.
+- Improved Delete_Folders function, can now send through an ignore list for
+file/folder paths you don't want removed.
+- Added Sleep_If_Function_Active() which will sleep until the previously called
+function has completed.
+- Renamed Sleep_If_Active() to Sleep_If_Window_Active()
+- Fixed Open_URL function which was broken in last push
+- Added new Caller() function
+- Changed the way the addon id is pulled so it works when called from scripts.
+- Added requests dependency which had somehow been ommitted
+- Fixed up the Add_Dir function so it's now showing correct infolabels (hopefully!)
+- Added auto infolabel generation to the Play_Video function (thanks midraal)
+- Re-coded Add_Dir so it now takes context menus and dictionaries for params
+- Cleaned up and improved a lot of the guides
+- Fixed Play_Video so it also works with audio
+- Improved Grab_Log, can now filter and also have clean formatted text
+- Added Notify (A simple notification popup)
+- Added Sleep_If_Active (pauses code until a specific window closes)
+- Added Move_Tree (Moves directory from a to b)
+- Added Toggle_Addons (enables/disables add-ons)
+- Added various database functions (thanks to midraal), details below:
+-- Add_To_Table (adds a row to the table stored in your addons addon_data folder)
+-- Create_Table (creates a table in your addons db)
+-- Get_All_From_Table (grabs all results from a specific table in your db)
+-- Get_From_Table (grabs specific results based on a query on your db)
+-- Remove_From_Table (removes specific results based on a query on your db)
+
+
+v.0.4:
+- Fixed Browse_To_File
+- Moved Open_URL into web module, made more sense there
+- Added Validate_Link (Checks if url sends back a code 200 - in other words it's live)
+- Added DB_Query (A simple SQLite Db tool, execute any SQL command)
+- Added Get_Extension (Returns the extension type of an online file)
+- Added Dependency_Check (Returns all dependencies required for an addon and optionally all sub-dependencies)
+
+
 v.0.1: Initial release

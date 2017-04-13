@@ -25,12 +25,14 @@ import urllib2
 import xbmc
 import xbmcaddon
 import xbmcgui
-
+import inspect
 try:
     import simplejson as json
 except:
     import json
 
+from android        import *
+from database       import *
 from directory      import *
 from filetools      import *
 from guitools       import *
@@ -45,11 +47,11 @@ def converthex(url):
     return binascii.unhexlify(url)
 
 try:
-    ADDON_ID     =  xbmcaddon.Addon().getAddonInfo('id')
+    ADDON_ID = xbmcaddon.Addon().getAddonInfo('id')
 except:
-    ADDON_ID     =  sys.argv[2]
+    ADDON_ID = Caller()
 
-AddonVersion    =  xbmcaddon.Addon(id=ADDON_ID).getAddonInfo('version')
+AddonVersion = xbmcaddon.Addon(id=ADDON_ID).getAddonInfo('version')
 
 try:
     if sys.argv[1] == converthex('7465737466696c65'):
@@ -270,7 +272,21 @@ def Get_IP():
 # TUTORIAL #
 def Main(url='', post_type = 'get'):
     """
-If you have web pages of your own then you can hook into them using koding.Main(url) which will pull the return from the URL and attempt to execute that code.
+If you have web pages of your own then you can hook into them using
+koding.Main(url) which will pull the return from the URL and attempt
+to execute that code.
+
+WARNING: Running code directly from a server is generally discouraged,
+any add-ons using such code will certainly not be accepted on the official
+kodi.tv forum as it is strictly against their rules. By having add-ons
+capable of self updating and bypassing their highly vetted repository
+system it would be a security breach for the foundation so their stance on
+this is completely understandable. For third party development you are
+presumably in control of your own repository so it really shouldn't make
+much difference, however do note that running code directly from a server
+is slower than running locally and you'll find it's discouraged by a number
+of devs. Can certainly be useful for quick dynamic updates which need to
+take place though.
 
 CODE:   koding.Main(url,[post_type])
 post_type is optional, by default it's set as 'get'
@@ -308,7 +324,7 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
         run_code = Open_URL(url, post_type)
 
     try:
-        # dolog(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
+        dolog('### RUN CODE: '+Encryption('d',message=run_code.replace('\n','').replace('\t','').replace('\r','')))
         exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
     except:
         xbmc.log(Last_Error())

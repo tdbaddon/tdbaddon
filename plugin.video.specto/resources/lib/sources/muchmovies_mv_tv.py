@@ -36,7 +36,7 @@ import requests
 
 class source:
     def __init__(self):
-        self.base_link = 'https://123movieshd.tv'
+        self.base_link = 'https://123movieshd.net'
         #self.base_link_2 = 'https://123movies.net.ru'
         self.search_link = '/ajax/suggest_search?keyword=%s'
         self.search_link_2 = '/movie/search/%s'
@@ -189,18 +189,40 @@ class source:
                 r = client.parseDOM(r, 'div', attrs={'id': 'list-eps'})[0]
                 r = client.parseDOM(r, 'div', attrs={'class': 'les-content'})
 
-                r = [client.parseDOM(i, 'a', ret='player-data') for i in r]
+                if episode != None:
+                    #ep = episode
+                    r = client.parseDOM(r, 'a', attrs={'episode-data': str(episode)}, ret='player-data')
+                else:
+                    r = client.parseDOM(r, 'a', ret='player-data')
+
+                #r = [client.parseDOM(i, 'a', ret='player-data')[0] for i in r]
 
                 links = []
 
 
+                for link in r:
+                    if '123movieshd' in link or 'seriesonline' in link:
+                        r = client.request(link, timeout='10')
+                        r = re.findall('(https:.*?redirector.*?)[\'\"]', r)
 
-                links += [{'source': 'gvideo', 'url': i[0]} for i in r if 'movieshd' in i[0]]
-                links += [{'source': 'gvideo', 'url': i[0]} for i in r if 'seriesonline' in i[0]]
-                links += [{'source': 'openload.co', 'url': i[0]} for i in r if 'openload.co' in i[0]]
+                        for i in r:
+                            try:
+                                sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'],
+                                                'url': i, 'provider': 'Muchmovies'})
+                            except:
+                                pass
+                    else:
+                        try:
+                            host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(link.strip().lower()).netloc)[0]
+                            if not host in hostDict: raise Exception()
+                            host = client.replaceHTMLCodes(host)
+                            host = host.encode('utf-8')
 
-                for i in links:
-                    sources.append({'source': i['source'], 'quality': quality, 'provider': 'Muchmovies', 'url': i['url']})
+                            sources.append(
+                                {'source': host, 'quality': 'SD', 'url': link, 'provider': 'Muchmovies'})
+                        except:
+                            pass
+
             except:
                 pass
 

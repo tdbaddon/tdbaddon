@@ -223,9 +223,10 @@ class source:
                 try: links += [{'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'url': i}]
                 except: pass
 
+
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i} for i in r if 'openload.co' in i]
             #links += [{'source': 'vidto.me', 'quality': 'SD', 'url': i} for i in r if 'vidto.me' in i]
-            links += [{'source': 'thevideo.me', 'quality': 'SD', 'url': i} for i in r if 'streamango' in i]
+            links += [{'source': 'streamango', 'quality': 'HD', 'url': i} for i in r if 'streamango' in i]
 
             for i in links:
                 sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})

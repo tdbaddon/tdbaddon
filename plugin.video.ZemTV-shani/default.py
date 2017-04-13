@@ -3189,145 +3189,23 @@ def AddWatchCric(url):
                 addDir('    -'+cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
                 
 
+   
 
-
-def smpk(frompk, jsdata):
-    if jsdata[0]=='v2':
-        return smpk2(frompk,jsdata);
-    refind='hash.*?(oh.*)'
-    jsline=re.findall(refind, jsdata)[0].split(' ')
-    oh=''
-    oh=frompk
-    fv=[]
-    
-    for ln in jsline:
-        if 'substring' in ln:
-            ln=ln.replace('oh.substring(','oh[')
-            ln=ln.replace(',',':')
-            ln=ln.replace(')',']')
-        if 'oh.length' in ln:
-            ln=ln.replace('oh.length','len(oh)')
-        fv.append(ln.strip().replace(';',''))
-    print fv
-    s=' '.join(fv)
-    print s
-    return eval(s)
-    
-
-def smpk2(frompk, jsdata):
-    #refind='hash.*?(oh.*)'
-    jsline=jsdata[2].split('+');#re.findall(refind, jsdata)[0].split(' ')
-    
-    oh=''
-    oh=frompk
-    fv=[]
-    print jsline
-    for ln in jsline:
-        if len(re.findall('(\([0-9]+?,[0-9]+?\))',ln))>0:
-            ln='oh['+ln.split('(')[1].split(')')[0]+']'
-            ln=ln.replace(',',':')
-        if len(re.findall('(\([0-9]+?,_.*?\])',ln))>0:
-            ln='oh['+ln.split('(')[1].split(',')[0]+':]'
-        fv.append(ln.strip().replace(';',''))
-    print fv
-    s='+'.join(fv)
-    print s
-    return eval(s)
-    
-def parseSmartCricJS():
-    import scdec
-    return scdec.gettext()
-    
 def AddSmartCric(url):
-    req = urllib2.Request(base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29tLw=='))
-    req.add_header('User-Agent', 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')
-    req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
-    import random,math
-    rnd1=str(int(math.floor(random.random()*5) ))
-    rnd2=str(int(math.floor(random.random()*1000000) ))
-    rnd3=str(int(math.floor(random.random()*1000000) ))
-    req.add_header('Cookie', '_ga=GA1.%s.%s.%s'%(rnd1,rnd2,rnd3))
-
-    jsdata=parseSmartCricJS()
-    response = urllib2.urlopen(req)
-    link=response.read()
-#    print link
-    response.close()
-    if jsdata[0]=='v1':
-        patt='performGet\(\'(.+)\''
-        match_url =re.findall(patt,jsdata[1])[0]
-    else:
-        patt='(http.*?live/)'
-        match_url =re.findall(patt,jsdata[1])[0]        
-    #match_url='http://webaddress:8087/mobile/channels/live/'
+    import scdec
     channeladded=False
-    patt_sn='sn = "(.*?)"'
-    patt_pk='showChannels.?\([\'"](.*?)[\'"]'
-    try:
-        match_sn =re.findall(patt_sn,link)[0]
-        match_pk =re.findall(patt_pk,link)[0]
-        print match_pk
-        match_pk=smpk(match_pk,jsdata)
-        print 'match_pk',match_pk
-        ref=[('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1'),
-            ('Referer','http://smartcric.com/')]
-        #lburl=re.findall('(http.*?loadbalancer)',link)[0]
-        #fms=getUrl(lburl,headers=ref).split('=')[1]
-        #sourcelb=lburl.split('/')[2].split(':')[0]
-        #match_url=match_url.replace('webaddress',sourcelb)
-        final_url=  match_url+   match_sn
-        req = urllib2.Request(final_url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')
-        req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
-
-        req.add_header('Origin', base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29t'))
-        req.add_header('Referer', base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29tLw=='))
-
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        sources = json.loads(link)
-
-
-
-        addDir('Refresh' ,'Live' ,144,'')
-        
-        for source in sources["channelsList"]:
-            if 1==1:#ctype=='liveWMV' or ctype=='manual':
+    for source in scdec.getlinks():
+        if 1==1:#ctype=='liveWMV' or ctype=='manual':
 #                print source
-                curl=''
-                cname=source["caption"]
-                fms=source["fmsUrl"]
-#                print curl
-                #if ctype<>'': cname+= '[' + ctype+']'
-                addDir(cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
-
-
-                
-                if 'streamsList' in source and source["streamsList"] and len(source["streamsList"])>0:
-                    for s in source["streamsList"]:
-                        cname=s["caption"]
-                        curl=s["streamName"]
-                        streamid=str(s["streamId"])
-                        
-                        curl1="http://"+fms+":8088/mobile/"+curl+"/playlist.m3u8?id="+streamid+"&pk="+match_pk+'|Referer=http://www.smartcric.com/&User-Agent=Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3';
-                        addDir('    -'+cname +" (http)" ,curl1 ,15,'', False, True,isItFolder=False)		#name,url,mode,icon
-                        #curl1="rtsp://"+"206.190.140.164"+":1935/mobile/"+curl+"?key="+match_sn+match_pk;
-                        #curl1="rtsp://"+fms+":1935/mobile/"+curl+"?id="+streamid+"&key="+match_sn+match_pk;
-                        #addDir('    -'+cname +" (rtsp)",curl1 ,15,'', False, True,isItFolder=False)		#name,url,mode,icon
-
-                        channeladded=True
-                else:
-                    cname='No streams available'
-                    curl=''
-                    addDir('    -'+cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
-    except: traceback.print_exc(file=sys.stdout)
+            addDir (source[0],source[1],source[2],'', False, True,isItFolder=False)		#name,url,mode,icon
+            channeladded=True
     if not channeladded:
         cname='No streams available'
         curl=''
         addDir('    -'+cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon 
-    addDir('Refresh' ,'Live' ,144,'')
-            
+    addDir('Refresh Listing' ,'Live' ,144,'')
+
+    addDir('Refresh Fetch Code' ,'Live' ,97,'')
 
     return
 
@@ -8216,6 +8094,18 @@ try:
     elif mode==96:
         print "Play url is "+url
         AddNetworkTVSports2(url)  
+    elif mode==97:
+        print "Play url is "+url
+        import time        
+        try:
+            if RefreshResources([('scdec.py','https://offshoregit.com/Shani-08/main/plugin.video.ZemTV-shani/scdec.py?t=%s'%str(int(time.time())),True)]):
+                dialog = xbmcgui.Dialog()
+                ok = dialog.ok('XBMC', 'Updated files! Try click Refresh Listing to see if it works')   
+            else:
+                dialog = xbmcgui.Dialog()
+                ok = dialog.ok('XBMC', 'Not updated, perhaps no change?')  
+                print 'Updated files'
+        except: traceback.print_exc(file=sys.stdout)
 except:
 
     print 'somethingwrong'

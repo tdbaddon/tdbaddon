@@ -32,11 +32,11 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'https://cartoonhd.be'
+        self.base_link = 'https://cartoonhd.cc'
         #http://api.cartoonh0A6ru35yevokjaqbb8
         self.social_lock = '0A6ru35yevokjaqbb8'
         #http://api.cartoonhd.online/api/v1/0A6ru35yevokjaqbb8
-        self.search_link = 'http://api.cartoonhd.be/api/v1/' + self.social_lock
+        self.search_link = '%s/api/v1/%s' % (self.base_link, self.social_lock)
 
 
     def get_movie(self, imdb, title, year):
@@ -145,12 +145,14 @@ class source:
             r = str(json.loads(r))
             r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
 
-            for i in r:
-                try:
-                    sources.append(
-                        {'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'url': i, 'provider': 'MoviesHD'})
-                except:
-                    pass
+            links = []
+
+            links += [{'source': 'gvideo', 'url': i, 'quality': client.googletag(i)[0]['quality']} for i in r if 'google' in i]
+            links += [{'source': 'streamango', 'url': i, 'quality': 'HD'} for i in r if 'streamango' in i]
+            links += [{'source': 'openload.co', 'url': i, 'quality': 'HD'} for i in r if 'openload.co' in i]
+
+            for i in links:
+                sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MoviesHD', 'url': i['url']})
 
             return sources
 
@@ -160,11 +162,11 @@ class source:
 
 
     def resolve(self, url):
-        control.log('>>>>>>>>>>>>>>>>>> Resolve moviesHD %s' % url)
-
         try:
-            if 'openload.co' in url or 'thevideo.me' in url or 'vidto.me' in url:
-                return resolvers.request(url)
+            if 'openload.co' in url or 'thevideo.me' in url or 'streamango' in url:
+                mylink =  resolvers.request(url)
+                control.log('> Resolve moviesHD %s | %s' % (url,mylink))
+                return mylink
             else:
                 return client.googlepass(url)
         except:

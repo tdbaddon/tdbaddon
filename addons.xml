@@ -1147,16 +1147,15 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.13" provider-name="Team Evolve">
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="2.0.3" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="0.0.1"/>
     <import addon="script.module.urlresolver"  version="0.0.1"/>
     <import addon="script.module.liveresolver" version="0.0.1"/>
+    <import addon="script.module.nanscrapers" version="0.5"/>
     <import addon="script.common.plugin.cache" version="0.0.1"/>
     <import addon="repository.metalkettle" version="0.0.1"/>
-    <import addon="repository.shani" version="0.0.1"/>
-
     <import addon="script.module.metahandler" version="0.0.1"/>
     <import addon="plugin.video.youtube" optional="true" />
 
@@ -2087,6 +2086,34 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
+<addon id="plugin.video.one242415" name="One242415" version="1.0.4" provider-name="Cosmix, The One">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">One242415</summary>
+		<description lang="en">Discover Great Streaming Playlists from The One, Please visit www.tvaddons.ag for help and support!</description>
+		<platform>all</platform>
+		<website>http://www.tvaddons.ag/</website>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+		</assets>
+		<news>source update</news>
+	</extension>
+</addon>
+
 <addon id="plugin.video.outofthisworld"
 	name="Out of this World"
 	version="1.1.0"
@@ -2284,7 +2311,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.04.08.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.04.12.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -2998,7 +3025,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.5.6"
+       version="6.5.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3510,12 +3537,17 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Unofficial Add-ons repository" version="1.0.18" provider-name="Goliath">
-	<extension point="xbmc.addon.repository" name="Goliaths Repository">
+<addon id="repository.MatsBuilds" name="Goliaths BACKUP repository" version="1.2" provider-name="Goliath">
+	<extension point="xbmc.addon.repository" name="Goliaths BACKUP Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+	<dir>
+		<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/</datadir>
 	</dir>
 		<info compressed="false">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml.md5</checksum>
@@ -4267,7 +4299,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.12" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.14" provider-name="Team NaN">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -4279,7 +4311,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <extension point="xbmc.python.pluginsource" library="lib/default.py">
         <provides>executable</provides>
     </extension>
-    <import addon="script.module.urlresolver" version="3.0.0" optional="true"/>
+    <import addon="script.module.urlresolver" version="2.0" optional="true"/>
     <import addon="script.mrknow.urlresolver" version="2016.10.30.2" optional="true"/>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
@@ -4287,16 +4319,20 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
         <description lang="en">Scrape common video host for URL's to be playable in XBMC/Kodi, simplifying addon development of video plugins requiring multi video hosts.
         </description>
         <license>GPL v3</license>
+        <source>https://github.com/noobsandnerds/noobsandnerds/tree/master/script.module.nanscrapers</source>
+        <forum>http://www.noobsandnerds.com/support/showthread.php?tid=17212</forum>
+        <website>http://noobsandnerds.com</website>
     </extension>
 </addon>
 
 <addon id="script.module.python.koding.aio"
    name="Python Koding AIO"
-   version="0.4"
+   version="0.6"
    provider-name="TotalRevolution, noobsandnerds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.urlresolver" version="1.2.0"/>
+    <import addon="script.module.requests" version="2.3.0"/>
   </requires>
   <extension point="xbmc.python.module" library="lib" />
   <extension point="xbmc.addon.metadata">
@@ -4305,10 +4341,13 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <description lang="en">Python Koding AIO contains a bunch of time saving modules that allows for quick and simple development. Although developed at totalrevolution.tv this also contains unique features which hook into the noobsandnerds.com framework so a big thanks to the team and users who keep the portals updated.</description>
     <disclaimer lang="en"></disclaimer>
     <language></language>
-    <license>http://creativecommons.org/licenses/by-nc-nd/4.0</license>
-    <forum>http://noobsandnerds.com</forum>
+    <license>Creative Commons 4.0-NC-ND</license>
+    <forum>http://noobsandnerds.com/support/showthread.php?tid=17614</forum>
     <website>http://noobsandnerds.com</website>
-    <source></source>
+    <news>Added lots of new functions and cleaned up README. See Changelog.txt for full details.</news>
+    <source>https://github.com/totalrevolution/totalrevolution/tree/master/script.module.python.koding.aio</source>
+    <genre>devtools</genre>
+    <video_guide>D5tByWg8KME</video_guide>
   </extension>
 </addon>
 
