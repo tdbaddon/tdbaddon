@@ -813,10 +813,10 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.5.1"
-       provider-name="podgod, Coder Alpha">
+       version="1.5.2"
+       provider-name="podgod">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="xbmc.python" version="2.19.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
@@ -825,13 +825,15 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" />
     <import addon="script.module.urlresolver"  version="3.0.0" optional="true"/>
+	<import addon="script.module.liveresolver"  version="0.1.28"/>
 	<import addon="script.module.addon.common" />
-	<import addon="script.module.simplejson" version="2.0.10"/>
+	<import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.common.plugin.cache" version="2.5.5"/>
     <import addon="repository.podgod" />
     <import addon="script.tvaddons.debug.log" optional="true" />
 </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides>video executable</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>All the best from cCloud TV</summary>
@@ -1884,10 +1886,9 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.MikeysKaraoke" name="Mikey's Karaoke" version="4.8.6" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="plugin.video.MikeysKaraoke" name="Mikey's Karaoke" version="4.8.7" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="0.0.1"/>
     <import addon="plugin.video.youtube" version="0.0.1"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -3025,7 +3026,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.5.7"
+       version="6.5.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

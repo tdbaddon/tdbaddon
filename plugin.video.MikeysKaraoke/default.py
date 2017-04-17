@@ -1,6 +1,5 @@
 import urllib,urllib2,re,sys,xbmcplugin,xbmcgui,xbmcaddon,xbmc,os,xbmcvfs,string
-from t0mm0.common.net import Net as net
-from t0mm0.common.addon import Addon
+import net
 import settings
 import json
 import datetime
@@ -9,7 +8,7 @@ import time
 
 PLUGIN='plugin.video.MikeysKaraoke'
 
-net=net()
+net=net.Net()
 begurl='http://www.sunflykaraoke.com/search/genre/'
           
 endurl='?sort_Karaoke Tracks=popularity-desc'
@@ -38,7 +37,7 @@ K_db='http://xtyrepo.me/xunitytalk/addons/plugin.video.MikeysKaraoke/Karaoke.db'
 updatetxt='http://xtyrepo.me/xunitytalk/addons/plugin.video.MikeysKaraoke/update.txt'
 
 
-addon = Addon('plugin.video.MikeysKaraoke',sys.argv)
+#addon = Addon('plugin.video.MikeysKaraoke',sys.argv)
 art= "%s/KaraokeArt/"%local.getAddonInfo("path")
 from sqlite3 import dbapi2 as database
 db_dir = os.path.join(xbmc.translatePath("special://database"), 'Karaoke.db')
@@ -279,13 +278,17 @@ def SEARCH(search_entered):
             #print p
             try:
                 url=p.split('watch?v=')[1]
+                url=url.split('"')[0]
+                if '&amp' in url:
+                    url=url.split('&amp')[0]
                 name= p.split('title="')[1]
                 name=name.split('"')[0]  
                 name = str(name).replace("&#39;","'") .replace("&amp;","and") .replace("&#252;","u") .replace("&quot;","").replace("[","").replace("]","").replace("-"," ")
-                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url.split('"')[0]
+                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url
                 if not 'video_id' in name:
                     if not '_title_' in name:
-                        addLink(name,url.split('"')[0] ,iconimage,'')
+                        if not 'video search' in name.lower():
+                            addLink(name,url ,iconimage,'')
             except:pass
    
         addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',TXT,11,art+'nextpage.png','',PAGE)
@@ -412,13 +415,17 @@ def YOUTUBE_SONG_INDEX(name, url, iconimage, fanart):
         for p in link:
             try:
                 url=p.split('watch?v=')[1]
+                url=url.split('"')[0]
+                if '&amp' in url:
+                    url=url.split('&amp')[0]
                 name= p.split('title="')[1]
                 name=name.split('"')[0]  
                 name = str(name).replace("&#39;","'") .replace("&amp;","and") .replace("&#252;","u") .replace("&quot;","").replace("[","").replace("]","").replace("-"," ")
-                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url.split('"')[0]
+                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url
                 if not 'video_id' in name:
                     if not '_title_' in name:
-                        addLink(name,url.split('"')[0] ,iconimage,'')
+                        if not 'video search' in name.lower():
+                            addLink(name,url ,iconimage,'')
             except:pass
    
         addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
@@ -434,13 +441,17 @@ def TITLE_ORDERS_YOUTUBE(name, url,fanart):
         for p in link:
             try:
                 url=p.split('watch?v=')[1]
+                url=url.split('"')[0]
+                if '&amp' in url:
+                    url=url.split('&amp')[0]
                 name= p.split('title="')[1]
                 name=name.split('"')[0]  
                 name = str(name).replace("&#39;","'") .replace("&amp;","and") .replace("&#252;","u") .replace("&quot;","").replace("[","").replace("]","").replace("-"," ")
-                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url.split('"')[0]
+                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url
                 if not 'video_id' in name:
                     if not '_title_' in name:
-                        addLink(name,url.split('"')[0] ,iconimage,'')
+                        if not 'video search' in name.lower():
+                            addLink(name,url ,iconimage,'')
             except:pass
    
         addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
@@ -482,13 +493,17 @@ def nextpage(url,number):
         for p in link:
             try:
                 url=p.split('watch?v=')[1]
+                url=url.split('"')[0]
+                if '&amp' in url:
+                    url=url.split('&amp')[0]
                 name= p.split('title="')[1]
                 name=name.split('"')[0]  
                 name = str(name).replace("&#39;","'") .replace("&amp;","and") .replace("&#252;","u") .replace("&quot;","").replace("[","").replace("]","").replace("-"," ")
-                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url.split('"')[0]
+                iconimage = 'http://i.ytimg.com/vi/%s/0.jpg' % url
                 if not 'video_id' in name:
                     if not '_title_' in name:
-                        addLink(name,url.split('"')[0] ,iconimage,'')
+                        if not 'video search' in name.lower():
+                            addLink(name,url ,iconimage,'')
             except:pass
    
         addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',URL,11,art+'nextpage.png','',PAGE)
@@ -670,10 +685,10 @@ def addDir(name,url,mode,iconimage,fanart,number):
             
         
 def addLink(name,url,iconimage, fanart,showcontext=True):
+    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode=6003&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)
     #name=name.encode('ascii', 'ignore')
     #url=url.encode('ascii', 'ignore')
     cmd = 'plugin://plugin.video.youtube/?path=root/video&action=download&videoid=%s' % url
-    youtube = 'plugin://plugin.video.youtube/?path=root/video&action=play_video&videoid=%s' % url
     liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
     liz.setInfo( type="Video", infoLabels={ "Title": name } )
     liz.setProperty("IsPlayable","true")
@@ -690,13 +705,13 @@ def addLink(name,url,iconimage, fanart,showcontext=True):
     if ADDON.getSetting('downloads') == 'true':
         menu.append(('Download', 'XBMC.RunPlugin(%s)' % cmd))   
     liz.addContextMenuItems(items=menu, replaceItems=False)
-    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=youtube,listitem=liz,isFolder=False)
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
     xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
 
 
 def PlayYouTube(name,url,iconimage):
     import yt
-    youtube=yt.PlayVideo(url)    
+    youtube=yt.GetVideoInfo(url)[0]['best']
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':name})
     liz.setProperty("IsPlayable","true")
@@ -907,4 +922,7 @@ elif mode == 5002:
 
 elif mode == 5003:
     FirstSearchDir(name)
+
+elif mode ==6003:
+    PlayYouTube(name,url,iconimage)
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

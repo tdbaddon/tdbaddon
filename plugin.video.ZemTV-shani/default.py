@@ -486,9 +486,9 @@ def AddSports(url):
     addDir('TVPlayer [UK Geo Restricted]','sss',74,os.path.join(home,'icons','tvplayer.png'))
     #addDir('StreamHD','sss',75,os.path.join(home,'icons','streamhd.png')) #website bust
     addDir('Mama HD','http://mamahd.com/',79,os.path.join(home,'icons','mamahd.png'))
-    addDir('HDfree','sss',77,os.path.join(home,'icons','HDFree.png'))
+    #addDir('HDfree','sss',77,os.path.join(home,'icons','HDFree.png'))
     addDir('inFinite Streams','sss',78,os.path.join(home,'icons','Infinite Streams.png'))
-    addDir('Euro Streams','sss',81,os.path.join(home,'icons','Euro Streams.png'))
+    #addDir('Euro Streams','sss',81,os.path.join(home,'icons','Euro Streams.png'))
 
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
@@ -2001,7 +2001,7 @@ def playHDCast(url, mainref, altref=None):
             if len(streamurl)>0:
                 headers=[('Referer',embedUrl),('User-Agent',agent)]                             
                 html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers, cookieJar=cookieJar)
-                streamurl = re.findall('file:["\'](.*?)["\']',html)
+                streamurl = re.findall('file.?:.?["\'](.*?)["\']',html)
                 if len(streamurl)==0:
                     streamurl = re.findall('hls.?:.?["\'](.*?)["\']',html)
                 streamurl=streamurl[0]
@@ -3411,7 +3411,7 @@ def playMYTV(url):
     jsondata=getUrl(base64.b64decode('aHR0cDovL21lZGlhb25zcG9ydC5kZS90di9zcG9ydGlvcy9hcGkucGhwP2NoYW5uZWxfaWQ9JXM=')%url,headers=headers)
     jsondata=json.loads(jsondata)
     
-    PlayGen(base64.b64encode( jsondata["LIVETV"][0]["channel_url"]+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'))
+    PlayGen(base64.b64encode( jsondata["LIVETV"][0]["channel_url"]+'|User-Agent=NSPlayer/7.10.0.3059'))
         
 
         
@@ -3479,13 +3479,26 @@ def PlayGen(url,checkUrl=False, followredirect=False):
     
     if checkUrl and url.startswith('http') and '.m3u' in url:
         headers=[('User-Agent','AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')]
-        urldata=getUrl(url.split('|')[0],timeout=5,headers=headers)
+        urldata=getUrl(url.split('|')[0],timeout=5,headers=headers).strip()
         if followredirect:
             if not urldata.startswith('#EXTM3U'):
                 url=urldata+'|'+url.split('|')[1]
+            if 'jio.com' in url and 'EXT-X-STREAM-INF' in urldata:
+                print 'settingup'
+                import urlparse
+                url=urlparse.urljoin(url.split('|')[0],re.findall('#EXT-X-STREAM-INF.*\s(.*)',urldata)[-1])+'|'+url.split('|')[1]
+                
+
+            
     playlist = xbmc.PlayList(1)
     playlist.clear()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+
+    try:
+        if '.m3u8' in url :
+            listitem.setMimeType("flv-application/octet-stream");
+            listitem.setContentLookup(False)
+    except: print 'error while setting setMimeType, so ignoring it '
     playlist.add(url,listitem)
     xbmcPlayer = xbmc.Player()
     xbmcPlayer.play(playlist) 
@@ -4209,9 +4222,9 @@ def getAPIToken( url,  username):
     s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIx")%(url,  username)
     import hashlib
     return hashlib.md5(s).hexdigest()
-
+#aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL1pvbmEuTGl2ZS5UVi8=
 def getMonaKey():
-    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9hcGlfa2V5"),headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)')])
+    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzIvYXBpLnBocD9hcGlfa2V5"),headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)')])
     return json.loads(s)["LIVETV"][0]["key"]
     
 def getMonaPage(cat):
@@ -4226,9 +4239,9 @@ def getMonaPage(cat):
         traceback.print_exc(file=sys.stdout)
     
     if cat=="":
-        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9rZXk9JXMmYWRtb2JfaWQ9Y2EtYXBwLXB1Yi0xNjI0MjgwNzMxMjE3NzE0LzYyNjMwNTUxODU=')%(getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzIvYXBpLnBocD9rZXk9JXMmYWRtb2JfaWQ9Y2EtYXBwLXB1Yi0xNjI0MjgwNzMxMjE3NzE0LzYyNjMwNTUxODU=')%(getMonaKey())
     else:
-        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzEvYXBpLnBocD9jYXRfaWQ9JXMma2V5PSVzJmFkbW9iX2lkPWNhLWFwcC1wdWItMTYyNDI4MDczMTIxNzcxNC82MjYzMDU1MTg1')%(cat,getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem8yMzIvYXBpLnBocD9jYXRfaWQ9JXMma2V5PSVzJmFkbW9iX2lkPWNhLWFwcC1wdWItMTYyNDI4MDczMTIxNzcxNC82MjYzMDU1MTg1')%(cat,getMonaKey())
     print url
     headers=[('User-Agent','Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X)')]
     jsondata=getUrl(url,headers=headers)
@@ -5058,7 +5071,7 @@ def get_dag_url(page_data):
     return final_url
 
 def getPTCAuth():
-    req = urllib2.Request( base64.b64decode("aHR0cDovLzgwLjI0My4xODkuMjYvdG9rZW4vb2F1dGgucGhw"))
+    req = urllib2.Request( base64.b64decode("aHR0cHM6Ly9pb3MudmlzaW9zb2Z0bHRkLmNvbS9pYXBwL29hdXRoLnBocA=="))
     req.add_header('Authorization', "Basic %s"%base64.b64decode('WVhWMGFIVnpaWEk2ZW1OVFpUSjNaWEk9')) 
     req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuNCBDRk5ldHdvcmsvODA4LjIuMTYgRGFyd2luLzE2LjMuMA==")) 
     response = urllib2.urlopen(req,data="")
@@ -5078,7 +5091,7 @@ def getPTCUrl():
         traceback.print_exc(file=sys.stdout)
 
     req = urllib2.Request( base64.b64decode('aHR0cDovL2NsdW9kYmFja2VuZGFwaS5hcHBzcG90LmNvbS9pb3MvcGFrdHYvcGFrdHY0LjQuanNvbg==') )      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuNCBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuNCBDRk5ldHdvcmsvODA4LjIuMTYgRGFyd2luLzE2LjMuMA==")) 
     response = urllib2.urlopen(req)
     link=response.read()
     maindata=json.loads(link)
@@ -5933,6 +5946,11 @@ def getPV2PlayAuth():
 def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None, timetowait=None):    
     import  CustomPlayer,time
 
+    try:
+        if '.m3u8' in url :
+            listitem.setMimeType("flv-application/octet-stream");
+            listitem.setContentLookup(False)
+    except: print 'error while setting setMimeType, so ignoring it '
     localobject=aliveobject
     player = CustomPlayer.MyXBMCPlayer()
     player.pdialogue=pdialogue
@@ -6519,7 +6537,9 @@ def PlayFastLink(url,progress=None):
                 url=ss["channel_url"]
                 break
         
-      
+    print 'url is',url 
+    if len(url.split('http:'))>2:
+        url='http:'+url.split('http:')[-1]
     urlnew=getFastAuth(url)+'|User-Agent='+getFastPlayUA()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     PlayGen(base64.b64encode(urlnew))
@@ -6598,6 +6618,7 @@ def PlayPV2Link(url):
 
 
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+
 
     if not tryplay(urlToPlay, listitem):
         if '130.185.144.112' not in urlToPlay:

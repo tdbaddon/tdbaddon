@@ -1,56 +1,3 @@
-
-#
-#  Copyright (C) 2013 Sean Poyser
-#
-#
-#  This code is a derivative of the YouTube plugin for XBMC
-#  released under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; version 3
-#  Copyright (C) 2010-2012 Tobias Ussing And Henrik Mosgaard Jensen
-#
-#  This Program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 3, or (at your option)
-#  any later version.
-#
-#  This Program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with XBMC; see the file COPYING.  If not, write to
-#  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
-#  http://www.gnu.org/copyleft/gpl.html
-#
-
-
-#        5: "240p h263 flv container",
-#        18: "360p h264 mp4 container | 270 for rtmpe?",
-#        22: "720p h264 mp4 container",
-#        26: "???",
-#        33: "???",
-#        34: "360p h264 flv container",
-#        35: "480p h264 flv container",
-#        37: "1080p h264 mp4 container",
-#        38: "720p vp8 webm container",
-#        43: "360p h264 flv container",
-#        44: "480p vp8 webm container",
-#        45: "720p vp8 webm container",
-#        46: "520p vp8 webm stereo",
-#        59: "480 for rtmpe",
-#        78: "seems to be around 400 for rtmpe",
-#        82: "360p h264 stereo",
-#        83: "240p h264 stereo",
-#        84: "720p h264 stereo",
-#        85: "520p h264 stereo",
-#        100: "360p vp8 webm stereo",
-#        101: "480p vp8 webm stereo",
-#        102: "720p vp8 webm stereo",
-#        120: "hd720",
-#        121: "hd1080"
-
-
 import re
 import urllib2
 import urllib
@@ -60,52 +7,17 @@ import HTMLParser
 try: import simplejson as json
 except ImportError: import json
 
-MAX_REC_DEPTH = 5
-
-
-def Clean(text):
-    text = text.replace('&#8211;', '-')
-    text = text.replace('&#8217;', '\'')
-    text = text.replace('&#8220;', '"')
-    text = text.replace('&#8221;', '"')
-    text = text.replace('&#39;',   '\'')
-    text = text.replace('<b>',     '')
-    text = text.replace('</b>',    '')
-    text = text.replace('&amp;',   '&')
-    text = text.replace('\ufeff', '')
-    return text
-
-
-def PlayVideo(id):
-
-
-    video, links = GetVideoInformation(id)
-  
-
-    if 'best' not in video:
-        return False
-
-    url   = video['best']          
-    title = video['title']
-    image = video['thumbnail']
-
-    return url
-
 
 def GetVideoInformation(id):
     #id = 'H7iQ4sAf0OE' #test for HLSVP
     #id = 'ofHlUJuw8Ak' #test for stereo
-    #id = 'ifZkeuSrNRc' #account closed
-    #id = 'M7FIvfx5J10'
-    #id = 'n-D1EB74Ckg' #vevo
-    #id = 'lVMWEheQ2hU' #vevo
 
-    video  = {}
-    links  = []
+    video = None
+    links = None
 
-    try:     video, links = GetVideoInfo(id)
-    except : pass
-    
+    try:    video, links = GetVideoInfo(id)
+    except: pass
+
     return video, links
 
 
@@ -115,21 +27,23 @@ def GetVideoInfo(id):
 
     video, links = Scrape(html)
 
-    video['videoid']   = id
+    video["videoid"]   = id
     video['thumbnail'] = "http://i.ytimg.com/vi/%s/0.jpg" % video['videoid']
-    video['title']     = GetVideoTitle(html)
+    video["title"]     = GetVideoTitle(html)
 
     if len(links) == 0:
         if 'hlsvp' in video:
             video['best'] = video['hlsvp']
+
     else:
         video['best'] = links[0][1]
+
 
     return video, links
 
 
 def GetVideoTitle(html):
-    try:    return Clean(re.compile('<meta name="title" content="(.+?)">').search(html).groups(1)[0])
+    try:    return re.compile('<meta name="title" content="(.+?)">').search(html).groups(1)[0]
     except: pass
 
     return 'YouTube Video'
@@ -172,11 +86,7 @@ def Scrape(html):
             url = url + u"&signature=" + url_desc_map[u"sig"][0]
         elif url_desc_map.has_key(u"s"):
             sig = url_desc_map[u"s"][0]
-            #url = url + u"&signature=" + DecryptSignature(sig)
-           
-            flashvars = ExtractFlashVars(html, assets=True)
-            js        = flashvars[u"js"]    
-            url      += u"&signature=" + DecryptSignatureNew(sig, js)          
+            url = url + u"&signature=" + DecryptSignature(sig)
 
         if key not in stereo:
             links.append([key, url])
@@ -209,7 +119,7 @@ def DecryptSignature(s):
     #    print ('Unable to decrypt signature, key length %d not supported; retrying might work' % (len(s)))
 
 
-def ExtractFlashVars(data, assets=False):
+def ExtractFlashVars(data):
     flashvars = {}
     found = False
 
@@ -226,10 +136,7 @@ def ExtractFlashVars(data, assets=False):
 
     if found:
         data = json.loads(data)
-        if assets:
-            flashvars = data['assets']
-        else:
-            flashvars = data['args']
+        flashvars = data["args"]
 
     return flashvars
 
@@ -256,220 +163,6 @@ def RemoveAdditionalEndingDelimiter(data):
     if pos != -1:
         data = data[:pos + 1]
     return data
-    
-####################################################
 
-global playerData
-global allLocalFunNamesTab
-global allLocalVarNamesTab
 
-def _extractVarLocalFuns(match):
-	varName, objBody = match.groups()
-	output = ''
-	for func in objBody.split( '},' ):
-		output += re.sub(
-			r'^([^:]+):function\(([^)]*)\)',
-			r'function %s__\1(\2,*args)' % varName,
-			func
-		) + '\n'
-	return output
 
-def _jsToPy(jsFunBody):
-    pythonFunBody = re.sub(r'var ([^=]+)={(.*?)}};', _extractVarLocalFuns, jsFunBody)
-    pythonFunBody = re.sub(r'function (\w*)\$(\w*)', r'function \1_S_\2', pythonFunBody)
-    pythonFunBody = pythonFunBody.replace('function', 'def').replace('{', ':\n\t').replace('}', '').replace(';', '\n\t').replace('var ', '')
-    pythonFunBody = pythonFunBody.replace('.reverse()', '[::-1]')
-
-    lines = pythonFunBody.split('\n')
-    for i in range(len(lines)):
-        # a.split("") -> list(a)
-        match = re.search('(\w+?)\.split\(""\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), 'list(' + match.group(1)  + ')')
-        # a.length -> len(a)
-        match = re.search('(\w+?)\.length', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), 'len(' + match.group(1)  + ')')
-        # a.slice(3) -> a[3:]
-        match = re.search('(\w+?)\.slice\((\w+?)\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), match.group(1) + ('[%s:]' % match.group(2)) )
-        # a.join("") -> "".join(a)
-        match = re.search('(\w+?)\.join\(("[^"]*?")\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), match.group(2) + '.join(' + match.group(1) + ')' )
-        # a.splice(b,c) -> del a[b:c]
-        match = re.search('(\w+?)\.splice\(([^,]+),([^)]+)\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), 'del ' + match.group(1) + '[' + match.group(2) + ':' + match.group(3) + ']' )
-
-    pythonFunBody = "\n".join(lines)
-    pythonFunBody = re.sub(r'(\w+)\.(\w+)\(', r'\1__\2(', pythonFunBody)
-    pythonFunBody = re.sub(r'([^=])(\w+)\[::-1\]', r'\1\2.reverse()', pythonFunBody)
-    return pythonFunBody
-
-def _jsToPy1(jsFunBody):
-    pythonFunBody = jsFunBody.replace('function', 'def').replace('{', ':\n\t').replace('}', '').replace(';', '\n\t').replace('var ', '')
-    pythonFunBody = pythonFunBody.replace('.reverse()', '[::-1]')
-
-    lines = pythonFunBody.split('\n')
-    for i in range(len(lines)):
-        # a.split("") -> list(a)
-        match = re.search('(\w+?)\.split\(""\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), 'list(' + match.group(1)  + ')')
-        # a.length -> len(a)
-        match = re.search('(\w+?)\.length', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), 'len(' + match.group(1)  + ')')
-        # a.slice(3) -> a[3:]
-        match = re.search('(\w+?)\.slice\(([0-9]+?)\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), match.group(1) + ('[%s:]' % match.group(2)) )
-        # a.join("") -> "".join(a)
-        match = re.search('(\w+?)\.join\(("[^"]*?")\)', lines[i])
-        if match:
-            lines[i] = lines[i].replace( match.group(0), match.group(2) + '.join(' + match.group(1) + ')' )
-    return "\n".join(lines)
-
-def _getLocalFunBody(funName):
-    # get function body 
-    funName = funName.replace('$', '\\$')
-    match = re.search('(function %s\([^)]+?\){[^}]+?})' % funName, playerData)
-    if match:
-        return match.group(1)
-    return ''
-
-def _getAllLocalSubFunNames(mainFunBody):
-    match = re.compile('[ =(,](\w+?)\([^)]*?\)').findall( mainFunBody )
-    if len(match):
-        # first item is name of main function, so omit it
-        funNameTab = set( match[1:] )
-        return funNameTab
-    return set()
-    
-def _extractLocalVarNames(mainFunBody):
-    valid_funcs = ( 'reverse', 'split', 'splice', 'slice', 'join' )
-    match = re.compile( r'[; =(,](\w+)\.(\w+)\(' ).findall( mainFunBody )
-    local_vars = []
-    for name in match:
-        if name[1] not in valid_funcs:
-            local_vars.append( name[0] )
-    return set(local_vars)
-
-def _getLocalVarObjBody(varName):
-    match = re.search( r'var %s={.*?}};' % varName, playerData )
-    if match:
-        return match.group(0)
-    return ''
-
-def DecryptSignatureNew(s, playerUrl):
-    if not playerUrl.startswith('http:'):
-        playerUrl = 'http:' + playerUrl
-        
-    #print "Decrypt_signature sign_len[%d] playerUrl[%s]" % (len(s), playerUrl)
-
-    global allLocalFunNamesTab
-    global allLocalVarNamesTab
-    global playerData
-                
-    allLocalFunNamesTab = []
-    allLocalVarNamesTab = []
-    playerData          = ''    
-
-    request = urllib2.Request(playerUrl)
-    #res        = core._fetchPage({u"link": playerUrl})
-    #playerData = res["content"]
-            
-    try:
-        playerData = urllib2.urlopen(request).read()
-        playerData = playerData.decode('utf-8', 'ignore')
-    except Exception, e:
-        #print str(e)
-        print 'Failed to decode playerData'
-        return ''
-        
-    # get main function name 
-    match = re.search("signature=([$a-zA-Z]+)\([^)]\)", playerData)
-    if match:
-        mainFunName = match.group(1)
-    else: 
-        print('Failed to get main signature function name')
-        return ''
-        
-    _mainFunName = mainFunName.replace('$','_S_')   
-    fullAlgoCode = _getfullAlgoCode(mainFunName)    
-
-    # wrap all local algo function into one function extractedSignatureAlgo()
-    algoLines = fullAlgoCode.split('\n')
-    for i in range(len(algoLines)):
-        algoLines[i] = '\t' + algoLines[i]
-    fullAlgoCode  = 'def extractedSignatureAlgo(param):'
-    fullAlgoCode += '\n'.join(algoLines)
-    fullAlgoCode += '\n\treturn %s(param)' % _mainFunName
-    fullAlgoCode += '\noutSignature = extractedSignatureAlgo( inSignature )\n'
-
-    # after this function we should have all needed code in fullAlgoCode
-
-    #print '---------------------------------------'
-    #print '|    ALGO FOR SIGNATURE DECRYPTION    |'
-    #print '---------------------------------------'
-    #print fullAlgoCode
-    #print '---------------------------------------'
-
-    try:
-        algoCodeObj = compile(fullAlgoCode, '', 'exec')
-    except:
-        print 'Failed to obtain decryptSignature code'
-        return ''
-
-    # for security allow only flew python global function in algo code
-    vGlobals = {"__builtins__": None, 'len': len, 'list': list}
-
-    # local variable to pass encrypted sign and get decrypted sign
-    vLocals = { 'inSignature': s, 'outSignature': '' }
-
-    # execute prepared code
-    try:
-        exec(algoCodeObj, vGlobals, vLocals)
-    except:
-        print 'decryptSignature code failed to exceute correctly'
-        return ''
-
-    #print 'Decrypted signature = [%s]' % vLocals['outSignature']
-
-    return vLocals['outSignature']
-
-# Note, this method is using a recursion
-def _getfullAlgoCode(mainFunName, recDepth=0):
-    global playerData
-    global allLocalFunNamesTab
-    global allLocalVarNamesTab
-    
-    if MAX_REC_DEPTH <= recDepth:
-        print '_getfullAlgoCode: Maximum recursion depth exceeded'
-        return 
-
-    funBody = _getLocalFunBody(mainFunName)
-    if funBody != '':
-        funNames = _getAllLocalSubFunNames(funBody)
-        if len(funNames):
-            for funName in funNames:
-                funName_ = funName.replace('$','_S_')
-                if funName not in allLocalFunNamesTab:
-                    funBody=funBody.replace(funName,funName_)
-                    allLocalFunNamesTab.append(funName)
-                    #print 'Add local function %s to known functions' % mainFunName
-                    funbody = _getfullAlgoCode(funName, recDepth+1) + "\n" + funBody
-                    
-        varNames = _extractLocalVarNames(funBody)
-        if len(varNames):
-            for varName in varNames:
-                if varName not in allLocalVarNamesTab:
-                    allLocalVarNamesTab.append(varName)
-                    funBody = _getLocalVarObjBody(varName) + "\n" + funBody
-
-        # convert code from javascript to python 
-        funBody = _jsToPy(funBody)
-        return '\n' + funBody + '\n'
-    return funBody

@@ -96,7 +96,11 @@ def gettext2(jstext):
     
 def getlinks():    
     ret=[]
-    headers=[('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'),('User-Agent','Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')]
+    import random,math
+    rnd1=str(int(math.floor(random.random()*5) ))
+    rnd2=str(int(math.floor(random.random()*1000000) ))
+    rnd3=str(int(math.floor(random.random()*1000000) ))
+    headers=[('Cookie', '_ga=GA1.%s.%s.%s'%(rnd1,rnd2,rnd3)),('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'),('User-Agent','Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')]
     link = getUrl(base64.b64decode('aHR0cDovL3d3dy5zbWFydGNyaWMuY29tLw=='),headers=headers)
 
     jsdata=gettext(link)
