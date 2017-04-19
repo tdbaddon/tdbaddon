@@ -69,7 +69,7 @@ class source:
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         #            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MoviesHD', 'url': i['url']})
-        try:
+        #try:
             sources = []
 
             if url == None: return sources
@@ -81,7 +81,8 @@ class source:
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-                imdb = data['imdb'];
+                try:imdb = data['imdb']
+                except: imdb = ''
                 year = data['year']
 
                 if 'tvshowtitle' in data:
@@ -156,9 +157,9 @@ class source:
 
             return sources
 
-        except Exception as e:
-            control.log('ERROR moviesHD %s' % e)
-            return sources
+        #except Exception as e:
+        #    control.log('ERROR moviesHD %s' % e)
+        #    return sources
 
 
     def resolve(self, url):

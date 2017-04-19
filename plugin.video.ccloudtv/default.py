@@ -22,7 +22,7 @@ import xbmc, xbmcgui, xbmcplugin, xbmcaddon, requests, base64
 import datetime
 from time import gmtime, strftime
 import liveresolver
-import urlresolver
+# import urlresolver
 try:
     import json
 except:
@@ -780,34 +780,30 @@ def m3u_online():
 	
         
 
-def m3u_playlist(name, url, thumb):
-    name = re.sub('\s+', ' ', name).strip()            
-    url = url.replace('"', ' ').replace('&amp;', '&').strip()
-    if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
-        if 'tvg-logo' in thumb:
-            thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')            
-            addDir(name, url, '', thumb, thumb)            
-        else:    
-            addDir(name, url, '', icon, fanart)
-    else:
-        if ('(Adult)' in name) or ('(Public-Adult)' in name):
-            name = 'ADULTS ONLY'.url = 'http://ignoreme.com'
-        if 'youtube.com/watch?v=' in url:
-            url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
-        else:            
-            url = url
-        if 'tvg-logo' in thumb:                
-            thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
-            addLink(name, url, 1, thumb, thumb)            
-        else:
-            thumb = thumb
-            if ('https://www.filmon.com/tv/') in url and ('/channels/') in thumb:
-				addLink2(name, url, 1, thumb, fanart)
-            else:
-				if thumb is '':
-					addLink(name, url, 1, icon, fanart)
-				else:
-					addLink(name, url, 1, thumb, fanart)
+def m3u_playlist(name, url, thumb):	
+	name = re.sub('\s+', ' ', name).strip()			
+	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')			
+			addDir(name, url, '', thumb, thumb)			
+		else:	
+			addDir(name, url, '', icon, fanart)
+	else:
+		if ('(Adult)' in name) or ('(Public-Adult)' in name):
+			name = 'ADULTS ONLY'.url = 'http://ignoreme.com'
+		if 'youtube.com/watch?v=' in url:
+			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
+		#elif 'dailymotion.com/video/' in url:
+		#	url = url.split('/')[-1].split('_')[0]
+		#	url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
+		else:			
+			url = url
+		if 'tvg-logo' in thumb:				
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			addLink(name, url, 1, thumb, thumb)			
+		else:				
+			addLink(name, url, 1, icon, fanart)	
             
             
 def adult_playlist(name, url, thumb):    
@@ -832,32 +828,32 @@ def adult_playlist(name, url, thumb):
 
 def play_video(url):
 
-    if 'parser.php?surl=' in url: # case for cCloudTv redirecting parser
-        try:
-            #print 'URL: ' + str(url)
-            if '|' in url:
-                urls = url.split('|')
-                rurl = str(urls[0])
-                purl = urls[1]
-            else:
-                rurl = url
-            req = urllib2.Request(rurl)
-            res = urllib2.urlopen(req)
-            furl = res.geturl()
-            if '|' in url:
-                url = furl + '|' + purl
-            else:
-                url = furl
-            #print 'RedirectorURL: ' + str(url)
-        except:
-            pass
+	if 'parser.php?surl=' in url: # case for cCloudTv redirecting parser
+		try:
+			#print 'URL: ' + str(url)
+			if '|' in url:
+				urls = url.split('|')
+				rurl = str(urls[0])
+				purl = urls[1]
+			else:
+				rurl = url
+			req = urllib2.Request(rurl)
+			res = urllib2.urlopen(req)
+			furl = res.geturl()
+			if '|' in url:
+				url = furl + '|' + purl
+			else:
+				url = furl
+			#print 'RedirectorURL: ' + str(url)
+		except:
+			pass
 
-    media_url = url
-    resolved = liveresolver.resolve(media_url)
-    item = xbmcgui.ListItem(name, path = resolved)
-    xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
-    return
-    play_video(url)
+			
+	media_url = url
+	item = xbmcgui.ListItem(name, path = media_url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+	return
+	play_video(url)
     
     
 def get_params():
@@ -1170,11 +1166,12 @@ if mode == None or url == None or len(url) < 1:
     main()
 
 elif mode == 1:
-	# play_video(url)
-	name = re.sub('\s+', ' ', name).strip()            
 	url = url.replace('"', ' ').replace('&amp;', '&').strip()
-	resolved = liveresolver.resolve(url)
-	xbmc.Player().play(resolved)
+	play_video(url)
+	# name = re.sub('\s+', ' ', name).strip()            
+	# url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	# resolved = liveresolver.resolve(url)
+	# xbmc.Player().play(resolved)
 	sys.exit()
 
 elif mode == 2:

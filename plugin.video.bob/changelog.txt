@@ -2,6 +2,11 @@ Visit WWW.NOOBSANDNERDS.COM for your all Kodi needs.
 No fighting, no censorship, no agenda.
 We just concentrate on exciting new features.
 
+v1.3.11
+- fixed hockey recaps
+- bugfixes
+
+
 v1.3.10
 - added link fallthrough for link dialog selection
 - changed code to conform to new nanscrapers

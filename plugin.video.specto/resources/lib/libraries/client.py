@@ -115,6 +115,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             try: del headers['Referer']
             except: pass
 
+        if isinstance(post, dict):
+            post = urllib.urlencode(post)
 
         request = urllib2.Request(url, data=post, headers=headers)
 
@@ -212,6 +214,12 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             if encoding == 'gzip':
                 result = gzip.GzipFile(fileobj=StringIO.StringIO(result)).read()
 
+        if 'Blazingfast.io' in result and 'xhr.open' in result:
+            netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+            ua = headers['User-Agent']
+            headers['Cookie'] = cache.get(bfcookie().get, 168, netloc, ua, timeout)
+
+            result = _basic_request(url, headers=headers, timeout=timeout, limit=limit)
 
         if output == 'extended':
             response_headers = response.headers
@@ -486,6 +494,56 @@ class cfcookie:
         except:
             pass
 
+
+class bfcookie:
+
+    def __init__(self):
+        self.COOKIE_NAME = 'BLAZINGFAST-WEB-PROTECT'
+
+    def get(self, netloc, ua, timeout):
+        try:
+            headers = {'User-Agent': ua, 'Referer': netloc}
+            result = _basic_request(netloc, headers=headers, timeout=timeout)
+
+            match = re.findall('xhr\.open\("GET","([^,]+),', result)
+            if not match:
+                return False
+
+            url_Parts = match[0].split('"')
+            url_Parts[1] = '1680'
+            url = urlparse.urljoin(netloc, ''.join(url_Parts))
+
+            match = re.findall('rid=([0-9a-zA-Z]+)', url_Parts[0])
+            if not match:
+                return False
+
+            headers['Cookie'] = 'rcksid=%s' % match[0]
+            result = _basic_request(url, headers=headers, timeout=timeout)
+            return self.getCookieString(result, headers['Cookie'])
+        except:
+            return
+
+    # not very robust but lazieness...
+    def getCookieString(self, content, rcksid):
+        vars = re.findall('toNumbers\("([^"]+)"', content)
+        value = self._decrypt(vars[2], vars[0], vars[1])
+        cookie = "%s=%s;%s" % (self.COOKIE_NAME, value, rcksid)
+        return cookie
+
+    def _decrypt(self, msg, key, iv):
+        from binascii import unhexlify, hexlify
+        import pyaes
+        msg = unhexlify(msg)
+        key = unhexlify(key)
+        iv = unhexlify(iv)
+        if len(iv) != 16: return False
+        decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(key, iv))
+        plain_text = decrypter.feed(msg)
+        plain_text += decrypter.feed()
+        f = hexlify(plain_text)
+        return f
+
+
 class sucuri:
     def __init__(self):
         self.cookie = None
@@ -522,11 +580,16 @@ def parseJSString(s):
 
 def googlepass(url):
     try:
-        try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-        except: headers = None
-        url = request(url.split('|')[0], headers=headers, output='geturl')
-        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-        else: url = url.replace('https://', 'http://')
+        try:
+            headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
+        except:
+            headers = None
+        url = url.split('|')[0].replace('\\', '')
+        url = request(url, headers=headers, output='geturl')
+        if 'requiressl=yes' in url:
+            url = url.replace('http://', 'https://')
+        else:
+            url = url.replace('https://', 'http://')
         if headers: url += '|%s' % urllib.urlencode(headers)
         return url
     except:

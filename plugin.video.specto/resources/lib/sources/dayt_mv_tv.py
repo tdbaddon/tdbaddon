@@ -31,7 +31,7 @@ class source:
         self.watch_link = '/watch/%s'
         self.watch_series_link = '/watch/%s/s%s/e%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def get_movie(self, imdb, title, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -39,7 +39,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
             url = {'imdb': imdb, 'title': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -47,7 +47,7 @@ class source:
         except:
             return
 
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+    def get_episode(self, url, imdb, tvdb, title, date, season, episode):
         try:
             if url is None: return
             data = urlparse.parse_qs(url)
@@ -59,7 +59,7 @@ class source:
         except:
             return
 
-    def sources(self, url, hostDict, hostprDict):
+    def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
             if url == None: return sources

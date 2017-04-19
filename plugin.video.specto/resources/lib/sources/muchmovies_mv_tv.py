@@ -36,7 +36,7 @@ import requests
 
 class source:
     def __init__(self):
-        self.base_link = 'https://123movieshd.net'
+        self.base_link = 'https://123movieshd.io'
         #self.base_link_2 = 'https://123movies.net.ru'
         self.search_link = '/ajax/suggest_search?keyword=%s'
         self.search_link_2 = '/movie/search/%s'

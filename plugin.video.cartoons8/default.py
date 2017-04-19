@@ -25,13 +25,13 @@ def INDEX():
 
 #########################################################################################   ANIMEXD START
 def ANIMEXDCATEGORIES():
-        addDir('Latest Episodes','http://www.animexd.tv/home/latest-episodes',15,animexd,fanart)
-        addDir('Latest Animes','http://www.animexd.tv/home/latest-animes',15,animexd,fanart)
-        addDir('Winter 2017','http://www.animexd.tv/home/Winter%202017',17,animexd,fanart)
-        addDir('Anime List','http://www.animexd.tv/home/anime-list',16,animexd,fanart)
-        addDir('Ongoing','http://www.animexd.tv/home/ongoing',17,animexd,fanart)
-        addDir('Genres','http://www.animexd.tv/home/genres',18,animexd,fanart)
-        addDir('Search','http://www.animexd.tv/home/genres',19,animexd,fanart)
+        addDir('Latest Episodes','http://www.animexd.me/home/latest-episodes',15,animexd,fanart)
+        addDir('Latest Animes','http://www.animexd.me/home/latest-animes',15,animexd,fanart)
+        addDir('Winter 2017','http://www.animexd.me/home/Winter%202017',17,animexd,fanart)
+        addDir('Anime List','http://www.animexd.me/home/anime-list',16,animexd,fanart)
+        addDir('Ongoing','http://www.animexd.me/home/ongoing',17,animexd,fanart)
+        addDir('Genres','http://www.animexd.me/home/genres',18,animexd,fanart)
+        addDir('Search','http://www.animexd.me/home/genres',19,animexd,fanart)
         
 def ANIMEXDSEARCH(url):
     search_entered =''
@@ -40,7 +40,7 @@ def ANIMEXDSEARCH(url):
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
-        url = 'http://www.animexd.tv/home/search?q=' + search_entered
+        url = 'http://www.animexd.me/home/search?q=' + search_entered
         link = net.http_GET(url).content
         link = cleanHex(link)
         data = json.loads(link)
@@ -48,8 +48,8 @@ def ANIMEXDSEARCH(url):
         for item in data:
                 name=item['original_name']
                 aurl=item['seo_name']
-                url='http://www.animexd.tv/watch/'+aurl
-                iconimage='http://www.animexd.tv/anime_images/'+aurl+'.jpg'
+                url='http://www.animexd.me/watch/'+aurl
+                iconimage='http://www.animexd.me/anime_images/'+aurl+'.jpg'
                 addDir(name,url,20,iconimage,iconimage)
         
 def ANIMEXDGENRES(url):
@@ -167,7 +167,8 @@ def GETSUPER(url):
 def GETSUPERLINK(referer):
         link = net.http_GET(url).content
         playurl=re.compile("file: '(.+?)'").findall(link)[0]
-        playurl=playurl+'&pu='+playurl+'|Referer='+referer
+        playurl=playurl+'&pu='+playurl+'|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36&Referer='+referer
+        print playurl
         PLAYLINK(name,playurl,iconimage)
         quit()
 #########################################################################################   SUPERCARTOONS END
@@ -183,7 +184,7 @@ def CCATEGORIES():
         addDir('9Cartoon - Search','http://9cartoon.me/Search?s=',8,cartoon,fanart)
 
 def ACATEGORIES():
-        #addDir('GogoAnime - Latest Update','http://chiaanime.co/AnimeList/LatestUpdate',12,anime,fanart)
+        addDir('GogoAnime - Latest Update','http://chiaanime.co/AnimeList/LatestUpdate',12,anime,fanart)
         addDir('GogoAnime - New & Hot','http://chiaanime.co/AnimeList/NewAndHot?page=1',1,anime,fanart)
 	addDir('GogoAnime - New Added','http://chiaanime.co/AnimeList/New?page=1',1,anime,fanart)
 	addDir('GogoAnime - Popular','http://chiaanime.co/AnimeList/MostViewed?page=1',1,anime,fanart)
@@ -248,14 +249,17 @@ def SEARCH(url):
         GETGENREMOVIES(url)
 
 def GETGENRES(url,iconimage):
+        list=[]
         link = open_url(url)
-        match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)
-        if not 'genre' in url or not 'Genre' in match:
-                match=re.compile('<a href="(.+?)">(.+?)</a>,').findall(link)[:9]    
-        for url, name in match:
-                if 'genre' in url or 'Genre' in url:
-                        url=url+'?page=1'
-                        addDir(name,url,7,iconimage,iconimage)
+        match=re.compile('<a href="(.+?)"').findall(link)
+        for url in match:
+                if 'Genre' in url:
+                        if url not in list:
+                                list.append(url)                 
+        for url in list:
+                name=url.split('/')[-1].title()
+                url=url+'?page=1'
+                addDir(name,url,7,iconimage,iconimage)
                         
 def GETGENREMOVIES(url):
 	url2=url
@@ -283,6 +287,8 @@ def GETGENREMOVIES(url):
         except: pass
 
 def GETFULL(url,name):
+        if '9cartoon.me' in url:base='http://9cartoon.me/CartoonList'
+        else: base='http://chiaanime.co/AnimeList'
         link = open_url(url)
         match=re.compile('<li class="first-char"><a  href="(.+?)">(.+?)</a></li>').findall(link)
         if len(match)==0:
@@ -290,7 +296,7 @@ def GETFULL(url,name):
                 match=re.compile('<li class="first-char"><a href="(.+?)" class="">(.+?)</a></li>').findall(link)
         for url, name in match:
                 if not 'http' in url:
-                        url='http://chiaanime.co/AnimeList' +url
+                        url=base +url
                 url=url+'&page=1'
                 addDir(name,url,11,iconimage,iconimage)
               

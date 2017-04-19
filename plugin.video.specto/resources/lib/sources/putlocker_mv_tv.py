@@ -38,6 +38,7 @@ class source:
         self.sitemap = '/sitemap.xml'
 
         self.social_lock = '0A6ru35yevokjaqbb8'
+
         self.search_link = 'https://api.flixanity.watch/api/v1/'+ self.social_lock
         #https://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
 

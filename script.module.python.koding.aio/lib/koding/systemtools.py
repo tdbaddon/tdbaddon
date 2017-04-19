@@ -13,7 +13,9 @@
 # please make sure you give approptiate credit in your add-on description (noobsandnerds.com)
 # 
 # Please make sure you've read and understood the license, this code can NOT be used commercially
-# and it can NOT be modified and redistributed. Thank you.
+# and it can NOT be modified and redistributed. If you're found to be in breach of this license
+# then any affected add-ons will be blacklisted and will not be able to work on the same system
+# as any other add-ons which use this code. Thank you for your cooperation.
 
 import datetime
 import os
@@ -25,7 +27,169 @@ import xbmcgui
 
 import filetools
 
-dialog = xbmcgui.Dialog()
+#----------------------------------------------------------------
+# TUTORIAL #
+def Addon_Genre(genre='adult'):
+    """
+[COLOR=gold]PREMIUM FEATURE FOR ADDONS EXCLUSIVELY SUPPORTED AT NOOBSANDNERDS[/COLOR]
+If you'd like to hook into this please take a look at the README.
+
+Return a dictionary of add-ons which match a specific genre.
+
+CODE: Addon_Genre([genre])
+
+AVAILABLE PARAMS:
+    
+    genre  -  By default this is set to 'adult' which will return
+    a dictionary of all known adult add-ons. For a full list of all
+    the available genres you can filter by take a look at the Add-on Portal
+    link below. If you click on each of the genre links then look at the
+    url you'll be able to see the name to use. For example if you click on
+    "Dev Tools" you'll see the url shows as 'devtools' and that's what you'd
+    send through to this function if you only wanted those to show.
+    http://noobsandnerds.com/addons/category/genres/
+
+EXAMPLE CODE:
+space_addons = koding.Addon_Genre(genre='space')
+my_return = 'LIST OF AVAILABLE SPACE BASED ADD-ONS:\n\n'
+
+# Convert the dictionary into a list:
+space_addons = space_addons.items()
+for item in space_addons:
+    my_return += '[COLOR=gold]Name:[/COLOR] %s   |   [COLOR=dodgerblue]ID:[/COLOR] %s\n' % (item[0],item[1])
+koding.Text_Box('SPACE ADD-ONS',my_return)
+~"""
+    import binascii
+    from __init__  import Main
+    from filetools import Text_File
+    xbmc.log('ADDON GENRE: %s'%genre)
+    dialog = xbmcgui.Dialog()
+    local_path = binascii.hexlify(genre)
+    final_path = xbmc.translatePath('special://profile/addon_data/script.module.python.koding.aio/cookies/%s'%local_path)
+    if os.path.exists(final_path):
+        modified = os.path.getmtime(final_path)
+        old = int(modified)
+        now = int(Timestamp('epoch'))
+# Add a 24hr wait so we don't kill server
+        if now > (modified+86400):
+            Main('addon_list|g:%s'%genre)
+
+# Create new file if it doesn't exist
+    else:
+        Main('addon_list|g:%s'%genre)
+
+    addon_list = eval(binascii.unhexlify(Text_File(final_path, 'r')))
+    return addon_list
+#----------------------------------------------------------------
+# TUTORIAL #
+def Addon_Info(id='',addon_id=''):
+    """
+Retrieve details about an add-on, lots of built-in values are available
+such as path, version, name etc.
+
+CODE: Addon_Setting(id, [addon_id])
+
+AVAILABLE PARAMS:
+            
+    (*) id  -  This is the name of the id you want to retrieve.
+    The list of built in id's you can use (current as of 15th April 2017)
+    are: author, changelog, description, disclaimer, fanart, icon, id, name,
+    path, profile, stars, summary, type, version
+
+    addon_id  -  By default this will use your current add-on id but you
+    can access any add-on you want by entering an id in here.
+    
+EXAMPLE CODE:
+dialog.ok('ADD-ON INFO','We will now try and pull name and version details for our current running add-on.')
+version = koding.Addon_Info(id='version')
+name = koding.Addon_Info(id='name')
+dialog.ok('NAME AND VERSION','[COLOR=dodgerblue]Add-on Name:[/COLOR] %s' % name,'[COLOR=dodgerblue]Version:[/COLOR] %s' % version)
+~"""
+    import xbmcaddon
+    if addon_id == '':
+        addon_id = Caller()
+    ADDON = xbmcaddon.Addon(id=addon_id)
+    if id == '':
+        dialog.ok('ENTER A VALID ID','You\'ve called the Addon_Info function but forgot to add an ID. Please correct your code and enter a valid id to pull info on (e.g. "version")')
+    else:
+        return ADDON.getAddonInfo(id=id)
+#----------------------------------------------------------------
+# TUTORIAL #
+def Addon_Install(addon_id,confirm=True,silent=0,repo_install=1):
+    """
+[COLOR=gold]PREMIUM FEATURE FOR ADDONS EXCLUSIVELY SUPPORTED AT NOOBSANDNERDS[/COLOR]
+If you'd like to hook into this please take a look at the README.
+
+Install an add-on and all dependencies matching the version of Kodi
+you're currently running. If the add-on install takes a while to kick
+in (spinning wheel) it just means that particular add-on hasn't yet
+been cached in the db, the next time someone hits that add-on it will be instant.
+
+CODE: Addon_Install(addon_id, [confirm, silent, repo_install])
+
+AVAILABLE PARAMS:
+    
+    addon_id  -  This is the add-on id you want to install.
+    The Add-on Portal will be scanned for an add-on and all the
+    dependencies will also be scanned. A list of possible download
+    locations are then populated server side and the best ones which
+    match your needs are installed (matching dependencies with your
+    current running version of Kodi to make sure bad modules aren't
+    installed).
+
+    confirm  -  By default this is set to True which means the user
+    will get a choice of whether to install the add-on or not. Set to
+    false if you want to force this add-on without any dialogs.
+
+    silent  -  By default this is set to False which means there will
+    always be a dialog appear showing the install process. Set this to
+    True if you'd prefer to silently auto install the content.
+        
+    repo_install  -  This will allow you to automatically install the
+    relevant repo, offer to install the repo or do not install the repo.
+    See the available values below.
+    
+    The team at NaN take great care to try and make sure the relevant
+    add-ons are matched against the official developers repo and the
+    daily script which scans repositories also does a lot of clever
+    assignment processes. However due to the sheer amount of
+    "developers" re-uploading others content there's always a chance
+    an add-on may get marked up against the wrong repo. If you notice
+    an add-on is marked against the wrong repo please consider updating
+    the details via the Add-on Portal (EDIT ADDON button) or notifying
+    a member of the team at the nooobsandnerds forum and they can
+    manually get it rectified. Thank you.
+
+    AVAILABLE VALUES:
+
+        0 - This will not install the repo the add-on was found on.
+
+        1 - This will automatically install the repo the add-on is found on.
+        If you don't send through a value this will be used as the default.
+        
+        2 - This will ask user if they want to install the repo the add-on was found on.
+
+EXAMPLE CODE:
+dialog.ok('INSTALL NAN TUTORIALS','We will now attempt to install NaN Tutorials add-on.')
+if os.path.exists(xbmc.translatePath('special://home/addons/plugin.video.nantus')):
+    dialog.ok('ALREADY INSTALLED','We cannot install NaN Tutorials as it\'s already installed!')
+else:
+    koding.Addon_Install(addon_id='plugin.video.nantuts',confirm=True,silent=0,repo_install=1)
+~"""
+    from __init__ import Main
+    if silent == True:
+        silent = 1
+    elif silent == False:
+        silent = 0
+
+    if confirm == True:
+        confirm = 2
+    else:
+        confirm = 0
+
+    kodi_version = str(xbmc.getInfoLabel("System.BuildVersion")[:2])
+    Main('addoninstall|id:%s~version:%s~repo:%s~silent:%s~installtype:%s' % (addon_id, kodi_version, repo_install, silent, confirm))
+
 #----------------------------------------------------------------
 # TUTORIAL #
 def Addon_List(enabled=True, inc_new=False):
@@ -59,7 +223,7 @@ Text_Box('ADDON STATUS',my_return)
 ~"""
     from database   import DB_Query
     from guitools   import Text_Box
-    from filetools  import DB_Path_Check
+    from filetools  import DB_Path_Check, Get_Contents
     
     enabled_list  = []
     disabled_list = []
@@ -85,6 +249,44 @@ Text_Box('ADDON STATUS',my_return)
         return enabled_list
     else:
         return disabled_list
+#----------------------------------------------------------------
+# TUTORIAL #
+def Addon_Setting(setting='',value='',addon_id=''):
+    """
+Change or retrieve an add-on setting.
+
+CODE: Addon_Setting(setting, [value, addon_id])
+
+AVAILABLE PARAMS:
+            
+    (*) setting  -  This is the name of the setting you want to access, by
+    default this function will return the value but if you add the
+    value param shown below it will CHANGE the setting.
+
+    value  -  If set this will change the setting above to whatever value
+    is in here.
+
+    addon_id  -  By default this will use your current add-on id but you
+    can access any add-on you want by entering an id in here.
+    
+EXAMPLE CODE:
+dialog.ok('ADDON SETTING','We will now try and pull the language settings for the YouTube add-on')
+if os.path.exists(xbmc.translatePath('special://home/addons/plugin.video.youtube')):
+    my_setting = koding.Addon_Setting(setting='youtube.language',addon_id='plugin.video.youtube')
+    dialog.ok('YOUTUBE SETTING','[COLOR=dodgerblue]Setting name:[/COLOR] youtube.language','[COLOR=dodgerblue]Value:[/COLOR] %s' % my_setting)
+else:
+    dialog.ok('YOUTUBE NOT INSTALLED','Sorry we cannot run this example as you don\'t have YouTube installed.')
+~"""
+    import xbmcaddon
+    if addon_id == '':
+        addon_id = Caller()
+    ADDON = xbmcaddon.Addon(id=addon_id)
+    if value == '':
+        return ADDON.getSetting(setting)
+    else:
+        xbmc.log('ADDON ID: %s'%addon_id)
+        xbmc.log('Setting: %s to %s'%(setting,value))
+        ADDON.setSetting(id=setting, value=value)
 #----------------------------------------------------------------
 # TUTORIAL #
 def ASCII_Check(sourcefile=xbmc.translatePath('special://home'), dp=False):
@@ -615,49 +817,6 @@ dialog.ok('ADDON ID','The add-on id found is:','[COLOR=dodgerblue]%s[/COLOR]'%my
         return folder
 #----------------------------------------------------------------
 # TUTORIAL #
-def Get_Contents(path, folders=True, exclude_list=[], full_path=True):
-    """
-Return a list of either files or folders in a given path.
-
-CODE:  Get_Contents(path, [folders])
-
-AVAILABLE PARAMS:
-    
-    (*) path  -  This is the path you want to search, no sub-directories are scanned.
-    
-    folders  -  By default this is set to True and the returned list will only
-    show folders. If set to False the returned list will show files only.
-
-    exclude_list  -  Optionally you can add a list of items you don't want returned
-
-    full_path  -  By default the entries in the returned list will contain the full
-    path to the folder/file. If you only want the file/folder name set this to False.
-
-EXAMPLE CODE:
-ADDONS = xbmc.translatePath('special://home/addons')
-addon_folders = koding.Get_Contents(path=ADDONS, folders=True, exclude_list=['packages','temp'], full_path=False)
-results = ''
-for item in addon_folders:
-    results += 'FOLDER: [COLOR=dodgerblue]%s[/COLOR]\n'%item
-koding.Text_Box('ADDON FOLDERS','Below is a list of folders found in the addons folder (excluding packages and temp):\n\n%s'%results)
-~"""
-    final_list = []
-    for item in os.listdir(path):
-        item_path = os.path.join(path,item)
-        if folders and os.path.isdir(item_path) and item not in exclude_list:
-            if full_path:
-                final_list.append(item_path)
-            else:
-                final_list.append(item)
-
-        elif not folders and not os.path.isdir(item_path) and item not in exclude_list:
-            if full_path:
-                final_list.append(item_path)
-            else:
-                final_list.append(item)
-    return final_list
-#----------------------------------------------------------------
-# TUTORIAL #
 def Grab_Log(log_type = 'std', formatting = 'original', sort_order = 'reverse'):
     """
 This will grab the log file contents, works on all systems even forked kodi.
@@ -954,32 +1113,49 @@ dialog.ok('KODI VERSION','You are running:','[COLOR=dodgerblue]%s[/COLOR] - v.%s
     return running
 #----------------------------------------------------------------
 # TUTORIAL #
-def Set_Setting(setting_type, setting, value = ''):
+def Set_Setting(setting, setting_type='kodi_setting', value = 'true'):
     """
-Use this to set built-in kodi settings via JSON or set skin settings. The value paramater is only required for JSON and string commands. Available options are below:
+Use this to set built-in kodi settings via JSON or set skin settings.
 
-CODE: Set_Setting(setting, setting_type, [value])
+CODE: Set_Setting(setting, [setting_type, value])
 
 AVAILABLE PARAMS:
     
-    setting_type - The type of setting type you want to change, available types are:
+    setting_type - The type of setting type you want to change. By default
+    it's set to 'kodi_setting', see below for more info.
 
-        string (sets a skin string, requires a value)
-        bool_true (sets a skin boolean to true, no value required)
-        bool_false (sets a skin boolean to false, no value required)
-        (!) kodi_setting (sets values found in guisettings.xml)
-        (!) addon_enable (enables/disables an addon. setting = addon_id, value = true/false)
-        (!) json (WIP - setitng = method, value = params, see documentation on JSON-RPC API here: http://kodi.wiki/view/JSON-RPC_API)
+    AVAILALE VALUES:
 
-        (!) = These will return True or False if successful
+        'string' : sets a skin string, requires a value.
 
-setting - This is the name of the setting you want to change, it could be a setting from the kodi settings or a skin based setting.
+        'bool_true' :  sets a skin boolean to true, no value required.
 
-value: This is the value you want to change the setting to.
+        'bool_false' sets a skin boolean to false, no value required.
+        
+        'kodi_setting' : sets values found in guisettings.xml. Requires
+        a string of 'true' or 'false' for the value paramater.
+        
+        'addon_enable' : enables/disables an addon. Requires a string of
+        'true' (enable) or 'false' (disable) as the value. You will get a
+        return of True/False on whether successul. Depending on your requirements
+        you may prefer to use the Toggle_Addons function.
+
+        'json' : WIP - setitng = method, value = params, see documentation on
+        JSON-RPC API here: http://kodi.wiki/view/JSON-RPC_API)
+
+    setting - This is the name of the setting you want to change, it could be a
+    setting from the kodi settings or a skin based setting. If you're wanting
+    to enable/disable an add-on this is set as the add-on id.
+
+    value: This is the value you want to change the setting to. By default this
+    is set to 'true'.
 
 
 EXAMPLE CODE:
-koding.Set_Setting('kodi_setting', 'lookandfeel.enablerssfeeds', 'false')
+if dialog.yesno('RSS FEEDS','Would you like to enable or disable your RSS feeds?',yeslabel='ENABLE',nolabel='DISABLE'):
+    koding.Set_Setting(setting_type='kodi_setting', setting='lookandfeel.enablerssfeeds', value='true')
+else:
+    koding.Set_Setting(setting_type='kodi_setting', setting='lookandfeel.enablerssfeeds', value='false')
 ~"""
     try:    import simplejson as json
     except: import json
@@ -1134,6 +1310,42 @@ dialog.ok('FUNCTION COMPLETE','Of course we cannot read that file in just 10 sec
         counter += 1
     Show_Busy(False)
     return thread_alive
+#----------------------------------------------------------------
+# TUTORIAL #
+def String(code='', source=''):
+    """
+This will return the relevant language skin as set in the
+resources/language folder for your add-on. By default you'll get
+the language string returned from your current running add-on
+but if you send through another add-on id you can grab from
+any add-on or even the built-in kodi language strings.
+
+CODE: String(code, [source])
+
+AVAILABLE PARAMS:
+
+    (*) code  -  This is the language string code set in your strings.po file.
+
+    source  -  By default this is set to a blank string and will
+    use your current add-on id. However if you want to pull the string
+    from another add-on just enter the add-on id in here. If you'd prefer
+    to pull from the built-in kodi resources files just set as 'system'.
+
+EXAMPLE CODE:
+kodi_string = koding.String(code=10140, source='system')
+koding_string = koding.String(code=30825, source='script.module.python.koding.aio')
+dialog.ok('SYSTEM STRING','The string [COLOR=dodgerblue]10140[/COLOR] pulled from the default system language resources is:','[COLOR=gold]%s[/COLOR]' % kodi_string)
+dialog.ok('PYTHON KODING STRING','The string [COLOR=dodgerblue]30825[/COLOR] pulled from the Python Koding language resources is:','[COLOR=gold]%s[/COLOR]' % koding_string)
+~"""
+    import xbmcaddon
+    if source == '':
+        source = Caller()
+    if source != 'system':
+        addon_id = xbmcaddon.Addon(id=source)
+        mystring = addon_id.getLocalizedString(code)
+    else:
+        mystring = xbmc.getLocalizedString(code)
+    return mystring
 #----------------------------------------------------------------
 # TUTORIAL #
 def System(command, function=''):
@@ -1350,6 +1562,9 @@ AVAILABLE PARAMS:
     add-ons which have deliberately been disabled by the end user are
     not affected.
 
+    refresh  - By default this is set to True, it will refresh the
+    current container and also force a local update on your add-ons db.
+
 EXAMPLE CODE:
 xbmc.executebuiltin('ActivateWindow(Videos, addons://sources/video/)')
 xbmc.sleep(2000)
@@ -1362,7 +1577,7 @@ koding.Toggle_Addons(addon='plugin.video.youtube', enable=True, safe_mode=True, 
 koding.Refresh('container')
 ~"""
     from __init__   import dolog
-    from filetools  import DB_Path_Check
+    from filetools  import DB_Path_Check, Get_Contents
     from database   import DB_Query
 
     kodi_ver        = int(float(xbmc.getInfoLabel("System.BuildVersion")[:2]))
@@ -1378,8 +1593,12 @@ koding.Refresh('container')
         disabled_list = Addon_List(enabled=False)
 
 # If addon has been sent through as a string we add into a list
+    if data_type == 'unicode':
+        addon = addon.encode('utf8')
+        data_type = Data_Type(addon)
+
     if data_type == 'str' and addon!= 'all':
-        addon = [addon]
+        addon = [addon,'']
 
 # Grab all the add-on ids from addons folder
     if addon == 'all':
@@ -1455,5 +1674,5 @@ koding.Refresh('container')
                 dolog('%s now %s' % (my_addon, log_value))
                 final_enabled.append(addon)
     if refresh:
-        Refresh('container')
+        Refresh(['addons','container'])
 #----------------------------------------------------------------

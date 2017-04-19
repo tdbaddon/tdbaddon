@@ -29,6 +29,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
 from resources.lib.modules import debrid
+
 try:
     from sqlite3 import dbapi2 as database
 except:
@@ -40,21 +41,26 @@ class sources:
     def getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30,
                    progress=True, preset="search", dialog=None, exclude=None, scraper_title=False, queueing=False):
 
+        xbmc.log("hello?", xbmc.LOGNOTICE)
+
         year = str(year)
         content = 'movie' if tvshowtitle == None else 'episode'
-        allow_debrid = bool(control.setting('allow_debrid'))
+        allow_debrid = control.setting('allow_debrid') == "true"
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            links_scraper = nanscrapers.scrape_movie(title, year, imdb, timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
+            links_scraper = nanscrapers.scrape_movie(title, year, imdb, timeout=timeout, exclude=exclude,
+                                                     enable_debrid=allow_debrid)
         elif content == 'episode':
             if scraper_title:
                 tvshowtitle = title
             tvshowtitle = cleantitle.normalize(tvshowtitle)
             links_scraper = nanscrapers.scrape_episode(tvshowtitle, year, premiered, season, episode, imdb, tvdb,
-                                                           timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
+                                                       timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
         else:
             return
+
+        xbmc.log("hello2", xbmc.LOGNOTICE)
 
         if not queueing and control.setting('use_link_dialog') == 'true':
             if control.setting('check_url') == "true":
@@ -64,16 +70,19 @@ class sources:
             if content == 'movie':
                 link, items = nanscrapers.scrape_movie_with_dialog(title, year, imdb, timeout=timeout, exclude=exclude,
                                                                    sort_function=sources.sort_function,
-                                                                   check_url=check_url, extended=True, enable_debrid=allow_debrid)
+                                                                   check_url=check_url, extended=True,
+                                                                   enable_debrid=allow_debrid)
             elif content == "episode":
                 link, items = nanscrapers.scrape_episode_with_dialog(tvshowtitle, year, premiered, season, episode,
                                                                      imdb, tvdb,
                                                                      timeout=timeout, exclude=exclude,
                                                                      sort_function=sources.sort_function,
-                                                                     check_url=check_url, extended=True, enable_debrid=allow_debrid)
+                                                                     check_url=check_url, extended=True,
+                                                                     enable_debrid=allow_debrid)
             else:
                 return
 
+            xbmc.log("testing: " + repr(link), xbmc.LOGNOTICE)
 
             if link is None:
                 return False
@@ -298,7 +307,8 @@ class sources:
                 return url
 
     @staticmethod
-    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude=None, queueing=False):
+    def getMusicSources(title, artist, timeout=30, progress=True, preset="search", dialog=None, exclude=None,
+                        queueing=False):
         title = cleantitle.normalize(title)
         links_scraper = nanscrapers.scrape_song(title, artist, timeout=timeout, exclude=exclude)
 
@@ -445,3 +455,21 @@ class sources:
         if quality == "SD": quality = "SDc"
 
         return quality
+
+    @staticmethod
+    def format_function(scraper_array):
+        results_array = []
+        if scraper_array:
+            labels = {}
+            for link in scraper_array:
+                quality = ""
+                try:
+                    quality = str(int(link['quality'])) + "p"
+                except:
+                    quality = link['quality']
+                if link.get("debridonly", ""):
+                    label = link["source"] + " (debrid) " + link["scraper"] + " (" + quality + ")"
+                else:
+                    label = link["source"] + " " + link["scraper"] + " (" + quality + ")"
+                results_array.append((label, [link]))
+            return results_array

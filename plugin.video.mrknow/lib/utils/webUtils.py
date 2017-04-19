@@ -9,7 +9,8 @@ import cookielib
 import socket
 from HTMLParser import HTMLParser
 from fileUtils import fileExists, setFileContent, getFileContent
-import json
+import common
+from binascii import b2a_hex,unhexlify
 
 
 #------------------------------------------------------------------------------
@@ -98,8 +99,23 @@ class BaseRequest(object):
             
         if 'finecast.tv' in urlparse.urlsplit(url).netloc:
             self.s.headers.update({'Cookie' : 'PHPSESSID=d08b73a2b7e0945b3b1bb700f01f7d72'})
-        if 'sitemtv1' in urlparse.urlsplit(url).netloc:
-            self.s.headers.update({'Cookie': '__test=96c52ac42c8bb20e0d9a0d896c09fed1'})
+        if 'telewizjastreamer' in urlparse.urlsplit(url).netloc:
+            r = self.s.get(url, headers=headers, timeout=20)
+            common.log('MR telewizjastreamer1: ' + r.text)
+            u = re.findall("""toNumbers\(['"]([^"]+)['"]\)""", r.text)
+            if len(u)>0:
+                u[0] = unhexlify(u[0])
+                u[1] = unhexlify(u[1])
+                u[2] = unhexlify(u[2])
+                try:
+                    from Crypto.Cipher import AES
+                except ImportError:
+                    import pyaes as AES
+                cipher = AES.new(u[0], AES.MODE_CBC, IV=u[1])
+                decrypted = cipher.decrypt(u[2])
+                common.log('MR telewizjastreamerd3: ' + str(b2a_hex(decrypted)))
+            self.s.headers.update({'Cookie': '__test=%s;bat=1' % b2a_hex(decrypted) })
+
             #8ef0ed27766603cb1fafe173c34f4a1a
         
         if form_data:

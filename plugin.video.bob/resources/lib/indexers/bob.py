@@ -29,6 +29,8 @@ import urlparse
 
 import xbmc
 import xbmcplugin
+import xbmcaddon
+import xbmcvfs
 
 try:
     from sqlite3 import dbapi2 as database
@@ -41,7 +43,7 @@ from resources.lib.modules import control
 from resources.lib.modules import client
 from resources.lib.modules import workers
 from resources.lib.modules import views
-
+import koding
 
 def replace_url(url):
     if 'norestrictions.noobsandnerds.com' in url and not 'norestrictions.club/norestrictions.club' in url:
@@ -55,6 +57,7 @@ def replace_url(url):
     elif 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('norestrictions.club/norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
     return url
+
 
 
 class Indexer:
@@ -401,6 +404,8 @@ class Indexer:
                 url = '<preset>searchsd</preset>%s' % meta if url == 'searchsd' else url
                 url = url.replace('<sublink></sublink>', '')
                 url += regex
+                if xbmcaddon.Addon().getAddonInfo("id").endswith('dev') and name == "Testings":
+                    url =  url.replace("bob", "bob.dev")
 
                 if item.startswith('<item>'):
                     action = 'play'
@@ -421,11 +426,12 @@ class Indexer:
                     folder = False
 
                 image2 = replace_url(self.bob_get_tag_content(item, 'thumbnail', image))
-                if not str(image2).lower().startswith('http'):
+                if not str(image2).lower().startswith('http') and not str(image2).endswith(".gif"):
                     image2 = '0'
 
+
                 fanart2 = replace_url(self.bob_get_tag_content(item, 'fanart', fanart))
-                if not str(fanart2).lower().startswith('http'):
+                if not str(fanart2).lower().startswith('http') and not fanart2.endswith(".gif"):
                     fanart2 = '0'
 
                 content = self.bob_get_tag_content(meta, 'content', '0')

@@ -145,7 +145,7 @@ class source:
                     if type(url) is list:
                         url = [i['files'] for i in url]
                         for i in url:
-                            try: sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'],'url': i})
+                            try: sources.append({'source': 'gvideo', 'provider': 'Tunemovie', 'quality': client.googletag(i)[0]['quality'],'url': i})
                             except: pass
 
                     else:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.bob" name="Bob" version="1.3.10" provider-name="Team Bob">
+<addon id="plugin.video.bob" name="Bob" version="1.3.11" provider-name="Team Bob">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" />
@@ -24,7 +24,6 @@
 		<platform>all</platform>
 		<forum>http://www.noobsandnerds.com/support/forumdisplay.php?fid=253</forum>
 		<website>www.noobsandnerds.com</website>
-		<news></news>
 		<video_guide>y0w8zIH4lOY</video_guide>
 		<video_preview>WdKIzajiBBI</video_preview>
 	</extension>

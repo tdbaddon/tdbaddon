@@ -5,6 +5,7 @@ import time
 import requests
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules import proxy
+from resources.lib.modules import cleantitle
 from datetime import datetime, timedelta
 
 
@@ -27,10 +28,7 @@ get listings from acespoplisting.in
           "\t<thumbnail> </thumbnail>\n" \
           "</item>\n\n" \
           "<item>\n" \
-          "\t<title>[COLORpurple]############## [COLORcyan]Live Sporting Events[COLORpurple] ##############[/COLOR]</title>\n" \
-          "\t<link> </link>\n" \
-          "\t<thumbnail> </thumbnail>\n" \
-          "</item>\n"
+
 
     try:
         html = proxy.get2("http://www.acesoplisting.in/", 'class="table-responsive"')
@@ -85,17 +83,45 @@ get listings from acespoplisting.in
                     thumbnail = "http://organizationalphysics.com/wp-content/uploads/2013/12/NFLShield.png"
                 elif league == "WWE":
                     thumbnail = "http://i.imgur.com/UsYsZ.png"
-                elif league == "USA NBA":
-                    thumbnail = "https://lh3.googleusercontent.com/gfS15xuST6IP3e-ZDy63XLNl-ZxxTqo-NxXuIy5dKWQIjX_8s_T0Sz1mgTc0-78juBc=w170"
+                elif league == "USA NBA PLAYOFFS":
+                    thumbnail = "http://www.fmuweb.com/rjordan/NBA-logo.jpg"
                 elif league == "PREMIER LEAGUE":
                     thumbnail = "https://d1fy1ym40biffm.cloudfront.net/images/logos/leagues/f633765f43fafaf2120a1bb9b2a7babd4f0d9380ed1bc72925c29ba18ace9269.png"
+                elif league == "SPANISH LA LIGA":
+                    thumbnail= "http://a2.espncdn.com/combiner/i?img=%2Fi%2Fleaguelogos%2Fsoccer%2F500%2F15.png"
+                elif league == "ITALIA SERIE A":
+                    thumbnail = "https://www.expressvpn.com/stream-sports/wp-content/uploads/sites/3/2016/06/serie-a.png"
+                elif league == "USA MLS":
+                    thumbnail = "https://s-media-cache-ak0.pinimg.com/originals/45/91/a0/4591a0e85db9cc3e799540aad3de0f61.png"
+                elif league == "BUNDESLIGA":
+                    thumbnail = "http://vignette3.wikia.nocookie.net/the-football-database/images/c/cd/Germany_Competitions_001.png/revision/latest?cb=20131013133441"
+                elif league == "FRENCH LIGUE 1":
+                    thumbnail = "http://a2.espncdn.com/combiner/i?img=%2Fi%2Fleaguelogos%2Fsoccer%2F500%2F9.png"
+                elif league == "CHILE LEAGUE":
+                    thumbnail = "https://hdlogo.files.wordpress.com/2015/07/chile-hd-logo.png"
+                elif league == "SPANISH LA LIGA 2":
+                    thumbnail = "https://1.bp.blogspot.com/-WzlJoteHQM4/V7Tb1xWMACI/AAAAAAAACiM/WEphYXfV_Bgoh7__SPxO7JjQIHSDqGzwACLcB/s1600/15.%2BLaLiga%2B2.png"
+                elif league == "SPANISH ACB":
+                    thumbnail = "http://www.thesportsdb.com/images/media/league/badge/txqrru1422788047.png"
+                elif league == "PORTUGAL A LIGA":
+                    thumbnail = "http://vignette2.wikia.nocookie.net/logopedia/images/b/b3/Liga_Portugal_logo.png/revision/latest?cb=20130413151721"
+                elif league == "COLOMBIA PRIMERA":
+                    thumbnail = "https://hdlogo.files.wordpress.com/2016/02/atlc3a9tico-bucaramanga-hd-logo.png"
+                elif league	== "MEXICO LIGA MX":
+                    thumbnail = "http://img.new.livestream.com/accounts/0000000000597860/3443e018-53b9-4679-9ccb-268eff9f66a4.png"
+                elif league == "URUGUAY PRIMERA":
+                    thumbnail = "http://www.webcup.com.br/static/images/league/200x200/campeonato-uruguayo-1460050724.jpg"
+                elif league == "ITALY SERIE A":
+                    thumbnail = "https://www.expressvpn.com/stream-sports/wp-content/uploads/sites/3/2016/06/serie-a.png"
+                elif league == "ATP WORLD TOUR":
+                    thumbnail = "https://lh6.googleusercontent.com/-Mq2jXXTjaI8/AAAAAAAAAAI/AAAAAAAAQdw/e-0yuIJKJl8/s0-c-k-no-ns/photo.jpg"
                 elif sport == "SOCCER":
                     thumbnail = "http://themes.zozothemes.com/mist/sports/wp-content/uploads/sites/6/2015/10/soccer-player.png"
                 elif sport == "MOTOGP":
                     thumbnail = "https://www.bestvpnprovider.com/wp-content/uploads/2015/05/MotoGp_Logo.jpg"
                 elif sport == "FORMULA 1":
                     thumbnail = "http://d3t1wwu6jp9wzs.cloudfront.net/wp-content/uploads/2016/05/photo.jpg"
-                elif sport == "UFC":
+                elif sport == "MMA":
                     thumbnail = "http://img3.wikia.nocookie.net/__cb20130511014401/mixedmartialarts/images/c/c5/UFC_logo.png"
                 else:
                     thumbnail = ""
@@ -133,7 +159,7 @@ get listings from acespoplisting.in
                   "\t<thumbnail> </thumbnail>\n" \
                   "</item>\n\n" \
                   "<item>\n" \
-                  "\t<title>[COLORpurple]############## [COLORcyan]Live Sporting Events[COLORpurple] ##############[/COLOR]</title>\n" \
+                  "\t<title>[COLORred]| [COLORcyan] Live Sporting Events [COLORred]|[/COLOR]</title>\n" \
                   "\t<link> </link>\n" \
                   "\t<thumbnail> </thumbnail>\n" \
                   "</item>\n" \
@@ -155,12 +181,12 @@ get game recap listings from nhl
     :return: listing from website in bob list xml format
     :rtype: str
     """
-
+    import xbmc
     xml = "<fanart>http://www.shauntmax30.com/data/out/29/1189697-100-hdq-nhl-wallpapers.png</fanart>\n\n\n" \
           "<item>\n" \
-          "\t<title>[COLORpurple]############## [COLORcyan]NHL Condensed Games[COLORpurple] ##############[/COLOR]</title>\n" \
+          "\t<title>[COLORred]| [COLORorange] NHL Condensed Games [COLORred]|[/COLOR]</title>\n" \
           "\t<link></link>\n" \
-          "\t<thumbnail></thumbnail>\n" \
+          "\t<thumbnail>https://s20.postimg.org/5x0bndh2l/betweenthepipes.png</thumbnail>\n" \
           "</item>\n\n"
 
     recaps_json = requests.get(
@@ -180,7 +206,7 @@ get game recap listings from nhl
                 if len(game_date_tag) > 1:
                     game_date = game_date_tag[1]
         if game_date:
-            title = "{0} ({1})".format(title, game_date)
+            title = "{0} ({1})".format(title.encode("latin-1"), game_date)
         image = doc['image']['cuts']['640x360']['src']
         try:
             url = "http://nhl.bamcontent.com/nhl/id/v1/{0}/details/web-v1.json".format(asset_id)
@@ -207,7 +233,6 @@ get game recap listings from nhl
            "\t<link>sport_hockeyrecaps{0}</link>\n" \
            "\t<thumbnail></thumbnail>\n" \
            "</dir>\n".format(int(page) + 1)
-
     return xml
 
 
@@ -232,10 +257,10 @@ def get_nhl_games(epg_date=""):
         if game_date["totalItems"] > 0:
             xml += "\n" \
                    "<item>\n" \
-                   "\t<title>[COLORred]%s NHL Schedule in 5000k[/COLOR]</title>\n" \
+                   "\t<title>[COLORred]%s NHL Schedule in 5000K[/COLOR]</title>\n" \
                    "\t<link></link>\n" \
                    "\t<thumbnail>https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png</thumbnail>\n" \
-                   "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                   "\t<fanart>http://cdn.wallpapersafari.com/41/55/dqIYaC.jpg</fanart>\n" \
                    "</item>\n" % (datetime.strptime(game_date["date"], "%Y-%m-%d").strftime("%A, %b %d"))
             for game in game_date["games"]:
                 try:
@@ -249,11 +274,11 @@ def get_nhl_games(epg_date=""):
                                                  "\t<title>[COLORred]| [COLORorange]%s [COLORred]|[/COLOR]</title>\n" \
                                                  "\t<link></link>\n" \
                                                  "\t<thumbnail>https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png</thumbnail>\n" \
-                                                 "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                                                 "\t<fanart>http://cdn.wallpapersafari.com/41/55/dqIYaC.jpg</fanart>\n" \
                                                  "</item>\n" % (start_time)
                     home = game['teams']['home']['team']['name'].encode("utf-8").replace("\xc3\xa9", "e")
                     away = game['teams']['away']['team']['name'].encode("utf-8").replace("\xc3\xa9", "e")
-                    title = "[COLORgray]%s @ %s[/COLOR]" % (away, home)
+                    title = "[COLORwhite]%s @ %s[/COLOR]" % (away, home)
                     image = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png"
                     for stream in game["content"]["media"]["epg"]:
                         if stream["title"] == "Recap":
@@ -281,7 +306,7 @@ def get_nhl_games(epg_date=""):
                                                       "\t<title>%s</title>\n" \
                                                       "\t<link>sport_nhl_home_away(%s,%s,%s,%s)</link>\n" \
                                                       "\t<thumbnail>%s</thumbnail>\n" \
-                                                      "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                                                      "\t<fanart>http://cdn.wallpapersafari.com/41/55/dqIYaC.jpg</fanart>\n" \
                                                       "</dir>\n" % (
                                                           title, title, home_content_url, away_content_url, image,
                                                           image)
@@ -303,9 +328,9 @@ def get_nhl_home_away(title, home_content_url, away_content_url, image):
     xml = ""
     for content_url in [home_content_url, away_content_url]:
         if content_url == home_content_url:
-            game_title = "HOME"
+            game_title = "[COLORblue]HOME[/COLOR]"
         elif content_url == away_content_url:
-            game_title = "AWAY"
+            game_title = "[COLORyellow]AWAY[/COLOR]"
         else:
             game_title = title
         try:
@@ -314,7 +339,7 @@ def get_nhl_home_away(title, home_content_url, away_content_url, image):
                 play_url = request.content
             else:
                 play_url = ""
-                game_title += " NOT PLAYING YET"
+                game_title += " [COLORred]NOT PLAYING YET DUDE!![/COLOR]"
         except:
             continue
         if not play_url is "" and not requests.request('HEAD', play_url, cookies={'mediaAuth': seed}).status_code < 400:
@@ -323,7 +348,7 @@ def get_nhl_home_away(title, home_content_url, away_content_url, image):
                    "\t<title>{0}</title>\n" \
                    "\t<link>{1}</link>\n" \
                    "\t<thumbnail>{2}</thumbnail>\n" \
-                   "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                   "\t<fanart>http://cdn.wallpapersafari.com/41/55/dqIYaC.jpg</fanart>\n" \
                    "</item>\n".format(game_title, play_url, image)
         xml += game_xml
     return xml

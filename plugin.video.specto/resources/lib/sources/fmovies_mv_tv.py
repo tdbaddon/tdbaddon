@@ -20,11 +20,10 @@
 
 
 import re,urllib,urlparse,json, random, time
-
 from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
-
+import base64
 
 
 class source:
@@ -262,39 +261,45 @@ class source:
         except:
             return
 
+    def __get_token_item(self, index2, mykey):
+        T = ''
+        # for index2 in data:
+        if not index2.startswith('_'):
+            o = list(range(0, 256))
+            i = 0
+            for r in range(0, 256):
+                i = (i + o[r] + ord(mykey[r % len(mykey)])) % 256
+                n = o[r]
+                o[r] = o[i]
+                o[i] = n
+            r = 0
+            i = 0
+            a = T
+            b = 0
+            for s in range(0, len(index2)):
+                r = (r + 1) % 256
+                i = (i + o[r]) % 256
+                n = o[r]
+                o[r] = o[i]
+                o[i] = n
+                a = a + unichr(ord(index2[s]) ^ (o[(o[r] + o[i]) % 256]))
+                b = b + ord(unichr(ord(index2[s]) ^ (o[(o[r] + o[i]) % 256])))
 
-    def __get_token(self, data):
-        index1 = 0
-        for index2 in data:
-            i = list(range(0, 256))
-            if not index2.startswith('_'):
-                n = 0
-                index4 = 0
-                for s in range(0, 256):
-                    n = (n + i[s] +
-                         ord(index2[s % len(index2)])) % 256
-                    r = i[s]
-                    i[s] = i[n]
-                    i[n] = r
-                n = 0
-                for index8 in range(0, len(data[index2])):
-                    s = index8 + 1  # line:15
-                    n = (n + i[s]) % (256)
-                    r = i[s]
-                    i[s] = i[n]
-                    i[n] = r
-                    index4 += ord(data[index2][index8]) ^ (i[(i[s] +i[n]) % 256]) * index8 + index8
-                index1 += index4
-        return {'_': str(index1)}
+        print b
+        return b
+        # return T + a
+        # return {'_': str(index1)}
 
-    """
-    n = (n + i[s] +
-        t
-            [rW.P(+(Jl + JR))]
-            (rW.A(s, t[rW[lL](+(Jl + uL))]))) % (SL + nL - 0),
-                r = i[s],
-                i[s] = i[n],
-    """
+
+    def __get_token(self,data):
+        basickey = base64.decodestring('QlE0QXdCZ1RSenBCYlNLTEI=')
+        c = 0
+        for i in basickey:
+            c = c + ord(i)
+        for i in data:
+            c = c + self.__get_token_item(data[i], basickey + i)
+        # return c
+        return {'_': str(c)}
 
     def __get_xtoken(self):
         url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))
