@@ -1,0 +1,9 @@
+[B]4.12.17[/B]
+New HD sources added
+Removed dead links
+Disabled openload sources with captcha codes
+Minor bug fix
+_____________________________________________
+
+[B]4.5.17[/B]
+- Initial Release
