@@ -831,7 +831,7 @@ def show_rewatch():
                     queries.update(utils2.show_id(show))
                     menu_items.append((i18n('mark_as_watched'), 'RunPlugin(%s)' % (kodi.get_plugin_url(queries))),)
                 
-                liz, liz_url = make_episode_item(show, episode, show_subs=False, menu_items=menu_items, screenshots=True)
+                liz, liz_url = make_episode_item(show, episode, show_subs=False, menu_items=menu_items)
                 label = liz.getLabel()
                 label = '%s - %s' % (show['title'], label)
                 liz.setLabel(label)
@@ -1001,7 +1001,7 @@ def show_progress():
                 menu_items = []
                 queries = {'mode': MODES.SEASONS, 'trakt_id': show['ids']['trakt'], 'title': show['title'], 'year': show['year'], 'tvdb_id': show['ids']['tvdb']}
                 menu_items.append((i18n('browse_seasons'), 'Container.Update(%s)' % (kodi.get_plugin_url(queries))),)
-                liz, liz_url = make_episode_item(show, episode['episode'], show_subs=False, menu_items=menu_items, screenshots=True)
+                liz, liz_url = make_episode_item(show, episode['episode'], show_subs=False, menu_items=menu_items)
                 label = liz.getLabel()
                 label = '[[COLOR deeppink]%s[/COLOR]] %s - %s' % (date_time, show['title'], label)
                 liz.setLabel(label)
@@ -1156,7 +1156,7 @@ def clear_saved(section):
 @url_dispatcher.register(MODES.SEARCH_RESULTS, ['section', 'query'], ['page'])
 def search_results(section, query, page=1):
     results = trakt_api.search(section, query, page)
-    make_dir_from_list(section, results, query={'mode': MODES.SEARCH_RESULTS, 'section': section, 'query': query}, page=page, images=False)
+    make_dir_from_list(section, results, query={'mode': MODES.SEARCH_RESULTS, 'section': section, 'query': query}, page=page)
 
 @url_dispatcher.register(MODES.SEASONS, ['trakt_id', 'title', 'year'], ['tvdb_id'])
 def browse_seasons(trakt_id, title, year, tvdb_id=None):
@@ -1190,7 +1190,7 @@ def browse_episodes(trakt_id, season):
         utc_air_time = utils.iso_2_utc(episode['first_aired'])
         if kodi.get_setting('show_unaired') == 'true' or utc_air_time <= now:
             if kodi.get_setting('show_unknown') == 'true' or utc_air_time:
-                liz, liz_url = make_episode_item(show, episode, screenshots=True)
+                liz, liz_url = make_episode_item(show, episode)
                 xbmcplugin.addDirectoryItem(int(sys.argv[1]), liz_url, liz, isFolder=False, totalItems=totalItems)
     kodi.set_view(CONTENT_TYPES.EPISODES, True)
     kodi.end_of_directory()
@@ -2052,15 +2052,14 @@ def clean_subs():
         else:
             trakt_api.remove_from_list(SECTIONS.TV, slug, del_items)
 
-@url_dispatcher.register(MODES.REFRESH_IMAGES, ['video_type', 'ids'], ['season', 'episode', 'screenshots'])
-def refresh_images(video_type, ids, season='', episode='', screenshots=False):
+@url_dispatcher.register(MODES.REFRESH_IMAGES, ['video_type', 'ids'], ['season', 'episode'])
+def refresh_images(video_type, ids, season='', episode=''):
     ids = json.loads(ids)
-    image_scraper.get_images(video_type, ids, season, episode, screenshots, cached=False)
-    if kodi.get_setting('proxy_enable') == 'true':
-        images = image_scraper.get_images(video_type, ids, season, episode, screenshots)
-        salts_utils.clear_thumbnails(images)
-        image_scraper.clear_cache(video_type, ids, season, episode)
+    images = image_scraper.get_images(video_type, ids, season, episode)
+    salts_utils.clear_thumbnails(images)
+    image_scraper.clear_cache(video_type, ids, season, episode)
     
+    image_scraper.get_images(video_type, ids, season, episode, cached=False)
     kodi.refresh_container()
 
 @url_dispatcher.register(MODES.FLUSH_CACHE)
@@ -2326,7 +2325,7 @@ def show_pickable_list(slug, pick_label, pick_mode, section):
     else:
         show_list(section, slug)
 
-def make_dir_from_list(section, list_data, slug=None, query=None, page=None, images=True):
+def make_dir_from_list(section, list_data, slug=None, query=None, page=None):
     section_params = utils2.get_section_params(section)
     watched = {}
     in_collection = {}
@@ -2378,7 +2377,7 @@ def make_dir_from_list(section, list_data, slug=None, query=None, page=None, ima
 
         show['in_collection'] = in_collection.get(trakt_id, False)
 
-        liz, liz_url = make_item(section_params, show, menu_items, images)
+        liz, liz_url = make_item(section_params, show, menu_items)
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), liz_url, liz, isFolder=section_params['folder'], totalItems=total_items)
 
     if query and page and total_items >= int(kodi.get_setting('list_size')):
@@ -2485,7 +2484,7 @@ def make_season_item(season, info, trakt_id, title, year, tvdb_id):
     liz.addContextMenuItems(menu_items, replaceItems=True)
     return liz
 
-def make_episode_item(show, episode, show_subs=True, menu_items=None, screenshots=False):
+def make_episode_item(show, episode, show_subs=True, menu_items=None):
     # log_utils.log('Make Episode: Show: %s, Episode: %s, Show Subs: %s' % (show, episode, show_subs), log_utils.LOGDEBUG)
     # log_utils.log('Make Episode: Episode: %s' % (episode), log_utils.LOGDEBUG)
     if menu_items is None: menu_items = []
@@ -2516,7 +2515,7 @@ def make_episode_item(show, episode, show_subs=True, menu_items=None, screenshot
         label = utils2.format_episode_label(label, episode['season'], episode['number'], srts)
 
     meta = salts_utils.make_info(episode, show)
-    art = image_scraper.get_images(VIDEO_TYPES.EPISODE, show['ids'], episode['season'], episode['number'], screenshots=screenshots)
+    art = image_scraper.get_images(VIDEO_TYPES.EPISODE, show['ids'], episode['season'], episode['number'])
     liz = utils.make_list_item(label, meta, art)
     liz.setInfo('video', meta)
     air_date = ''
@@ -2562,8 +2561,7 @@ def make_episode_item(show, episode, show_subs=True, menu_items=None, screenshot
         watched = True
         label = i18n('mark_as_watched')
 
-    queries = {'mode': MODES.REFRESH_IMAGES, 'video_type': VIDEO_TYPES.EPISODE, 'ids': json.dumps(show['ids']), 'season': episode['season'],
-               'episode': episode['number'], 'screenshots': screenshots}
+    queries = {'mode': MODES.REFRESH_IMAGES, 'video_type': VIDEO_TYPES.EPISODE, 'ids': json.dumps(show['ids']), 'season': episode['season'], 'episode': episode['number']}
     menu_items.append((i18n('refresh_images'), 'RunPlugin(%s)' % (kodi.get_plugin_url(queries))),)
     if TOKEN:
         show_id = utils2.show_id(show)
@@ -2590,14 +2588,13 @@ def make_episode_item(show, episode, show_subs=True, menu_items=None, screenshot
     liz.addContextMenuItems(menu_items, replaceItems=True)
     return liz, liz_url
 
-def make_item(section_params, show, menu_items=None, images=True):
+def make_item(section_params, show, menu_items=None):
     if menu_items is None: menu_items = []
     if not isinstance(show['title'], basestring): show['title'] = ''
     show['title'] = re.sub(' \(\d{4}\)$', '', show['title'])
     label = '%s (%s)' % (show['title'], show['year'])
     trakt_id = show['ids']['trakt']
-    if kodi.get_setting('proxy_enable'): images = True  # force images on if proxy is enabled
-    art = image_scraper.get_images(section_params['video_type'], show['ids'], cache_only=not images)
+    art = image_scraper.get_images(section_params['video_type'], show['ids'])
     if kodi.get_setting('include_people') == 'true':
         people = trakt_api.get_people(section_params['section'], trakt_id)
         cast = salts_utils.make_cast(show['ids'], people)

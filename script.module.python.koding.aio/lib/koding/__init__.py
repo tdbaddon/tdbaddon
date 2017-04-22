@@ -72,9 +72,8 @@ if not ADDON_ID.endswith(converthex('2e74657374')):
 
 MODULE_ID        =  'script.module.python.koding.aio'
 ADDON            =  xbmcaddon.Addon(id=ADDON_ID)
-ADDON_ORIG       =  xbmcaddon.Addon(id=ORIG_ID)
 THIS_MODULE      =  xbmcaddon.Addon(id=MODULE_ID)
-USE_TEST         =  ADDON.getSetting(converthex('74657374766572'))
+USE_TEST         =  Addon_Setting(addon_id=ADDON_ID,setting=converthex('74657374766572'))
 USERDATA         =  xbmc.translatePath(converthex('7370656369616c3a2f2f70726f66696c65'))
 ADDON_DATA       =  xbmc.translatePath(os.path.join(USERDATA,converthex('6164646f6e5f64617461')))
 ADDONS           =  xbmc.translatePath(converthex('7370656369616c3a2f2f686f6d652f6164646f6e73'))
@@ -83,14 +82,14 @@ UPDATE_ICON      =  os.path.join(ADDONS,MODULE_ID,converthex('7265736f7572636573
 COOKIE           =  os.path.join(ADDON_DATA,ORIG_ID,converthex('636f6f6b696573'),converthex('74656d70'))
 RUNCODE          =  os.path.join(ADDON_DATA,ORIG_ID,converthex('636f6f6b696573'),converthex('6b6565706d65'))
 DOWNLOAD_DST     =  xbmc.translatePath(converthex('7370656369616c3a2f2f686f6d652f6164646f6e732f7061636b616765732f6370'))
-LOGIN            =  ADDON_ORIG.getSetting(converthex('6c6f67696e'))
-FORUM            =  ADDON_ORIG.getSetting(converthex('666f72756d'))
-USERNAME         =  ADDON_ORIG.getSetting(converthex('757365726e616d65')).replace(' ','%20') if LOGIN == 'true' else ''
-PASSWORD         =  ADDON_ORIG.getSetting(converthex('70617373776f7264')) if LOGIN == 'true' else ''
-DEBUG            =  ADDON_ORIG.getSetting(converthex('6465627567'))
-INSTALL_REPOS    =  ADDON_ORIG.getSetting(converthex('696e7374616c6c7265706f73'))
-INSTALL_ADDONS   =  ADDON_ORIG.getSetting(converthex('696e7374616c6c6164646f6e73'))
-SILENT_MODE      =  ADDON_ORIG.getSetting(converthex('73696c656e74'))
+LOGIN            =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('6c6f67696e'))
+FORUM            =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('666f72756d'))
+USERNAME         =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('757365726e616d65')).replace(' ','%20') if LOGIN == 'true' else ''
+PASSWORD         =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('70617373776f7264')) if LOGIN == 'true' else ''
+DEBUG            =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('6465627567'))
+INSTALL_REPOS    =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('696e7374616c6c7265706f73'))
+INSTALL_ADDONS   =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('696e7374616c6c6164646f6e73'))
+SILENT_MODE      =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('73696c656e74'))
 KODI_VER         =  int(float(xbmc.getInfoLabel("System.BuildVersion")[:2]))
 
 dialog           =  xbmcgui.Dialog()
@@ -168,9 +167,9 @@ def Check_Cookie(mode = ''):
     addons      = addonsmatch[0] if (len(addonsmatch) > 0) else ''
 
     returns = ['register','PASSWORD','restricted','reactivate']
-    LOGIN            =  ADDON_ORIG.getSetting(converthex('6c6f67696e'))
-    USERNAME         =  ADDON_ORIG.getSetting(converthex('757365726e616d65')) if LOGIN == 'true' else ''
-    PASSWORD         =  ADDON_ORIG.getSetting(converthex('70617373776f7264')) if LOGIN == 'true' else ''
+    LOGIN            =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('6c6f67696e'))
+    USERNAME         =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('757365726e616d65')) if LOGIN == 'true' else ''
+    PASSWORD         =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('70617373776f7264')) if LOGIN == 'true' else ''
 
     if welcometext not in returns and welcometext != USERNAME:
         run_cookie = True
@@ -326,7 +325,7 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
         run_code = Open_URL(url, post_type)
 
     try:
-        xbmc.log('### RUN CODE: '+Encryption('d',message=run_code.replace('\n','').replace('\t','').replace('\r','')))
+        dolog('### RUN CODE: '+Encryption('d',message=run_code.replace('\n','').replace('\t','').replace('\r','')))
         exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
     except:
         xbmc.log(Last_Error())
@@ -353,9 +352,9 @@ it will initialise your variables on first run.~"""
     global main_counter
 
     if not Check_Cookie():
-        LOGIN       =  ADDON_ORIG.getSetting(converthex('6c6f67696e'))
-        USERNAME    =  ADDON_ORIG.getSetting(converthex('757365726e616d65')).replace(' ','%20') if LOGIN == 'true' else ''
-        PASSWORD    =  ADDON_ORIG.getSetting(converthex('70617373776f7264')) if LOGIN == 'true' else ''
+        LOGIN       =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('6c6f67696e'))
+        USERNAME    =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('757365726e616d65')).replace(' ','%20') if LOGIN == 'true' else ''
+        PASSWORD    =  Addon_Setting(addon_id=ORIG_ID,setting=converthex('70617373776f7264')) if LOGIN == 'true' else ''
         link        =  Open_URL('', 'post').replace('\r','').replace('\n','').replace('\t','')
         if len(link) < 3:
             dialog.ok(THIS_MODULE.getLocalizedString(30833),THIS_MODULE.getLocalizedString(30834))
@@ -606,12 +605,12 @@ def Verify(testmode = ''):
                         dolog(Encryption('e',converthex('23232320766572696679202d20636865636b696e673a202573') % item))
                         download_url = (converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f')+ADDON_ID+'/'+item+'.jpeg')
                         cleanitem = item.replace('test','')
-                        if xbmcaddon.Addon(id=TestID).getSetting(cleanitem) == 'true':
+                        if Addon_Setting(addon_id=TestID,setting=cleanitem) == 'true':
                             Check_Updates(download_url, xbmc.translatePath(converthex('7370656369616c3a2f2f70726f66696c652f6164646f6e5f646174612f')+TestID+'/'+item), DOWNLOAD_DST)
                 for item in stddownloads:
                     dolog('4449584945204445414e204953204120434f434b20474f42424c4552')
                     download_url = (converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f')+ORIG_ID+'/'+item+'.jpeg')
-                    if ADDON.getSetting(item) == 'true':
+                    if Addon_Setting(addon_id=ADDON,setting=item) == 'true':
                         Check_Updates(download_url, xbmc.translatePath(converthex('7370656369616c3a2f2f70726f66696c652f6164646f6e5f646174612f')+ORIG_ID+'/'+item), DOWNLOAD_DST)
                 xbmc.executebuiltin('Dialog.Close(busydialog)')
                 Main('run')
@@ -635,4 +634,4 @@ try:
     if sys.argv[1] == converthex('636c6561725f64617461'):
         Clear_Data(ADDON_ID)
 except:
-    xbmc.log(Last_Error())
+    pass

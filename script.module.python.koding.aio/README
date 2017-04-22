@@ -218,13 +218,32 @@ Change or retrieve an add-on setting.
 ADDON SETTINGS - OPEN:
 By default this will open the current add-on settings but if you pass through an addon_id it will open the settings for that add-on.
 
-	CODE: Open_Settings([addon_id, stop_script])
+	CODE: Open_Settings([addon_id, focus, click, stop_script])
 
 	AVAILABLE PARAMS:
 
-		addon_id    - This optional, it can be any any installed add-on id. If nothing is passed through the current add-on settings will be opened.
+	    addon_id    - This optional, it can be any any installed add-on id. If nothing is passed
+	    through the current add-on settings will be opened.
 
-		stop_script - By default this is set to True, as soon as the addon settings are opened the current script will stop running. If you pass through as False then the script will continue running in the background - opening settings does not pause a script, Kodi just see's it as another window being opened.
+	    focus  -  This is optional, if not set the settings will just open to the first item
+	    in the list (normal behaviour). However if you want to open to a specific category and
+	    setting then enter the number in here separated by a dot. So for example if we want to
+	    focus on the 2nd category and 3rd setting in the list we'd send through focus='2.3'
+
+	    click  -  If you want the focused item to automatically be clicked set this to True.
+
+	    stop_script - By default this is set to True, as soon as the addon settings are opened
+	    the current script will stop running. If you pass through as False then the script will
+	    continue running in the background - opening settings does not pause a script, Kodi just
+	    see's it as another window being opened.
+
+	EXAMPLE CODE:
+		youtube_path = xbmc.translatePath('special://home/addons/plugin.video.youtube')
+		if os.path.exists(youtube_path):
+		    dialog.ok('YOUTUBE SETTINGS','We will now open the YouTube settings.','We will focus on category 2, setting 3 AND send a click.')
+		    koding.Open_Settings(addon_id='plugin.video.youtube',focus='2.3',click=True,stop_script=True)
+		else:
+		    dialog.ok('YOUTUBE NOT INSTALLED','We cannot run this example as it uses the YouTube add-on which has not been found on your system.')
 
 ------------------------------------------------------------------------------------------
 
@@ -265,6 +284,31 @@ a number of add-ons/scripts you can grab a list of paths that have been called.
 		for item in my_paths:
 		    path_list += item+'\n'
 		koding.Text_Box('ADD-ON LIST', path_list)
+
+------------------------------------------------------------------------------------------
+
+DEFAULT SETTING:
+This will return the DEFAULT value for a setting (as set in resources/settings.xml)
+and optionally reset the current value back to this default.
+
+	CODE:  Default_Setting(setting, [addon_id, reset])
+
+	AVAILABLE PARAMS:
+
+	    setting  -  The setting you want to retreive the value for.
+
+	    addon_id  -  This is optional, if not set it will use the current id.
+
+	    reset  -  By default this is set to False but if set to true and it will
+	    reset the current value to the default.
+
+	EXAMPLE CODE:
+		youtube_path = xbmc.translatePath('special://home/addons/plugin.video.youtube')
+		if os.path.exists(youtube_path):
+		    my_value = koding.Default_Setting(setting='youtube.region', addon_id='plugin.video.youtube', reset=False)
+		    dialog.ok('YOUTUBE SETTING','Below is a default setting for plugin.video.youtube:','Setting: [COLOR=dodgerblue]youtube.region[/COLOR]','Value: [COLOR=dodgerblue]%s[/COLOR]' % my_value)
+		else:
+		    dialog.ok('YOUTUBE NOT INSTALLED','We cannot run this example as it uses the YouTube add-on which has not been found on your system.')
 
 ------------------------------------------------------------------------------------------
 
@@ -1620,6 +1664,15 @@ the order you want them to be executed.
 	EXAMPLE CODE:
 		dialog.ok('RELOAD SKIN','We will now attempt to update the addons, pause 3s, update repos and pause 2s then reload the default profile. Press OK to continue.')
 		koding.Refresh(r_mode=['addons~3000', 'repos~2000', 'profile'], profile_name='default')
+
+------------------------------------------------------------------------------------------
+
+RUN AS KODI:
+A simple function to set user id and group id to the current running App
+for system commands. For example if you're using the subprocess command
+you could send through the preexec_fn paramater as koding.Run_As_Kodi.
+
+CODE: Run_As_Kodi()
 
 ------------------------------------------------------------------------------------------
 

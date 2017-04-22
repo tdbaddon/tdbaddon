@@ -418,11 +418,12 @@ def set_default_url(Scraper):
     return default_url
 
 def extra_year(match_title_year):
-    match = re.search('(.*?)\s+\((\d{4})[^)]*\)', match_title_year)
+    match_title_year = match_title_year.strip()
+    match = re.search('(.*?)\s+\((\d{4})[^)]*\)', match_title_year, re.UNICODE)
     if match:
         match_title, match_year = match.groups()
     else:
-        match = re.search('(.*?)\s+(\d{4})$', match_title_year)
+        match = re.search('(.*?)\s+(\d{4})$', match_title_year, re.UNICODE)
         if match:
             match_title, match_year = match.groups()
         else:
@@ -697,3 +698,11 @@ def do_recaptcha(scraper, key, tries=None, max_tries=None):
         raise Exception('You must enter text in the image to access video')
     wdlg.close()
     return {'recaptcha_challenge_field': match.group(1), 'recaptcha_response_field': solution}
+
+def to_slug(title):
+    slug = title.lower()
+    slug = re.sub('[^A-Za-z0-9 -]', ' ', slug)
+    slug = re.sub('\s\s+', ' ', slug)
+    slug = re.sub(' ', '-', slug)
+    return slug
+

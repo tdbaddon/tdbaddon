@@ -219,10 +219,7 @@ def main(argv=None):  # @UnusedVariable
     
             was_on = disable_global_cx(was_on)
             cd_begin = check_cooldown(cd_begin)
-            if kodi.get_setting('proxy_enable') == 'true':
-                if not proxy.running: proxy.run()
-            else:
-                if proxy.running: proxy.stop_proxy()
+            if not proxy.running: proxy.start_proxy()
             
             if kodi.get_setting('show_next_up') == 'true':
                 last_label, sf_begin = show_next_up(last_label, sf_begin)

@@ -28,7 +28,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 import scraper
 
-BASE_URL = 'http://xmovies8.ru'
+BASE_URL = 'https://xmovies8.ru'
 PLAYER_URL = '/ajax/movie/load_player_v3'
 
 class Scraper(scraper.Scraper):
@@ -129,16 +129,24 @@ class Scraper(scraper.Scraper):
             match_title_year = match[0].attrs['title']
             match_url = match[0].attrs['href']
             is_season = re.search('Season\s+(\d+)', match_title_year, re.I)
-            if (video_type == VIDEO_TYPES.MOVIE and not is_season) or (video_type == VIDEO_TYPES.SEASON and is_season):
-                match_year = ''
-                if video_type == VIDEO_TYPES.SEASON:
+            match_vt = video_type == (VIDEO_TYPES.MOVIE and not is_season) or (video_type == VIDEO_TYPES.SEASON and is_season)
+            match_year = ''
+            if video_type == VIDEO_TYPES.SEASON:
+                if not season and not match_vt: continue
+                if match_vt:
                     if season and int(is_season.group(1)) != int(season): continue
-                    match_title = match_title_year
                 else:
-                    match_title, match_year = scraper_utils.extra_year(match_title_year)
-    
-                match_url = urlparse.urljoin(match_url, 'watching.html')
-                if not year or not match_year or year == match_year:
-                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                    results.append(result)
+                    if season and int(season) != 1: continue
+                    site_title, site_year = scraper_utils.extra_year(match_title_year)
+                    if scraper_utils.normalize_title(site_title) not in scraper_utils.normalize_title(title) or year != site_year: continue
+                    
+                match_title = match_title_year
+            else:
+                if not match_vt: continue
+                match_title, match_year = scraper_utils.extra_year(match_title_year)
+
+            match_url = urlparse.urljoin(match_url, 'watching.html')
+            if not year or not match_year or year == match_year:
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
         return results

@@ -113,6 +113,8 @@ Add_Dir(name='TEST ITEM', url='', mode='test_item', folder=False, context_items=
 # ^ This will add an item to the list AND a context menu item for when bring up the menu (when focused on this item).
 # ^^ The context_override is set to False which means the new items will appear alongside the default Kodi context menu items.
 ~"""
+    
+
 
     from __init__       import dolog
     from systemtools    import Data_Type
@@ -176,7 +178,7 @@ Add_Dir(name='TEST ITEM', url='', mode='test_item', folder=False, context_items=
         set_property["Fanart_Image"] = fanart
 
 # Set the main listitem properties
-    liz = xbmcgui.ListItem(label=name, iconImage=icon, thumbnailImage=icon)
+    liz = xbmcgui.ListItem(label=str(name), iconImage=str(icon), thumbnailImage=str(icon))
 
 # Set the infolabels
     liz.setInfo(type=content_type, infoLabels=info_labels)

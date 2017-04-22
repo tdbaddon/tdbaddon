@@ -48,7 +48,7 @@ POSTER_ENABLED = kodi.get_setting('poster_enable') == 'true'
 BANNER_ENABLED = kodi.get_setting('banner_enable') == 'true'
 CLEARART_ENABLED = kodi.get_setting('clearart_enable') == 'true'
 THUMB_ENABLED = kodi.get_setting('thumb_enable') == 'true'
-GIF_ENABLED = kodi.get_setting('gif_enable') == 'true'
+GIF_ENABLED = False
 ZIP_CACHE = 24
 OBJ_PERSON = 'person'
 PROXY_TEMPLATE = 'http://127.0.0.1:{port}{action}'
@@ -270,7 +270,7 @@ class TMDBScraper(Scraper):
             else:
                 images = {}
             
-            if kodi.get_setting('proxy_enable') == 'true' and not images:
+            if not images:
                 url = '/person/%s/images' % (ids['tmdb'])
                 params = {'api_key': self.API_KEY, 'include_image_language': 'en,null'}
                 images = self._get_url(url, params, headers=self.headers, cache_limit=30)
@@ -596,7 +596,7 @@ class GIFScraper(Scraper):
 tvdb_scraper = TVDBScraper()
 tmdb_scraper = TMDBScraper()
 def get_person_images(video_ids, person, cached=True):
-    if kodi.get_setting('proxy_enable') == 'true' and cached:
+    if cached:
         ids = person['person']['ids']
         port = kodi.get_setting('proxy_port')
         video_ids = urllib.quote(json.dumps(video_ids))
@@ -653,8 +653,8 @@ def clear_cache(video_type, video_ids, season='', episode='', ):
     except: res = ''
     return res == 'OK'
 
-def get_images(video_type, video_ids, season='', episode='', screenshots=False, cached=True, cache_only=False):
-    if kodi.get_setting('proxy_enable') == 'true' and cached:
+def get_images(video_type, video_ids, season='', episode='', cached=True):
+    if cached:
         port = kodi.get_setting('proxy_port')
         trakt_id = video_ids['trakt']
         video_ids = json.dumps(video_ids)
@@ -670,9 +670,9 @@ def get_images(video_type, video_ids, season='', episode='', screenshots=False, 
             art_dict[image_type] = image_url
         return art_dict
     else:
-        return scrape_images(video_type, video_ids, season, episode, screenshots, cached, cache_only)
+        return scrape_images(video_type, video_ids, season, episode, cached)
 
-def scrape_images(video_type, video_ids, season='', episode='', screenshots=False, cached=True, cache_only=False):
+def scrape_images(video_type, video_ids, season='', episode='', cached=True):
     art_dict = {'banner': None, 'fanart': DEFAULT_FANART, 'thumb': None, 'poster': PLACE_POSTER, 'clearart': None, 'clearlogo': None}
     trakt_id = video_ids['trakt']
     object_type = VIDEO_TYPES.MOVIE if video_type == VIDEO_TYPES.MOVIE else VIDEO_TYPES.TVSHOW
@@ -683,14 +683,14 @@ def scrape_images(video_type, video_ids, season='', episode='', screenshots=Fals
     else:
         cached_art = {}
     
-    if not cached_art and not cache_only:
+    if not cached_art:
         fanart_scraper = FanartTVScraper()
         omdb_scraper = OMDBScraper()
         tvmaze_scraper = TVMazeScraper()
         gif_scraper = GIFScraper()
         if video_type == VIDEO_TYPES.MOVIE:
             art_dict.update(fanart_scraper.get_movie_images(video_ids))
-            if kodi.get_setting('proxy_enable') != 'true' and GIF_ENABLED and POSTER_ENABLED:
+            if GIF_ENABLED and POSTER_ENABLED:
                 art_dict.update(gif_scraper.get_movie_images(video_ids))
              
             need = []
@@ -735,13 +735,12 @@ def scrape_images(video_type, video_ids, season='', episode='', screenshots=Fals
             art_dict.update(season_art.get(str(season), {}))
         elif video_type == VIDEO_TYPES.EPISODE:
             art_dict = scrape_images(VIDEO_TYPES.TVSHOW, video_ids, cached=cached)
-            if screenshots:
-                art_dict.update(tvdb_scraper.get_episode_images(video_ids, season, episode))
-                if not art_dict['thumb'] or art_dict['poster'] == PLACE_POSTER:
-                    tvmaze_art = tvmaze_scraper.get_episode_images(video_ids, season, episode)
-                    art_dict['thumb'] = tvmaze_art.get('thumb')
-                    if art_dict['poster'] == PLACE_POSTER and 'poster' in tvmaze_art:
-                        art_dict['poster'] = tvmaze_art['poster']
+            art_dict.update(tvdb_scraper.get_episode_images(video_ids, season, episode))
+            if not art_dict['thumb'] or art_dict['poster'] == PLACE_POSTER:
+                tvmaze_art = tvmaze_scraper.get_episode_images(video_ids, season, episode)
+                art_dict['thumb'] = tvmaze_art.get('thumb')
+                if art_dict['poster'] == PLACE_POSTER and 'poster' in tvmaze_art:
+                    art_dict['poster'] = tvmaze_art['poster']
                 
         if not art_dict['thumb']:
             log_utils.log('Doing %s thumb fallback |%s|' % (video_type, art_dict))

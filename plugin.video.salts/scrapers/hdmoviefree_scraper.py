@@ -101,7 +101,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search/%s.html')
-        search_url = search_url % (self.__to_slug(title))
+        search_url = search_url % (scraper_utils.to_slug(title))
         html = self._http_get(search_url, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'slideposter'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')

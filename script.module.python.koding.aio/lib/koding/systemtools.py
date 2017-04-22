@@ -282,10 +282,9 @@ else:
         addon_id = Caller()
     ADDON = xbmcaddon.Addon(id=addon_id)
     if value == '':
-        return ADDON.getSetting(setting)
+        mysetting = ADDON.getSetting(setting)
+        return mysetting
     else:
-        xbmc.log('ADDON ID: %s'%addon_id)
-        xbmc.log('Setting: %s to %s'%(setting,value))
         ADDON.setSetting(id=setting, value=value)
 #----------------------------------------------------------------
 # TUTORIAL #
@@ -492,8 +491,8 @@ mytext = koding.Colour_Text(text=current_text, colour1='dodgerblue', colour2='wh
 xbmc.log(current_text)
 xbmc.log(mytext)
 dialog.ok('CURRENT TEXT', current_text)
-dialog.ok('NEW TEXT', mytext)~"""
-
+dialog.ok('NEW TEXT', mytext)
+~"""
     if text.startswith('[COLOR') and text.endswith('/COLOR]'):
         return text
 
@@ -678,6 +677,49 @@ koding.Text_Box('TEST RESULTS', my_return)
 ~"""
     data_type = type(data).__name__
     return data_type
+#----------------------------------------------------------------
+# TUTORIAL #
+def Default_Setting(setting='',addon_id='',reset=False):
+    """
+This will return the DEFAULT value for a setting (as set in resources/settings.xml)
+and optionally reset the current value back to this default.
+
+CODE:  Default_Setting(setting, [addon_id, reset])
+
+AVAILABLE PARAMS:
+
+    setting  -  The setting you want to retreive the value for.
+
+    addon_id  -  This is optional, if not set it will use the current id.
+
+    reset  -  By default this is set to False but if set to true and it will
+    reset the current value to the default.
+
+EXAMPLE CODE:
+youtube_path = xbmc.translatePath('special://home/addons/plugin.video.youtube')
+if os.path.exists(youtube_path):
+    my_value = koding.Default_Setting(setting='youtube.region', addon_id='plugin.video.youtube', reset=False)
+    dialog.ok('YOUTUBE SETTING','Below is a default setting for plugin.video.youtube:','Setting: [COLOR=dodgerblue]youtube.region[/COLOR]','Value: [COLOR=dodgerblue]%s[/COLOR]' % my_value)
+else:
+    dialog.ok('YOUTUBE NOT INSTALLED','We cannot run this example as it uses the YouTube add-on which has not been found on your system.')
+~"""
+    import re
+    from filetools import Text_File
+    if addon_id == '':
+        addon_id = Caller()
+    if setting == '':
+        dialog.ok('SETTING REQUIRED','You\'ve attempted to call the Default_Setting function but have forgotten to send through a setting to check. Please check your syntax and try again.')
+    addon_path = Addon_Info(id='path',addon_id=addon_id)
+    settings_path = os.path.join(addon_path,'resources','settings.xml')
+    content = Text_File(settings_path,'r').splitlines()
+    for line in content:
+        if 'id="%s"'%setting in line:
+            value = re.compile('default="(.+?)"').findall(line)
+            value = value[0] if (len(value) > 0) else ''
+            break
+    if reset:
+        Addon_Setting(addon_id=addon_id,setting=setting,value=value)
+    return value
 #----------------------------------------------------------------
 # TUTORIAL #
 def Dependency_Check(addon_id = 'all', recursive = False):
@@ -973,7 +1015,10 @@ koding.Text_Box('LIST OF VIDEO PLUGINS',final_string)
     response = xbmc.executeJSONRPC(query)
     data = json.loads(response)
     if "result" in data:
-        addon_dict = data["result"]["addons"]
+        try:
+            addon_dict = data["result"]["addons"]
+        except:
+            pass
     return addon_dict
 #----------------------------------------------------------------
 # TUTORIAL #
@@ -995,16 +1040,23 @@ koding.Text_Box('ERROR MESSAGE',Last_Error())
     return error
 #----------------------------------------------------------------
 # TUTORIAL #
-def Open_Settings(addon_id=sys.argv[0], stop_script = True):
+def Open_Settings(addon_id=sys.argv[0],focus='',click=False,stop_script=True):
     """
 By default this will open the current add-on settings but if you pass through an addon_id it will open the settings for that add-on.
 
-CODE: Open_Settings([addon_id, stop_script])
+CODE: Open_Settings([addon_id, focus, click, stop_script])
 
 AVAILABLE PARAMS:
 
     addon_id    - This optional, it can be any any installed add-on id. If nothing is passed
     through the current add-on settings will be opened.
+
+    focus  -  This is optional, if not set the settings will just open to the first item
+    in the list (normal behaviour). However if you want to open to a specific category and
+    setting then enter the number in here separated by a dot. So for example if we want to
+    focus on the 2nd category and 3rd setting in the list we'd send through focus='2.3'
+
+    click  -  If you want the focused item to automatically be clicked set this to True.
 
     stop_script - By default this is set to True, as soon as the addon settings are opened
     the current script will stop running. If you pass through as False then the script will
@@ -1012,12 +1064,23 @@ AVAILABLE PARAMS:
     see's it as another window being opened.
 
 EXAMPLE CODE:
-koding.Open_Settings('plugin.video.youtube')
+youtube_path = xbmc.translatePath('special://home/addons/plugin.video.youtube')
+if os.path.exists(youtube_path):
+    dialog.ok('YOUTUBE SETTINGS','We will now open the YouTube settings.','We will focus on category 2, setting 3 AND send a click.')
+    koding.Open_Settings(addon_id='plugin.video.youtube',focus='2.3',click=True,stop_script=True)
+else:
+    dialog.ok('YOUTUBE NOT INSTALLED','We cannot run this example as it uses the YouTube add-on which has not been found on your system.')
 ~"""
     import xbmcaddon
 
-    ADDON = xbmcaddon.Addon(id=addon_id)
-    ADDON.openSettings(addon_id)
+    xbmc.executebuiltin('Addon.OpenSettings(%s)' % addon_id)
+    if focus != '':
+        category, setting = focus.split('.')
+        xbmc.executebuiltin('SetFocus(%d)' % (int(category) + 99))
+        xbmc.executebuiltin('SetFocus(%d)' % (int(setting) + 199))
+    if click:
+        xbmc.sleep(500)
+        xbmc.executebuiltin('Action(Select,10140)')
     if stop_script:
         try:
             sys.exit()
@@ -1088,6 +1151,20 @@ koding.Refresh(r_mode=['addons~3000', 'repos~2000', 'profile'], profile_name='de
             xbmc.executebuiltin('LoadProfile(%s)' % profile_name)
         if sleeper:
             xbmc.sleep(sleeper)
+#----------------------------------------------------------------
+# TUTORIAL #
+def Run_As_Kodi():
+    """
+A simple function to set user id and group id to the current running App
+for system commands. For example if you're using the subprocess command
+you could send through the preexec_fn paramater as koding.Run_As_Kodi.
+
+CODE: Run_As_Kodi()
+~"""
+    uid = os.getuid()
+    gid = os.getgid()
+    os.setgid(uid)
+    os.setuid(gid)
 #----------------------------------------------------------------
 # TUTORIAL #
 def Running_App():

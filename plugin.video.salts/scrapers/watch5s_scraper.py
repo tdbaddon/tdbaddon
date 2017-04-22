@@ -15,8 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import time
+import urllib
 import re
-import hashlib
 import urlparse
 import kodi
 import log_utils  # @UnusedImport
@@ -28,7 +29,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://watch5s.is'
+BASE_URL = 'https://watch5s.to'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD-720P': QUALITIES.HD720}
 
 class Scraper(scraper.Scraper):
@@ -92,9 +93,8 @@ class Scraper(scraper.Scraper):
         if player_type == 'embed':
             sources = self.__get_embed_sources(html)
         else:
-            cookie, grab_url = self.__get_grab_url(html, page_url)
-            if cookie and grab_url:
-                headers.update({'Cookie': cookie})
+            grab_url = self.__get_grab_url(html, page_url)
+            if grab_url:
                 sources = self.__get_links_from_playlist(grab_url, headers)
 
         return sources
@@ -106,24 +106,33 @@ class Scraper(scraper.Scraper):
         return sources
     
     def __get_grab_url(self, html, page_url):
-        cookie = ''
         grab_url = ''
         episode_id = dom_parser2.parse_dom(html, 'input', {'name': 'episodeID'}, req='value')
         if episode_id:
             episode_id = episode_id[0].attrs['value']
-            token = scraper_utils.get_token(hash_len=8)
-            key = hashlib.md5('!@#$%^&*(' + episode_id + token).hexdigest()
-            value = hashlib.md5(token + page_url + episode_id).hexdigest()
-            cookie = '%s=%s' % (key, value)
             hostname = urlparse.urlparse(page_url).hostname
             headers = {'Referer': page_url}
             for js_url in self.__get_js_url(html):
-                match = re.search('{\s*playlist\s*:\s*"([^"]+)".*?"([^"]+)', self.__get_js(js_url, headers, hostname), re.DOTALL)
-                if match:
-                    grab_url = match.group(1) + episode_id + match.group(2) + token
-                    break
+                if 'watch5s' in js_url:
+                    match = re.search('ajax\(\{url:"([^"]+)', self.__get_js(js_url, headers, hostname), re.DOTALL)
+                    if not match: continue
+                    grab_url = match.group(1)
+                    hash_id, token = self.__get_params(grab_url, episode_id, page_url)
+                    if hash_id and token:
+                        now = int(time.time())
+                        params = {'hash': hash_id, 'token': token, '_': now}
+                        grab_url += episode_id + '?' + urllib.urlencode(params)
+                        break
             
-        return cookie, grab_url
+        return grab_url
+    
+    def __get_params(self, grab_url, episode_id, page_url):
+        url = urlparse.urljoin(grab_url, '/token.php')
+        headers = {'Referer': page_url}
+        data = {'id': episode_id}
+        html = self._http_get(url, data=data, headers=headers, cache_limit=0)
+        js_data = scraper_utils.parse_json(html, url)
+        return js_data.get('hash'), js_data.get('token')
     
     def __get_js_url(self, html):
         urls = []
@@ -138,7 +147,7 @@ class Scraper(scraper.Scraper):
                     js_url = match.group(2)
             urls.append(js_url)
         return urls
-        
+         
     def __get_js(self, js_url, headers, hostname):
         js = ''
         if js_url.startswith('//'):
@@ -146,34 +155,11 @@ class Scraper(scraper.Scraper):
         elif not js_url.startswith('http'):
             base_url = 'https://' + hostname
             js_url = urlparse.urljoin(base_url, js_url)
-        
+         
         log_utils.log('Getting JS: |%s| - |%s|' % (js_url, headers))
         try: js = self._http_get(js_url, headers=headers)
         except: js = ''
         return js
-    
-    def __get_links_from_js(self, html, page_url):
-        sources = {}
-        for src_url in dom_parser2.parse_dom(html, 'script', req='src'):
-            src_url = src_url.attrs['src']
-            if 'slug=' in src_url:
-                headers = {'Referer': page_url}
-                js_src = self._http_get(src_url, headers=headers, cache_limit=.5)
-                if jsunpack.detect(js_src):
-                    unpacked_data = jsunpack.unpack(js_src)
-                else:
-                    unpacked_data = js_src
-                    
-                match = re.search('"?sourcesPlaylist?"\s*:\s*"([^"]+)', unpacked_data)
-                if match:
-                    sources.update(self.__get_links_from_playlist(match.group(1), headers))
-                else:
-                    match = re.search('"?sourcesEmbed?"\s*:\s*"([^"]+)', unpacked_data)
-                    if match:
-                        embed_url = match.group(1).replace('\\', '')
-                        sources[embed_url] = {'quality': QUALITIES.HD720, 'direct': False}
-                        
-        return sources
     
     def __get_links_from_playlist(self, grab_url, headers):
         sources = {}
@@ -241,7 +227,7 @@ class Scraper(scraper.Scraper):
                     match_title = re.sub('</?h2>', '', match_title)
                     match_title = re.sub('\s+\d{4}$', '', match_title)
                     if video_type == VIDEO_TYPES.SEASON:
-                        if season and not re.search('Season\s+%s$' % (season), match_title): continue
+                        if season and not re.search('Season\s+0*%s$' % (season), match_title): continue
                         
                     if not match_url.endswith('/'): match_url += '/'
                     match_url = urlparse.urljoin(match_url, 'watch/')

@@ -1,3 +1,15 @@
+v.0.7.3:
+- Fixed the download function, wasn't automatically closing dialog once complete.
+
+v.0.7.2:
+- Tidied up the getSetting functions.
+- Fixed Create_Paths function.
+- Fixed the tutorials on Windows platforms, required url sending through as urlencoded then unencoded.
+
+v.0.7.1:
+- Added Run_As_Kodi() function which hopefully should fix Android Fresh_Install()
+- Improved Open_Settings(), can now focus on a specific item and also send an automated click on the focused item.
+
 v.0.7:
 - Added Addon_Info() function to return various built in add-on values.
 - Added Addon_Setting() function to set/retrieve an add-on setting.

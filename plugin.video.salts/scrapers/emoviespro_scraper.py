@@ -73,16 +73,11 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        html = self._http_get(self.base_url, params={'s': title}, cache_limit=1)
-        if re.search('nothing matched your search criteria', html, re.I): return results
-        for _attr, item in dom_parser2.parse_dom(html, 'li', {'class': 'box-shadow'}):
-            match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
-            if not match: continue
-            
-            match_url = match[0].attrs['href']
-            match_title, match_year = scraper_utils.extra_year(match[0].attrs['title'])
-            if not year or not match_year or year == match_year:
-                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
-                results.append(result)
-
+        slug = scraper_utils.to_slug(title)
+        test_url = urlparse.urljoin(self.base_url, slug)
+        test_url += '-%s' % (year)
+        html = self._http_get(test_url, cache_limit=8)
+        if html:
+            result = {'title': scraper_utils.cleanse_title(title), 'year': year, 'url': scraper_utils.pathify_url(test_url)}
+            results.append(result)
         return results

@@ -26,6 +26,7 @@ import urllib
 import kodi
 import log_utils
 import image_scraper
+import worker_pool
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from BaseHTTPServer import HTTPServer
 
@@ -45,18 +46,10 @@ class ImageProxy(object):
         except: res = ''
         return res == 'OK'
     
-    def run(self):
-        self.svr_thread = threading.Thread(target=self.__start_proxy)
+    def start_proxy(self):
+        self.svr_thread = threading.Thread(target=self.__run)
         self.svr_thread.daemon = True
         self.svr_thread.start()
-
-    def __start_proxy(self):
-        server_address = (self.host, self.port)
-        log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
-        self.httpd = MyHTTPServer(server_address, MyRequestHandler)
-        self.httpd.serve_forever(.5)
-        log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
-        self.httpd.server_close()
 
     def stop_proxy(self):
         if self.httpd is not None:
@@ -67,6 +60,14 @@ class ImageProxy(object):
             self.svr_thread.join()
             self.svr_thread = None
 
+    def __run(self):
+        server_address = (self.host, self.port)
+        log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        self.httpd = MyHTTPServer(server_address, MyRequestHandler)
+        self.httpd.serve_forever(.5)
+        log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        self.httpd.server_close()
+
     @staticmethod
     def _get_port():
         port = random.randint(10000, 65535)
@@ -74,15 +75,35 @@ class ImageProxy(object):
         return port
 
 class MyHTTPServer(HTTPServer):
+    def __init__(self, server_address, RequestHandlerClass, bind_and_activate=True):
+        self._wp = worker_pool.WorkerPool(max_workers=25)
+        HTTPServer.__init__(self, server_address, RequestHandlerClass, bind_and_activate)
+        
     def process_request(self, request, client_address):
-        try: HTTPServer.process_request(self, request, client_address)
-        except IOError as e: log_utils.log('Image Proxy Error: %s - %s' % (type(e), e), log_utils.LOGDEBUG)
+        self._wp.request(func=self._process_request, args=(request, client_address))
+        try: self._wp.receive(0)
+        except worker_pool.Empty: pass
+    
+    def _process_request(self, request, client_address):
+        try:
+            HTTPServer.process_request(self, request, client_address)
+        except IOError as e:
+            log_utils.log('Image Proxy Error: (%s) %s - %s' % (threading.current_thread().getName(), type(e), e), log_utils.LOGDEBUG)
+    
+    def server_close(self):
+        try:
+            workers = self._wp.close()
+        except:
+            try: worker_pool.reap_workers(workers, None)
+            except UnboundLocalError: pass
+        HTTPServer.server_close(self)
         
 class MyRequestHandler(SimpleHTTPRequestHandler):
     proxy_cache = {}
     LOG_FILE = kodi.translate_path(os.path.join(kodi.get_profile(), 'proxy.log'))
     try: log_fd = open(LOG_FILE, 'w')
     except: log_fd = None
+    lock = threading.Lock()
     ping_required = {}
 
     base_req = ['video_type', 'trakt_id', 'video_ids']
@@ -111,7 +132,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
         
     def log_message(self, format, *args):
         if self.log_fd is not None:
-            self.log_fd.write('[%s] %s\n' % (self.log_date_time_string(), format % (args)))
+            self.log_fd.write('[%s] (%s) %s\n' % (self.log_date_time_string(), threading.current_thread().getName(), format % (args)))
         
     def do_HEAD(self):
         return self.do_GET()
@@ -127,25 +148,27 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write('OK')
                 return
             else:
-                key = (fields['video_type'], fields['trakt_id'], fields.get('season', ''), fields.get('episode', ''))
+                key = (fields['video_type'], fields['trakt_id'], fields.get('season'), fields.get('episode'))
                 if action == '/clear':
-                    if key in self.proxy_cache:
-                        del self.proxy_cache[key]
-                    self._set_headers()
-                    self.wfile.write('OK')
-                    return
+                    with self.lock:
+                        if key in self.proxy_cache:
+                            del self.proxy_cache[key]
+                        self._set_headers()
+                        self.wfile.write('OK')
+                        return
                 else:
-                    if key in self.proxy_cache:
-                        images = self.proxy_cache[key]
-                    else:
-                        video_ids = json.loads(fields['video_ids'])
-                        if fields['video_type'] == image_scraper.OBJ_PERSON:
-                            person_ids = json.loads(fields['person_ids'])
-                            person = {'person': {'name': fields['name'], 'ids': person_ids}}
-                            images = image_scraper.scrape_person_images(video_ids, person)
+                    with self.lock:
+                        if key in self.proxy_cache:
+                            images = self.proxy_cache[key]
                         else:
-                            images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''), screenshots=True)
-                        self.proxy_cache[key] = images
+                            video_ids = json.loads(fields['video_ids'])
+                            if fields['video_type'] == image_scraper.OBJ_PERSON:
+                                person_ids = json.loads(fields['person_ids'])
+                                person = {'person': {'name': fields['name'], 'ids': person_ids}}
+                                images = image_scraper.scrape_person_images(video_ids, person)
+                            else:
+                                images = image_scraper.scrape_images(fields['video_type'], video_ids, fields.get('season', ''), fields.get('episode', ''))
+                            self.proxy_cache[key] = images
                     
                     image_url = images[fields['image_type']]
                     if image_url is None:
@@ -154,8 +177,9 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                         self.__redirect(image_url)
                     else:
                         self._set_headers()
-                        with open(image_url) as f:
-                            self.wfile.write(f.read())
+                        if self.command == 'GET':
+                            with open(image_url) as f:
+                                self.wfile.write(f.read())
         except ValidationError as e:
             self.__send_error(e)
     

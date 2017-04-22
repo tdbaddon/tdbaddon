@@ -51,20 +51,22 @@ def Grab_Tutorials():
             if content_array:
                 for item in content_array:
                     item = item.strip()
-                    full_array.append(item+'<~>'+file_path)
+                    full_array.append('%s~%s'%(item,file_path))
 
 # Return a list of tutorials
-    Add_Dir('[COLOR=gold]CREATE YOUR FIRST ADD-ON[/COLOR]',video_base+'Create_Addon.mov','play_video', folder = False, icon = '', fanart = '', description = 'How to create your own add-on using the Python Koding framework.')
+    Add_Dir('[COLOR=gold]CREATE YOUR FIRST ADD-ON[/COLOR]',video_base+'Create_Addon.mov','play_video', folder=False, icon='', fanart='', description='How to create your own add-on using the Python Koding framework.')
 
     for item in sorted(full_array,key=str.lower):
-        item_params = Grab_Params(item, 'name,filepath')
-        Add_Dir(item_params["name"].upper().replace('_',' '), item, 'show_tutorial', folder = False, icon = '', fanart = '', description = 'Instructions for how to use the %s function.'%item)
+        name, filepath = item.split('~')
+        filepath = urllib.quote(filepath)
+        Add_Dir(name=name.upper().replace('_',' '), url='%s~%s'%(name,filepath), mode='show_tutorial', folder=False, icon='', fanart='', description='Instructions for how to use the %s function.'%name)
 #----------------------------------------------------------------
 def Show_Tutorial(url):
     """ internal command ~"""
-    params   = Grab_Params(url, 'name, filepath')
-    readfile = Text_File(params["filepath"],'r')
-    raw_find = Find_In_Text(content=readfile, start='# TUTORIAL #\ndef %s' % params["name"],end='~"""')[0]
+    name, filepath = url.split('~')
+    filepath = urllib.unquote(filepath)
+    readfile = Text_File(filepath,'r')
+    raw_find = Find_In_Text(content=readfile, start='# TUTORIAL #\ndef %s' % name,end='~"""')[0]
 # Check if an example code segment exists in the comments    
     if 'EXAMPLE CODE:' in raw_find:
         code = re.findall(r'(?<=EXAMPLE CODE:)(?s)(.*$)', raw_find)[0]
@@ -79,9 +81,9 @@ def Show_Tutorial(url):
     internetstate = xbmc.getInfoLabel('System.InternetState')
     if internetstate:
         video_page = Open_URL(video_base)
-        extension = Find_In_Text(video_page, params["name"], '"', False)
+        extension = Find_In_Text(video_page, name, '"', False)
         if extension != '' and extension != None:
-            video = video_base+params["name"]+extension[0]
+            video = video_base+name+extension[0]
         else:
             video = None
     else:
@@ -105,9 +107,9 @@ def Show_Tutorial(url):
                     if '=' in item:
                         item = item.split('=')[0]
                     final_header += item+','
-                final_header = 'koding.'+params["name"]+final_header[:-2]+')'
+                final_header = 'koding.'+name+final_header[:-2]+')'
             else:
-                final_header = 'koding.'+params["name"]+line[:-1]
+                final_header = 'koding.'+name+line[:-1]
         else:
             removal_string += '\n'+line
         counter += 1
@@ -128,7 +130,7 @@ def Show_Tutorial(url):
     
 # If there's more than one item we show a dialog select otherwise we just load up the text window
     if len(dialog_array) > 1:
-        choice = dialog.select(params["name"], dialog_array)
+        choice = dialog.select(name, dialog_array)
         if choice >= 0:
             choice = dialog_array[choice]
         if choice == 'Documentation':
@@ -140,7 +142,7 @@ def Show_Tutorial(url):
                 .replace('AVAILABLE VALUES:','[COLOR=dodgerblue]AVAILABLE VALUES:[/COLOR]')
                 .replace('WARNING:','[COLOR=red]WARNING:[/COLOR]'))
         elif choice == 'Run Example Code':
-            codefile = params["filepath"].split(os.sep)
+            codefile = filepath.split(os.sep)
             codefile = codefile[len(codefile)-1].replace('.py','')
             exec('from %s import *' % codefile)
             # exec('from %s import %s' % (codefile, params["name"]))

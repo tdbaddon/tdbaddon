@@ -114,11 +114,11 @@ class Scraper(scraper.Scraper):
     
     def __get_attributes(self, html):
         match = re.search("sign_new\s*=\s*'([^']+)", html)
-        if not match: return '', ''
+        if not match: return '', '', ''
         sign_new = match.group(1)
         
         match = re.search("alias\s*=\s*'([^']+)", html)
-        if not match: return '', ''
+        if not match: return '', '', ''
         alias = match.group(1)
 
         match = re.search("time\s*=\s*'([^']+)", html)

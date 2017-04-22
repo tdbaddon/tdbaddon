@@ -105,7 +105,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         if video_type == VIDEO_TYPES.TVSHOW and title:
-            test_url = '/show/%s/' % (self.__to_slug(title))
+            test_url = '/show/%s/' % (scraper_utils.to_slug(title))
             test_url = urlparse.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
             posts = dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})
@@ -139,13 +139,6 @@ class Scraper(scraper.Scraper):
         
         return results
 
-    def __to_slug(self, title):
-        slug = title.lower()
-        slug = re.sub('[^A-Za-z0-9 -]', ' ', slug)
-        slug = re.sub('\s\s+', ' ', slug)
-        slug = re.sub(' ', '-', slug)
-        return slug
-        
     def __too_old(self, post):
         try:
             filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))

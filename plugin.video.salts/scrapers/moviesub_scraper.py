@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
                     if season and not re.search('Season\s+%s$' % (season), match_title, re.I):
                         continue
                 else:
-                    match = re.search('-(\d{4})\.html', match_url)
+                    match = re.search('-(\d{4})[-.]', match_url)
                     if match:
                         match_year = match.group(1)
                 

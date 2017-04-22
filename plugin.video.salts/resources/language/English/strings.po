@@ -2128,7 +2128,7 @@ msgid "    Debrid Highlight Color"
 msgstr ""
 
 msgctxt "#30730"
-msgid "Image Proxy [COLOR red][B](Experimental)[/B][/COLOR]"
+msgid "Image Proxy"
 msgstr ""
 
 msgctxt "#30731"

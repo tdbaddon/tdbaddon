@@ -1,3 +1,17 @@
+[B]Version 2.0.175[/B]
+- Add SeriesOnline
+- Make ImageProxy multi-threaded
+- Remove old Artwork scraping method
+- Improve xmovies8.v2
+- Improve YesMovies
+- Improve emovies
+- Improve m4ufree
+- Improve HEVCBluray
+- Improve WatchOnline
+- Fix Scenedown
+- Fix MovieSub
+- Fix Watch5s
+
 [B]Version 2.0.171[/B]
 - Fix onlinediz
 - Fix DDLSeries

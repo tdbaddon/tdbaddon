@@ -255,6 +255,7 @@ class Scraper(scraper.Scraper):
         return results
 
     def __get_params(self, movie_id, episode_id, page_url):
+        params = None
         ts = int(time.time() * 1000)
         token_url = TOKEN_URL.format(ep_id=episode_id, movie_id=movie_id, ts=ts)
         token_url = urlparse.urljoin(self.base_url, token_url)
@@ -266,6 +267,9 @@ class Scraper(scraper.Scraper):
         elif script.startswith('[]') and script.endswith('()'):
             params = self.__uncensored2(script)
         else:
+            params = self.__uncensored3(script)
+            
+        if params is None:
             log_utils.log('Unrecognized js in %s' % (token_url))
 
         return params
@@ -324,3 +328,12 @@ class Scraper(scraper.Scraper):
             return {'x': x, 'y': y}
         except Exception as e:
             log_utils.log('Exception in x/y decode (2): %s' % (e), log_utils.LOGWARNING)
+
+    def __uncensored3(self, script):
+        try:
+            xx = re.search('''_x=['"]([^"']+)''', script).group(1)
+            xy = re.search('''_y=['"]([^"']+)''', script).group(1)
+            log_utils.log('script used decode xx/xy: |%s|%s|' % (xx, xy))
+            return {'x': xx, 'y': xy}
+        except Exception as e:
+            log_utils.log('Exception in xx/xy decode (2): %s' % (e), log_utils.LOGWARNING)

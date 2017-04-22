@@ -1,3 +1,9 @@
+[B]Version 2.8.26[/B]
+- Removed UTV Stars, Zee Anmol, DD National, A PLUS, POGO,
+  Disney Channel, Discovery Kids, Hungama TV, Cartoon Network,
+  Mahuaa TV, Epic TV, Zee Q, Sonic, Zee Telugu
+  As these channels are no longer getting updated from DesiRulez
+  
 [B]Version 2.8.25[/B]
 - Added vidwatch
 

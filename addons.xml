@@ -2260,7 +2260,7 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.171" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.175" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -2769,7 +2769,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.25"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.26"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -4407,7 +4407,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 
 <addon id="script.module.python.koding.aio"
    name="Python Koding AIO"
-   version="0.7"
+   version="0.7.3"
    provider-name="TotalRevolution, noobsandnerds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4423,7 +4423,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <language></language>
     <license>Creative Commons 4.0-NC-ND</license>
     <forum>http://noobsandnerds.com/support/showthread.php?tid=17614</forum>
-    <website>http://noobsandnerds.com</website>
+    <website>http://totalrevolution.tv</website>
     <news>Added lots of new functions and cleaned up README. See Changelog.txt for full details.</news>
     <source>https://github.com/totalrevolution/totalrevolution/tree/master/script.module.python.koding.aio</source>
   </extension>

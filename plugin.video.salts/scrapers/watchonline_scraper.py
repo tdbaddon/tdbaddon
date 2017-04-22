@@ -102,6 +102,7 @@ class Scraper(scraper.Scraper):
         headers = {'Referer': self.base_url}
         params = {'search_query': title, 'orderby': '', 'order': '', 'wpas': 1}
         html = self._http_get(search_url, params=params, headers=headers, cache_limit=8)
+        norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'datos'}):
             match = dom_parser2.parse_dom(item, 'a', req='href')
             if not match: continue
@@ -113,7 +114,7 @@ class Scraper(scraper.Scraper):
             
             match_title = match[0].content
             match_title, match_year = scraper_utils.extra_year(match_title)
-            if not year or not match_year or year == match_year:
+            if scraper_utils.normalize_title(match_title) in norm_title and (not year or not match_year or year == match_year):
                 result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                 results.append(result)
             

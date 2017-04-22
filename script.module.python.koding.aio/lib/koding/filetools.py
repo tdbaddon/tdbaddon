@@ -148,7 +148,7 @@ koding.Convert_Special()
                 Text_File(os.path.join(root, file), 'w', newfile)
 #----------------------------------------------------------------    
 # TUTORIAL #
-def Create_Paths(path):
+def Create_Paths(path=''):
     """
 Send through a path to a file, if the directories required do not exist this will create them.
 
@@ -157,8 +157,7 @@ CODE: Create_Paths(path)
 AVAILABLE PARAMS:
 
     (*) path  -  This is the full path including the filename. The path
-    sent through will be split up at every instance of '/' so if you
-    only want to send through a directory you MUST include a trailing '/'
+    sent through will be split up at every instance of '/'
 
 EXAMPLE CODE:
 my_path = xbmc.translatePath('special://home/test/testing/readme.txt')
@@ -166,25 +165,16 @@ koding.Create_Paths(path=my_path)
 dialog.ok('PATH CREATED','Check in your Kodi home folder and you should now have sub-folders of /test/testing/.','[COLOR=gold]Press ok to remove these folders.[/COLOR]')
 shutil.rmtree(xbmc.translatePath('special://home/test'))
 ~"""
-    newdirs = []
-    directories = path.split('/')
-    directories.pop()
-
-# Remove any blanks in the array (eg /storage on linux creates a blank entry at start of array)
-    if directories[0] == '':
-        directories[1] = '/'+directories[1]
-    for item in directories:
-        if item != '':
-            newdirs.append(item)
-
-    rootpath = HOME
-    for d in newdirs:
-        rootpath = os.path.join(rootpath, d)
-        if not os.path.exists(rootpath):
-            try:
-                os.makedirs(rootpath)
-            except:
-                pass
+    if path != '' and not os.path.isdir(path) and not os.path.exists(path):
+        root_path = path.split(os.sep)
+        if root_path[-1] == '':
+            root_path.pop()
+        root_path.pop()
+        final_path = ''
+        for item in root_path:
+            final_path = os.path.join(final_path,item)
+        if not os.path.exists(final_path):
+            os.makedirs(final_path)
 #----------------------------------------------------------------    
 # TUTORIAL #
 def DB_Path_Check(db_path):
@@ -514,7 +504,7 @@ if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh ins
         if not clean_state:
             dialog.ok('SYSTEM NOT SUPPORTED','Your platform is not yet supported by this function, you will have to manually wipe.')
 ~"""
-    from systemtools import Running_App
+    from systemtools import Running_App, Run_As_Kodi
     if xbmc.getCondVisibility("System.HasAddon(service.libreelec.settings)") or xbmc.getCondVisibility("System.HasAddon(service.openelec.settings)"):
         resetpath='storage/.cache/reset_oe'
         Text_File(resetpath,'w')
@@ -522,7 +512,7 @@ if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh ins
     elif xbmc.getCondVisibility('System.Platform.Android'):
         import subprocess
         running   = Running_App()
-        cleanwipe = subprocess.Popen(['exec ''pm clear '+str(running)+''], executable='/system/bin/sh', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, preexec_fn=preexec_fn).communicate()[0]
+        cleanwipe = subprocess.Popen(['exec ''pm clear '+str(running)+''], executable='/system/bin/sh', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, preexec_fn=Run_As_Kodi).communicate()[0]
     else:
         return False
 #----------------------------------------------------------------

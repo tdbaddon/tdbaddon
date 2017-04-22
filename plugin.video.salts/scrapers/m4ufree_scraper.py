@@ -130,6 +130,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=1)
         for attrs, match_title_year in dom_parser2.parse_dom(html, 'a', {'class': 'top-item'}, req='href'):
             match_url = attrs['href']
+            if '-tvshow-' in match_url: continue
             match_title_year = re.sub('</?[^>]*>', '', match_title_year)
             match_title_year = re.sub('^Watch\s*', '', match_title_year)
             match_title, match_year = scraper_utils.extra_year(match_title_year)

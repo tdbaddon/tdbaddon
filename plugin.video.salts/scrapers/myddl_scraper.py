@@ -113,7 +113,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         if video_type == VIDEO_TYPES.TVSHOW and title:
-            test_url = '/tv-show/%s/' % (self.__to_slug(title))
+            test_url = '/tv-show/%s/' % (scraper_utils.to_slug(title))
             test_url = urlparse.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
             posts = dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})

@@ -73,8 +73,8 @@ class WorkerPool(object):
                 else:
                     max_new = self.max_workers - len(self.workers)
                     
-                log_utils.log('Pool Manager: Requested: %s Allowed: %s - Pool Size: (%s / %s)' % (new_workers, max_new, len(self.workers), self.max_workers), log_utils.LOGDEBUG, COMPONENT)
                 if max_new > 0:
+                    log_utils.log('Pool Manager: Requested: %s Allowed: %s - Pool Size: (%s / %s)' % (new_workers, max_new, len(self.workers), self.max_workers), log_utils.LOGDEBUG, COMPONENT)
                     if new_workers > max_new:
                         new_workers = max_new
                         
@@ -100,7 +100,7 @@ class WorkerPool(object):
                 self.in_q.put(job)
                 break
             
-            log_utils.log('Worker: %s handling job: |%s| with args: |%s| and kwargs: |%s|' % (me.name, job['func'], job['args'], job['kwargs']), log_utils.LOGDEBUG, COMPONENT)
+            # log_utils.log('Worker: %s handling job: |%s| with args: |%s| and kwargs: |%s|' % (me.name, job['func'], job['args'], job['kwargs']), log_utils.LOGDEBUG, COMPONENT)
             result = job['func'](*job['args'], **job['kwargs'])
             self.out_q.put(result)
     
