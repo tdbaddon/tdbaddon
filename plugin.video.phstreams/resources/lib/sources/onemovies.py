@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,random,string,json,base64
+import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -63,13 +63,17 @@ class source:
         self.token_link = '/ajax/movie_token?eid=%s&mid=%s'
         self.sourcelink = '/ajax/movie_sources/%s?x=%s&y=%s'
 
-    def getImdbTitle(self, imdb):
+    def getOriginalTitle(self, imdb):
         try:
-            t = 'http://www.omdbapi.com/?i=%s' % imdb
-            t = client.request(t)
-            t = json.loads(t)
-            t = cleantitle.normalize(t['Title'])
-            return t
+            tmdb_link = base64.b64decode(
+                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
+            t = client.request(tmdb_link % imdb, timeout='10')
+            try: title = json.loads(t)['movie_results'][0]['original_title']
+            except: pass
+            try: title = json.loads(t)['tv_results'][0]['original_name']
+            except: pass
+            title = cleantitle.normalize(title)
+            return title
         except:
             return
 
@@ -78,7 +82,7 @@ class source:
             r = self.searchMovie(title)
 
             if r == None:
-                t = cache.get(self.getImdbTitle, 900, imdb)
+                t = cache.get(self.getOriginalTitle, 900, imdb)
                 if t != title:
                     r = self.searchMovie(t)
 
@@ -132,7 +136,7 @@ class source:
                 r = self.searchShow(data['tvshowtitle'], season)
 
             if r == None:
-                t = cache.get(self.getImdbTitle, 900, imdb)
+                t = cache.get(self.getOriginalTitle, 900, imdb)
                 if t != data['tvshowtitle']:
                     r = self.searchShow(t, season)
 
@@ -163,13 +167,7 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             url = data['url']
-            episode = data['episode']
-
-            try:
-                if int(episode) == 0:
-                    episode = None
-            except:
-                episode = None
+            episode = int(data['episode'])
 
             url = urlparse.urljoin(self.base_link, url)
             url = url.replace('/watching.html', '')
@@ -193,13 +191,19 @@ class source:
                             ep = re.findall('episode.*?(\d+):.*?',eid[2].lower())[0]
                         except:
                             ep = 0
-                        if (episode is None) or (int(ep) == int(episode)):
+                        if (episode == 0) or (int(ep) == int(episode)):
                             url = urlparse.urljoin(self.base_link, self.token_link % (eid[0], mid))
                             script = client.request(url)
+
                             if '$_$' in script:
                                 params = self.uncensored1(script)
                             elif script.startswith('[]') and script.endswith('()'):
                                 params = self.uncensored2(script)
+                            elif '_x=' in script:
+                                x = re.search('''_x=['"]([^"']+)''', script).group(1)
+                                y = re.search('''_y=['"]([^"']+)''', script).group(1)
+
+                                params = {'x': x, 'y': y}
                             else:
                                 raise Exception()
                             u = urlparse.urljoin(self.base_link, self.sourcelink % (eid[0], params['x'], params['y']))

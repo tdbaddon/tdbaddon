@@ -2,7 +2,6 @@ import xbmcplugin,xbmcgui,sys,urlresolver,xbmc,os,xbmcaddon
 import xbmcvfs
 from libs import kodi
 import time
-from t0mm0.common.addon import Addon
 from sqlite3 import dbapi2 as db_lib
 import json
 import log_utils
@@ -24,10 +23,6 @@ conn =db_lib.connect(db_path)
 
 ADDON = xbmcaddon.Addon(id=kodi.addon_id)
 addon_id=kodi.addon_id
-addon = Addon(addon_id, sys.argv)
-
-
-
 
 conn.execute('CREATE TABLE IF NOT EXISTS image_cache (trakt_id INTEGER NOT NULL, season TEXT NOT NULL, episode TEXT NOT NULL,timestamp, banner TEXT, fanart TEXT, thumb TEXT, poster TEXT, clearart TEXT, clearlogo TEST, PRIMARY KEY(trakt_id, season, episode))')
 conn.execute('CREATE TABLE IF NOT EXISTS url_cache (url VARCHAR(255) NOT NULL, data VARCHAR(255), response, res_header, timestamp,PRIMARY KEY(url, data))')

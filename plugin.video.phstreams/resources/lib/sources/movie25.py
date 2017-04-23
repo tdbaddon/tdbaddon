@@ -29,7 +29,7 @@ class source:
     def __init__(self):
         self.priority = 0
         self.language = ['en']
-        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag', 'movie25.ag']
+        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag', 'movie25.ag', 'tinklepad.unblocked.ltd']
         self.base_link = 'https://movie25.ag'
         self.search_link_2 = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwODQ5Mjc2ODA5NjE4MzM5MDAwMzowdWd1c2phYm5scSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 

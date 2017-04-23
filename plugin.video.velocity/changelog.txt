@@ -1,5 +1,15 @@
 Official Velocity addon For Kodi
 
+V1.1.1
+Bug fix in Providers
+
+V1.1.0
+Added Source Sorting
+Extra Providers
+Code Cleanup
+Dialog Progress on source searches
+Other code cleanup
+
 V1.0.9
 Added Device Autorization
 Code Cleanup

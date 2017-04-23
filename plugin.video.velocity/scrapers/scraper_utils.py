@@ -487,3 +487,19 @@ def to_datetime(dt_str, date_format):
         log_utils.log('Failed dt conversion: (%s) - |%s|%s|' % (e, dt_str, date_format))
         dt = datetime.datetime.fromtimestamp(0)
     return dt
+
+def extra_year(match_title_year):
+    match = re.search('(.*?)\s+\((\d{4})\)', match_title_year)
+    if match:
+        match_title, match_year = match.groups()
+    else:
+        match = re.search('(.*?)\s+(\d{4})$', match_title_year)
+        if match:
+            match_title, match_year = match.groups()
+        else:
+            match_title = match_title_year
+            match_year = ''
+    return match_title, match_year
+
+def append_headers(headers):
+    return '|%s' % '&'.join(['%s=%s' % (key, urllib.quote_plus(headers[key])) for key in headers])

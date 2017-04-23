@@ -233,9 +233,23 @@ class Scraper(object):
             url=video
         return url
 
+    def _http_get(self, url, params=None, data=None, multipart_data=None, headers=None, cookies=None, allow_redirect=True, method=None, require_debrid=False, read_error=False, cache_limit=8):
+        html = self._cached_http_get(url, self.base_url, self.timeout, params=params, data=data, multipart_data=multipart_data,
+                                     headers=headers, cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid,
+                                     read_error=read_error, cache_limit=cache_limit)
+        sucuri_cookie = scraper_utils.get_sucuri_cookie(html)
+        if sucuri_cookie:
+            log_utils.log('Setting sucuri cookie: %s' % (sucuri_cookie), log_utils.LOGDEBUG)
+            if cookies is not None:
+                cookies = cookies.update(sucuri_cookie)
+            else:
+                cookies = sucuri_cookie
+            html = self._cached_http_get(url, self.base_url, self.timeout, params=params, data=data, multipart_data=multipart_data,
+                                         headers=headers, cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid,
+                                         read_error=read_error, cache_limit=0)
+        return html
 
-
-    def _http_get(self, url, cookies=None, data=None, multipart_data=None, headers=None, allow_redirect=True,method=None, require_debrid=False, read_error=False, cache_limit=8):
+    def _http_getOLD(self, url, cookies=None, data=None, multipart_data=None, headers=None, allow_redirect=True,method=None, require_debrid=False, read_error=False, cache_limit=8):
 
         html = self._cached_http_get(url, self.base_url, self.timeout, cookies=cookies, data=data,multipart_data=multipart_data,headers=headers, allow_redirect=allow_redirect, method=method,require_debrid=require_debrid,read_error=read_error, cache_limit=cache_limit)
         sucuri_cookie = scraper_utils.get_sucuri_cookie(html)
@@ -252,7 +266,7 @@ class Scraper(object):
                                          read_error=read_error, cache_limit=0)
         return html
 
-    def _cached_http_get(self, url, base_url, timeout, cookies=None, data=None, multipart_data=None, headers=None,allow_redirect=True, method=None,require_debrid=False, read_error=False, cache_limit=8):
+    def _cached_http_get(self, url, base_url, timeout, params=None,cookies=None, data=None, multipart_data=None, headers=None,allow_redirect=True, method=None,require_debrid=False, read_error=False, cache_limit=8):
 
         # if require_debrid:
         #     if Scraper.debrid_resolvers is None:
@@ -268,6 +282,11 @@ class Scraper(object):
         if headers is None: headers = {}
         if url.startswith('//'): url = 'http:' + url
         referer = headers['Referer'] if 'Referer' in headers else base_url
+        if params:
+            if url == base_url and not url.endswith('/'):
+                url += '/'
+
+            url += '?' + urllib.urlencode(params)
         log_utils.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers),log_utils.LOGDEBUG)
         if data is not None:
             if isinstance(data, basestring):
@@ -558,7 +577,7 @@ class Scraper(object):
 
     def _parse_google(self, link):
         sources = []
-        html = self._http_get(link, cache_limit=.5)
+        html = self._http_get(link, cache_limit=.25)
         match = re.search('pid=([^&]+)', link)
         if match:
             vid_id = match.group(1)
@@ -637,9 +656,17 @@ class Scraper(object):
                     _source_fmt, source_url = item.split('|')
                     source_url = source_url.replace('\\u003d', '=').replace('\\u0026', '&')
                     source_url = urllib.unquote(source_url)
+                    source_url += '|Cookie=%s' % (self._get_stream_cookies())
                     urls.append(source_url)
 
         return urls
+
+
+    def _get_cookies(self):
+        cj = self._set_cookies(self.base_url, {})
+        cookies = dict((cookie.name, cookie.value) for cookie in cj)
+        return cookies
+
 
     def _get_stream_cookies(self):
         cj = self._set_cookies(self.base_url, {})

@@ -22,14 +22,11 @@ import kodi
 import random
 import json
 from libs import log_utils
-from t0mm0.common.addon import Addon
 from libs import trakt
 addon_id=kodi.addon_id
-addon = Addon(addon_id, sys.argv)
 
 ICON_PATH = os.path.join(kodi.get_path(), 'icon.png')
-#use_https = kodi.get_setting('use_https') == 'true'
-#trakt_timeout = int(kodi.get_setting('trakt_timeout'))
+
 
 def get_pin():
     AUTH_BUTTON = 200
@@ -80,11 +77,9 @@ def get_pin():
 
             if control == NEVER_BUTTON:
 
-                #xbmc.executebuiltin('RunPlugin(%s)' % addon.build_plugin_url({'mode':None}))
                 kodi.notify(header='Not Authorized',msg='Using Standard Menus',duration=5000,sound=None)
 
-                # kodi.notify(msg=i18n('use_addon_settings'), duration=5000)
-                # kodi.set_setting('last_reminder', '-1')
+
 
             if control in [AUTH_BUTTON, LATER_BUTTON, NEVER_BUTTON]:
                 self.close()
@@ -95,12 +90,6 @@ def get_pin():
                 try:
                     trakt_api=trakt.TraktAPI()
                     trakt_api.authorize(pin=pin)
-                    # trakt_api = Trakt_API(use_https=use_https, timeout=trakt_timeout)
-                    # result = trakt_api.get_token(pin=pin)
-                    # kodi.set_setting('trakt_oauth_token', result['access_token'])
-                    # kodi.set_setting('trakt_refresh_token', result['refresh_token'])
-                    # profile = trakt_api.get_user_profile(cached=False)
-                    # kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
                     return True
                 except Exception as e:
                     log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)

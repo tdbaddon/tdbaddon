@@ -60,7 +60,7 @@ class Scraper(scrapeit.Scraper):
                     qual, url, host, parts, views = source.groups()
 
                     if host == 'ZnJhbWVndGZv': continue  # filter out promo hosts
-                    source = {'hostname': 'PrimeWire', 'url': url.decode('base-64'),'class': self, 'host': host.decode('base-64'),'views': views, 'quality': qual, 'direct': False}
+                    source = {'hostname': 'PrimeWire', 'url': url.decode('base-64'),'class': '', 'host': host.decode('base-64'),'views': views, 'quality': qual, 'direct': False}
                     hosters.append(source)
 
             # if max_views > 0:

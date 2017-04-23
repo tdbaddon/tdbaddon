@@ -557,3 +557,12 @@ def to_slug(username):
     username = re.sub('[^a-z0-9_]', '-', username)
     username = re.sub('--+', '-', username)
     return username
+
+
+def message(text1, text2="", text3=""):
+    if text3 == "":
+        xbmcgui.Dialog().ok(text1, text2)
+    elif text2 == "":
+        xbmcgui.Dialog().ok("", text1)
+    else:
+        xbmcgui.Dialog().ok(text1, text2, text3)

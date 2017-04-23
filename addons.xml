@@ -2168,7 +2168,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.2.9" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.3.0" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2193,7 +2193,7 @@ For DMCA Reports, please send message to our FB page.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Source repair</news>
+		<news>Latest Client module and Scraper Updates</news>
 	</extension>
 </addon>
 
@@ -2886,11 +2886,10 @@ For DMCA Reports, please send message to our FB page.
 
 </addon>
 
-    <addon id="plugin.video.velocity" version="1.0.9" name="Velocity" provider-name="Blazetamer">
+    <addon id="plugin.video.velocity" version="1.1.1" name="Velocity" provider-name="Blazetamer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="2.1.2"/>
-        <import addon="script.module.t0mm0.common" version="2.0.0"/>
         <import addon="script.module.autoupdate" version="2.0.0" />
 
 
@@ -2911,12 +2910,16 @@ For DMCA Reports, please send message to our FB page.
         <assets>
 		  <icon>icon.png</icon>
 		  <fanart>fanart.jpg</fanart>
-		  <screenshot>-</screenshot>
-          <screenshot>-</screenshot>
-          <screenshot>-</screenshot>
-          <screenshot>-</screenshot>
-          <screenshot>-</screenshot>
+		  <screenshot>resources/screenshots/ScreenShot1.png</screenshot>
+          <screenshot>resources/screenshots/ScreenShot2.png</screenshot>
+          <screenshot>resources/screenshots/ScreenShot3.png</screenshot>
+          <screenshot>resources/screenshots/ScreenShot4.png</screenshot>
 		</assets>
+        <news>Added Source Sorting
+              Extra Providers
+              Code Cleanup
+              Dialog Progress on source searches
+              Other code cleanup</news>
     </extension>
 </addon>
 
@@ -4407,7 +4410,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 
 <addon id="script.module.python.koding.aio"
    name="Python Koding AIO"
-   version="0.7.3"
+   version="0.7.5"
    provider-name="TotalRevolution, noobsandnerds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4424,7 +4427,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <license>Creative Commons 4.0-NC-ND</license>
     <forum>http://noobsandnerds.com/support/showthread.php?tid=17614</forum>
     <website>http://totalrevolution.tv</website>
-    <news>Added lots of new functions and cleaned up README. See Changelog.txt for full details.</news>
+    <news>Fixed download dialog not auto-closing once complete.</news>
     <source>https://github.com/totalrevolution/totalrevolution/tree/master/script.module.python.koding.aio</source>
   </extension>
 </addon>

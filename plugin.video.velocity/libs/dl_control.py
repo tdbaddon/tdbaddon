@@ -6,8 +6,7 @@ import threading
 import urlresolver
 from libs import log_utils
 import time
-from t0mm0.common.net import Net
-from t0mm0.common.addon import Addon
+from libs.modules.addon import Addon
 
 from sqlite3 import dbapi2 as db_lib
 from sqlite3 import OperationalError as OperationalError
@@ -95,70 +94,27 @@ class downloadThread (threading.Thread):
                file_size_dl += len(buffer)
                f.write(buffer)
                status = int( file_size_dl * 1000. / file_size)
-               # if status > 99 and status < 101:
-               #       #addon.show_small_popup(title=self.name, msg='10% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='10% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 199 and status < 201:
-               #       #addon.show_small_popup(title=self.name, msg='20% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='20% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 299 and status < 301:
-               #       #addon.show_small_popup(title=self.name, msg='30% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='30% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 399 and status < 401:
-               #       #addon.show_small_popup(title=self.name, msg='40% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='40% Complete',icon=self.thumb, duration=3000, sound=None)
 
                if status > 499 and status < 501:
-                     #addon.show_small_popup(title=self.name, msg='50% Complete',delay=int(10), image=self.thumb)
                      kodi.dl_notify(header=self.name, msg='50% Complete',icon=self.thumb, duration=3000, sound=None)
-
-               # elif status > 599 and status < 601:
-               #       #addon.show_small_popup(title=self.name, msg='60% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='60% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 699 and status < 701:
-               #       #addon.show_small_popup(title=self.name, msg='70% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='70% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 799 and status < 801:
-               #       #addon.show_small_popup(title=self.name, msg='80% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='80% Complete',icon=self.thumb, duration=3000, sound=None)
-               #
-               # elif status > 899 and status < 901:
-               #       #addon.show_small_popup(title=self.name, msg='90% Complete',delay=int(10), image=self.thumb)
-               #       kodi.dl_notify(header=self.name, msg='90% Complete',icon=self.thumb, duration=3000, sound=None)
-
-               elif status > 997 and status < 999:
-                     #addon.show_small_popup(title=self.name, msg='95% Complete',delay=int(10), image=self.thumb)
-                     kodi.dl_notify(header='[COLOR gold]Download Complete[/COLOR]', msg=self.name + ' Completed',icon=self.thumb, duration=3000, sound=True)
 
 
             f.close()
 
-            removeFromDLQueue(self.name)
+            #removeFromQueue(self.name)
 
 
             try:
-                #addon.show_small_popup(title='[COLOR gold]Download Complete[/COLOR]', msg=self.name + ' Completed', delay=int(5000), image=self.thumb)
                 kodi.dl_notify(header='[COLOR gold]Download Complete[/COLOR]', msg=self.name + ' Completed',icon=self.thumb, duration=3000, sound=True)
+                xbmc.executebuiltin('XBMC.RunPlugin(%s)' % addon.build_plugin_url({'mode': 'removeFromQueue', 'name': self.name, 'url': self.url, 'thumb': self.thumb, 'ext': self.ext, 'media': self.media}))
             except:
-                #addon.show_small_popup(title='Error', msg=self.name + ' Failed To Download File', delay=int(5000), image=self.thumb)
                 kodi.dl_notify(header='ERROR', msg=self.name + ' Failed To Download File',icon=self.thumb, duration=3000, sound=True)
                 print 'ERROR - File Failed To Download'
-
-
-            #addon.show_small_popup(title='[COLOR gold]Process Complete[/COLOR]', msg=self.name + ' is in your downloads folder', delay=int(5000), image=self.thumb)
-
-
 
 
 def addQDir(name,url,mode,thumb,ext,media):
      params = {'url':url, 'mode':mode, 'name':name, 'thumb':thumb,'media':media, 'ext':ext}
      contextMenuItems = []
-     #print download_path+media+'/'+name+ext
      if os.path.exists(download_path+media+'/'+name+ext) :
          name = '[COLOR green]'+name+' Downloading[/COLOR]'
          contextMenuItems.append(('[COLOR green]Downloaded Status[/COLOR]', 'XBMC.RunPlugin(%s)' % addon.build_plugin_url({'mode': 'download_stats', 'name': name,'url': url,'thumb': thumb,'ext': ext,'media': media})))
@@ -199,11 +155,9 @@ def add_to_queue(name,url,thumb,ext,media):
 
 
 def viewQueue():
-    #kodi.addDir("Start All Downloads",'','download',artwork+'start_downloads.png','',1,'','',fanart=fanart)
     try:
         for row in conn.execute('SELECT * FROM downloads '):
             if row:
-                print row
                 # name = row[0]
                 # url = row[1]
                 # thumb = row[2]
@@ -221,7 +175,6 @@ def viewQueue():
 
 
 def removeFromDLQueue(name):
-    print "NAME PASSED BACK IS = "+name
     try:
         print name
         name = name.replace('[COLOR green]','').replace(' Downloading[/COLOR]','')
@@ -235,7 +188,7 @@ def removeFromDLQueue(name):
     conn.close()
 
 
-def removeFromQueue(name,url,thumb,ext,media):
+def removeFromQueue(name,url='',thumb='',ext='',media=''):
     try:
         print name
         name = name.replace('[COLOR green]','').replace(' Downloading[/COLOR]','')
@@ -248,39 +201,15 @@ def removeFromQueue(name,url,thumb,ext,media):
     # Just be sure any changes have been committed or they will be lost.
     conn.close()
 
-
-
-# def download():
-#     download_path = kodi.get_setting('download_folder')
-#     if download_path == '':
-#       addon.show_small_popup(title='File Not Downloadable', msg='You need to set your download folder in addon settings first', delay=int(5000), image='')
-#     else:
-#      for row in conn.execute('SELECT * FROM downloads '):
-#         if row:
-#             print row
-#             name = row[0]
-#             url = row[1]
-#             thumb = row[2]
-#             ext = row[3]
-#             media = row[4]
-#             #viewQueue()
-#             dlThread = downloadThread(name, url, thumb, media, ext)
-#             dlThread.start()
-
-                   
 
 def download_now(name, url, thumb, ext, media):
-    print name
-    print url
-    print thumb
-    print ext
-    print media
     download_path = kodi.get_setting('download_folder')
     if download_path == '':
       addon.show_small_popup(title='File Not Downloadable', msg='You need to set your download folder in addon settings first', delay=int(5000), image='')
     else:
         dlThread = downloadThread(name, url, thumb, media, ext)
         dlThread.start()
+       #viewQueue()
         #xbmc.executebuiltin("XBMC.Container.Refresh")
 
 
@@ -293,7 +222,7 @@ def setup_download(name,url,thumb,medias,movie_title):
         urls = urlresolver.resolve(url)
 
     else: urls = url
-
+    #kodi.log("URLS IS: ",urls)
     if '.mp4' in urls:
             ext = '.mp4'
     elif '.flv' in urls:

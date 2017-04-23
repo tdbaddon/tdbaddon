@@ -31,8 +31,7 @@ from libs import window_utils
 import datetime
 from libs import viewsetter
 from libs import image_scraper
-from t0mm0.common.net import Net
-from t0mm0.common.addon import Addon
+from libs.modules.addon import Addon
 from scrapers import main_scrape,primewire,iwatchonline,icefilms
 import json
 from libs import trakt_auth
@@ -40,7 +39,6 @@ from libs import trakt_auth
 
 
 ADDON = xbmcaddon.Addon(id=kodi.addon_id)
-net = Net()
 addon_id=kodi.addon_id
 addon = Addon(addon_id, sys.argv)
 artwork = xbmc.translatePath(os.path.join('special://home','addons',addon_id,'resources','art/'))
@@ -103,6 +101,7 @@ def menu():
 	kodi.addDir("Movies",'','movie_menu',artwork+'movies.png','',1,'','',fanart=fanart,description="View and Search for Movies.")
 	kodi.addDir("TV Shows",'','tv_menu',artwork+'tvshows.png','',1,'','',fanart=fanart,description="View and Search for TV Shows.")
 	kodi.addItem("General Settings",'','display_settings',artwork+'gen_settings.png',fanart=fanart,description="Adjust The General Addon Settings.")
+	kodi.addItem("Sorting Methods", '', 'display_sort_settings', artwork + 'gen_settings.png', fanart=fanart,description="Enable and Pick Sorting Methods.")
 	kodi.addItem("Enable Providers",'','display_scraper_settings',artwork+'scraper_settings.png',fanart=fanart,description="Adjust Your Provider/Scraper Settings.")
 	kodi.addItem("Trakt Settings",'','display_trakt_settings',artwork+'trakt_settings.png',fanart=fanart,description="Adjust and Set Trakt Intergration Settings.")
 	kodi.addItem("Url Resolver Settings",'','resolver_settings',artwork+'resolver_settings.png',fanart=fanart,description="Adjust and Set The Url Resolver Settings.")
@@ -130,7 +129,7 @@ def movie_menu():
 		kodi.addDir("Most Played",'most_played','call_trakt_movies',artwork+'most_played.png','',1,'','',fanart=fanart,description="Most Played Movies Section.")
 		kodi.addDir("Most Collected",'most_collected','call_trakt_movies',artwork+'most_collected.png','',1,'','',fanart=fanart,description="Most Collected Movies.")
 		kodi.addDir("Box Office",'box_office','call_trakt_movies',artwork+'box_office.png','',1,'','',fanart=fanart,description="Movies in the Box Office.")
-		kodi.addDir("Search",'','trakt_search_movies',artwork+'search.png','',1,'','',fanart=fanart,description="Search for Movies.")
+		kodi.addItem("Search",'','trakt_search_movies',artwork+'search.png', fanart=fanart,description="Search for Movies.")
 		if kodi.get_setting('trakt_authorized') == 'true':
 			kodi.addDir("[COLOR gold]My Movie Collection[/COLOR]",'my_collected','call_trakt_movies',artwork+'my_collection.png','',1,'','',fanart=fanart,description="View Your own Movie Collection.")
 			kodi.addDir("[COLOR gold]Recomended for me[/COLOR]",'my_recomends','call_trakt_movies',artwork+'recomended.png','',1,'','',fanart=fanart,description="Movies recomended just for you!")
@@ -1612,16 +1611,9 @@ elif mode=='trakt_search_shows':
 		trakt_search_shows(url)
 
 
-
-
-elif mode=='playmerdblink':
-		merdb.playmerdblink(url,movie_title,thumb)
-
 elif mode=='playiwatchonlink':
 		iwatchonline.playiwatchonlink(url,movie_title,thumb)
 
-elif mode=='playzmovieslink':
-		zmovies.playzmovieslink(url,movie_title,thumb)
 
 elif mode=='playprimelink':
 		primewire.playprimelink(url,movie_title,thumb)  #########MAY REMOVE###########
@@ -1710,6 +1702,9 @@ elif mode=='display_trakt_settings':
 elif mode=='display_scraper_settings':
 		kodi.openSettings(addon_id,id1=9,id2=4)
 
+elif mode=='display_sort_settings':
+		kodi.openSettings(addon_id,id1=9,id2=3)
+
 
 #Download Function
 
@@ -1722,8 +1717,6 @@ elif mode=='add_to_queue':
 elif mode=='viewQueue':
 		dl_control.viewQueue()
 
-elif mode=='download':
-		dl_control.download()
 
 elif mode=='removeFromQueue':
 		dl_control.removeFromQueue(name,url,thumb,ext,media)
@@ -1753,8 +1746,6 @@ elif mode=='get_watched_cache':
 
 
 ###Standard Cache Operations
-elif mode=='get_cache':
-		cache_stat.get_cache()
 
 elif mode=='flush_url_cache':
 		cache_stat.flush_url_cache()
@@ -1764,11 +1755,10 @@ elif mode=='get_pin':
 		trakt_auth.auth_trakt()
 		xbmc.executebuiltin("XBMC.Container.Refresh")
 
-
 #########TEsting Functions
 elif mode=='get_kversion':
 		get_kversion()
-#exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("MCA9IFsnOScsJzcnLCc1JywnYScsJzgnLCdiJ10KNiAxIDQgMDoKCWMgMSA0IDI6Mygp")))(lambda a,b:b[int("0x"+a.group(1),16)],"flist|fork|messages|quit|in|Smc|for|TESTINGKODI|fmc|SMC|FMC|Fmc|if".split("|")))
+
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
