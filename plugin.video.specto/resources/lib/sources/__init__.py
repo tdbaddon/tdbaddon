@@ -344,7 +344,11 @@ class sources:
         try: timeout = int(control.setting('sources_timeout_40'))
         except: timeout = 30
 
+        #Mrknow timeout
         [i.start() for i in threads]
+        #for i in threads:
+        #    i.start()
+        #    time.sleep(0.2)
 
         control.idle()
 

@@ -3,6 +3,8 @@
 	 <category label = "General">		<setting id="cache_enabled" type="bool" label="Enable Caching" default="true"/>	</category>	<category label="Scrapers 1">
 		<setting label="afdah" type="lsep"/>
 		<setting id="afdah_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="afmovies" type="lsep"/>
+		<setting id="afmovies_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="Alluc" type="lsep"/>
 		<setting id="Alluc_enabled" type="bool" label="Enabled" default="true"/>
 		<setting id="Alluc_max" type="slider" label="Max Results for Search" default="20" range="5,200" option="int"/>
@@ -44,8 +46,6 @@
 		<setting id="Solar_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchcartoon" type="lsep"/>
 		<setting id="watchcartoon_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="watchepisodes" type="lsep"/>
-		<setting id="watchepisodes_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchfree" type="lsep"/>
 		<setting id="watchfree_enabled" type="bool" label="Enabled" default="true"/>
 		<setting id= "watchfree_baseurl" type="text" label="Base Url" default="http://www.watchfree.to"/>

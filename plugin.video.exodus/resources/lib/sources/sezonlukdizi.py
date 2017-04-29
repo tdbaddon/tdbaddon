@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -32,16 +32,20 @@ class source:
         self.language = ['en']
         self.domains = ['sezonlukdizi.net', 'sezonlukdizi.com']
         self.base_link = 'http://sezonlukdizi.net'
-        self.search_link = '/js/dizi4.js'
+        self.search_link = '/js/dizi5.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
-    def getImdbTitle(self, imdb):
+    def getOriginalTitle(self, imdb):
         try:
-            t = 'http://www.omdbapi.com/?i=%s' % imdb
-            t = client.request(t)
-            t = json.loads(t)
-            t = cleantitle.normalize(t['Title'])
-            return t
+            tmdb_link = base64.b64decode(
+                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
+            t = client.request(tmdb_link % imdb, timeout='10')
+            try: title = json.loads(t)['movie_results'][0]['original_title']
+            except: pass
+            try: title = json.loads(t)['tv_results'][0]['original_name']
+            except: pass
+            title = cleantitle.normalize(title)
+            return title
         except:
             return
 
@@ -51,7 +55,7 @@ class source:
             url = [i[0] for i in list if cleantitle.query(tvshowtitle) == i[1]]
 
             if not url:
-                t = cache.get(self.getImdbTitle, 900, imdb)
+                t = cache.get(self.getOriginalTitle, 900, imdb)
                 url = [i[0] for i in list if cleantitle.query(t) == i[1]]
 
             url = urlparse.urljoin(self.base_link, url[0])

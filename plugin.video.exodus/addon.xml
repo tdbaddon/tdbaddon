@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="3.1.8" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.9" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -30,11 +30,8 @@
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Added and Updated French providers
-- Added and Updated German providers
-- Updated Polish providers (homik)
-- Add Blazingfast support
-- Remove old Debrid-Code
-- Note: You might have to reconfigure your Debrid Service in URLResolver Settings</news>
+		<news>- Added new and fix existing providers (satanuke, John Doe)
+- Updated German providers
+- Tweaked new Debrid-Code</news>
 	</extension>
 </addon>

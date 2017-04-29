@@ -132,8 +132,6 @@ def clear(table=None):
         yes = control.yesnoDialog(control.lang(30401).encode('utf-8'), '', '')
         if not yes: return
 
-        clean_gifs()
-
         dbcon = database.connect(control.cacheFile)
         dbcur = dbcon.cursor()
 
@@ -150,12 +148,3 @@ def clear(table=None):
         control.infoDialog(control.lang(30402).encode('utf-8'))
     except:
         pass
-
-
-def clean_gifs():
-    import xbmcaddon
-    import xbmc
-    import os
-    import shutil
-    dest_folder = os.path.join(xbmc.translatePath(xbmcaddon.Addon().getAddonInfo("profile")), "artcache")
-    shutil.rmtree(dest_folder)

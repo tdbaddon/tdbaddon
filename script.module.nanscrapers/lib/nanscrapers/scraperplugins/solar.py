@@ -16,9 +16,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import re, urllib, urlparse
 import requests
+from BeautifulSoup import BeautifulSoup
 from ..scraper import Scraper
 from ..common import random_agent, filter_host
-from ..scraper import Scraper
+from ..modules import cfscrape
 import xbmc
 
 
@@ -26,14 +27,14 @@ class Solar(Scraper):
     name = "Solar"
 
     def __init__(self):
-        self.base_link = 'http://www.solarmovies.ag'
-        self.movie_link = '/%s.html'
-        self.ep_link = '/%s.html'
+        self.base_link = 'http://solarmovie123.com'
+        self.movie_link = '/%s'
+        self.ep_link = '/%s'
+        self.scraper = cfscrape.create_scraper()
 
     def scrape_movie(self, title, year, imdb, debrid = False):
         try:
-            url = self.movie(imdb, title, year)
-            sources = self.sources(url, [], [])
+            sources = self.movie(imdb, title, year)
             for source in sources:
                 source["scraper"] = source["provider"]
             return sources
@@ -44,19 +45,26 @@ class Solar(Scraper):
         self.zen_url = []
         try:
             headers = {'User-Agent': random_agent()}
-            title = title.replace(' ', '-')
-            title = title + "-" + year
+            title = title.lower().replace(' ', '-').replace(":","-")
+            title = title.replace("--", "-")
+            title2 = title + "-" + year
             query = self.movie_link % title
             u = urlparse.urljoin(self.base_link, query)
-            self.zen_url.append(u)
-            return self.zen_url
+            sources = self.sources(u, [], [])
+            if sources:
+                return sources
+
+            query = self.movie_link % title2
+            u = urlparse.urljoin(self.base_link, query)
+            sources = self.sources(u, [], [])
+            return sources
         except:
             return
 
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             show_url = self.tvshow(imdb, tvdb, title, show_year)
-            url = self.episode(show_url, imdb, tvdb, title, year, season, episode)
+            url = self.episode(show_url, imdb, tvdb, title, year, season, episode)[0]
             sources = self.sources(url, [], [])
             for source in sources:
                 source["scraper"] = source["provider"]
@@ -95,28 +103,28 @@ class Solar(Scraper):
         sources = []
         try:
             headers = {'User-Agent': random_agent()}
-            for url in self.zen_url:
-                if url == None: return
-
-                html = requests.get(url, headers=headers, timeout=10).text
-
-                match = re.compile('<a href="[^"]+go.php\?url=([^"]+)" target="_blank">').findall(html)
-                for url in match:
-                    try:
-                        # print("SOLAR SOURCE", url)
-                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                        host = host.encode('utf-8')
-                        # if not host in hostDict: raise Exception()
-                        if not filter_host(host):
-                            continue
-                        quality = "SD"
-                        # print("OpenMovies SOURCE", stream_url, label)
-                        sources.append(
-                            {'source': host, 'quality': quality, 'provider': 'Solar', 'url': url, 'direct': False,
-                             'debridonly': False})
-                    except:
-                        pass
-
+            if url is None:
+                return
+            html = self.scraper.get(url, headers=headers, timeout=10).text
+            html = BeautifulSoup(html)
+            table = html.findAll("tbody")[0]
+            rows = table.findAll("tr")
+            for row in rows:
+                quality_container = row.find("td", attrs={"class": "qualityCell js-link-format"})
+                quality = quality_container.text.upper()
+                link_container = row.find("td", attrs={"class": "sourceNameCell"})
+                links = link_container.findAll("a")
+                for link in links:
+                    url = link["href"]
+                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+                    host = host.encode('utf-8')
+                    # if not host in hostDict: raise Exception()
+                    if not filter_host(host):
+                        continue
+                    # print("OpenMovies SOURCE", stream_url, label)
+                    sources.append(
+                        {'source': host, 'quality': quality, 'provider': 'Solar', 'url': url, 'direct': False,
+                         'debridonly': False})
             return sources
         except:
             return sources

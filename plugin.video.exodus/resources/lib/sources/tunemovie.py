@@ -132,27 +132,27 @@ class source:
 
                     url = urlparse.urljoin(self.base_link, '/ip.file/swf/ipplayer/ipplayer.php')
 
-                    post = {'u': u, 'w': '100%', 'h': '420', 's': s, 'n': 0}
-                    post = urllib.urlencode(post)
+                    for n in range(3):
+                        try:
+                            post = {'u': u, 'w': '100%', 'h': '420', 's': s, 'n': n}
+                            post = urllib.urlencode(post)
+                            result = client.request(url, post=post, XHR=True, referer=ref)
+                            src = json.loads(result)['data']
 
-                    for i in range(3):
-                        result = client.request(url, post=post, XHR=True, referer=ref)
-                        if not result == None: break
-
-                    url = json.loads(result)['data']
-
-                    if type(url) is list:
-                        url = [i['files'] for i in url]
-                        for i in url:
-                            try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                            except: pass
-
-                    else:
-                        url = client.request(url)
-                        url = client.parseDOM(url, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
-                        url += '|%s' % urllib.urlencode({'User-agent': client.randomagent()})
-                        sources.append({'source': 'cdn', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
-
+                            if type(src) is list:
+                                src = [i['files'] for i in src]
+                                for i in src:
+                                    try:
+                                        sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                                    except:
+                                        pass
+                            else:
+                                src = client.request(src)
+                                src = client.parseDOM(src, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+                                src += '|%s' % urllib.urlencode({'User-agent': client.randomagent()})
+                                sources.append({'source': 'cdn', 'quality': 'HD', 'language': 'en', 'url': src, 'direct': False, 'debridonly': False})
+                        except:
+                            pass
                 except:
                     pass
 

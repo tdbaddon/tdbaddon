@@ -573,8 +573,10 @@ class sources:
         self.sources = filter
 
         filter = []
-        for d in [resolver() for resolver in urlresolver.relevant_resolvers(order_matters=True) if resolver.isUniversal()]:
-            filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if d.valid_url('', i['source'])]
+        for d in debrid.debrid_resolvers:
+            valid_hoster = set([i['source'] for i in self.sources])
+            valid_hoster = [i for i in valid_hoster if d.valid_url('', i)]
+            filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if i['source'] in valid_hoster]
         filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] == False]
         self.sources = filter
 

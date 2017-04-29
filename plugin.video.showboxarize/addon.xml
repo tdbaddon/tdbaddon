@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.showboxarize" version="4.12.17" name="Showbox Arize" provider-name="Showbox Arize">
+<addon id="plugin.video.showboxarize" version="4.26.17" name="Showbox Arize" provider-name="Showbox Arize">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.jesusboxtv" version="1.0.0" />

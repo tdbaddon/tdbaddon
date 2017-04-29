@@ -33,13 +33,17 @@ class source:
         self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me']
         self.base_link = 'https://flixanity.watch'
 
-    def getImdbTitle(self, imdb):
+    def getOriginalTitle(self, imdb):
         try:
-            t = 'http://www.omdbapi.com/?i=%s' % imdb
-            t = client.request(t)
-            t = json.loads(t)
-            t = cleantitle.normalize(t['Title'])
-            return t
+            tmdb_link = base64.b64decode(
+                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
+            t = client.request(tmdb_link % imdb, timeout='10')
+            try: title = json.loads(t)['movie_results'][0]['original_title']
+            except: pass
+            try: title = json.loads(t)['tv_results'][0]['original_name']
+            except: pass
+            title = cleantitle.normalize(title)
+            return title
         except:
             return
 
@@ -78,50 +82,46 @@ class source:
 
             if url == None: return sources
 
-            if not str(url).startswith('http'):
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-                data = urlparse.parse_qs(url)
-                data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+            imdb = data['imdb'] ; year = data['year']
 
-                imdb = data['imdb'] ; year = data['year']
+            headers = {}
 
-                if 'tvshowtitle' in data:
-                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
-                    result = client.request(url, limit='5')
+            if 'tvshowtitle' in data:
+                url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
+                result = client.request(url, headers=headers, timeout='10')
 
-                    if result == None:
-                        t = cache.get(self.getImdbTitle, 900, imdb)
-                        if title != t:
-                            url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(t), int(data['season']), int(data['episode']))
-                            result = client.request(url, limit='5')
-                else:
-                    url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
-                    result = client.request(url, limit='5')
-
-                    if result == None:
-                        t = cache.get(self.getImdbTitle, 900, imdb)
-                        if title != t:
-                            url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(t))
-                            result = client.request(url, limit='5')
-
-                if result == None and not 'tvshowtitle' in data:
-                    url += '-%s' % year
-                    result = client.request(url, limit='5')
-
-                result = client.parseDOM(result, 'title')[0]
-
-                if '%TITLE%' in result: raise Exception()
-
-                r = client.request(url, output='extended')
-
-                if not imdb in r[0]: raise Exception()
-
+                if result == None:
+                    t = cache.get(self.getOriginalTitle, 900, imdb)
+                    if title != t:
+                        url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(t), int(data['season']), int(data['episode']))
+                        result = client.request(url, headers=headers, timeout='10')
             else:
-                url = urlparse.urljoin(self.base_link, url)
+                url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
+                result = client.request(url, headers=headers, timeout='10')
 
-                r = client.request(url, output='extended')
+                if result == None:
+                    url += '-%s' % year
+                    result = client.request(url, headers=headers, timeout='10')
+
+                if result == None:
+                    t = cache.get(self.getOriginalTitle, 900, imdb)
+                    if title != t:
+                        url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(t))
+                        result = client.request(url, headers=headers, timeout='10')
+
+
+            result = client.parseDOM(result, 'title')[0]
+
+            if '%TITLE%' in result: raise Exception()
+
+            r = client.request(url, headers=headers, output='extended', timeout='10')
+
+            if not imdb in r[0]: raise Exception()
 
 
             cookie = r[4] ; headers = r[3] ; result = r[0]

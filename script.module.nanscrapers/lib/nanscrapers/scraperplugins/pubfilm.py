@@ -7,6 +7,8 @@ from ..common import random_agent, replaceHTMLCodes
 from ..scraper import Scraper
 from nanscrapers.modules import cfscrape
 import xbmcaddon
+import urllib
+import xbmc
 
 class Pubfilm(Scraper):
     domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
@@ -16,7 +18,7 @@ class Pubfilm(Scraper):
         self.base_link = xbmcaddon.Addon('script.module.nanscrapers').getSetting("%s_baseurl" % (self.name))
         self.moviesearch_hd_link = '/%s-%s-full-hd-pubfilm-free.html'
         self.moviesearch_sd_link = '/%s-%s-pubfilm-free.html'
-        self.tvsearch_link = '/wp-admin/admin-ajax.php'
+        self.tvsearch_link = '/?s=%s'
         self.scraper = cfscrape.create_scraper()
 
     def scrape_movie(self, title, year, imdb, debrid = False):
@@ -46,17 +48,12 @@ class Pubfilm(Scraper):
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
             for try_year in [str(year), str(int(year) - 1)]:
-                tvshowtitle = '%s %s: Season %s' % (title, try_year, season)
-                headers = {'X-Requested-With': 'XMLHttpRequest',
-                           'User-Agent': random_agent()}
+                xbmc.log("test2", xbmc.LOGNOTICE)
+                #headers = {'User-Agent': random_agent()}
 
-                post = {'aspp': tvshowtitle, 'action': 'ajaxsearchpro_search',
-                        'options': 'qtranslate_lang=0&set_exactonly=checked&set_intitle=None&customset[]=post',
-                        'asid': '4', 'asp_inst_id': '4_1'}
-
-                url = urlparse.urljoin(self.base_link, self.tvsearch_link)
-                html = BeautifulSoup(self.scraper.post(url, data=post, headers=headers, timeout=30).content)
-                links = html.findAll('a', attrs={'class': 'asp_res_url'})
+                url = urlparse.urljoin(self.base_link, self.tvsearch_link % urllib.quote_plus(title.lower()))
+                html = BeautifulSoup(self.scraper.get(url, timeout=30).content)
+                links = html.findAll('a')
                 show_url = None
                 for link in links:
                     href = link["href"]

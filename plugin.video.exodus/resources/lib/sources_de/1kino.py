@@ -24,6 +24,7 @@ import urlparse
 import json
 
 from resources.lib.modules import cleantitle
+from resources.lib.modules import cache
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
 from resources.lib.modules import dom_parser
@@ -108,9 +109,7 @@ class source:
 
     def __search(self, title, year):
         try:
-            n = client.request(urlparse.urljoin(self.base_link, self.search_js))
-            try: n = re.findall('nonce=([0-9a-zA-Z]+)', n)[0]
-            except: n = '273e0f8ea3'
+            n = cache.get(self.__get_nonce, 24)
 
             query = self.search_link % (urllib.quote_plus(cleantitle.query(title)), n)
             query = urlparse.urljoin(self.base_link, query)
@@ -121,8 +120,15 @@ class source:
             r = client.request(query)
             r = json.loads(r)
             r = [(r[i].get('url'), r[i].get('title'), r[i].get('extra').get('date')) for i in r]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
 
             return source_utils.strip_domain(r)
         except:
             return
+
+    def __get_nonce(self):
+        n = client.request(urlparse.urljoin(self.base_link, self.search_js))
+        try: n = re.findall('nonce=([0-9a-zA-Z]+)', n)[0]
+        except: n = '273e0f8ea3'
+        return n

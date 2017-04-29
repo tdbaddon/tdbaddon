@@ -14,20 +14,59 @@ class Animetoon(Scraper):
 
     def __init__(self):
         self.base_link = 'http://www.animetoon.org/'
+        self.search_link = "/toon/search?key=%s"
 
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
-            if season == '1':
-                url = self.base_link + title.replace(' ', '-').replace('!', '') + '-episode-' + episode
-            elif season == '01':
-                url = self.base_link + title.replace(' ', '-').replace('!', '') + '-episode-' + episode
-            else:
-                url = self.base_link + title.replace(' ', '-').replace('!',
-                                                                       '') + '-season-' + season + '-episode-' + episode
-            html = requests.get(url).text
-            match = re.compile('"playlist">.+?</span></div><div><iframe src="(.+?)"').findall(html)
-            for url2 in match:
-                self.get_sources(url2)
+            # if season == '1':
+            #     url = self.base_link + title.replace(' ', '-').replace('!', '') + '-episode-' + episode
+            # elif season == '01':
+            #     url = self.base_link + title.replace(' ', '-').replace('!', '') + '-episode-' + episode
+            # else:
+            #     url = self.base_link + title.replace(' ', '-').replace('!',
+            #                                                            '') + '-season-' + season + '-episode-' + episode
+            cleaned_title = clean_title(title)
+            q = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '+').replace('++', '+').lower()
+            query = urlparse.urljoin(self.base_link, self.search_link % q)
+            html = BeautifulSoup(requests.get(query, timeout=30).content)
+            series_list = html.find('div', attrs={'class':'series_list'})
+            for header in series_list.findAll("h3"):
+                link = header.find('a')
+                href = link["href"]
+                link_title = link.text
+                cleaned_link_title = clean_title(link_title)
+                if (str(season) in ['1', '01'] and cleaned_link_title == cleaned_title) or ("season %s" % season in link_title and cleaned_link_title in link_title):
+                    pages = [href]
+                    html2 = BeautifulSoup(requests.get(href).text)
+                    pagination = html2.find('ul', attrs={'class': 'pagination'})
+                    if pagination:
+                        page_buttons = pagination.findAll("button")
+                        for button in page_buttons:
+                            try:
+                                pages.append(button["href"])
+                            except:
+                                pass
+                    found = False
+                    first_page = True
+                    for page in pages:
+                        if not first_page:
+                            html2 = BeautifulSoup(requests.get(page).text)
+                        videos = html2.find('div', attrs={'id':'videos'})
+                        for video in videos.findAll('a'):
+                            if "episode " + str(episode) in video.text.lower():
+                                if " %s " % episode in video.text or video.text.lower().endswith('episode %s' % episode):
+                                    url = video["href"]
+                                    html = requests.get(url).text
+                                    match = re.compile('"playlist">.+?</span></div><div><iframe src="(.+?)"').findall(
+                                        html)
+                                    for url2 in match:
+                                        self.get_sources(url2)
+                                    if match:
+                                        found = True
+                                        break
+                        first_page = False
+                        if found:
+                            break
             return self.sources
         except:
             pass

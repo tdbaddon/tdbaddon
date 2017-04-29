@@ -1,3 +1,7 @@
+[B]4.25.17[/B]
+General settings updated
+_____________________________________________
+
 [B]4.12.17[/B]
 New HD sources added
 Removed dead links

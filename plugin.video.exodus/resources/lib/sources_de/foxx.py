@@ -24,6 +24,7 @@ import urllib
 import urlparse
 
 from resources.lib.modules import anilist
+from resources.lib.modules import cache
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
@@ -40,7 +41,7 @@ class source:
         self.language = ['de']
         self.domains = ['foxx.to']
         self.base_link = 'https://foxx.to'
-        self.search_link = '/?s=%s'
+        self.search_link = '/wp-json/dooplay/search/?keyword=%s&nonce=%s'
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -154,24 +155,29 @@ class source:
 
     def __search(self, title, year):
         try:
-            query = self.search_link % (urllib.quote_plus(cleantitle.query(title)))
+            n = cache.get(self.__get_nonce, 24)
+
+            query = self.search_link % (urllib.quote_plus(cleantitle.query(title)), n)
             query = urlparse.urljoin(self.base_link, query)
 
             t = cleantitle.get(title)
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(query)
-
-            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'details'})
-            r = [(dom_parser.parse_dom(i, 'div', attrs={'class': 'title'}), dom_parser.parse_dom(i, 'span', attrs={'class': 'year'})) for i in r]
-            r = [(dom_parser.parse_dom(i[0][0], 'a', req='href'), i[1][0].content) for i in r if i[0] and i[1]]
-            r = [(i[0][0].attrs['href'], i[0][0].content, i[1]) for i in r if i[0]]
+            r = json.loads(r)
+            r = [(r[i].get('url'), r[i].get('title'), r[i].get('extra').get('date')) for i in r]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
 
             return source_utils.strip_domain(r)
         except:
             return
+
+    def __get_nonce(self):
+        n = client.request(self.base_link)
+        try: n = re.findall('nonce"?\s*:\s*"?([0-9a-zA-Z]+)', n)[0]
+        except: n = '5d12d0fa54'
+        return n
 
     @staticmethod
     def __is_anime(content, type, type_id):

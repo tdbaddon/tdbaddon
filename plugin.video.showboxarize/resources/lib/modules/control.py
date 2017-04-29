@@ -182,12 +182,6 @@ def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
 
 
-def moderator():
-    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.streamarmy', 'plugin.video.tinklepad', 'plugin.video.metallic']
-
-    if not infoLabel('Container.PluginName') in netloc: sys.exit()
-
-
 def metaFile():
     if condVisibility('System.HasAddon(script.flixnet.metadata)'):
         return os.path.join(xbmcaddon.Addon('script.flixnet.metadata').getAddonInfo('path'), 'resources', 'data', 'meta.db')

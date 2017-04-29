@@ -8,6 +8,7 @@ import urlparse
 
 def clean_title(title):
     if title == None: return
+    title = str(title)
     title = re.sub('&#(\dhttp://www.norestrictions.club/norestrictions.club/main/themes/cars+);', '', title)
     title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')

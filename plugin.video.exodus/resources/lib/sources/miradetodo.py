@@ -129,31 +129,36 @@ class source:
 
                     if sid in dupes: raise Exception()
                     dupes.append(sid)
+                    if 'stream/ol.php' in u:
+                        url = client.request(u, timeout='10', XHR=True, referer=u)
+                        url = client.parseDOM(url, 'iframe', ret='src')[0]
+                        sources.append({'source': 'openload.co', 'quality': 'HD', 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
 
-                    url = client.request(u, timeout='10', XHR=True, referer=u)
-                    url = client.parseDOM(url, 'a', ret='href')
-                    url = [i for i in url if '.php' in i][0]
-                    url = 'http:' + url if url.startswith('//') else url
-                    url = client.request(url, timeout='10', XHR=True, referer=u)
+                    if 'stream/play.php' in u:
+                        url = client.request(u, timeout='10', XHR=True, referer=u)
+                        url = client.parseDOM(url, 'a', ret='href')
+                        url = [i for i in url if '.php' in i][0]
+                        url = 'http:' + url if url.startswith('//') else url
+                        url = client.request(url, timeout='10', XHR=True, referer=u)
 
-                    url = re.findall('sources\s*:\s*\[(.+?)\]', url)[0]
-                    links = json.loads('[' + url + ']')
+                        url = re.findall('sources\s*:\s*\[(.+?)\]', url)[0]
+                        links = json.loads('[' + url + ']')
 
-                    for i in links:
-                        try:
-                            quality = re.findall('(\d+)', i['label'])[0]
-                            if int(quality) >= 1080: quality = '1080p'
-                            elif 720 <= int(quality) < 1080: quality = 'HD'
-                            else: quality = 'SD'
-
+                        for i in links:
                             try:
-                                quality = directstream.googletag(i['file'])[0]['quality']
+                                quality = re.findall('(\d+)', i['label'])[0]
+                                if int(quality) >= 1080: quality = '1080p'
+                                elif 720 <= int(quality) < 1080: quality = 'HD'
+                                else: quality = 'SD'
+
+                                try:
+                                    quality = directstream.googletag(i['file'])[0]['quality']
+                                except:
+                                    pass
+
+                                sources.append({'source': 'gvideo', 'quality': quality, 'language': 'en', 'url': i['file'], 'direct': True, 'debridonly': False})
                             except:
                                 pass
-
-                            sources.append({'source': 'gvideo', 'quality': quality, 'language': 'en', 'url': i['file'], 'direct': True, 'debridonly': False})
-                        except:
-                            pass
                 except:
                     pass
 

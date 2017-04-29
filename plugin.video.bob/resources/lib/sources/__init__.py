@@ -82,8 +82,6 @@ class sources:
             else:
                 return
 
-            xbmc.log("testing: " + repr(link), xbmc.LOGNOTICE)
-
             if link is None:
                 return False
 

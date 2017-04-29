@@ -35,7 +35,7 @@ params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 action = params.get('action')
 
-control.moderator()
+
 
 
 class seasons:

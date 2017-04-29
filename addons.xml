@@ -703,7 +703,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.bob" name="Bob" version="1.3.11" provider-name="Team Bob">
+<addon id="plugin.video.bob" name="Bob" version="1.3.13" provider-name="Team Bob">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" />
@@ -1063,7 +1063,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.einthusan"
        name="Einthusan"
-       version="1.3.8"
+       version="1.3.9"
        provider-name="humla">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1171,7 +1171,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.8" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.9" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1202,12 +1202,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Added and Updated French providers
-- Added and Updated German providers
-- Updated Polish providers (homik)
-- Add Blazingfast support
-- Remove old Debrid-Code
-- Note: You might have to reconfigure your Debrid Service in URLResolver Settings</news>
+		<news>- Added new and fix existing providers (satanuke, John Doe)
+- Updated German providers
+- Tweaked new Debrid-Code</news>
 	</extension>
 </addon>
 
@@ -1958,7 +1955,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.myvevo"
        name="VEVO"
-       version="3.0.5"
+       version="3.0.6"
        provider-name="t1m">
   <requires>
     <import addon="xbmc.python" version="2.24.0"/>
@@ -2086,7 +2083,7 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.one242415" name="One242415" version="1.0.4" provider-name="Cosmix, The One">
+<addon id="plugin.video.one242415" name="One242415" version="1.0.5" provider-name="Cosmix, The One">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2293,7 +2290,7 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.showboxarize" version="4.12.17" name="Showbox Arize" provider-name="Showbox Arize">
+<addon id="plugin.video.showboxarize" version="4.26.17" name="Showbox Arize" provider-name="Showbox Arize">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.jesusboxtv" version="1.0.0" />
@@ -2348,7 +2345,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.04.18.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.04.27.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -3660,12 +3657,17 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.6" provider-name="noobsandnerds">
+<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.7" provider-name="noobsandnerds">
 	<extension point="xbmc.addon.repository" name="noobsandnerds Repository">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/</datadir>
 		</dir>
 		<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml.md5</checksum>
@@ -3819,7 +3821,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-    <addon id="repository.skymashitv" name="SkymashiTV Repo" version="0.2" provider-name="Skymashi">
+    <addon id="repository.skymashitv" name="SkymashiTV Repo" version="0.3" provider-name="SkymashiTV">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
@@ -3831,7 +3833,7 @@ Enjoy!</description>
         </extension>
         <extension point="xbmc.addon.metadata">
             <summary>SkymashiTV Repository</summary>
-            <description>SkymashiTV Repository for our Addons and Builds</description>
+            <description>SkymashiTV Repository for our Addons and Buildwizard</description>
             <platform>all</platform>
     </extension>
 </addon>
@@ -4055,17 +4057,18 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.1" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.3" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
 	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
-		<info compressed="false">http://xtyrepo.me/xunitytalk/addons/addons.xml</info>
-		<checksum>http://xtyrepo.me/xunitytalk/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://xtyrepo.me/xunitytalk/addons</datadir>
+		<info compressed="false">http://xty.me/xunitytalk/addons/addons.xml</info>
+		<checksum>http://xty.me/xunitytalk/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://xty.me/xunitytalk/addons</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</summary>
 		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
 		<platform>all</platform>
 	</extension>
+
 </addon>
 
 <addon id="repository.ytplugin" name="Youtube Addon Repo" version="1.0" provider-name="Jeffrey Frasure">
@@ -4382,7 +4385,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.14" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.15" provider-name="Team NaN">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -4394,7 +4397,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <extension point="xbmc.python.pluginsource" library="lib/default.py">
         <provides>executable</provides>
     </extension>
-    <import addon="script.module.urlresolver" version="2.0" optional="true"/>
+    <import addon="script.module.urlresolver" version="3.0.0" optional="true"/>
     <import addon="script.mrknow.urlresolver" version="2016.10.30.2" optional="true"/>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>

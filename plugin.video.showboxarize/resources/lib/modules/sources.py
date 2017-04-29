@@ -50,7 +50,6 @@ class sources:
         try:
             url = None
 
-            control.moderator()
 
             items = self.getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered)
 

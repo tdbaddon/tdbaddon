@@ -8,12 +8,12 @@ from ..scraper import Scraper
 import xbmc
 
 class Dizigold(Scraper):
-    domains = ['dizigold.net']
+    domains = ['dizigold1.com']
     name = "dizigold"
 
     def __init__(self):
-        self.base_link = 'http://www.dizigold.net'
-        self.player_link = 'http://player.dizigold.net/?id=%s&s=1&dil=or'
+        self.base_link = 'http://www.dizigold1.com'
+        self.player_link = 'http://player.dizigold.org/?id=%s&s=1&dil=tr'
 
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
 

@@ -1,3 +1,7 @@
+v0.5.15
+- fixed most existing scrapers
+- improved some scrapers
+
 v0.5.12
 - new optional parameter: enable_debrid
 - added debrid capabilities to alluc scraper

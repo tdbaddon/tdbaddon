@@ -42,7 +42,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
 
-        if (2, 7, 9) <= sys.version_info < (2, 7, 11):
+        if (2, 7, 8) < sys.version_info < (2, 7, 12):
             try:
                 import ssl; ssl_context = ssl.create_default_context()
                 ssl_context.check_hostname = False

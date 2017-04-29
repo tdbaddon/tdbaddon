@@ -148,7 +148,7 @@
 		<setting id="tm.user" type="text" option="hidden" label="32309" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="Trakt" />
-		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.exodus/?action=authTrakt)" />
+		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.showboxarize/?action=authTrakt)" />
 		<setting id="trakt.token" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="trakt.refresh" type="text" option="hidden" visible="false" label="" default="" />
 		<setting type="sep" />
@@ -156,7 +156,7 @@
 		<setting id="imdb.user" type="text" label="32303" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="RealDebrid" />
-		<setting id="realdebrid.auth" type="action" option="close" label="32306" action="RunPlugin(plugin://plugin.video.exodus/?action=rdAuthorize)" />
+		<setting id="realdebrid.auth" type="action" option="close" label="32306" action="RunPlugin(plugin://plugin.video.showboxarize/?action=rdAuthorize)" />
 		<setting id="realdebrid.id" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.secret" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.token" type="text" option="hidden" visible="false" label="" default="" />
