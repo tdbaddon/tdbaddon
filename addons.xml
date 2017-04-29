@@ -1368,6 +1368,38 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 </addon>
 
+<addon id="plugin.video.genesisreborn" version="2017.04.00" name="Genesis Reborn" provider-name="Genesis Reborn">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="script.genesisreborn.artwork" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.requests" />
+		<import addon="script.module.beautifulsoup" />
+		<import addon="script.module.jesusboxmedia.common" />
+		<import addon="script.module.futures" version="2.2.0"/>
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="genesisreborn.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Genesis Reborn Fork Movies/TV Shows</summary>
+		<description lang="en">Genesis Reborn...Fork of Genesis-Specto-Exodus-Zen. Original Source code by Lambda, Schism, and Mashed. Website http://jesusboxmedia.tv Big Thanks to head developper JP Hightek for helping in making this addon come to life. Watch Movies and TV Shows in High quality! Please note that this addon is not an official part of the Kodi media player , and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
+		<platform>all</platform>
+		<website>http://jesusboxmedia.tv</website>
+		<news>Update Providers - Added Ability to Disable Captcha hosts - Extended Quality of source to 4k</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/01.jpg</screenshot>
+			<screenshot>resources/screenshots/02.jpg</screenshot>
+			<screenshot>resources/screenshots/03.jpg</screenshot>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="plugin.video.goodfellas"
        name="GoodFellas 2.0"
        version="2.0.3"
@@ -2373,7 +2405,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="ZNL2017.03.20"
+  version="ZNL2017.03.28"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -2940,7 +2972,7 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.wolfpack" version="1.2" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
+<addon id="plugin.video.wolfpack" version="1.6" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2948,9 +2980,8 @@ For DMCA Reports, please send message to our FB page.
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.liveresolver" version="0.1.24"/>
 		<import addon="script.video.F4mProxy" version="2.2.3"/>
-		<import addon="repository.wolfmovies" version="1.5"/>
 		<import addon="script.module.wolfpack" version="1.0.3"/>
-		<import addon="plugin.video.bretts.retro.tv" version="2.0.0"/>
+		<import addon="repository.crt" version="1.0"/>
 
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -3093,7 +3124,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.04.09" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.04.27.02" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -3114,7 +3145,7 @@ Enjoy!</description>
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 
-		<news>Update Providers - Easter Break fixes</news>
+		<news>Update Providers - Menu cleanup - Added Local Watchmarks for TvShows</news>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3262,6 +3293,23 @@ Enjoy!</description>
 	</extension>
 </addon>
 
+<addon id="repository.crt" name="[B][COLOR white]R[/COLOR][COLOR red]andom 24/[/COLOR][COLOR white]7[/COLOR][/B]" version="1.0" provider-name="">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.urlresolver"  version="3.0.0"/>
+	<import addon="script.module.addon.common" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>repository</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+	<summary lang="en">Random 24/7</summary>
+	<description lang="en"></description>
+	<disclaimer lang="en"></disclaimer>
+	<platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="repository.cuba-tv" name="Cuba-tv Addon Repository" version="0.0.1" provider-name="Alex Lopez Rodriguez">
 	<extension point="xbmc.addon.repository" name="Cuba-tv Addon Repository">
             <info compressed="false">http://cuba-tv-kodi.org/repo/file/addons.xml</info>
@@ -3386,24 +3434,6 @@ Enjoy!</description>
 		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
 		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
 		<disclaimer lang="pl">Zawartość repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatów, .</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.MatsBuilds" name="Goliaths Unofficial Add-ons repository" version="1.0.18" provider-name="Goliath">
-	<extension point="xbmc.addon.repository" name="Goliaths Repository">
-	<dir>
-		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	</dir>
-		<info compressed="false">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/Goliath-Evolve/repository.Goliath/master/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Home of the unofficial 3rd party Addon Evolve</summary>
-		<description>Download and install all unofficial Add-ons from Goliath</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4034,6 +4064,19 @@ Addons Included
   </extension>
 </addon>
 
+<addon id="repository.wolfpack" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" version="1.0" provider-name="Wolfpack">
+	<extension point="xbmc.addon.repository" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]">
+		<info compressed="false">http://beaub.srve.io/wolfpackrepo/files/addons.xml</info>
+		<checksum>http://beaub.srve.io/wolfpackrepo/files/addons.xml.md5</checksum>
+		<datadir zip="true">http://beaub.srve.io/wolfpackrepo/files/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+		<description>This is the wolfpack repo, where you can get access to the wolfpack addon</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.xbmchub" name="TVADDONS.AG Add-on Repository" version="1.0.7" provider-name="tvaddons.ag">
 	<extension point="xbmc.addon.repository" name="TVADDONS.AG Add-on Repository">
 	<dir>
@@ -4255,6 +4298,30 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
+<addon id="script.exodus.artwork" version="1.0.4" name="Exodus Artwork" provider-name="Exodus">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Exodus Addon</summary>
+		<description>Themes for Exodus are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.exodus.metadata" version="1.0.0" name="Exodus Metadata" provider-name="Exodus">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Metadata for the Exodus Addon</summary>
+		<description>Metadata for Exodus are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="script.genesisreborn.artwork" version="1.4.1" name="Genesis Reborn Artwork" provider-name="Jesus Box Media">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
@@ -4454,7 +4521,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 	</extension>
 </addon>
 
-<addon id="script.module.schism.common" name="SchisM Common Libraries" version="2017.04.09" provider-name="SchisM">
+<addon id="script.module.schism.common" name="SchisM Common Libraries" version="2017.04.27" provider-name="SchisM">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.six" />
@@ -4535,14 +4602,24 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.module.xbmcswift" name="xbmcswift" version="0.2.2" provider-name="Jonathan Beluch (jbel)">
+<addon id="script.module.wolfpack"
+       name="[B][COLOR white]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR white]K[/COLOR][/B]"
+	   version="1.5"
+	   provider-name="[B][COLOR red]wolfpack[/COLOR][/B]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="script.module.urlresolver" />
   </requires>
-  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
   <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dependency For wolfpack</summary>
+    <description lang="en">Dependency For wolfpack</description>
+	<disclaimer lang="en">Dependency For wolfpack</disclaimer>
     <platform>all</platform>
-    <source>https://github.com/jbeluch/xbmcswift</source>
   </extension>
 </addon>
 
@@ -4741,74 +4818,6 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 		<source></source>
 	</extension>
 </addon>
-
-<addon id="superrepo.kodi.jarvis.all" name="SuperRepo All [Jarvis][v7]" version="0.7.04" provider-name="Bart Otten">
-                <requires>
-                <import addon="xbmc.addon" version="12.0.0"/>
-                </requires>
-                <extension point="xbmc.addon.repository" name="SuperRepo All [Jarvis][v7]">
-                <info compressed="false">
-                http://xml.superrepo.org/v7/.xml/jarvis/all/addons.xml
-                </info>
-                <checksum>
-                http://md5.superrepo.org/v7/.md5/jarvis/all/addons.xml.md5
-                </checksum>
-                <datadir zip="true">http://redirect.superrepo.org/v7/addons/</datadir>
-                <hashes>true</hashes>
-                </extension>
-                <extension point="xbmc.addon.metadata">
-                <summary>
-                Install add-ons from the SuperRepo All Repository
-                </summary>
-                <summary lang="nl">
-                Installeer add-ons uit de SuperRepo All Repository
-                </summary>
-                <summary lang="cz">Inštalácia add-ons zo SuperRepo All Repozitár</summary>
-                <summary lang="de">
-                Installation von Addons aus dem SuperRepo All Repository
-                </summary>
-                <summary lang="pt">Instale add-ons do SuperRepo All Repositório</summary>
-                <summary lang="br">Instale add-ons do SuperRepo All Repositório</summary>
-                <description>
-                Download and install add-ons for Kodi in the category "All" using SuperRepo.[CR][CR]By using SuperRepo repositories you will be able to take advantage of our serverside dependency checking, extensive file mirror service and many more.[CR]Visit our website at https://superrepo.org/ to browse the add-ons, create personal addon bundles and install whole bundles at once![CR][CR]
-                </description>
-                <description lang="nl">
-                Download and installeer add-ons voor Kodi in de categorie "All" via SuperRepo.[CR]Door SuperRepo te installeren kunt u profiteren van onze controle van add-ons en ons uitgebreide server netwerk. Bezoek onze website op https://superrepo.org om door de add-ons te bladeren, persoonlijke add-on bundels te maken en complete bundels in 1 keer te installeren![CR][CR]
-                </description>
-                <description lang="cz">
-                Preber a inštaluj add-ons do kategórie "All" z SuperRepo.org add-on repozitár.[CR][CR]Ak si našiel add-on ktorý je poškodený alebo nefunkčný, alebo chceš pridať nový add-on, potom prosím pozri na https://superrepo.org/[CR][CR]Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá add-ons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito add-ons.[CR][CR]Rozšírený repozitár vyvinul Bart Otten[CR][CR]
-                </description>
-                <description lang="de">
-                Lade und installiere Addons der Kategorie "All" aus dem SuperRepo.org Addon Repository.[CR][CR]Möchtest du ein fehlerhaftes Addon melden oder ein neues Addon vorschlagen, kannst du dies über unsere Webseite http://superrepo.org tun.[CR][CR]Das Repository wird mit Hilfe des SuperRepo Wiki durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für diesen Service.[CR][CR]Der"eXtended Reposity Generator" wird durch Bart Otten entwickelt.[CR][CR]
-                </description>
-                <description lang="pt">
-                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR] [CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
-                </description>
-                <description lang="br">
-                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR][CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
-                </description>
-                <disclaimer>
-                The SuperRepo generator fetches addons from multiple sources. Therefore SuperRepo accepts no responsibility for included addons.[CR]
-                </disclaimer>
-                <disclaimer lang="nl">
-                De SuperRepo generator verzamelt addons van verschillende bronnen. Daarom accepteert SuperRepo geen enkele verantwoordelijkheid voor de ingevoegde addons.[CR]
-                </disclaimer>
-                <disclaimer lang="cz">
-                Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá addons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito addons.[CR]
-                </disclaimer>
-                <disclaimer lang="de">
-                Das Repository wird durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für die enthaltenen Addons.[CR]
-                </disclaimer>
-                <disclaimer lang="pt">
-                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
-                </disclaimer>
-                <disclaimer lang="br">
-                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
-                </disclaimer>
-                <platform>all</platform>
-                <website>https://superrepo.org/</website>
-                </extension>
-                </addon>
 
 <addon id="superrepo.kodi.krypton.all" name="SuperRepo All [Krypton][v7]" version="0.7.04" provider-name="Bart Otten">
                 <requires>

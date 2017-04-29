@@ -56,12 +56,14 @@ class sucuri:
 
 
 def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True, mobile=False, timeout=None, output=None, XHR=False):
-        # print ("SCHISM NET TIMEOUT", int(timeout))
+       
         if timeout == None: timeout = 30	
         if headers == None:
-
                 headers = {}
                 headers['User-Agent'] = random_agent()
+				
+        if not 'User-Agent' in headers:
+			if not 'user-agent' in headers: headers['User-Agent'] = random_agent()	
 				
         elif  mobile == True:			
 				headers['User-Agent'] = ''
@@ -85,10 +87,8 @@ def OPEN_URL(url, method='get', headers=None, params=None, data=None, redirects=
         if not 'Accept-Language' in headers:
             headers['Accept-Language'] = 'en-US'
 			
-        if 'referer' in headers or 'Referer' in headers: pass
-        else: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-        if 'User-Agent' in headers or 'user-agent' in headers: pass
-        else: headers['User-Agent'] = random_agent()	
+        if not 'referer' in headers: 
+			if not 'Referer' in headers: headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)		
 		
         link = requests.get(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=int(timeout))
         response_code = link.status_code

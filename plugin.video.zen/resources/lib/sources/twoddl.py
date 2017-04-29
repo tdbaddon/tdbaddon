@@ -33,7 +33,7 @@ class source:
     def __init__(self):
         self.domains = ['2ddl.one']
         self.base_link = control.setting('twoddl_base')
-        if self.base_link == '' or self.base_link == None:self.base_link = 'http://iiddl.com'
+        if self.base_link == '' or self.base_link == None:self.base_link = 'http://best2ddl.net'
 
         self.search_link = '/search/%s+%s/feed/rss2/'
 			
@@ -139,7 +139,7 @@ class source:
 					except: host = 'Videomega'
 					url = client.replaceHTMLCodes(url)
 					url = url.encode('utf-8')
-					sources.append({'source': host, 'quality': quality, 'provider': 'twoDDL', 'url': url, 'info': info,'direct': False, 'debridonly': True})
+					sources.append({'source': host, 'quality': quality, 'provider': 'Twoddl', 'url': url, 'info': info,'direct': False, 'debridonly': True})
 			return sources
         except:
             return sources

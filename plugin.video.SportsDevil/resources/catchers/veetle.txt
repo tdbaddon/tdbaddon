@@ -28,8 +28,13 @@ item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*(http[^"']+\.m3u8[^"',\}]*).*','@REFERER@')
 item_info_build=%s
 
+item_info_name=iscache
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*iscache\s*=\s*"(\w+)"','@REFERER@')
+item_info_build=%s
+
 item_info_name=ref
-item_info_from=pageUrl2
+item_info_from=pageUrl2+'&vw='+iscache+'&s=
 item_info_convert=quote(%s)
 item_info_build=%s
 

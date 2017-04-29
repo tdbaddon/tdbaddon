@@ -24,7 +24,7 @@ import re,urllib,urlparse,json,random,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client, control
 from resources.lib.modules import cache
-
+from BeautifulSoup import BeautifulSoup
 debridstatus = control.setting('debridsources')
 
 class source:
@@ -110,15 +110,13 @@ class source:
 
 
             try:
-                hostDict2 = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-
                 q = ('/tv/a-z/%s', data['tvshowtitle']) if 'tvshowtitle' in data else ('/movies/a-z/%s', data['title'])
                 q = q[0] % re.sub('^THE\s+|^A\s+', '', q[1].strip().upper())[0]
 
                 url = cache.get(self.directdl_cache, 120, q)
                 url = [i[0] for i in url if data['imdb'] == i[1]][0]
                 url = urlparse.urljoin(self.b_link, url)
-
+                print ("ICEFILM 1", url)
                 try: v = urlparse.parse_qs(urlparse.urlparse(url).query)['v'][0]
                 except: v = None
 
@@ -134,52 +132,54 @@ class source:
                 j = self.j_link ; p = self.p_link
 
                 result = self.request(u, referer=r)
-
+                result2 =  BeautifulSoup(result)
                 secret = re.compile('lastChild\.value="([^"]+)"(?:\s*\+\s*"([^"]+))?').findall(result)[0]
                 secret = ''.join(secret)
-
+                print("ICEFILM 3",secret)
                 t = re.compile('"&t=([^"]+)').findall(result)[0]
-
+                print("ICEFILM 4",t)
                 s_start = re.compile('(?:\s+|,)s\s*=(\d+)').findall(result)[0]
                 m_start = re.compile('(?:\s+|,)m\s*=(\d+)').findall(result)[0]
-
+                print("ICEFILM 5",s_start, m_start)
                 img = re.compile('<iframe[^>]*src="([^"]+)').findall(result)
                 img = img[0] if len(img) > 0 else '0'
                 img = urllib.unquote(img)
+                print("ICEFILM 6", img)
+                result = result2.findAll('div', attrs = {'class': 'ripdiv'})
+                for item in result:
+					
+					print ("ICEFILM 7", item)
+                
+					quality = re.findall('<b>(.*?)</b>', str(item))[0]
+					print ("ICEFILM 8", quality)
+					result = item.findAll('p')
+					print ("ICEFILM 9", result)
+					if any(x in quality for x in ['1080p', '720p', 'HD']): quality = 'HD'
+					else: quality = 'SD'
+					for container in result:
+						h = container.findAll('a')
+						
+						for links in h:
+							hosts = re.sub('(</?[^>]*>)', '', str(links))
+							host = hosts.split(' ')[-1]
+							host = get_provider(host)
+							if not host in hostprDict: raise Exception()
+							id = links['onclick'].encode('utf-8')
+							id = re.compile('[(](.+?)[)]').findall(id)[0]
+							print ("ICEFILM 10", host, id)
 
-                result = client.parseDOM(result, 'div', attrs = {'class': 'ripdiv'})
-                result = [(re.compile('<b>(.*?)</b>').findall(i), i) for i in result]
-                result = [(i[0][0], i[1].split('<p>')) for i in result if len(i[0]) > 0]
-                result = [[(i[0], x) for x in i[1]] for i in result]
-                result = sum(result, [])
+							s = int(s_start) + random.randint(3, 1000)
+							m = int(m_start) + random.randint(21, 1000)
+							
+							url = j % (id, t) + '|' + p % (id, s, m, secret, t)
+							url += '|%s' % urllib.urlencode({'Referer': u, 'Img': img})
+							url = url.encode('utf-8')
+							print("ICEFILM URL", url)
+							sources.append({'source': host, 'quality': quality, 'provider': 'Icefilms', 'url': url, 'direct': False, 'debridonly': True})
+
+
             except:
-                result = []
-
-            for i in result:
-                try:
-                    quality = i[0]
-                    if any(x in quality for x in ['1080p', '720p', 'HD']): quality = 'HD'
-                    else: quality = 'SD'
-
-                    host = client.parseDOM(i[1], 'a')[-1]
-                    host = re.sub('\s|<.+?>|</.+?>|.+?#\d*:', '', host)
-                    host = host.strip().rsplit('.', 1)[0].lower()
-                    host = [x[1] for x in hostDict2 if host == x[0]][0]
-                    host = client.replaceHTMLCodes(host)
-                    host = host.encode('utf-8')
-
-                    s = int(s_start) + random.randint(3, 1000)
-                    m = int(m_start) + random.randint(21, 1000)
-                    id = client.parseDOM(i[1], 'a', ret='onclick')[-1]
-                    id = re.compile('[(](.+?)[)]').findall(id)[0]
-                    url = j % (id, t) + '|' + p % (id, s, m, secret, t)
-                    url += '|%s' % urllib.urlencode({'Referer': u, 'Img': img})
-                    url = url.encode('utf-8')
-                    print("ICEFILM URL", url)
-
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Icefilms', 'url': url, 'direct': False, 'debridonly': True})
-                except:
-                    pass
+				pass
 
             return sources
         except:
@@ -195,7 +195,8 @@ class source:
  
             u, p, h = url.split('|')
             r = urlparse.parse_qs(h)['Referer'][0]
-            
+            #u += '&app_id=Exodus'
+
             c = self.request(r, output='cookie', close=False)
             result = self.request(u, post=p, referer=r, cookie=c)
 
@@ -209,3 +210,31 @@ class source:
             return
 
 
+def get_provider(link):
+		link = str(link).lower()
+		table = {
+				'180upload': 		'180upload.com',
+				'hugefiles':		'hugefiles.net',
+				'clicknupload':		'clicknupload.com',
+				'tusfiles':			'tusfiles.net',
+				'xfileload':		'xfileload.com',
+				'mightyupload':		'mightyupload.com',
+				'movreel':			'movreel.com',
+				'donevideo':		'donevideo.com',
+				'vidplay':			'vidplay.net',
+				'24uploading':		'24uploading.com',
+				'xvidstage':		'xvidstage.com',
+				'2shared':			'2shared.com',
+				'upload':			'upload.af',
+				'uploadx':			'uploadx.org',
+				'kingfiles':		'kingfiles.net',
+				'openload':			'openload.co',
+				'uploadz':			'uploadz.co',
+				'fileweed':			'fileweed.net',
+				'filehoot':			'filehoot.com'
+		}
+		if link in table.keys():
+			return table[link]
+		else: 
+			link = '0'
+			return link

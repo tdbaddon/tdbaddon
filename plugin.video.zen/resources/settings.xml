@@ -13,6 +13,7 @@
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="Tv Shows Settings" />
+		<setting id="local.watched" type="bool" label="Use Local Watched Marks" default="true" />
 		<setting id="episodes_notaired" type="bool" label="Show Not Aired Episodes" default="true" />
 		<setting id="episodes_colours" type="enum" label="Not Aired Episodes Colours" values="Gold|Green|Red|Normal" default="0"  visible="!eq(-1,false)" />
 		<setting id="show_specials" type="bool" label="Show Special Seasons" default="false" />
@@ -49,68 +50,70 @@
 		
 	</category>
 	
-	
-	
-	<category label="32345">
-		<setting id="provider.library" type="bool" label="Include Library Items" default="true" />
-		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false" />
+	<category label="Free Providers">
+		<setting id="provider.library" type="bool" label="Include Library Items" default="true" />	
 		<setting type="lsep" label="Free Providers" />
 
+		
 		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
-		<setting id="putlocker_base"  type="text" label=" - Base Url" default="http://cartoonhd.online" visible="!eq(-1,false)" />
+		<setting id="putlocker_base"  type="text" label=" - Base Url" default="https://cartoonhd.online" visible="!eq(-1,false)" />
 
 		<setting id="provider.movieshd" type="bool" label="Movieshd" default="true" />
-<!-- 		<setting id="movieshd_base"  type="text" label=" - Base Url" default="https://flixanity.watch" visible="!eq(-1,false)" />
- -->
-		<setting id="provider.onemovieshd" type="bool" label="Onemovieshd" default="true" />
-		
+		<setting id="movieshd_base"  type="text" label=" - Base Url" default="https://istream.is" visible="!eq(-1,false)" />
+
 		<setting id="provider.gomovies" type="bool" label="Gomovies" default="true" />
 		<setting id="gomovies_base"  type="text" label=" - Base Url" default="https://gomovies.to" visible="!eq(-1,false)" />
-				
+		
+		
 		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
 
 		<setting id="provider.bobby" type="bool" label="Bobby" default="true" />	
 		<setting id="provider.chillflix" type="bool" label="Chillflix" default="true" />	
 		<setting id="provider.cinemabox" type="bool" label="Cinemabox" default="true" />	
-
-		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
-	
+		<setting id="provider.fmovies" type="bool" label="Fmovies" default="true" />	
+								
+		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		<setting id="provider.moviexk" type="bool" label="Moviexk" default="true" />
 
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
 		<setting id="provider.movies25" type="bool" label="Movies25" default="true" />
 
-		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
-		
-		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
-
+		<setting id="provider.onemovieshd" type="bool" label="Onemovieshd" default="true" />
+		<setting id="provider.onemx" type="bool" label="Onemx" default="true" />
+	
 		<setting id="provider.putmovie" type="bool" label="Putmovie" default="true" />
 		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
 		<setting id="provider.pelispedia" type="bool" label="Pelispedia" default="true" />
+
 		<setting id="provider.projectfree" type="bool" label="Projectfree" default="true" />
+		<setting id="pftv_base"  type="text" label=" - Base Url" default="http://project-free-tv.im" visible="!eq(-1,false)" />
+		
 		<setting id="provider.primewire" type="bool" label="Primewire" default="true" />
 		<setting id="primewire_base"  type="text" label=" - Base Url" default="http://www.primewire.ag" visible="!eq(-1,false)" />
-
+		
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 		<setting id="provider.solarmovie" type="bool" label="Solarmovie" default="true" />
+		<setting id="provider.seriesonline" type="bool" label="Seriesonline" default="true" />
 		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
-
-
+								
 		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
-		<setting id="provider.vumoo" type="bool" label="Vumoo" default="true" />
-				
+
 		<setting id="provider.watch5s" type="bool" label="Watch5s" default="true" />
+
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
+		<setting id="watchseries_base"  type="text" label=" - Base Url" default="http://mywatchseries.to" visible="!eq(-1,false)" />
+		
+		
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
 		<setting id="watchfree_base"  type="text" label=" - Base Url" default="http://www.watchfree.to" visible="!eq(-1,false)" />
 		<setting id="provider.watchfrees" type="bool" label="Watchfrees" default="true" />
-			
-			
+				
+		
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
 		<setting id="watchepisodes_base"  type="text" label=" - Base Url" default="http://www.watchepisodes4.com" visible="!eq(-1,false)" />
-				
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />
+		<setting id="provider.wso" type="bool" label="Wso" default="true" />
 
 		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
 		<setting id="provider.ymovies" type="bool" label="Ymovies" default="true" />
@@ -120,22 +123,29 @@
 		<setting id="provider.animetoon" type="bool" label="Animetoon" default="true" />
 		<setting id="provider.gogoanime" type="bool" label="Gogoanime" default="true" />
 		<setting id="provider.watchcartoon" type="bool" label="Watchcartoon" default="true" />
-
-		<setting type="lsep" label="Debrid Providers" />
 		
-		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
-		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
+		
+		
+	</category>
+
+	<category label="Debrid Providers">
+		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false" />
+		<setting type="lsep" label="------- Debrid Providers -------" />
 		<setting id="provider.allrls" type="bool" label="Allrls" default="true" />
 		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true" />
-		<setting id="provider.ddls" type="bool" label="Ddls" default="true" />		
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
+			
 		<setting id="provider.directdl" type="bool" label="Directdl" default="true" />
 		<setting id="provider.dltube" type="bool" label="Dltube" default="true" />
-		<setting id="provider.icefilms" type="bool" label="Icefilms" default="true" />
-		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
-		<setting id="provider.releasebb" type="bool" label="Releasebb" default="true" />
+		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
+		<setting id="provider.icefilm" type="bool" label="Icefilm" default="true" />
+
+		<setting id="provider.myddl" type="bool" label="Myddl" default="true" />
+		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
+
 		<setting id="provider.rapidmovies" type="bool" label="Rapidmovies" default="true" />
-		<setting id="provider.rlsbbonline" type="bool" label="Rlsbbonline" default="true" />
+		
+		<setting id="provider.releasebb" type="bool" label="Releasebb" default="true" />
 		<setting id="provider.rlshd" type="bool" label="Rlshd" default="true" />
 		<setting id="provider.rlsmovies" type="bool" label="Rlsmovies" default="true" />
 		<setting id="provider.rlslog" type="bool" label="Rlslog" default="true" />	
@@ -143,12 +153,22 @@
 		<setting id="provider.scnlog" type="bool" label="Scnlog" default="true" />
 		<setting id="provider.scnsrc" type="bool" label="Scnsrc" default="true" />		
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
-		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
-		<setting id="twoddl_base"  type="text" label=" - Base Url" default="http://iiddl.com" visible="!eq(-1,false)" />
+		<setting id="provider.tvhd" type="bool" label="Tvhd" default="true" />
+		<setting id="provider.tvrls" type="bool" label="Tvrls" default="true" />
+
 		<setting id="provider.threemovies" type="bool" label="Threemovies" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
+
+		<setting id="provider.twoddl" type="bool" label="Twoddl" default="true" />
+		<setting id="twoddl_base"  type="text" label=" - Base Url" default="http://best2ddl.net" visible="!eq(-1,false)" />
+		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
+		
 	
 	</category>
+
+	
+
+
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />
 		<setting type="lsep" label="NOTE: DOWNLOAD Context menu only works on DIRECTORY playback mode" visible="!eq(-1,false)" />

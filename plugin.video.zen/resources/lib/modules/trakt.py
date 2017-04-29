@@ -126,8 +126,12 @@ def getTraktCredentialsInfo():
 
 
 def getTraktIndicatorsInfo():
-    indicators = control.setting('indicators') if getTraktCredentialsInfo() == False else control.setting('indicators.alt')
-    indicators = True if indicators == '1' else False
+    if getTraktCredentialsInfo() == False:
+		indicators = False
+    else: 
+		indicators = True
+		
+    # indicators = True if indicators == '1' else False
     return indicators
 
 

@@ -24,7 +24,7 @@ from resources.lib.modules import directstream
 
 import requests
 from BeautifulSoup import BeautifulSoup
-from resources.lib.modules.common import random_agent
+
 from resources.lib.modules import control
 from schism_net import OPEN_URL
 from schism_titles import clean_html
@@ -93,7 +93,7 @@ class source:
                     link_title = link['title'].encode('utf-8')
                     href = link['href'].encode('utf-8')
                     info = link['data-url'].encode('utf-8')
-                    # print("ONEMOVIES", link_title, href, info)
+                    print("ONEMOVIES", link_title, href, info)
                     if cleantitle.get(link_title) == cleaned_title:
                         info = urlparse.urljoin(self.base_link, info)
                         html = OPEN_URL(info).content
@@ -189,6 +189,7 @@ class source:
 			
             match = re.compile('title="(.+?)"\s*href=".+?"\s*id=".+?"\s*data-id="(.+?)"').findall(r)
             for t, data_id in match:
+				print ("GOMOVIES DATA", data_id, t)
 				if type == 'tv_shows':
 					episode = data['episode'].encode('utf-8')
 					print ("GOMOVIES SHOWS", episode)
@@ -201,19 +202,24 @@ class source:
 				
             for data_id in results:
 					try:
+							
 							s = '/ajax/movie_token'
 							src = urlparse.urljoin(self.base_link, s)	
 							payload = {'eid':data_id, 'mid': mid, '_':time_now}
 							
 
 							data = OPEN_URL(src, params=payload, XHR=True).content
-							
+							print ("GOMOVIES DATA 2", data)
 							if '$_$' in data:
 								p = self.uncensored1(data)
 								
 							elif data.startswith('[]') and data.endswith('()'):
 								
 								p = self.uncensored2(data)
+								
+							elif 'x=' in data:
+								print ("GOMOVIES DATA 3 STARTED", data)
+								p = self.uncensored3(data)
 								
 							else:
 								continue
@@ -292,4 +298,13 @@ class source:
         except:
             pass
 
+    def uncensored3(self, script):
+        try:
+            print ("GOMOVIES UNCENSORED", script)
+            data = re.compile('''_x=['"]([^"^']+?)['"].+?_y=['"]([^"^']+?)['"]''').findall(script)
+            for xx , xy in data:
+				print ("GOMOVIES UNCENSORED 3", xx, xy)
 
+				return xx, xy
+        except:
+            pass

@@ -27,7 +27,7 @@ from schism_net import OPEN_URL
 class source:
     def __init__(self):
         self.domains = ['afdah.tv']
-        self.base_link = 'http://afdah.tv'
+        self.base_link = 'http://afdah.to'
         self.search_link = '/?s=%s'
         
 		
@@ -39,7 +39,7 @@ class source:
 			title = cleantitle.getsearch(title)
 			headers = {'User-Agent': random_agent(), 'X-Requested-With':'XMLHttpRequest'}
 			search_url = urlparse.urljoin(self.base_link, '/wp-content/themes/afdah/ajax-search.php')
-			data = {'yreuq': title, 'meti': 'title'}
+			data = {'test1': title, 'test2': 'title'}
 
 			moviesearch = requests.post(search_url, headers=headers, data=data)
 			moviesearch = moviesearch.content

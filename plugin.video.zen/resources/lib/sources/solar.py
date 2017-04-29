@@ -27,9 +27,9 @@ from schism_titles import cleantitle_get, cleantitle_get_2, cleantitle_get_full,
 from schism_net import OPEN_URL
 class source:
 	def __init__(self):
-		self.base_link = 'http://www.tvsolarmovie.com'
-		self.movie_link = '/%s.html'
-		self.ep_link = '/%s.html'
+		self.base_link = 'http://solarmovie123.com'
+		self.movie_link = '/%s/'
+		self.ep_link = '/%s/'
 
 	def movie(self, imdb, title, year):
 		self.zen_url = []
@@ -37,11 +37,13 @@ class source:
 			headers = {'User-Agent': random_agent()}
 			
 			title = cleantitle_geturl(title)
-			title = title + "-" + year
+			
 			query = self.movie_link % title
 			u = urlparse.urljoin(self.base_link, query)
-			self.zen_url.append(u)
-			return self.zen_url
+			url = {'url': u, 'year': year, 'type': 'movie'}
+			url = urllib.urlencode(url)
+
+			return url
 		except:
 			return
 			
@@ -68,8 +70,9 @@ class source:
 			query= self.ep_link % query
 			# print("SOLAR query", query)
 			u = urlparse.urljoin(self.base_link, query)
-			self.zen_url.append(u)
-			return self.zen_url
+			url = {'url': u, 'type': 'episode'}
+			url = urllib.urlencode(url)
+			return url
 		except:
 			return
 
@@ -78,25 +81,38 @@ class source:
 		sources = []
 		try:
 			
-			for url in self.zen_url:
+
 				if url == None: return
+				print ("SOLAR SOURCES", url)
+				
+				data = urlparse.parse_qs(url)
+				data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+				url = data['url'].encode('utf-8')
+				type = data['type'].encode('utf-8')
+				
 				
 				html = OPEN_URL(url).content
-				match = re.compile('<a href="[^"]+go.php\?url=([^"]+)" target="_blank">').findall(html)
-				for url in match:
-					try:
+				r = BeautifulSoup(html)
+				if type == 'movie':
+					year = data['year'].encode('utf-8')
+					check = re.findall('class="year">(.+?)</a>', html)[0]
+					if not check == year: raise Exception()
+					
+				r = r.findAll('td', attrs = {'class': 'sourceNameCell'}) 
+				
+				for s in r:
+					url = s.findAll('a')[0]['href'].encode('utf-8')
 						
-						host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-						host = host.encode('utf-8')			
-						if not host in hostDict: raise Exception()
-						quality = "SD"
+					host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+					host = host.encode('utf-8')			
+					if not host in hostDict: raise Exception()
+					quality = "SD"
 							# print("OpenMovies SOURCE", stream_url, label)
-						sources.append({'source': host, 'quality':quality, 'provider': 'Solar', 'url': url, 'direct': False, 'debridonly': False})
-					except:
-						pass
+					sources.append({'source': host, 'quality':quality, 'provider': 'Solar', 'url': url, 'direct': False, 'debridonly': False})
 
 
-			return sources
+
+				return sources
 		except:
 			return sources
 

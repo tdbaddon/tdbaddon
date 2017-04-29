@@ -44,11 +44,10 @@ class source:
 			
             url = self.movie_link % (cleantitle.geturl(title), year)
             url = urlparse.urljoin(self.base_link, url)
-            r = client.request(url, timeout='10')
-            print("Chillflix url", url)
-
-            r = re.findall('<a href="(.+?)" class="bwac-btn"', r)[0]
-            url = r.encode('utf-8')
+            r = client.request(url, timeout='10', output='geturl')
+            
+            if r.endswith('/'): url = r + "/?action=watching"
+            else: url = r + "?action=watching"
             print("Chillflix url", url)
             return url
         except:

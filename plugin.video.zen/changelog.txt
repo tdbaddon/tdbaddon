@@ -1,3 +1,8 @@
+[B]2017.04.27.02[/B]
+- Update Providers - Add/Delete Providers
+- Menu Cleanups
+- Added Local Watchmarks for Tv Shows/Seasons/Episodes
+
 [B]2017.04.09[/B]
 - Update Providers
 - Easter Break fixes

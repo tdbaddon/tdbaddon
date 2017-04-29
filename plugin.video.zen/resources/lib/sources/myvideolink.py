@@ -52,7 +52,7 @@ class source:
 			if not debridstatus == 'true': raise Exception()
 
 			print( "MYVIDEOLINK 2")
-		  	self.real_link = self.base_link
+		  	self.real_link = self.get_refresh()
 
 			
 			title = cleantitle.getsearch(title)
@@ -62,7 +62,7 @@ class source:
 			query = urlparse.urljoin(self.real_link, query)
 			req = OPEN_URL(query).content
 
-			r = client.parseDOM(req, 'h2', attrs = {'class': 'post-titl.+?'})
+			r = client.parseDOM(req, 'div', attrs = {'class': 'post-titl.+?'})
 			r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
 			r = [(i[0][0], i[1][0]) for i in r ]	
 			r = [(i[0], i[1]) for i in r if cleanmovie in cleantitle.get(i[1]) and year in i[1]]
@@ -94,7 +94,7 @@ class source:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
-			self.real_link = self.base_link
+			self.real_link = self.get_refresh()
 			type = 'zen_shows'
 			data['season'], data['episode'] = season, episode
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
@@ -104,7 +104,8 @@ class source:
 			query = urlparse.urljoin(self.real_link, query)
 			
 			req = OPEN_URL(query).content
-			r = client.parseDOM(req, 'h2', attrs = {'class': 'post-titl.+?'})
+			r = client.parseDOM(req, 'div', attrs = {'class': 'post-titl.+?'})
+			print ("MYVIDEOLINK EPISODES", r)
 			r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
 			r = [(i[0][0], i[1][0]) for i in r ]	
 			r = [(i[0], i[1]) for i in r if cleanmovie in cleantitle.get(i[1]) and episodecheck in cleantitle.get(i[1])]
@@ -121,27 +122,50 @@ class source:
             return			
 			
     def get_refresh(self):
-			r = OPEN_URL(self.base_link, timeout='10').text
-			print ("MYVIDEOLINK OPENURL", r)
-			checkrefresh = re.findall('<div class="post">(.+?)</div>', r)[0]
-			checkrefresh2 = re.findall('<meta http-equiv="refresh"', r)[0]
-			if checkrefresh and "http" in checkrefresh:
-				print ("MYVIDEOLINK FOUND REDIRECT") 
-				s = checkrefresh.encode('utf-8')
-				print ("MYVIDEOLINK REDIRECT", s) 
+			r = OPEN_URL(self.base_link, timeout='10').content
+			r = BeautifulSoup(r)
+
+			try:
+				checkrefresh = re.findall('<div class="post">(.+?)</div>', str(r))[0]
+				# checkrefresh2 = re.findall('<meta http-equiv="refresh"', r)[0]
+				if checkrefresh:
+					print ("MYVIDEOLINK FOUND REDIRECT") 
+					s = checkrefresh.encode('utf-8')
+					print ("MYVIDEOLINK REDIRECT", s) 
+					
+					if not s.startswith("http"): s = "http://" + s
+					url = s.encode('utf-8')
+					return url
+			except:
+				pass
+			try:
 				
-				if not s.startswith("http"): s = "http://" + s
-				url = s.encode('utf-8')
-				return url
-			elif checkrefresh2:
-				print ("MYVIDEOLINK FOUND REDIRECT") 
-				s = re.findall("URL='(http.+?)'", r)[0]
-				print ("MYVIDEOLINK REDIRECT", s) 
-				url = s.encode('utf-8')
-				return url			
+				checkrefresh2 = re.findall('<meta http-equiv="refresh"', str(r))[0]
+				if checkrefresh2:
+					print ("MYVIDEOLINK FOUND REDIRECT") 
+					s = re.findall("URL='(http.+?)'", r)[0]
+					print ("MYVIDEOLINK REDIRECT", s) 
+					url = s.encode('utf-8')
+					return url			
 				
 				
-			else:
+			except:
+				pass
+				
+			try:
+				
+				checkrefresh3 = re.findall('<a href="(.+?)"><img src=".+?" alt="newmyvideolink"', str(r))[0]
+				if checkrefresh3:
+					print ("MYVIDEOLINK FOUND REDIRECT") 
+					
+					print ("MYVIDEOLINK REDIRECT 3", checkrefresh3) 
+					url = checkrefresh3.encode('utf-8')
+					return url			
+				
+				
+			except:
+								
+				
 				url = client.request(self.base_link, output='geturl')
 				return url
 			
@@ -153,27 +177,31 @@ class source:
 			for url,title,type in self.zen_url:
 
 					req = OPEN_URL(url).content
-					pattern = '<h1>(.*?)</h1(.*?)</ul>'
-					html = re.compile(pattern, re.DOTALL).findall(req)
-					for titles, block in html:
-				
-						quality = "SD"
-						quality = quality_tag(titles)
-						info = ''
-						if "hevc" in titles.lower(): info = "HEVC"	
-						info = get_size(block)
-							
-						links = re.compile('href="([^"]+)').findall(block)
-						for href in links:
+					r = BeautifulSoup(req)
+					r = r.findAll('div', attrs = {'class': 'post_content'})
+					
+					pattern = '<h.+?>(.*?)</h(.*?)</ul>'
+					for container in r:
+						html = re.compile(pattern, re.DOTALL).findall(str(container))
+						for titles, block in html:
+					
+							quality = "SD"
+							quality = quality_tag(titles)
+							info = ''
+							if "hevc" in titles.lower(): info = "HEVC"	
+							info = get_size(block)
 								
-							
-							if any(value in href for value in hostprDict):
-								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(href.strip().lower()).netloc)[0]
-								except: host = 'Videomega'
-								url = client.replaceHTMLCodes(href)
-								url = url.encode('utf-8')
-								sources.append({'source': host, 'quality': quality, 'provider': 'Myvideolink', 'url': url, 'info': info,'direct': False, 'debridonly': True})
-							
+							links = re.compile('href="([^"]+)').findall(block)
+							for href in links:
+									
+								
+								if any(value in href for value in hostprDict):
+									try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(href.strip().lower()).netloc)[0]
+									except: host = 'Videomega'
+									url = client.replaceHTMLCodes(href)
+									url = url.encode('utf-8')
+									sources.append({'source': host, 'quality': quality, 'provider': 'Myvideolink', 'url': url, 'info': info,'direct': False, 'debridonly': True})
+								
 			return sources
         except:
             return sources

@@ -32,9 +32,9 @@ from schism_titles import title_match, cleantitle_get, cleantitle_get_2, cleanti
 class source:
     def __init__(self):
         self.language = ['en']
-        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
+        self.domains = ['123movieshd.net', '123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
 
-        self.base_link = 'https://123movieshd.tv'
+        self.base_link = 'https://123movieshd.io'
 
 
         self.search_link = '/movie/search/%s'
@@ -51,11 +51,11 @@ class source:
 
             cleaned_title = cleantitle_get(title)
             title = cleantitle_query(title)
-                      
+                    
             q = self.search_link % (cleantitle_geturl(title))
             r = urlparse.urljoin(self.base_link, q)
-            print ("ONEMOVIES EPISODES", r)
-            html = BeautifulSoup(OPEN_URL(r).content)
+            print ("ONEMOVIESHD EPISODES", r)
+            html = BeautifulSoup(client.request(r))
             containers = html.findAll('div', attrs={'class': 'ml-item'})
             for result in containers:
                 links = result.findAll('a')
@@ -66,10 +66,10 @@ class source:
                     href = re.sub('/watching.html','', href)
                     href = href + '/watching.html'
 
-                    print("ONEMOVIES", link_title, href)
+                    print("ONEMOVIESHD PASSED", link_title, href)
                     if title_match(cleantitle_get(link_title), cleaned_title) == True:
-                        
-                        html = OPEN_URL(href).content
+                        referer = href
+                        html = client.request(href)
                         
                         match = re.findall('<strong>Release:</strong>(.+?)</p>', html)[0]
                         if year in match:
@@ -78,10 +78,10 @@ class source:
 							
 							s = s.findAll('div', attrs={'class': 'les-content'})
 							for u in s:
-								print("ONEMOVIES PASSED u", u)
+								print("ONEMOVIESHD PASSED u", u)
 								player = u.findAll('a')[0]['player-data'].encode('utf-8')
 								
-								if not player in self.zen_url:	self.zen_url.append(player)
+								if not player in self.zen_url:	self.zen_url.append([player, referer])
 							
 
 							return self.zen_url
@@ -94,7 +94,7 @@ class source:
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
-            print ("ONEMOVIES EPISODES STARTED")
+            print ("ONEMOVIESHD EPISODES STARTED")
             return url
         except:
             return
@@ -106,15 +106,15 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             title = cleantitle.getsearch(data['tvshowtitle'])
-            print ("ONEMOVIES EPISODES STARTED")
+            print ("ONEMOVIESHD EPISODES STARTED")
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
             query = cleantitle_geturl(title) + "-season-" + season
             q = self.search_link % (query)
             r = urlparse.urljoin(self.base_link, q)
             cleaned_title = cleantitle_get(title) + "season" + season
-            print ("ONEMOVIES EPISODES", q)
-            html = BeautifulSoup(OPEN_URL(r).content)
+            print ("ONEMOVIESHD EPISODES", q)
+            html = BeautifulSoup(client.request(r))
             containers = html.findAll('div', attrs={'class': 'ml-item'})
             for result in containers:
                 links = result.findAll('a')
@@ -125,23 +125,29 @@ class source:
                     href = re.sub('/watching.html','', href)
                     href = href + '/watching.html'
 
-                    # print("ONEMOVIES", link_title, href)
+                    # print("ONEMOVIESHD", link_title, href)
                     if title_match(cleantitle_get(link_title), cleaned_title) == True:
-						print("ONEMOVIES FOUND MATCH", link_title, href)
-						html = OPEN_URL(href).content
+						print("ONEMOVIESHD FOUND MATCH", link_title, href)
+						referer = href
+						html = client.request(href)
    						s = BeautifulSoup(html)
 							
 						s = s.findAll('div', attrs={'class': 'les-content'})
-						for u in s:
-							print("ONEMOVIES PASSED u", u)
-							player = u.findAll('a')[0]['player-data'].encode('utf-8')
-							ep_id = u.findAll('a')[0]['episode-data'].encode('utf-8')
-							if not ep_id == episode: raise Exception()
-								
-							if not player in self.zen_url:	self.zen_url.append(player)
+						for x in s:
+							try:
+								items = x.findAll('a')
+								for u in items:
+									
+									player = u['player-data'].encode('utf-8')
+									ep_id = u['episode-data'].encode('utf-8')
+									if ep_id == episode: 
+									
+										if not player in self.zen_url:	self.zen_url.append([player, referer])
+							except:
+								pass
 							
-
-						return self.zen_url
+            print("ONEMOVIESHD PASSED", self.zen_url)
+            return self.zen_url
 
         except:
             return
@@ -155,31 +161,28 @@ class source:
         try:
             
 
-            for url in self.zen_url:
-				print ("ONEMOVIES SOURCES", url)
-				if "embed.123movieshd" in url:
+            for url,referer in self.zen_url:
+				print ("ONEMOVIESHD SOURCES", url, referer)
+				
+				headers = {}
+				headers['Referer'] = referer				
+				
+				if "embed.php" in url:
+					r = client.request(url, headers=headers)
+					print ("ONEMOVIESHD TRY 2", r)
+
+
 					try:
-						r = OPEN_URL(url).content
-						r = get_sources(r)
-						for u in r:
-							h = get_files(u)
-							for s in h:
-								href = s.encode('utf-8')
+							
+							r = BeautifulSoup(r)
+							print ("ONEMOVIESHD TRY 3b", r)
+							r = r.findAll('source')
+							for u in r:
+								print ("ONEMOVIESHD TRY 3c", r)
+								href = u['src'].encode('utf-8')
 								quality = meta_gvideo_quality(href)
-								print ("ONEMOVIES SOURCES 2", href)
+								
 								sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'onemovieshd', 'url': href, 'direct': True, 'debridonly': False})
-					except:
-						pass
-				elif "embed2.seriesonline.io" in url:
-					try:
-						r = OPEN_URL(url).content
-						r = BeautifulSoup(r)
-						r = r.findAll('source')
-						for u in r:
-							href = u['src'].encode('utf-8')
-							quality = meta_gvideo_quality(href)
-							print ("ONEMOVIES SOURCES 2", href)
-							sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'onemovieshd', 'url': href, 'direct': True, 'debridonly': False})
 					except:
 						pass
 						

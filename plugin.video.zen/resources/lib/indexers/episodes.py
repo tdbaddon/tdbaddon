@@ -423,7 +423,13 @@ class seasons:
 
                 imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['original_year'], i['season']
 
-
+                try: 
+					localwatched = control.setting('local.watched')
+					if not localwatched == 'true': raise Exception()
+					if trakt.getTraktIndicatorsInfo() == True: raise Exception()
+					indicators2 = playcount.getSeasonIndicators2(i['tvshowtitle'], imdb, tvdb, season)
+                except: 
+					pass		
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
                 if banner == '0' and not fanart == '0': banner = fanart
                 elif banner == '0' and not poster == '0': banner = poster
@@ -453,7 +459,14 @@ class seasons:
                     else: meta.update({'playcount': 0, 'overlay': 6})
                 except:
                     pass
-
+                try:
+                    localwatched = control.setting('local.watched')
+                    if trakt.getTraktIndicatorsInfo() == True: raise Exception()
+                    if not localwatched == 'true': raise Exception()
+                    if '7' in indicators2: meta.update({'playcount': 1, 'overlay': 7})
+                    else: meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
 
                 url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s' % (sysaddon, systitle, year, imdb, tvdb, season)
 

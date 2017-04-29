@@ -4,7 +4,7 @@ item_info_build=TheActionLive - %s
 
 item_info_name=d2
 item_info_from=@PARAM1@
-item_info_convert=getInfo('http://soccerschedule.online/livegamecr.js','.*['"](\\x49\\x69\\x42\\x7a\\x59\\x33[^'"]+).*','@REFERER@')
+item_info_convert=getInfo('http://soccerschedule.online/livegame.js','.*['"](\\x49\\x69\\x42\\x7a\\x59\\x33[^'"]+).*','@REFERER@')
 item_info_convert=unicode_escape
 item_info_convert=decodeBase64
 item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
@@ -12,7 +12,7 @@ item_info_build=%s
 
 item_info_name=d2
 item_info_from=@PARAM1@
-item_info_convert=getInfo('http://soccerschedule.online/livegamecr.js','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@REFERER@')
+item_info_convert=getInfo('http://soccerschedule.online/livegame.js','.*(\\x20\\x73\\x72\\x63\\x3d\\x22\\x68\\x74\\x74[^'"]+).*','@REFERER@')
 item_info_convert=unicode_escape
 item_info_convert=parseText('%s','.*src=['"](http[^'"]+).*')
 item_info_build=%s

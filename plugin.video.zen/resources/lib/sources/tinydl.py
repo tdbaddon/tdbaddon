@@ -30,7 +30,7 @@ from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,
 class source:
     def __init__(self):
         self.domains = ['tinydl.com']
-        self.base_link = 'http://myddl.org'
+        self.base_link = 'http://myddl.pw'
         self.search_link = '/?s=%s+%s'
 
 

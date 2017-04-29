@@ -158,12 +158,12 @@ def doDemystify(data):
             data = data.replace(g, res)
 
     #sebn
-    r = re.compile(r"""(?:file|src|source):\s*(window\.atob\(['"][^'"]+['"]\))""")
+    r = re.compile(r"""(?:file:|source:|\w+=)\s*(window\.atob\(['"][^'"]+['"]\))""")
     if r.findall(data):
         for g in r.findall(data):
             r2 = re.compile(r"""window\.atob\(['"]([^'"]+)['"]\)""")
             for base64_data in r2.findall(g):
-                data = data.replace(g, urllib.unquote(base64_data.decode('base-64')))
+                data = data.replace(g, '"'+urllib.unquote(base64_data.decode('base-64')+'"'))
 
     #r = re.compile('((?:eval\(decodeURIComponent\(|window\.)atob\([\'"][^\'"]+[\'"]\)+)')
     #while r.findall(data):
@@ -209,6 +209,13 @@ def doDemystify(data):
                 data = data.replace("""enkripsi=\""""+g, urllib.unquote(s))
 
     if """.replace(""" in data:
+        r = re.compile(r""".replace\(/([^/]+)/g,\s*["']([^"']*)["']\)""")
+        gs = r.findall(data)
+        if gs:
+            for g in gs:
+                if '\\' in g[0]:
+                    data = data.replace(g[0].lower(),g[1])
+                data = data.replace(g[0],g[1])
         r = re.compile(r""".replace\(["'](...[^"']+)["'],\s*["']([^"']*)["']\)""")
         gs = r.findall(data)
         if gs:
@@ -216,6 +223,7 @@ def doDemystify(data):
                 if '\\' in g[0]:
                     data = data.replace(g[0].lower(),g[1])
                 data = data.replace(g[0],g[1])
+
 
     # JS P,A,C,K,E,D
     if jsU2.containsPacked(data):

@@ -110,6 +110,7 @@ metacacheFile = os.path.join(dataPath, 'meta.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 
+seasons_meta = os.path.join(dataPath, 'seasons.db')
 
 def addonIcon():
     theme = appearance() ; art = artPath()

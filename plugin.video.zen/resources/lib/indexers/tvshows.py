@@ -1127,7 +1127,7 @@ class tvshows:
 				
 
             self.worker()
-            self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))	            
+            self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))	   
             self.tvshowDirectory(self.list)
         except:
             return
@@ -1169,9 +1169,9 @@ class tvshows:
                 label = '%s' % (i['title'])
                 systitle = sysname = urllib.quote_plus(i['originaltitle'])
                 sysimage = urllib.quote_plus(i['poster'])
-                imdb, tvdb, title, year = i['imdb'], i['tvdb'], i['title'], i['year']
-                title = i['originaltitle']
-                tmdb = i['tmdb']
+                imdb, tvdb, title, year = i['imdb'].encode('utf-8'), i['tvdb'].encode('utf-8'), i['title'].encode('utf-8'), i['year'].encode('utf-8')
+                title = i['originaltitle'].encode('utf-8')
+                tmdb = i['tmdb'].encode('utf-8')
 
 
                 poster, banner, fanart = i['poster'], i['banner'], i['fanart']
@@ -1202,6 +1202,19 @@ class tvshows:
                     else: meta.update({'playcount': 0, 'overlay': 6})
                 except:
                     pass
+					
+                try:
+                    if trakt.getTraktIndicatorsInfo() == True: raise Exception()
+                    localwatched = control.setting('local.watched')
+                    
+                    if not localwatched == 'true': raise Exception()
+                    overlay = playcount.getShowLocalIndicator(imdb)
+              
+                    if '7' in overlay: meta.update({'playcount': 1, 'overlay': 7})
+                    else: meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
+					
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
                 if not tvdb == "0" or tvdb == None: sysmetalliq = "plugin://plugin.video.metalliq/tv/add_to_library_parsed/%s/direct.zen.q" % tvdb

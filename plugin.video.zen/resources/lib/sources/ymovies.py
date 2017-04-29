@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -16,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,random,string,json,base64
+import re,urllib,urlparse,hashlib,random,string,json,base64,sys
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -47,6 +50,8 @@ param = retA()'''
 
 class source:
     def __init__(self):
+        self.priority = 1
+        self.language = ['en']
         self.domains = ['yesmovies.to']
         self.base_link = 'https://yesmovies.to'
         self.search_link_2 = '/movie/search/%s.html'
@@ -56,27 +61,38 @@ class source:
         self.token_link = '/ajax/movie_token?eid=%s&mid=%s'
         self.sourcelink = '/ajax/movie_sources/%s?x=%s&y=%s'
 
+    def getImdbTitle(self, imdb):
+        try:
+            t = 'http://www.omdbapi.com/?i=%s' % imdb
+            t = client.request(t)
+            t = json.loads(t)
+            t = cleantitle.normalize(t['Title'])
+            return t
+        except:
+            return
+
     def movie(self, imdb, title, year):
         try:
-            t = cleantitle.get(title)
+            r = self.searchMovie(title)
 
-            q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
-            q = urlparse.urljoin(self.base_link, q)
-            r = client.request(q)
-            r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
+            if r == None:
+                t = cache.get(self.getImdbTitle, 900, imdb)
+                if t != title:
+                    r = self.searchMovie(t)
 
-            r = [i[0] for i in r if cleantitle.get(t) in cleantitle.get(i[1])][:2]
-            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
+            return urllib.urlencode({'url': r, 'episode': 0})
+        except:
+            return
 
-            for i in r:
-                try:
-                    y, q = cache.get(self.movie_info, 9000, i[1])
-                    if not y == year: raise Exception()
-                    return urlparse.urlparse(i[0]).path, 0
-                except:
-                    pass
+    def searchMovie(self, title):
+        try:
+            title = cleantitle.normalize(title)
+            url = urlparse.urljoin(self.base_link, self.search_link_2 % urllib.quote_plus(cleantitle.getsearch(title)))
+            r = client.request(url, timeout='10')
+            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
+            url = [i[0] for i in r if cleantitle.get(title) == cleantitle.get(i[1])][0]
+            return url
         except:
             return
 
@@ -88,26 +104,33 @@ class source:
         except:
             return
 
+    def searchShow(self, title, season):
+        try:
+            title = cleantitle.normalize(title)
+            search = '%s Season %s' % (title, int(season))
+            url = urlparse.urljoin(self.base_link, self.search_link_2 % urllib.quote_plus(cleantitle.getsearch(search)))
+            r = client.request(url, timeout='10')
+            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
+            url = [i[0] for i in r if cleantitle.get(search) == cleantitle.get(i[1])][0]
+            return url
+        except:
+            return
+
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            season = '%01d' % int(season)
-            episode = '%01d' % int(episode)
+            if 'tvshowtitle' in data:
+                r = self.searchShow(data['tvshowtitle'], season)
 
-            q = self.search_link_2 % (urllib.quote_plus('%s - Season %s' % (data['tvshowtitle'], season)))
-            q = urlparse.urljoin(self.base_link, q)
-            r = client.request(q)
-            r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
+            if r == None:
+                t = cache.get(self.getImdbTitle, 900, imdb)
+                if t != data['tvshowtitle']:
+                    r = self.searchShow(t, season)
 
-            for i in r:
-                try:
-                    return urlparse.urlparse(i[0]).path, episode
-                except:
-                    pass
+            return urllib.urlencode({'url': r, 'episode': episode})
         except:
             return
 
@@ -131,18 +154,20 @@ class source:
 
             if url is None: return sources
 
-            if url[0].startswith('http'):
-                self.base_link = url[0]
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+
+            url = data['url']
 
             try:
-                if url[1] > 0:
-                    episode = url[1]
+                if data['episode'] > 0:
+                    episode = data['episode']
                 else:
                     episode = None
             except:
                 episode = None
 
-            mid = re.findall('-(\d+)', url[0])[-1]
+            mid = re.findall('-(\d+)', url)[-1]
 
             try:
                 headers = {'Referer': url}
@@ -157,7 +182,7 @@ class source:
                 for eid in r:
                     try:
                         try:
-                            ep = re.findall('episode.*?(\d+):.*?',eid[2].lower())[0]
+                            ep = re.findall('episode.*?(\d+).*?',eid[2].lower())[0]
                         except:
                             ep = 0
                         if (episode is None) or (int(ep) == int(episode)):
@@ -170,7 +195,7 @@ class source:
                             else:
                                 raise Exception()
                             u = urlparse.urljoin(self.base_link, self.sourcelink % (eid[0], params['x'], params['y']))
-                            r = client.request(u)
+                            r = client.request(u, XHR=True)
                             url = json.loads(r)['playlist'][0]['sources']
                             url = [i['file'] for i in url if 'file' in i]
                             url = [directstream.googletag(i) for i in url]

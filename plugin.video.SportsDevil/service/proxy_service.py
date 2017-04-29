@@ -24,7 +24,6 @@ import xbmc
 import base64
 import urlparse
 import sys
-import socket
 from SocketServer import ThreadingMixIn
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
@@ -36,25 +35,33 @@ from urlparse import urljoin
 ##aes stuff
 _android_ssl = False
 _oscrypto = False
+_dec = False
 try:
     from Crypto.Cipher import AES
+    _dec = True
 except ImportError:
     try:
         from Cryptodome.Cipher import AES
+        _dec = True
     except ImportError:
         try:
             import androidsslPy
             enc = androidsslPy._load_crypto_libcrypto()
             _android_ssl = True
+            _dec = True
         except:
-            from oscrypto.symmetric import aes_cbc_no_padding_decrypt
-            class AES(object):
-                def __init__(self,key,iv):
-                    self.key=key
-                    self.iv=iv
-                def decrypt(self, data):
-                    return aes_cbc_no_padding_decrypt(self.key, data, self.iv)
-            _oscrypto = True
+            try:
+                from oscrypto.symmetric import aes_cbc_no_padding_decrypt
+                class AES(object):
+                    def __init__(self,key,iv):
+                        self.key=key
+                        self.iv=iv
+                    def decrypt(self, data):
+                        return aes_cbc_no_padding_decrypt(self.key, data, self.iv)
+                _oscrypto = True
+                _dec = True
+            except: pass
+
 
 def num_to_iv(n):
     return struct.pack(">8xq", n)
@@ -70,6 +77,7 @@ def create_decryptor(self, key, sequence):
 
         zoom_key = self.reader.stream.session.options.get("zoom-key")
         saw_key = self.reader.stream.session.options.get("saw-key")
+        your_key = self.reader.stream.session.options.get("your-key")
         if zoom_key:
             uri = 'http://www.zoomtv.me/k.php?q='+base64.urlsafe_b64encode(zoom_key+base64.urlsafe_b64encode(key.uri))
         elif saw_key:
@@ -82,6 +90,20 @@ def create_decryptor(self, key, sequence):
             elif 'nhl.com' in key.uri:
                 _tmp = key.uri.split('/')
                 uri = urljoin(saw_key,'/m/streams?ci='+_tmp[-3]+'&k='+_tmp[-1])
+            else:
+                uri = key.uri
+        elif your_key:
+            if 'mlb.com' in key.uri:
+                _tmp = key.uri.split('?')
+                uri = urljoin(your_key,'/mlb/get_key/'+_tmp[-1])
+            elif 'espn3/auth' in key.uri:
+                _tmp = key.uri.split('?')
+                uri = urljoin(your_key,'/ncaa/get_key/'+_tmp[-1])
+            elif 'nhl.com' in key.uri:
+                _tmp = key.uri.split('nhl.com/')
+                uri = urljoin(your_key,'/nhl/get_key/'+_tmp[-1])
+            else:
+                uri = key.uri
         else:
             uri = key.uri
 
@@ -165,8 +187,9 @@ class MyHandler(BaseHTTPRequestHandler):
     """
     def serveFile(self, fURL, sendData):
         session = livestreamer.session.Livestreamer()
-        livestreamer.stream.hls.HLSStreamWriter.create_decryptor = create_decryptor
-        livestreamer.stream.hls.HLSStreamWorker.process_sequences = process_sequences
+        if _dec:
+            livestreamer.stream.hls.HLSStreamWriter.create_decryptor = create_decryptor
+            livestreamer.stream.hls.HLSStreamWorker.process_sequences = process_sequences
 
         if '|' in fURL:
                 sp = fURL.split('|')
@@ -176,9 +199,11 @@ class MyHandler(BaseHTTPRequestHandler):
                 session.set_option("http-ssl-verify", False)
                 session.set_option("hls-segment-threads", 1)
                 if 'zoomtv' in headers['Referer']:
-                    session.set_option("zoom-key", headers['Referer'].split('?')[1]+"&vw=1&s=")
+                    session.set_option("zoom-key", headers['Referer'].split('?')[1])
                 elif 'sawlive' in headers['Referer']:
                     session.set_option("saw-key", headers['Referer'])
+                elif 'yoursportsinhd' in headers['Referer']:
+                    session.set_option("your-key", headers['Referer'])
         try:
             streams = session.streams(fURL)
             self.send_response(200)
@@ -196,20 +221,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 class Server(HTTPServer):
-    """HTTPServer class with timeout."""
-
-    def get_request(self):
-        """Get the request and client address from the socket."""
-        self.socket.settimeout(2.0)
-        result = None
-        while result is None:
-            try:
-                result = self.socket.accept()
-            except socket.timeout:
-                pass
-        result[0].settimeout(1000)
-        return result
-
+    timeout = 5
 
 class ThreadedHTTPServer(ThreadingMixIn, Server):
     """Handle requests in a separate thread."""

@@ -3,7 +3,10 @@ item_info_build=nohead
 
 item_info_name=p0z
 item_info_from=@PARAM1@
-item_info_convert=getInfo('%s','.*src="(http://www3.sawlive.tv/embe\w+/\w+)"></script>','@REFERER@')
+item_info_convert=getInfo('%s','.*src="(http://www3.sawlive.tv/embe\w+/[^"]+)"></script>','@REFERER@')
+item_info_convert=quote(%s)
+item_info_convert=replace('%s','%27%29%29%3B%0D%0Adocument.write%28%27','')
+item_info_convert=unquote(%s)
 item_info_build=%s
 
 item_info_name=p0
@@ -27,7 +30,7 @@ item_info_build=%s
 
 item_info_name=p1
 item_info_from=p0z || @PARAM1@
-item_info_convert=getInfo('%s','.*\W([\w\\]{312})\W','@REFERER@')
+item_info_convert=getInfo('%s','.*[\'"]([\w\\]{296,328})[\'"]','@REFERER@')
 item_info_convert=unicode_escape
 item_info_build=%s
 
@@ -48,7 +51,7 @@ item_info_build=%s
 
 item_info_name=tmp
 item_info_from=tmpUrl
-item_info_convert=getInfo('%s','.*?SWFObject\('([^']+)'.*?["'=]([12]\d{4}).*?(MT[^'"&]+)','@REFERER@','swf|file|t')
+item_info_convert=getInfo('%s','.*?(http[^']+swf)'.*?["'=]([12]\d{4}).*?(MT[^'"&]+)','@REFERER@','swf|file|t')
 item_info_build=%s
 
 item_info_name=rtmp

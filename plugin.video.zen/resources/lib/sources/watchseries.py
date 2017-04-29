@@ -21,46 +21,51 @@ from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import proxy
-from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
+from BeautifulSoup import BeautifulSoup
+from schism_titles import title_match, cleantitle_get, cleantitle_get_2, cleantitle_get_full, cleantitle_geturl, cleantitle_get_simple, cleantitle_query, cleantitle_normalize
+from schism_meta import meta_info , meta_quality, meta_gvideo_quality, meta_host
+from schism_net import OPEN_URL, OPEN_POST, random_agent, get_sources, get_files
+from schism_commons import parseDOM, replaceHTMLCodes
 
 class source:
     def __init__(self):
         self.domains = ['onwatchseries.to']
-        self.base_link = control.setting('watchseries_base')
-        if self.base_link == '' or self.base_link == None:self.base_link = 'http://onwatchseries.to'
+        self.base_link = 'http://mywatchseries.to'
+        # self.base_link = control.setting('watchseries_base')
+        # if self.base_link == '' or self.base_link == None:self.base_link = 'http://mywatchseries.to'
 		
-        self.search_link = 'http://onwatchseries.to/show/search-shows-json'
-        self.search_link_2 = 'http://onwatchseries.to/search/%s'
+        self.search_link = 'http://mywatchseries.to/show/search-shows-json'
+        self.search_link_2 = self.base_link + "/search/%s"
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            t = cleantitle.get(tvshowtitle)
+            # title = geturl(tvshowtitle)
+            check = cleantitle.get(tvshowtitle)
 
-            q = urllib.quote_plus(cleantitle.query(tvshowtitle))
-            p = urllib.urlencode({'term': q})
-            h = {'X-Requested-With': 'XMLHttpRequest'}
+            q = urllib.quote_plus(cleantitle_query(tvshowtitle))
+            
+            q =  self.search_link_2 % q
+            print ("WATCHSERIES SEARCH", q, year)
 
-            r = client.request(self.search_link, post=p, headers=h)
-            try: r = json.loads(r)
-            except: r = None
-            print ("WATCHSERIES RESULT", r)
-            r = [(i['seo_url'], i['value'], i['label']) for i in r if 'value' in i and 'label' in i and 'seo_url' in i]
-
-            r = [(i[0], i[1], re.findall('(\d{4})', i[2])) for i in r]
-            r = [(i[0], i[1], i[2][-1]) for i in r if i[2]]
-            r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
-            print ("WATCHSERIES RESULT 4", r, year)
-            url = r[0][0]
-            print ("WATCHSERIES RESULT 5", r, url)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
-
-            url = url.strip('/').split('/')[-1]
-            url = url.encode('utf-8')
+            r = client.request(q, timeout='10')
+            
+            
+            r = re.compile('<a href="(.+?)" title="(.+?)" target="_blank">(.+?)</a>').findall(r)
+            for u,t,t2 in r:
+				
+				u = u.encode('utf-8')
+				t = t.encode('utf-8')
+				t2 = t2.encode('utf-8')
+				print ("WATCHSERIES SEARCH 2", u,t,t2)
+				# if not year in t2:
+					# if not year in t: raise Exception()
+				if not title_match(cleantitle_get(t), check, amount=0.9) == True: raise Exception()
+				print ("WATCHSERIES PASSED", u)
+				
+				
+				url = u.encode('utf-8')
             return url
         except:
             return
@@ -70,7 +75,7 @@ class source:
         try:
             if url == None: return
 
-            url = '%s/serie/%s' % (self.base_link, url)
+            url = urlparse.urljoin(self.base_link, url)
 
             r = client.request(url)
             r = client.parseDOM(r, 'li', attrs = {'itemprop': 'episode'})
@@ -143,5 +148,26 @@ class source:
 
     def resolve(self, url):
         return url
+		
+def geturl(title):
+    if title == None: return
+    title = title.lower()
+    title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', ' ', title).lower()
+    title = ' '.join(title.split())
+    title = title.replace('/', '_')
+    title = title.replace(' ', '_')
+    title = title.replace('--', '_')
+    print ("WATCHSERIES TITLE", title)
+    return title
+	
+def get_simple(title):
+    if title == None: return
+    title = title.lower()
+    title = re.sub('(\d{4})', '', title)
+    title = re.sub('&#(\d+);', '', title)
+    title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+    title = title.replace('&quot;', '\"').replace('&amp;', '&')
+    title = re.sub('\n|\(|\)|\[|\]|\{|\}|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    return title
 
 

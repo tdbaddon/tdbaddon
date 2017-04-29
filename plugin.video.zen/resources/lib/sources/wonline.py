@@ -24,7 +24,7 @@ from resources.lib.modules import directstream
 from BeautifulSoup import BeautifulSoup
 from resources.lib.modules import jsunpack
 
-from schism_net import OPEN_URL, OPEN_CF, get_sources , get_files
+from schism_net import OPEN_URL, OPEN_CF
 from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,cleantitle_get, cleantitle_get_2, cleantitle_query, get_size, cleantitle_get_full
 
 class source:
@@ -108,48 +108,26 @@ class source:
 					
 				r = html.findAll('iframe')
 				for u in r:
-					src = u['src'].encode('utf-8')
-					print("WONLINE sources", src)
-					if src.startswith("//"): src = "http:" + src
+					result = u['src'].encode('utf-8')
+					print("WONLINE sources", result)
+					if result.startswith("//"): result = "http:" + result
 						
-					if "wp-embed.php" in src or "player.123movies" in src:
-						try:
-							s = OPEN_URL(src).content
-							
-							match = get_sources(s)
-							for h in match:
-								files = get_files(h)
-								for href in files:
-									href = href.replace('\\','')
-									quality = google_tag(href)
-									
-									sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Wonline', 'url': href, 'direct': True, 'debridonly': False})
-						except:
-							pass
-							
-							
-					elif "raptu.com" in src:
-						try:
-							s = OPEN_URL(src).content
-							
-							match = get_sources(s)
-							for h in match:
-								files = re.compile('"file":"(.+?)","label":"(.+?)",').findall(h)
-								for href, q in files:
-									href = href.replace('\\','')
-									quality = quality_tag(q)
-									
-									sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Wonline', 'url': href, 'direct': True, 'debridonly': False})
-						except:
-							pass
-							
+					if "wp-embed.php" in result:
+						
+						s = OPEN_URL(result, timeout='10')
+						s = s.content
+						match = re.compile('file:\s*"(.+?)",label:"(.+?)",').findall(s)
+						for href, quality in match:
+							quality = google_tag(href)
+							print("WONLINE SCRIPTS", href,quality)
+							sources.append({'source': 'gvideo', 'quality':quality, 'provider': 'Wonline', 'url': href, 'direct': True, 'debridonly': False})
 					else:
-							if "google" in src: quality = google_tag(src)
-							else: quality = quality_tag(src)
-							try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(src.strip().lower()).netloc)[0]
+							if "google" in result: quality = google_tag(result)
+							else: quality = quality_tag(result)
+							try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(result.strip().lower()).netloc)[0]
 						
 							except: host = 'none'
-							url = replaceHTMLCodes(src)
+							url = replaceHTMLCodes(result)
 							url = url.encode('utf-8')
 							if host in hostDict: sources.append({'source': host, 'quality':quality, 'provider': 'Wonline', 'url': url, 'direct': False, 'debridonly': False})
 

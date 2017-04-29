@@ -69,11 +69,9 @@ class navigator:
         self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvNavigator', 'channels.png', 'DefaultTVShows.png')
         if not control.setting('movie.widget') == '0': self.addDirectoryItem('Spotlight', 'movieWidget', 'latest-movies.png', 'DefaultRecentlyAddedMovies.png')
-        self.addDirectoryItem('Movies Watchlist', 'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
-        self.addDirectoryItem('TV Shows Watchlist', 'tvFavourites', 'mymovies.png', 'DefaultMovies.png')
         self.addDirectoryItem('New Movies', 'movies&url=premiere', 'trending.png', 'DefaultRecentlyAddedMovies.png')
         self.addDirectoryItem(32026, 'tvshows&url=premiere', 'years.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('My Lists', 'lists_navigator', 'trending.png', 'DefaultRecentlyAddedMovies.png')
+        self.addDirectoryItem('My Zen', 'lists_navigator', 'mymovies.png', 'DefaultRecentlyAddedMovies.png')
         self.addDirectoryItem(32027, 'calendars', 'networks.png', 'DefaultRecentlyAddedEpisodes.png')
         self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
         self.addDirectoryItem(32008, 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
@@ -107,8 +105,11 @@ class navigator:
         self.endDirectory()
 
     def lists_navigator(self):
-        self.addDirectoryItem('Movies', 'movielist', 'movies.png', 'DefaultMovies.png')
-        self.addDirectoryItem('Tv Shows', 'tvlist', 'channels.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('[WATCHLIST] Movies', 'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[WATCHLIST] TV Shows', 'tvFavourites', 'mymovies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[TMDB LIST] Movies', 'movielist', 'movies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[TMDB LIST] Tv Shows', 'tvlist', 'channels.png', 'DefaultTVShows.png')
+
         self.endDirectory()
 		
     def mymovies(self):
@@ -165,11 +166,12 @@ class navigator:
         # self.addDirectoryItem(32044, 'openSettings&query=3.1', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem(32045, 'openSettings&query=1.0', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]SETTINGS[/B]: Accounts', 'openSettings&query=2.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(32047, 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(32046, 'openSettings&query=5.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Downloads', 'openSettings&query=4.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Watchlist', 'openSettings&query=6.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Lists', 'openSettings&query=7.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]SETTINGS[/B]: Providers', 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]SETTINGS[/B]: Debrid', 'openSettings&query=4.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]SETTINGS[/B]: Downloads', 'openSettings&query=5.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]SETTINGS[/B]: Subtitles', 'openSettings&query=6.0', 'tools.png', 'DefaultAddonProgram.png') 
+        self.addDirectoryItem('[B]SETTINGS[/B]: Watchlist', 'openSettings&query=7.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]SETTINGS[/B]: Lists', 'openSettings&query=8.0', 'tools.png', 'DefaultAddonProgram.png')
 		
         self.addDirectoryItem('[B]ZEN[/B]: Views', 'viewsNavigator', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]ZEN[/B]: Clear Providers', 'clearSources', 'tools.png', 'DefaultAddonProgram.png')
