@@ -1242,7 +1242,33 @@ def getNetworkTVData2(apptype):
     return jsondata     
     
 
+
 def getNetworkTVData():
+    fname='Networkdata.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,30*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))["data"][0]
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+    headers=[('application-id',base64.b64decode('QUYxMkY0N0YtMEM5Qy0zQkMxLUZGNkYtNzkzNUUwQzBDQzAw')),('secret-key',base64.b64decode('MTAzQ0JFNkYtNEYyMi0yRTlCLUZGQzEtMjVCRUNEM0QyRjAw')),('application-type','REST')]
+    link=getUrl(base64.b64decode('aHR0cHM6Ly9hcGkuYmFja2VuZGxlc3MuY29tL3YxL2RhdGEvQXBwQ29uZmlnQWxwaGE='),headers=headers)
+    jsondata=None
+    try:
+        jsondata=json.loads(link.replace('\x0a',''))
+        #print jsondata
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getFastData file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata["data"][0]
+
+    
+    
+def getNetworkTVDataGOOGLE():
     fname='Networkdata.json'
     fname=os.path.join(profile_path, fname)
     try:
@@ -5471,7 +5497,7 @@ def getNetworkTVPage():
     
     #netData=getNetworkTVData()["data"][0]
     netData=getNetworkTVData()
-    print netData
+    print 'netData',netData
     baseurl=netData["YmFzZXVybG5ld3gw"]
     baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
     import random,math
@@ -7569,7 +7595,7 @@ def performTVPLogin():
         mainpage = getUrl(url,cookieJar=cookieJar)
         
 
-        if '>Login</a>' in mainpage:
+        if 'Login to TVPlayer' in mainpage:
             token   = urllib.unquote(re.findall('name="token" value="(.*?)"' ,mainpage)[0])
             print 'LOGIN NOW'
             url="https://tvplayer.com/account/login"
@@ -7594,14 +7620,18 @@ def playtvplayer(url):
     try:
         loginstatus,cj=performTVPLogin()
         watchHtml=getUrl(url, cookieJar=cj)
-        channelid=re.findall('resourceId = "(.*?)"' ,watchHtml)[0]
-        validate=re.findall('var validate = "(.*?)"' ,watchHtml)[0]
+        channelid=re.findall('data-resource="(.*?)"' ,watchHtml)[0]
+        #token=re.findall('var validate = "(.*?)"' ,watchHtml)[0]
         token='null'
         try:
-            token=re.findall('var token = "(.*?)"' ,watchHtml)[0]
+            token=re.findall('data-token="(.*?)"' ,watchHtml)[0]
         except: pass
+        
+        contextjs=getUrl("https://tvplayer.com/watch/context?resource=%s&nonce=%s"%(channelid,token), cookieJar=cj)   
+        contextjs=json.loads(contextjs)
+        validate=contextjs["validate"]
         #cj = cookielib.LWPCookieJar()
-        data = urllib.urlencode({'service':'1','platform':'website','token':token,'validate':validate ,'id' : channelid})
+        data = urllib.urlencode({'service':'1','platform':'chrome','validate':validate ,'id' : channelid})
         headers=[('Referer','http://tvplayer.com/watch/'),('Origin','http://tvplayer.com'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
         retjson=getUrl("http://api.tvplayer.com/api/v2/stream/live",post=data, headers=headers,cookieJar=cj);
         jsondata=json.loads(retjson)
