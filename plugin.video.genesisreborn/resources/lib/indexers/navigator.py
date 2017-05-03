@@ -66,21 +66,21 @@ class navigator:
     def root(self):
         # self.addDirectoryItem('Merry Christmas!', 'movies&url=tmdbxmas', 'xmas.png', 'DefaultMovies.png')
 
-        self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32002, 'tvNavigator', 'channels.png', 'DefaultTVShows.png')
-        if not control.setting('movie.widget') == '0': self.addDirectoryItem('Spotlight', 'movieWidget', 'latest-movies.png', 'DefaultRecentlyAddedMovies.png')
-        self.addDirectoryItem('Genesis Reborn Movies Watchlist', 'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
-        self.addDirectoryItem('Genesis Reborn TV Shows Watchlist', 'tvFavourites', 'mymovies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('Genesis Reborn Movies', 'movieNavigator', 'movies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('Genesis Reborn TV Shows', 'tvNavigator', 'channels.png', 'DefaultTVShows.png')
+        if not control.setting('movie.widget') == '0': self.addDirectoryItem('Genesis Reborn Top Movies', 'movieWidget', 'latest-movies.png', 'DefaultRecentlyAddedMovies.png')
+        self.addDirectoryItem('My Genesis Reborn Movie List', 'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
+        self.addDirectoryItem('My Genesis Reborn TV Show List', 'tvFavourites', 'mymovies.png', 'DefaultMovies.png')
         self.addDirectoryItem('Genesis Reborn New Movies', 'movies&url=premiere', 'trending.png', 'DefaultRecentlyAddedMovies.png')
-        self.addDirectoryItem(32026, 'tvshows&url=premiere', 'years.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('My Lists', 'lists_navigator', 'trending.png', 'DefaultRecentlyAddedMovies.png')
-        self.addDirectoryItem(32027, 'calendars', 'networks.png', 'DefaultRecentlyAddedEpisodes.png')
-        self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32008, 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('Genesis Reborn New TV Shows', 'tvshows&url=premiere', 'years.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('My Genesis Reborn Account', 'lists_navigator', 'mymovies.png', 'DefaultRecentlyAddedMovies.png')
+        self.addDirectoryItem('Genesis Reborn On TV', 'calendars', 'networks.png', 'DefaultRecentlyAddedEpisodes.png')
+        self.addDirectoryItem('Genesis Reborn Channels', 'channels', 'channels.png', 'DefaultMovies.png')
+        self.addDirectoryItem('Genesis Reborn Tools', 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
         downloads = True if control.setting('downloads') == 'true' and (len(control.listDir(control.setting('movie.download.path'))[0]) > 0) else False
         if downloads == True: self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 
-        self.addDirectoryItem(32010, 'searchNavigator', 'search.png', 'DefaultFolder.png')
+        self.addDirectoryItem('Genesis Reborn Search Menu', 'searchNavigator', 'search.png', 'DefaultFolder.png')
         self.addDirectoryItem('Genesis Reborn Changelog', 'ShowChangelog', 'icon.png', 'DefaultFolder.png')
         self.endDirectory()
 
@@ -100,8 +100,8 @@ class navigator:
         self.addDirectoryItem('Genesis Reborn Years', 'movieYears', 'years.png', 'DefaultMovies.png')
         self.addDirectoryItem('Genesis Reborn People', 'moviePersons', 'people.png', 'DefaultMovies.png')
         self.addDirectoryItem('Genesis Reborn Ratings', 'movieCertificates', 'certificates.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32028, 'moviePerson', 'people-search.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32010, 'movieSearch', 'search.png', 'DefaultMovies.png')
+        self.addDirectoryItem('Genesis Reborn People Search', 'moviePerson', 'people-search.png', 'DefaultMovies.png')
+        self.addDirectoryItem('Genesis Reborn Movie Search', 'movieSearch', 'search.png', 'DefaultMovies.png')
 
 
         self.endDirectory()
@@ -141,16 +141,16 @@ class navigator:
         if inprogress_db == 'true': self.addDirectoryItem("Genesis Reborn In Progress", 'showsProgress', 'trending.png', 'DefaultMovies.png')
 
         self.addDirectoryItem('Genesis Reborn Featured', 'tvshows&url=featured', 'populars.png', 'DefaultRecentlyAddedEpisodes.png')
-        self.addDirectoryItem('Genesis Reborn Most Populars', 'tvshows&url=popular', 'most-viewed.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32019, 'tvshows&url=views', 'most-viewed.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32026, 'tvshows&url=premiere', 'years.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32025, 'tvshows&url=active', 'years.png', 'DefaultTVShows.png')       
-        self.addDirectoryItem(32023, 'tvshows&url=rating', 'featured.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn Most Popular', 'tvshows&url=popular', 'most-viewed.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn Most Voted', 'tvshows&url=views', 'most-viewed.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn New Shows', 'tvshows&url=premiere', 'years.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn Returning Shows', 'tvshows&url=active', 'years.png', 'DefaultTVShows.png')       
+        self.addDirectoryItem('Genesis Reborn Top Rated', 'tvshows&url=rating', 'featured.png', 'DefaultTVShows.png')
  
-        self.addDirectoryItem(32011, 'tvGenres', 'genres.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32016, 'tvNetworks', 'networks.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32024, 'tvshows&url=airing', 'airing-today.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32027, 'calendars', 'networks.png', 'DefaultRecentlyAddedEpisodes.png')
+        self.addDirectoryItem('Genesis Reborn Genres', 'tvGenres', 'genres.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn Networks', 'tvNetworks', 'networks.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn On TV Today', 'tvshows&url=airing', 'airing-today.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('Genesis Reborn TV Calendar', 'calendars', 'networks.png', 'DefaultRecentlyAddedEpisodes.png')
 
 
 
@@ -159,24 +159,24 @@ class navigator:
         self.endDirectory()
 
     def tools(self):
-        self.addDirectoryItem('[B]URL RESOLVER[/B]: Settings', 'urlresolversettings', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]GENESIS REBORN URL RESOLVER[/B]: Settings', 'urlresolversettings', 'tools.png', 'DefaultAddonProgram.png')
 
-        self.addDirectoryItem(32043, 'openSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('GENESIS REBORN GENERAL Settings', 'openSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')
         # self.addDirectoryItem(32044, 'openSettings&query=3.1', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(32045, 'openSettings&query=1.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Accounts', 'openSettings&query=2.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(32047, 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(32046, 'openSettings&query=5.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Downloads', 'openSettings&query=4.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Watchlist', 'openSettings&query=6.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]SETTINGS[/B]: Lists', 'openSettings&query=7.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('GENESIS REBORN PLAYBACK Settings', 'openSettings&query=1.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]GENESIS REBORN SETTINGS[/B]: Accounts', 'openSettings&query=2.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('GENESIS REBORN PROVIDERS Settings', 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('GENESIS REBORN SUBTITLES Settings', 'openSettings&query=5.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]GENESIS REBORN SETTINGS[/B]: Downloads', 'openSettings&query=4.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]GENESIS REBORN SETTINGS[/B]: Watchlist', 'openSettings&query=6.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B]GENESIS REBORN SETTINGS[/B]: Lists', 'openSettings&query=7.0', 'tools.png', 'DefaultAddonProgram.png')
 		
-        self.addDirectoryItem('[B]GENESIS REBORN[/B]: Views', 'viewsNavigator', 'tools.png', 'DefaultAddonProgram.png')
+        #self.addDirectoryItem('[B]GENESIS REBORN[/B]: Views', 'viewsNavigator', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]GENESIS REBORN[/B]: Clear Providers', 'clearSources', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B]GENESIS REBORN[/B]: Clear Cache', 'clearCache', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]GENESIS REBORN BACKUP[/B]: Watchlist', 'backupwatchlist', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]GENESIS REBORN RESTORE[/B]: Watchlist', 'restorewatchlist', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B]GENESIS REBORN[/B]: Clear Progress Database', 'clearProgress', 'tools.png', 'DefaultAddonProgram.png')
+        #self.addDirectoryItem('[B]GENESIS REBORN BACKUP[/B]: Watchlist', 'backupwatchlist', 'tools.png', 'DefaultAddonProgram.png')
+        #self.addDirectoryItem('[B]GENESIS REBORN RESTORE[/B]: Watchlist', 'restorewatchlist', 'tools.png', 'DefaultAddonProgram.png')
+        #self.addDirectoryItem('[B]GENESIS REBORN[/B]: Clear Progress Database', 'clearProgress', 'tools.png', 'DefaultAddonProgram.png')
  
 	
 		

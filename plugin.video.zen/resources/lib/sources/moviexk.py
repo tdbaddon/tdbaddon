@@ -24,7 +24,7 @@ from schism_commons import quality_tag, google_tag, parseDOM, replaceHTMLCodes ,
 from schism_net import OPEN_URL
 class source:
     def __init__(self):
-        self.base_link = 'http://moviexk.com'
+        self.base_link = 'https://moviexk.org'
         self.search_link = '/search/%s+%s'
 		
     def movie(self, imdb, title, year):
@@ -33,23 +33,23 @@ class source:
             query = self.search_link % (urllib.quote_plus(title),year)
             query = urlparse.urljoin(self.base_link, query)
             cleaned_title = cleantitle.get(title)
-            html = BeautifulSoup(OPEN_URL(query, mobile=True).content)
+            html = BeautifulSoup(client.request(query))
            
             containers = html.findAll('div', attrs={'class': 'name'})
             for container in containers:
                 # print ("MOVIEXK r1", container)
                 r_href = container.findAll('a')[0]["href"]
                 r_href = r_href.encode('utf-8')
-                # print ("MOVIEXK r2", r_href)
+               
                 r_title = re.findall('</span>(.*?)</a>', str(container))[0]
-                # print ("MOVIEXK r3", r_title)
+
                 r_title = r_title.encode('utf-8')
 				
                 # print ("MOVIEXK RESULTS", r_title, r_href)
                 if year in r_title:
 					r_title = re.sub('^(watch movies)|(watch movie)|(watch)', '', r_title.lower())
 					if cleaned_title in cleantitle.get(r_title):
-						redirect = OPEN_URL(r_href, mobile=True).content
+						redirect = client.request(r_href)
 						try:
 							r_url_trailer = re.search('<dd>[Tt]railer</dd>', redirect)
 							if r_url_trailer: continue
@@ -104,7 +104,7 @@ class source:
             season_check = "%02d" % (int(data['season']))
             ep_check =season_id + ep_id
             # print("MOVIEXK EPISODE CHECK", ep_check)
-            html = BeautifulSoup(OPEN_URL(query, mobile=True).content)
+            html = BeautifulSoup(client.request(query))
             containers = html.findAll('div', attrs={'class': 'name'})
             for container in containers:
                 # print ("MOVIEXK r1", container)
@@ -118,7 +118,7 @@ class source:
                 r_title = re.sub('^(watch movies)|(watch movie)|(watch)', '', r_title.lower())
                 # print ("MOVIEXK RESULTS", r_title, r_href)
                 if cleaned_title in cleantitle.get(r_title):
-						redirect = OPEN_URL(r_href, mobile=True).text
+						redirect = client.request(r_href)
 						try:
 							r_url_trailer = re.search('<dd>[Tt]railer</dd>', redirect)
 							if r_url_trailer: continue
@@ -155,7 +155,7 @@ class source:
             url = f.rsplit('?', 1)[0]
             direct = url
             print("MOVIEXK SOURCES 2", url)
-            r = OPEN_URL(url, mobile=True).content
+            r = client.request(url)
             # print("MOVIEXK SOURCES 3", r)
             p = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
 
@@ -163,7 +163,7 @@ class source:
                 p = client.parseDOM(r, 'div', attrs = {'class': 'btn-groups.+?'})
                 p = client.parseDOM(p, 'a', ret='href')[0]
 
-                p = OPEN_URL(p, mobile=True).content
+                p = client.request(p)
                 p = client.parseDOM(p, 'div', attrs = {'id': 'servers'})
 
             servers = client.parseDOM(p, 'li')
@@ -190,7 +190,7 @@ class source:
 
             for u in links:
                 try:
-                    url = OPEN_URL(u, mobile=True).content
+                    url = client.request(u)
                     url = client.parseDOM(url, 'source', ret='src')
                     url = [i.strip().split()[0] for i in url]
                     for i in url:

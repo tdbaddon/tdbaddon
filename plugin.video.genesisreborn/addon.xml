@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.genesisreborn" version="2017.04.00" name="Genesis Reborn" provider-name="Genesis Reborn">
+<addon id="plugin.video.genesisreborn" version="2017.05.01" name="Genesis Reborn" provider-name="Genesis Reborn">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.genesisreborn.artwork" />

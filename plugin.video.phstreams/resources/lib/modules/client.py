@@ -66,9 +66,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             headers['User-Agent'] = 'Apple-iPhone/701.341'
         if 'Referer' in headers:
             pass
-        elif referer == None:
-            headers['Referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-        else:
+        elif referer is not None:
             headers['Referer'] = referer
         if not 'Accept-Language' in headers:
             headers['Accept-Language'] = 'en-US'
@@ -100,7 +98,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         if isinstance(post, dict):
             post = urllib.urlencode(post)
 
-        request = urllib2.Request(url, data=post, headers=headers)
+        request = urllib2.Request(url, data=post)
+        _add_request_header(request, headers)
 
 
         try:
@@ -124,7 +123,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
                     headers['Cookie'] = cf
 
-                    request = urllib2.Request(url, data=post, headers=headers)
+                    request = urllib2.Request(url, data=post)
+                    _add_request_header(request, headers)
 
                     response = urllib2.urlopen(request, timeout=int(timeout))
 
@@ -180,7 +180,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
             headers['Cookie'] = su
 
-            request = urllib2.Request(url, data=post, headers=headers)
+            request = urllib2.Request(url, data=post)
+            _add_request_header(request, headers)
 
             response = urllib2.urlopen(request, timeout=int(timeout))
 
@@ -224,10 +225,26 @@ def _basic_request(url, headers=None, post=None, timeout='30', limit=None):
         try: headers.update(headers)
         except: headers = {}
 
-        request = urllib2.Request(url, data=post,  headers=headers)
+        request = urllib2.Request(url, data=post)
+        _add_request_header(request, headers)
         response = urllib2.urlopen(request, timeout=int(timeout))
         return _get_result(response, limit)
     except:
+        return
+
+
+def _add_request_header(_request, headers):
+    try:
+        if not headers:
+            headers = {}
+
+        referer = headers.pop('Referer') if 'Referer' in headers else '%s://%s' % (_request.get_type(), _request.get_host())
+
+        _request.add_unredirected_header('Host', _request.get_host())
+        _request.add_unredirected_header('Referer', referer)
+        for key in headers: _request.add_header(key, headers[key])
+    except:
+        print 'hö?'
         return
 
 
@@ -312,7 +329,8 @@ class cfcookie:
         try:
             headers = {'User-Agent': ua}
 
-            request = urllib2.Request(netloc, headers=headers)
+            request = urllib2.Request(netloc)
+            _add_request_header(request, headers)
 
             try:
                 response = urllib2.urlopen(request, timeout=int(timeout))
@@ -356,7 +374,8 @@ class cfcookie:
             opener = urllib2.install_opener(opener)
 
             try:
-                request = urllib2.Request(query, headers=headers)
+                request = urllib2.Request(query)
+                _add_request_header(request, headers)
                 response = urllib2.urlopen(request, timeout=int(timeout))
             except:
                 pass
@@ -451,5 +470,4 @@ class sucuri:
             return self.cookie
         except:
             pass
-
 

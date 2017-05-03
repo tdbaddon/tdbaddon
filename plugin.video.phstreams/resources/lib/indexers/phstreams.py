@@ -901,9 +901,10 @@ class resolver:
 
     def f4m(self, url, name):
             try:
-                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
+                if not any(i in url for i in ['.f4m', '.ts', '.m3u8']): raise Exception()
                 ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-                if not ext in ['f4m', 'ts']: raise Exception()
+                if not ext: ext = url
+                if not ext in ['f4m', 'ts', 'm3u8']: raise Exception()
 
                 params = urlparse.parse_qs(url)
 
@@ -922,8 +923,13 @@ class resolver:
                 try: auth_string = params['auth'][0]
                 except: auth_string = ''
 
-                try: streamtype = params['streamtype'][0]
-                except: streamtype = 'TSDOWNLOADER' if ext == 'ts' else 'HDS'
+
+                try:
+                   streamtype = params['streamtype'][0]
+                except:
+                   if ext =='ts': streamtype = 'TSDOWNLOADER'
+                   elif ext =='m3u8': streamtype = 'HLS'
+                   else: streamtype = 'HDS'
 
                 try: swf = params['swf'][0]
                 except: swf = None

@@ -2,7 +2,6 @@
 
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin
-from bs4 import BeautifulSoup as bs
 from md_request import open_url
 from md_view import setView
 from common import Addon
@@ -250,11 +249,7 @@ def RESOLVE(url,name,content,fan_art,infolabels):
         link = open_url(url).content
 
 	if content == 'movies':
-                soup = bs(link, "html.parser")
-                a = soup.find('h3',class_='h3-detail')
-                b = a.find('a', href=True)
-                request_url = str(b["href"])
-                #request_url = re.findall(r'<a  href="([^"]+)">Watch <', str(link), re.I|re.DOTALL)[0]
+                request_url = re.findall(r'href="([^"]+)">Watch', str(link), re.I|re.DOTALL)[0]
 		link = open_url(request_url).content
 		
 	value = []
@@ -284,7 +279,10 @@ def RESOLVE(url,name,content,fan_art,infolabels):
 		link2 = open_url(request_url, params=params).content
 
 		try:
-			final_url = re.findall(r'source.*?src="([^"]+)"', str(link2), re.I|re.DOTALL)[0]
+			try:
+                                final_url = re.findall(r'source.*?src="([^"]+)"', str(link2), re.I|re.DOTALL)[0]
+                        except:
+                                final_url = re.findall(r'"file":"([^"]+)"', str(link2), re.I|re.DOTALL)[0]
 		except:
 			match = re.findall(r'"file":"([^"]+)".*?"label":"([^"]+)"', str(link2), re.I|re.DOTALL)
 			for url,label in match:

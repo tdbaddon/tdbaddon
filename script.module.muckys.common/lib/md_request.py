@@ -85,7 +85,6 @@ def open_url(url, method='get', headers=None, cookies=None, params=None, data=No
 
         if '_Incapsula_' in link.content:
 
-                link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
                 link = crack(scraper, link)
 
         return link

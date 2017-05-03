@@ -1,5 +1,10 @@
 - This is a Fork of: Genesis-Exodus-Zen-Specto
 ___________________________________________________________________________
+- Version Version 2017.05.01
+Overall addon menu updated
+minor bugs fix
+New system settings
+___________________________________________________________________________
 - Version Version 2017.04.00
  New Menus added: Superhero Movies and Kids Section
  Updated genesis reborn fanart

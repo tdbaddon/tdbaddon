@@ -52,8 +52,8 @@ class source:
 					'Connection':'keep-alive'}
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			r = session.get(query,headers=headers).content
-			# print ("BOBBYAPP", r)
+			r = client.request(query, headers=headers)
+			
 			match=re.compile('alias=(.+?)\'">(.+?)</a>').findall(r)
 			for id,name in match:
 				name = cleantitle.get(name)
@@ -104,7 +104,7 @@ class source:
 			query = self.simple_link % (urllib.quote_plus(title))
 			query = urlparse.urljoin(self.base_link, query)
 			# print ("BOBBYAPP query", query)
-			r = session.get(query,headers=headers).content
+			r = client.request(query,headers=headers)
 			# print ("BOBBYAPP", r)
 			match=re.compile('alias=(.+?)\'">(.+?)</a>').findall(r)
 			for id,name in match:
@@ -133,7 +133,7 @@ class source:
 						'Accept-Encoding':'gzip, deflate',
 						'Connection':'keep-alive'}
 				html ='http://webapp.bobbyhd.com/player.php?alias='+url
-				r = session.get(html,headers=headers).content
+				r = client.request(html,headers=headers)
 				if type=='tv_episodes':
 					match=re.compile('changevideo\(\'(.+?)\'\)".+?data-toggle="tab">(.+?)\..+?</a>').findall(r)
 					print match

@@ -154,6 +154,11 @@ def GetContent(name,url,iconimage,fanart):
                         fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                         url=re.compile('<image>(.+?)</image>').findall(item)[0]
                         addDir(name,iconimage,9,iconimage,fanart)
+                if ('<sportsdevil>' in item) and ('<link>' in item):
+                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+                        addItem(name,url2,8,iconimage,fanart)
                 if '<sportsdevil>' in item:
                         links=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(item)
                         if len(links)==1:
@@ -194,7 +199,7 @@ def GetContent(name,url,iconimage,fanart):
                                         name=re.compile('<title>(.+?)</title>').findall(item)[0]
                                         iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
                                         fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
-                                        addLink(name,url2,3,iconimage,fanart)
+                                        addLink(name,url2,8,iconimage,fanart)
             except:pass
             view(link)
 
@@ -281,43 +286,7 @@ def SEARCH():
                                                                 addLink(name,url2,3,iconimage,fanarts)
                                     except:pass       
                         
-		
 def GETMULTI(name,url,iconimage):
-	streamurl=[]
-	streamname=[]
-	streamicon=[]
-	link=open_url(url)
-	urls=re.compile('<title>'+re.escape(name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
-	iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(urls)[0]
-	links=re.compile('<link>(.+?)</link>').findall(urls)
-	i=1
-	for sturl in links:
-                sturl2=sturl
-                if '(' in sturl:
-                        sturl=sturl.split('(')[0]
-                        caption=str(sturl2.split('(')[1].replace(')',''))
-                        streamurl.append(sturl)
-                        streamname.append(caption)
-                else:
-                        streamurl.append( sturl )
-                        streamname.append( 'Link '+str(i) )
-                i=i+1
-	name='[COLOR red]'+name+'[/COLOR]'
-	dialog = xbmcgui.Dialog()
-	select = dialog.select(name,streamname)
-	if select < 0:
-		quit()
-	else:
-		url = streamurl[select]
-		print url
-		if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
-                elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
-                else: stream_url=url
-                liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                liz.setPath(stream_url)
-                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-                
-def GETMULTI_SD(name,url,iconimage):
 
     sdbase = 'plugin://plugin.video.SportsDevil/?mode=1&amp;item=catcher%3dstreams%26url='
     streamurl=[]
@@ -327,10 +296,11 @@ def GETMULTI_SD(name,url,iconimage):
     link=open_url(url)
     urls=re.compile('<title>'+re.escape(name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
     links=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(urls)
+    links2=re.compile('<link>(.+?)</link>').findall(urls)
     iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(urls)[0]
     i=1
 
-    for sturl in links:
+    for sturl in links2:
                 sturl2=sturl
                 if '(' in sturl:
                         sturl=sturl.split('(')[0]
@@ -343,22 +313,49 @@ def GETMULTI_SD(name,url,iconimage):
                         streamname.append( 'Link '+str(i) )
 
                 i=i+1
+    for sturl in links:
+                sturl2=sturl
+                if '(' in sturl:
+                        sturl=sturl.split('(')[0]
+                        caption=str(sturl2.split('(')[1].replace(')',''))
+                        streamurl.append(sdbase + sturl)
+                        streamname.append(caption)
+                        streamnumber.append('Stream ' + str(i))
+                else:
+                        streamurl.append( sdbase + sturl )
+                        streamname.append( 'Link '+str(i) )
+
+                i=i+1
+
     name='[COLOR red]'+name+'[/COLOR]'
     dialog = xbmcgui.Dialog()
     select = dialog.select(name,streamname)
     if select < 0:
         quit()
     else:
-        check = streamname[select]
-        suffix = "/"
-        if not check.endswith(suffix):
-              refer = check + "/"
+        url = streamurl[select]
+        if sdbase in url:
+            check = streamname[select]
+            suffix = "/"
+            if not check.endswith(suffix):
+                  refer = check + "/"
+            else:
+                  refer = check
+            url = url + "%26referer=" + refer
+            liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+            liz.setPath(url)
+            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+            xbmc.Player().play(url,liz)
         else:
-              refer = check
-        url = sdbase + streamurl[select] + "%26referer=" + refer
-        print url
-
-        xbmc.Player().play(url)
+            if urlresolver.HostedMediaFile(url).valid_url(): 
+                stream_url = urlresolver.HostedMediaFile(url).resolve()
+            elif liveresolver.isValid(url)==True:
+                stream_url=liveresolver.resolve(url)
+            else: stream_url=url
+            liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+            liz.setPath(stream_url)
+            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+            xbmc.Player().play(stream_url,liz)
 
 def PLAYSD(name,url,iconimage):
         ok=True
@@ -625,12 +622,11 @@ except: pass
 if mode==None or url==None or len(url)<1: GetMenu()
 elif mode==1:GetContent(name,url,iconimage,fanart)
 elif mode==2:PLAYLINK(name,url,iconimage)
-elif mode==3:GETMULTI(name,url,iconimage)
 elif mode==4:PLAYSD(name,url,iconimage)
 elif mode==5:SEARCH()
 elif mode==6:YOUTUBE_CHANNEL(url)
 elif mode==7:PLAYVIDEO(url)
-elif mode==8:GETMULTI_SD(name,url,iconimage)
+elif mode==8:GETMULTI(name,url,iconimage)
 elif mode==9:SHOW_PICTURE(url)
 elif mode==10:NEW()
 elif mode==11:WWESCHEDULE()

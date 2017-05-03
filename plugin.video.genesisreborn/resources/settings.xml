@@ -22,7 +22,7 @@
 		
 		
 		<setting type="lsep" label="32319" />
-		<setting id="movie.widget" type="enum" label="Spotlight Content" values="None|New Movies|Trending|Populars|In Theaters|Top Rated" default="2" />
+		<setting id="movie.widget" type="enum" label="Spotlight Content" values="None|New Movies|Trending|Populars|In Theaters|Top Rated" default="4" />
 		<setting id="cachesources" type="bool" label="Cache Sources" default="true" />
 
 	</category>

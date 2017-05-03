@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+
 '''
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -15,22 +17,13 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,random,string,json,base64,time
+import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import cache
 from resources.lib.modules import directstream
-
-import requests
-from BeautifulSoup import BeautifulSoup
-
-from resources.lib.modules import control
-from schism_net import OPEN_URL
-from schism_titles import clean_html
-from schism_meta import meta_quality, meta_gvideo_quality
-
 from resources.lib.modules import jsunfuck
+from resources.lib.modules import cache
 
 CODE = '''def retA():
     class Infix:
@@ -53,61 +46,60 @@ CODE = '''def retA():
     return %s
 param = retA()'''
 
+
 class source:
     def __init__(self):
+        self.priority = 1
         self.language = ['en']
-        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
-
-        self.base_link = control.setting('gomovies_base')
-        if self.base_link == '' or self.base_link == None: 'https://gomovies.to'
-
-        self.search_link = '/movie/search/%s'
+        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me', 'gomovies.to']
+        self.base_link = 'https://gomovies.to'
+        self.search_link = '/ajax/suggest_search'
+        self.search_link_2 = '/movie/search/%s'
         self.info_link = '/ajax/movie_load_info/%s'
-        self.server_link = '/ajax/get_episodes/%s'
-        self.direct_link = '/ajax/v2_load_episode/'
+        self.server_link = '/ajax/movie_episodes/%s'
         self.embed_link = '/ajax/load_embed/'
-        self.session = requests.Session()
+        self.token_link = '/ajax/movie_token?eid=%s&mid=%s'
+        self.sourcelink = '/ajax/movie_sources/%s?x=%s&y=%s'
 
-
-
-    def movie(self, imdb, title, year):
+    def getOriginalTitle(self, imdb):
         try:
-            self.zen = []
-
-            cleaned_title = cleantitle.get(title)
-            title = cleantitle.getsearch(title)
-                      
-            q = self.search_link % (urllib.quote_plus(title))
-            r = urlparse.urljoin(self.base_link, q)
-
-            print ("ONEMOVIES EPISODES", r)
-           
-            
-            html = BeautifulSoup(OPEN_URL(r).content)
-            containers = html.findAll('div', attrs={'class': 'ml-item'})
-            for result in containers:
-               
-                links = result.findAll('a')
-
-                for link in links:
-                    link_title = link['title'].encode('utf-8')
-                    href = link['href'].encode('utf-8')
-                    info = link['data-url'].encode('utf-8')
-                    print("ONEMOVIES", link_title, href, info)
-                    if cleantitle.get(link_title) == cleaned_title:
-                        info = urlparse.urljoin(self.base_link, info)
-                        html = OPEN_URL(info).content
-                        pattern = '<div class="jt-info">%s</div>' % year
-                        match = re.findall(pattern, html)
-                        if match:
-							url = client.replaceHTMLCodes(href)
-							url = urlparse.urljoin(self.base_link, url)
-							url = {'url': url, 'type': 'movie' }
-							url = urllib.urlencode(url)
-							return url
+            tmdb_link = base64.b64decode(
+                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
+            t = client.request(tmdb_link % imdb, timeout='10')
+            try: title = json.loads(t)['movie_results'][0]['original_title']
+            except: pass
+            try: title = json.loads(t)['tv_results'][0]['original_name']
+            except: pass
+            title = cleantitle.normalize(title)
+            return title
         except:
             return
 
+    def movie(self, imdb, title, year):
+        try:
+            r = self.searchMovie(title)
+
+            if r == None:
+                t = cache.get(self.getOriginalTitle, 900, imdb)
+                if t != title:
+                    r = self.searchMovie(t)
+
+            return urllib.urlencode({'url': r, 'episode': 0})
+        except:
+            return
+
+    def searchMovie(self, title):
+        try:
+            title = cleantitle.normalize(title)
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': title})
+            r = client.request(u, post=p, XHR=True)
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
+            if r:
+                return r
+        except:
+            return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
@@ -117,144 +109,139 @@ class source:
         except:
             return
 
+    def searchShow(self, title, season):
+        try:
+            title = cleantitle.normalize(title)
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': ('%s - Season %s' % (title, season))})
+            r = client.request(u, post=p, XHR=True)
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
+            if r:
+                return r
+        except:
+            return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = cleantitle.getsearch(data['tvshowtitle'])
 
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
-            query = (urllib.quote_plus(title)) + "+season+" + season
-            q = self.search_link % (query)
-            r = urlparse.urljoin(self.base_link, q)
 
-            print ("ONEMOVIES EPISODES", r)
-            checkseason = cleantitle.get(title) + "season" + season
+            if 'tvshowtitle' in data:
+                r = self.searchShow(data['tvshowtitle'], season)
 
-            html = BeautifulSoup(OPEN_URL(r).content)
-            containers = html.findAll('div', attrs={'class': 'ml-item'})
-            for result in containers:
-               
-                links = result.findAll('a')
+            if r == None:
+                t = cache.get(self.getOriginalTitle, 900, imdb)
+                if t != data['tvshowtitle']:
+                    r = self.searchShow(t, season)
 
-                for link in links:
-                    link_title = link['title'].encode('utf-8')
-                    href = link['href'].encode('utf-8')
-                    href = client.replaceHTMLCodes(href)
-                    href = urlparse.urljoin(self.base_link, href)
-                    if cleantitle.get(link_title) == checkseason:
-                        url = {'url': href, 'type': 'tv_shows', 'episode': episode}
-                        url = urllib.urlencode(url)
-                        print("GOMOVIES Passed", url)
-                        return url
+            return urllib.urlencode({'url': r, 'episode': episode})
+        except:
+            return
 
+    def onemovies_info(self, url):
+        try:
+            u = urlparse.urljoin(self.base_link, self.info_link)
+            u = client.request(u % url)
+
+            q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
+
+            y = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})
+            y = [i.strip() for i in y if i.strip().isdigit() and len(i.strip()) == 4][0]
+
+            return (y, q)
         except:
             return
 
     def sources(self, url, hostDict, hostprDict):
-        original_url = url
-        sources = []
-        results = []
         try:
-            
+            sources = []
+            if url is None:
+                return sources
 
-            if url == None: return sources
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = data['url'].encode('utf-8')
-            type = data['type'].encode('utf-8')
-            referer = url
+            url = data['url']
+            episode = int(data['episode'])
 
+            url = urlparse.urljoin(self.base_link, url)
             url = url.replace('/watching.html', '')
-            if not url.endswith('/'): url = url + "/watching.html"
-            else : url = url + "watching.html"
-			
 
-            referer=url
-		
-            request = OPEN_URL(url)
-            html = request.content
+            mid = re.findall('-(\d+)', url)[-1]
 
-            try:mid = re.compile('name="movie_id" value="(.+?)"').findall(html)[0]
-            except:mid = re.compile('id: "(.+?)"').findall(html)[0]
-						
-						
-            time_now = int(time.time() * 10000)
-            EPISODES = '/ajax/movie_episodes/%s'% (mid)
-            EPISODES = urlparse.urljoin(self.base_link, EPISODES)	
-            r = OPEN_URL(EPISODES).content
-            r = clean_html(r)
-			
-            match = re.compile('title="(.+?)"\s*href=".+?"\s*id=".+?"\s*data-id="(.+?)"').findall(r)
-            for t, data_id in match:
-				print ("GOMOVIES DATA", data_id, t)
-				if type == 'tv_shows':
-					episode = data['episode'].encode('utf-8')
-					print ("GOMOVIES SHOWS", episode)
-					episode = "%02d" % int(episode)
-					ep_check1 = episode + ":"
-					ep_check2 = "Episode %s:" % episode
-					
-					if ep_check1 in t or ep_check2 in t: results.append(data_id)
-				else: results.append(data_id)	
-				
-            for data_id in results:
-					try:
-							
-							s = '/ajax/movie_token'
-							src = urlparse.urljoin(self.base_link, s)	
-							payload = {'eid':data_id, 'mid': mid, '_':time_now}
-							
+            try:
+                headers = {'Referer': url}
+                u = urlparse.urljoin(self.base_link, self.server_link % mid)
+                r = client.request(u, headers=headers, XHR=True)
+                r = json.loads(r)
+                r = client.parseDOM(r['html'], 'div', attrs = {'class': 'les-content'})
+                ids = client.parseDOM(r, 'a', ret='data-id')
+                servers = client.parseDOM(r, 'a', ret='data-server')
+                labels = client.parseDOM(r, 'a', ret='title')
+                r = zip(ids, servers, labels)
 
-							data = OPEN_URL(src, params=payload, XHR=True).content
-							print ("GOMOVIES DATA 2", data)
-							if '$_$' in data:
-								p = self.uncensored1(data)
-								
-							elif data.startswith('[]') and data.endswith('()'):
-								
-								p = self.uncensored2(data)
-								
-							elif 'x=' in data:
-								print ("GOMOVIES DATA 3 STARTED", data)
-								p = self.uncensored3(data)
-								
-							else:
-								continue
+                for eid in r:
+                    try:
+                        try:
+                            ep = re.findall('episode.*?(\d+):.*?',eid[2].lower())[0]
+                        except:
+                            ep = 0
+                        if (episode == 0) or (int(ep) == int(episode)):
+                            url = urlparse.urljoin(self.base_link, self.token_link % (eid[0], mid))
+                            script = client.request(url)
 
-							xx ,xy = p
-							if xx:
-								servers = '/ajax/movie_sources/%s' % (data_id)
-								payload = {'x':xx, 'y':xy}
-								srv = urlparse.urljoin(self.base_link, servers)	
-								print ("Onemovies SERVER 3", srv)
-								srv = OPEN_URL(srv, params=payload, XHR=True).json()
-								print ("Onemovies SERVER 4", srv)
-								playlist = srv['playlist'][0]['sources']
-								for u in playlist:
-									url = u['file'].encode('utf-8')
-									quality = meta_gvideo_quality(url)
-									sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Gomovies', 'url': url, 'direct': True, 'debridonly': False})
-						
+                            if '$_$' in script:
+                                params = self.uncensored1(script)
+                            elif script.startswith('[]') and script.endswith('()'):
+                                params = self.uncensored2(script)
+                            elif '_x=' in script:
+                                x = re.search('''_x=['"]([^"']+)''', script).group(1)
+                                y = re.search('''_y=['"]([^"']+)''', script).group(1)
 
+                                params = {'x': x, 'y': y}
+                            else:
+                                raise Exception()
+                            u = urlparse.urljoin(self.base_link, self.sourcelink % (eid[0], params['x'], params['y']))
+                            r = client.request(u)
+                            url = json.loads(r)['playlist'][0]['sources']
+                            url = [i['file'] for i in url if 'file' in i]
+                            url = [directstream.googletag(i) for i in url]
+                            url = [i[0] for i in url if i]
+                            for s in url:
+                                sources.append({'source': 'gvideo', 'quality': s['quality'], 'provider': 'Gomovies',
+                                                'url': s['url'], 'direct': True, 'debridonly': False})
+                    except:
+                        pass
+            except:
+                pass
 
-					except:
-						continue
-
+            return sources
         except:
-            pass
-        return sources
-
+            return sources
 
     def resolve(self, url):
-            return url
+        try:
+            if self.embed_link in url:
+                result = client.request(url, XHR=True)
+                url = json.loads(result)['embed_url']
+                return url
 
+            try:
+                if not url.startswith('http'):
+                    url = 'http:' + url
 
+                for i in range(3):
+                    u = directstream.googlepass(url)
+                    if not u == None: break
 
-
-
+                return u
+            except:
+                return
+        except:
+            return
 
     def uncensored(a, b):
         x = '' ; i = 0
@@ -265,10 +252,8 @@ class source:
         x = base64.b64encode(x)
         return x
 
-    def uncensored1(self, data):
+    def uncensored1(self, script):
         try:
-            script = data
-            
             script = '(' + script.split("(_$$)) ('_');")[0].split("/* `$$` */")[-1].strip()
             script = script.replace('(__$)[$$$]', '\'"\'')
             script = script.replace('(__$)[_$]', '"\\\\"')
@@ -281,30 +266,17 @@ class source:
             vLocals = {'param': None}
             exec (CODE % script.replace('+', '|x|'), vGlobals, vLocals)
             data = vLocals['param'].decode('string_escape')
-            data = re.compile('''=['"]([^"^']+?)['"]''').findall(data)
-            xx = data[0]
-            xy = data[1]
-            return xx, xy
+            x = re.search('''_x=['"]([^"']+)''', data).group(1)
+            y = re.search('''_y=['"]([^"']+)''', data).group(1)
+            return {'x': x, 'y': y}
         except:
             pass
 
     def uncensored2(self, script):
         try:
             js = jsunfuck.JSUnfuck(script).decode()
-            data = re.compile('''=['"]([^"^']+?)['"]''').findall(js)
-            xx = data[0]
-            xy = data[1]
-            return xx, xy
-        except:
-            pass
-
-    def uncensored3(self, script):
-        try:
-            print ("GOMOVIES UNCENSORED", script)
-            data = re.compile('''_x=['"]([^"^']+?)['"].+?_y=['"]([^"^']+?)['"]''').findall(script)
-            for xx , xy in data:
-				print ("GOMOVIES UNCENSORED 3", xx, xy)
-
-				return xx, xy
+            x = re.search('''_x=['"]([^"']+)''', js).group(1)
+            y = re.search('''_y=['"]([^"']+)''', js).group(1)
+            return {'x': x, 'y': y}
         except:
             pass
