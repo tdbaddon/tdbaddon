@@ -1,3 +1,6 @@
+v2.0.0
+Add-on completely re coded
+
 v1.0.7 
 now takes one less click to get to the final link
 fixed missing 0-9 and A in A/Z 

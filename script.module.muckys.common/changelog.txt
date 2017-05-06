@@ -1,3 +1,20 @@
+######## v1.2.6 ########
+ 
+- More work done to md_tools
+
+
+######## v1.2.5 ########
+ 
+- More work done to md_tools
+
+
+
+######## v1.2.4 ########
+ 
+- Code added to remove the anonymous repo and addons 
+- as they keep shouting about opensource yet dont abide by it themselves
+- if you dont like this then please dont use my addons
+
 ######## v1.2.3 ########
  
 - More work done to md_tools

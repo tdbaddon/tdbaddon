@@ -1779,6 +1779,24 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
+<addon id="plugin.video.md123movies" name="123Movies" version="2.0.8" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.muckys.common"/>
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies From The 123movies WebSite</summary>
+    <description lang="en">This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml As A Source In File Manager.</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.mdcmovieshd" name="C Movies HD" version="1.0.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1817,20 +1835,22 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdws" version="1.0.9" name="MD.Watchseries" provider-name="Mucky Duck">
+<addon id="plugin.video.mdws" version="2.0.0" name="MD.Watchseries" provider-name="Mucky Duck">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="2.1.2"/>
-		<import addon="script.module.t0mm0.common" version="2.0.0"/>
-		<import addon="repository.mdrepo"/>
+		<import addon="script.module.metahandler" version="2.5.1"/>
+		<import addon="script.module.muckys.common"/>
+		<import addon="repository.mdrepo" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>Enjoy Your Favourite Shows Online From Watchseries</summary>
-        <description>Watch TV Series From One Of The Best Sites On The Web Brought To You By Mucky Duck</description>
-        <platform>all</platform>
+        <description>This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml In File Manager. Watch TV Series From One Of The Best Sites On The Web Brought To You By Mucky Duck</description>
+        <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
+		<platform>all</platform>
     </extension>
 </addon>
 
@@ -3001,7 +3021,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="3.2" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="WWE On Demand" version="3.4" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -4671,7 +4691,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.5" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.6" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -5311,7 +5331,7 @@ level.</description>
 	</extension>
 </addon>
 
-<addon id="skin.TDBTOUCHED" version="1005" name="TDB TOUCHED" provider-name="TDB">
+<addon id="skin.TDBTOUCHED" version="1006" name="TDB TOUCHED" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.12.0"/>
 	</requires>

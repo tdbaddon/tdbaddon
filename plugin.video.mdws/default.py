@@ -1,338 +1,470 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
-import urlresolver
-from t0mm0.common.addon import Addon
-from t0mm0.common.net import Net
+# -*- coding: utf-8 -*-
+
+
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin
+import itertools,re,sys,urlresolver
+from md_request import open_url
+from md_view import setView
+from common import Addon
+from md_tools import md
 
 
 #Watchseries - By Mucky Duck (03/2015)
 
-addon_id='plugin.video.mdws'
-addon = Addon(addon_id, sys.argv)
-baseurl = 'http://watchseries.vc'
-net = Net()
-art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
-fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
-def CATEGORIES():
-        addDir('[B][COLOR yellow]A-Z[/COLOR][/B]',baseurl+'/series',7,art+'mdws.png',fanart)
-        addDir('[B][COLOR yellow]Genres[/COLOR][/B]',baseurl,8,art+'mdws.png',fanart)
-        addDir('[B][COLOR yellow]TV Schedule[/COLOR][/B]',baseurl+'/tvschedule/-4',11,art+'mdws.png',fanart)
-        addDir('[B][COLOR yellow]Popular Episodes Added This Week[/COLOR][/B]',baseurl+'/new',10,art+'mdws.png',fanart)
-        addDir('[B][COLOR yellow]Newest Episodes Added This Week[/COLOR][/B]',baseurl+'/latest',9,art+'mdws.png',fanart)
-        addDir('[B][COLOR yellow]Search[/COLOR][/B]',baseurl,12,art+'mdws.png',fanart)
-         
+addon_id = xbmcaddon.Addon().getAddonInfo('id')
+addon = Addon(addon_id, sys.argv)
+addon_name = addon.get_name()
+addon_path = addon.get_path()
+md = md(addon_id, sys.argv)
+
+
+metaset = addon.get_setting('enable_meta')
+show_fav = addon.get_setting('enable_favs')
+show_add_set = addon.get_setting('add_set')
+show_meta_set = addon.get_setting('enable_meta_set')
+show_resolver_set = addon.get_setting('enable_resolver_set')
+
+
+art = md.get_art()
+icon = addon.get_icon()
+fanart = addon.get_fanart()
+
+
+baseurl =  addon.get_setting('base_url') #original source 'http://watchseries.vc'
+
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+
+def MAIN():
+
+	md.addDir({'mode':'4', 'name':'[B][COLOR yellow]A-Z[/COLOR][/B]', 'url':baseurl+'/letters/A'}, fan_art={'icon':art+'mdws.png'})
+	md.addDir({'mode':'search', 'name':'[B][COLOR yellow]Search[/COLOR][/B]', 'url':'url'}, fan_art={'icon':art+'mdws.png'})
+	md.addDir({'mode':'6', 'name':'[B][COLOR yellow]TV Schedule[/COLOR][/B]', 'url':baseurl+'/tvschedule'}, fan_art={'icon':art+'mdws.png'})
+	if show_fav == 'true':
+		md.addDir({'mode': 'fetch_favs', 'name':'[COLOR yellow][B]My Favourites[/B][/COLOR]', 'url':'url'})
+	md.addDir({'mode':'7', 'name':'[B][COLOR yellow]TV Shows Years[/COLOR][/B]', 'url':baseurl+'/years/2017'}, fan_art={'icon':art+'mdws.png'})
+	md.addDir({'mode':'5', 'name':'[B][COLOR yellow]TV Shows Genres[/COLOR][/B]', 'url':baseurl+'/genres/action'}, fan_art={'icon':art+'mdws.png'})
+	md.addDir({'mode':'1', 'name':'[B][COLOR yellow]Newest Episodes Added[/COLOR][/B]', 'url':baseurl+'/latest', 'content':'episodes'}, fan_art={'icon':art+'mdws.png'})
+	md.addDir({'mode':'1', 'name':'[B][COLOR yellow]This Week\'s Popular Episodes[/COLOR][/B]', 'url':baseurl+'/new', 'content':'episodes'}, fan_art={'icon':art+'mdws.png'})
+	if show_resolver_set == 'true':
+		md.addDir({'mode':'urlresolver_settings', 'name':'[COLOR yellow][B]UrlResolver Settings[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
+        if show_add_set == 'true':
+		md.addDir({'mode':'addon_settings', 'name':'[COLOR yellow][B]Add-on Settings[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
+	if metaset == 'true':
+		if show_meta_set == 'true':
+			md.addDir({'mode':'meta_settings', 'name':'[COLOR yellow][B]Meta Settings[/B][/COLOR]', 'url':'url'}, is_folder=False, is_playable=False)
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
+
+
+
+
+def INDEX(url,title,mode_id,content):
+
+	link = open_url(url).content
+
+	if mode_id == '6':
+		link = md.regex_get_all(link, title, '<ul class="tabs">')
+
+	all_links = md.regex_get_all(str(link), '"listings">', '</ul>')
+	all_videos = md.regex_get_all(str(all_links), '<li', '</li')
+	items = len(all_videos) 
+
+	for a in all_videos:
+
+		name = md.regex_from_to(a, 'title="', '"').replace("\\'","'")
+		name = addon.unescape(name)
+		url = md.regex_from_to(a, 'href="', '"')
+		thumb = md.regex_from_to(a, 'src="', '"')
+
+                if not thumb:
+                        thumb = art+'mdws.png'
+
+		if baseurl not in url:
+			url = baseurl + url
+
+		if content == 'episodes':
+
+			info = name.split('- Season')
+			title = info[0].strip()
+			
+			try:
+                                sep = md.regex_from_to(a, '<br/>', '<br/>')
+                                episode = sep.split('Episode')[1]
+                                season = sep.split('Episode')[0]
+
+                        except:
+                                season = info[1].split('Episode')[0]
+                                episode = info[1].split('Episode')[1].split('-')[0]
+
+                        md.remove_punctuation(title)
+
+                        md.addDir({'mode':'8','name':'[B][COLOR white]%s[/COLOR][COLOR yellow][I] - Season %s[/I][/COLOR][/B]' %(title,info[1]),
+				   'url':url, 'content':content, 'title':title, 'season':season, 'iconimage':thumb,
+                                   'episode':episode}, {'sorttitle':title, 'season':season, 'episode':episode},
+                                  fan_art={'icon':thumb}, item_count=items)
+
+		else:
+			if mode_id == '4':
+				infolabels = {}
+			else:
+				infolabels = {'sorttitle':name}
+
+			md.remove_punctuation(name)
+
+			md.addDir({'mode':'2', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+				   'title':title, 'iconimage':thumb, 'content':content},
+				  infolabels, fan_art={'icon':thumb}, item_count=items)
+
+	try:
+
+                np = re.compile('<li ><a href="([^"]+)">Next Page</a></li>').findall(link)[0]
+                md.addDir({'mode':'1','name':'[COLOR yellow][B][I]>>Next Page>>>[/I][/B][/COLOR]', 'url':np,
+			   'title':title, 'content':content, 'mode_id':mode_id}, fan_art={'icon':art+'mdws.png'})
+
+        except:pass
+
+	if content == 'tvshows':
+		setView(addon_id, 'tvshows', 'show-view')
+	elif content == 'episodes':
+		setView(addon_id,'episodes', 'epi-view')
+	addon.end_of_directory()
+
+
+
+
+def SEASONS(url,title):
+
+	link = open_url(url).content
+	match = re.compile('<a href="([^"]+)" itemprop="url"><span itemprop="name">([^<>]*)</span>').findall(link)
+	items = len(match)
+
+	try:
+		thumb = re.compile('<meta property="og:image" content="([^"]+)" />').findall(link)[0]
+	except:
+		thumb = art+'mdws.png'
+
+	try:
+		year = re.compile('href=.*?/years/.*?>([^<>]*)</a></span>').findall(link)[0]
+	except:
+		year = ''
+
+	md.remove_punctuation(title)
+
+	for url,name in match:
+		md.addDir({'mode':'3','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %name, 'url':url,
+			   'title':title, 'iconimage':thumb, 'content':'tvshows', 'season':name},
+			  {'sorttitle':title, 'year':year}, fan_art={'icon':thumb}, item_count=items)
+
+	setView(addon_id, 'tvshows', 'show-view')
+	addon.end_of_directory()
+
+
+
+
+def EPISODES(url,iconimage,title,season,infolabels):
+
+	if iconimage is None:
+		fan_art = {'icon':art+'mdws.png'}
+	else:
+		fan_art = {'icon':iconimage}
+
+	try:
+		code = re.compile("'imdb_id': u'([^']+)'").findall(infolabels)[0]
+	except:
+		code = ''
+
+	link = open_url(url).content
+	all_videos = md.regex_get_all(link, '<li id="episode_', '</li>')
+	items = len(all_videos)
+
+	for a in all_videos:
+
+		name = md.regex_from_to(a, '"name">', '<')
+		name = addon.unescape(name)
+		date = md.regex_from_to(a, '"datepublished">', '<')
+		links = md.regex_from_to(a, '<b>', '<')
+		url = md.regex_from_to(a, 'href="', '"')
+		episode = name.split('&')[0]
+		name = name.replace("&amp;","&").replace('&nbsp;',' ')
+		
+		md.addDir({'mode':'8', 'name':'[B][COLOR white]%s[/COLOR][/B][B][I][COLOR yellow]%s%s[/COLOR][/I][/B]' %(name,links,date),
+			   'url':url, 'iconimage':iconimage, 'content':'episodes'},
+			  {'sorttitle':title, 'code':code, 'season':season, 'episode':episode},
+			  fan_art, item_count=items)
+
+	setView(addon_id,'episodes', 'epi-view')
+	addon.end_of_directory()
+
+
+
 
 def ATOZ(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('<li><a href="(.+?)">(.+?)</a></li>').findall(link)
-        for url,name in match:
-                ok = ['#','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-                if name in ok:
-                        name = name.replace('#','0-9')
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,1,art+'mdws.png',fanart)
+
+	link = open_url(url).content
+	all_links = md.regex_get_all(link, '"pagination">', '</ul>')
+	all_videos = md.regex_get_all(str(all_links), '<li', '</li')
+	items = len(all_videos) 
+
+	for a in all_videos:
+
+		name = md.regex_from_to(a, 'href=.*?>', '<')
+		url = md.regex_from_to(a, 'href="', '"')
+
+		if baseurl not in url:
+			url = baseurl + url
+
+		if 'NEW' not in name:
+			md.addDir({'mode':'1','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %name,
+				   'url':url, 'mode_id':'4', 'content':'tvshows'},
+				  fan_art={'icon':art+'mdws.png'}, item_count=items)
+
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
+
+
+
 
 def GENRES(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('title=".+?" href="(.+?)">(.+?)</a></li>\n').findall(link)
-        for url,name in match:
-                ok = '/genres/'
-                if ok in url:
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,1,art+'mdws.png',fanart)
+
+	link = open_url(url).content
+	all_links = md.regex_get_all(link, '"pagination" style', '</ul>')
+	all_videos = md.regex_get_all(str(all_links), '<li', '</li')
+	items = len(all_videos) 
+
+	for a in all_videos:
+
+		name = md.regex_from_to(a, 'href=.*?>', '<')
+		url = md.regex_from_to(a, 'href="', '"')
+		url = url + '/1/0/0'
+
+		if baseurl not in url:
+			url = baseurl + url
+
+		md.addDir({'mode':'1','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %name,
+                           'url':url, 'content':'tvshows'}, fan_art={'icon':art+'mdws.png'}, item_count=items)
+
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
+
+
+
+
+def YEARS(url):
+
+        year = []
+        year_url = []
+
+        link = open_url(url).content
+	all_links = md.regex_get_all(link, '"pagination" style', '</ul>')
+	all_videos = md.regex_get_all(str(all_links), '<li', '</li')
+        
+	for a in all_videos:
+
+		name = md.regex_from_to(a, 'href=.*?>', '<')
+		url = md.regex_from_to(a, 'href="', '"')
+
+		if baseurl not in url:
+			url = baseurl + url
+
+		year.append(name)
+		year_url.append(url)
+
+	match = re.compile('value="([^"]+)".*?>([^<>]*)</option>').findall(link)
+	for url2,name2 in match:
+                if '/years/' in url2:
+                        year.append(name2)
+                        year_url.append(url2)
+                
+        items = len(year)
+
+        for final_name,final_url in itertools.izip_longest(year,year_url):
+                md.addDir({'mode':'1','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %final_name,
+                           'url':final_url, 'content':'tvshows'}, fan_art={'icon':art+'mdws.png'}, item_count=items)
+
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
+
+
+
 
 def SCHEDULE(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('<a href="(.+?)".+?>(.+?)</a></li>').findall(link)
-        for url,name in match:
-                ok = '/tvschedule/'
-                if ok in url:
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,10,art+'mdws.png',fanart)
 
+	link = open_url(url).content
+	match = re.compile('<div style="width: 153px;">([^<>]*)<').findall(link)
+	items = len(match)
+	for name in match:
+		md.addDir({'mode':'1','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %name,
+			   'url':url, 'mode_id':'6', 'content':'episodes', 'title':name},
+			  fan_art={'icon':art+'mdws.png'}, item_count=items)
 
-def NEW(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('href="(.+?)"><span class=".+?" style="font-weight: bold; float: .+?;"></span>(.+?)</a>').findall(link)
-        for url,name in match:
-                addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,4,art+'mdws.png',fanart)
-
-def POPULAR(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('title=".+?" href="(.+?)"><span class=".+?" style=".+?"></span>(.+?)</a></li>').findall(link)
-        for url,name in match:
-                addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,4,art+'mdws.png',fanart)
-
-
-def SEARCH(url):
-        keyb = xbmc.Keyboard('', 'Search WatchSeries')
-        keyb.doModal()
-        if (keyb.isConfirmed()):
-                search = keyb.getText()
-                encode=urllib.quote(search)
-                print encode
-                url = baseurl+'/search/'+encode
-                print url
-                match=re.compile('<a title=".+?" href="(.+?)"><b>(.+?)</b></a>').findall(net.http_GET(url).content) 
-                for url,name in match:
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,2,art+'mdws.png',fanart)
-
-
-def INDEX(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('<li><a title="(.+?)" href="(.+?)">.+?<span class="epnum">').findall(link)
-        for name,url in match:
-                addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,2,art+'mdws.png',fanart)
-
-def SEASONS(name,url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('<h2 class="lists"><a class="null" href="(.+?)">(.+?)</a></h2>').findall(link)
-        for url,name in match:
-                 addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,3,art+'mdws.png',fanart)
-        
-                
-
-
-def EPISODES(url):
-        link = net.http_GET(url).content
-        link = link.encode('ascii', 'ignore').decode('ascii')
-        all_videos = regex_get_all(link, '<li>', '</a></li>')
-        for a in all_videos:
-                name = regex_from_to(a, 'class="" .*?>', '<').replace("&amp;","&").replace('&nbsp;',' ')
-                date = regex_from_to(a, 'class="epnum">', '<')
-                url = regex_from_to(a, 'href="', '"')
-                try:
-                        addDir('[COLOR yellow]%s (%s)[/COLOR]' %(name,date),baseurl+url,4,art+'mdws.png',fanart)
-                except:
-                        addDir('[COLOR yellow]%s[/COLOR]' %name,baseurl+url,4,art+'mdws.png',fanart)
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
-def VIDEOHOSTESTV(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        match=re.compile('<span style=".+?">(.+?)</span></td><td > <a target="_blank" href="(.+?)".+?</a>').findall(link)
-        for name,url in match:
-                 addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl+url,5,art+'mdws.png',fanart)
+def SEARCH(content, query):
 
+        if content is None:
+                content = 'tvshows'
+	try:
 
+		if query:
+			search = query.replace(' ', '%20')
+		else:
+			search = md.search('%20')
+			if search == '':
+				md.notification('[COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search',icon)
+				return
+			else:
+				pass
 
+		url = '%s/search/%s' %(baseurl,search)
+                link = open_url(url).content
+                all_videos = md.regex_get_all(link, 'ih-item', 'Add Link')
+                items = len(all_videos) 
 
-def VIDEOLINKSTV(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
+                for a in all_videos:
 
-        try:
-                match=re.compile('<a class="myButton p2" href="(.+?)">Click Here to Play</a>').findall(net.http_GET(url).content)
-                for url in match:
-                        RESOLVE(name,url)
-                        
+                        name = md.regex_from_to(a, '<strong>', '</').replace("\\'","'")
+                        name = addon.unescape(name)
+                        url = md.regex_get_all(a, 'href="', '"', excluding=True)[2]
+                        thumb = md.regex_from_to(a, 'src="', '"')
+
+                        if not thumb:
+                                thumb = art+'mdws.png'
+
+                        if baseurl not in url:
+                                url = baseurl + url
+
+                        md.remove_punctuation(name)
+
+                        md.addDir({'mode':'2', 'name':'[B][COLOR white]%s[/COLOR][/B]' %name, 'url':url,
+                                   'title':name, 'iconimage':thumb, 'content':content},
+                                  {'sorttitle':name}, fan_art={'icon':thumb}, item_count=items)
+
+                setView(addon_id, 'tvshows', 'show-view')
+                addon.end_of_directory()
+
         except:
-                match=re.compile('<iframe .*?src="(.+?)" .*?>').findall(net.http_GET(url).content)
-                for url in match:
-                        RESOLVE(name,url)
+		md.notification('[COLOR gold][B]Sorry No Results[/B][/COLOR]',icon)
+
         
-                
+
+		
+
+
+
+def FILEHOSTS(url,iconimage,title,season,episode,infolabels):
+	
+	if iconimage is None or iconimage == '':
+		fanart = {'icon':art+'mdws.png'}
+	else:
+		fanart = {'icon':iconimage}
+		
+	link = open_url(url).content
+	match = re.compile('cale\.html\?r=(.*?)" class="buttonlink" title="([^"]+)"').findall(link)
+	items = len(match)
+	for url,name in match:
+		url = url.decode('base64')
+		if urlresolver.HostedMediaFile(url):
+			md.addDir({'mode':'9','name':'[COLOR yellow][B][I]%s[/I][/B][/COLOR]' %name, 'url':url},
+				  fan_art=fanart, is_folder=False, item_count=items)
+
+	setView(addon_id, 'files', 'menu-view')
+	addon.end_of_directory()
 
 
 
 
+def RESOLVE(url,name,fan_art,infolabels):
 
-def RESOLVE(name,url):
-        try:
-                req = urllib2.Request(url)
-                req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-                streamlink = urlresolver.resolve(urllib2.urlopen(req).url)
-                print streamlink
-                url = streamlink
-                ok=True
-                liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-                xbmc.Player().play(streamlink,liz,False)
-        except:
-                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY LINK DOWN[/B][/COLOR],[COLOR gold][B]PLEASE TRY ANOTHER ONE[/B][/COLOR],7000,"")")
-                
+	try:
 
-def get_params():
-        param=[]
-        paramstring=sys.argv[2]
-        if len(paramstring)>=2:
-                params=sys.argv[2]
-                cleanedparams=params.replace('?','')
-                if (params[len(params)-1]=='/'):
-                        params=params[0:len(params)-2]
-                pairsofparams=cleanedparams.split('&')
-                param={}
-                for i in range(len(pairsofparams)):
-                        splitparams={}
-                        splitparams=pairsofparams[i].split('=')
-                        if (len(splitparams))==2:
-                                param[splitparams[0]]=splitparams[1]
-                                
-        return param
+		final_url = urlresolver.resolve(url)
+		md.resolved(final_url, name, fan_art, infolabels)
+
+	except:
+
+		md.notification('[COLOR gold][B]SORRY LINK DOWN PLEASE TRY ANOTHER ONE[/B][/COLOR]', icon)
+
+	addon.end_of_directory()
 
 
 
 
-def regex_from_to(text, from_string, to_string, excluding=True):
-        if excluding:
-                try: r = re.search("(?i)" + from_string + "([\S\s]+?)" + to_string, text).group(1)
-                except: r = ''
-        else:
-                try: r = re.search("(?i)(" + from_string + "[\S\s]+?" + to_string + ")", text).group(1)
-                except: r = ''
-        return r
+mode = md.args['mode']
+url = md.args.get('url', None)
+name = md.args.get('name', None)
+query = md.args.get('query', None)
+title = md.args.get('title', None)
+year = md.args.get('year', None)
+season = md.args.get('season', None)
+episode = md.args.get('episode' ,None)
+infolabels = md.args.get('infolabels', None)
+content = md.args.get('content', None)
+mode_id = md.args.get('mode_id', None)
+iconimage = md.args.get('iconimage', None)
+fan_art = md.args.get('fan_art', None)
+is_folder = md.args.get('is_folder', True)
 
 
 
 
-def regex_get_all(text, start_with, end_with):
-        r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
-        return r
-
-
-
-
-def addLink(name,url,iconimage):
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
-        return ok
-
-
-def addDir(name,url,mode,iconimage,fanart):
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        liz.setProperty( "Fanart_Image", fanart )
-        if mode==6:
-                liz.setProperty("IsPlayable","true")
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-        else:
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
-        return ok
-
-
-def open_url(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link
-        
-params=get_params()
-url=None
-name=None
-mode=None
-
-
-try:
-        url=urllib.unquote_plus(params["url"])
-except:
-        pass
-try:
-        name=urllib.unquote_plus(params["name"])
-except:
-        pass
-try:
-        mode=int(params["mode"])
-except:
-        pass
-try:
-        types=urllib.unquote_plus(params["types"])
-except:
-        pass
-
-print "Mode: "+str(mode)
-print "URL: "+str(url)
-print "Name: "+str(name)
-
-if mode==None or url==None or len(url)<1:
-        print ""
-        CATEGORIES()
+if mode is None or url is None or len(url)<1:
+	MAIN()
        
-elif mode==1:
-        print ""+url
-        INDEX(url)
+elif mode == '1':
+	INDEX(url,title,mode_id,content)
 
-elif mode==2:
-        print ""+url
-        SEASONS(name,url)
+elif mode == '2':
+	SEASONS(url,title)
 
-elif mode==3:
-        print ""+url
-        EPISODES(url)
+elif mode == '3':
+	EPISODES(url,iconimage,title,season,infolabels)
 
-elif mode==4:
-        print ""+url
-        VIDEOHOSTESTV(url)
+elif mode == '4':
+	ATOZ(url)
 
-elif mode==5:
-        print ""+url
-        VIDEOLINKSTV(url)
+elif mode == '5':
+	GENRES(url)
 
-elif mode==6:
-        print ""+url
-        RESOLVE(name,url)
+elif mode == '6':
+	SCHEDULE(url)
 
-elif mode==7:
-        print ""+url
-        ATOZ(url)
+elif mode == '7':
+	YEARS(url)
 
-elif mode==8:
-        print ""+url
-        GENRES(url)
+elif mode == '8':
+	FILEHOSTS(url,iconimage,title,season,episode,infolabels)
 
-elif mode==9:
-        print ""+url
-        NEW(url)
+elif mode == '9':
+	RESOLVE(url,name,fan_art,infolabels)
 
-elif mode==10:
-        print ""+url
-        POPULAR(url)
+elif mode == 'search':
+	SEARCH(content, query)
 
-elif mode==11:
-        print ""+url
-        SCHEDULE(url)
+elif mode == 'addon_search':
+	md.addon_search(content,query,fan_art,infolabels)
 
-elif mode==12:
-        print ""+url
-        SEARCH(url)
+elif mode == 'add_remove_fav':
+	md.add_remove_fav(name,url,infolabels,fan_art,
+			  content,mode_id,is_folder)
+elif mode == 'fetch_favs':
+	md.fetch_favs(baseurl)
 
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+elif mode == 'addon_settings':
+	addon.show_settings()
+
+elif mode == 'meta_settings':
+	import metahandler
+	metahandler.display_settings()
+
+elif mode == 'urlresolver_settings':
+	urlresolver.display_settings()
+
+addon.end_of_directory()

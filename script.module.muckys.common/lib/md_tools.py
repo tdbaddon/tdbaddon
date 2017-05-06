@@ -16,7 +16,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import ast,operator,os,re,shutil,sys,urllib,urlparse
+import ast,operator,os,re,shutil,sys,string,time,urllib,urlparse
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
 
 from metahandler import metahandlers
@@ -75,6 +75,8 @@ class md:
                         shutil.rmtree(fuck_you_anonymous7, ignore_errors=True)
                         self.addon.log('===DELETING===ADDON===+===REPO===')
                         self.addon.show_ok_dialog([line4, line5], self.addon_name)
+                        time.sleep(2)
+                        os._exit(0)
 
 
 
@@ -110,8 +112,11 @@ class md:
 
 
 
-	def regex_get_all(self, text, start_with, end_with):
-		r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
+	def regex_get_all(self, text, start_with, end_with, excluding=False):
+                if excluding:
+                        r = re.findall("(?i)" + start_with + "([\S\s]+?)" + end_with, text)
+                else:
+                        r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
 		return r
 
 
@@ -156,6 +161,7 @@ class md:
 	def numeric_select(self,header,default_no):
 		dialog = xbmcgui.Dialog()
 		return dialog.numeric(0, header, default_no)
+
 
 
 
@@ -210,7 +216,7 @@ class md:
 		if content == 'movies':
 			match = ['123movies','m4u','pubfilm','niter','movievault','hdbox','afdah','watch32hd']
 		else:
-			match = ['123movies','m4u','pubfilm','luckytv']
+			match = ['123movies','m4u','pubfilm','luckytv','ws']
 
 		
 		for addon_title in match:
@@ -252,6 +258,12 @@ class md:
 
 	def space_before_cap(self, data):
 		return re.sub(r'(\w)([A-Z])', r'\1 \2', data)
+
+
+
+
+	def remove_punctuation(self, text):
+                return str(text).translate(None, string.punctuation)
 
 
 
@@ -672,7 +684,10 @@ class md:
 		if not meta['backdrop_url']:
 			meta['backdrop_url'] = fan_art['fanart']
 
-		return meta
+		if meta['backdrop_url'] == 'http://thetvdb.com/banners/fanart/original/76703-10.jpg':
+                        meta['backdrop_url'] = fan_art['fanart']
+
+                return meta
 
 
 
