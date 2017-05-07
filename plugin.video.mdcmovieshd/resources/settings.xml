@@ -23,13 +23,24 @@
 		<setting type="lsep" label="setting will show you the number you want (Set view list type)."/>
 	</category>
 	
-	<category label="Enable Sections">
-		<setting id="enable_shows" type="bool" label="Enable TV-Shows" default="true"/>
-		<setting id="enable_movies" type="bool" label="Enable Movies" default="true"/>
-	</category>
-	
 	<category label="Metadata">
 		<setting id="enable_meta" type="bool" label="Enable Metadata" default="true"/>
+		<setting id="movie_meta" type="bool" label="Enable Movie Meta" default="true" enable="!eq(-1,false)"/>
+		<setting id="tv_show_meta" type="bool" label="Enable TV-Show Meta" default="true" enable="!eq(-2,false)"/>
+		<setting id="episode_meta" type="bool" label="Enable Episode Meta" default="true" enable="!eq(-3,false)"/>
+	</category>
+	
+	<category label="Enable Sections">
+		<setting id="enable_favs" type="bool" label="Enable My Favourites" default="true"/>
+		<setting id="enable_shows" type="bool" label="Enable TV-Shows" default="true"/>
+		<setting id="enable_movies" type="bool" label="Enable Movies" default="true"/>
+		<setting id="add_set" type="bool" label="Enable Addon Settings" default="true"/>
+		<setting id="enable_proxy" type="bool" label="Enable Proxy Settings" default="true"/>
+		<setting id="enable_meta_set" type="bool" label="Enable Meta Settings" default="true"/>
+	</category>
+	
+	<category label="Autoplay">
+		<setting id="autoplay" type="bool" label="Enable Auto Play" default="false"/>
 	</category>
 	
 	<category label="Update">
@@ -37,10 +48,6 @@
 		<setting type="lsep" label="If Nothing Happened If Their Is Any Available"/>
 		<setting type="lsep" label="Updates You Will See The Appropriate Notifications"/>
 		<setting label="  [COLOR red]Click Here To Check For Updates For All Your Addons&Repos[/COLOR]" type="action" action="UpdateAddonRepos"/>
-	</category>
-	
-	<category label="Autoplay">
-		<setting id="autoplay" type="bool" label="Enable Auto Play" default="false"/>
 	</category>
 
 </settings>

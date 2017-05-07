@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.gose" name="[B][COLOR blue]GO [/COLOR][COLOR gold]SERIES [/COLOR][/B]" version="1.0.0" provider-name="Inside 4ndroid">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="repository.inside4ndroid"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies From The GoMovies WebSite</summary>
+    <description lang="en">This addon provides movie content from GoMovies and i am in no way affiliated with kodi or GoMovies in any way.</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>

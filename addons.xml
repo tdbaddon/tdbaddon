@@ -1399,6 +1399,23 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
+<addon id="plugin.video.gomov" name="[B][COLOR blue]GO [/COLOR][COLOR gold]MOVIES [/COLOR][/B]" version="1.0.1" provider-name="Inside 4ndroid">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="repository.inside4ndroid"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies From The GoMovies WebSite</summary>
+    <description lang="en">This addon provides movie content from GoMovies and i am in no way affiliated with kodi or GoMovies in any way.</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.goodfellas"
        name="GoodFellas 2.0"
        version="2.0.3"
@@ -1428,6 +1445,23 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description lang="en">We do not host or upload any video, films, media file, live streams (avi, mov, flv, mpg, mpeg, divx, dvd rip, mp3, mp4.
 	We have no control over the links on any site that we provide a link to. If you see any form of infringements, please contact appropriate media
 	file owners or host sites immediately.  </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.gose" name="[B][COLOR blue]GO [/COLOR][COLOR gold]SERIES [/COLOR][/B]" version="1.0.0" provider-name="Inside 4ndroid">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="repository.inside4ndroid"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies From The GoMovies WebSite</summary>
+    <description lang="en">This addon provides movie content from GoMovies and i am in no way affiliated with kodi or GoMovies in any way.</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1796,14 +1830,12 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdcmovieshd" name="C Movies HD" version="1.0.1" provider-name="Mucky Duck">
+<addon id="plugin.video.mdcmovieshd" name="C Movies HD" version="2.0.0" provider-name="Mucky Duck">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.muckys.common"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
+		<import addon="script.module.urlresolver"  version="2.1.2"/>
+		<import addon="script.module.metahandler" version="2.5.1"/>
+		<import addon="script.module.muckys.common"/>
+		<import addon="repository.mdrepo" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -3112,7 +3144,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.6.1"
+       version="6.6.2"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3533,6 +3565,23 @@ Enjoy!</description>
             <source>https://raw.github.com/luftreich/imaxpo.xbmc/master/repository.imaxpo</source>
 		</extension>
 	</addon>
+
+    <addon id="repository.inside4ndroid" name="Inside4ndroid" version="13.0.0" provider-name="Inside 4ndroid">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="Inside4ndroid">
+            <info compressed="false">http://i4pro.co.uk/kodi/repofree/_addons/addons.xml</info>
+            <checksum>http://i4pro.co.uk/kodi/repofree/_addons/addons.xml.md5</checksum>
+            <datadir zip="true">http://i4pro.co.uk/kodi/repofree/_addons/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>Inside 4ndroid Kodi Addons</summary>
+            <description>Inside 4ndroid Kodi Addons</description>
+            <platform>all</platform>
+    </extension>
+</addon>
 
 <addon id="repository.jesusboxtv" name="Jesusbox Repository" version="1.0.0" provider-name="Playonmonkey">
 	<extension point="xbmc.addon.repository" name="Jesusbox Repository">
@@ -4690,7 +4739,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.9" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.3.0" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

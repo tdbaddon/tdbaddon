@@ -480,7 +480,7 @@ def AddSports(url):
     addDir('My Sports' ,'sss',82,os.path.join(home,'icons','Sports.png'))
     addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
     addDir('Fast TV' ,'sss',92,os.path.join(home,'icons','Fast TV.png'))
-    #addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
+    addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
     addDir('Slow TV' ,'sss',96,os.path.join(home,'icons','slowtv.png'))
     addDir('PTV Sports' ,'sss',98,os.path.join(home,'icons','slowtv.png'))
 
@@ -4731,7 +4731,6 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isv8Off=='true': unitvgen=None
     if isv9Off=='true': wtvgen=None
     if isFastOff=='true': fastgen=None
-    isNetworkTVOff='true'
     if isNetworkTVOff=='true': nettvgen=None
     if isSlowTVOff=='true': slowtvgen=None
     
@@ -5496,20 +5495,22 @@ def getNetworkTVPage():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
     
-    #netData=getNetworkTVData()["data"][0]
-    netData=getNetworkTVData()
-    print 'netData',netData
-    baseurl=netData["YmFzZXVybG5ld3gw"]
-    baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
-    import random,math
-    uid=int(math.floor(random.random()*50000) )
-    auth = netData["amFnX3Ryb3JfYXR0X2Vu"][1:].decode("base64") 
-    ref = netData["SXNpc2VrZWxvX3Nlc2lzdGltdV95ZXppbm9tYm9sbzAw"][1:].decode("base64")
+    ##netData=getNetworkTVData()["data"][0]
+    #netData=getNetworkTVData()
+    #print 'netData',netData
+    #baseurl=netData["YmFzZXVybG5ld3gw"]
+    #baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
+    #import random,math
+    #uid=int(math.floor(random.random()*50000) )
+    #auth = netData["amFnX3Ryb3JfYXR0X2Vu"][1:].decode("base64") 
+    #ref = netData["SXNpc2VrZWxvX3Nlc2lzdGltdV95ZXppbm9tYm9sbzAw"][1:].decode("base64")
                 
-    headers=[('User-Agent',getFastUA(v2=True)),('Authorization',auth),('Referer',ref)]
-    post={'check':'1','user_id':str(uid),'version':'26'}
-    post = urllib.urlencode(post)
-    jsondata=getUrl(baseurl,post=post,headers=headers)
+    #headers=[('User-Agent',getFastUA(v2=True)),('Authorization',auth),('Referer',ref)]
+    headers=[('User-Agent','zemtvaddons')]
+    #post={'check':'1','user_id':str(uid),'version':'26'}
+    #post = urllib.urlencode(post)
+    #jsondata=getUrl(baseurl,post=post,headers=headers)
+    jsondata=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL25ldC5qc29u"),headers=headers)
     #print jsondata
     jsondata=json.loads(jsondata)
 
@@ -5534,15 +5535,16 @@ def getNetworkTVPage():
             v+=1
             
             tt=chlist[token][:-1].decode("base64")
-            print chmain[cname ][:-1].decode("base64"),tt,chlist
+            #print chmain[cname ][:-1].decode("base64"),tt,chlist
             if tt in tokentype:
                 tokentype[tt]+=1
             else:
                 tokentype[tt]=1
             
             #["24","25","28","29","30","31","32"]==29
-            if tt not in ['5','33','18','0',"24","25","28","29","30","31","32","38","26"]: continue
+            #if tt not in ['5','33','18','0',"24","25","28","29","30","31","32","38","26"]: continue
             #if tt not in ["35","34"]: continue
+            if tt not in ["38"]: continue
             channels["channels"].append( {
             'cid': chmain[cid][:-1].decode("base64") ,
             'chname': chmain[cname ][:-1].decode("base64"), #+ ("" if single else " "+str(v)),
@@ -5562,9 +5564,9 @@ def getNetworkTVPage():
             'country_name':chmain['country_name']  
             }   )
             
-    #print tokentype
-    #import operator
-    #print sorted(tokentype.items(), key=operator.itemgetter(1))
+    print tokentype
+    import operator
+    print sorted(tokentype.items(), key=operator.itemgetter(1))
     #[('36', 2), ('11', 3), ('20', 3), ('14', 9), ('4', 19), ('6', 19), ('30', 24), ('9', 38), ('34', 42), ('19', 44), ('5', 58), ('29', 99), ('0', 108), ('18', 115), ('33', 390)]
     try:
         storeCacheData(json.dumps(channels),fname)
@@ -6370,22 +6372,23 @@ def PlayNetworkTVLink(url,progress=None):
             defplayua=playua
         finalurl=playurl[0].split('\'')[0]+"|User-Agent="+defplayua
     elif token=="38":
-        netData=getNetworkTVData()    
-        posturl=netData["YmVsZ2lfMzgw"][1:].decode("base64")
-        auth=netData["Z2Vsb29mc2JyaWVm"][1:].decode("base64")
+        #netData=getNetworkTVData()    
+        #posturl=netData["YmVsZ2lfMzgw"][1:].decode("base64")
+        #auth=netData["Z2Vsb29mc2JyaWVm"][1:].decode("base64")
         ref=url["referer"]
-        authua=url["user_agent"]
+        #authua=url["user_agent"]
 
             
-        headers=[('Authorization',auth)]
-        if ref and len(ref)>0:
-            headers.append(('Referer',ref))
-        if authua and len(authua)>0:
-            headers.append(('User-Agent',authua))     
-        else:
-            headers.append(('User-Agent',anduseragent))
+        headers=[('User-Agent','ZemTv')]
+        #if ref and len(ref)>0:
+        #    headers.append(('Referer',ref))
+        #if authua and len(authua)>0:
+        #    headers.append(('User-Agent',authua))     
+        #else:
+        #    headers.append(('User-Agent',anduseragent))
             
-        authdata2=getUrl(posturl,headers=headers)
+        #authdata2=getUrl(posturl,headers=headers)
+        authdata2=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL2dldG5ldHR2dG9rZW4ucGhw"),headers=headers)
         authdata=getNetworkTVStringExtra2(authdata2)
         
         defplayua=anduseragent
@@ -6393,7 +6396,7 @@ def PlayNetworkTVLink(url,progress=None):
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
-        finalurl2=url["streamurl"]+authdata2+"|User-Agent="+defplayua
+        #finalurl2=url["streamurl"]+authdata2+"|User-Agent="+defplayua
         
         #listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
         #listitem.setMimeType("flv-application/octet-stream");

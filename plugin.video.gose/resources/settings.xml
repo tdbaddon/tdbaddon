@@ -1,0 +1,14 @@
+<settings>
+	
+	<category label="Metadata">
+		<setting id="tv_show_meta" type="bool" label="Enable Title Metadata" default="true"/>
+		<setting id="episode_meta" type="bool" label="Enable Episode Metadata" default="true" enable="!eq(-1,false)"/>
+	</category>
+	
+	<category label="Update">
+		<setting type="lsep" label="When You Click Check For Updates It will Appear As"/>
+		<setting type="lsep" label="If Nothing Happened If Their Is Any Available"/>
+		<setting type="lsep" label="Updates You Will See The Appropriate Notifications"/>
+		<setting label="  [COLOR red]Click Here To Check For Updates For All Your Addons&Repos[/COLOR]" type="action" action="UpdateAddonRepos"/>
+	</category>
+</settings>
