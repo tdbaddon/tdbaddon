@@ -62,15 +62,15 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
         
-        params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+        params = scraper_utils.parse_query(source_url)
         if video.video_type == VIDEO_TYPES.MOVIE:
-            query = urllib.quote_plus('%s %s' % (params['title'][0], params['year'][0]))
+            query = urllib.quote_plus('%s %s' % (params['title'], params['year']))
         else:
-            query = urllib.quote_plus('%s S%02dE%02d' % (params['title'][0], int(params['season'][0]), int(params['episode'][0])))
+            query = urllib.quote_plus('%s S%02dE%02d' % (params['title'], int(params['season']), int(params['episode'])))
         query_url = '/search?query=%s' % (query)
         hosters = self.__get_links(query_url, video)
-        if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
-            query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
+        if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date']:
+            query = urllib.quote_plus('%s %s' % (params['title'], params['air_date'].replace('-', '.')))
             query_url = '/search?query=%s' % (query)
             hosters = self.__get_links(query_url, video)
 
@@ -84,7 +84,10 @@ class Scraper(scraper.Scraper):
             if not search_url: continue
             html = self._http_get(search_url, params=params, cache_limit=.5)
             js_result = scraper_utils.parse_json(html, search_url)
-            if js_result.get('status') != 'success': continue
+            if js_result.get('status') != 'success':
+                log_utils.log('Alluc API Error: |%s|%s|: %s' % (search_url, params, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
+                continue
+            
             for result in js_result['result']:
                 stream_url = result['hosterurls'][0]['url']
                 if len(result['hosterurls']) > 1: continue
@@ -104,8 +107,6 @@ class Scraper(scraper.Scraper):
                     
                     hosters.append(hoster)
                     seen_urls.add(stream_url)
-                else:
-                    log_utils.log('Alluc API Error: |%s|%s|: %s' % (search_url, params, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
 
         return hosters
         
@@ -146,9 +147,9 @@ class Scraper(scraper.Scraper):
         return settings
 
     def __translate_search(self, url, search_type):
-        query = urlparse.parse_qs(urlparse.urlparse(url).query)
-        query = query['query'][0] + ' lang:en'
-        url = urlparse.urljoin(self.base_url, SEARCH_URL % (search_type))
+        query = scraper_utils.parse_query(url)
+        query = query['query'] + ' lang:en'
+        url = scraper_utils.urljoin(self.base_url, SEARCH_URL % (search_type))
         params = {'query': query, 'count': 100, 'from': 0, 'getmeta': 0}
         if self.username and self.password:
             params.update({'user': self.username, 'password': self.password})

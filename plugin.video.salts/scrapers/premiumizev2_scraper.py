@@ -16,14 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
+from salts_lib.utils2 import i18n
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import DELIM
 import scraper
 
 VIDEO_EXT = ['MKV', 'AVI', 'MP4']
@@ -61,9 +61,8 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        norm_title = scraper_utils.normalize_title(video.title)
         for stream in self.__get_videos(source_url, video):
-            if video.video_type == VIDEO_TYPES.EPISODE and not self.__match_episode(video, norm_title, stream['name']):
+            if video.video_type == VIDEO_TYPES.EPISODE and not scraper_utils.release_check(video, stream['name']):
                 continue
 
             host = scraper_utils.get_direct_hostname(self, stream['url'])
@@ -76,10 +75,10 @@ class Scraper(scraper.Scraper):
     
     def __get_videos(self, source_url, video):
         videos = []
-        query = urlparse.parse_qs(source_url)
+        query = scraper_utils.parse_query(source_url)
         if 'hash' in query:
-            url = urlparse.urljoin(self.base_url, BROWSE_URL)
-            js_data = self._http_get(url, params={'hash': query['hash'][0]}, cache_limit=1)
+            url = scraper_utils.urljoin(self.base_url, BROWSE_URL)
+            js_data = self._http_get(url, params={'hash': query['hash']}, cache_limit=1)
             if 'content' in js_data:
                 videos = self.__get_videos2(js_data['content'], video)
         return videos
@@ -105,9 +104,9 @@ class Scraper(scraper.Scraper):
         return videos
     
     def __get_quality(self, item, video):
-        if 'width' in item and item['width']:
+        if item.get('width'):
             return scraper_utils.width_get_quality(item['width'])
-        elif 'height' in item and item['height']:
+        elif item.get('height'):
             return scraper_utils.height_get_quality(item['height'])
         elif 'name' in item:
             if video.video_type == VIDEO_TYPES.MOVIE:
@@ -120,58 +119,26 @@ class Scraper(scraper.Scraper):
         
     def get_url(self, video):
         url = super(self.__class__, self).get_url(video)
+        
+        # check each torrent to see if it's an episode if there is no season url
         if url is None and video.video_type == VIDEO_TYPES.EPISODE:
-            return self.__find_episodes(video)
+            if not scraper_utils.force_title(video):
+                for item in self.__get_torrents():
+                    if scraper_utils.release_check(video, item['name']):
+                        return 'hash=%s' % (item['hash'])
+                    
         return url
 
     def _get_episode_url(self, season_url, video):
-        query = urlparse.parse_qs(season_url)
+        query = scraper_utils.parse_query(season_url)
         if 'hash' in query:
-            hash_id = query['hash'][0]
-            norm_title = scraper_utils.normalize_title(video.title)
             for stream in self.__get_videos(season_url, video):
-                if self.__match_episode(video, norm_title, stream['name'], hash_id):
+                if scraper_utils.release_check(video, stream['name']):
                     return season_url
         
-    def __find_episodes(self, video):
-        if not scraper_utils.force_title(video):
-            norm_title = scraper_utils.normalize_title(video.title)
-            for item in self.__get_torrents():
-                match_url = self.__match_episode(video, norm_title, item['name'], item['hash'])
-                if match_url is not None:
-                    return match_url
-                
-    def __match_episode(self, video, norm_title, title, hash_id=None):
-        sxe_patterns = [
-            '(.*?)[._ -]s([0-9]+)[._ -]*e([0-9]+)',
-            '(.*?)[._ -]([0-9]+)x([0-9]+)',
-            '(.*?)[._ -]([0-9]+)([0-9][0-9])',
-            '(.*?)[._ -]?season[._ -]*([0-9]+)[._ -]*-?[._ -]*episode[._ -]*([0-9]+)',
-            '(.*?)[._ -]\[s([0-9]+)\][._ -]*\[e([0-9]+)\]',
-            '(.*?)[._ -]s([0-9]+)[._ -]*ep([0-9]+)']
-        
-        show_title = ''
-        for pattern in sxe_patterns:
-            match = re.search(pattern, title, re.I)
-            if match:
-                temp_title, season, episode = match.groups()
-                if int(season) == int(video.season) and int(episode) == int(video.episode):
-                    show_title = temp_title
-                    break
-        else:
-            airdate_fallback = kodi.get_setting('airdate-fallback') == 'true' and video.ep_airdate
-            if video.ep_airdate and airdate_fallback:
-                airdate_pattern = '(.*?)[. _]%s[. _]%02d[. _]%02d[. _]' % (video.ep_airdate.year, video.ep_airdate.month, video.ep_airdate.day)
-                match = re.search(airdate_pattern, title)
-                if match:
-                    show_title = match.group(1)
-        
-        if show_title and norm_title in scraper_utils.normalize_title(show_title):
-            return 'hash=%s' % (hash_id)
-    
     def __get_torrents(self, folder_id=None):
         torrents = []
-        url = urlparse.urljoin(self.base_url, FOLDER_URL)
+        url = scraper_utils.urljoin(self.base_url, FOLDER_URL)
         if folder_id is not None:
             url += '?id=%s' % (folder_id)
             
@@ -190,16 +157,16 @@ class Scraper(scraper.Scraper):
         norm_title = scraper_utils.normalize_title(title)
         for item in self.__get_torrents():
             if title or year or season:
-                is_season = re.search('(.*?[._ ]season[._ ]+(\d+))[._ ]?(.*)', item['name'], re.I)
+                is_season = re.search('(.*?{delim}season{delim}+(\d+)){delim}?(.*)'.format(delim=DELIM), item['name'], re.I)
                 if (not is_season and video_type == VIDEO_TYPES.SEASON) or (is_season and video_type == VIDEO_TYPES.MOVIE):
                     continue
                 
-                if re.search('[._ ]S\d+E\d+[._ ]', item['name'], re.I): continue  # skip episodes
+                if re.search('{delim}S\d+E\d+{delim}'.format(delim=DELIM), item['name'], re.I): continue  # skip episodes
                 if video_type == VIDEO_TYPES.SEASON:
                     match_title, match_season, extra = is_season.groups()
                     if season and int(match_season) != int(season): continue
                     match_year = ''
-                    match_title = re.sub('[._-]', ' ', match_title)
+                    match_title = re.sub(DELIM, ' ', match_title)
                 else:
                     match = re.search('(.*?)\(?(\d{4})\)?(.*)', item['name'])
                     if match:

@@ -1,7 +1,6 @@
 import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmcvfs,os,sys,datetime,string,hashlib,net
 from resources.lib.modules.plugintools import *
 import xbmcaddon
-import liveresolver
 import json
 from cookielib import CookieJar
 from resources.lib.modules.common import *

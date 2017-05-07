@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         if video.video_type == VIDEO_TYPES.EPISODE:
             html = self.__episode_match(video, source_url)
             sources = [r.attrs['data-click'] for r in dom_parser2.parse_dom(html, 'div', req='data-click') + dom_parser2.parse_dom(html, 'li', req='data-click')]
@@ -79,8 +79,8 @@ class Scraper(scraper.Scraper):
 
     def __get_movie_sources(self, page_url):
         sources = []
-        html = self._http_get(page_url, cache_limit=.5)
-
+        headers = {'Referer': ''}
+        html = self._http_get(page_url, headers=headers, cache_limit=.5)
         match = re.search('APP_PATH\+"([^"]+)"\+([^"]+)\+"([^"]+)"', html)
         if match:
             url1, var, url2 = match.groups()
@@ -89,7 +89,7 @@ class Scraper(scraper.Scraper):
                 headers = {'Referer': page_url}
                 headers.update(XHR)
                 contents_url = '/' + url1 + match.group(1) + url2
-                contents_url = urlparse.urljoin(self.base_url, contents_url)
+                contents_url = scraper_utils.urljoin(self.base_url, contents_url)
                 js_data = scraper_utils.parse_json(self._http_get(contents_url, headers=headers, cache_limit=2), contents_url)
                 if js_data:
                     sources = [item['src'] for item in js_data if 'src' in item]
@@ -101,7 +101,7 @@ class Scraper(scraper.Scraper):
         return sources
     
     def __get_linked_source(self, link_url, headers):
-        link_url = urlparse.urljoin(self.base_url, link_url)
+        link_url = scraper_utils.urljoin(self.base_url, link_url)
         html = self._http_get(link_url, headers=headers, allow_redirect=False)
         if html.startswith('http'):
             return html
@@ -111,15 +111,15 @@ class Scraper(scraper.Scraper):
             return show_url
 
     def __episode_match(self, video, show_url):
-        show_url = urlparse.urljoin(self.base_url, show_url)
-        html = self._http_get(show_url, cache_limit=2)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        headers = {'Referer': ''}
+        html = self._http_get(show_url, headers=headers, cache_limit=2)
         force_title = scraper_utils.force_title(video)
 
         if not force_title:
-            pattern = '''<li\s+id=['"]?season%s-%s['"]?>.*?</ul>''' % (video.season, video.episode)
-            match = re.search(pattern, html, re.DOTALL)
+            match = dom_parser2.parse_dom(html, 'li', {'id': 'season%s-%s' % (video.season, video.episode)})
             if match:
-                return match.group(0)
+                return match[0].content
             
         if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
             norm_title = scraper_utils.normalize_title(video.ep_title)
@@ -130,9 +130,9 @@ class Scraper(scraper.Scraper):
                 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/videos/search/')
-        headers = {'Referer': self.base_url}
-        html = self._http_get(search_url, params={'search': title}, headers=headers, cache_limit=8)
+        search_url = scraper_utils.urljoin(self.base_url, '/videos/search/')
+        headers = {'Referer': ''}
+        html = self._http_get(search_url, params={'search': title, 've': 1}, headers=headers, cache_limit=8)
         for _attrs, article in dom_parser2.parse_dom(html, 'article', {'class': 'movie_item'}):
             match = dom_parser2.parse_dom(article, 'a', req=['href', 'data-title'])
             if match:

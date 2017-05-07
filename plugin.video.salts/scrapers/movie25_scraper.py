@@ -17,7 +17,6 @@
 """
 import base64
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -59,7 +58,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         quality = None
@@ -84,7 +83,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/keywords/%s/' % (title))
+        search_url = scraper_utils.urljoin(self.base_url, '/keywords/%s/' % (title))
         html = self._http_get(search_url, cache_limit=4)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'movie_about'}):
             match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])

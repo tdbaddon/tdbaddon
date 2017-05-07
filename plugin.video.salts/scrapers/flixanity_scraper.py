@@ -26,6 +26,7 @@ import hashlib
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
+import dom_parser2
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
@@ -34,8 +35,8 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'https://flixanity.watch'
-API_BASE_URL = 'https://api.flixanity.watch'
+BASE_URL = 'https://istream.is'
+API_BASE_URL = 'https://api.istream.is'
 EMBED_URL = '/ajax/jne.php'
 SEARCH_URL = '/api/v1/cautare/upd'
 KEY = 'MEE2cnUzNXl5aTV5bjRUSFlwSnF5MFg4MnRFOTVidA=='
@@ -63,7 +64,7 @@ class Scraper(scraper.Scraper):
         sources = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return sources
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         if video.video_type == VIDEO_TYPES.MOVIE:
             action = 'getMovieEmb'
@@ -76,7 +77,7 @@ class Scraper(scraper.Scraper):
         if match and self.__token is not None:
             elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
             data = {'action': action, 'idEl': match.group(1), 'token': self.__token, 'elid': elid}
-            ajax_url = urlparse.urljoin(self.base_url, EMBED_URL)
+            ajax_url = scraper_utils.urljoin(self.base_url, EMBED_URL)
             headers = {'Authorization': 'Bearer %s' % (self.__get_bearer()), 'Referer': page_url}
             headers.update(XHR)
             html = self._http_get(ajax_url, data=data, headers=headers, cache_limit=.5)
@@ -106,7 +107,7 @@ class Scraper(scraper.Scraper):
         if self.__token is None: return results
         
         search_url, u = self.__get_search_url()
-        search_url = urlparse.urljoin(API_BASE_URL, search_url)
+        search_url = scraper_utils.urljoin(API_BASE_URL, search_url)
         timestamp = int(time.time() * 1000)
         s = self.__get_s()
         query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token, 'set': s, 'rt': self.__get_rt(self.__token + s),
@@ -132,7 +133,7 @@ class Scraper(scraper.Scraper):
         season_url = show_url + '/season/%s' % (video.season)
         episode_pattern = 'href="([^"]+/season/%s/episode/%s/?)"' % (video.season, video.episode)
         title_pattern = 'href="(?P<url>[^"]+/season/%s/episode/%s/?)"\s+title="(?P<title>[^"]+)'
-        headers = {'Referer': urlparse.urljoin(self.base_url, show_url)}
+        headers = {'Referer': scraper_utils.urljoin(self.base_url, show_url)}
         return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, headers=headers)
 
     @classmethod
@@ -158,7 +159,7 @@ class Scraper(scraper.Scraper):
         return html
 
     def __login(self):
-        url = urlparse.urljoin(self.base_url, '/ajax/login.php')
+        url = scraper_utils.urljoin(self.base_url, '/ajax/login.php')
         self.__get_token()
         data = {'username': self.username, 'password': self.password, 'action': 'login', 'token': self.__token, 't': ''}
         html = super(self.__class__, self)._http_get(url, data=data, headers=XHR, cache_limit=0)
@@ -174,9 +175,9 @@ class Scraper(scraper.Scraper):
         search_url = SEARCH_URL
         u = search_url[-10:]
         html = super(self.__class__, self)._http_get(self.base_url, cache_limit=24)
-        for match in re.finditer('<script[^>]+src="([^"]+)', html):
-            script = match.group(1)
-            if 'flixanity' not in script: continue
+        for attrs, _content in dom_parser2.parse_dom(html, 'script', {'type': 'text/javascript'}, req='src'):
+            script = attrs['src']
+            if 'istream' not in script: continue
             html = super(self.__class__, self)._http_get(script, cache_limit=24)
             if 'autocomplete' not in html: continue
             

@@ -17,7 +17,6 @@
 """
 import re
 import urllib
-import urlparse
 import base64
 import kodi
 import log_utils  # @UnusedImport
@@ -59,23 +58,23 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+        params = scraper_utils.parse_query(source_url)
         if 'title' in params:
-            query = params['title'][0].replace("'", "")
+            query = params['title'].replace("'", "")
             if video.video_type == VIDEO_TYPES.MOVIE:
-                if 'year' in params: query += ' %s' % (params['year'][0])
+                if 'year' in params: query += ' %s' % (params['year'])
             else:
                 sxe = ''
                 if 'season' in params:
-                    sxe = 'S%02d' % (int(params['season'][0]))
+                    sxe = 'S%02d' % (int(params['season']))
                 if 'episode' in params:
-                    sxe += 'E%02d' % (int(params['episode'][0]))
+                    sxe += 'E%02d' % (int(params['episode']))
                 if sxe: query = '%s %s' % (query, sxe)
             query = urllib.quote_plus(query)
             query_url = '/search?query=%s' % (query)
             hosters = self.__get_links(query_url, video)
-            if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
-                query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
+            if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date']:
+                query = urllib.quote_plus('%s %s' % (params['title'], params['air_date'].replace('-', '.')))
                 query_url = '/search?query=%s' % (query)
                 hosters = self.__get_links(query_url, video)
 
@@ -173,6 +172,6 @@ class Scraper(scraper.Scraper):
     def __translate_search(self, url):
         params = SEARCH_PARAMS
         params['pby'] = self.max_results
-        params['gps'] = params['sbj'] = urlparse.parse_qs(urlparse.urlparse(url).query)['query'][0]
-        url = urlparse.urljoin(self.base_url, SEARCH_URL)
+        params['gps'] = params['sbj'] = scraper_utils.parse_query(url)['query']
+        url = scraper_utils.urljoin(self.base_url, SEARCH_URL)
         return url, params

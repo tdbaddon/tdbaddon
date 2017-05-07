@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -45,11 +44,11 @@ class Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         if not link.startswith('http'):
-            url = urlparse.urljoin(self.base_url, link)
+            url = scraper_utils.urljoin(self.base_url, link)
             html = self._http_get(url, cache_limit=.5)
             match = re.search('href="([^"]+).*?value="Continue to video"', html)
             if match:
-                url = urlparse.urljoin(self.base_url, match.group(1))
+                url = scraper_utils.urljoin(self.base_url, match.group(1))
                 html = self._http_get(url, cache_limit=.5)
                 redirect = dom_parser2.parse_dom(html, 'meta', {'http-equiv': 'refresh'}, req='content')
                 if redirect:
@@ -62,7 +61,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         for match in re.finditer('<td>\s*<a\s+href="([^"]+)(?:[^>]+>){2}\s*(?:&nbsp;)*\s*([^<]+)', html):
@@ -80,7 +79,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         norm_title = scraper_utils.normalize_title(title)
-        url = urlparse.urljoin(self.base_url, '/watch-series/')
+        url = scraper_utils.urljoin(self.base_url, '/watch-series/')
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'li'):

@@ -214,15 +214,19 @@ class md:
 			infolabels = {}
 
 		if content == 'movies':
-			match = ['123movies','m4u','pubfilm','niter','movievault','hdbox','afdah','watch32hd']
+			match = ['123movies','m4u','pubfilm','yesmovies','niter','movievault','hdbox','afdah','watch32hd']
 		else:
-			match = ['123movies','m4u','pubfilm','luckytv','ws']
+			match = ['123movies','m4u','pubfilm','yesmovies','ws','luckytv']
 
 		
 		for addon_title in match:
 
+                        name = addon_title
+                        if name == 'ws':
+                                name = 'watchseries'
+
 			if addon_title not in self.addon_id:
-				title = '[COLOR white][COLOR red]Search[/COLOR] %s [COLOR red]For[/COLOR] %s[/COLOR]' %(addon_title,query)
+				title = '[COLOR white][COLOR red]Search[/COLOR] %s [COLOR red]For[/COLOR] %s[/COLOR]' %(name,query)
 				listitem = xbmcgui.ListItem(title)
 				listitem.setInfo(item_type, infoLabels=infolabels)
 				listitem.setArt(fan_art)

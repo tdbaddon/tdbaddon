@@ -49,7 +49,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
         base_ep_url = self.__get_base_ep_url(video)
-        url = urlparse.urljoin(base_ep_url, source_url)
+        url = scraper_utils.urljoin(base_ep_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         for match in re.finditer('postTabs_titles.*?iframe.*?src="([^"]+)', html, re.I | re.DOTALL):
@@ -63,7 +63,7 @@ class Scraper(scraper.Scraper):
     def __get_base_ep_url(self, video):
         temp_video = copy.copy(video)
         temp_video.video_type = VIDEO_TYPES.TVSHOW
-        url = urlparse.urljoin(self.base_url, self.get_url(temp_video))
+        url = scraper_utils.urljoin(self.base_url, self.get_url(temp_video))
         html = self._http_get(url, cache_limit=8)
         match = re.search('href="([^"]+[sS]\d+-?[eE]\d+[^"]+)', html)
         if match:

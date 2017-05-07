@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.freeview" name="Freeview" version="2.0.1" provider-name="RayW1986">
+<addon id="plugin.video.freeview" name="Freeview" version="3.0.0" provider-name="RayW1986">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.liveresolver"  version="0.1.28"/> 
     </requires>
     <extension point="xbmc.python.pluginsource"
                	library="default.py">
@@ -11,7 +10,7 @@
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <summary>UK Freeview Channels</summary>
-        <description>Watch a wide array of Freeview channels from official and legal sources. [B]THIS ADD-ON REQUIRES A VPN OUTSIDE OF THE UNITED KINGDOM.[/B] For help or more information please visit TVADDONS.ag</description>
+        <description>Watch a wide array of Freeview channels from official and legal sources. [B]THIS ADD-ON REQUIRES A VPN OUTSIDE OF THE UNITED KINGDOM.[/B]</description>
 		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
     </extension>
 	

@@ -18,7 +18,6 @@
 import urllib
 import re
 import scraper
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -57,7 +56,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=8)
         for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'class': 'streaming-link'}):
             match = re.search("nowPlaying\(\s*\d+\s*,\s*'([^']+)'\s*,\s*'([^']+)", row)
@@ -80,7 +79,7 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/%s/' % (urllib.quote(title)))
+        search_url = scraper_utils.urljoin(self.base_url, '/search/%s/' % (urllib.quote(title)))
         html = self._http_get(search_url, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'item'}):
             match_title = dom_parser2.parse_dom(item, 'span')

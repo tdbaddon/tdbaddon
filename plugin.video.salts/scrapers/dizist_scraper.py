@@ -27,7 +27,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 import scraper
 
-BASE_URL = 'http://www.dizist.net'
+BASE_URL = 'http://www.dizist1.com'
 ALLOWED = [u'odnok', u'rodi', u'odnokaltyazısız', u'openload']
 
 class Scraper(scraper.Scraper):
@@ -49,31 +49,31 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=1)
         pages = self.__get_alt_pages(html, page_url)
         sources = self.__get_sources(html, page_url, pages.get(page_url, True))
         for page in pages:
             if page == page_url: continue
-            page_url = urlparse.urljoin(self.base_url, page, pages[page])
+            page_url = scraper_utils.urljoin(self.base_url, page, pages[page])
             html = self._http_get(page_url, cache_limit=1)
             sources.update(self.__get_sources(html, page, pages[page]))
             
-        for source in sources:
-            host = scraper_utils.get_direct_hostname(self, source)
+        for stream_url, values in sources.iteritems():
+            host = scraper_utils.get_direct_hostname(self, stream_url)
             if host == 'gvideo':
-                quality = scraper_utils.gv_get_quality(source)
+                quality = scraper_utils.gv_get_quality(stream_url)
                 direct = True
-            elif sources[source]['direct']:
-                quality = sources[source]['quality']
+            elif values['direct']:
+                quality = values['quality']
                 direct = True
             else:
-                quality = sources[source]['quality']
+                quality = values['quality']
                 direct = False
-                host = urlparse.urlparse(source).hostname
+                host = urlparse.urlparse(stream_url).hostname
             
-            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
-            if sources[source]['subs']: hoster['subs'] = 'Turkish Subtitles'
+            hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
+            if values['subs']: hoster['subs'] = 'Turkish Subtitles'
             hosters.append(hoster)
                 
         return hosters
@@ -128,12 +128,21 @@ class Scraper(scraper.Scraper):
                         html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=1)
                         return self.__get_sources(html, page_url, subs)
                     else:
-                        if iframe_url.startswith('//'): iframe_url = 'http:' + iframe_url
-                        if scraper_utils.get_direct_hostname(self, iframe_url) == 'gvideo':
-                            direct = True
+                        parts = urlparse.urlparse(iframe_url)
+                        if not parts.hostname:
+                            iframe_url = scraper_utils.urljoin(self.base_url, iframe_url)
+                            html = self._http_get(iframe_url, headers={'Referer': page_url}, cache_limit=1)
+                            sources = scraper_utils.parse_sources_list(self, html, var='sources')
+                            for value in sources.itervalues(): value['subs'] = subs
                         else:
-                            direct = False
-                        sources[iframe_url] = {'direct': direct, 'subs': subs, 'quality': QUALITIES.HD720}
+                            if scraper_utils.get_direct_hostname(self, iframe_url) == 'gvideo':
+                                direct = True
+                            else:
+                                direct = False
+                            sources[iframe_url] = {'direct': direct, 'subs': subs, 'quality': QUALITIES.HD720}
+                else:
+                    sources = scraper_utils.parse_sources_list(self, fragment, var='sources')
+                    for value in sources.itervalues(): value['subs'] = subs
             
         return sources
     
@@ -144,7 +153,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        url = urlparse.urljoin(self.base_url, '/arsiv')
+        url = scraper_utils.urljoin(self.base_url, '/arsiv')
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ts-list-content'})

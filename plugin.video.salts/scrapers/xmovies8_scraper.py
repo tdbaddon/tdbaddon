@@ -17,7 +17,6 @@
 """
 import re
 import urllib
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -56,7 +55,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=0)
         match = re.search('var\s*video_id\s*=\s*"([^"]+)', html)
         if not match: return hosters
@@ -64,9 +63,9 @@ class Scraper(scraper.Scraper):
         video_id = match.group(1)
         headers = {'Referer': page_url}
         headers.update(XHR)
-        _html = self._http_get(urlparse.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=0)
+        _html = self._http_get(scraper_utils.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=0)
         
-        vid_url = urlparse.urljoin(self.base_url, VIDEO_URL)
+        vid_url = scraper_utils.urljoin(self.base_url, VIDEO_URL)
         html = self._http_get(vid_url, data={'v': video_id}, headers=headers, cache_limit=0)
         for source, value in scraper_utils.parse_json(html, vid_url).iteritems():
             match = re.search('url=(.*)', value)
@@ -85,12 +84,12 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/results')
+        search_url = scraper_utils.urljoin(self.base_url, '/results')
         params = {'q': title}
         referer = search_url + '?' + urllib.urlencode(params)
         headers = {'Referer': referer}
         headers.update(XHR)
-        _html = self._http_get(urlparse.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=0)
+        _html = self._http_get(scraper_utils.urljoin(self.base_url, 'av'), headers=headers, method='POST', cache_limit=0)
 
         cookies = {'begin_referer': referer, 'prounder': 1}
         html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=8)

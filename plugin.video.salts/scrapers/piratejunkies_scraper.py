@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
@@ -46,7 +45,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        js_url = urlparse.urljoin(self.base_url, '/javascript/movies.js')
+        js_url = scraper_utils.urljoin(self.base_url, '/javascript/movies.js')
         html = self._http_get(js_url, cache_limit=48)
         if source_url.startswith('/'):
             source_url = source_url[1:]
@@ -87,7 +86,7 @@ class Scraper(scraper.Scraper):
         return results
 
     def __get_movies(self):
-        url = urlparse.urljoin(self.base_url, '/javascript/pj.js')
+        url = scraper_utils.urljoin(self.base_url, '/javascript/pj.js')
         html = self._http_get(url, cache_limit=48)
         movies = []
         for match in re.finditer('(.*?)\.setAttribute\(\s*"class"\s*,\s*"poster ([^"]+)"\s*\)', html, re.I):

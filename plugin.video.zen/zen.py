@@ -279,6 +279,10 @@ elif action == 'episodePlaycount':
 elif action == 'tvPlaycount':
     from resources.lib.modules import playcount
     playcount.tvshows(name, imdb, tvdb, season, query)
+	
+elif action == 'tvPlaycountShow':
+    from resources.lib.modules import playcount
+    playcount.marktvshows(name, imdb, tvdb, query)
 
 elif action == 'trailer':
     from resources.lib.modules import trailer

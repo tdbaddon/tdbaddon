@@ -46,7 +46,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         
         match = re.search('Views?\s*:\s*(\d+)', html, re.I)
@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/index.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/index.php')
         html = self._http_get(search_url, params={'s': title}, cache_limit=1)
         pattern = 'href="([^"]+)"\s+rel="bookmark">([^<]+)\s+\((\d{4})\)'
         for match in re.finditer(pattern, html, re.DOTALL):

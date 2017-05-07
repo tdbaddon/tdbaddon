@@ -47,7 +47,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         for _attrs, comment in dom_parser2.parse_dom(html, 'div', {'class': 'commentmetadata'}):
             for attrs, _content in dom_parser2.parse_dom(comment, 'a', req='href'):
@@ -66,13 +66,13 @@ class Scraper(scraper.Scraper):
             if ep_url: return ep_url
                         
     def __get_pages(self, url):
-        url = urlparse.urljoin(self.base_url, url)
+        url = scraper_utils.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=2)
         pages = [scraper_utils.pathify_url(attrs['href']) for attrs, _content in dom_parser2.parse_dom(html, 'a', {'class': 'page-numbers'}, req='href')]
         return pages
     
     def __find_episode(self, page, video):
-        url = urlparse.urljoin(self.base_url, page)
+        url = scraper_utils.urljoin(self.base_url, page)
         html = self._http_get(url, cache_limit=2)
         for _attrs, article in dom_parser2.parse_dom(html, 'article', {'id': re.compile('post-\d+')}):
             match = re.search('href="([^"]+-s%02d-e%02d[/-][^"]*)' % (int(video.season), int(video.episode)), article, re.I)
@@ -89,7 +89,7 @@ class Scraper(scraper.Scraper):
                 label = scraper_utils.cleanse_title(label)
                 label = re.sub('\s+\(\d+\)$', '', label)
                 if norm_title in scraper_utils.normalize_title(label):
-                    cat_url = urlparse.urljoin(self.base_url, '/?cat=%s' % (attrs['value']))
+                    cat_url = scraper_utils.urljoin(self.base_url, '/?cat=%s' % (attrs['value']))
                     html = self._http_get(cat_url, allow_redirect=False, cache_limit=8)
                     if html.startswith('http'):
                         cat_url = html

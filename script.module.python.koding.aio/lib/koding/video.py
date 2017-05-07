@@ -30,7 +30,7 @@ dp            = xbmcgui.DialogProgress()
 check_started = xbmc.translatePath('special://profile/addon_data/script.module.python.koding.aio/temp/playback_in_progress')
 #----------------------------------------------------------------    
 # TUTORIAL #
-def Check_Playback():
+def Check_Playback(ignore_dp=False,timeout=10):
     """
 This function will return true or false based on video playback. Simply start a stream
 (whether via an add-on, direct link to URL or local storage doesn't matter), the code will
@@ -39,6 +39,22 @@ account all potential glitches which can occur during playback. The return shoul
 within a second or two of playback being successful (or not).
 
 CODE: Check_Playback()
+
+AVAILABLE PARAMS:
+    
+    ignore_dp  -  By default this is set to True but if set to False
+    this will ignore the DialogProgress window. If you use a DP while
+    waiting for the stream to start then you'll want to set this True.
+    Please bare in mind the reason this check is in place and enabled
+    by default is because some streams do bring up a DialogProgress
+    when initiated (such as f4m proxy links) and disabling this check
+    in those circumstances can cause false positives.
+
+    timeout  -  This is the amount of time you want to allow for playback
+    to start before sending back a response of False. Please note if
+    ignore_dp is set to True then it will also add a potential 10s extra
+    to this amount if a DialogProgress window is open. The default setting
+    for this is 10s.
 
 EXAMPLE CODE:
 xbmc.Player().play('http://totalrevolution.tv/videos/python_koding/Browse_To_Folder.mov')
@@ -51,38 +67,40 @@ else:
 ~"""
     if not os.path.exists(check_started):
         os.makedirs(check_started)
-    isdialog = True
-    counter = 1
+    
+    if not ignore_dp:
+        isdialog = True
+        counter = 1
 
 # Check if the progress window is active and wait for playback
-    while isdialog:
-        dolog('### Current Window: %s' % xbmc.getInfoLabel('System.CurrentWindow'))
-        dolog('### Current XML: %s' % xbmc.getInfoLabel('Window.Property(xmlfile)'))
-        dolog('### Progress Dialog active, sleeping for %s seconds' % counter)
-        xbmc.sleep(1000)
-        if xbmc.getCondVisibility('Window.IsActive(progressdialog)') or (xbmc.getInfoLabel('Window.Property(xmlfile)') == 'DialogProgress.xml'):
-            isdialog = True
-        else:
-            isdialog = False
-        counter += 1
-        dolog('counter: %s' % counter)
+        while isdialog:
+            dolog('### Current Window: %s' % xbmc.getInfoLabel('System.CurrentWindow'))
+            dolog('### Current XML: %s' % xbmc.getInfoLabel('Window.Property(xmlfile)'))
+            dolog('### Progress Dialog active, sleeping for %s seconds' % counter)
+            xbmc.sleep(1000)
+            if xbmc.getCondVisibility('Window.IsActive(progressdialog)') or (xbmc.getInfoLabel('Window.Property(xmlfile)') == 'DialogProgress.xml'):
+                isdialog = True
+            else:
+                isdialog = False
+            counter += 1
+            dolog('counter: %s' % counter)
 
 # Given the DialogProgress 10 seconds to finish and it's still up - time to close it
-        if counter == 10:
-            try:
-                dolog('attempting to send click to close dp')
-                xbmc.executebuiltin('SendClick()')
-                if dp.iscanceled():
-                    dp.close()
-            except:
-                dolog('### FAILED TO CLOSE DP')
+            if counter == 10:
+                try:
+                    dolog('attempting to send click to close dp')
+                    xbmc.executebuiltin('SendClick()')
+                    if dp.iscanceled():
+                        dp.close()
+                except:
+                    dolog('### FAILED TO CLOSE DP')
 
     isplaying = xbmc.Player().isPlaying()
     counter   = 1
     if xbmc.Player().isPlayingAudio():
         return True
 # If xbmc player is not yet active give it some time to initialise
-    while not isplaying and counter <10:
+    while not isplaying and counter < timeout:
         xbmc.sleep(1000)
         isplaying = xbmc.Player().isPlaying()
         dolog('### XBMC Player not yet active, sleeping for %s seconds' % counter)
@@ -138,7 +156,7 @@ else:
         return True
 #----------------------------------------------------------------    
 # TUTORIAL #
-def Play_Video(video, showbusy=True, content='video'):
+def Play_Video(video,showbusy=True,content='video',ignore_dp=False,timeout=10):
     """
 This will attempt to play a video and return True or False on
 whether or not playback was successful. This function is similar
@@ -163,6 +181,20 @@ AVAILABLE PARAMS:
     content  -  By default this is set to 'video', however if you're
     passing through audio you may want to set this to 'music' so the
     system can correctly set the tags for artist, song etc.
+
+    ignore_dp  -  By default this is set to True but if set to False
+    this will ignore the DialogProgress window. If you use a DP while
+    waiting for the stream to start then you'll want to set this True.
+    Please bare in mind the reason this check is in place and enabled
+    by default is because some streams do bring up a DialogProgress
+    when initiated (such as f4m proxy links) and disabling this check
+    in those circumstances can cause false positives.
+
+    timeout  -  This is the amount of time you want to allow for playback
+    to start before sending back a response of False. Please note if
+    ignore_dp is set to True then it will also add a potential 10s extra
+    to this amount if a DialogProgress window is open. The default setting
+    for this is 10s.
 
 EXAMPLE CODE:
 isplaying = koding.Play_Video('http://totalrevolution.tv/videos/python_koding/Browse_To_Folder.mov')
@@ -210,7 +242,7 @@ else:
         dolog('### Video is digit, presuming it\'s a db item')
         command = ('{"jsonrpc": "2.0", "id":"1", "method": "Player.Open","params":{"item":{"channelid":%s}}}' % url)
         xbmc.executeJSONRPC(command)
-        playback = Check_Playback()
+        playback = Check_Playback(ignore_dp,timeout)
         is_in_progress = True
         progress_count = 0
         while is_in_progress:
@@ -224,7 +256,7 @@ else:
         try:
             dolog('Attempting to play via XBMC.ActivateWindow(10025, ...) method')
             xbmc.executebuiltin('XBMC.ActivateWindow(10025,%s)' % video)
-            playback = Check_Playback()
+            playback = Check_Playback(ignore_dp,timeout)
             is_in_progress = True
             progress_count = 0
             while is_in_progress:
@@ -241,7 +273,7 @@ else:
         try:
             dolog('Attempting to play via xbmc.executebuiltin method')
             xbmc.executebuiltin('%s'%video)
-            playback = Check_Playback()
+            playback = Check_Playback(ignore_dp,timeout)
             is_in_progress = True
             progress_count = 0
             while is_in_progress:
@@ -258,7 +290,7 @@ else:
         try:
             dolog('Attempting to play via xbmc.Player.play() method')
             xbmc.Player().play('%s'%video, item)
-            playback = Check_Playback()
+            playback = Check_Playback(ignore_dp,timeout)
             is_in_progress = True
             progress_count = 0
             while is_in_progress:
@@ -277,7 +309,7 @@ else:
                     video = hmf.resolve()
                     dolog('### VALID URL, RESOLVED: %s'%video)
                 xbmc.Player().play('%s' % video, item)
-                playback = Check_Playback()
+                playback = Check_Playback(ignore_dp,timeout)
                 is_in_progress = True
                 progress_count = 0
                 while is_in_progress:
@@ -299,7 +331,7 @@ else:
                 video = hmf.resolve()
                 dolog('### VALID URL, RESOLVED: %s'%video)
             xbmc.Player().play('%s' % video, item)
-            playback = Check_Playback()
+            playback = Check_Playback(ignore_dp,timeout)
             is_in_progress = True
             progress_count = 0
             while is_in_progress:
@@ -313,7 +345,7 @@ else:
             try:
                 dolog('Attempting to play via xbmc.Player.play() method')
                 xbmc.Player().play('%s' % video, item)
-                playback = Check_Playback()
+                playback = Check_Playback(ignore_dp,timeout)
                 is_in_progress = True
                 progress_count = 0
                 while is_in_progress:
@@ -328,3 +360,22 @@ else:
     dolog('Playback status: %s' % playback)
     Show_Busy(False)
     return playback
+#----------------------------------------------------------------    
+# TUTORIAL #
+def Sleep_If_Playback_Active():
+    """
+This will allow you to pause code while kodi is playing audio or video
+
+CODE: Sleep_If_Playback_Active()
+
+EXAMPLE CODE:
+dialog.ok('PLAY A VIDEO','We will now attempt to play a video, once you stop this video you should see a dialog.ok message.')
+xbmc.Player().play('http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.avi')
+xbmc.sleep(3000) # Give kodi enough time to load up the video
+koding.Sleep_If_Playback_Active()
+dialog.ok('PLAYBACK FINISHED','The playback has now been finished so this dialog code has now been initiated')
+~"""
+    isplaying = xbmc.Player().isPlaying()
+    while isplaying:
+        xbmc.sleep(500)
+        isplaying = xbmc.Player().isPlaying()

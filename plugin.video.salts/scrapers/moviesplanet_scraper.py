@@ -18,7 +18,6 @@
 import base64
 import re
 import time
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -58,7 +57,7 @@ class Scraper(scraper.Scraper):
         sources = {}
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=0)
         for match in re.finditer("embeds\[(\d+)\]\s*=\s*'([^']+)", html):
             match = re.search('src="([^"]+)', match.group(2))
@@ -104,7 +103,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/ajax/search.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/ajax/search.php')
         timestamp = int(time.time() * 1000)
         query = {'q': title, 'limit': 100, 'timestamp': timestamp, 'verifiedCheck': ''}
         html = self._http_get(search_url, data=query, headers=XHR, cache_limit=1)
@@ -147,7 +146,7 @@ class Scraper(scraper.Scraper):
         return html
 
     def __login(self):
-        url = urlparse.urljoin(self.base_url, '/login')
+        url = scraper_utils.urljoin(self.base_url, '/login')
         data = {'username': self.username, 'password': self.password, 'returnpath': '/'}
         html = super(self.__class__, self)._http_get(url, data=data, headers=XHR, cache_limit=0)
         if 'incorrect login' in html.lower():

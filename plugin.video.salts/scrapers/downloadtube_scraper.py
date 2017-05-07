@@ -52,13 +52,13 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
         
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=8)
         movie_id = dom_parser2.parse_dom(html, 'input', {'id': 'movie_id'}, req='value')
         if not movie_id: return hosters
         
         data = {'movie': movie_id[0].attrs['value'], 'starttime': 'undefined', 'pageevent': 0, 'aspectration': ''}
-        xhr_url = urlparse.urljoin(self.base_url, '/movies/play_online')
+        xhr_url = scraper_utils.urljoin(self.base_url, '/movies/play_online')
         headers = {'Referer': page_url}
         headers.update(XHR)
         html = self._http_get(xhr_url, data=data, headers=headers, cache_limit=.5)
@@ -95,7 +95,7 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/%s' % (urllib.quote(title)))
+        search_url = scraper_utils.urljoin(self.base_url, '/search/%s' % (urllib.quote(title)))
         html = self._http_get(search_url, cache_limit=8)
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'who-likes'})
         if not fragment: return results

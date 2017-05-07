@@ -59,7 +59,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         js_result = scraper_utils.parse_json(html, url)
         if 'error' in js_result:
@@ -116,7 +116,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search?query=')
+        search_url = scraper_utils.urljoin(self.base_url, '/search?query=')
         search_url += title.replace("'", "")
         html = self._http_get(search_url, cache_limit=.25)
         js_result = scraper_utils.parse_json(html, search_url)
@@ -138,11 +138,11 @@ class Scraper(scraper.Scraper):
         return super(self.__class__, self)._http_get(url, data=data, require_debrid=True, cache_limit=cache_limit)
 
     def __translate_search(self, url):
-        query = urlparse.parse_qs(urlparse.urlparse(url).query)
+        query = scraper_utils.parse_query(url)
         if 'quality' in query:
-            q_index = Q_DICT[query['quality'][0]]
+            q_index = Q_DICT[query['quality']]
             q_list = [dd_qual for dd_qual in DD_QUALITIES if Q_DICT[dd_qual] <= q_index]
         else:
             q_list = self.q_order
         quality = '&'.join(['quality[]=%s' % (q) for q in q_list])
-        return urlparse.urljoin(self.base_url, (SEARCH_URL % (API_KEY, quality, urllib.quote_plus(query['query'][0]))))
+        return scraper_utils.urljoin(self.base_url, (SEARCH_URL % (API_KEY, quality, urllib.quote_plus(query['query']))))

@@ -140,7 +140,6 @@ class tvshows:
 			
 			
     def similar_shows(self, imdb):
-		print("ZEN SIMILAR Shows", imdb)
 		url = '%s?action=get_similar_shows&imdb=%s' % (sys.argv[0], imdb)
 		control.execute('Container.Update(%s)' % url)
 
@@ -1204,7 +1203,7 @@ class tvshows:
                     pass
 					
                 try:
-                    if trakt.getTraktIndicatorsInfo() == True: raise Exception()
+                   
                     localwatched = control.setting('local.watched')
                     
                     if not localwatched == 'true': raise Exception()
@@ -1229,9 +1228,9 @@ class tvshows:
                 if action == 'tvFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
-                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
+                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycountShow&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
 
-                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
+                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycountShow&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
                 if not sysmetalliq == '0' or sysmetalliq == None:cm.append(('Add To Library', 'RunPlugin(%s)' % (sysmetalliq)))
 
                 if traktCredentials == True:
@@ -1362,9 +1361,9 @@ class tvshows:
                 if action == 'tvFavourites': cm.append(('Remove From Watchlist', 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
-                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
+                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycountShow&name=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, imdb, tvdb)))
 
-                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
+                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycountShow&name=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, imdb, tvdb)))
                 if not sysmetalliq == '0' or sysmetalliq == None:cm.append(('Add To Library', 'RunPlugin(%s)' % (sysmetalliq)))
 
                 if traktCredentials == True:

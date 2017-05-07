@@ -55,13 +55,13 @@ class Scraper(scraper.Scraper):
             for day in [day_after, video.ep_airdate]:
                 if day < today:
                     page_url = EP_PAGE % (day.strftime('%Y.%m.%d'))
-                    page_url = urlparse.urljoin(self.base_url, page_url)
+                    page_url = scraper_utils.urljoin(self.base_url, page_url)
                     html = self._http_get(page_url, require_debrid=True, cache_limit=30 * 24)
                     sources.update(self.__get_sources(video, html))
                 if sources: break
                 
             if not sources and kodi.get_setting('scraper_url'):
-                page_url = urlparse.urljoin(self.base_url, '/index.html')
+                page_url = scraper_utils.urljoin(self.base_url, '/index.html')
                 html = self._http_get(page_url, require_debrid=True, cache_limit=2)
                 sources.update(self.__get_sources(video, html))
             

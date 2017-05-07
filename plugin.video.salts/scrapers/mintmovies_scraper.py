@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
 
         sources = []
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tab-content'}):
             for attrs, _content in dom_parser2.parse_dom(div, 'iframe', req='src'):

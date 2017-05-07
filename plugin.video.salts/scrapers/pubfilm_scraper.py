@@ -15,9 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import datetime
 import re
 import urlparse
-import urllib
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -51,7 +51,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         
         views = None
@@ -117,8 +117,8 @@ class Scraper(scraper.Scraper):
         return sources
         
     def _get_episode_url(self, season_url, video):
-        url = urlparse.urljoin(self.base_url, season_url)
-        html = self._http_get(url, cache_limit=8)
+        url = scraper_utils.urljoin(self.base_url, season_url)
+        html = self._http_get(url, cache_limit=2)
         for label, _links in self.__get_episode_links(html):
             if int(label) == int(video.episode):
                 return season_url
@@ -129,9 +129,9 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/%s' % (urllib.quote(title)))
         headers = {'Referer': self.base_url}
-        html = self._http_get(search_url, headers=headers, cache_limit=8)
+        html = self._http_get(self.base_url, params={'s': title}, headers=headers, cache_limit=8)
+        log_utils.log(html)
         norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'recent-item'}):
             fragment = dom_parser2.parse_dom(item, 'h\d+')
@@ -158,3 +158,12 @@ class Scraper(scraper.Scraper):
                         result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                         results.append(result)
         return results
+
+    def __cache_header(self, max_age):
+        return (datetime.datetime.utcnow() - datetime.timedelta(hours=float(max_age))).strftime('%a, %d %b %Y %H:%M:%S GMT')
+        
+    def _http_get(self, url, params=None, data=None, multipart_data=None, headers=None, cookies=None, allow_redirect=True, method=None, require_debrid=False, read_error=False, cache_limit=8):
+        if headers is None: headers = {}
+        headers.update({'If-Modified-Since': self.__cache_header(cache_limit)})
+        return scraper.Scraper._http_get(self, url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error, cache_limit=cache_limit)
+    

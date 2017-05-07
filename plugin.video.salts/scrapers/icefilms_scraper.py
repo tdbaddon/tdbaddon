@@ -54,7 +54,7 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         parts = urlparse.urlparse(link)
         data = urlparse.parse_qs(parts.query, True)
-        url = urlparse.urljoin(self.base_url, parts.path)
+        url = scraper_utils.urljoin(self.base_url, parts.path)
         params = {'s': data['id'][0], 't': data['t'][0], 'app_id': 'SALTS'}
         headers = {'Referer': LIST_URL.format(vid_id=data['t'][0])}
         html = self._http_get(url, params=params, data=data, headers=headers, cache_limit=0)
@@ -67,12 +67,12 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return sources
         try:
-            url = urlparse.urljoin(self.base_url, source_url)
+            url = scraper_utils.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=2)
 
             pattern = '<iframe id="videoframe" src="([^"]+)'
             match = re.search(pattern, html)
-            url = urlparse.urljoin(self.base_url, match.group(1))
+            url = scraper_utils.urljoin(self.base_url, match.group(1))
             html = self._http_get(url, cache_limit=0)
 
             match = re.search('lastChild\.value="([^"]+)"(?:\s*\+\s*"([^"]+))?', html)
@@ -117,9 +117,9 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         if video_type == VIDEO_TYPES.MOVIE:
-            url = urlparse.urljoin(self.base_url, '/movies/a-z/')
+            url = scraper_utils.urljoin(self.base_url, '/movies/a-z/')
         else:
-            url = urlparse.urljoin(self.base_url, '/tv/a-z/')
+            url = scraper_utils.urljoin(self.base_url, '/tv/a-z/')
 
         if title.upper().startswith('THE '):
             search_title = title[4:5]

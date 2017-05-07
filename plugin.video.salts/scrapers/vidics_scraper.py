@@ -18,7 +18,6 @@
 import urllib
 import re
 import urllib2
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -28,7 +27,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://www.vidics.ch'
+BASE_URL = 'https://www.vidics.to'
 FRAGMENTS = {VIDEO_TYPES.MOVIE: '/film/', VIDEO_TYPES.TVSHOW: '/serie/'}
 
 class Scraper(scraper.Scraper):
@@ -47,7 +46,7 @@ class Scraper(scraper.Scraper):
         return 'vidics.ch'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         request = urllib2.Request(url)
         request.add_header('User-Agent', scraper_utils.get_ua())
         request.add_unredirected_header('Host', request.get_host())
@@ -59,7 +58,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=.5)
         for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'lang'}):
@@ -91,7 +90,7 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         search_url = '/Category-FilmsAndTV/Genre-Any/Letter-Any/ByPopularity/1/Search-%s.htm' % (urllib.quote(title))
-        search_url = urlparse.urljoin(self.base_url, search_url)
+        search_url = scraper_utils.urljoin(self.base_url, search_url)
         html = self._http_get(search_url, cache_limit=8)
 
         results = []

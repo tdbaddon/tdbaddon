@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
@@ -52,7 +51,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         container_pattern = r'<table[^>]+class="movie_version[ "][^>]*>(.*?)</table>'
@@ -97,7 +96,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/index.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/index.php')
         params = {'search_keywords': title, 'year': year}
         params['search_section'] = 2 if video_type == VIDEO_TYPES.TVSHOW else 1
         html = self. _http_get(self.base_url, cache_limit=8)

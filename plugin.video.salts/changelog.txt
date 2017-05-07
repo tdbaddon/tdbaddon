@@ -1,3 +1,29 @@
+[B]Version 2.0.184[/B]
+- Improve image scraping (fix using thumbnails as fanart)
+- Add RMZ
+- Improve Premiumize.V2
+- Improve/Fix Furk
+- Improve YesMovies
+- Improve 2DDL
+- Improve DDLValley
+- Improve MyDDL
+- Improve Quikr
+- Improve rls-movies
+- Remove scrapers for defunct sites
+- Fix Dizist
+- Fix Watch5s
+- Fix Dizipas
+- Fix pubfilm
+- Fix Vumoo
+- Fix Solar
+- Fix SceneHDTV
+- Fix Vidics
+- Fix SeeHD
+- Fix Dizipas
+- Fix Putlocker
+- Update MVL
+- Update Flixanity
+
 [B]Version 2.0.175[/B]
 - Add SeriesOnline
 - Make ImageProxy multi-threaded

@@ -52,7 +52,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         match = re.search('((?:pic|emb|vb|dir|emb2)=[^<]+)', html)
@@ -101,7 +101,7 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        search_url = urlparse.urljoin(self.base_url, '/search')
+        search_url = scraper_utils.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, params={'q': title}, cache_limit=.25)
         results = []
         pattern = 'data-name="([^"]+).*?href="([^"]+)'
@@ -133,7 +133,7 @@ class Scraper(scraper.Scraper):
         return html
 
     def __login(self):
-        url = urlparse.urljoin(self.base_url, '/sessions')
+        url = scraper_utils.urljoin(self.base_url, '/sessions')
         data = {'username': self.username, 'password': self.password, 'remember': 1}
         html = super(self.__class__, self)._http_get(url, data=data, allow_redirect=False, cache_limit=0)
         if html != self.base_url:

@@ -80,7 +80,7 @@ class Scraper(scraper.Scraper):
         sources = {}
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         movie_id, watching_url, html = self.__get_source_page(video.video_type, page_url)
         
         links = []
@@ -93,10 +93,10 @@ class Scraper(scraper.Scraper):
             
         for link_type, link_id in links:
             if link_type in ['12', '13', '14', '15']:
-                url = urlparse.urljoin(self.base_url, PLAYLIST_URL1.format(ep_id=link_id))
+                url = scraper_utils.urljoin(self.base_url, PLAYLIST_URL1.format(ep_id=link_id))
                 sources.update(self.__get_link_from_json(url))
             elif kodi.get_setting('scraper_url'):
-                url = urlparse.urljoin(self.base_url, PLAYLIST_URL2.format(ep_id=link_id))
+                url = scraper_utils.urljoin(self.base_url, PLAYLIST_URL2.format(ep_id=link_id))
                 params = self.__get_params(movie_id, link_id, watching_url)
                 if params is not None:
                     url += '?' + urllib.urlencode(params)
@@ -186,20 +186,20 @@ class Scraper(scraper.Scraper):
         
         vid_type = 'movie' if video_type == VIDEO_TYPES.MOVIE else 'series'
         qp_url = QP_URL.format(slug=slug, movie_id=movie_id, vid_type=vid_type)
-        qp_url = urlparse.urljoin(self.base_url, qp_url)
-        headers = {'Referer': urlparse.urljoin(self.base_url, page_url)}
+        qp_url = scraper_utils.urljoin(self.base_url, qp_url)
+        headers = {'Referer': scraper_utils.urljoin(self.base_url, page_url)}
         headers.update(XHR)
         html = self._http_get(qp_url, headers=headers, cache_limit=8)
         watching_url = dom_parser2.parse_dom(html, 'a', {'title': re.compile('View all episodes')}, req='href')
         if not watching_url: return '', '', ''
         
         watching_url = watching_url[0].attrs['href']
-        page_html = self._http_get(watching_url, headers={'Referer': urlparse.urljoin(self.base_url, page_url)}, cache_limit=8)
+        page_html = self._http_get(watching_url, headers={'Referer': scraper_utils.urljoin(self.base_url, page_url)}, cache_limit=8)
         for attrs, _content in dom_parser2.parse_dom(page_html, 'img', {'class': 'hidden'}, req='src'):
             _img = self._http_get(attrs['src'], headers={'Referer': watching_url}, cache_limit=8)
         
         sl_url = SL_URL.format(movie_id=movie_id)
-        sl_url = urlparse.urljoin(self.base_url, sl_url)
+        sl_url = scraper_utils.urljoin(self.base_url, sl_url)
         html = self._http_get(sl_url, headers=headers, cache_limit=8)
         js_data = scraper_utils.parse_json(html, sl_url)
         try: html = js_data['html']
@@ -227,7 +227,7 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/')
         title = re.sub('[^A-Za-z0-9 ]', '', title)
         search_url += '%s.html' % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=8)
@@ -245,7 +245,7 @@ class Scraper(scraper.Scraper):
                 match_title = re.sub('</?h2>', '', match_title)
                 match_title = re.sub('\s+\d{4}$', '', match_title)
                 if video_type == VIDEO_TYPES.SEASON:
-                    if season and not re.search('Season\s+%s$' % (season), match_title): continue
+                    if season and not re.search('Season\s+0*%s$' % (season), match_title): continue
                     
                 match_year = match_year.group(1) if match_year else ''
                 if not year or not match_year or year == match_year:
@@ -258,7 +258,7 @@ class Scraper(scraper.Scraper):
         params = None
         ts = int(time.time() * 1000)
         token_url = TOKEN_URL.format(ep_id=episode_id, movie_id=movie_id, ts=ts)
-        token_url = urlparse.urljoin(self.base_url, token_url)
+        token_url = scraper_utils.urljoin(self.base_url, token_url)
         headers = {'Referer': page_url}
         headers.update(XHR)
         script = self._http_get(token_url, headers=headers, cache_limit=0)

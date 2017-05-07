@@ -1,4 +1,10 @@
 ========================
+2.1.0
+========================
++ Added TVPlayer login [Credit: shani_08]
++ Removed truTV Catch-up
+
+========================
 2.0.1
 ========================
 + Fixed streams for BBC iPlayer service

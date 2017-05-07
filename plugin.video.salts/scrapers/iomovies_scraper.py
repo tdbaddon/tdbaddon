@@ -56,18 +56,18 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return sources
         
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=8)
         match = dom_parser2.parse_dom(html, 'a', {'title': re.compile('click to play', re.I)}, req='href')
         if not match: return sources
         
-        page_url = urlparse.urljoin(self.base_url, match[0].attrs['href'])
+        page_url = scraper_utils.urljoin(self.base_url, match[0].attrs['href'])
         headers = {'Referer': page_url}
         html = self._http_get(page_url, headers=headers, cache_limit=.02)
         for attrs, _content in dom_parser2.parse_dom(html, 'a', {'class': 'mw-episode-btn'}, req=['data-target-i', 'data-target-e', 'title']):
             try:
                 if "wasn't alive" in attrs['title']: continue
-                vid_url = urlparse.urljoin(self.base_url, VID_URL)
+                vid_url = scraper_utils.urljoin(self.base_url, VID_URL)
                 vid_url = vid_url.format(data_i=attrs['data-target-i'], data_e=attrs['data-target-e'])
                 headers = {'Referer': page_url}
                 headers.update(XHR)
@@ -199,7 +199,7 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search')
+        search_url = scraper_utils.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, params={'q': title}, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'movie-item'}):
             match = dom_parser2.parse_dom(item, 'a', {'itemprop': 'url'}, req='href')

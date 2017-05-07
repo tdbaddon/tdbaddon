@@ -467,7 +467,7 @@ def AddSports(url):
     addDir('Paktv sports' ,'sss',52,os.path.join(home,'icons','PakTV sports.png'))
     addDir('UniTV sports' ,'sss',53,os.path.join(home,'icons','UniTV Sports.png'))
     addDir('WTV sports' ,'sss',62,os.path.join(home,'icons','WTV Sports.png'))
-    addDir('GTV sports' ,'sss',70,os.path.join(home,'icons','GTV Sports.png'))
+    #addDir('GTV sports' ,'sss',70,os.path.join(home,'icons','GTV Sports.png'))
     addDir('Pi sports' ,'sss',71,os.path.join(home,'icons','Pi Sports.png'))
     addDir('Mona' ,'sss',68,os.path.join(home,'icons','Mona.png'))
     addDir('Sport365.live' ,'sss',56,'http://s1.medianetworkinternational.com/images/icons/256x256px.png')
@@ -480,7 +480,7 @@ def AddSports(url):
     addDir('My Sports' ,'sss',82,os.path.join(home,'icons','Sports.png'))
     addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
     addDir('Fast TV' ,'sss',92,os.path.join(home,'icons','Fast TV.png'))
-    addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
+    #addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
     addDir('Slow TV' ,'sss',96,os.path.join(home,'icons','slowtv.png'))
     addDir('PTV Sports' ,'sss',98,os.path.join(home,'icons','slowtv.png'))
 
@@ -1690,7 +1690,7 @@ def AddWTVSports(url=None):
     return      
     
 def AddGTVSports(url=None):
-
+    
     if url=="sss":
         cats=['Asto Sports','TSN Sports','OSN Sports','Sports Time TV','T20 World Cup','Horse Racing','Cricket Matches','Footbal','Golf','Boxing & Fight','T20 Big Bash League','NFL Live','Footbal Clubs','Sports HD','Sports Full HD','Global Sports']
         isSports=True
@@ -4731,6 +4731,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isv8Off=='true': unitvgen=None
     if isv9Off=='true': wtvgen=None
     if isFastOff=='true': fastgen=None
+    isNetworkTVOff='true'
     if isNetworkTVOff=='true': nettvgen=None
     if isSlowTVOff=='true': slowtvgen=None
     

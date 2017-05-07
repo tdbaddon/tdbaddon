@@ -84,8 +84,8 @@ def getShowLocalIndicator(imdb):
     try:
         import sys,xbmc
         from resources.lib.modules import control
-        print ("ZEN PLAYCOUNT SHOWS")
-        if not trakt.getTraktIndicatorsInfo() == False: raise Exception()
+        
+
         total = '6'
         from metahandler import metahandlers
         metaget = metahandlers.MetaData(preparezip=False)
@@ -94,8 +94,6 @@ def getShowLocalIndicator(imdb):
         season_playcount = []
         season_file = control.seasons_meta
         id = imdb.encode('utf-8')	
-		
-	
         try:
 
             control.makeFile(control.dataPath)
@@ -111,7 +109,7 @@ def getShowLocalIndicator(imdb):
         except:
             pass			
 
-        print ("ZEN SEASON PLAYCOUNT", season_playcount)	
+
         if "6" in season_playcount: 
 			total = '6'
 			return total
@@ -121,7 +119,7 @@ def getShowLocalIndicator(imdb):
 				metaget._update_watched(id, 'tvshow', int(total))
 
         total = metaget._get_watched('tvshow', id, '', '')  
-        		
+        print ("ZEN SEASON PLAYCOUNT", imdb, season_playcount, total)	       		
         total = str(total)
         return total
         
@@ -340,7 +338,7 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
         watched=int(watched)
         from metahandler import metahandlers
         from resources.lib.indexers import episodes
-
+        imdb = imdb.encode('utf-8')
         metaget = metahandlers.MetaData(preparezip=False)
 
         name = control.addonInfo('name')
@@ -348,8 +346,6 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
         dialog = control.progressDialogBG
         dialog.create(str(name), str(tvshowtitle))
         dialog.update(0, str(name), str(tvshowtitle))
-
-        metaget.get_meta('tvshow', '', imdb_id=imdb)
 
         items = episodes.episodes().get(tvshowtitle, '0', imdb, tvdb, '0', idx=False)
         try: items = [i for i in items if int('%01d' % int(season)) == int('%01d' % int(i['season']))]
@@ -371,40 +367,92 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
         try: dialog.close()
         except: pass
 
-    marktvshows(tvshowtitle, imdb, tvdb, season, watched)
-
 
     control.refresh()
 
 	
-def marktvshows(tvshowtitle, imdb, tvdb, season, watched):
+def marktvshows(tvshowtitle, imdb, tvdb, watched):
     try:
         import sys,xbmc
-        watched=int(watched)
+
         if not trakt.getTraktIndicatorsInfo() == False: raise Exception()
         watched=int(watched)
         from metahandler import metahandlers
         from resources.lib.indexers import episodes
+		
+        imdb = imdb.encode('utf-8')
 
         metaget = metahandlers.MetaData(preparezip=False)
 
         name = control.addonInfo('name')
 
-        metaget._update_watched(id, 'tvshow', watched)
+        dialog = control.progressDialogBG
+        dialog.create(str(name), str(tvshowtitle))
+        dialog.update(0, str(name), str(tvshowtitle))
+
+        items = episodes.episodes().get(tvshowtitle, '0', imdb, tvdb, '0', idx=False)
+        try: items = [i for i in items]
+        except: pass
+        items = [{'label': '%s S%02dE%02d' % (tvshowtitle, int(i['season']), int(i['episode'])), 'season': int('%01d' % int(i['season'])), 'episode': int('%01d' % int(i['episode']))} for i in items]
+
+        season_file = control.seasons_meta
+        try: from sqlite3 import dbapi2 as database
+        except: from pysqlite2 import dbapi2 as database
+        try:
+            if watched == 6:
+				total = '6'
+				dbcon = database.connect(season_file)
+				dbcur = dbcon.cursor()
+				dbcur.execute("DELETE FROM season_meta WHERE imdb = '%s'" % (imdb))
+				dbcon.commit()
+        except:
+            pass
+			
+		
+        for i in range(len(items)):
+            if xbmc.abortRequested == True: return sys.exit()
+            dialog.update(int((100 / float(len(items))) * i), str(name), str(items[i]['label']))
+            season, episode = items[i]['season'], items[i]['episode']
+            metaget.get_episode_meta('', imdb, season, episode)
+            metaget.change_watched('episode', '', imdb, season=season, episode=episode, year='', watched=watched)
+            try:
+				if watched == 7:
+					total = '7'
+					dbcon = database.connect(season_file)
+					dbcur = dbcon.cursor()
+					dbcur.execute("DELETE FROM season_meta WHERE imdb = '%s' AND season = '%s'" % (imdb, season))
+					dbcur.execute("INSERT INTO season_meta Values (?, ?, ?, ?)", (imdb, tvdb, season, total))
+					dbcon.commit()
+            except:
+				pass
+				
+        try: dialog.close()
+        except: pass
+    except:
+        try: dialog.close()
+        except: pass
+
+
+    try:
+        import sys,xbmc
+        watched=int(watched)
+        imdb = imdb.encode('utf-8')
+        from metahandler import metahandlers
+        from resources.lib.indexers import episodes
+
+        metaget = metahandlers.MetaData(preparezip=False)
+        metaget.get_meta('tvshow', name='', imdb_id=imdb)
+        metaget._update_watched(imdb, 'tvshow', watched)
         metaget.change_watched('tvshow', '', imdb, watched=watched)
 
     except:
         pass
+		
+
+			
+	
 
 
-    try:
-        if trakt.getTraktIndicatorsInfo() == False: raise Exception()
-        if int(watched) == 7: trakt.markTVShowAsWatched(tvdb)
-        else: trakt.markTVShowAsNotWatched(tvdb)
-        trakt.cachesyncTVShows()
-    except:
-        pass
 
     control.refresh()
-
 

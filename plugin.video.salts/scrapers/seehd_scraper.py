@@ -28,7 +28,7 @@ from salts_lib.constants import Q_ORDER
 import scraper
 
 
-BASE_URL = 'http://www.seehd.club'
+BASE_URL = 'http://www.seehd.ws'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         sources = {}
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'tabcontent'}):
             for attrs, _content in dom_parser2.parse_dom(div, 'source', req='src'):

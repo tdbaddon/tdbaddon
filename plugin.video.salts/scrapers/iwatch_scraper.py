@@ -17,7 +17,6 @@
 """
 import re
 import time
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -47,7 +46,7 @@ class Scraper(scraper.Scraper):
         return 'iWatchOnline'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         html = self._http_get(url, allow_redirect=False, cache_limit=.5)
         if html.startswith('http'):
             return html
@@ -60,7 +59,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         fragment = dom_parser2.parse_dom(html, 'table', {'id': 'streamlinks'})
@@ -123,7 +122,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         search_in = 'm' if video_type == VIDEO_TYPES.MOVIE else 't'
-        search_url = urlparse.urljoin(self.base_url, '/search')
+        search_url = scraper_utils.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, data={'searchquery': title, 'searchin': search_in}, cache_limit=8)
         try:
             fragment = dom_parser2.parse_dom(html, 'div', {'class': 'search-page'})

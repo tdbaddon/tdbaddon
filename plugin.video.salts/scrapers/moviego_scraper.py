@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=8)
         q_str = dom_parser2.parse_dom(html, 'div', {'class': 'poster-qulabel'})
         if q_str:
@@ -99,7 +99,7 @@ class Scraper(scraper.Scraper):
         if match:
             ajax_url, params = match.groups()
             params = scraper_utils.parse_params(params)
-            ajax_url = urlparse.urljoin(self.base_url, ajax_url)
+            ajax_url = scraper_utils.urljoin(self.base_url, ajax_url)
             headers = {'Referer': page_url}
             headers.update(XHR)
             html = self._http_get(ajax_url, params=params, headers=headers, cache_limit=.5)
@@ -110,7 +110,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         data = {'hash': 'indexert', 'do': 'search', 'subaction': 'search', 'search_start': 0, 'full_search': 0, 'result_from': 1, 'story': title}
-        search_url = urlparse.urljoin(self.base_url, 'index.php')
+        search_url = scraper_utils.urljoin(self.base_url, 'index.php')
         html = self._http_get(search_url, params={'do': 'search'}, data=data, cache_limit=8)
         if dom_parser2.parse_dom(html, 'div', {'class': 'sresult'}):
             for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'short_content'}):

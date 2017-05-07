@@ -1312,10 +1312,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.video.freeview" name="Freeview" version="2.0.1" provider-name="RayW1986">
+<addon id="plugin.video.freeview" name="Freeview" version="3.0.0" provider-name="RayW1986">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.liveresolver"  version="0.1.28"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
                	library="default.py">
@@ -1324,7 +1323,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <summary>UK Freeview Channels</summary>
-        <description>Watch a wide array of Freeview channels from official and legal sources. [B]THIS ADD-ON REQUIRES A VPN OUTSIDE OF THE UNITED KINGDOM.[/B] For help or more information please visit TVADDONS.ag</description>
+        <description>Watch a wide array of Freeview channels from official and legal sources. [B]THIS ADD-ON REQUIRES A VPN OUTSIDE OF THE UNITED KINGDOM.[/B]</description>
 		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
     </extension>
 
@@ -1779,7 +1778,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.md123movies" name="123Movies" version="2.0.8" provider-name="Mucky Duck">
+<addon id="plugin.video.md123movies" name="123Movies" version="2.1.0" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -1835,7 +1834,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdws" version="2.0.0" name="MD.Watchseries" provider-name="Mucky Duck">
+<addon id="plugin.video.mdws" version="2.0.1" name="MD.Watchseries" provider-name="Mucky Duck">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -1854,12 +1853,11 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
-<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.4" provider-name="Mucky Duck">
+<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="2.0.0" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
+	<import addon="script.module.muckys.common"/>
 	<import addon="repository.mdrepo" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -2309,12 +2307,13 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.175" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.185" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
         <import addon="script.module.myconnpy" version="1.1.6" />
         <import addon="script.module.tknorris.shared" version="0.0.19"/>
+        <import addon="script.module.six"/>
         <import addon="script.module.image_cache" version="0.0.1" optional="true"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
@@ -3113,7 +3112,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.6.0"
+       version="6.6.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3144,7 +3143,7 @@ Enjoy!</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="2017.05.02" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="2017.05.05" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -4691,7 +4690,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.6" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.2.9" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -4812,7 +4811,7 @@ level.</description>
 
 <addon id="script.module.python.koding.aio"
    name="Python Koding AIO"
-   version="0.7.5"
+   version="0.8.8"
    provider-name="TotalRevolution, noobsandnerds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4829,7 +4828,7 @@ level.</description>
     <license>Creative Commons 4.0-NC-ND</license>
     <forum>http://noobsandnerds.com/support/showthread.php?tid=17614</forum>
     <website>http://totalrevolution.tv</website>
-    <news>Fixed download dialog not auto-closing once complete.</news>
+    <news>Added ok and yes/no dialogs as well as a new compress function. Also suppressed the annoying popup for when code cannot be executed from online - will now silently fail unless debugging is enabled.</news>
     <source>https://github.com/totalrevolution/totalrevolution/tree/master/script.module.python.koding.aio</source>
   </extension>
 </addon>

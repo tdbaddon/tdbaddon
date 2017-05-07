@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -47,7 +46,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         sources = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=1)
         iframes = dom_parser2.parse_dom(html, 'iframe', req='src')
         for attrs, _content in iframes:
@@ -56,7 +55,7 @@ class Scraper(scraper.Scraper):
                 sources = scraper_utils.parse_google(self, iframe_url)
                 break
             else:
-                iframe_url = urlparse.urljoin(self.base_url, iframe_url)
+                iframe_url = scraper_utils.urljoin(self.base_url, iframe_url)
                 html = self._http_get(iframe_url, cache_limit=1)
                 iframes += dom_parser2.parse_dom(html, 'iframe', req='src')
         
@@ -73,7 +72,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        page_url = urlparse.urljoin(self.base_url, '/tvseries/search.php')
+        page_url = scraper_utils.urljoin(self.base_url, '/tvseries/search.php')
         html = self._http_get(page_url, params={'dayq': title}, cache_limit=48)
         html = re.sub('<!--.*?-->', '', html)
         norm_title = scraper_utils.normalize_title(title)

@@ -47,7 +47,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         for _attrs, td in dom_parser2.parse_dom(html, 'td', {'class': 'tdhost'}):
             match = dom_parser2.parse_dom(td, 'a', req='href')
@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        url = urlparse.urljoin(self.base_url, '/index')
+        url = scraper_utils.urljoin(self.base_url, '/index')
         html = self._http_get(url, cache_limit=24)
         for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'ddmcc'}):
             norm_title = scraper_utils.normalize_title(title)

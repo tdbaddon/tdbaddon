@@ -128,32 +128,67 @@ dialog.ok('FILE EXTENSION','The file extension of this Big Buck Bunny sample is:
     return ext
 #----------------------------------------------------------------
 # TUTORIAL #
-def Open_URL(url='', post_type = 'get'):
+def Open_URL(url='',post_type='get',headers=None,cookies=True,auth=None,timeout=None,cookiejar=None):
     """
-If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
+If you need to pull the contents of a webpage it's very simple to do so by using this function.
 
-CODE:   koding.Open_URL(url,[post_type])
-post_type is optional, by default it's set as 'get'
+CODE:   koding.Open_URL(url,[post_type,headers,cookies,auth,timeout,cookiejar])
 
-AVAILABLE VALUES:
+AVAILABLE PARAMS:
 
-    'get'  -  This is already the default so no real need to add this but this uses a standard query string
+    url  -  This is the main url you want to send through. Send it through
+    as a query string format even if it's a post.
+
+    post_type  -  By default this is set to 'get' but this can be set to 'post',
+    if set to post the query string will be split up into a post format automatically.
     
-    'post' -  This will convert the query string into a post
+    headers -  Optionally send through headers in form of a dictionary.
+
+    cookies  -  If set to true your request will send through and store cookies.
+
+    auth  -  User/pass details
+
+    timeout  -  Optionally set a timeout for the request.
+
+    cookiejar  -  An name for the location to store cookies. By default it's
+    set to addon_data/<addon_id>/cookies/cookiejar but if you have multiple
+    websites you access then you may want to use a separate filename for each site.
 
 EXAMPLE CODE:
 url_contents = koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get')
-koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)~"""
-
+koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
+~"""
+    import os
+    import pickle
     import requests
     import sys
     import xbmc
     import xbmcaddon
 
-    from __init__       import converthex, dolog, Encryption, ADDON_ID, LOGIN, FORUM, USERNAME, PASSWORD, KODI_VER
-    from systemtools    import Caller
+    from __init__   import converthex, dolog, Encryption, ADDON_ID, LOGIN, FORUM, USERNAME, PASSWORD, KODI_VER
+    from addons     import Addon_Info
+    from filetools  import Text_File
 
-    AddonVersion = xbmcaddon.Addon(id=ADDON_ID).getAddonInfo('version')
+    Addon_Version = Addon_Info(id='version')
+    Addon_Profile = xbmc.translatePath(Addon_Info(id='profile'))
+    Cookie_Folder = os.path.join(Addon_Profile,'cookies')
+    if not os.path.exists(Cookie_Folder):
+        os.makedirs(Cookie_Folder)
+
+    if cookiejar == None:
+        Cookie_Jar = os.path.join(Cookie_Folder,'cookiejar')
+    else:
+        Cookie_Jar = os.path.join(Cookie_Folder,cookiejar)
+    
+    my_cookies = None
+    if cookies:
+        if os.path.exists(Cookie_Jar):
+            try:
+                with open(Cookie_Jar, 'rb') as f:
+                    my_cookies = pickle.load(f)
+            except:
+                my_cookies = None
+
     payload      = {}
 
 # If the url sent through is not http then we presume it's hitting the NaN page
@@ -161,7 +196,7 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)~"""
         NaN_URL = True
         args = url
         post_type = 'post'
-        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f74657374696e672e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, AddonVersion, KODI_VER, args)
+        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f74657374696e672e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, Addon_Version, KODI_VER, args)
     else:
         NaN_URL = False
     if '?' in url:
@@ -175,14 +210,18 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)~"""
                 payload[var] = data
     try:
         if post_type == 'post':
-            r = requests.post(url, payload)
+            r = requests.post(url, payload, headers=headers, cookies=my_cookies, auth=auth, timeout=timeout)
         else:
-            r = requests.get(url, payload)
+            r = requests.get(url, payload, headers=headers, cookies=my_cookies, auth=auth, timeout=timeout)
     except:
         return 'This url could not be opened: %s'%url
     dolog('### CODE: %s   |   REASON: %s' % (r.status_code, r.reason))
-    if r.status_code == 200:
+    if r.status_code >= 200 and r.status_code < 400:
         content = r.text.encode('utf-8')
+        dolog('content: %s'%content)
+        if cookies:
+            with open(Cookie_Jar, 'wb') as f:
+                pickle.dump(r.cookies, f)
         return content
     else:
         return 'This url could not be opened: %s'%url

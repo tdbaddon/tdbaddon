@@ -52,12 +52,12 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        query = urlparse.parse_qs(source_url)
+        query = scraper_utils.parse_query(source_url)
         if 'link' in query:
-            stream_url = query['link'][0]
+            stream_url = query['link']
             host = urlparse.urlparse(stream_url).hostname
             if 'xml_file' in query:
-                xml_meta = XML_META.get(query['xml_file'][0], {})
+                xml_meta = XML_META.get(query['xml_file'], {})
             else:
                 xml_meta = {}
 
@@ -75,7 +75,7 @@ class Scraper(scraper.Scraper):
         norm_title = scraper_utils.normalize_title(title)
         for page_url in folders:
             xml_file = os.path.basename(page_url)
-            page_url = urlparse.urljoin(self.base_url, page_url)
+            page_url = scraper_utils.urljoin(self.base_url, page_url)
             xml = self._http_get(page_url, require_debrid=True, cache_limit=48)
             new_folders = re.findall('<folder>(.*?)</folder>', xml, re.I)
             if new_folders:

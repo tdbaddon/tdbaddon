@@ -16,10 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
+import dom_parser2
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
+from salts_lib import jsunpack
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
@@ -59,11 +60,11 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         sources = self.__get_posts(html)
-        sources.update(self.__get_linked(html))
         sources.update(self.__get_ajax(html, url))
+        sources.update(self.__get_embedded(html, url))
         for source in sources:
             stream_url = source + scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
             host = scraper_utils.get_direct_hostname(self, source)
@@ -72,6 +73,20 @@ class Scraper(scraper.Scraper):
 
         return hosters
 
+    def __get_embedded(self, html, page_url):
+        sources = {}
+        match = dom_parser2.parse_dom(html, 'div', {'id': 'videoreklam'})
+        if not match: return sources
+        match = dom_parser2.parse_dom(match[0].content, 'iframe', req='src')
+        if not match: return sources
+        headers = {'Referer': page_url}
+        html = self._http_get(match[0].attrs['src'], headers=headers, cache_limit=.5)
+        for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
+            js_data = jsunpack.unpack(match.group(1))
+            js_data = js_data.replace('\\', '')
+            html += js_data
+        return dict((key, value['quality']) for key, value in scraper_utils.parse_sources_list(self, html, var='source').iteritems())
+        
     def __get_posts(self, html):
         sources = {}
         pattern = '\$\.post\("([^"]+)"\s*,\s*\{(.*?)\}'
@@ -146,7 +161,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        xml_url = urlparse.urljoin(self.base_url, '/series.xml')
+        xml_url = scraper_utils.urljoin(self.base_url, '/series.xml')
         xml = self._http_get(xml_url, cache_limit=24)
         if not xml: return results
         try:

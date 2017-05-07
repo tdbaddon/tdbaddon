@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import xbmc
 import kodi
 import log_utils  # @UnusedImport
@@ -45,7 +44,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        params = urlparse.parse_qs(source_url)
+        params = scraper_utils.parse_query(source_url)
         if video.video_type == VIDEO_TYPES.MOVIE:
             cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libMovies"}'
             result_key = 'moviedetails'
@@ -53,7 +52,7 @@ class Scraper(scraper.Scraper):
             cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodeDetails", "params": {"episodeid": %s, "properties" : ["file", "playcount", "streamdetails"]}, "id": "libTvShows"}'
             result_key = 'episodedetails'
 
-        run = cmd % (params['id'][0])
+        run = cmd % (params['id'])
         meta = xbmc.executeJSONRPC(run)
         meta = scraper_utils.parse_json(meta)
         log_utils.log('Source Meta: %s' % (meta), log_utils.LOGDEBUG)
@@ -68,14 +67,14 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        params = urlparse.parse_qs(show_url)
+        params = scraper_utils.parse_query(show_url)
         cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"tvshowid": %s, "season": %s, "filter": {"field": "%s", "operator": "is", "value": "%s"}, \
         "limits": { "start" : 0, "end": 25 }, "properties" : ["title", "season", "episode", "file", "streamdetails"], "sort": { "order": "ascending", "method": "label", "ignorearticle": true }}, "id": "libTvShows"}'
         base_url = 'video_type=%s&id=%s'
         episodes = []
         force_title = scraper_utils.force_title(video)
         if not force_title:
-            run = cmd % (params['id'][0], video.season, 'episode', video.episode)
+            run = cmd % (params['id'], video.season, 'episode', video.episode)
             meta = xbmc.executeJSONRPC(run)
             meta = scraper_utils.parse_json(meta)
             log_utils.log('Episode Meta: %s' % (meta), log_utils.LOGDEBUG)
@@ -85,7 +84,7 @@ class Scraper(scraper.Scraper):
             log_utils.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
 
         if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title and not episodes:
-            run = cmd % (params['id'][0], video.season, 'title', video.ep_title)
+            run = cmd % (params['id'], video.season, 'title', video.ep_title)
             meta = xbmc.executeJSONRPC(run)
             meta = scraper_utils.parse_json(meta)
             log_utils.log('Episode Title Meta: %s' % (meta), log_utils.LOGDEBUG)

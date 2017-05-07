@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import urlparse
 import base64
 import datetime
 import kodi
@@ -50,10 +49,10 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        query = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+        query = scraper_utils.parse_query(source_url)
         if 'id' in query:
             vid_type = 'movies' if video.video_type == VIDEO_TYPES.MOVIE else 'episodes'
-            url = urlparse.urljoin(self.base_url, '/api/v2/%s/%s' % (vid_type, query['id'][0]))
+            url = scraper_utils.urljoin(self.base_url, '/api/v2/%s/%s' % (vid_type, query['id']))
             js_data = self._http_get(url, cache_limit=.5)
             if 'url' in js_data:
                 stream_url = js_data['url']
@@ -63,9 +62,9 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        query = urlparse.parse_qs(urlparse.urlparse(show_url).query)
+        query = scraper_utils.parse_query(show_url)
         if 'id' in query:
-            url = urlparse.urljoin(self.base_url, '/api/v2/shows/%s' % (query['id'][0]))
+            url = scraper_utils.urljoin(self.base_url, '/api/v2/shows/%s' % (query['id']))
             js_data = self._http_get(url, cache_limit=.5)
             if 'episodes' in js_data:
                 force_title = scraper_utils.force_title(video)
@@ -97,7 +96,7 @@ class Scraper(scraper.Scraper):
         else:
             url = '/api/v2/shows'
             key = 'shows'
-        url = urlparse.urljoin(self.base_url, url)
+        url = scraper_utils.urljoin(self.base_url, url)
         js_data = self._http_get(url, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
         if key in js_data:

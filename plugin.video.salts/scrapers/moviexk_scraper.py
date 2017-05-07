@@ -47,7 +47,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         headers = {'Referer': url}
         html = self._http_get(url, headers=headers, cache_limit=0)
         if video.video_type == VIDEO_TYPES.MOVIE:
@@ -55,14 +55,14 @@ class Scraper(scraper.Scraper):
             if fragment:
                 movie_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                 if movie_url:
-                    url = urlparse.urljoin(self.base_url, movie_url[0].attrs['href'])
+                    url = scraper_utils.urljoin(self.base_url, movie_url[0].attrs['href'])
                     html = self._http_get(url, cache_limit=.5)
                     episodes = self.__get_episodes(html)
                     url = self.__get_best_page(episodes)
                     if not url:
                         return hosters
                     else:
-                        url = urlparse.urljoin(self.base_url, url)
+                        url = scraper_utils.urljoin(self.base_url, url)
                         html = self._http_get(url, cache_limit=.5)
         
         streams = dom_parser2.parse_dom(html, 'iframe', req='src')
@@ -111,7 +111,7 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/')
         search_url += urllib.quote_plus(title)
         html = self._http_get(search_url, cache_limit=1)
         for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'inner'}):
@@ -142,7 +142,7 @@ class Scraper(scraper.Scraper):
         return results
 
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=24)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'poster'})
         if fragment:

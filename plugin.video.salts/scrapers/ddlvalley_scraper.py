@@ -52,14 +52,15 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         headers = {'User-Agent': LOCAL_UA}
         html = self._http_get(url, require_debrid=True, headers=headers, cache_limit=.5)
         for match in re.finditer("<span\s+class='info2'(.*?)(<span\s+class='info|<hr\s*/>)", html, re.DOTALL):
             for match2 in re.finditer('href="([^"]+)', match.group(1)):
                 stream_url = match2.group(1)
+                meta = scraper_utils.parse_episode_link(stream_url)
+                quality = scraper_utils.height_get_quality(meta['height'])
                 host = urlparse.urlparse(stream_url).hostname
-                quality = scraper_utils.blog_get_quality(video, stream_url, host)
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
                 hosters.append(hoster)
                 
@@ -80,7 +81,7 @@ class Scraper(scraper.Scraper):
         page_url = [show_url]
         too_old = False
         while page_url and not too_old:
-            url = urlparse.urljoin(self.base_url, page_url[0])
+            url = scraper_utils.urljoin(self.base_url, page_url[0])
             html = self._http_get(url, require_debrid=True, cache_limit=1)
             headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
             posts = [r.content for r in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})]
@@ -100,13 +101,13 @@ class Scraper(scraper.Scraper):
                                 return scraper_utils.pathify_url(url)
                 
             page_url = dom_parser2.parse_dom(html, 'a', {'class': 'nextpostslink'}, req='href')
-            if page_url: page_url = page_url[0].attrs['href']
+            if page_url: page_url = [page_url[0].attrs['href']]
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         if video_type == VIDEO_TYPES.TVSHOW and title:
             test_url = '/show/%s/' % (scraper_utils.to_slug(title))
-            test_url = urlparse.urljoin(self.base_url, test_url)
+            test_url = scraper_utils.urljoin(self.base_url, test_url)
             html = self._http_get(test_url, require_debrid=True, cache_limit=24)
             posts = dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')})
             if posts and CATEGORIES[video_type] in posts[0].content:
@@ -116,7 +117,7 @@ class Scraper(scraper.Scraper):
                     result = {'url': scraper_utils.pathify_url(show_url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
         elif video_type == VIDEO_TYPES.MOVIE:
-            search_url = urlparse.urljoin(self.base_url, '/search/%s/')
+            search_url = scraper_utils.urljoin(self.base_url, '/search/%s/')
             search_title = re.sub('[^A-Za-z0-9 ]', '', title.lower())
             search_url = search_url % (urllib.quote_plus(search_title))
             headers = {'User-Agent': LOCAL_UA}

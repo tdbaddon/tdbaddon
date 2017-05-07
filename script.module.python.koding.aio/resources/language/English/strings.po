@@ -137,3 +137,11 @@ msgctxt "#30979"
 msgid "INSTALLING UPDATES"
 msgstr ""
 
+msgctxt "#30980"
+msgid "SERVICE UNAVAILABLE"
+msgstr ""
+
+msgctxt "#30981"
+msgid "Sorry it's not possible to run this add-on right now, it may be we're currently updating the code. If the problem persists please let the team know on the forum at noobsandnerds.com/support. Thank you."
+msgstr ""
+

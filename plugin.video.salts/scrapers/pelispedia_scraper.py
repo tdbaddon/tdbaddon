@@ -28,12 +28,12 @@ from salts_lib import jsunpack
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import XHR
 
 BASE_URL = 'http://www.pelispedia.tv'
-PK_URL = '/Pe_Player_Html6/pk/pk_2/plugins/protected.php'
+PK_URL = 'http://player.pelispedia.tv/template/protected.php'
 GK_URL = '/gkphp_flv/plugins/gkpluginsphp.php'
 DEL_LIST = ['sub', 'id']
-XHR = {'X-Requested-With': 'XMLHttpRequest'}
 MOVIE_SEARCH_URL = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAxMzA0MzU4NDUzMDg1NzU4NzM4MTpkcGR2Y3FlbGt3dyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 class Scraper(scraper.Scraper):
@@ -55,15 +55,16 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'repro'})
         if not fragment: return hosters
         
         iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
         if not iframe_url: return hosters
+        iframe_url = iframe_url[0].attrs['src']
         
-        html = self._http_get(iframe_url[0].attrs['src'], cache_limit=.5)
+        html = self._http_get(iframe_url, cache_limit=.5)
         for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'id': 'botones'}):
             for attrs, _content in dom_parser2.parse_dom(fragment, 'a', req='href'):
                 media_url = attrs['href']
@@ -73,7 +74,7 @@ class Scraper(scraper.Scraper):
                     html = self._http_get(media_url, headers=headers, cache_limit=.5)
                     hosters += self.__get_page_links(html)
                     hosters += self.__get_pk_links(html)
-                    hosters += self.__get_gk_links(html, url)
+#                     hosters += self.__get_gk_links(html, iframe_url)
                 else:
                     host = urlparse.urlparse(media_url).hostname
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': QUALITIES.HD720, 'views': None, 'rating': None, 'url': media_url, 'direct': False}
@@ -99,12 +100,12 @@ class Scraper(scraper.Scraper):
         hosters = []
         match = re.search('var\s+parametros\s*=\s*"([^"]+)', html)
         if match:
-            params = urlparse.parse_qs(urlparse.urlparse(match.group(1)).query)
+            params = scraper_utils.parse_query(match.group(1))
             if 'pic' in params:
-                data = {'sou': 'pic', 'fv': '11', 'url': params['pic'][0]}
-                url = urlparse.urljoin(self.base_url, PK_URL)
-                html = self._http_get(url, headers=XHR, data=data, cache_limit=.5)
-                js_data = scraper_utils.parse_json(html, url)
+                data = {'sou': 'pic', 'fv': '25', 'url': params['pic']}
+                html = self._http_get(PK_URL, headers=XHR, data=data, cache_limit=0)
+                log_utils.log(html)
+                js_data = scraper_utils.parse_json(html, PK_URL)
                 for item in js_data:
                     if 'url' in item and item['url']:
                         if 'width' in item and item['width']:
@@ -122,9 +123,9 @@ class Scraper(scraper.Scraper):
         hosters = []
         for match in re.finditer('gkpluginsphp.*?link\s*:\s*"([^"]+)', html):
             data = {'link': match.group(1)}
-            headers = XHR
-            headers['Referer'] = url
-            gk_url = urlparse.urljoin(self.base_url, GK_URL)
+            headers = {'Referer': url}
+            headers.update(XHR)
+            gk_url = scraper_utils.urljoin(self.base_url, GK_URL)
             html = self._http_get(gk_url, data=data, headers=headers, cache_limit=.5)
             js_result = scraper_utils.parse_json(html, gk_url)
             if 'link' in js_result and 'func' not in js_result:
@@ -190,7 +191,7 @@ class Scraper(scraper.Scraper):
 
     def __proc_results(self, url, title, year):
         results = []
-        url = urlparse.urljoin(self.base_url, url)
+        url = scraper_utils.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'li', {'class': 'bpM12'}):

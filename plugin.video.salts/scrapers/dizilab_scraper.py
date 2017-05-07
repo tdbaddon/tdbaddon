@@ -52,12 +52,12 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         videos = re.findall('''onclick\s*=\s*"loadVideo\('([^']+)''', html)
         subs = self.__get_subs(html)
         for v_id, icon in map(None, videos, subs):
-            ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
+            ajax_url = scraper_utils.urljoin(self.base_url, AJAX_URL)
             data = {'vid': v_id, 'tip': 1, 'type': 'loadVideo'}
             headers = {'Referer': page_url}
             headers.update(XHR)
@@ -165,9 +165,9 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        url = urlparse.urljoin(self.base_url, AJAX_URL)
+        url = scraper_utils.urljoin(self.base_url, AJAX_URL)
         data = {'type': 'getDizi'}
-        headers = {'Referer': urlparse.urljoin(self.base_url, '/arsiv')}
+        headers = {'Referer': scraper_utils.urljoin(self.base_url, '/arsiv')}
         headers.update(XHR)
         html = self._http_get(url, data=data, headers=headers, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)

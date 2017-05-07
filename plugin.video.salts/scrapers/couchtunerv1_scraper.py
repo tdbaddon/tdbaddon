@@ -48,12 +48,12 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         entry = ''
         while True:
             html = self._http_get(url, cache_limit=.5)
             if not html:
-                url = urlparse.urljoin(BASE_URL2, source_url)
+                url = scraper_utils.urljoin(BASE_URL2, source_url)
                 html = self._http_get(url, cache_limit=.5)
                 
             entry = dom_parser2.parse_dom(html, 'div', {'class': 'entry'})
@@ -82,7 +82,7 @@ class Scraper(scraper.Scraper):
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        show_list_url = urlparse.urljoin(self.base_url, '/tv-lists/')
+        show_list_url = scraper_utils.urljoin(self.base_url, '/tv-lists/')
         html = self._http_get(show_list_url, cache_limit=8)
         results = []
         seen_urls = set()

@@ -1,14 +1,13 @@
 import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmcvfs,os,sys,datetime,string,hashlib,net
 import plugintools
 import xbmcaddon
-import liveresolver
 import json
 from cookielib import CookieJar
 
 fanart    = 'special://home/addons/plugin.video.freeview/fanart.jpg'
 
 def play(url):
-	resolved = liveresolver.resolve(url)
+	resolved = url
 	item     = xbmcgui.ListItem(path=resolved)
 	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	

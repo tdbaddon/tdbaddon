@@ -17,7 +17,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -48,7 +47,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         # exit early if trailer
         if re.search('Şu an fragman*', html, re.I):
@@ -83,7 +82,7 @@ class Scraper(scraper.Scraper):
         if match:
             ajax_url = match.group(1)
             for data_id in re.findall("kaynakdegis\('([^']+)", html):
-                url = urlparse.urljoin(self.base_url, ajax_url)
+                url = scraper_utils.urljoin(self.base_url, ajax_url)
                 data = {'id': data_id}
                 headers = {'Referer': page_url}
                 headers.update(XHR)

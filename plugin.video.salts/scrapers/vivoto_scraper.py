@@ -61,7 +61,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         page_quality = dom_parser2.parse_dom(html, 'dd', {'class': 'status'})
         if page_quality:
@@ -75,8 +75,8 @@ class Scraper(scraper.Scraper):
         else:
             gk_html = html
 
-        link_url = urlparse.urljoin(self.base_url, LINK_URL)
-        player_url = urlparse.urljoin(self.base_url, PLAYER_URL)
+        link_url = scraper_utils.urljoin(self.base_url, LINK_URL)
+        player_url = scraper_utils.urljoin(self.base_url, PLAYER_URL)
         for stream_url, quality in scraper_utils.get_gk_links(self, gk_html, page_url, page_quality, link_url, player_url).iteritems():
             host = scraper_utils.get_direct_hostname(self, stream_url)
             if host == 'gvideo':
@@ -100,7 +100,7 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/%s.html')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/%s.html')
         search_url = search_url % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=1)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'movie'})

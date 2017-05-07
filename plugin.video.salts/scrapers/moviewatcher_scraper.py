@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -44,7 +43,7 @@ class Scraper(scraper.Scraper):
         return 'MovieWatcher'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         html = self._http_get(url, allow_redirect=False, cache_limit=0)
         if html.startswith('http'):
             return html
@@ -55,7 +54,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=1)
         for _attrs, item in dom_parser2.parse_dom(html, 'a', {'class': 'full-torrent1'}):
             stream_url = dom_parser2.parse_dom(item, 'span', req='onclick')
@@ -83,7 +82,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search')
+        search_url = scraper_utils.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, params={'query': title.lower()}, cache_limit=0)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'one_movie-item'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')

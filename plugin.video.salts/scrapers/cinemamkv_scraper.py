@@ -49,7 +49,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return sources
         
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, require_debrid=True, cache_limit=8)
         for div in dom_parser2.parse_dom(html, 'div', {'id': re.compile('stb-container-\d+')}):
             stream_url = dom_parser2.parse_dom(div.content, 'iframe', req='src')

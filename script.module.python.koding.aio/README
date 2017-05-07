@@ -289,13 +289,15 @@ a number of add-ons/scripts you can grab a list of paths that have been called.
 
 DEFAULT SETTING:
 This will return the DEFAULT value for a setting (as set in resources/settings.xml)
-and optionally reset the current value back to this default.
+and optionally reset the current value back to this default. If you pass through
+the setting as blank it will return a dictionary of all default settings.
 
 	CODE:  Default_Setting(setting, [addon_id, reset])
 
 	AVAILABLE PARAMS:
 
 	    setting  -  The setting you want to retreive the value for.
+	    Leave blank to return a dictionary of all settings
 
 	    addon_id  -  This is optional, if not set it will use the current id.
 
@@ -377,15 +379,15 @@ installed add-ons. The dictionary will contain "addonid" and "type" e.g. 'xbmc.p
 ------------------------------------------------------------------------------------------
 
 TOGGLE ADD-ONS:
-Send through either a list of add-on ids or one single add-on id. The add-ons sent through will then
-be added to the addons*.db and enabled or disabled (depending on state sent through).
+Send through either a list of add-on ids or one single add-on id. The add-ons sent through will then be added
+to the addons*.db and enabled or disabled (depending on state sent through).
 
 WARNING: If safe_mode is set to False this directly edits the addons*.db rather than using JSON-RPC.
-Although directly amending the db is a lot quicker there is no guarantee it won't cause severe problems
-in later versions of Kodi (this was created for v.17). DO NOT set safe_mode to False unless you 100%
-understand the consequences!
+Although directly amending the db is a lot quicker there is no guarantee it won't cause severe problems in
+later versions of Kodi (this was created for v17). DO NOT set safe_mode to False unless you 100% understand
+the consequences!
 
-	CODE:  Toggle_Addons([addon, enable, safe_mode, exclude_list, new_only])
+	CODE:  Toggle_Addons([addon, enable, safe_mode, exclude_list, new_only, refresh])
 
 	AVAILABLE PARAMS:
 
@@ -412,6 +414,9 @@ understand the consequences!
 	    add-ons which have deliberately been disabled by the end user are
 	    not affected.
 
+	    refresh  - By default this is set to True, it will refresh the
+	    current container and also force a local update on your add-ons db.
+
 	EXAMPLE CODE:
 		xbmc.executebuiltin('ActivateWindow(Videos, addons://sources/video/)')
 		xbmc.sleep(2000)
@@ -421,7 +426,6 @@ understand the consequences!
 		xbmc.sleep(2000)
 		dialog.ok('ENABLE YOUTUBE','When you click OK we will enable YouTube (if installed)')
 		koding.Toggle_Addons(addon='plugin.video.youtube', enable=True, safe_mode=True, exclude_list=[], new_only=False)
-		koding.Refresh('container')
 
 ------------------------------------------------------------------------------------------
 
@@ -655,6 +659,22 @@ Remove entries in the db table at /userdata/addon_data/<your_addon_id>/database.
 
 ------------------------------------------------------------------------------------------
 
+REMOVE TABLE:
+Use with caution, this will completely remove a database table and all of it's contents. The only
+database you can access with this command is your add-ons own database at:
+/userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Remove_Table(table)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  This is the name of the table you want to permanently delete.
+
+	EXAMPLE CODE:
+		koding.Remove_Table('my_test_table')
+
+------------------------------------------------------------------------------------------
+
 D I A L O G S
 
 ------------------------------------------------------------------------------------------
@@ -801,6 +821,44 @@ Show a short notification for x amount of seconds
 
 	EXAMPLE CODE:
 		koding.Notify(title='TEST NOTIFICATION', message='This is a quick 5 second test', duration=5000)
+
+------------------------------------------------------------------------------------------
+
+OK DIALOG:
+This will bring up a short text message in a dialog.ok window.
+
+	CODE: OK_Dialog(title,message)
+
+	AVAILABLE PARAMS:
+
+	    (*) title  -  This is title which appears in the header of the window.
+
+	    (*) message  -  This is the main text you want to appear.
+
+	EXAMPLE CODE:
+		koding.OK_Dialog(title='TEST DIALOG',message='This is a test dialog ok box. Click OK to quit.')
+
+------------------------------------------------------------------------------------------
+
+YES/NO DIALOG:
+This will bring up a short text message in a dialog.yesno window. This will return True or False
+
+	CODE: YesNo_Dialog(title,message,[yeslabel,nolabel])
+
+	AVAILABLE PARAMS:
+
+	    (*) title  -  This is title which appears in the header of the window.
+
+	    (*) message  -  This is the main text you want to appear.
+
+	    yes  -  Optionally change the default "YES" to a custom string
+
+	    no  -  Optionally change the default "NO" to a custom string
+
+	EXAMPLE CODE:
+	mychoice = koding.YesNo_Dialog(title='TEST DIALOG',message='This is a yes/no dialog with custom labels.\nDo you want to see an example of a standard yes/no.',yes='Go on then',no='Nooooo!')
+	if mychoice:
+	    koding.YesNo_Dialog(title='STANDARD DIALOG',message='This is an example of a standard one without sending custom yes/no params through.')
 
 ------------------------------------------------------------------------------------------
 
@@ -956,6 +1014,56 @@ this a little better.
 
 ------------------------------------------------------------------------------------------
 
+ROUTE:
+Use this to set a function in your master_modes dictionary.
+This is to be used for Add_Dir() items, see the example below.
+
+	CODE: route(mode, [args])
+
+	AVAILABLE PARAMS:
+	            
+	    (*) mode  -  This must be set, it needs to be a custom string.
+	    This is the string you'd use in your Add_Dir command to call
+	    the function.
+
+	    args  -  This is optional but if the function you're calling
+	    requires extra paramaters you can add them in here. Just add them
+	    as a list of strings. Example: args=['name','artwork','description']
+
+
+BELOW IS AN EXAMPLE OF HOW TO CALL THE CODE IN YOUR MAIN ADDON PY FILE:
+
+@route(mode="test", args=["name","desc"])
+def Test_Function(name,desc):
+    dialog.ok('This is a test function', name, desc')
+
+koding.Add_Dir(name='Test Dialog', url='{"name":"My Test Function", "desc" : "Its ALIVE!!!"}', mode='test')
+koding.run()
+
+------------------------------------------------------------------------------------------
+
+RUN:
+This needs to be called at the bottom of your code in the main default.py
+
+This checks the modes called in Add_Dir and does all the clever stuff
+in the background which assigns those modes to functions and sends
+through the various params.
+
+Just after this command you need to make
+sure you set the endOfDirectory (as shown below).
+
+
+	CODE: run([default])
+	xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+	AVAILABLE PARAMS:
+	    
+	    default  -  This is the default mode you want the add-on to open
+	    into, it's set as "main" by default. If you have a different mode
+	    name you want to open into just edit accordingly.
+
+------------------------------------------------------------------------------------------
+
 F I L E   T O O L S
 
 ------------------------------------------------------------------------------------------
@@ -1007,6 +1115,39 @@ This will check for any cached artwork and wipe if it's not been accessed more t
 	EXAMPLE CODE:
 		dialog.ok('Clean Textures','We are going to clear any old cached images not accessed at least 10 times in the past 5 days')
 		koding.Cleanup_Textures(frequency=5)
+
+------------------------------------------------------------------------------------------
+
+COMPRESS FILES:
+Compress files in either zip or tar format. This will most likely be replacing Archive_Tree longer term
+as this has better functionality but it's currently missing the custom message and exclude files options.
+
+	CODE: Compress(src,dst,[compression,parent])
+
+	AVAILABLE PARAMS:
+
+	    (*) src  -  This is the source folder you want to compress
+
+	    (*) dst  -  This is the destination file you want to create
+
+	    compression  -  By default this is set to 'zip' but you can also use 'tar'
+
+	    parent  -  By default this is set to False which means it will compress
+	    everything inside the path given. If set to True it will do the same but
+	    it will include the parent folder name - ideal if you want to zip up
+	    an add-on folder and be able to install via Kodi Settings.
+
+	EXAMPLE CODE:
+		koding_path = xbmc.translatePath('special://home/addons/script.module.python.koding.aio')
+		zip_dest = xbmc.translatePath('special://home/test_addon.zip')
+		zip_dest2 = xbmc.translatePath('special://home/test_addon2.zip')
+		tar_dest = xbmc.translatePath('special://home/test_addon.tar')
+		tar_dest2 = xbmc.translatePath('special://home/test_addon2.tar')
+		koding.Compress(src=koding_path,dst=zip_dest,compression='zip',parent=True)
+		koding.Compress(src=koding_path,dst=zip_dest2,compression='zip',parent=False)
+		koding.Compress(src=koding_path,dst=tar_dest,compression='tar',parent=True)
+		koding.Compress(src=koding_path,dst=tar_dest2,compression='tar',parent=False)
+		koding.Text_Box('CHECK HOME FOLDER','If you check your Kodi home folder you should now have 4 different compressed versions of the Python Koding add-on.\n\ntest_addon.zip: This has been zipped up with parent set to True\n\ntest_addon2.zip: This has been zipped up with parent set to False.\n\ntest_addon.tar: This has been compressed using tar format and parent set to True\n\ntest_addon2.tar: This has been compressed using tar format and parent set to False.\n\nFeel free to manually delete these.')
 
 ------------------------------------------------------------------------------------------
 
@@ -1667,12 +1808,23 @@ the order you want them to be executed.
 
 ------------------------------------------------------------------------------------------
 
-RUN AS KODI:
-A simple function to set user id and group id to the current running App
-for system commands. For example if you're using the subprocess command
-you could send through the preexec_fn paramater as koding.Run_As_Kodi.
+GET USER ID & GROUP ID:
+A simple function to set user id and group id to the current running App for system commands. For example if you're
+using the subprocess command you could send through the preexec_fn paramater as koding.Run_As_Kodi. This function
+will also return the uid and gid in form of a dictionary.
 
-CODE: Run_As_Kodi()
+CODE: Get_ID([setid])
+
+AVAILABLE PARAMS:
+    
+    (*) setid  -  By default this is set to False but if set to True it
+    will set the ids (to be used for subprocess commands)
+
+EXAMPLE CODE:
+ids = Get_ID(setid=False)
+uid = ids['uid']
+gid = ids['gid']
+dialog.ok('USER & GROUP ID','User ID: %s'%uid, 'Group ID: %s'%gid)
 
 ------------------------------------------------------------------------------------------
 
@@ -1879,6 +2031,19 @@ play a video - it will just return True/False on whether or not a video is curre
 
 ------------------------------------------------------------------------------------------
 
+SLEEP IF PLAYBACK IS ACTIVE:
+This will allow you to pause code while kodi is playing audio or video
+
+	CODE: Sleep_If_Playback_Active()
+
+	EXAMPLE CODE:
+		dialog.ok('PLAY A VIDEO','We will now attempt to play a video, once you stop this video you should see a dialog.ok message.')
+		xbmc.Player().play('http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.avi')
+		koding.Sleep_If_Playback_Active()
+		dialog.ok('PLAYBACK FINISHED','The playback has now been finished so this dialog code has now been initiated')
+
+------------------------------------------------------------------------------------------
+
 W E B   T O O L S
 
 ------------------------------------------------------------------------------------------
@@ -1918,18 +2083,34 @@ Return the extension of any given url
 ------------------------------------------------------------------------------------------
 
 PULL CONTENTS FROM A WEB PAGE:
-If you need to pull the contents of a webpage it's very simple to do so by using koding.Open_URL(url,[post_type])
+If you need to pull the contents of a webpage it's very simple to do so by using this function.
 
-	CODE:	koding.Open_URL(url,[post_type])
-	post_type is optional, by default it's set as 'get'
+	CODE:   koding.Open_URL(url,[post_type,headers,cookies,auth,timeout,cookiejar])
 
-	AVAILABLE VALUES:
-		'get'  -  This is already the default so no real need to add this but this uses a standard query string
-		
-		'post' -  This will convert the query string into a post
+	AVAILABLE PARAMS:
+
+	    (*) url  -  This is the main url you want to send through. Send it through
+	    as a query string format even if it's a post.
+
+	    post_type  -  By default this is set to 'get' but this can be set to 'post',
+	    if set to post the query string will be split up into a post format automatically.
+	    
+	    headers -  Optionally send through headers in form of a dictionary.
+
+	    cookies  -  If set to true your request will send through and store cookies.
+
+	    auth  -  User/pass details
+
+	    timeout  -  Optionally set a timeout for the request.
+
+	    cookiejar  -  An name for the location to store cookies. By default it's
+	    set to addon_data/<addon_id>/cookies/cookiejar but if you have multiple
+	    websites you access then you may want to use a separate filename for each site.
 
 	EXAMPLE CODE:
-		koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
+		url_contents = koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get')
+		koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
+				koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
 
 ------------------------------------------------------------------------------------------
 

@@ -1,3 +1,16 @@
+######## v1.2.8 ########
+ 
+- Fixed syntax error
+
+######## v1.2.8 ########
+ 
+- Add two more addons to duck hunt
+
+######## v1.2.7 ########
+ 
+- Updated Licence
+
+
 ######## v1.2.6 ########
  
 - More work done to md_tools

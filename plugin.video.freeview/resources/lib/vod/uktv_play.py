@@ -1,7 +1,6 @@
 import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmcvfs,os,sys,datetime,string,hashlib,net
 from resources.lib.modules.plugintools import *
 import xbmcaddon
-import liveresolver
 import json
 from cookielib import CookieJar
 from resources.lib.modules.common import *
@@ -14,7 +13,7 @@ def	vod_uktv(url):
     
     for entry in matches:
        
-        name       = plugintools.find_single_match(entry,'alt="(.+?)"').encode("utf-8")
+        name       = plugintools.find_single_match(entry,'alt="(.+?)"')
         url        = plugintools.find_single_match(entry,'<a href="(.+?)"').replace('/shows/','http://uktvplay.uktv.co.uk/shows/')
         iconimage2 = plugintools.find_single_match(entry,'<img data-url="https://res.cloudinary.com/uktv/image/upload/t_XX/(.+?)"').encode("utf-8")
         iconimage  = 'https://res.cloudinary.com/uktv/image/upload/b_rgb:000000,w_235,c_fill,q_90,h_132/'+iconimage2

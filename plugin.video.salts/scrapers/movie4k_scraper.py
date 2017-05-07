@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import kodi
 import dom_parser2
 import log_utils  # @UnusedImport
@@ -46,7 +45,7 @@ class Scraper(scraper.Scraper):
         return 'Movie4K'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         html = self._http_get(url, cache_limit=0)
         match = re.search('href="([^"]+).*?src="/img/click_link.jpg"', html)
         if match:
@@ -56,7 +55,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         pattern = '''tablemoviesindex2.*?href\s*=\s*['"]([^'"]+).*?&nbsp;([^<]+)'''
         for match in re.finditer(pattern, html):
@@ -69,7 +68,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/movies.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/movies.php')
         cookies = {'onlylanguage': 'en', 'lang': 'en'}
         params = {'list': 'search', 'search': title}
         html = self._http_get(search_url, params=params, cookies=cookies, cache_limit=8)
@@ -98,7 +97,7 @@ class Scraper(scraper.Scraper):
 
     def _get_episode_url(self, show_url, video):
         if not scraper_utils.force_title(video):
-            url = urlparse.urljoin(self.base_url, show_url)
+            url = scraper_utils.urljoin(self.base_url, show_url)
             html = self._http_get(url, cache_limit=2)
             season_div = 'episodediv%s' % (video.season)
             fragment = dom_parser2.parse_dom(html, 'div', {'id': season_div})

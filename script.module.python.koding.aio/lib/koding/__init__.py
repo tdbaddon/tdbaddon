@@ -33,11 +33,13 @@ try:
 except:
     import json
 
+from addons         import *
 from android        import *
 from database       import *
 from directory      import *
 from filetools      import *
 from guitools       import *
+from router         import *
 from systemtools    import *
 from tutorials      import *
 from video          import *
@@ -325,20 +327,22 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
         run_code = Open_URL(url, post_type)
 
     try:
-        dolog('### RUN CODE: '+Encryption('d',message=run_code.replace('\n','').replace('\t','').replace('\r','')))
         exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
+        dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
     except:
         xbmc.log(Last_Error())
         try:
             exec(run_code)
+            dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
         except:
             xbmc.log(Last_Error())
             try:
                 exec(converthex(run_code))
+                dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
             except:
-                dialog.ok(converthex('5345525649434520554e415641494c41424c45'),converthex("536f7272792069742773206e6f7420706f737369626c6520746f2072756e2074686973206164642d6f6e207269676874206e6f772c206974206d61792062652077652772652063757272656e746c79207570646174696e672074686520636f64652e204966207468652070726f626c656d20706572736973747320706c65617365206c657420746865207465616d206b6e6f77206f6e2074686520666f72756d206174206e6f6f6273616e646e657264732e636f6d2f737570706f72742e205468616e6b20796f752e"))
+                if DEBUG == 'true':
+                    dialog.ok(String(30980),String(30981))
 
-    dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
 #-----------------------------------------------------------------------------
 # TUTORIAL #
 def User_Info(mode = ''):

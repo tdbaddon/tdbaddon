@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urlparse
 import log_utils  # @UnusedImport
 import kodi
 import dom_parser2
@@ -67,7 +66,7 @@ class Scraper(scraper.Scraper):
 
     def __get_sources(self, season_url, video):
         hosters = []
-        url = urlparse.urljoin(self.base_url, season_url)
+        url = scraper_utils.urljoin(self.base_url, season_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
         _part, quality = self.__get_quality(url)
         pattern = '<img[^>]+src="([^"]+)[^>]+alt="[^"]+Download Links"[^>]*>(.*?)(?=<img|</div>)'
@@ -116,7 +115,7 @@ class Scraper(scraper.Scraper):
     def __list(self, title):
         results = []
         params = {'do': 'charmap', 'name': 'tv-series-list', 'args': '/' + title[0]}
-        search_url = urlparse.urljoin(self.base_url, 'index.php')
+        search_url = scraper_utils.urljoin(self.base_url, 'index.php')
         html = self._http_get(search_url, params=params, require_debrid=True, cache_limit=48)
         
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'downpara-list'})

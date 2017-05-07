@@ -36,7 +36,7 @@ class Scraper(scraper.Scraper):
     def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
         self.timeout = timeout
         self.base_url = kodi.get_setting('%s-base_url' % (self.get_name()))
-        self.ajax_url = urlparse.urljoin(self.base_url, AJAX_URL)
+        self.ajax_url = scraper_utils.urljoin(self.base_url, AJAX_URL)
 
     @classmethod
     def provides(cls):
@@ -51,7 +51,7 @@ class Scraper(scraper.Scraper):
         sources = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.25)
         match = re.search('var\s+view_id\s*=\s*"([^"]+)', html)
         if not match: return hosters

@@ -51,7 +51,7 @@ class Scraper(scraper.Scraper):
         if link.startswith('http'):
             return link
         else:
-            link_url = urlparse.urljoin(self.base_url, LINK_URL)
+            link_url = scraper_utils.urljoin(self.base_url, LINK_URL)
             data = {'redirect': link}
             html = self._http_get(link_url, data=data, headers=XHR)
             if html.startswith('http'):
@@ -61,7 +61,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'id': 'linktr'}):
             redirect = dom_parser2.parse_dom(row, 'span', req='id')
@@ -87,7 +87,7 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=8)
         pattern = "<a[^>]*class='dropdown-toggle'[^>]*>Season\s+%s<(.*?)<li\s+class='divider'>" % (video.season)
         match = re.search(pattern, html, re.DOTALL)
@@ -130,7 +130,7 @@ class Scraper(scraper.Scraper):
 
     def __movie_search(self, title, year):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/search.php')
         params = {'all': 'all', 'searchin': 'mov', 'subtitles': '', 'imdbfrom': '', 'yearrange': '', 'keywords': title}
         html = self._http_get(search_url, params=params, cache_limit=8)
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'cbp-rfgrid'})
@@ -151,7 +151,7 @@ class Scraper(scraper.Scraper):
     
     def __tv_search(self, title, year):  # @UnusedVariable
         results = []
-        url = urlparse.urljoin(self.base_url, '/tvshows.html')
+        url = scraper_utils.urljoin(self.base_url, '/tvshows.html')
         html = self._http_get(url, cache_limit=48)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'series-top'})
         if not fragment: return results

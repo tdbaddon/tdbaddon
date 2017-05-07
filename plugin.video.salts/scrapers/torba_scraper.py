@@ -18,7 +18,6 @@
 import os
 import re
 import urllib
-import urlparse
 import xbmcvfs
 import kodi
 import log_utils  # @UnusedImport
@@ -70,8 +69,7 @@ class Scraper(scraper.Scraper):
     def resolve_link(self, link):
         try:
             xbmcvfs.delete(M3U8_PATH)
-            query = urlparse.parse_qs(link)
-            query = dict([(key, value[0]) if value else (key, '') for key, value in query.iteritems()])
+            query = scraper_utils.parse_query(link)
             auth_url = PL_URL % (query['vid_id'], query['stream_id'])
             result = self.__authorize_ip(auth_url)
             if not result: return
@@ -120,7 +118,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         vid_link = dom_parser2.parse_dom(html, 'a', {'class': 'video-play'}, req='href')
         if not vid_link: return hosters
@@ -145,7 +143,7 @@ class Scraper(scraper.Scraper):
         return sources
     
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=24)
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'season-list'})
         if not fragment: return
@@ -160,7 +158,7 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
+        search_url = scraper_utils.urljoin(self.base_url, SEARCH_URL)
         search_url = search_url % (SEARCH_TYPES[video_type])
         params = {'order': 'relevance', 'title': title}
         html = self._http_get(search_url, params=params, headers=XHR, cache_limit=1)

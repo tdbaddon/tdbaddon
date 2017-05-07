@@ -35,6 +35,11 @@ DATABASE = os.path.join(PROFILE,'Database')
 def Archive_Tree(sourcefile, destfile, exclude_dirs=['temp'], exclude_files=['kodi.log','kodi.old.log','xbmc.log','xbmc.old.log','spmc.log','spmc.old.log'], message_header = 'ARCHIVING', message = 'Creating archive'):
     """
 Archive a folder path including all sub-folders.
+There is a good chance this will be depreciated and merged with the Compress function
+in future. We will continue to keep this working but just a heads up the features in this
+such as custom messages will more than likely get ported into the Compress function at
+a later date so it may we worth using that as that has better functionality.
+
 Optional exclude_dirs and exclude_files lists can be sent through and these will be skipped
 
 IMPORTANT: There is a known bug where some certain compressed tar.gz files
@@ -122,6 +127,72 @@ koding.Archive_Tree(HOME, DST)
             dp.close()
     else:
         dialog.ok(this_module.getLocalizedString(30965),this_module.getLocalizedString(30815) % sourcefile)
+#----------------------------------------------------------------    
+# TUTORIAL #
+def Compress(src,dst,compression='zip',parent=False):
+    """
+Compress files in either zip or tar format. This will most likely be replacing
+Archive_Tree longer term as this has better functionality but it's currently
+missing the custom message and exclude files options.
+
+CODE: Compress(src,dst,[compression,parent])
+
+AVAILABLE PARAMS:
+
+    (*) src  -  This is the source folder you want to compress
+
+    (*) dst  -  This is the destination file you want to create
+
+    compression  -  By default this is set to 'zip' but you can also use 'tar'
+
+    parent  -  By default this is set to False which means it will compress
+    everything inside the path given. If set to True it will do the same but
+    it will include the parent folder name - ideal if you want to zip up
+    an add-on folder and be able to install via Kodi Settings.
+
+EXAMPLE CODE:
+koding_path = xbmc.translatePath('special://home/addons/script.module.python.koding.aio')
+zip_dest = xbmc.translatePath('special://home/test_addon.zip')
+zip_dest2 = xbmc.translatePath('special://home/test_addon2.zip')
+tar_dest = xbmc.translatePath('special://home/test_addon.tar')
+tar_dest2 = xbmc.translatePath('special://home/test_addon2.tar')
+koding.Compress(src=koding_path,dst=zip_dest,compression='zip',parent=True)
+koding.Compress(src=koding_path,dst=zip_dest2,compression='zip',parent=False)
+koding.Compress(src=koding_path,dst=tar_dest,compression='tar',parent=True)
+koding.Compress(src=koding_path,dst=tar_dest2,compression='tar',parent=False)
+koding.Text_Box('CHECK HOME FOLDER','If you check your Kodi home folder you should now have 4 different compressed versions of the Python Koding add-on.\n\ntest_addon.zip: This has been zipped up with parent set to True\n\ntest_addon2.zip: This has been zipped up with parent set to False.\n\ntest_addon.tar: This has been compressed using tar format and parent set to True\n\ntest_addon2.tar: This has been compressed using tar format and parent set to False.\n\nFeel free to manually delete these.')
+~"""
+    if parent:
+        import zipfile
+        import tarfile
+        directory = os.path.dirname(dst)
+        if not os.path.exists(directory):
+            try:
+                os.makedirs(directory)
+            except:
+                dialog.ok('ERROR','The destination directory you gave does not exist and it wasn\'t possible to create it.')
+                return
+        if compression == 'zip':
+            zip = zipfile.ZipFile(dst, 'w', compression=zipfile.ZIP_DEFLATED)
+        elif compression == 'tar':
+            zip = tarfile.open(dst, mode='w')
+        root_len = len(os.path.dirname(os.path.abspath(src)))
+        for root, dirs, files in os.walk(src):
+            archive_root = os.path.abspath(root)[root_len:]
+
+            for f in files:
+                    fullpath = os.path.join(root, f)
+                    archive_name = os.path.join(archive_root, f)
+                    if compression == 'zip':
+                        zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
+                    elif compression == 'tar':
+                        zip.add(fullpath, archive_name)
+        zip.close()
+    else:
+        if compression == 'zip':
+            shutil.make_archive(dst.replace('.zip',''), 'zip', src)
+        elif compression == 'tar':
+            shutil.make_archive(dst.replace('.tar',''), 'tar', src)
 #----------------------------------------------------------------    
 # TUTORIAL #
 def Convert_Special(filepath=xbmc.translatePath('special://home')):

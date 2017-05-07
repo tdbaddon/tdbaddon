@@ -134,7 +134,7 @@ def width_get_quality(width):
     except: width = 320
     if width > 1280:
         quality = QUALITIES.HD1080
-    elif width > 800:
+    elif width > 854:
         quality = QUALITIES.HD720
     elif width > 640:
         quality = QUALITIES.HIGH
@@ -352,7 +352,7 @@ def parse_json(html, url=''):
                 return {}
             else:
                 return js_data
-        except ValueError:
+        except (ValueError, TypeError):
             log_utils.log('Invalid JSON returned: %s: %s' % (html, url), log_utils.LOGWARNING)
             return {}
     else:
@@ -391,12 +391,40 @@ def update_scraper(file_name, scraper_url, scraper_key):
                 with open(py_path, 'w') as f:
                     f.write(new_py)
 
-def urljoin(base_url, url):
-    if not base_url.endswith('/'):
-        base_url += '/'
-    if url.startswith('/'):
-        url = url[1:]
-    return urlparse.urljoin(base_url, url)
+def urljoin(base_url, url, scheme='http', replace_path=False):
+    def join_fields(left, right, sep):
+        if right:
+            if left:
+                return left + sep + right
+            else:
+                return right
+        else:
+            return left
+
+    base_parts = urlparse.urlparse(base_url)
+    url_parts = urlparse.urlparse(url)
+    new_scheme = base_parts.scheme or url_parts.scheme or scheme
+    new_netloc = url_parts.netloc or base_parts.netloc
+     
+    if replace_path:
+        new_path = url_parts.path
+    else:
+        if url_parts.path:
+            new_path = base_parts.path + '/' + url_parts.path
+            new_path = new_path.replace('///', '/').replace('//', '/')
+        else:
+            new_path = base_parts.path
+     
+    if new_path == '/':
+        new_path = ''
+ 
+    new_params = join_fields(base_parts.params, url_parts.params, ';')
+    new_query = join_fields(base_parts.query, url_parts.query, '&')
+    new_fragment = url_parts.fragment or base_parts.fragment
+ 
+    new_parts = urlparse.ParseResult(scheme=new_scheme, netloc=new_netloc, path=new_path,
+                                     params=new_params, query=new_query, fragment=new_fragment)
+    return urlparse.urlunparse(new_parts)
 
 def parse_params(params):
     result = {}
@@ -509,7 +537,7 @@ def parse_sources_list(scraper, html, key='sources', var=None, file_key=None):
         if not match:
             match = re.search('''['"]?%s["']?\s*:\s*\{(.*?)\}''' % (key), html, re.DOTALL)
             if not match and var is not None:
-                match = re.search('''%s\s*=\s*\[\{(.*?)\}\]''' % (var), html, re.DOTALL)
+                match = re.search('''%s\s*=\s*[^\[]*\[\{(.*?)\}\]''' % (var), html, re.DOTALL)
                 
     if match:
         fragment = match.group(1)
@@ -706,3 +734,27 @@ def to_slug(title):
     slug = re.sub(' ', '-', slug)
     return slug
 
+def parse_query(url):
+    q = {}
+    queries = urlparse.parse_qs(urlparse.urlparse(url).query)
+    if not queries: queries = urlparse.parse_qs(url)
+    for key, value in queries.iteritems():
+        if len(value) == 1:
+            q[key] = value[0]
+        else:
+            q[key] = value
+    return q
+
+def get_days(age):
+    age = age.replace('&nbsp;', ' ')
+    match = re.search('(\d+)\s*(.*)', age)
+    units = {'day': 1, 'week': 7, 'month': 30, 'year': 365}
+    if match:
+        num, unit = match.groups()
+        unit = unit.lower()
+        if unit.endswith('s'): unit = unit[:-1]
+        days = int(num) * units.get(unit, 0)
+    else:
+        days = 0
+        
+    return days

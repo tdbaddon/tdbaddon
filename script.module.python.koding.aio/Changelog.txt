@@ -1,3 +1,41 @@
+v.0.8.8:
+- Removed rogue ampersand in addon.xml
+
+v.0.8.7:
+- Added OK_Dialog function
+- Added YesNo_Dialog function
+- Added Compress function - this will probably end up replacing Archive_Tree longer term
+- Suppressed error popup message when online code fails
+
+v.0.8.6:
+- Fixed logging in Open_URL, was logging everything by default
+
+v.0.8.5:
+- Fixed bad error reporting in addon_enable
+- Fixed example code for Sleep_If_Playback_Active function
+
+v.0.8.4:
+- Added extra json query attempt for addon_enable
+
+v.0.8.3:
+- Fixed Timestamp issue in Addon_Genre function
+
+v.0.8.2:
+- Added Sleep_If_Playback_Active() function, this pauses code until playback stops
+
+v.0.8.1:
+- Fixed the Open_Settings, wasn't opening the caller id correctly
+
+v.0.8:
+- Improved Open_URL. Added cookie, header, auth and timeout support
+- Edited Default_Setting function so it can return a dictionary of all defaults
+- Added the ability to send through various params to Add_Dir
+- Added new routing (thanks to midraal for PR)
+- Added Remove_From_Table function
+- Renamed Run_As_Kodi to Get_ID and changed function behaviour slightly
+- Split up add-on based functions into new addon module
+- Added some more documentation to the README
+
 v.0.7.5:
 - Rezipped, had used 7zip think that caused problems.
 

@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
         for source, values in self.__get_post_links(html).iteritems():
             if scraper_utils.excluded_link(source): continue
@@ -76,7 +76,7 @@ class Scraper(scraper.Scraper):
         return sources
         
     def get_url(self, video):
-        return self._blog_get_url(video)
+        return self._blog_get_url(video, delim=' ')
 
     @classmethod
     def get_settings(cls):

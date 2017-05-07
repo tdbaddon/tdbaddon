@@ -76,12 +76,12 @@ class Scraper(scraper.Scraper):
         return 'Premiumize.me'
 
     def resolve_link(self, link):
-        query = urlparse.parse_qs(link)
+        query = scraper_utils.parse_query(link)
         if 'hash_id' in query:
-            hash_id = query['hash_id'][0].lower()
+            hash_id = query['hash_id'].lower()
             if self.__add_torrent(hash_id):
                 browse_url = BROWSE_URL % (hash_id)
-                browse_url = urlparse.urljoin(self.base_url, browse_url)
+                browse_url = scraper_utils.urljoin(self.base_url, browse_url)
                 js_data = self._json_get(browse_url, cache_limit=0)
                 if 'content' in js_data:
                     videos = self.__get_videos(js_data['content'])
@@ -94,13 +94,13 @@ class Scraper(scraper.Scraper):
                         return videos[0]['url']
                 
     def __add_torrent(self, hash_id):
-        list_url = urlparse.urljoin(self.base_url, LIST_URL)
+        list_url = scraper_utils.urljoin(self.base_url, LIST_URL)
         js_data = self._json_get(list_url, cache_limit=0)
         for transfer in js_data.get('transfers', []):
             if transfer['hash'].lower() == hash_id:
                 return True
          
-        add_url = urlparse.urljoin(self.base_url, ADD_URL)
+        add_url = scraper_utils.urljoin(self.base_url, ADD_URL)
         data = {'src': MAGNET_LINK % hash_id}
         js_data = self._json_get(add_url, data=data, cache_limit=0)
         if js_data.get('status') == 'success':
@@ -161,7 +161,7 @@ class Scraper(scraper.Scraper):
         movie_id = query.get('movie_id') or self.__get_movie_id(source_url)
         if not movie_id: return hosters
         
-        details_url = urlparse.urljoin(self.movie_base_url, MOVIE_DETAILS_URL)
+        details_url = scraper_utils.urljoin(self.movie_base_url, MOVIE_DETAILS_URL)
         detail_data = self._json_get(details_url, params={'movie_id': movie_id}, cache_limit=24)
         try: torrents = detail_data['data']['movie']['torrents']
         except KeyError: torrents = []
@@ -183,7 +183,7 @@ class Scraper(scraper.Scraper):
         return hosters
     
     def __get_movie_id(self, source_url):
-        url = urlparse.urljoin(self.movie_base_url, source_url)
+        url = scraper_utils.urljoin(self.movie_base_url, source_url)
         html = self._http_get(url, cache_limit=24)
         match = dom_parser2.parse_dom(html, 'div', {'id': 'movie-info'}, req='data-movie-id')
         if match:
@@ -193,7 +193,7 @@ class Scraper(scraper.Scraper):
         new_data = {}
         if hashes:
             check_url = CHECKHASH_URL + urllib.urlencode([('hashes[]', hashes)], doseq=True)
-            check_url = urlparse.urljoin(self.base_url, check_url)
+            check_url = scraper_utils.urljoin(self.base_url, check_url)
             new_data = hash_data = self._json_get(check_url, cache_limit=.1)
             new_data['hashes'] = dict((hash_id.lower(), hash_data['hashes'][hash_id]) for hash_id in hash_data.get('hashes', {}))
         return new_data
@@ -203,7 +203,7 @@ class Scraper(scraper.Scraper):
             return show_url
     
     def __find_episode(self, show_url, video):
-        url = urlparse.urljoin(self.tv_base_url, show_url)
+        url = scraper_utils.urljoin(self.tv_base_url, show_url)
         html = self._http_get(url, cache_limit=2)
         hashes = []
         for attrs, _magnet in dom_parser2.parse_dom(html, 'a', {'class': 'magnet'}, req=['href', 'title']):
@@ -234,7 +234,7 @@ class Scraper(scraper.Scraper):
     def __movie_search(self, title, year):
         results = []
         params = {'query_term': title, 'sort_by': 'seeders', 'order_by': 'desc'}
-        search_url = urlparse.urljoin(self.movie_base_url, MOVIE_SEARCH_URL)
+        search_url = scraper_utils.urljoin(self.movie_base_url, MOVIE_SEARCH_URL)
         js_data = self._json_get(search_url, params=params, cache_limit=1)
         for movie in js_data.get('data', {}).get('movies', []):
             match_url = movie['url'] + '?movie_id=%s' % (movie['id'])
@@ -248,7 +248,7 @@ class Scraper(scraper.Scraper):
         
     def __tv_search(self, title, year):
         results = []
-        search_url = urlparse.urljoin(self.tv_base_url, '/showlist/')
+        search_url = scraper_utils.urljoin(self.tv_base_url, '/showlist/')
         html = self._http_get(search_url, cache_limit=48)
         match_year = ''
         norm_title = scraper_utils.normalize_title(title)

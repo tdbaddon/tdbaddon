@@ -1341,7 +1341,7 @@ def apply_urlresolver(hosters):
     unk_hosts = {}
     known_hosts = {}
     for hoster in hosters:
-        if 'direct' in hoster and hoster['direct'] == False and hoster['host']:
+        if 'direct' in hoster and hoster['direct'] is False and hoster['host']:
             host = hoster['host']
             if filter_unusable:
                 if host in unk_hosts:
@@ -2202,7 +2202,7 @@ def add_to_library(video_type, title, year, trakt_id):
                     if utils2.show_requires_source(trakt_id):
                         require_source = True
                     else:
-                        if (episode['first_aired'] != None and utils.iso_2_utc(episode['first_aired']) <= time.time()) or (include_unknown and episode['first_aired'] == None):
+                        if (episode['first_aired'] is not None and utils.iso_2_utc(episode['first_aired']) <= time.time()) or (include_unknown and episode['first_aired'] is None):
                             require_source = False
                         else:
                             continue

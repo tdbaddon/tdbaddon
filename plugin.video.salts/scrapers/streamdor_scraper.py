@@ -17,7 +17,6 @@
 """
 import urllib
 import scraper
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 from salts_lib import scraper_utils
@@ -48,7 +47,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, headers=XHR, cache_limit=8)
         js_data = scraper_utils.parse_json(html, url)
         quality = Q_MAP.get(js_data.get('Key', {}).get('MovieDefinition'), QUALITIES.HIGH)
@@ -63,7 +62,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/searchBoxSuggestion')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/searchBoxSuggestion')
         html = self._http_get(search_url, params={'top': 8, 'query': title}, cache_limit=8)
         js_data = scraper_utils.parse_json(html, search_url)
         for item in js_data:

@@ -17,7 +17,6 @@
 """
 import re
 import urllib
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -55,13 +54,13 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'film-container'})
         if fragment:
             iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
             if iframe_url:
-                iframe_url = urlparse.urljoin(self.base_url, iframe_url[0].attrs['src'])
+                iframe_url = scraper_utils.urljoin(self.base_url, iframe_url[0].attrs['src'])
                 headers = {'Referer': page_url}
                 html = self._http_get(iframe_url, headers=headers, cache_limit=.5)
                 sources = scraper_utils.parse_sources_list(self, html)
@@ -85,8 +84,8 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
-        referer = urlparse.urljoin(self.base_url, '/search/?q=%s')
+        search_url = scraper_utils.urljoin(self.base_url, SEARCH_URL)
+        referer = scraper_utils.urljoin(self.base_url, '/search/?q=%s')
         referer = referer % (urllib.quote_plus(title))
         headers = {'Referer': referer}
         headers.update(XHR)
@@ -125,9 +124,9 @@ class Scraper(scraper.Scraper):
         return html
 
     def __login(self):
-        url = urlparse.urljoin(self.base_url, '/apis/v2/user/login.json')
+        url = scraper_utils.urljoin(self.base_url, '/apis/v2/user/login.json')
         data = {'email': self.username, 'password': self.password, 'rememberMe': True}
-        referer = urlparse.urljoin(self.base_url, '/login')
+        referer = scraper_utils.urljoin(self.base_url, '/login')
         headers = {'Content-Type': 'application/json', 'Referer': referer}
         headers.update(XHR)
         html = super(self.__class__, self)._http_get(url, data=json.dumps(data), headers=headers, cache_limit=0)

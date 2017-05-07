@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import urlparse
 import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
@@ -43,7 +42,7 @@ class Scraper(scraper.Scraper):
         return 'tvrush'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         html = self._http_get(url, cache_limit=.5)
         stream = dom_parser2.parse_dom(html, 'a', {'class': 'hostLink'}, req='href')
         if stream:
@@ -55,7 +54,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'embeds'})
         if fragment:

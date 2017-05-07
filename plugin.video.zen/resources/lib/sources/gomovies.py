@@ -24,7 +24,7 @@ from resources.lib.modules import client
 from resources.lib.modules import directstream
 from resources.lib.modules import jsunfuck
 from resources.lib.modules import cache
-
+from BeautifulSoup import BeautifulSoup
 CODE = '''def retA():
     class Infix:
         def __init__(self, function):
@@ -77,68 +77,66 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            r = self.searchMovie(title)
-
-            if r == None:
-                t = cache.get(self.getOriginalTitle, 900, imdb)
-                if t != title:
-                    r = self.searchMovie(t)
-
-            return urllib.urlencode({'url': r, 'episode': 0})
-        except:
-            return
-
-    def searchMovie(self, title):
-        try:
-            title = cleantitle.normalize(title)
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': title})
-            r = client.request(u, post=p, XHR=True)
-            r = json.loads(r)['content']
-            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
-            if r:
-                return r
+            self.zen = []
+            cleaned_title = cleantitle.get(title)
+            title = cleantitle.getsearch(title)
+            q = self.search_link_2 % (urllib.quote_plus(title))
+            r = urlparse.urljoin(self.base_link, q)
+            html = BeautifulSoup(client.request(r))
+            containers = html.findAll('div', attrs={'class': 'ml-item'})
+            for result in containers:
+                links = result.findAll('a')
+                for link in links:
+                    link_title = link['title'].encode('utf-8')
+                    href = link['href'].encode('utf-8')
+                    info = link['data-url'].encode('utf-8')
+                    if cleantitle.get(link_title) == cleaned_title:
+                        info = urlparse.urljoin(self.base_link, info)
+                        html = client.request(info)
+                        pattern = '<div class="jt-info">(.+?)</div>'
+                        match = re.compile(pattern).findall(html)
+                        for check in match:
+							if not check == year: raise Exception()
+							url = client.replaceHTMLCodes(href)
+							url = urlparse.urljoin(self.base_link, url)
+							return urllib.urlencode({'url': url, 'episode': 0})
         except:
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
             return url
         except:
             return
 
-    def searchShow(self, title, season):
-        try:
-            title = cleantitle.normalize(title)
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': ('%s - Season %s' % (title, season))})
-            r = client.request(u, post=p, XHR=True)
-            r = json.loads(r)['content']
-            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
-            if r:
-                return r
-        except:
-            return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
+            title = cleantitle.getsearch(data['tvshowtitle'])
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
+            query = (urllib.quote_plus(title)) + "+season+" + season
+            checkseason = cleantitle.get(title) + "season" + season
+			
+            q = self.search_link_2 % (query)
+            r = urlparse.urljoin(self.base_link, q)
 
-            if 'tvshowtitle' in data:
-                r = self.searchShow(data['tvshowtitle'], season)
-
-            if r == None:
-                t = cache.get(self.getOriginalTitle, 900, imdb)
-                if t != data['tvshowtitle']:
-                    r = self.searchShow(t, season)
-
-            return urllib.urlencode({'url': r, 'episode': episode})
+            html = BeautifulSoup(client.request(r))
+            containers = html.findAll('div', attrs={'class': 'ml-item'})
+            for result in containers:
+                links = result.findAll('a')
+                for link in links:
+                    link_title = link['title'].encode('utf-8')
+                    href = link['href'].encode('utf-8')
+                    href = client.replaceHTMLCodes(href)
+                    href = urlparse.urljoin(self.base_link, href)
+                    if cleantitle.get(link_title) == checkseason:
+                        return urllib.urlencode({'url': href, 'episode': episode})
+            
         except:
             return
 

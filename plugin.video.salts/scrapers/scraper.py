@@ -106,10 +106,12 @@ class Scraper(object):
         on the video page.
         * This method is called for the user selected source before calling urlresolver on it.
         """
-        if link.startswith('http'):
-            return link
+        if link.startswith('//'):
+            return 'http:' + link
+        elif not link.startswith('http'):
+            return scraper_utils.urljoin(self.base_url, link)
         else:
-            return self.base_url + link
+            return link
 
     def format_source_label(self, item):
         """
@@ -317,12 +319,15 @@ class Scraper(object):
             self.cj = self._set_cookies(base_url, cookies)
             if isinstance(url, unicode): url = url.encode('utf-8')
             request = urllib2.Request(url, data=data)
+            headers = headers.copy()
             request.add_header('User-Agent', scraper_utils.get_ua())
             request.add_header('Accept', '*/*')
             request.add_header('Accept-Encoding', 'gzip')
             request.add_unredirected_header('Host', request.get_host())
-            request.add_unredirected_header('Referer', referer)
-            for key in headers: request.add_header(key, headers[key])
+            if referer: request.add_unredirected_header('Referer', referer)
+            if 'Referer' in headers: del headers['Referer']
+            if 'Host' in headers: del headers['Host']
+            for key, value in headers.iteritems(): request.add_header(key, value)
             self.cj.add_cookie_header(request)
             if not allow_redirect:
                 opener = urllib2.build_opener(NoRedirection)
@@ -408,7 +413,7 @@ class Scraper(object):
         if isinstance(show_url, unicode): show_url = show_url.encode('utf-8')
         log_utils.log('Default Episode Url: |%s|%s|%s|%s|' % (self.base_url, show_url, str(video), data), log_utils.LOGDEBUG)
         if not show_url.startswith('http'):
-            url = urlparse.urljoin(self.base_url, show_url)
+            url = scraper_utils.urljoin(self.base_url, show_url)
         else:
             url = show_url
         html = self._http_get(url, data=data, headers=headers, method=method, cache_limit=2)
@@ -417,7 +422,7 @@ class Scraper(object):
 
             if not force_title:
                 if episode_pattern:
-                    match = re.search(episode_pattern, html, re.DOTALL)
+                    match = re.search(episode_pattern, html, re.DOTALL | re.I)
                     if match:
                         return scraper_utils.pathify_url(match.group(1))
 

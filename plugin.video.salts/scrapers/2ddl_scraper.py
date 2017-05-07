@@ -29,7 +29,7 @@ from salts_lib.constants import SHORT_MONS
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://iiddl.com'
+BASE_URL = 'http://best2ddl.net'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
 EXCLUDE_LINKS = ['adf.ly', urlparse.urlparse(BASE_URL).hostname]
 
@@ -53,8 +53,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
         
-        url = urlparse.urljoin(self.base_url, source_url)
-        html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        html = self._http_get(source_url, require_debrid=True, cache_limit=.5)
         if video.video_type == VIDEO_TYPES.MOVIE:
             pattern = '<singlelink>(.*?)(?=<hr\s*/>|download>|thanks_button_div)'
         else:
@@ -96,16 +95,15 @@ class Scraper(scraper.Scraper):
         page_url = [show_url]
         too_old = False
         while page_url and not too_old:
-            url = urlparse.urljoin(self.base_url, page_url[0])
-            html = self._http_get(url, require_debrid=True, cache_limit=1)
+            html = self._http_get(page_url[0], require_debrid=True, cache_limit=1)
             for _attr, post in dom_parser2.parse_dom(html, 'div', {'id': re.compile('post-\d+')}):
                 if self.__too_old(post):
                     too_old = True
                     break
                 if CATEGORIES[VIDEO_TYPES.TVSHOW] in post and show_url in post:
-                    match = re.search('<a\s+href="([^"]+)[^>]+>(.*?)</a>', post)
+                    match = dom_parser2.parse_dom(post, 'a', req='href')
                     if match:
-                        url, title = match.groups()
+                        url, title = match[0].attrs['href'], match[0].content
                         if not force_title:
                             if scraper_utils.release_check(video, title, require_title=False):
                                 return scraper_utils.pathify_url(url)
@@ -116,12 +114,11 @@ class Scraper(scraper.Scraper):
                                     return scraper_utils.pathify_url(url)
                 
             page_url = dom_parser2.parse_dom(html, 'a', {'class': 'nextpostslink'}, req='href')
-            if page_url: page_url = page_url[0].attrs['href']
+            if page_url: page_url = [page_url[0].attrs['href']]
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/')
-        search_url += urllib.quote_plus(title)
+        search_url = '/search/' + urllib.quote_plus(title)
         html = self._http_get(search_url, require_debrid=True, cache_limit=1)
         if video_type == VIDEO_TYPES.TVSHOW:
             seen_urls = {}
@@ -149,9 +146,39 @@ class Scraper(scraper.Scraper):
                 if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):
                     result = {'url': scraper_utils.pathify_url(post_url), 'title': scraper_utils.cleanse_title(full_title), 'year': match_year}
                     results.append(result)
-        
+            
         return results
 
+    def _http_get(self, url, params=None, data=None, multipart_data=None, headers=None, cookies=None, allow_redirect=True, method=None, require_debrid=False, read_error=False, cache_limit=8):
+        real_url = scraper_utils.urljoin(self.base_url, url)
+        html = super(self.__class__, self)._http_get(real_url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies,
+                                                     allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error,
+                                                     cache_limit=cache_limit)
+        if self.__update_base_url(html):
+            real_url = scraper_utils.urljoin(self.base_url, url)
+            html = super(self.__class__, self)._http_get(real_url, params=params, data=data, multipart_data=multipart_data, headers=headers,
+                                                         cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid,
+                                                         read_error=read_error, cache_limit=cache_limit)
+        
+        return html
+    
+    def __update_base_url(self, html):
+        if re.search('new domain', html, re.I):
+            match = dom_parser2.parse_dom(html, 'a', {'rel': 'nofollow'}, req='href')
+            if match:
+                html = super(self.__class__, self)._http_get(match[0].attrs['href'], require_debrid=True, cache_limit=24)
+                match = dom_parser2.parse_dom(html, 'link', {'rel': 'canonical'}, req='href')
+                if match:
+                    new_base = match[0].attrs['href']
+                    if new_base.endswith('/'):
+                        new_base = new_base[:-1]
+                        
+                    self.base_url = new_base
+                    kodi.set_setting('%s-base_url' % (self.get_name()), new_base)
+                    return True
+        
+        return False
+    
     def __too_old(self, post):
         try:
             filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))

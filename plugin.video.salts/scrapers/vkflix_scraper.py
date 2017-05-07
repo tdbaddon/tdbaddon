@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         if video.video_type == VIDEO_TYPES.EPISODE:
             html = self.__get_episode_fragment(html, video)
@@ -107,7 +107,7 @@ class Scraper(scraper.Scraper):
 
     def __search(self, video_type, title, year, page):
         results = []
-        url = urlparse.urljoin(self.base_url, page['url'])
+        url = scraper_utils.urljoin(self.base_url, page['url'])
         params = page['params'] if 'params' in page else None
         html = self._http_get(url, params=params, cache_limit=24)
         norm_title = scraper_utils.normalize_title(title)
@@ -129,7 +129,7 @@ class Scraper(scraper.Scraper):
         return results
         
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=8)
         pattern = '<h3>[^>]*Season\s+%s\s+Series?\s+%s<' % (video.season, video.episode)
         match = re.search(pattern, html, re.I)

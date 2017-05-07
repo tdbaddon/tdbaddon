@@ -124,7 +124,7 @@ class FanartTVScraper(Scraper):
     API_KEY = kodi.get_setting('fanart_key')
     CLIENT_KEY = kodi.get_setting('fanart_person_key')
     BASE_URL = 'webservice.fanart.tv/v3'
-    LANGS = {'en': 2, '00': 1}
+    LANGS = {'en': 3, '00': 1, '': 2}
 
     def __init__(self):
         self.headers = {'api-key': self.API_KEY}
@@ -140,7 +140,9 @@ class FanartTVScraper(Scraper):
             images = self._get_url(url, headers=self.headers)
             if BG_ENABLED:
                 art_dict['fanart'] = self.__get_best_image(images.get('moviebackground', []))
-                if not art_dict['fanart']: art_dict['fanart'] = self.__get_best_image(images.get('moviethumb', []))
+            
+            if THUMB_ENABLED:
+                art_dict['thumb'] = self.__get_best_image(images.get('moviethumb', []))
 
             if BANNER_ENABLED:
                 art_dict['banner'] = self.__get_best_image(images.get('moviebanner', []))
@@ -161,13 +163,12 @@ class FanartTVScraper(Scraper):
         if FANARTTV_ENABLED and self.API_KEY and 'tvdb' in ids and ids['tvdb'] and any_art:
             url = '/tv/%s' % (ids['tvdb'])
             images = self._get_url(url, headers=self.headers)
+            if BG_ENABLED:
+                art_dict['fanart'] = self.__get_best_image(images.get('showbackground', []))
+            
             if THUMB_ENABLED:
                 art_dict['thumb'] = self.__get_best_image(images.get('tvthumb', []))
                 
-            if BG_ENABLED:
-                art_dict['fanart'] = self.__get_best_image(images.get('showbackground', []))
-                if not art_dict['fanart']: art_dict['fanart'] = art_dict.get('thumb')
-            
             if BANNER_ENABLED:
                 art_dict['banner'] = self.__get_best_image(images.get('tvbanner', []))
             
@@ -208,7 +209,7 @@ class FanartTVScraper(Scraper):
     
     def __get_best_image(self, images, season=None):
         best = None
-        images = [image for image in images if image.get('lang') in ('en', '00')]
+        images = [image for image in images if image.get('lang') in ('en', '00', '')]
         if season is not None:
             images = [image for image in images if image.get('season') == season]
             
@@ -741,7 +742,7 @@ def scrape_images(video_type, video_ids, season='', episode='', cached=True):
                 art_dict['thumb'] = tvmaze_art.get('thumb')
                 if art_dict['poster'] == PLACE_POSTER and 'poster' in tvmaze_art:
                     art_dict['poster'] = tvmaze_art['poster']
-                
+                    
         if not art_dict['thumb']:
             log_utils.log('Doing %s thumb fallback |%s|' % (video_type, art_dict))
             if video_type == VIDEO_TYPES.MOVIE:
@@ -752,6 +753,9 @@ def scrape_images(video_type, video_ids, season='', episode='', cached=True):
                 if art_dict['fanart'] != DEFAULT_FANART: art_dict['thumb'] = art_dict['fanart']
                 elif art_dict['poster'] != PLACE_POSTER: art_dict['thumb'] = art_dict['poster']
                 else: art_dict['thumb'] = art_dict['fanart']
+        elif art_dict['fanart'] == DEFAULT_FANART:
+            log_utils.log('Doing %s fanart fallback |%s|' % (video_type, art_dict))
+            art_dict['fanart'] = art_dict['thumb']
             
         db_connection.cache_images(object_type, trakt_id, art_dict, season, episode)
     

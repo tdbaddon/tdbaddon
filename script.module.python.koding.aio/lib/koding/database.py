@@ -174,6 +174,25 @@ os.remove(addon_db_path)
     _execute_db_string(sql_string)
 #----------------------------------------------------------------
 # TUTORIAL #
+def Remove_Table(table):
+    """
+Use with caution, this will completely remove a database table and
+all of it's contents. The only database you can access with this command
+is your add-ons own db file called database.db
+
+CODE:  Remove_Table(table)
+
+AVAILABLE PARAMS:
+
+    (*) table  -  This is the name of the table you want to permanently delete.
+
+EXAMPLE CODE:
+koding.Remove_Table('my_test_table')
+~"""
+    sql_string = "DROP TABLE IF EXISTS %s;" % table
+    _execute_db_string(sql_string)
+#----------------------------------------------------------------
+# TUTORIAL #
 def DB_Query(db_path, query, values=''):
     """
 Open a database and either return an array of results with the SELECT SQL command or perform an action such as INSERT, UPDATE, CREATE.

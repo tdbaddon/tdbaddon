@@ -46,7 +46,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
         pattern = "/w\.php\?q=([^']+)"
@@ -67,7 +67,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/index.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/index.php')
         params = {'search': title, 'image.x': 0, 'image.y': 0}
         html = self._http_get(search_url, params=params, cache_limit=1)
 

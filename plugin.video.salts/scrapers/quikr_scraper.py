@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import urllib
 import re
 import urlparse
 import kodi
@@ -49,7 +50,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         page_quality = QUALITIES.HD720 if video.video_type == VIDEO_TYPES.MOVIE else QUALITIES.HIGH
         for _attrs, fragment in dom_parser2.parse_dom(html, 'div', {'class': 'embed-responsive'}):
@@ -87,8 +88,9 @@ class Scraper(scraper.Scraper):
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        url = '/search/%s/' % (title)
-        url = urlparse.urljoin(self.base_url, url)
+        search_title = re.sub('[^A-Za-z0-9. ]', '', title)
+        url = '/search/%s/' % (urllib.quote(search_title))
+        url = scraper_utils.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=48)
         norm_title = scraper_utils.normalize_title(title)
         for _attrs, item in dom_parser2.parse_dom(html, 'article', {'class': 'movie-details'}):
@@ -109,7 +111,7 @@ class Scraper(scraper.Scraper):
         result = self._default_get_episode_url(show_url, video, episode_pattern)
         if result: return result
 
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=2)
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'episode_list'})
         if fragment:

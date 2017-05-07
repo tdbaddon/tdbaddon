@@ -25,7 +25,6 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
-from salts_lib.constants import XHR
 import scraper
 
 BASE_URL = 'http://watchitvideos.info'
@@ -50,7 +49,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         
         best_quality = QUALITIES.HIGH

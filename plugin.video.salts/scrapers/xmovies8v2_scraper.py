@@ -51,7 +51,7 @@ class Scraper(scraper.Scraper):
         sources = {}
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         match = re.search("load_player\('([^']+)", html)
         if not match: return hosters
@@ -60,7 +60,7 @@ class Scraper(scraper.Scraper):
                    'Accept-Language': 'en-US,en;q=0.5', 'Accept-Formating': 'application/json, text/javascript', 'Accept-Encoding': 'gzip, deflate'}
         headers.update(XHR)
         params = {'id': match.group(1)}
-        player_url = urlparse.urljoin(self.base_url, PLAYER_URL)
+        player_url = scraper_utils.urljoin(self.base_url, PLAYER_URL)
         html = self._http_get(player_url, params=params, headers=headers, cache_limit=1)
         js_data = scraper_utils.parse_json(html, player_url)
         pl_url = js_data.get('value') or js_data.get('download')
@@ -107,7 +107,7 @@ class Scraper(scraper.Scraper):
         return token
         
     def _get_episode_url(self, season_url, video):
-        season_url = urlparse.urljoin(self.base_url, season_url)
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
         html = self._http_get(season_url, cache_limit=.5)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ep_link'})
         if not fragment: return
@@ -120,7 +120,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/movies/search')
+        search_url = scraper_utils.urljoin(self.base_url, '/movies/search')
         html = self._http_get(search_url, params={'s': title}, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'item_movie'}):
             match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
@@ -145,7 +145,7 @@ class Scraper(scraper.Scraper):
                 if not match_vt: continue
                 match_title, match_year = scraper_utils.extra_year(match_title_year)
 
-            match_url = urlparse.urljoin(match_url, 'watching.html')
+            match_url = scraper_utils.urljoin(match_url, 'watching.html')
             if not year or not match_year or year == match_year:
                 result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                 results.append(result)

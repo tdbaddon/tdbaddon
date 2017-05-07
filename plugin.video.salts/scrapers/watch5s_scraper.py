@@ -23,13 +23,13 @@ import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
 from salts_lib import scraper_utils
-from salts_lib import jsunpack
+from salts_lib import aa_decoder
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'https://watch5s.to'
+BASE_URL = 'https://watch5s.rs'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD-720P': QUALITIES.HD720}
 
 class Scraper(scraper.Scraper):
@@ -53,19 +53,19 @@ class Scraper(scraper.Scraper):
         sources = {}
         headers = {'Accept-Language': 'en-US,en;q=0.5'}
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, headers=headers, cache_limit=2)
         if video.video_type == VIDEO_TYPES.MOVIE:
             sources.update(self.__scrape_sources(html, page_url))
             pages = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'btn-eps'}, req='href')])
             active = set([r.attrs['href'] for r in dom_parser2.parse_dom(html, 'a', {'class': 'active'}, req='href')])
             for page in list(pages - active):
-                page_url = urlparse.urljoin(self.base_url, page)
+                page_url = scraper_utils.urljoin(self.base_url, page)
                 html = self._http_get(page_url, headers=headers, cache_limit=2)
                 sources.update(self.__scrape_sources(html, page_url))
         else:
             for page in self.__match_episode(video, html):
-                page_url = urlparse.urljoin(self.base_url, page)
+                page_url = scraper_utils.urljoin(self.base_url, page)
                 html = self._http_get(page_url, headers=headers, cache_limit=2)
                 sources.update(self.__scrape_sources(html, page_url))
         
@@ -108,31 +108,45 @@ class Scraper(scraper.Scraper):
     def __get_grab_url(self, html, page_url):
         grab_url = ''
         episode_id = dom_parser2.parse_dom(html, 'input', {'name': 'episodeID'}, req='value')
-        if episode_id:
-            episode_id = episode_id[0].attrs['value']
-            hostname = urlparse.urlparse(page_url).hostname
-            headers = {'Referer': page_url}
-            for js_url in self.__get_js_url(html):
-                if 'watch5s' in js_url:
-                    match = re.search('ajax\(\{url:"([^"]+)', self.__get_js(js_url, headers, hostname), re.DOTALL)
-                    if not match: continue
-                    grab_url = match.group(1)
-                    hash_id, token = self.__get_params(grab_url, episode_id, page_url)
-                    if hash_id and token:
-                        now = int(time.time())
-                        params = {'hash': hash_id, 'token': token, '_': now}
-                        grab_url += episode_id + '?' + urllib.urlencode(params)
-                        break
+        movie_id = re.search('\s+id:\s*"([^"]+)', html)
+        if not episode_id or not movie_id: return grab_url
+        
+        episode_id = episode_id[0].attrs['value']
+        movie_id = movie_id.group(1)
+        hostname = urlparse.urlparse(page_url).hostname
+        headers = {'Referer': page_url}
+        for js_url in self.__get_js_url(html):
+            if 'watch5s' in js_url:
+                match = re.search('''ajax\(\{url:"([^"]+grab[^"]+)''', self.__get_js(js_url, headers, hostname), re.DOTALL | re.I)
+                if not match: continue
+                hash_id, token, ts = self.__get_params(match.group(1), episode_id, movie_id, page_url)
+                if hash_id and token and ts:
+                    params = {'hash': hash_id, 'token': token, '_': ts}
+                    grab_url = match.group(1) + episode_id + '?' + urllib.urlencode(params)
+                    break
             
         return grab_url
     
-    def __get_params(self, grab_url, episode_id, page_url):
-        url = urlparse.urljoin(grab_url, '/token.php')
+    def __get_params(self, grab_url, episode_id, movie_id, page_url):
+        hash_id, token, ts = None, None, None
+        url = scraper_utils.urljoin(grab_url, '/token_v2.php', replace_path=True)
         headers = {'Referer': page_url}
-        data = {'id': episode_id}
-        html = self._http_get(url, data=data, headers=headers, cache_limit=0)
-        js_data = scraper_utils.parse_json(html, url)
-        return js_data.get('hash'), js_data.get('token')
+        params = {'eid': episode_id, 'mid': movie_id, '_': int(time.time() * 1000)}
+        html = self._http_get(url, params=params, headers=headers, cache_limit=0)
+        if aa_decoder.is_aaencoded(html):
+            html = aa_decoder.decode(html)
+            match1 = re.search("hash\s*=\s*'([^']+)", html)
+            match2 = re.search("token\s*=\s*'([^']+)", html)
+            match3 = re.search("_\s*=\s*'([^']+)", html)
+            if match1 and match2 and match3:
+                hash_id = match1.group(1)
+                token = match2.group(1)
+                ts = match3.group(1)
+        else:
+            js_data = scraper_utils.parse_json(html, url)
+            hash_id, token, ts = js_data.get('hash'), js_data.get('token'), js_data.get('_')
+        
+        return hash_id, token, ts
     
     def __get_js_url(self, html):
         urls = []
@@ -154,7 +168,7 @@ class Scraper(scraper.Scraper):
             js_url = 'https:' + js_url
         elif not js_url.startswith('http'):
             base_url = 'https://' + hostname
-            js_url = urlparse.urljoin(base_url, js_url)
+            js_url = scraper_utils.urljoin(base_url, js_url)
          
         log_utils.log('Getting JS: |%s| - |%s|' % (js_url, headers))
         try: js = self._http_get(js_url, headers=headers)
@@ -172,7 +186,7 @@ class Scraper(scraper.Scraper):
             stream_url = item.get('file')
             if stream_url:
                 if stream_url.startswith('/'):
-                    stream_url = urlparse.urljoin(self.base_url, stream_url)
+                    stream_url = scraper_utils.urljoin(self.base_url, stream_url)
                     redir_url = self._http_get(stream_url, headers=headers, allow_redirect=False, method='HEAD')
                     if redir_url.startswith('http'):
                         stream_url = redir_url
@@ -190,7 +204,7 @@ class Scraper(scraper.Scraper):
         return sources
         
     def _get_episode_url(self, season_url, video):
-        url = urlparse.urljoin(self.base_url, season_url)
+        url = scraper_utils.urljoin(self.base_url, season_url)
         headers = {'Accept-Language': 'en-US,en;q=0.5'}
         html = self._http_get(url, headers=headers, cache_limit=8)
         if self.__match_episode(video, html):
@@ -210,7 +224,7 @@ class Scraper(scraper.Scraper):
         
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/')
         headers = {'Accept-Language': 'en-US,en;q=0.5'}
         html = self._http_get(search_url, params={'q': title}, headers=headers, cache_limit=8)
         norm_title = scraper_utils.normalize_title(title)
@@ -230,7 +244,7 @@ class Scraper(scraper.Scraper):
                         if season and not re.search('Season\s+0*%s$' % (season), match_title): continue
                         
                     if not match_url.endswith('/'): match_url += '/'
-                    match_url = urlparse.urljoin(match_url, 'watch/')
+                    match_url = scraper_utils.urljoin(match_url, 'watch/')
                     match_year = ''
                     if video_type == VIDEO_TYPES.MOVIE and year_frag:
                         match = re.search('\s*-\s*(\d{4})$', year_frag[0].attrs['alt'])

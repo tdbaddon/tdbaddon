@@ -28,7 +28,7 @@ from salts_lib.utils2 import i18n
 import scraper
 
 
-BASE_URL = 'http://hdtv720p.download'
+BASE_URL = 'http://hdtv720p.top'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -50,7 +50,7 @@ class Scraper(scraper.Scraper):
         sources = {}
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'entry-content'})
         if fragment:

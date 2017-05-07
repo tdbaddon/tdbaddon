@@ -49,7 +49,7 @@ class Scraper(scraper.Scraper):
         sources = {}
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         for match in re.finditer('player-data="([^"]+)[^>]+episode-data="([^"]+)[^>]*>(.*?)</a>', html, re.DOTALL):
             player_url, ep_id, label = match.groups()
@@ -95,7 +95,7 @@ class Scraper(scraper.Scraper):
         except: return False
     
     def _get_episode_url(self, season_url, video):
-        season_url = urlparse.urljoin(self.base_url, season_url)
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
         html = self._http_get(season_url, cache_limit=.5)
         for match in re.finditer('episode-data="([^"]+)', html):
             if self.__episode_match(video, match.group(1)):
@@ -103,7 +103,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/movie/search/')
+        search_url = scraper_utils.urljoin(self.base_url, '/movie/search/')
         title = re.sub('[^A-Za-z0-9 ]', '', title)
         title = re.sub('\s+', '-', title)
         search_url += title

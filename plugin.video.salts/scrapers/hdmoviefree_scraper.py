@@ -51,19 +51,19 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         sources = []
         if not source_url or source_url == FORCE_NO_MATCH: return sources
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=8)
         for attrs, _content in dom_parser2.parse_dom(html, 'img', req=['data-id', 'data-name']):
             film_id, data_name = attrs['data-id'], attrs['data-name']
             data = {'id': film_id, 'n': data_name}
-            server_url = urlparse.urljoin(self.base_url, SERVER_URL)
+            server_url = scraper_utils.urljoin(self.base_url, SERVER_URL)
             server_url = server_url % (film_id)
             headers = {'Referer': page_url}
             headers.update(XHR)
             html = self._http_get(server_url, data=data, headers=headers, cache_limit=.5)
             for attrs, _content in dom_parser2.parse_dom(html, 'a', req='data-id'):
                 data = {'epid': attrs['data-id']}
-                ep_url = urlparse.urljoin(self.base_url, EP_URL)
+                ep_url = scraper_utils.urljoin(self.base_url, EP_URL)
                 ep_url = ep_url % (attrs['data-id'])
                 headers = {'Referer': page_url}
                 headers.update(XHR)
@@ -100,7 +100,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/%s.html')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/%s.html')
         search_url = search_url % (scraper_utils.to_slug(title))
         html = self._http_get(search_url, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'slideposter'}):

@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.25)
         for _attrs, button in dom_parser2.parse_dom(html, 'li', {'class': 'playing_button'}):
             try:
@@ -76,7 +76,7 @@ class Scraper(scraper.Scraper):
         results = []
         seen_urls = set()
         for page in ['/latest-added/', '/popular-today/', '/most-popular/']:
-            url = urlparse.urljoin(self.base_url, page)
+            url = scraper_utils.urljoin(self.base_url, page)
             html = self._http_get(url, cache_limit=24)
             fragment = dom_parser2.parse_dom(html, 'div', {'class': 'home'})
             if fragment:

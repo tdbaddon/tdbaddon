@@ -198,6 +198,24 @@ koding.Notify(title='TEST NOTIFICATION', message='This is a quick 5 second test'
     xbmc.executebuiltin('XBMC.Notification(%s, %s, %s, %s)' % (title , message , duration, icon))
 #----------------------------------------------------------------
 # TUTORIAL #
+def OK_Dialog(title,message):
+    """
+This will bring up a short text message in a dialog.ok window.
+
+CODE: OK_Dialog(title,message)
+
+AVAILABLE PARAMS:
+
+    (*) title  -  This is title which appears in the header of the window.
+
+    (*) message  -  This is the main text you want to appear.
+
+EXAMPLE CODE:
+koding.OK_Dialog(title='TEST DIALOG',message='This is a test dialog ok box. Click OK to quit.')
+~"""
+    dialog.ok(title,message)
+#----------------------------------------------------------------
+# TUTORIAL #
 def Show_Busy(status=True, sleep=0):
     """
 This will show/hide a "working" symbol.
@@ -250,4 +268,30 @@ koding.Text_Box('TEST HEADER','Just some random text... Use kodi tags for new li
     xbmc.sleep(500)
     controller.getControl(1).setLabel(header)
     controller.getControl(5).setText(message)
-#----------------------------------------------------------------    
+#----------------------------------------------------------------
+# TUTORIAL #
+def YesNo_Dialog(title,message,yes=None,no=None):
+    """
+This will bring up a short text message in a dialog.yesno window. This will
+return True or False
+
+CODE: YesNo_Dialog(title,message,[yeslabel,nolabel])
+
+AVAILABLE PARAMS:
+
+    (*) title  -  This is title which appears in the header of the window.
+
+    (*) message  -  This is the main text you want to appear.
+
+    yes  -  Optionally change the default "YES" to a custom string
+
+    no  -  Optionally change the default "NO" to a custom string
+
+EXAMPLE CODE:
+mychoice = koding.YesNo_Dialog(title='TEST DIALOG',message='This is a yes/no dialog with custom labels.\nDo you want to see an example of a standard yes/no.',yes='Go on then',no='Nooooo!')
+if mychoice:
+    koding.YesNo_Dialog(title='STANDARD DIALOG',message='This is an example of a standard one without sending custom yes/no params through.')
+~"""
+    choice = dialog.yesno(title,message,yeslabel=yes,nolabel=no)
+    return choice
+#----------------------------------------------------------------

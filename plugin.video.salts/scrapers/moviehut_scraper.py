@@ -55,7 +55,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         pattern = 'href="([^"]+)">Watch (Link \d+)(.*?)</td>\s*<td[^>]*>(.*?)</td>.*?<td[^>]*id="lv_\d+"[^>]*>([^<]+)'
         for match in re.finditer(pattern, html, re.DOTALL):
@@ -84,7 +84,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/bestmatch-fund-movies-%s.html')
+        search_url = scraper_utils.urljoin(self.base_url, '/bestmatch-fund-movies-%s.html')
         search_title = title.replace(' ', '-')
         search_title = re.sub('[^A-Za-z0-9-]', '', search_title).lower()
         search_url = search_url % (search_title)

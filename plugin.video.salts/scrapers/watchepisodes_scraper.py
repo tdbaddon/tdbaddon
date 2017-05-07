@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.25)
         for _attrs, link in dom_parser2.parse_dom(html, 'div', {'class': 'ldr-item'}):
             stream_url = dom_parser2.parse_dom(link, 'a', req='data-actuallink')
@@ -77,7 +77,7 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=2)
         if html:
             force_title = scraper_utils.force_title(video)
@@ -110,7 +110,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/search/ajax_search')
+        search_url = scraper_utils.urljoin(self.base_url, '/search/ajax_search')
         html = self._http_get(search_url, params={'q': title}, headers=XHR, cache_limit=1)
         js_result = scraper_utils.parse_json(html, search_url)
         match_year = ''

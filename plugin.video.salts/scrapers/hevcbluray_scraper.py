@@ -48,7 +48,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         sources = []
         if not source_url or source_url == FORCE_NO_MATCH: return sources
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         is_3d = False
         page_quality = QUALITIES.HD720

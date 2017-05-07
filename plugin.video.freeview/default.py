@@ -1,6 +1,5 @@
 import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmcvfs,os,sys,datetime,string,hashlib,net,xbmc
 import xbmcaddon
-import liveresolver
 import json
 from cookielib import CookieJar
 from resources.lib.channels import *
@@ -25,7 +24,6 @@ logos_tvp = 'https://assets.tvplayer.com/common/logos/256/Inverted/'
 def CATEGORIES():
 	addDir('Live TV','url',5,logos+'menu_live.png')
 	addDir('Catch Up TV','url',6,logos+'menu_vod.png')
-	addDir('About this add-on','url',12,logos+'menu_vod.png')
 	
 def getVOD():
 	addDir('Blaze','url',8,logos+'blaze.png')
@@ -33,15 +31,7 @@ def getVOD():
 	addDir('Drama','http://uktvplay.uktv.co.uk/shows/channel/drama/',10,logos_tvp+'346.png')
 	addDir('Quest','url',9,logos_tvp+'327.png')
 	addDir('Really','http://uktvplay.uktv.co.uk/shows/channel/really/',10,logos_tvp+'306.png')
-	addDir('truTV','url',3,logos_tvp+'295.png')
 	addDir('Yesterday','http://uktvplay.uktv.co.uk/shows/channel/yesterday/',10,logos_tvp+'308.png')
-	
-def about():
-	path   = xbmc.translatePath('special://home/addons/plugin.video.freeview/about.txt')
-	f      = xbmcvfs.File(path,"rb")
-	data   = f.read()
-	dialog = xbmcgui.Dialog()
-	dialog.textviewer('About This Add-on', data)
 		
 def get_params():
         param=[]
@@ -97,6 +87,5 @@ elif mode==8: vod_blaze()
 elif mode==9: vod_quest()
 elif mode==10: vod_uktv(url)
 elif mode==11: vod_uktvEp(url)
-elif mode==12: about()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

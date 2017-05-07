@@ -66,7 +66,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        page_url = urlparse.urljoin(self.base_url, source_url)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=2)
         fragment = dom_parser2.parse_dom(html, 'div', {'id': 'playerMenu'})
         if not fragment: return hosters
@@ -76,7 +76,7 @@ class Scraper(scraper.Scraper):
             data_id = attrs['data-id']
             headers = {'Referer': page_url}
             headers.update(XHR)
-            embed_url = urlparse.urljoin(self.base_url, EMBED_URL)
+            embed_url = scraper_utils.urljoin(self.base_url, EMBED_URL)
             html = self._http_get(embed_url, data={'id': data_id}, headers=headers, cache_limit=.5)
             iframe_url = dom_parser2.parse_dom(html, 'iframe', req='src')
             if not iframe_url: continue
@@ -131,7 +131,7 @@ class Scraper(scraper.Scraper):
         return sources
     
     def _get_episode_url(self, show_url, video):
-        url = urlparse.urljoin(self.base_url, show_url)
+        url = scraper_utils.urljoin(self.base_url, show_url)
         headers = {'Referer': self.base_url}
         html = self._http_get(url, headers=headers, cache_limit=.25)
         data = dom_parser2.parse_dom(html, 'div', {'id': 'dizidetay'}, req=['data-dizi', 'data-id'])

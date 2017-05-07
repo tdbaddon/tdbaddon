@@ -17,7 +17,6 @@
 """
 import re
 import urllib2
-import urlparse
 import kodi
 import dom_parser2
 import log_utils  # @UnusedImport
@@ -49,12 +48,12 @@ class Scraper(scraper.Scraper):
         return 'NoobRoom'
 
     def resolve_link(self, link):
-        url = urlparse.urljoin(self.base_url, link)
+        url = scraper_utils.urljoin(self.base_url, link)
         html = self._http_get(url, cache_limit=.5)
         match = re.search('"file"\s*:\s*"([^"]+)', html)
         if match:
             file_link = match.group(1)
-            stream_url = urlparse.urljoin(self.base_url, file_link)
+            stream_url = scraper_utils.urljoin(self.base_url, file_link)
             cj = self._set_cookies(self.base_url, {})
             request = urllib2.Request(stream_url)
             request.add_header('User-Agent', scraper_utils.get_ua())
@@ -68,7 +67,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         has_1080p = True if 'Watch in 1080p' in html else False
         if video.video_type == VIDEO_TYPES.MOVIE:
@@ -109,7 +108,7 @@ class Scraper(scraper.Scraper):
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         if not self.include_paid and video_type != VIDEO_TYPES.MOVIE: return []
-        search_url = urlparse.urljoin(self.base_url, '/search.php')
+        search_url = scraper_utils.urljoin(self.base_url, '/search.php')
         html = self._http_get(search_url, params={'q': title}, cache_limit=.25)
         results = []
         if video_type == VIDEO_TYPES.MOVIE:
@@ -153,7 +152,7 @@ class Scraper(scraper.Scraper):
         return html
 
     def __login(self, html):
-        url = urlparse.urljoin(self.base_url, '/login2.php')
+        url = scraper_utils.urljoin(self.base_url, '/login2.php')
         data = {'email': self.username, 'password': self.password, 'echo': 'echo'}
         match = re.search('challenge\?k=([^"]+)', html)
         if match:

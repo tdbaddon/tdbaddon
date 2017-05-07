@@ -139,7 +139,6 @@ class movies:
 
             elif u in self.tmdb_link and not ('/user/' in url or '/list/' in url):
                 self.list = cache.get(self.tmdb_list, 24, url)
-                print ("LISTS TMDB", self.list)
                 self.worker()
 				
             elif u in self.trakt_link and '/users/' in url:
@@ -1074,7 +1073,6 @@ class movies:
     def super_info(self, i):
         try:
             if self.list[i]['metacache'] == True: raise Exception()
-            print ("SUPERINFO INITIALIZED")
 
             try: tmdb = self.list[i]['tmdb']
             except: tmdb = '0'

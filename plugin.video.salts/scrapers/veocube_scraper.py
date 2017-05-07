@@ -46,13 +46,13 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=8)
         hosters += self.__get_sources(html, url)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'parts-middle'})
         if fragment:
             for attrs, _content in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                url = urlparse.urljoin(self.base_url, attrs['href'])
+                url = scraper_utils.urljoin(self.base_url, attrs['href'])
                 html = self._http_get(url, cache_limit=8)
                 hosters += self.__get_sources(html, url)
 

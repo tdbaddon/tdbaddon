@@ -47,7 +47,7 @@ class Scraper(scraper.Scraper):
         hosters = []
         source_url = self.get_url(video)
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
         q_str = 'HDRIP'
         match = re.search('>Quality(.*?)<br\s*/?>', html, re.I)
@@ -74,7 +74,7 @@ class Scraper(scraper.Scraper):
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         slug = scraper_utils.to_slug(title)
-        test_url = urlparse.urljoin(self.base_url, slug)
+        test_url = scraper_utils.urljoin(self.base_url, slug)
         test_url += '-%s' % (year)
         html = self._http_get(test_url, cache_limit=8)
         if html:

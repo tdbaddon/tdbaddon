@@ -46,7 +46,7 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = urlparse.urljoin(self.base_url, source_url)
+        url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
         title = dom_parser2.parse_dom(html, 'meta', {'property': 'og:title'}, req='content')
         meta = scraper_utils.parse_movie_link(title[0].attrs['content']) if title else {}
