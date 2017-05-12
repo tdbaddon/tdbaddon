@@ -23,7 +23,7 @@ from urlresolver.resolver import UrlResolver, ResolverError
 class VidMeResolver(UrlResolver):
     name = "vid.me"
     domains = ["vid.me"]
-    pattern = '(?://|\.)(vid\.me)/(?:e/)?([0-9A-Za-z]+)'
+    pattern = '(?://|\.)(vid\.me)/(?:embedded/|e/)?([0-9A-Za-z]+)'
 
     def __init__(self):
         self.net = common.Net()
@@ -39,4 +39,4 @@ class VidMeResolver(UrlResolver):
         raise ResolverError('File Not Found or removed')
 
     def get_url(self, host, media_id):
-        return 'http://vid.me/e/%s' % media_id
+        return 'http://vid.me/embedded/%s' % media_id

@@ -32,7 +32,7 @@ class source:
         self.base_link = 'http://de.ddl.me'
         self.search_link = '/search_99/?q=%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__get_direct_url(imdb)
             if not url: return
@@ -40,7 +40,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             return self.__get_direct_url(imdb)
         except:

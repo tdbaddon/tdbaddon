@@ -35,7 +35,7 @@ class source:
         self.search_link = '/search/title/%s'
         self.stream_link = 'stream/%s/1'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(localtitle)
             if not url and title != localtitle: url = self.__search(title)
@@ -43,7 +43,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
             url = urllib.urlencode(url)

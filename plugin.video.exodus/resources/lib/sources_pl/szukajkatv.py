@@ -38,10 +38,10 @@ class source:
         result = re.sub(' +', ' ', result)
         return result.strip()
     
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         return self.clean_serach(title) + ' ' + year
     
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         return self.clean_serach(tvshowtitle)
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
@@ -60,9 +60,8 @@ class source:
         try:
             
             words = url.split(' ')
-            search_str = url.replace(" ","-")
                 
-            search_url = urlparse.urljoin(self.base_link, self.search_link) % search_str
+            search_url = urlparse.urljoin(self.base_link, self.search_link) % url
             result = client.request(search_url)
 
             sources = []
@@ -72,7 +71,7 @@ class source:
                 
                 found_title = client.parseDOM(el, 'span', attrs={'class':'title'})[0]
                 if not self.contains_all_wors(found_title, words):
-                    break
+                    continue
                 
                 q = 'SD'
                 if self.contains_word(found_title, '1080p'):

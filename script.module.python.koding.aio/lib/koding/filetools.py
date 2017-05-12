@@ -575,7 +575,7 @@ if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh ins
         if not clean_state:
             dialog.ok('SYSTEM NOT SUPPORTED','Your platform is not yet supported by this function, you will have to manually wipe.')
 ~"""
-    from systemtools import Running_App, Run_As_Kodi
+    from systemtools import Running_App, Get_ID
     if xbmc.getCondVisibility("System.HasAddon(service.libreelec.settings)") or xbmc.getCondVisibility("System.HasAddon(service.openelec.settings)"):
         resetpath='storage/.cache/reset_oe'
         Text_File(resetpath,'w')
@@ -583,7 +583,7 @@ if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh ins
     elif xbmc.getCondVisibility('System.Platform.Android'):
         import subprocess
         running   = Running_App()
-        cleanwipe = subprocess.Popen(['exec ''pm clear '+str(running)+''], executable='/system/bin/sh', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, preexec_fn=Run_As_Kodi).communicate()[0]
+        cleanwipe = subprocess.Popen(['exec ''pm clear '+str(running)+''], executable='/system/bin/sh', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, preexec_fn=Get_ID(setid=True)).communicate()[0]
     else:
         return False
 #----------------------------------------------------------------

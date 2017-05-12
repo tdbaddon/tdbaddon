@@ -1,21 +1,4 @@
 #!/usr/bin/python
-"""
-    SALTS XBMC Addon
-    Copyright (C) 2017 tknorris
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
 import re
 import sys
 import urllib
@@ -42,11 +25,21 @@ class JSUnfuck(object):
         '(+[![]]+[+(+!+[]+(!+[]+[])[3]+[1]+[0]+[0]+[0])])': 'NaNInfinity',
         '([]+[])[i+t+a+l+i+c+s]()': '<i></i>',
         '[[]][c+o+n+c+a+t]([[]])+[]': ',',
+        '([][f+i+l+l]+[])': 'function fill() {    [native code]}',
+        '(!![]+[][f+i+l+l])': 'truefunction fill() {    [native code]}',
+        '((+[])[c+o+n+s+t+r+u+c+t+o+r]+[])': 'function Number() {[native code]}  _display:45:1',
+        '(+(+!+[]+[1]+e+[2]+[0])+[])': '1.1e+21',
+        '([]+[])[c+o+n+s+t+r+u+c+t+o+r][n+a+m+e]': 'S+t+r+i+n+g',
+        '([][e+n+t+r+i+e+s]()+[])': '[object Array Iterator]',
+        '([]+[])[l+i+n+k](")': '<a href="&quot;"></a>',
+        '(![]+[0])[i+t+a+l+i+c+s]()': '<i>false0</i>',
         # dummy to force array dereference
         'DUMMY1': '6p',
         'DUMMY2': '2x',
         'DUMMY3': '%3C',
         'DUMMY4': '%5B',
+        'DUMMY5': '6q',
+        'DUMMY6': '4h',
     }
 
     uniqs = {
@@ -165,7 +158,7 @@ class JSUnfuck(object):
     def __gen_numbers(self):
         n = {'(+[]+[])': '0', '(+![]+([]+[]))': '0', '[+[]]': '[0]',
              '(+!![]+[])': '1', '[+!+[]]': '[1]', '[+!![]]': '[1]',
-             '[+!+[]+[+[]]]': '[10]', '[+!+[]+[1]]': '[11]', '+(1+1)': '11'}
+             '[+!+[]+[+[]]]': '[10]', '+(1+1)': '11', '(+20)': '20'}
 
         for i in xrange(2, 20):
             key = '+!![]' * (i - 1) + '+[]'
@@ -184,6 +177,8 @@ class JSUnfuck(object):
         for i in xrange(0, 10):
             key = '(+(+!+[]+[%d]))' % (i)
             n[key] = str(i + 10)
+            key = '[+!+[]+[%s]]' % (i)
+            n[key] = '[' + str(i + 10) + ']'
 
         for tens in xrange(2, 10):
             for ones in xrange(0, 10):

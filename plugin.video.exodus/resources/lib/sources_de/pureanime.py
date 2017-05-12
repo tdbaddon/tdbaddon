@@ -25,7 +25,6 @@ import json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 from resources.lib.modules import anilist
 from resources.lib.modules import source_utils
@@ -40,9 +39,9 @@ class source:
         self.base_link = 'http://pure-anime.tv'
         self.search_link = '/wp-json/wp/v2/posts?search=%s'
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            if not self.__is_anime('show', 'tvdb', tvdb):
+            if not source_utils.is_anime('show', 'tvdb', tvdb):
                 return
 
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
@@ -105,7 +104,7 @@ class source:
             r = r.split('</style>')[-1].strip()
             r = json.loads(r)
 
-            r = [(i.get('title', []).get('rendered'), i.get('content', []).get('rendered')) for i in r]
+            r = [(i.get('title', {}).get('rendered'), i.get('content', {}).get('rendered')) for i in r]
             r = [(re.sub('ger (?:sub|dub)', '', i[0], flags=re.I).strip(), i[1]) for i in r if i[0] and i[1]]
             r = [(i[0], re.findall('(.+?) (\d*)$', i[0]), i[1]) for i in r]
             r = [(i[0] if not i[1] else i[1][0][0] + ' ' + str(int(i[1][0][1])), i[2]) for i in r]
@@ -114,13 +113,3 @@ class source:
             return r[0]
         except:
             return
-
-    @staticmethod
-    def __is_anime(content, type, type_id):
-        try:
-            r = 'search/%s/%s?type=%s&extended=full' % (type, type_id, content)
-            r = json.loads(trakt.getTrakt(r))
-            r = r[0].get(content, []).get('genres', [])
-            return 'anime' in r or 'animation' in r
-        except:
-            return False

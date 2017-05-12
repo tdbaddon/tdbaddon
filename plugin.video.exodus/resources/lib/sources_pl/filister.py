@@ -71,10 +71,10 @@ class source:
     def get_first_not_none(self, collection):
         return next(item for item in collection if item is not None)
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         return self.do_search(title, year, True)
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         return self.do_search(tvshowtitle, year, False)
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):

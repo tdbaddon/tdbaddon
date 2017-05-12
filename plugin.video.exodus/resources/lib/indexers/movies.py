@@ -29,10 +29,11 @@ from resources.lib.modules import metacache
 from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
+from resources.lib.modules import utils
 
 import os,sys,re,json,urllib,urlparse,datetime
 
-params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?',''))) if len(sys.argv) > 1 else dict()
 
 action = params.get('action')
 
@@ -44,7 +45,7 @@ class movies:
         self.list = []
 
         self.imdb_link = 'http://www.imdb.com'
-        self.trakt_link = 'http://api-v2launch.trakt.tv'
+        self.trakt_link = 'http://api.trakt.tv'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
         self.trakt_user = control.setting('trakt.user').strip()
@@ -54,10 +55,10 @@ class movies:
         self.user = str(control.setting('fanart.tv.user')) + str(control.setting('tm.user'))
         self.lang = control.apiLanguage()['trakt']
 
-        self.search_link = 'http://api-v2launch.trakt.tv/search?type=movie&limit=20&page=1&query='
+        self.search_link = 'http://api.trakt.tv/search/movie?limit=20&page=1&query='
         self.imdb_info_link = 'http://www.omdbapi.com/?i=%s&plot=full&r=json'
-        self.trakt_info_link = 'http://api-v2launch.trakt.tv/movies/%s'
-        self.trakt_lang_link = 'http://api-v2launch.trakt.tv/movies/%s/translations/%s'
+        self.trakt_info_link = 'http://api.trakt.tv/movies/%s'
+        self.trakt_lang_link = 'http://api.trakt.tv/movies/%s/translations/%s'
         self.fanart_tv_art_link = 'http://webservice.fanart.tv/v3/movies/%s'
         self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
         self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=' + self.tm_user
@@ -69,22 +70,23 @@ class movies:
         self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&sort=num_votes,desc&count=40&start=1'
         self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
-        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=moviemeter,asc&count=40&start=1'
+        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&genres=%s&sort=moviemeter,asc&count=40&start=1'
+        self.keyword_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&keywords=%s&sort=moviemeter,asc&count=40&start=1'
         self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&primary_language=%s&sort=moviemeter,asc&count=40&start=1'
         self.certification_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
         self.boxoffice_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&sort=boxoffice_gross_us,desc&count=40&start=1'
         self.oscars_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&groups=oscar_best_picture_winners&sort=year,desc&count=40&start=1'
         self.theaters_link = 'http://www.imdb.com/search/title?title_type=feature&num_votes=1000,&release_date=date[365],date[0]&sort=release_date_us,desc&count=40&start=1'
-        self.trending_link = 'http://api-v2launch.trakt.tv/movies/trending?limit=40&page=1'
+        self.trending_link = 'http://api.trakt.tv/movies/trending?limit=40&page=1'
 
-        self.traktlists_link = 'http://api-v2launch.trakt.tv/users/me/lists'
-        self.traktlikedlists_link = 'http://api-v2launch.trakt.tv/users/likes/lists?limit=1000000'
-        self.traktlist_link = 'http://api-v2launch.trakt.tv/users/%s/lists/%s/items'
-        self.traktcollection_link = 'http://api-v2launch.trakt.tv/users/me/collection/movies'
-        self.traktwatchlist_link = 'http://api-v2launch.trakt.tv/users/me/watchlist/movies'
-        self.traktfeatured_link = 'http://api-v2launch.trakt.tv/recommendations/movies?limit=40'
-        self.trakthistory_link = 'http://api-v2launch.trakt.tv/users/me/history/movies?limit=40&page=1'
+        self.traktlists_link = 'http://api.trakt.tv/users/me/lists'
+        self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
+        self.traktlist_link = 'http://api.trakt.tv/users/%s/lists/%s/items'
+        self.traktcollection_link = 'http://api.trakt.tv/users/me/collection/movies'
+        self.traktwatchlist_link = 'http://api.trakt.tv/users/me/watchlist/movies'
+        self.traktfeatured_link = 'http://api.trakt.tv/recommendations/movies?limit=40'
+        self.trakthistory_link = 'http://api.trakt.tv/users/me/history/movies?limit=40&page=1'
         self.imdblists_link = 'http://www.imdb.com/user/ur%s/lists?tab=all&sort=modified:desc&filter=titles' % self.imdb_user
         self.imdblist_link = 'http://www.imdb.com/list/%s/?view=detail&sort=title:asc&title_type=feature,short,tv_movie,tv_special,video,documentary,game&start=1'
         self.imdblist2_link = 'http://www.imdb.com/list/%s/?view=detail&sort=created:desc&title_type=feature,short,tv_movie,tv_special,video,documentary,game&start=1'
@@ -110,8 +112,8 @@ class movies:
                 except:
                     self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
 
-                if '/users/me/' in url and not '/watchlist/' in url:
-                    self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
+                if '/users/me/' in url and '/collection/' in url:
+                    self.list = sorted(self.list, key=lambda k: utils.title_key(k['title']))
 
                 if idx == True: self.worker()
 
@@ -185,36 +187,36 @@ class movies:
         except:
             return
 
-
     def genres(self):
         genres = [
-        ('Action', 'action'),
-        ('Adventure', 'adventure'),
-        ('Animation', 'animation'),
-        ('Biography', 'biography'),
-        ('Comedy', 'comedy'),
-        ('Crime', 'crime'),
-        ('Documentary', 'documentary'),
-        ('Drama', 'drama'),
-        ('Family', 'family'),
-        ('Fantasy', 'fantasy'),
-        ('History', 'history'),
-        ('Horror', 'horror'),
-        ('Music ', 'music'),
-        ('Musical', 'musical'),
-        ('Mystery', 'mystery'),
-        ('Romance', 'romance'),
-        ('Science Fiction', 'sci_fi'),
-        ('Sport', 'sport'),
-        ('Thriller', 'thriller'),
-        ('War', 'war'),
-        ('Western', 'western')
+            ('Action', 'action', True),
+            ('Adventure', 'adventure', True),
+            ('Animation', 'animation', True),
+            ('Anime', 'anime', False),
+            ('Biography', 'biography', True),
+            ('Comedy', 'comedy', True),
+            ('Crime', 'crime', True),
+            ('Documentary', 'documentary', True),
+            ('Drama', 'drama', True),
+            ('Family', 'family', True),
+            ('Fantasy', 'fantasy', True),
+            ('History', 'history', True),
+            ('Horror', 'horror', True),
+            ('Music ', 'music', True),
+            ('Musical', 'musical', True),
+            ('Mystery', 'mystery', True),
+            ('Romance', 'romance', True),
+            ('Science Fiction', 'sci_fi', True),
+            ('Sport', 'sport', True),
+            ('Thriller', 'thriller', True),
+            ('War', 'war', True),
+            ('Western', 'western', True)
         ]
 
         for i in genres: self.list.append(
             {
                 'name': cleangenre.lang(i[0], self.lang),
-                'url': self.genre_link % i[1],
+                'url': self.genre_link % i[1] if i[2] else self.keyword_link % i[1],
                 'image': 'genres.png',
                 'action': 'movies'
             })
@@ -334,8 +336,7 @@ class movies:
             q = (urllib.urlencode(q)).replace('%2C', ',')
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
 
-            result = trakt.getTrakt(u)
-            result = json.loads(result)
+            result = trakt.getTraktAsJson(u)
 
             items = []
             for i in result:
@@ -360,59 +361,49 @@ class movies:
             try:
                 title = item['title']
                 title = client.replaceHTMLCodes(title)
-                title = title.encode('utf-8')
 
                 year = item['year']
                 year = re.sub('[^0-9]', '', str(year))
-                year = year.encode('utf-8')
 
                 if int(year) > int((self.datetime).strftime('%Y')): raise Exception()
 
                 imdb = item['ids']['imdb']
                 if imdb == None or imdb == '': raise Exception()
                 imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
-                imdb = imdb.encode('utf-8')
 
                 try: premiered = item['released']
                 except: premiered = '0'
                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                 except: premiered = '0'
-                premiered = premiered.encode('utf-8')
 
                 try: genre = item['genres']
                 except: genre = '0'
                 genre = [i.title() for i in genre]
                 if genre == []: genre = '0'
                 genre = ' / '.join(genre)
-                genre = genre.encode('utf-8')
 
                 try: duration = str(item['runtime'])
                 except: duration = '0'
                 if duration == None: duration = '0'
-                duration = duration.encode('utf-8')
 
                 try: rating = str(item['rating'])
                 except: rating = '0'
                 if rating == None or rating == '0.0': rating = '0'
-                rating = rating.encode('utf-8')
 
                 try: votes = str(item['votes'])
                 except: votes = '0'
                 try: votes = str(format(int(votes),',d'))
                 except: pass
                 if votes == None: votes = '0'
-                votes = votes.encode('utf-8')
 
                 try: mpaa = item['certification']
                 except: mpaa = '0'
                 if mpaa == None: mpaa = '0'
-                mpaa = mpaa.encode('utf-8')
 
                 try: plot = item['overview']
                 except: plot = '0'
                 if plot == None: plot = '0'
                 plot = client.replaceHTMLCodes(plot)
-                plot = plot.encode('utf-8')
 
                 self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'imdb': imdb, 'tvdb': '0', 'poster': '0', 'next': next})
             except:
@@ -423,8 +414,7 @@ class movies:
 
     def trakt_user_list(self, url, user):
         try:
-            result = trakt.getTrakt(url)
-            items = json.loads(result)
+            items = trakt.getTraktAsJson(url)
         except:
             pass
 
@@ -433,7 +423,6 @@ class movies:
                 try: name = item['list']['name']
                 except: name = item['name']
                 name = client.replaceHTMLCodes(name)
-                name = name.encode('utf-8')
 
                 try: url = (trakt.slug(item['list']['user']['username']), item['list']['ids']['slug'])
                 except: url = ('me', item['ids']['slug'])
@@ -444,7 +433,7 @@ class movies:
             except:
                 pass
 
-        self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['name'].lower()))
+        self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
 
 
@@ -495,7 +484,8 @@ class movies:
 
                 year = client.parseDOM(item, 'span', attrs = {'class': 'lister-item-year.+?'})
                 year += client.parseDOM(item, 'span', attrs = {'class': 'year_type'})
-                year = re.findall('(\d{4})', year[0])[0]
+                try: year = re.compile('(\d{4})').findall(year)[0]
+                except: year = '0'
                 year = year.encode('utf-8')
 
                 if int(year) > int((self.datetime).strftime('%Y')): raise Exception()
@@ -636,7 +626,7 @@ class movies:
             except:
                 pass
 
-        self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['name'].lower()))
+        self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
 
 
@@ -687,6 +677,8 @@ class movies:
             originaltitle = title
 
             year = item['Year']
+            try: year = re.compile('(\d{4})').findall(year)[0]
+            except: year = '0'
             year = year.encode('utf-8')
 
             imdb = item['imdbID']
@@ -837,18 +829,15 @@ class movies:
 
                 url = self.trakt_lang_link % (imdb, self.lang)
 
-                item = trakt.getTrakt(url)
-                item = json.loads(item)[0]
+                item = trakt.getTraktAsJson(url)[0]
 
-                t = item['title']
-                if not (t == None or t == ''):
-                    try: title = t.encode('utf-8')
-                    except: pass
+                t = item.get('title')
+                if t:
+                    title = t
 
-                t = item['overview']
-                if not (t == None or t == ''):
-                    try: plot = t.encode('utf-8')
-                    except: pass
+                t = item.get('overview')
+                if t:
+                    plot = t
             except:
                 pass
 

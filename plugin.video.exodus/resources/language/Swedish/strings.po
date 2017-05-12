@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-26 04:01+0000\n"
+"PO-Revision-Date: 2017-05-02 21:42+0000\n"
 "Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/tv-addons/exodus/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -396,7 +396,7 @@ msgstr "Info språk"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
-msgstr "Visa flera TV-säsonger som en enda."
+msgstr "Platta ut TV-säsonger"
 
 msgctxt "#32318"
 msgid "Enable Fanart"
@@ -496,7 +496,7 @@ msgstr "Värdar med robotfilter/captcha"
 
 msgctxt "#32342"
 msgid "Sort by Provider"
-msgstr "Sortera på källa"
+msgstr "Sortera efter källa"
 
 msgctxt "#32343"
 msgid "When playback starts..."
@@ -568,7 +568,7 @@ msgstr "Om detta är fallet använd din egna undertexter."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Källans språk"
+msgstr "Leverantörer språk"
 
 msgctxt "#32401"
 msgid "No stream available"
@@ -700,5 +700,5 @@ msgstr "Konfigurera Debridtjänster i URLResolver inställningar."
 
 msgctxt "#32540"
 msgid "URLResolver Settings"
-msgstr "URLResolver Inställningar"
+msgstr "URLResolver inställningar"
 

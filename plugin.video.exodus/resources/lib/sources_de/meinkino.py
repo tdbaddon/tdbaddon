@@ -39,7 +39,7 @@ class source:
         self.search_link = '/filter?type=%s&suche=%s'
         self.get_link = '/geturl/%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search_movie(imdb, year)
             if not url: url = self.__search(localtitle, 'filme', year)
@@ -48,7 +48,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
             return urllib.urlencode(url)

@@ -62,7 +62,7 @@ class source:
                 result = client.request(category_url, headers=self.headers)
                 result = json.loads(result)
 
-                categories = ['HINDI', 'PUNJABI','TAMIL LIVE', 'SOUTH INDIAN','NORTH INDIAN']
+                categories = ['HINDI', 'PUNJABI','TAMIL LIVE', 'SOUTH INDIAN','NORTH INDIAN', 'INDIAN','MALAYALAM/TAMIL/TELUGU']
                 liveCategories = result['categories']['live']
                 liveChannels = result['available_channels']
                 serverInfo = result['server_info']
@@ -80,7 +80,10 @@ class source:
                         if channel['category_id'] == categoryId[i] and channel['live'] == '1' :
                             url = base64.b64decode('aHR0cDovLyVzOiVzL2xpdmUvJXMvJXMvJXMudHM=') % (serverInfo['url'], serverInfo['port'], userInfo['username'], userInfo['password'], channel['stream_id'])
                             title = channel['name']
-                            title = re.compile('.*: ([\w\s]*)').findall(title)[0].strip()
+                            try :
+                                title = re.compile('.*: ([\w\s]*)').findall(title)[0].strip()
+                            except:
+                                pass
                             icon = channel['stream_icon']
                             self.channelList[title] ={'icon':icon,'url':url,'provider':'solid','source':'solid','direct':False, 'quality':'HD'}
 

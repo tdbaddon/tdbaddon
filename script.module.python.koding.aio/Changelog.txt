@@ -1,3 +1,11 @@
+v.0.9:
+- Fixed db query example, wasn't working on pre-Krypton
+- Added exception for Get_ID, only works on certain platforms so returns False if not supported on current os.
+
+v.0.8.9:
+- Added extra logging for Main runcode
+- Added proper exceptions if URL could not be opened
+
 v.0.8.8:
 - Removed rogue ampersand in addon.xml
 

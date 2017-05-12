@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.wwe-on-demand" name="WWE On Demand" version="3.4" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.5" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="script.module.urlresolver"  version="2.1.2"/>
     <import addon="script.module.liveresolver" version="0.1.24"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-
     <import addon="script.module.metahandler" version="2.5.1"/>
-    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="plugin.video.youtube" />
+    <import addon="plugin.video.SportsDevil" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">The Home Of WWE On Demand</summary>
-    <description lang="en">The Offical Home Of WWE On Demand</description>
+    <summary lang="en">The Home Of Wrestling On Demand</summary>
+    <description lang="en">The Offical Home Of Wrestling On Demand</description>
     <platform>all</platform>
   </extension>
 </addon>

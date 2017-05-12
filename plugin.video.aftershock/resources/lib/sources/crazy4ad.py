@@ -69,13 +69,21 @@ class source:
 
             posts = client.parseDOM(r, 'item')
 
+            link = client.parseDOM(posts[0], 'link')[0]
+
             items = []
+
+            result = client.request(link)
+
+            posts = client.parseDOM(result, 'div', attrs={'id':'content'})
 
             for post in posts:
                 try:
                     items += zip(client.parseDOM(post, 'a', attrs={'target': '_blank'}), client.parseDOM(post, 'a', ret='href', attrs={'target': '_blank'}))
                 except:
                     pass
+
+
 
             for item in items:
                 try:

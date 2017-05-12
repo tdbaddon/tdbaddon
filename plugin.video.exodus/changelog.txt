@@ -1,3 +1,16 @@
+[B]3.1.11[/B]
+- Tweaked German providers
+- Updated Polish providers (homik)
+- Fix Trakt sorting
+- Added logging for Trakt and Web-Requests
+
+[B]3.1.10[/B]
+- Added new and fix existing providers (satanuke)
+- Added and Updated German providers
+- Updated Polish providers (homik)
+- Add Anmie genre
+- Tweaked Trakt sorting
+
 [B]3.1.9[/B]
 - Added new and fix existing providers (satanuke, John Doe)
 - Updated German providers

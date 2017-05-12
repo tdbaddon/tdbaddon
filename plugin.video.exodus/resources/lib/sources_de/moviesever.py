@@ -40,7 +40,7 @@ class source:
 
         self.get_link = 'http://play.seriesever.net/me/moviesever.php'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(localtitle, year)
             if not url and title != localtitle: url = self.__search(title, year)

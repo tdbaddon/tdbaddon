@@ -19,61 +19,65 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,urllib,urlparse,json, base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import cache
 
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['moviexk.com']
-        self.base_link = 'http://moviexk.com'
+        self.domains = ['moviexk.com', 'moviexk.org']
+        self.base_link = 'https://moviexk.org'
         self.search_link = '/search/%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def matchAlias(self, title, aliases):
+        try:
+            for alias in aliases:
+                if cleantitle.get(title) == cleantitle.get(alias['title']):
+                    return True
+        except:
+            return False
+
+    def searchMovie(self, title, year, aliases):
         try:
             url = '%s/%s-%s/' % (self.base_link, cleantitle.geturl(title), year)
             url = client.request(url, output='geturl')
+
+            if url == None:
+                t = cleantitle.get(title)
+                q = '%s %s' % (title, year)
+                q = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(q))
+                r = client.request(q)
+                r = client.parseDOM(r, 'div', attrs={'class': 'inner'})
+                r = client.parseDOM(r, 'div', attrs={'class': 'info'})
+                r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
+                r = [(i[0], re.findall('(?:^Watch Movie |^Watch movies |^Watch |)(.+?)\((\d{4})', i[1])) for i in r]
+                r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if i[1]]
+                url = [i[0] for i in r if self.matchAlias(i[1], aliases) and year == i[2]][0]
+
             if url == None: raise Exception()
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
             return url
         except:
-            pass
+            return
 
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            t = cleantitle.get(title)
-
-            q = '%s %s' % (title, year)
-            q = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(q))
-
-            r = client.request(q)
-
-            r = client.parseDOM(r, 'div', attrs={'class': 'inner'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'info'})
-            r = zip(client.parseDOM(r, 'a', ret='href'),client.parseDOM(r, 'a', ret='title'))
-            r = [(i[0], re.findall('(?:^Watch Movie |^Watch movies |^Watch |)(.+?)\((\d{4})', i[1])) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if i[1]]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            aliases.append({'country': 'us', 'title': title})
+            url = self.searchMovie(title, year, aliases)
             return url
         except:
-            pass
+            return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            t = cleantitle.get(tvshowtitle)
-
-            q = '%s %s' % (tvshowtitle, year)
+            aliases.append({'country': 'us', 'title': tvshowtitle})
+            q = '%s' % tvshowtitle
             q = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(q))
 
             r = client.request(q)
@@ -82,12 +86,12 @@ class source:
             r = client.parseDOM(r, 'div', attrs={'class': 'info'})
             r = zip(client.parseDOM(r, 'a', ret='href'),client.parseDOM(r, 'a', ret='title'))
    
-            r = [(i[0], re.findall('(?:^Watch Movie |^Watch movies |^Watch |)(.+?)\((\d{4})', i[1])) for i in r]
+            r = [(i[0], re.findall('(?:^Watch Movie |^Watch movies |^Watch |)(.+?)\((.+?)', i[1])) for i in r]
             r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if i[1]]
             r = [(i[0], i[1].rsplit('TV Series')[0].strip('(')) for i in r if i[1]]
             r = [(urllib.unquote_plus(i[0]), i[1]) for i in r]
             r = [(urlparse.urlparse(i[0]).path, i[1]) for i in r]
-            r = [i for i in r if t == cleantitle.get(i[1])]
+            r = [i for i in r if self.matchAlias(i[1], aliases)]
 
             r = urlparse.urljoin(self.base_link, r[0][0].strip())
 
@@ -155,6 +159,17 @@ class source:
                 r = [i[0] for i in r]
 
             for u in r:
+                try:
+                    headers = {'Referer': u}
+                    url = client.request(u, headers=headers)
+                    url = client.parseDOM(url, 'source', ret='src')
+                    for i in url:
+                        rd = client.request(i, headers=headers, output='geturl')
+                        if '.google' in rd:
+                            sources.append({'source': 'gvideo', 'quality': directstream.googletag(rd)[0]['quality'], 'language': 'en', 'url': rd, 'direct': True, 'debridonly': False})
+                except:
+                    pass
+
                 try:
                     url = client.request(u, mobile=True)
                     url = client.parseDOM(url, 'source', ret='src')

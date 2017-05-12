@@ -46,7 +46,7 @@ class source:
         }
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
@@ -59,7 +59,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 

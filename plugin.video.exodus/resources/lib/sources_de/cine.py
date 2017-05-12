@@ -32,7 +32,7 @@ class source:
         self.request_link = '/request/links'
         self.out_link = '/out/%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             return urllib.urlencode({'imdb': imdb})
         except:

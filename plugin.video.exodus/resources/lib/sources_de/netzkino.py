@@ -37,7 +37,7 @@ class source:
         self.conf_link = '/adconf/android-new.php'
         self.search_link = 'http://api.netzkino.de.simplecache.net/capi-2.0a/search?q=%s&d=www&l=de-DE&v=unknown-debugBuild'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(title, imdb, year)
             if not url and title != localtitle: url = self.__search(localtitle, imdb, year)
@@ -59,7 +59,7 @@ class source:
             r = re.findall('RESOLUTION\s*=\s*\d+x(\d+).*?\n(http.*?)(?:\n|$)', r, re.IGNORECASE)
 
             links = [(x[1], '4K') for x in r if int(x[0]) >= 2160]
-            links += [(x[1], '1440') for x in r if int(x[0]) >= 1440]
+            links += [(x[1], '1440p') for x in r if int(x[0]) >= 1440]
             links += [(x[1], '1080p') for x in r if int(x[0]) >= 1080]
             links += [(x[1], 'HD') for x in r if 720 <= int(x[0]) < 1080]
             links += [(x[1], 'SD') for x in r if int(x[0]) < 720]

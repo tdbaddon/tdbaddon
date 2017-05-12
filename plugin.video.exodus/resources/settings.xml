@@ -47,6 +47,7 @@
 		<setting id="provider.genvideo" type="bool" label="GENVIDEO" default="true" />
 		<setting id="provider.gogoanime" type="bool" label="GOGOANIME" default="true" />
 		<setting id="provider.hevcfilm" type="bool" label="HEVCFILM" default="true" />
+		<setting id="provider.kingmovies" type="bool" label="KINGMOVIES" default="true" />
 		<setting id="provider.library" type="bool" label="LIBRARY" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
 		<setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
@@ -80,6 +81,7 @@
 		<setting id="provider.sceper" type="bool" label="SCEPER" default="true" />
 		<setting id="provider.scnrls" type="bool" label="SCNRLS" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="SEZONLUKDIZI" default="true" />
+		<setting id="provider.seriesonline" type="bool" label="SERIESONLINE" default="true" />
 		<setting id="provider.solarmovie" type="bool" label="SOLARMOVIE" default="true" />
 		<setting id="provider.streamlord" type="bool" label="STREAMLORD" default="true" />
 		<setting id="provider.tinydl" type="bool" label="TINYDL" default="true" />
@@ -97,6 +99,7 @@
 		<setting id="provider.ymovies" type="bool" label="YMOVIES" default="true" />
 		<setting label="German" type="lsep" />
 		<setting id="provider.1kino" type="bool" label="1KINO" default="true" />
+		<setting id="provider.animebase" type="bool" label="ANIMEBASE" default="true" />
 		<setting id="provider.animeloads" type="bool" label="ANIMELOADS" default="true" />
 		<setting id="provider.bs" type="bool" label="BS" default="true" />
 		<setting id="provider.cine" type="bool" label="CINE" default="true" />
@@ -144,7 +147,6 @@
 		<setting id="provider.ikshow" type="bool" label="IKSHOW" default="true" />
 		<setting id="provider.kdramacool" type="bool" label="KDRAMACOOL" default="true" />
 		<setting id="provider.myasiantv" type="bool" label="MYASIANTV" default="true" />
-
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

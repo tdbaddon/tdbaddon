@@ -38,7 +38,7 @@ class source:
         self.search_link = '/livesearch.php'
         self.episode_link = '/lade_episode.php'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(localtitle, year)
             if not url and title != localtitle: url = self.__search(title, year)
@@ -46,7 +46,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = self.__search(tvshowtitle, year)
             if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle, year)
@@ -96,7 +96,7 @@ class source:
             r = [(i[0][0] if i[0] else '0', [x.attrs['href'] for x in i[1]]) for i in r if i[1]]
 
             links = [(x[1], '4K') for x in r if int(x[0]) >= 2160]
-            links += [(x[1], '1440') for x in r if int(x[0]) >= 1440]
+            links += [(x[1], '1440p') for x in r if int(x[0]) >= 1440]
             links += [(x[1], '1080p') for x in r if int(x[0]) >= 1080]
             links += [(x[1], 'HD') for x in r if 720 <= int(x[0]) < 1080]
             links += [(x[1], 'SD') for x in r if int(x[0]) < 720]

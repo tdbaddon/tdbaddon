@@ -50,11 +50,17 @@ class TestingMovies(unittest.TestCase):
         self.source(call)
 
     def test_desirulez(self):
+        self.imdb = 'tt0000000'
+        self.title = 'Befikre'
+        self.year = '2016'
         from resources.lib.sources import desirulez
         call = desirulez.source()
         self.source(call)
 
     def test_dltube(self):
+        self.imdb = 'tt0000000'
+        self.title = 'Badrinath Ki Dulhania'
+        self.year = '2017'
         from resources.lib.sources import dltube
         call = dltube.source()
         self.source(call)
@@ -73,6 +79,9 @@ class TestingMovies(unittest.TestCase):
         self.source(call)
 
     def test_filmywap(self):
+        self.imdb = 'tt5165344'
+        self.title = 'Rustom'
+        self.year = '2016'
         from resources.lib.sources import filmywap
         call = filmywap.source()
         self.source(call)
@@ -97,11 +106,12 @@ class TestingMovies(unittest.TestCase):
         call = hotstar.source()
         self.source(call)
 
+    '''
     def test_ibollytv(self):
         from resources.lib.sources import ibollytv
         call = ibollytv.source()
         self.source(call)
-
+    '''
     def test_mdesihit(self):
         from resources.lib.sources import mdesihit
         call = mdesihit.source()
@@ -126,6 +136,9 @@ class TestingMovies(unittest.TestCase):
         self.source(call)
 
     def test_movies14(self):
+        self.imdb = 'tt5165344'
+        self.title = 'Rustom'
+        self.year = '2016'
         from resources.lib.sources import movies14
         call = movies14.source()
         self.source(call)

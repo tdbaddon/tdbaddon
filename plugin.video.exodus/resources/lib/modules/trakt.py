@@ -25,33 +25,44 @@ from resources.lib.modules import cache
 from resources.lib.modules import control
 from resources.lib.modules import cleandate
 from resources.lib.modules import client
+from resources.lib.modules import utils
+from resources.lib.modules import log_utils
 
+BASE_URL = 'http://api.trakt.tv'
+V2_API_KEY = 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa'
+CLIENT_SECRET = '90a1840447a1e39d350023263902fe7010338d19789e6260f18df56a8b07a68a'
+REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
-def getTrakt(url, post=None):
+def __getTrakt(url, post=None):
     try:
-        url = urlparse.urljoin('http://api-v2launch.trakt.tv', url)
+        url = urlparse.urljoin(BASE_URL, url)
+        post = json.dumps(post) if post else None
+        headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': 2}
 
-        headers = {'Content-Type': 'application/json', 'trakt-api-key': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'trakt-api-version': '2'}
-
-        if not post == None: post = json.dumps(post)
-
-
-        if getTraktCredentialsInfo() == False:
-            result = client.request(url, post=post, headers=headers)
-            return result
-
-
-        headers['Authorization'] = 'Bearer %s' % control.setting('trakt.token')
+        if getTraktCredentialsInfo():
+            headers.update({'Authorization': 'Bearer %s' % control.setting('trakt.token')})
 
         result = client.request(url, post=post, headers=headers, output='extended', error=True)
-        if not (result[1] == '401' or result[1] == '405'): return result[0]
 
+        resp_code = result[1]
+        resp_header = result[2]
+        result = result[0]
 
-        oauth = 'http://api-v2launch.trakt.tv/oauth/token'
-        opost = {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'client_secret': '90a1840447a1e39d350023263902fe7010338d19789e6260f18df56a8b07a68a', 'redirect_uri': 'urn:ietf:wg:oauth:2.0:oob', 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
+        if resp_code in [500, 502, 503, 504, 520, 521, 522, 524]:
+            log_utils.log('Temporary Trakt Error: %s' % resp_code, log_utils.LOGWARNING)
+            return
+        elif resp_code in [404]:
+            log_utils.log('Object Not Found : %s' % resp_code, log_utils.LOGWARNING)
+            return
+
+        if resp_code not in [401, 405]:
+            return result, resp_header
+
+        oauth = urlparse.urljoin(BASE_URL, '/oauth/token')
+        opost = {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'redirect_uri': REDIRECT_URI, 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
 
         result = client.request(oauth, post=json.dumps(opost), headers=headers)
-        result = json.loads(result)
+        result = utils.json_loads_as_str(result)
 
         token, refresh = result['access_token'], result['refresh_token']
 
@@ -60,11 +71,21 @@ def getTrakt(url, post=None):
 
         headers['Authorization'] = 'Bearer %s' % token
 
-        result = client.request(url, post=post, headers=headers)
-        return result
-    except:
+        result = client.request(url, post=post, headers=headers, output='extended')
+        return result[0], result[2]
+    except Exception as e:
+        log_utils.log('Unknown Trakt Error: %s' % e, log_utils.LOGWARNING)
         pass
 
+def getTraktAsJson(url, post=None):
+    try:
+        r, res_headers = __getTrakt(url, post)
+        r = utils.json_loads_as_str(r)
+        if 'x-sort-by' in res_headers and 'x-sort-how' in res_headers:
+            r = sort_list(res_headers['x-sort-by'], res_headers['x-sort-how'], r)
+        return r
+    except:
+        pass
 
 def authTrakt():
     try:
@@ -75,8 +96,7 @@ def authTrakt():
                 control.setSetting(id='trakt.refresh', value='')
             raise Exception()
 
-        result = getTrakt('/oauth/device/code', {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa'})
-        result = json.loads(result)
+        result = getTraktAsJson('/oauth/device/code', {'client_id': V2_API_KEY})
         verification_url = (control.lang(32513) % result['verification_url']).encode('utf-8')
         user_code = (control.lang(32514) % result['user_code']).encode('utf-8')
         expires_in = int(result['expires_in'])
@@ -91,8 +111,7 @@ def authTrakt():
                 if progressDialog.iscanceled(): break
                 time.sleep(1)
                 if not float(i) % interval == 0: raise Exception()
-                r = getTrakt('/oauth/device/token', {'client_id': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'client_secret': '90a1840447a1e39d350023263902fe7010338d19789e6260f18df56a8b07a68a', 'code': device_code})
-                r = json.loads(r)
+                r = getTraktAsJson('/oauth/device/token', {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'code': device_code})
                 if 'access_token' in r: break
             except:
                 pass
@@ -102,10 +121,11 @@ def authTrakt():
 
         token, refresh = r['access_token'], r['refresh_token']
 
-        headers = {'Content-Type': 'application/json', 'trakt-api-key': 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa', 'trakt-api-version': '2', 'Authorization': 'Bearer %s' % token}
+        headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': 2, 'Authorization': 'Bearer %s' % token}
 
-        result = client.request('http://api-v2launch.trakt.tv/users/me', headers=headers)
-        result = json.loads(result)
+
+        result = client.request(urlparse.urljoin(BASE_URL, '/users/me'), headers=headers)
+        result = utils.json_loads_as_str(result)
 
         user = result['username']
 
@@ -163,8 +183,7 @@ def manager(name, imdb, tvdb, content):
         items += [(control.lang(32519).encode('utf-8'), '/sync/watchlist/remove')]
         items += [(control.lang(32520).encode('utf-8'), '/users/me/lists/%s/items')]
 
-        result = getTrakt('/users/me/lists')
-        result = json.loads(result)
+        result = getTraktAsJson('/users/me/lists')
         lists = [(i['name'], i['ids']['slug']) for i in result]
         lists = [lists[i//2] for i in range(len(lists)*2)]
         for i in range(0, len(lists), 2):
@@ -182,13 +201,13 @@ def manager(name, imdb, tvdb, content):
             k = control.keyboard('', t) ; k.doModal()
             new = k.getText() if k.isConfirmed() else None
             if (new == None or new == ''): return
-            result = getTrakt('/users/me/lists', post={"name": new, "privacy": "private"})
+            result = __getTrakt('/users/me/lists', post={"name": new, "privacy": "private"})[0]
 
-            try: slug = json.loads(result)['ids']['slug']
+            try: slug = utils.json_loads_as_str(result)['ids']['slug']
             except: return control.infoDialog(control.lang(32515).encode('utf-8'), heading=str(name), sound=True, icon='ERROR')
-            result = getTrakt(items[select][1] % slug, post=post)
+            result = __getTrakt(items[select][1] % slug, post=post)[0]
         else:
-            result = getTrakt(items[select][1], post=post)
+            result = __getTrakt(items[select][1], post=post)[0]
 
         icon = control.infoLabel('ListItem.Icon') if not result == None else 'ERROR'
 
@@ -205,10 +224,38 @@ def slug(name):
     return name
 
 
+def sort_list(sort_key, sort_direction, list_data):
+    reverse = False if sort_direction == 'asc' else True
+    if sort_key == 'rank':
+        return sorted(list_data, key=lambda x: x['rank'], reverse=reverse)
+    elif sort_key == 'added':
+        return sorted(list_data, key=lambda x: x['listed_at'], reverse=reverse)
+    elif sort_key == 'title':
+        return sorted(list_data, key=lambda x: utils.title_key(x[x['type']].get('title')), reverse=reverse)
+    elif sort_key == 'released':
+        return sorted(list_data, key=lambda x: _released_key(x[x['type']]), reverse=reverse)
+    elif sort_key == 'runtime':
+        return sorted(list_data, key=lambda x: x[x['type']].get('runtime', 0), reverse=reverse)
+    elif sort_key == 'popularity':
+        return sorted(list_data, key=lambda x: x[x['type']].get('votes', 0), reverse=reverse)
+    elif sort_key == 'percentage':
+        return sorted(list_data, key=lambda x: x[x['type']].get('rating', 0), reverse=reverse)
+    elif sort_key == 'votes':
+        return sorted(list_data, key=lambda x: x[x['type']].get('votes', 0), reverse=reverse)
+    else:
+        return list_data
+
+def _released_key(item):
+    if 'released' in item:
+        return item['released']
+    elif 'first_aired' in item:
+        return item['first_aired']
+    else:
+        return 0
+
 def getActivity():
     try:
-        result = getTrakt('/sync/last_activities')
-        i = json.loads(result)
+        i = getTraktAsJson('/sync/last_activities')
 
         activity = []
         activity.append(i['movies']['collected_at'])
@@ -229,8 +276,7 @@ def getActivity():
 
 def getWatchedActivity():
     try:
-        result = getTrakt('/sync/last_activities')
-        i = json.loads(result)
+        i = getTraktAsJson('/sync/last_activities')
 
         activity = []
         activity.append(i['movies']['watched_at'])
@@ -256,8 +302,7 @@ def timeoutsyncMovies():
 def syncMovies(user):
     try:
         if getTraktCredentialsInfo() == False: return
-        indicators = getTrakt('/users/me/watched/movies')
-        indicators = json.loads(indicators)
+        indicators = getTraktAsJson('/users/me/watched/movies')
         indicators = [i['movie']['ids'] for i in indicators]
         indicators = [str(i['imdb']) for i in indicators if 'imdb' in i]
         return indicators
@@ -278,8 +323,7 @@ def timeoutsyncTVShows():
 def syncTVShows(user):
     try:
         if getTraktCredentialsInfo() == False: return
-        indicators = getTrakt('/users/me/watched/shows?extended=full')
-        indicators = json.loads(indicators)
+        indicators = getTraktAsJson('/users/me/watched/shows?extended=full')
         indicators = [(i['show']['ids']['tvdb'], i['show']['aired_episodes'], sum([[(s['number'], e['number']) for e in s['episodes']] for s in i['seasons']], [])) for i in indicators]
         indicators = [(str(i[0]), int(i[1]), i[2]) for i in indicators]
         return indicators
@@ -290,8 +334,8 @@ def syncTVShows(user):
 def syncSeason(imdb):
     try:
         if getTraktCredentialsInfo() == False: return
-        indicators = getTrakt('/shows/%s/progress/watched?specials=false&hidden=false' % imdb)
-        indicators = json.loads(indicators)['seasons']
+        indicators = getTraktAsJson('/shows/%s/progress/watched?specials=false&hidden=false' % imdb)
+        indicators = indicators['seasons']
         indicators = [(i['number'], [x['completed'] for x in i['episodes']]) for i in indicators]
         indicators = ['%01d' % int(i[0]) for i in indicators if not False in i[1]]
         return indicators
@@ -301,49 +345,67 @@ def syncSeason(imdb):
 
 def markMovieAsWatched(imdb):
     if not imdb.startswith('tt'): imdb = 'tt' + imdb
-    return getTrakt('/sync/history', {"movies": [{"ids": {"imdb": imdb}}]})
+    return __getTrakt('/sync/history', {"movies": [{"ids": {"imdb": imdb}}]})[0]
 
 
 def markMovieAsNotWatched(imdb):
     if not imdb.startswith('tt'): imdb = 'tt' + imdb
-    return getTrakt('/sync/history/remove', {"movies": [{"ids": {"imdb": imdb}}]})
+    return __getTrakt('/sync/history/remove', {"movies": [{"ids": {"imdb": imdb}}]})[0]
 
 
 def markTVShowAsWatched(tvdb):
-    return getTrakt('/sync/history', {"shows": [{"ids": {"tvdb": tvdb}}]})
+    return __getTrakt('/sync/history', {"shows": [{"ids": {"tvdb": tvdb}}]})[0]
 
 
 def markTVShowAsNotWatched(tvdb):
-    return getTrakt('/sync/history/remove', {"shows": [{"ids": {"tvdb": tvdb}}]})
+    return __getTrakt('/sync/history/remove', {"shows": [{"ids": {"tvdb": tvdb}}]})[0]
 
 
 def markEpisodeAsWatched(tvdb, season, episode):
     season, episode = int('%01d' % int(season)), int('%01d' % int(episode))
-    return getTrakt('/sync/history', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})
+    return __getTrakt('/sync/history', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})[0]
 
 
 def markEpisodeAsNotWatched(tvdb, season, episode):
     season, episode = int('%01d' % int(season)), int('%01d' % int(episode))
-    return getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})
+    return __getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})[0]
 
 
 def getMovieTranslation(id, lang):
     url = '/movies/%s/translations/%s' % (id, lang)
-    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    try: return getTraktAsJson(url)[0]['title']
     except: pass
 
 
 def getTVShowTranslation(id, lang):
     url = '/shows/%s/translations/%s' % (id, lang)
-    try: return json.loads(getTrakt(url))[0]['title'].encode('utf-8')
+    try: return getTraktAsJson(url)[0]['title']
     except: pass
 
 
+def getMovieAliases(id):
+    try: return getTraktAsJson('/movies/%s/aliases' % id)
+    except: return []
+
+
+def getTVShowAliases(id):
+    try: return getTraktAsJson('/shows/%s/aliases' % id)
+    except: return []
+
+
 def getMovieSummary(id):
-    return getTrakt('/movies/%s' % id)
+    return __getTrakt('/movies/%s' % id)[0]
 
 
 def getTVShowSummary(id):
-    return getTrakt('/shows/%s' % id)
+    return __getTrakt('/shows/%s' % id)[0]
 
 
+def getGenre(content, type, type_id):
+    try:
+        r = '/search/%s/%s?type=%s&extended=full' % (type, type_id, content)
+        r = getTraktAsJson(r)
+        r = r[0].get(content, {}).get('genres', [])
+        return r
+    except:
+        return []

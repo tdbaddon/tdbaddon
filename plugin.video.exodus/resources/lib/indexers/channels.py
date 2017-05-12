@@ -27,7 +27,7 @@ from resources.lib.modules import workers
 
 import sys,re,json,urllib,urlparse,datetime
 
-params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?',''))) if len(sys.argv) > 1 else dict()
 
 action = params.get('action')
 

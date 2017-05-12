@@ -36,7 +36,7 @@ class source:
         self.tvsearch_link = '/serie/%s/'
         self.player_link = 'http://player.pelispedia.tv/'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.moviesearch_link % cleantitle.geturl(title)
 
@@ -63,7 +63,7 @@ class source:
             pass
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = self.tvsearch_link % cleantitle.geturl(tvshowtitle)
 

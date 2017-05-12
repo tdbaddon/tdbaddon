@@ -164,7 +164,7 @@ class source:
                         title = client.parseDOM(item, "a")
 
                 if type(title) is list and len(title) > 0:
-                    title = str(title[0])
+                    title = str(title[0].encode('UTF-8'))
                 title = client.replaceHTMLCodes(title)
                 if title == 'Naamkarann':
                     title = 'Naamkaran'

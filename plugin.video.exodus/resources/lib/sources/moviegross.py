@@ -35,7 +35,7 @@ class source:
         self.search_link = '/wp-content/themes/afdah/ajax-search.php'
         self.post_link = 'yreuq=%s&meti=title'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             t = cleantitle.get(title)
 

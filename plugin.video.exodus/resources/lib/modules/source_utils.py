@@ -22,6 +22,16 @@ import urlparse
 import re
 
 from resources.lib.modules import client
+from resources.lib.modules import trakt
+
+
+def is_anime(content, type, type_id):
+    try:
+        r = trakt.getGenre(content, type, type_id)
+        return 'anime' in r or 'animation' in r
+    except:
+        return False
+
 
 def get_release_quality(release_name):
     if release_name is None: return
@@ -81,3 +91,15 @@ def __top_domain(url):
     if res: domain = res.group(1)
     domain = domain.lower()
     return domain
+
+
+def aliases_to_array(aliases, filter=None):
+    try:
+        if not filter:
+            filter = []
+        if isinstance(filter, str):
+            filter = [filter]
+
+        return [x.get('title') for x in aliases if not filter or x.get('country') in filter]
+    except:
+        return []

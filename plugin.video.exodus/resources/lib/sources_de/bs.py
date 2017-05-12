@@ -18,11 +18,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re, urllib, urlparse, json
+import re
+import json
+import urlparse
 
 from resources.lib.modules import cache
-from resources.lib.modules import client
 from resources.lib.modules import cleantitle
+from resources.lib.modules import client
 from resources.lib.modules import source_utils
 
 
@@ -34,10 +36,13 @@ class source:
         self.base_link = 'https://www.bs.to/'
         self.api_link = 'api/%s'
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = self.__search(localtvshowtitle, year)
             if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
+            for t in source_utils.aliases_to_array(aliases):
+                if url: break
+                url = self.__search(t, year)
             return url
         except:
             return

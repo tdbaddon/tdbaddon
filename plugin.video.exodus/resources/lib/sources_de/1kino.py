@@ -39,7 +39,7 @@ class source:
         self.search_link = '/include/live.php?keyword=%s&nonce=%s'
         self.search_js = '/js/live-search.js'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(localtitle, year)
             if not url and title != localtitle: url = self.__search(title, year)

@@ -36,7 +36,7 @@ class source:
         self.search_link = '/searchy.php?ser=%s'
         self.hoster_link = '/episodeholen2.php'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             imdb = re.sub('[^0-9]', '', imdb)
             url = self.__search(imdb)
@@ -44,9 +44,11 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            return self.movie(imdb, tvshowtitle, localtvshowtitle, year)
+            imdb = re.sub('[^0-9]', '', imdb)
+            url = self.__search(imdb)
+            return urllib.urlencode({'url': url, 'imdb': imdb}) if url else None
         except:
             return
 

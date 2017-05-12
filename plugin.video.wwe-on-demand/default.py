@@ -148,18 +148,12 @@ def GetContent(name,url,iconimage,fanart):
                         fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                         url=re.compile('<channel>(.+?)</channel>').findall(item)[0]
                         addDir(name,url,6,iconimage,fanart)
-                if '<image>' in item:
-                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
-                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
-                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
-                        url=re.compile('<image>(.+?)</image>').findall(item)[0]
-                        addDir(name,iconimage,9,iconimage,fanart)
-                if ('<sportsdevil>' in item) and ('<link>' in item):
+                elif ('<sportsdevil>' in item) and ('<link>' in item):
                         name=re.compile('<title>(.+?)</title>').findall(item)[0]
                         iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
                         fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                         addItem(name,url2,8,iconimage,fanart)
-                if '<sportsdevil>' in item:
+                elif '<sportsdevil>' in item:
                         links=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(item)
                         if len(links)==1:
                              name=re.compile('<title>(.+?)</title>').findall(item)[0]
@@ -180,7 +174,12 @@ def GetContent(name,url,iconimage,fanart):
                              iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
                              fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                              addItem(name,url2,8,iconimage,fanart)
-    
+                elif '<image>' in item:
+                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
+                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+                        url=re.compile('<image>(.+?)</image>').findall(item)[0]
+                        addDir(name,iconimage,9,iconimage,fanart)
                 elif '<folder>'in item:
                                 data=re.compile('<title>(.+?)</title>.+?folder>(.+?)</folder>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
                                 for name,url,iconimage,fanart in data:

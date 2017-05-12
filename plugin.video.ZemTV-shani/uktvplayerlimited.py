@@ -59,6 +59,14 @@ def tryplay(url,listitem):
         xbmc.sleep(1000)
     print 'not played',url
     return False
+
+def getmyidentity():
+    try:
+        profile = xbmc.translatePath(selfAddon.getAddonInfo('profile').decode('utf-8'))
+        source_file = os.path.join(profile, 'keyfile.txt')
+        return open(source_file,"r").read()
+    except: pass
+    return ""
     
 def play(listitem, item):
     played=False
@@ -75,7 +83,7 @@ def play(listitem, item):
 
             if not url.startswith('http'):
                 import pyaes
-                post={'type':'getticket','ticket':selfAddon.getSetting( "uktvticket")}
+                post={'type':'getticket','ticket':selfAddon.getSetting( "uktvticket"),'id':getmyidentity()}
                 post = urllib.urlencode(post)
                 ticketurl="aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL1VLVFYucGhwP3Q9JXM=".decode("base64")%(str(int(time.time())))
                 ticket=getUrl(ticketurl,post=post)

@@ -33,7 +33,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['300mbmoviesdl.com', 'hevcbluray.com']
-        self.base_link = 'http://www.300mbmoviesdl.com'
+        self.base_link = 'http://www.300mbmovies4u.co'
         self.search_link = '/search/%s/feed/rss2/'
 
 

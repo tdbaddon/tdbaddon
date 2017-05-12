@@ -87,7 +87,7 @@ AVAILABLE PARAMS:
 
     abort_on_error  -  Default is set to False but set to True if you want to abort
     the process when it hits an error.
-	
+    
 EXAMPLE CODE:
 create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
 koding.Create_Table("test_table", create_specs)
@@ -174,25 +174,6 @@ os.remove(addon_db_path)
     _execute_db_string(sql_string)
 #----------------------------------------------------------------
 # TUTORIAL #
-def Remove_Table(table):
-    """
-Use with caution, this will completely remove a database table and
-all of it's contents. The only database you can access with this command
-is your add-ons own db file called database.db
-
-CODE:  Remove_Table(table)
-
-AVAILABLE PARAMS:
-
-    (*) table  -  This is the name of the table you want to permanently delete.
-
-EXAMPLE CODE:
-koding.Remove_Table('my_test_table')
-~"""
-    sql_string = "DROP TABLE IF EXISTS %s;" % table
-    _execute_db_string(sql_string)
-#----------------------------------------------------------------
-# TUTORIAL #
 def DB_Query(db_path, query, values=''):
     """
 Open a database and either return an array of results with the SELECT SQL command or perform an action such as INSERT, UPDATE, CREATE.
@@ -214,7 +195,11 @@ the JSON-RPC commands where possible.
 EXAMPLE CODE:
 import filetools
 dbpath = filetools.DB_Path_Check('addons')
-db_query = koding.DB_Query(db_path=dbpath, query='SELECT * FROM addons WHERE addonID LIKE ? AND addonID NOT LIKE ?', values=['%youtube%','%script.module%'])
+db_table = 'addon'
+kodi_version = int(float(xbmc.getInfoLabel("System.BuildVersion")[:2]))
+if kodi_version >= 17:
+    db_table = 'addons'
+db_query = koding.DB_Query(db_path=dbpath, query='SELECT * FROM %s WHERE addonID LIKE ? AND addonID NOT LIKE ?'%db_table, values=['%youtube%','%script.module%'])
 koding.Text_Box('DB SEARCH RESULTS',str(db_query))
 ~"""
     db_dict = []
@@ -397,4 +382,23 @@ os.remove(addon_db_path)
                 raise Exception()
             continue
     dbcon.commit()
+#----------------------------------------------------------------
+# TUTORIAL #
+def Remove_Table(table):
+    """
+Use with caution, this will completely remove a database table and
+all of it's contents. The only database you can access with this command
+is your add-ons own db file called database.db
+
+CODE:  Remove_Table(table)
+
+AVAILABLE PARAMS:
+
+    (*) table  -  This is the name of the table you want to permanently delete.
+
+EXAMPLE CODE:
+koding.Remove_Table('my_test_table')
+~"""
+    sql_string = "DROP TABLE IF EXISTS %s;" % table
+    _execute_db_string(sql_string)
 #----------------------------------------------------------------

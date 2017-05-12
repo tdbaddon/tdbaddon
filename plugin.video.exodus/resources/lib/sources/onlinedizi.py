@@ -35,7 +35,7 @@ class source:
         self.search_link = '/ajax'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             tvshowtitle = cleantitle.getsearch(tvshowtitle)
             p = urllib.urlencode({'action': 'ajaxy_sf', 'sf_value': tvshowtitle, 'search': 'false'})

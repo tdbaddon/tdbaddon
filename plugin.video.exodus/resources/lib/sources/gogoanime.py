@@ -24,7 +24,7 @@ import re,urllib,urlparse,json
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
-from resources.lib.modules import trakt
+from resources.lib.modules import source_utils
 from resources.lib.modules import tvmaze
 
 
@@ -38,14 +38,9 @@ class source:
         self.episode_link = '/%s-episode-%s'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            r = 'search/tvdb/%s?type=show&extended=full' % tvdb
-            r = json.loads(trakt.getTrakt(r))
-            if not r: return '0'
-
-            d = r[0]['show']['genres']
-            if not ('anime' in d or 'animation' in d): return '0'
+            if not source_utils.is_anime('show', 'tvdb', tvdb): return '0'
 
             tv_maze = tvmaze.tvMaze()
             tvshowtitle = tv_maze.showLookup('thetvdb', tvdb)

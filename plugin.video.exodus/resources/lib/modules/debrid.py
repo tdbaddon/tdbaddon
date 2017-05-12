@@ -42,5 +42,5 @@ def resolver(url, debrid):
 
         return stream_url
     except Exception as e:
-        log_utils.log('%s Resolve Failure: %s' % (debrid, e))
+        log_utils.log('%s Resolve Failure: %s' % (debrid, e), log_utils.LOGWARNING)
         return None

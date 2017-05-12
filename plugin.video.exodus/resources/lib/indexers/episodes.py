@@ -28,10 +28,11 @@ from resources.lib.modules import cache
 from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
+from resources.lib.modules import utils
 
 import os,sys,re,json,zipfile,StringIO,urllib,urllib2,urlparse,datetime
 
-params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?',''))) if len(sys.argv) > 1 else dict()
 
 action = params.get('action')
 
@@ -513,7 +514,7 @@ class episodes:
     def __init__(self):
         self.list = []
 
-        self.trakt_link = 'http://api-v2launch.trakt.tv'
+        self.trakt_link = 'http://api.trakt.tv'
         self.tvmaze_link = 'http://api.tvmaze.com'
         self.tvdb_key = 'MUQ2MkYyRjkwMDMwQzQ0NA=='
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
@@ -527,15 +528,16 @@ class episodes:
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
         self.added_link = 'http://api.tvmaze.com/schedule'
-        self.mycalendar_link = 'http://api-v2launch.trakt.tv/calendars/my/shows/date[29]/60/'
-        self.trakthistory_link = 'http://api-v2launch.trakt.tv/users/me/history/shows?limit=300'
-        self.progress_link = 'http://api-v2launch.trakt.tv/users/me/watched/shows'
-        self.hiddenprogress_link = 'http://api-v2launch.trakt.tv/users/hidden/progress_watched?limit=1000&type=show'
+        self.mycalendar_link = 'http://api.trakt.tv/calendars/my/shows/date[29]/60/'
+        self.trakthistory_link = 'http://api.trakt.tv/users/me/history/shows?limit=300'
+        self.progress_link = 'http://api.trakt.tv/users/me/watched/shows'
+        self.hiddenprogress_link = 'http://api.trakt.tv/users/hidden/progress_watched?limit=1000&type=show'
         self.calendar_link = 'http://api.tvmaze.com/schedule?date=%s'
 
-        self.traktlists_link = 'http://api-v2launch.trakt.tv/users/me/lists'
-        self.traktlikedlists_link = 'http://api-v2launch.trakt.tv/users/likes/lists?limit=1000000'
-        self.traktlist_link = 'http://api-v2launch.trakt.tv/users/%s/lists/%s/items'
+        self.traktlists_link = 'http://api.trakt.tv/users/me/lists'
+        self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
+        self.traktlist_link = 'http://api.trakt.tv/users/%s/lists/%s/items'
+        self.trakt_lang_link = 'https://api.trakt.tv/shows/%s/seasons/%s/episodes/%s/translations/%s'
 
 
     def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True, create_directory=True):
@@ -684,10 +686,8 @@ class episodes:
             q = (urllib.urlencode(q)).replace('%2C', ',')
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
 
-            result = trakt.getTrakt(u)
-
             itemlist = []
-            items = json.loads(result)
+            items = trakt.getTraktAsJson(u)
         except:
             return
 
@@ -696,78 +696,80 @@ class episodes:
                 title = item['episode']['title']
                 if title == None or title == '': raise Exception()
                 title = client.replaceHTMLCodes(title)
-                title = title.encode('utf-8')
 
                 season = item['episode']['season']
                 season = re.sub('[^0-9]', '', '%01d' % int(season))
                 if season == '0': raise Exception()
-                season = season.encode('utf-8')
 
                 episode = item['episode']['number']
                 episode = re.sub('[^0-9]', '', '%01d' % int(episode))
                 if episode == '0': raise Exception()
-                episode = episode.encode('utf-8')
 
                 tvshowtitle = item['show']['title']
                 if tvshowtitle == None or tvshowtitle == '': raise Exception()
                 tvshowtitle = client.replaceHTMLCodes(tvshowtitle)
-                tvshowtitle = tvshowtitle.encode('utf-8')
 
                 year = item['show']['year']
                 year = re.sub('[^0-9]', '', str(year))
-                year = year.encode('utf-8')
 
                 imdb = item['show']['ids']['imdb']
                 if imdb == None or imdb == '': imdb = '0'
                 else: imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
-                imdb = imdb.encode('utf-8')
 
                 tvdb = item['show']['ids']['tvdb']
                 if tvdb == None or tvdb == '': raise Exception()
                 tvdb = re.sub('[^0-9]', '', str(tvdb))
-                tvdb = tvdb.encode('utf-8')
 
                 premiered = item['episode']['first_aired']
                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                 except: premiered = '0'
-                premiered = premiered.encode('utf-8')
 
                 studio = item['show']['network']
                 if studio == None: studio = '0'
-                studio = studio.encode('utf-8')
 
                 genre = item['show']['genres']
                 genre = [i.title() for i in genre]
                 if genre == []: genre = '0'
                 genre = ' / '.join(genre)
-                genre = genre.encode('utf-8')
 
                 try: duration = str(item['show']['runtime'])
                 except: duration = '0'
                 if duration == None: duration = '0'
-                duration = duration.encode('utf-8')
 
                 try: rating = str(item['episode']['rating'])
                 except: rating = '0'
                 if rating == None or rating == '0.0': rating = '0'
-                rating = rating.encode('utf-8')
 
                 try: votes = str(item['show']['votes'])
                 except: votes = '0'
                 try: votes = str(format(int(votes),',d'))
                 except: pass
                 if votes == None: votes = '0'
-                votes = votes.encode('utf-8')
 
                 mpaa = item['show']['certification']
                 if mpaa == None: mpaa = '0'
-                mpaa = mpaa.encode('utf-8')
 
                 plot = item['episode']['overview']
                 if plot == None or plot == '': plot = item['show']['overview']
                 if plot == None or plot == '': plot = '0'
                 plot = client.replaceHTMLCodes(plot)
-                plot = plot.encode('utf-8')
+
+                try:
+                    if self.lang == 'en': raise Exception()
+
+                    url = self.trakt_lang_link % (imdb, season, episode, self.lang)
+
+                    item = trakt.getTraktAsJson(url)[0]
+
+                    t = item.get('title')
+                    if t:
+                        title = t
+
+                    t = item.get('overview')
+                    if t:
+                        plot = t
+                except:
+                    pass
 
                 itemlist.append({'title': title, 'season': season, 'episode': episode, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': 'Continuing', 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'imdb': imdb, 'tvdb': tvdb, 'poster': '0', 'thumb': '0'})
             except:
@@ -781,8 +783,7 @@ class episodes:
     def trakt_progress_list(self, url, user, lang):
         try:
             url += '?extended=full'
-            result = trakt.getTrakt(url)
-            result = json.loads(result)
+            result = trakt.getTraktAsJson(url)
             items = []
         except:
             return
@@ -796,17 +797,14 @@ class episodes:
                 if num_1 >= num_2: raise Exception()
 
                 season = str(item['seasons'][-1]['number'])
-                season = season.encode('utf-8')
 
                 episode = [x for x in item['seasons'][-1]['episodes'] if 'number' in x]
                 episode = sorted(episode, key=lambda x: x['number'])
                 episode = str(episode[-1]['number'])
-                episode = episode.encode('utf-8')
 
                 tvshowtitle = item['show']['title']
                 if tvshowtitle == None or tvshowtitle == '': raise Exception()
                 tvshowtitle = client.replaceHTMLCodes(tvshowtitle)
-                tvshowtitle = tvshowtitle.encode('utf-8')
 
                 year = item['show']['year']
                 year = re.sub('[^0-9]', '', str(year))
@@ -814,20 +812,17 @@ class episodes:
 
                 imdb = item['show']['ids']['imdb']
                 if imdb == None or imdb == '': imdb = '0'
-                imdb = imdb.encode('utf-8')
 
                 tvdb = item['show']['ids']['tvdb']
                 if tvdb == None or tvdb == '': raise Exception()
                 tvdb = re.sub('[^0-9]', '', str(tvdb))
-                tvdb = tvdb.encode('utf-8')
 
                 items.append({'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'snum': season, 'enum': episode})
             except:
                 pass
 
         try:
-            result = trakt.getTrakt(self.hiddenprogress_link)
-            result = json.loads(result)
+            result = trakt.getTraktAsJson(self.hiddenprogress_link)
             result = [str(i['show']['ids']['tvdb']) for i in result]
 
             items = [i for i in items if not i['tvdb'] in result]
@@ -859,6 +854,8 @@ class episodes:
                 num = [x for x,y in enumerate(item) if re.compile('<SeasonNumber>(.+?)</SeasonNumber>').findall(y)[0] == str(i['snum']) and re.compile('<EpisodeNumber>(.+?)</EpisodeNumber>').findall(y)[0] == str(i['enum'])][-1]
                 item = [y for x,y in enumerate(item) if x > num][0]
 
+                print lang
+                print item
 
                 premiered = client.parseDOM(item, 'FirstAired')[0]
                 if premiered == '' or '-00' in premiered: premiered = '0'
@@ -1206,8 +1203,7 @@ class episodes:
 
     def trakt_user_list(self, url, user):
         try:
-            result = trakt.getTrakt(url)
-            items = json.loads(result)
+            items = trakt.getTraktAsJson(url)
         except:
             pass
 
@@ -1216,7 +1212,6 @@ class episodes:
                 try: name = item['list']['name']
                 except: name = item['name']
                 name = client.replaceHTMLCodes(name)
-                name = name.encode('utf-8')
 
                 try: url = (trakt.slug(item['list']['user']['username']), item['list']['ids']['slug'])
                 except: url = ('me', item['ids']['slug'])
@@ -1227,7 +1222,7 @@ class episodes:
             except:
                 pass
 
-        self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['name'].lower()))
+                self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
 
 

@@ -48,7 +48,7 @@ class source:
         self.episode_link = '-Season-%01d-Episode-%01d'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -73,17 +73,23 @@ class source:
     def alltube_tvshow_cache(self):
         try:
             result = client.request(self.tvsearch_cache)
-            result = client.parseDOM(result, 'li', attrs={'data-letter':'+?'})
+            result = client.parseDOM(result, 'li', attrs={'data-letter':'.*'})
             result = [(client.parseDOM(i, 'a', ret='href')[0], client.parseDOM(i, 'a')[0].encode('utf8')) for i in result]
             return result
         except: 
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
-            return url
+            result = cache.get(self.alltube_tvshow_cache, 120)
+            fixedTitle = cleantitle.get(tvshowtitle)
+            for link in result:
+                found_name = link[1]
+                found_year = re.search('\((\d{4})\)$', found_name)
+                if found_year and found_year.group(0)[1:-1] != year:
+                    continue
+                if fixedTitle in cleantitle.get(found_name):
+                    return link[0]
         except:
             return
         
@@ -91,15 +97,8 @@ class source:
         try:
             if url == None: return
 
-            url = urlparse.parse_qs(url)
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            result = cache.get(self.alltube_tvshow_cache, 120)
-            tvshowtitle = cleantitle.get(url['tvshowtitle'])
-
-            result = [i[0] for i in result if cleantitle.get(tvshowtitle) in cleantitle.get(i[1])][0]
             txts = 's%02de%02d' % (int(season), int(episode))
-
-            result = client.request(result)
+            result = client.request(url)
             result = client.parseDOM(result, 'li', attrs={'class': 'episode'})
             result = [i for i in result if txts in i][0]
             url = client.parseDOM(result, 'a', ret='href')[0]
@@ -177,4 +176,3 @@ class source:
             return
         except:
             return
-

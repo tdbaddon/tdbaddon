@@ -37,7 +37,7 @@ def log(msg, level=LOGDEBUG):
         if isinstance(msg, unicode):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
-        xbmc.log('%s: %s' % (name, msg), level)
+        xbmc.log('[%s] %s' % (name, msg), level)
 
     except Exception as e:
         try:

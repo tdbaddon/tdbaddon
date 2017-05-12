@@ -325,11 +325,13 @@ class sources:
         if content == 'movie':
             title = self.getTitle(title)
             localtitle = self.getLocalTitle(title, imdb, tvdb, content)
-            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, localtitle, year, imdb, i[0], i[1]))
+            aliases = self.getAliasTitles(imdb, localtitle, content)
+            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, localtitle, aliases, year, imdb, i[0], i[1]))
         else:
             tvshowtitle = self.getTitle(tvshowtitle)
             localtvshowtitle = self.getLocalTitle(tvshowtitle, imdb, tvdb, content)
-            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, i[0], i[1]))
+            aliases = self.getAliasTitles(imdb, localtvshowtitle, content)
+            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, aliases, premiered, i[0], i[1]))
 
         s = [i[0] + (i[1],) for i in zip(sourceDict, threads)]
         s = [(i[3].getName(), i[0], i[2]) for i in s]
@@ -400,7 +402,7 @@ class sources:
             pass
 
 
-    def getMovieSource(self, title, localtitle, year, imdb, source, call):
+    def getMovieSource(self, title, localtitle, aliases, year, imdb, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -429,7 +431,7 @@ class sources:
             pass
 
         try:
-            if url == None: url = call.movie(imdb, title, localtitle, year)
+            if url == None: url = call.movie(imdb, title, localtitle, aliases, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
@@ -450,7 +452,7 @@ class sources:
             pass
 
 
-    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, source, call):
+    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, aliases, premiered, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -479,7 +481,7 @@ class sources:
             pass
 
         try:
-            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, localtvshowtitle, year)
+            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
@@ -565,6 +567,7 @@ class sources:
                 if not i['source'].lower() in self.hosthqDict and i['quality'] not in ['SD', 'SCR', 'CAM']: i.update({'quality': 'SD'})
 
         local = [i for i in self.sources if 'local' in i and i['local'] == True]
+        for i in local: i.update({'language': self._getPrimaryLang() or 'en'})
         self.sources = [i for i in self.sources if not i in local]
 
         filter = []
@@ -665,27 +668,29 @@ class sources:
             u = url = item['url']
 
             d = item['debrid'] ; direct = item['direct']
+            local = item.get('local', False)
 
             provider = item['provider']
             call = [i[1] for i in self.sourceDict if i[0] == provider][0]
             u = url = call.resolve(url)
 
-            if url == None or not '://' in str(url): raise Exception()
+            if url == None or (not '://' in str(url) and not local): raise Exception()
 
-            url = url[8:] if url.startswith('stack:') else url
+            if not local:
+                url = url[8:] if url.startswith('stack:') else url
 
-            urls = []
-            for part in url.split(' , '):
-                u = part
-                if not d == '':
-                    part = debrid.resolver(part, d)
+                urls = []
+                for part in url.split(' , '):
+                    u = part
+                    if not d == '':
+                        part = debrid.resolver(part, d)
 
-                elif not direct == True:
-                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
-                    if hmf.valid_url() == True: part = hmf.resolve()
-                urls.append(part)
+                    elif not direct == True:
+                        hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
+                        if hmf.valid_url() == True: part = hmf.resolve()
+                    urls.append(part)
 
-            url = 'stack://' + ' , '.join(urls) if len(urls) > 1 else urls[0]
+                url = 'stack://' + ' , '.join(urls) if len(urls) > 1 else urls[0]
 
             if url == False or url == None: raise Exception()
 
@@ -861,9 +866,7 @@ class sources:
 
 
     def getLocalTitle(self, title, imdb, tvdb, content):
-        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko'}
-        name = control.setting('providers.lang')
-        lang = langDict.get(name)
+        lang = self._getPrimaryLang()
         if not lang:
             return title
 
@@ -874,6 +877,22 @@ class sources:
 
         return t or title
 
+
+    def getAliasTitles(self, imdb, localtitle, content):
+        lang = self._getPrimaryLang()
+
+        try:
+            t = trakt.getMovieAliases(imdb) if content == 'movie' else trakt.getTVShowAliases(imdb)
+            t = [i for i in t if i.get('country', '').lower() in [lang, '', 'us'] and i.get('title', '').lower() != localtitle.lower()]
+            return t
+        except:
+            return []
+
+    def _getPrimaryLang(self):
+        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko'}
+        name = control.setting('providers.lang')
+        lang = langDict.get(name)
+        return lang
 
     def getTitle(self, title):
         title = cleantitle.normalize(title)

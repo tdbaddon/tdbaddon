@@ -1,2 +1,2 @@
-[B]1.0.5[/B]
-source update
+[B]1.0.6[/B]
+Version update

@@ -34,19 +34,19 @@ class source:
         self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt', 'cartoonhd.website', 'cartoonhd.online', 'cartoonhd.cc']
         self.base_link = 'https://cartoonhd.cc/'
 
-
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
+            aliases.append({'country': 'us', 'title': title})
+            url = {'imdb': imdb, 'title': title, 'year': year, 'aliases': aliases}
             url = urllib.urlencode(url)
             return url
         except:
             return
 
-
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            aliases.append({'country': 'us', 'title': tvshowtitle})
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'aliases': aliases}
             url = urllib.urlencode(url)
             return url
         except:
@@ -56,11 +56,36 @@ class source:
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             if url == None: return
-
             url = urlparse.parse_qs(url)
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
             url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
             url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+    def searchShow(self, title, season, episode, aliases, headers):
+        try:
+            for alias in aliases:
+                url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(alias['title']), int(season), int(episode))
+                url = client.request(url, headers=headers,output='geturl', timeout='10')
+                if not url == None and url != self.base_link: break
+            return url
+        except:
+            return
+
+    def searchMovie(self, title, year, aliases, headers):
+        try:
+            for alias in aliases:
+                url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(alias['title']))
+                url = client.request(url, headers=headers, output='geturl', timeout='10')
+                if not url == None and url != self.base_link: break
+            if url == None:
+                for alias in aliases:
+                    url = '%s/movie/%s-%s' % (self.base_link, cleantitle.geturl(alias['title']), year)
+                    url = client.request(url, headers=headers, output='geturl', timeout='10')
+                    if not url == None and url != self.base_link: break
+
             return url
         except:
             return
@@ -72,42 +97,36 @@ class source:
 
             if url == None: return sources
 
-            if not str(url).startswith('http'):
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+            imdb = data['imdb']
+            aliases = eval(data['aliases'])
+            headers = {}
 
-                data = urlparse.parse_qs(url)
-                data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-
-                imdb = data['imdb'] ; year = data['year']
-
-                if 'tvshowtitle' in data:
-                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
-                else:
-                    url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
-
-                result = client.request(url, limit='5')
-
-                if result == None and not 'tvshowtitle' in data:
-                    url += '-%s' % year
-                    result = client.request(url, limit='5')
-
-                result = client.parseDOM(result, 'title')[0]
-
-                if '%TITLE%' in result: raise Exception()
-
-                r = client.request(url, output='extended')
-
-                if not imdb in r[0]: raise Exception()
-
-               
+            if 'tvshowtitle' in data:
+                url = self.searchShow(title, int(data['season']), int(data['episode']), aliases, headers)
             else:
-                url = urlparse.urljoin(self.base_link, url)
+                url = self.searchMovie(title, data['year'], aliases, headers)
 
-                r = client.request(url, output='extended')
+            r = client.request(url, headers=headers, output='extended', timeout='10')
+
+            if not imdb in r[0]: raise Exception()
 
 
             cookie = r[4] ; headers = r[3] ; result = r[0]
+
+            try:
+                r = re.findall('(https:.*?redirector.*?)[\'\"]', result)
+                for i in r:
+                    try:
+                        sources.append(
+                            {'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en',
+                             'url': i, 'direct': True, 'debridonly': False})
+                    except:
+                        pass
+            except:
+                pass
 
             try: auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             except: auth = 'false'

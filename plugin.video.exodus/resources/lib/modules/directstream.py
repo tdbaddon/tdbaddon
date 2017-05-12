@@ -205,50 +205,22 @@ def vk(url):
 
 def odnoklassniki(url):
     try:
-        url = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
-        url = 'http://ok.ru/dk?cmd=videoPlayerMetadata&mid=%s' % url
+        media_id = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
 
-        result = client.request(url)
+        result = client.request('http://ok.ru/dk', post={'cmd': 'videoPlayerMetadata', 'mid': media_id})
         result = re.sub(r'[^\x00-\x7F]+', ' ', result)
+        result = json.loads(result).get('videos', [])
 
-        result = json.loads(result)['videos']
+        hd = []
+        for name, quali in {'ultra': '4K', 'quad': '1440p', 'full': '1080p', 'hd': 'HD'}.items():
+            hd += [{'quality': quali, 'url': i.get('url')} for i in result if i.get('name').lower() == name]
 
-        try:
-            hd = [{'quality': '4K', 'url': i['url']} for i in result if i['name'] == 'ultra']
-        except:
-            pass
-        try:
-            hd += [{'quality': '1440p', 'url': i['url']} for i in result if i['name'] == 'quad']
-        except:
-            pass
-        try:
-            hd += [{'quality': '1080p', 'url': i['url']} for i in result if i['name'] == 'full']
-        except:
-            pass
-        try:
-            hd += [{'quality': 'HD', 'url': i['url']} for i in result if i['name'] == 'hd']
-        except:
-            pass
-        try:
-            sd = [{'quality': 'SD', 'url': i['url']} for i in result if i['name'] == 'sd']
-        except:
-            pass
-        try:
-            sd += [{'quality': 'SD', 'url': i['url']} for i in result if i['name'] == 'low']
-        except:
-            pass
-        try:
-            sd += [{'quality': 'SD', 'url': i['url']} for i in result if i['name'] == 'lowest']
-        except:
-            pass
-        try:
-            sd += [{'quality': 'SD', 'url': i['url']} for i in result if i['name'] == 'mobile']
-        except:
-            pass
+        sd = []
+        for name, quali in {'sd': 'SD', 'low': 'SD', 'lowest': 'SD', 'mobile': 'SD'}.items():
+            sd += [{'quality': quali, 'url': i.get('url')} for i in result if i.get('name').lower() == name]
 
         url = hd + sd[:1]
         if not url == []: return url
-
     except:
         return
 

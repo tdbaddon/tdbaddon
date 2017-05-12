@@ -46,7 +46,7 @@ class source:
         self.password = control.setting('seriesever.pass')
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = self.__search(localtvshowtitle, year)
             if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
@@ -151,7 +151,6 @@ class source:
             r = [(i['url'], i['name']) for i in r if 'name' in i and 'url' in i]
             r = [(i[0], i[1], re.findall('(.+?) \(*(\d{4})?\)*$', i[1])) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
-            print r
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
 

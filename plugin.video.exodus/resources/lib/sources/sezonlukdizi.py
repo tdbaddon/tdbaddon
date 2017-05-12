@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json,base64
+import re,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -35,29 +35,19 @@ class source:
         self.search_link = '/js/dizi5.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
-    def getOriginalTitle(self, imdb):
+    def matchAlias(self, title, aliases):
         try:
-            tmdb_link = base64.b64decode(
-                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
-            t = client.request(tmdb_link % imdb, timeout='10')
-            try: title = json.loads(t)['movie_results'][0]['original_title']
-            except: pass
-            try: title = json.loads(t)['tv_results'][0]['original_name']
-            except: pass
-            title = cleantitle.normalize(title)
-            return title
+            for alias in aliases:
+                if cleantitle.get(title) == cleantitle.get(alias['title']):
+                    return True
         except:
-            return
+            return False
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
+            aliases.append({'country': 'us', 'title': tvshowtitle})
             list = cache.get(self.sezonlukdizi_tvcache, 120)
-            url = [i[0] for i in list if cleantitle.query(tvshowtitle) == i[1]]
-
-            if not url:
-                t = cache.get(self.getOriginalTitle, 900, imdb)
-                url = [i[0] for i in list if cleantitle.query(t) == i[1]]
-
+            url = [i[0] for i in list if self.matchAlias(i[1], aliases)]
             url = urlparse.urljoin(self.base_link, url[0])
             url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)

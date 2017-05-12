@@ -40,10 +40,10 @@ class source:
     @property
     def base_link(self):
         if not self._base_link:
-            self._base_link = cache.get(self.__get_base_url, 120, self.domains[0])
+            self._base_link = cache.get(self.__get_base_url, 120, 'http://%s' % self.domains[0])
         return self._base_link
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(imdb, localtitle, year)
             if not url and title != localtitle: url = self.__search(imdb, title, year)

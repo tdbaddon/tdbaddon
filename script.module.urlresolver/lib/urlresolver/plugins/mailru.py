@@ -47,6 +47,7 @@ class MailRuResolver(UrlResolver):
                 sources = sources[::-1]
                 source = helpers.pick_source(sources)
                 source = source.encode('utf-8')
+                if source.startswith("//"): source = 'http:%s' % source
                 return source + helpers.append_headers({'Cookie': response.get_headers(as_dict=True).get('Set-Cookie', '')})
             except:
                 raise ResolverError('No playable video found.')
@@ -56,18 +57,8 @@ class MailRuResolver(UrlResolver):
 
     def get_url(self, host, media_id):
         location, user, media_id = media_id.split('|')
-        if user == 'None':
-            try:
-                web_url = 'https://my.mail.ru/video/embed/%s' % media_id
-                response = self.net.http_GET(web_url)
-                html = response.content.encode('utf-8')
-                media_id = re.search(r'[\"\']movieSrc[\"\']\s?:\s?[\"\'](.*?)[\"\']', html).groups()[0]
-                return 'http://videoapi.my.mail.ru/videos/%s.json?ver=0.2.60' % (media_id)
-                
-            except:
-                raise ResolverError('No playable video found.')
-        
-        else: return 'http://videoapi.my.mail.ru/videos/%s/%s/_myvideo/%s.json?ver=0.2.60' % (location, user, media_id)
+        if user == 'None': return 'http://my.mail.ru/+/video/meta/%s' % (media_id)
+        else: return 'http://my.mail.ru/+/video/meta/%s/%s/%s?ver=0.2.60' % (location, user, media_id)
 
     def get_host_and_id(self, url):
         r = re.search(self.pattern, url)

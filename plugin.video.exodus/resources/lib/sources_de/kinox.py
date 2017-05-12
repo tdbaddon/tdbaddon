@@ -42,10 +42,10 @@ class source:
     @property
     def base_link(self):
         if not self._base_link:
-            self._base_link = cache.get(self.__get_base_url, 120, self.domains[0])
+            self._base_link = cache.get(self.__get_base_url, 120, 'http://%s' % self.domains[0])
         return self._base_link
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(imdb)
             if url:
@@ -53,9 +53,11 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            return self.movie(imdb, tvshowtitle, localtvshowtitle, year)
+            url = self.__search(imdb)
+            if url:
+                return urllib.urlencode({'url': url})
         except:
             return
 
@@ -165,4 +167,3 @@ class source:
             pass
 
         return fallback
-

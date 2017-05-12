@@ -5253,9 +5253,14 @@ def clearCache():
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
 
-    fname='network_page2.json'
+    fname='network_page21.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
+
+    fname='network_page22.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]     
+
     
     fname='Networkdata.json'
     fname=os.path.join(profile_path, fname)
@@ -5510,7 +5515,8 @@ def getNetworkTVPage():
     #post={'check':'1','user_id':str(uid),'version':'26'}
     #post = urllib.urlencode(post)
     #jsondata=getUrl(baseurl,post=post,headers=headers)
-    jsondata=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL25ldC5qc29u"),headers=headers)
+    import time
+    jsondata=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL25ldC5qc29u")+"?dt="+str(int(time.time())),headers=headers)
     #print jsondata
     jsondata=json.loads(jsondata)
 
@@ -5544,7 +5550,7 @@ def getNetworkTVPage():
             #["24","25","28","29","30","31","32"]==29
             #if tt not in ['5','33','18','0',"24","25","28","29","30","31","32","38","26"]: continue
             #if tt not in ["35","34"]: continue
-            if tt not in ["38"]: continue
+            #if tt not in ["38"]: continue
             channels["channels"].append( {
             'cid': chmain[cid][:-1].decode("base64") ,
             'chname': chmain[cname ][:-1].decode("base64"), #+ ("" if single else " "+str(v)),
@@ -5876,7 +5882,7 @@ def getPV2Url():
     fname='pv2tvpage.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,4*60*60)
+        jsondata=getCacheData(fname,2*60*60)
         if not jsondata==None:
             return base64.b64decode(jsondata)
     except:
@@ -6371,7 +6377,7 @@ def PlayNetworkTVLink(url,progress=None):
         if playua and len(playua)>0:
             defplayua=playua
         finalurl=playurl[0].split('\'')[0]+"|User-Agent="+defplayua
-    elif token=="38":
+    elif token in ["38", "26"]:
         #netData=getNetworkTVData()    
         #posturl=netData["YmVsZ2lfMzgw"][1:].decode("base64")
         #auth=netData["Z2Vsb29mc2JyaWVm"][1:].decode("base64")
@@ -6386,9 +6392,9 @@ def PlayNetworkTVLink(url,progress=None):
         #    headers.append(('User-Agent',authua))     
         #else:
         #    headers.append(('User-Agent',anduseragent))
-            
+        import time     
         #authdata2=getUrl(posturl,headers=headers)
-        authdata2=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL2dldG5ldHR2dG9rZW4ucGhw"),headers=headers)
+        authdata2=getUrl(base64.b64decode("aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL2dldG5ldHR2dG9rZW4ucGhw")+"?dt="+str(int(time.time())),headers=headers)
         authdata=getNetworkTVStringExtra2(authdata2)
         
         defplayua=anduseragent
@@ -7267,7 +7273,7 @@ def PlayShowLink ( url, redirect=True ):
         html=getUrl(newurl,headers=headers)
         stream_url= re.findall( '(http.*)',html)[-1].split('#')[0]
         stream_url=stream_url+'|Origin=http://www.dailymotion.com&Referer=http://www.dailymotion.com/embed/video/&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
-
+        return playipbox(stream_url)#you stingy mf
         print stream_url
         playlist.add(stream_url,listitem)
         xbmcPlayer = xbmc.Player()

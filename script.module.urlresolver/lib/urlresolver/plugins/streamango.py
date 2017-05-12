@@ -27,4 +27,4 @@ class StreamangoResolver(GenericResolver):
     pattern = '(?://|\.)(streamango\.com)/(?:f/|embed/)?([0-9a-zA-Z]+)'
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, 'http://{host}/f/{media_id}')
+        return self._default_get_url(host, media_id, 'http://{host}/embed/{media_id}')

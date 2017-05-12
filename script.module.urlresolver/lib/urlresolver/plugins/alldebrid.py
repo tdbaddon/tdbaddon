@@ -41,27 +41,31 @@ class AllDebridResolver(UrlResolver):
             pass
 
     def get_media_url(self, host, media_id):
+        source = None
         common.log_utils.log('in get_media_url %s : %s' % (host, media_id))
         url = 'http://www.alldebrid.com/service.php?link=%s' % (media_id)
         html = self.net.http_GET(url).content
         if html == 'login':
             raise ResolverError('alldebrid: Authentication Error')
+    
+        try: js_data = json.loads(html)
+        except: js_data = {}
+        if js_data.get('error'):
+            raise ResolverError('alldebrid: %s' % (js_data['error']))
         
-        try:
-            js_data = json.loads(html)
-            if 'error' in js_data and js_data['error']:
-                raise ResolverError('alldebrid: %s' % (js_data['error']))
-            
-            if 'streaming' in js_data:
-                return helpers.pick_source(js_data['streaming'].items())
-        except ResolverError:
-            raise
-        except:
-            match = re.search('''<a\s+class=["']link_dl['"]\s+href=["']([^'"]+)''', html)
+        if 'streaming' in js_data:
+            source = helpers.pick_source(js_data['streaming'].items())
+        elif 'link' in js_data:
+            source = js_data['link']
+        else:
+            match = re.search('''class=["']link_dl['"][^>]+href=["']([^'"]+)''', html)
             if match:
-                return match.group(1)
+                source = match.group(1)
         
-        raise ResolverError('alldebrid: no stream returned')
+        if source:
+            return source.encode('utf-8')
+        else:
+            raise ResolverError('alldebrid: no stream returned')
 
     def get_url(self, host, media_id):
         return media_id

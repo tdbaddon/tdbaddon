@@ -32,10 +32,10 @@ class source:
         self.base_link = 'http://streamay.bz'
         self.search_link = '/search'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         return self.__search(title, localtitle, year, 'Film')
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         return self.__search(tvshowtitle, localtvshowtitle, year, 'Série')
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):

@@ -22,6 +22,7 @@ import json
 import re
 import urllib
 import urlparse
+import base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -38,14 +39,14 @@ class source:
         self.search_link = '/filme?suche=%s&type=alle'
         self.ajax_link = '/ajax/stream/%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search_movie(imdb, year)
             return url if url else None
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year}
             url = urllib.urlencode(url)
@@ -77,11 +78,13 @@ class source:
             if not url:
                 return sources
 
-            url = urlparse.urljoin(self.base_link, url)
-            a = urlparse.urljoin(self.base_link, self.ajax_link % re.findall('-([\w\d]+)$', url)[0])
-            result = client.request(a, referer=url)
-            result = json.loads(result)
-            result = [i['link_mp4'] for i in result['url'] if isinstance(result["url"], list)]
+            ref = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urljoin(self.base_link, self.ajax_link % re.findall('-([\w\d]+)$', ref)[0])
+            result = client.request(url, referer=ref)
+            result = base64.decodestring(result)
+            result = json.loads(result).get('playinfo', [])
+            result = [i.get('link_mp4') for i in result]
+            result = [i for i in result if i]
             for i in result:
                 try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
                 except: pass

@@ -36,7 +36,7 @@ class source:
         self.episode_link = '/episodio/%s-%sx%s'
         self.tvshow_link = '/series/%s/'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             t = 'http://www.imdb.com/title/%s' % imdb
             t = client.request(t, headers={'Accept-Language': 'es-AR'})
@@ -60,7 +60,7 @@ class source:
         except:
             pass
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             t = cleantitle.geturl(tvshowtitle)
 

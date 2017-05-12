@@ -18,6 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import base64
 import json
 import re
 import urllib
@@ -31,7 +32,6 @@ from resources.lib.modules import directstream
 from resources.lib.modules import dom_parser
 from resources.lib.modules import jsunpack
 from resources.lib.modules import source_utils
-from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 
 
@@ -40,23 +40,23 @@ class source:
         self.priority = 1
         self.language = ['de']
         self.domains = ['foxx.to']
-        self.base_link = 'https://foxx.to'
+        self.base_link = 'http://foxx.to'
         self.search_link = '/wp-json/dooplay/search/?keyword=%s&nonce=%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.__search(localtitle, year)
             if not url and title != localtitle: url = self.__search(title, year)
-            if not url and self.__is_anime('movie', 'imdb', imdb): url = self.__search(anilist.getAlternativTitle(title), year)
+            if not url and source_utils.is_anime('movie', 'imdb', imdb): url = self.__search(anilist.getAlternativTitle(title), year)
             return url
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = self.__search(localtvshowtitle, year)
             if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
-            if not url and self.__is_anime('show', 'tvdb', tvdb): url = self.__search(tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name'), year)
+            if not url and source_utils.is_anime('show', 'tvdb', tvdb): url = self.__search(tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name'), year)
             return url
         except:
             return
@@ -111,6 +111,10 @@ class source:
 
                     if self.domains[0] in i:
                         i = client.request(i, referer=url)
+
+                        for x in re.findall('''\(["']?(.*)["']?\)''', i):
+                            try: i += jsunpack.unpack(base64.decodestring(re.sub('"\s*\+\s*"', '', x)))
+                            except: pass
 
                         s = re.compile('(eval\(function.*?)</script>', re.DOTALL).findall(i)
 
@@ -178,13 +182,3 @@ class source:
         try: n = re.findall('nonce"?\s*:\s*"?([0-9a-zA-Z]+)', n)[0]
         except: n = '5d12d0fa54'
         return n
-
-    @staticmethod
-    def __is_anime(content, type, type_id):
-        try:
-            r = 'search/%s/%s?type=%s&extended=full' % (type, type_id, content)
-            r = json.loads(trakt.getTrakt(r))
-            r = r[0].get(content, []).get('genres', [])
-            return 'anime' in r or 'animation' in r
-        except:
-            return False

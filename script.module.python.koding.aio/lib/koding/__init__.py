@@ -315,9 +315,10 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
             runcode_date = time.strftime('%Y%m%d%H%M%S', runcode_date)
         if int(runcode_date)+1000000 < int(Timestamp()):
             run_code = Open_URL(url, post_type)
-            writefile = open(RUNCODE, 'w')
-            writefile.write(run_code)
-            writefile.close()
+            if not run_code.startswith('This url could not be opened'):
+                writefile = open(RUNCODE, 'w')
+                writefile.write(run_code)
+                writefile.close()
         else:
             readfile = open(RUNCODE,'r')
             run_code = readfile.read()
@@ -326,23 +327,25 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
     else:
         run_code = Open_URL(url, post_type)
 
-    try:
-        exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
-        dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
-    except:
-        xbmc.log(Last_Error())
+    if not run_code.startswith('This url could not be opened'):
         try:
-            exec(run_code)
+            exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
             dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
         except:
-            xbmc.log(Last_Error())
+            dolog(Last_Error())
             try:
-                exec(converthex(run_code))
+                exec(run_code)
                 dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
             except:
-                if DEBUG == 'true':
-                    dialog.ok(String(30980),String(30981))
-
+                dolog(Last_Error())
+                try:
+                    exec(converthex(run_code))
+                    dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
+                except:
+                    if DEBUG == 'true':
+                        dialog.ok(String(30980),String(30981))
+    else:
+        dolog(run_code)
 #-----------------------------------------------------------------------------
 # TUTORIAL #
 def User_Info(mode = ''):

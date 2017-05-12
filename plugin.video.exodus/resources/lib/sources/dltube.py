@@ -36,7 +36,7 @@ class source:
         self.download_link = '/movies/add_download'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             if debrid.status() == False: raise Exception()
 

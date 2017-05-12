@@ -44,17 +44,17 @@
 		<setting id="provider.hevcfilm" type="bool" label="HEVC" default="true" />
 		<setting id="provider.hindilinks4u" type="bool" label="HindiLinks4U" default="true" />
 		<setting id="provider.hotstar" type="bool" label="HotStar" default="true" />
-		<setting id="provider.ibollytv" type="bool" label="iBollyTV" default="true" />
+		<setting id="provider.ibollytv" type="bool" label="iBollyTV" default="false" />
 		<setting id="provider.staticjson" type="bool" label="staticjson" default="true" />
 		<setting id="provider.iptv" type="bool" label="IPTV" default="true" />
-		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
+		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="false" />
 		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="provider.ninemovies" type="bool" label="NineMovies" default="true" />
 		<setting id="provider.onemovies" type="bool" label="OneMovies" default="true" />
 		<setting id="provider.primewire" type="bool" label="PrimeWire" default="true" />
-		<setting id="provider.pubfilm" type="bool" label="PubFilm" default="true" />
+		<setting id="provider.pubfilm" type="bool" label="PubFilm" default="false" />
 		<setting id="provider.putlocker" type="bool" label="PutLocker" default="true" />
 		<setting id="provider.rlsmovies" type="bool" label="RLSMovies" default="true" />
 		<setting id="provider.swift" type="bool" label="Swift" default="true" />

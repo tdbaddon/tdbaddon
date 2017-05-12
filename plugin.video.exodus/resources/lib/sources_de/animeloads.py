@@ -28,7 +28,6 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
 from resources.lib.modules import dom_parser
-from resources.lib.modules import trakt
 from resources.lib.modules import tvmaze
 
 class source:
@@ -39,20 +38,20 @@ class source:
         self.base_link = 'http://www.anime-loads.org'
         self.search_link = '/search?q=%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            if not self.__is_anime('movie', 'imdb', imdb): return
+            if not source_utils.is_anime('movie', 'imdb', imdb): return
 
-            url = self.__search([title, localtitle, anilist.getAlternativTitle(title)], year)
+            url = self.__search([title, localtitle, anilist.getAlternativTitle(title)] + source_utils.aliases_to_array(aliases), year)
             return urllib.urlencode({'url': url}) if url else None
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            if not self.__is_anime('show', 'tvdb', tvdb): return
+            if not source_utils.is_anime('show', 'tvdb', tvdb): return
 
-            url = self.__search([tvshowtitle, localtvshowtitle, tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name')], year)
+            url = self.__search([tvshowtitle, localtvshowtitle, tvmaze.tvMaze().showLookup('thetvdb', tvdb).get('name')] + source_utils.aliases_to_array(aliases), year)
             return urllib.urlencode({'url': url}) if url else None
         except:
             return
@@ -101,7 +100,7 @@ class source:
                 rel = [(i[0], i[1][0],) for i in rel if len(i[1]) > 0]
 
                 links = [(x[0], '4K') for x in rel if int(x[1]) >= 2160]
-                links += [(x[0], '1440') for x in rel if int(x[1]) >= 1440]
+                links += [(x[0], '1440p') for x in rel if int(x[1]) >= 1440]
                 links += [(x[0], '1080p') for x in rel if int(x[1]) >= 1080]
                 links += [(x[0], 'HD') for x in rel if 720 <= int(x[1]) < 1080]
                 links += [(x[0], 'SD') for x in rel if int(x[1]) < 720]
@@ -163,15 +162,5 @@ class source:
             return source_utils.strip_domain(r)
         except:
             return
-
-    @staticmethod
-    def __is_anime(content, type, type_id):
-        try:
-            r = 'search/%s/%s?type=%s&extended=full' % (type, type_id, content)
-            r = json.loads(trakt.getTrakt(r))
-            r = r[0].get(content, []).get('genres', [])
-            return 'anime' in r or 'animation' in r
-        except:
-            return False
 
 exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("MTggMTUsIDgsIDQ2CjQ4IDIxLjRkLjJmIDE4IDFlCgo0MiA1NDoKCTEyIDJjKDQ0KToKCQk0NC4xOSA9IDguOSgnNWE9JykKCQk0NC43ID0gOC45KCc1Nz0nKQoJCTQ0LjE0ID0gOC45KCcyPScpCgkJNDQuMTAgPSAnNDU6Ly81My4zZi0xYi41MC81Mi8lNTgnCgoJMTIgMmUoNDQsIDIyKToKCQkxNywgNTYgPSA0NC41MSgnNGUnLCAyMlswXSkKCQkxNyA9IDE3LjExKCczMicsIFtdKSAxZCAxNy4xMSgnMmInLCAnJykgPT0gJzM1JyAyNiBbXQoJCTE3ID0gWzNlIDI0IDNlIDJhIDE3IDFkIDNlLjExKCczNycsICcnKSA9PSAyMlsxXV1bMF0KCQkxNyA9IDE3LjExKCc0MycsIFtdKQoKCQk1ID0gW10KCgkJMjQgZCAyYSAxNzoKCQkJNTksIGMgPSA0NC41MSgnZCcsIGRbJ2QnXSwgNTYpCgkJCTFkIDU5LjExKCcyYicsICcnKSA9PSAnMzUnIDRjICdkJyAyYSA1OToKCQkJCTUuMzYoNTlbJ2QnXSkKCgkJMWQgMjMoNSkgPj0gMToKCQkJNSA9IDVbMF0gMWQgMjMoNSkgPT0gMSAyNiAnNDA6Ly8nICsgJyAsICcuMmQoNSkKCQkJYiA1CgoJMTIgNTEoNDQsIDE5LCAxYSwgNj00Nyk6CgkJNTUgPSAzYS4yNSh7MTk6IDFhLCAnM2InOiA0NC5lKCl9KQoJCTE3ID0gMzQuMzAoNDQuMTAgJSA0NC4xNCwgNDk9NTUsIDY9NiwgMzk9JzI4JywgNDE9NGIpCgkJNiA9IHsnMjctMWMnOiAxN1szXVsnMjctMWMnXSwgJzNjJzogMTdbNF19CgkJYiA0YS4xYigxN1swXSksIDYKCgkxMiBlKDQ0KToKCQliIDQ0LmEoNDQuMTksIDQ0LjcpCgoJMTIgYSg0NCwgNywgMTMpOgoJCTI5ID0gNDYuMzMoMTYpCgkJM2QgPSAxZS5mKDE1LjRmKDEzKS4yMCgpLCAyOT0yOSkKCQliIDguMWYoMjkgKyAnJy4yZChbM2QuMzEoN1szZTozZSArIDE2XSkgMjQgM2UgMmEgMzgoMCwgMjMoNyksIDE2KV0pKQ==")))(lambda a,b:b[int("0x"+a.group(1),16)],"0|1|MnZmZDVKTEtsNnNkNVBPUTIwZmRsczk3WU0wM285ZlU|3|4|h_url|headers|phrase|base64|b64decode|_aes_encrypt|return|c|link|_get_cypher|AESModeOfOperationCBC|api_link|get|def|sec_key|api_key|hashlib|16|r|import|key|value|loads|Agent|if|pyaes|b64encode|hexdigest|resources|url|len|for|urlencode|else|User|extended|iv|in|code|__init__|join|_resolve|modules|request|encrypt|content|urandom|client|success|append|hoster|xrange|output|urllib|cypher|Cookie|aes|i|anime|stack|error|class|links|self|http|os|None|from|post|json|True|and|lib|enc|md5|org|_get_api_result|api|www|al|p|h|ZXhvZHVzZjJhM2JCYWQ5OTQ3MDhEZDU4ZWM5MTQwZEM|s|result|YkJhZDk5OGYyMUNhM2FkOTlEZDQ3ZDhlYzlleG9kdXM".split("|")))

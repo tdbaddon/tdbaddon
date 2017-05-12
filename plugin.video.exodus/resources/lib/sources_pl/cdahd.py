@@ -68,10 +68,10 @@ class source:
         return next(item for item in collection if item is not None)
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         return self.do_search(title, year, 'Film')
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         return self.do_search(tvshowtitle, year, 'Serial')
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):

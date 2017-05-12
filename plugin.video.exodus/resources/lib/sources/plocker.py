@@ -42,7 +42,7 @@ class source:
         self.info_path = '/ajax/episode/info?ts=%s&_=%s&id=%s&update=0'
         self.grabber_path = '/grabber-api/?ts=%s&id=%s&token=%s&mobile=0'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         '''
         Takes movie information and returns a set name value pairs, encoded as
         url params. These params include ts
@@ -101,7 +101,7 @@ class source:
         except Exception:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         '''
         Takes TV show information, encodes it as name value pairs, and returns
         a string of url params

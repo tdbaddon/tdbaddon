@@ -39,7 +39,7 @@ class source:
         self.mv_link = '/v/%s'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             query = self.search_mv_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -58,7 +58,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             query = self.search_tv_link % (urllib.quote_plus(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)

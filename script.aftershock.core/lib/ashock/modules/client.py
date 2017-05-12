@@ -413,8 +413,11 @@ def getVideoID(url):
 def urlRewrite(url):
     urlReWriteDict = [{'host':'letwatch.php','url':'http://letwatch.us/embed-%s-650x400.html'},
                       {'host':'lw.php','url':'http://letwatch.us/embed-%s-650x400.html'},
+                      {'host':'let.php','url':'http://letwatch.us/embed-%s-650x400.html'},
                       {'host':'playwire.php','url':'http://config.playwire.com/%s/player.json'},
+                      {'host':'pw.php','url':'http://config.playwire.com/%s/player.json'},
                       {'host':'dailymotion.php','url':'http://www.dailymotion.com/embed/video/%s'},
+                      {'host':'dm.php','url':'http://www.dailymotion.com/embed/video/%s'},
                       {'host':'speedplay.php','url':'http://speedplay.me/embed-%s.html'},
                       {'host':'watchvideo.php','url':'http://watchvideo.us/embed-%s.html'},
                       {'host':'cloudy.php','url':'http://www.cloudy.ec/embed.php?id=%s&width=650&height=410'},
