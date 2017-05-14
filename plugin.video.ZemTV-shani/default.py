@@ -113,6 +113,7 @@ def addDir(name,url,mode,iconimage,showContext=False,showLiveContext=False,isItF
 
     if showContext==True:
         cmd1 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "DM")
+        cmd0 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "DMASLIVE")
         cmd2 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "LINK")
         cmd3 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "Youtube")
         cmd4 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "PLAYWIRE")
@@ -121,7 +122,7 @@ def addDir(name,url,mode,iconimage,showContext=False,showLiveContext=False,isItF
         cmd7 = "XBMC.RunPlugin(%s&linkType=%s)" % (u, "VIDRAIL")
 
         
-        liz.addContextMenuItems([('Show All Sources',cmd6),('Play Vidrail video',cmd7),('Play Ebound video',cmd5),('Play Playwire video',cmd4),('Play Youtube video',cmd3),('Play DailyMotion video',cmd1),('Play Tune.pk video',cmd2)])
+        liz.addContextMenuItems([('Show All Sources',cmd6),('Play Vidrail video',cmd7),('Play Ebound video',cmd5),('Play Playwire video',cmd4),('Play Youtube video',cmd3),('Play DailyMotion video',cmd1),('Play DailyMotion As Live video',cmd0),('Play Tune.pk video',cmd2)])
     if linkType:
         u="XBMC.RunPlugin(%s&linkType=%s)" % (u, linkType)
         
@@ -3234,15 +3235,17 @@ def AddWatchCric(url):
 def AddSmartCric(url):
     import scdec
     channeladded=False
-    for source in scdec.getlinks():
-        if 1==1:#ctype=='liveWMV' or ctype=='manual':
-#                print source
-            addDir (source[0],source[1],source[2],'', False, True,isItFolder=False)		#name,url,mode,icon
-            channeladded=True
-    if not channeladded:
-        cname='No streams available'
-        curl=''
-        addDir('    -'+cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon 
+    try:
+        for source in scdec.getlinks():
+            if 1==1:#ctype=='liveWMV' or ctype=='manual':
+    #                print source
+                addDir (source[0],source[1],source[2],'', False, True,isItFolder=False)		#name,url,mode,icon
+                channeladded=True
+        if not channeladded:
+            cname='No streams available'
+            curl=''
+            addDir('    -'+cname ,curl ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon 
+    except:  traceback.print_exc(file=sys.stdout)
     addDir('Refresh Listing' ,'Live' ,144,'')
 
     addDir('Refresh Fetch Code' ,'Live' ,97,'')
@@ -7203,11 +7206,12 @@ def PlayShowLink ( url, redirect=True ):
 #    response.close()
     
     headers=[('User-Agent','Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')]
+    iszem=True
     if 'zemtv.' in url:
         CookieJar=getZemCookieJar()
         link=getUrl(url,cookieJar=CookieJar, headers=headers)
     else:
-    
+        iszem=False
         headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')]
         link=getUrl(url, headers=headers)
 
@@ -7225,7 +7229,7 @@ def PlayShowLink ( url, redirect=True ):
     if linkType.upper()=="SHOWALL" or (linkType.upper()=="" and defaultLinkType=="4"):
         if redirect: ShowAllSources(url,link)
         return
-    if linkType.upper()=="DM" or (linkType=="" and defaultLinkType=="0"):
+    if linkType.upper() in ["DM","DMASLIVE"] or (linkType=="" and defaultLinkType=="0"):
     #		print "PlayDM"
         line1 = "Playing DM Link"
         xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
@@ -7273,7 +7277,8 @@ def PlayShowLink ( url, redirect=True ):
         html=getUrl(newurl,headers=headers)
         stream_url= re.findall( '(http.*)',html)[-1].split('#')[0]
         stream_url=stream_url+'|Origin=http://www.dailymotion.com&Referer=http://www.dailymotion.com/embed/video/&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
-        return playipbox(stream_url)#you stingy mf
+        if linkType.upper() in ["DMASLIVE"]:
+            return playipbox(stream_url)#you stingy mf
         print stream_url
         playlist.add(stream_url,listitem)
         xbmcPlayer = xbmc.Player()

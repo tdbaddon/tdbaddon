@@ -21,7 +21,7 @@ import base64,cfscrape,re
 from incapsula import crack
 
 
-User_Agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2"'
+User_Agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2'
 scraper = cfscrape.create_scraper()
 
 
@@ -60,26 +60,24 @@ class sucuri:
 
 
 
-
-def open_url(url, method='get', headers=None, cookies=None, params=None, data=None, redirects=True, verify=True):
+def open_url(url, method='get', headers=None, cookies=None, params=None, data=None, redirects=True, verify=True, timeout=None):
 
         if headers == None:
 
                 headers = {}
                 headers['User-Agent'] = User_Agent
 
-        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
+        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify, timeout=timeout)
 
         try:
-                if link.headers['Server'] == 'Sucuri/Cloudproxy':
-
-                        su = sucuri().get(link.content)
+                su = sucuri().get(link.content)
+                if su:
                         headers['Cookie'] = su
 
                         if not url[-1] == '/':
                                 url = '%s/' %url
 
-                        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, verify=verify)
+                        link = getattr(scraper,method)(url, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=redirects, timeout=timeout)
         except:
                 pass
 

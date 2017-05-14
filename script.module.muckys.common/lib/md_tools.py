@@ -214,9 +214,9 @@ class md:
 			infolabels = {}
 
 		if content == 'movies':
-			match = ['123movies','m4u','pubfilm','cmovieshd','yesmovies','niter','movievault','hdbox','afdah','watch32hd']
+			match = ['imperialstreams','123movies','m4u','pubfilm','cmovieshd','yesmovies','niter','movievault','hdbox','afdah','watch32hd']
 		else:
-			match = ['123movies','m4u','pubfilm','cmovieshd','yesmovies','ws','luckytv']
+			match = ['imperialstreams','123movies','m4u','pubfilm','cmovieshd','yesmovies','ws','luckytv']
 
 		
 		for addon_title in match:
@@ -468,7 +468,7 @@ class md:
 
 
 	def User_Agent(self):
-		return 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
+		return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36'
 
 
 
@@ -743,7 +743,8 @@ class md:
 					if infolabels['thumb_url']:
 						fan_art['thumb'] = infolabels['thumb_url']
 					else:
-						fanart['thumb'] = infolabels['cover_url']
+						fan_art['thumb'] = infolabels['cover_url']
+
 
 					#if infolabels['trailer_url'] == '':
 						#del infolabels['trailer_url']
@@ -752,6 +753,8 @@ class md:
 				pass
 		except:
 			pass
+
+		
 
 		queries['infolabels'] = infolabels
 		queries['fan_art'] = fan_art

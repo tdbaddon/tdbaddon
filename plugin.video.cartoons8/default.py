@@ -1,4 +1,4 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cloudflare,net,jsunpack,json
+import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cloudflare,net,jsunpack,json,urlresolver
 from t0mm0.common.addon import Addon
 
 net = net.Net()
@@ -329,7 +329,11 @@ def GETPLAYLINK(name,url,iconimage):
         elif '/rd.php' in link:#OWN HOST
                 url=re.compile('<source src="(.+?)" type="video/mp4"').findall(link)[0]+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 PLAYLINK(name,url,iconimage)
-                quit()     
+                quit()
+        elif 'openload.co/embed' in link:#OPENLOAD
+                url=re.compile('<center><iframe src="(.+?)" scrolling').findall(link)[0]
+                url=urlresolver.resolve(url)
+                PLAYLINK(name,url,iconimage)
         else:#VKPASS
                 url=re.compile('<center><iframe src="(.+?)" scrolling').findall(link)[0]
                 url = urllib.unquote(url)

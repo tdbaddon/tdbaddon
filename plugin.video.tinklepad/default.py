@@ -966,30 +966,30 @@ class root:
         rootList.append({'name': 30517, 'image': 'People.png', 'action': 'people_movies'})
         #rootList.append({'name': 30509, 'image': 'Languages.png', 'action': 'languages_movies'})
         rootList.append({'name': 30510, 'image': 'Favourites.png', 'action': 'movies_favourites'})
-        #rootList.append({'name': 30511, 'image': 'Search.png', 'action': 'movies_search'})
+        rootList.append({'name': 30511, 'image': 'Search.png', 'action': 'movies_search'})
         index().rootList(rootList)
         index().downloadList()
 
 class link:
     def __init__(self):
-        self.tinkle_base = 'http://tinklepad.ag'
-        self.tinkle_hd = 'http://tinklepad.ag/latest-hd'
-        self.tinkle_ts = 'http://tinklepad.ag/latest-ts'
-        #self.tinkle_ajax = 'http://tinklepad.ag/wp-admin/admin-ajax.php'
+        self.tinkle_base = 'http://5movies.to'
+        self.tinkle_hd = 'http://5movies.to/latest-hd'
+        self.tinkle_ts = 'http://5movies.to/latest-ts'
+        #self.tinkle_ajax = 'http://5movies.to/wp-admin/admin-ajax.php'
         #self.tinkle_post = '?meta_key=imdbRating&orderby=meta_value&order=desc'
         self.tinkle_title = self.tinkle_base
-        self.tinkle_release = 'http://tinklepad.ag/new-release'
-        #self.tinkle_imdb = 'http://tinklepad.ag/files/movies/?meta_key=imdbRating&orderby=meta_value&order=desc'
-        self.tinkle_added = 'http://tinklepad.ag/latest-added'
-        self.tinkle_rating = 'http://tinklepad.ag/top-rated'
-        self.tinkle_views = 'http://tinklepad.ag/most-popular'
-        self.tinkle_featured = 'http://tinklepad.ag/featured'
-        self.tinkle_views_today = 'http://tinklepad.ag/popular-today'
-        self.tinkle_genre = 'http://tinklepad.ag/genres'
-        self.tinkle_year = 'http://tinklepad.ag/year'
-        self.tinkle_language = 'http://tinklepad.ag/languages'
-        self.tinkle_search = 'http://tinklepad.ag/search.php'
-        self.tinkle_people = 'http://tinklepad.ag/%s/%s'
+        self.tinkle_release = 'http://5movies.to/new-release'
+        #self.tinkle_imdb = 'http://5movies.to/files/movies/?meta_key=imdbRating&orderby=meta_value&order=desc'
+        self.tinkle_added = 'http://5movies.to/latest-added'
+        self.tinkle_rating = 'http://5movies.to/top-rated'
+        self.tinkle_views = 'http://5movies.to/most-popular'
+        self.tinkle_featured = 'http://5movies.to/featured'
+        self.tinkle_views_today = 'http://5movies.to/popular-today'
+        self.tinkle_genre = 'http://5movies.to/genres'
+        self.tinkle_year = 'http://5movies.to/year'
+        self.tinkle_language = 'http://5movies.to/languages'
+        self.tinkle_search = 'http://5movies.to/search.php'
+        self.tinkle_people = 'http://5movies.to/%s/%s'
         self.imdb_people = 'http://www.imdb.com/search/name?count=100&gender=%s'
         self.imdb_search = 'http://www.imdb.com/search/name?count=100&gender=male,female&name='
 
@@ -1322,11 +1322,11 @@ class movies:
 
     def tinkle_list(self, url, post=None):
         try:
-            if link().tinkle_search in url: post = 'chts=Click+Here+to+Continue'
-            else: post = None
+            #if link().tinkle_search in url: post = 'chts=Click+Here+to+Continue'
+            #else: post = None
             result = client.request(url, post=post, timeout='30')
             #movies = re.compile('var posts = ({.+?});').findall(result)[0]
-            movies = client.parseDOM(result, "div", attrs = { "class": "movie_table" })
+            movies = client.parseDOM(result, "div", attrs = { "class": "movie-list" })
             #movies = movies['posts']
         except:
             return
@@ -1652,10 +1652,10 @@ class resolver:
         try:
             result = client.request(url, referer=referer)
             
-            hosts = client.parseDOM(result, 'li', attrs = { "id": "link_name" })
+            hosts = client.parseDOM(result, 'li', attrs = { "class": "link-name" })
             #hosts = [i.strip() for i in hosts if not 'HD Sponsor' in i]
             
-            urls = client.parseDOM(result, 'li', attrs = { "id": "playing_button" })
+            urls = client.parseDOM(result, 'li', attrs = { "class": "link-button" })
             #urls = [i for i in urls if not '/watchnow.php?' in i]
             
             srcs = []

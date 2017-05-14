@@ -1,4 +1,10 @@
 ------------------------
+TinklePad v1.2.4 (13 May-17)
+
+- Update for site changes
+- Search option is back!
+
+------------------------
 TinklePad v1.2.3 (29 Mar-17)
 
 - Update for site changes
