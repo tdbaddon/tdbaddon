@@ -3091,7 +3091,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.wolfpack" version="1.6" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
+<addon id="plugin.video.wolfpack" version="1.7" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -3111,7 +3111,7 @@ For DMCA Reports, please send message to our FB page.
 		<description lang="en">Bringing you the best for 2017, this addon is jam packed with
 movies, tv shows, 3D, IPTV, Karaoke, music videos, music album
 and much much more. From the guys who brought you Specialist
-Streams, Brettus media, Beau's Place and more....Wolf Pack is the new
+Streams, Beau's Place and more....Wolf Pack is the new
 collaboration guaranteed to mark their territory in the community.
 Enjoy!</description>
 		<platform>all</platform>

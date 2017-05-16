@@ -24,29 +24,6 @@ fanart = params.get('fanart')
 addonPath = xbmcaddon.Addon().getAddonInfo("path")
 
 
-def getVersion():
-	req = urllib.urlopen("https://gist.githubusercontent.com/djsuicide2k11/a6c861724c7ea3b1d478ced3a25d26eb/raw/").read()
-	print "req.version = " + req 
-	if req == None:
-		return 0
-	else:
-		return int(req)
-
-def update():
-	from resources.lib.indexers import wolfpack
-	print "wolfpack.version = " + str(wolfpack.version)
-	print "gitwolfpack.version = " + str(getVersion())
-	if wolfpack.version < getVersion():
-		req = urllib.urlopen("https://gist.githubusercontent.com/djsuicide2k11/ca8b62447588070ecbc117ee939e2c29/raw/").read()
-		print "code got, updating NOW"
-		if req == None:
-			print "Something went wrong!"
-		else:
-			print "wolfpackfile.path = " + os.path.join(addonPath, "resources", "lib", "indexers", "wolfpack.py")
-			with open(os.path.join(addonPath, "resources", "lib", "indexers", "wolfpack.py"), "wb") as filewriter:
-				filewriter.write(req)
-
-update()
 if action == None:
 	from resources.lib.indexers import wolfpack
 	wolfpack.indexer().root()
