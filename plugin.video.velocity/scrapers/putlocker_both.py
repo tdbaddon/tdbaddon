@@ -39,7 +39,7 @@ class Scraper(scrapeit.Scraper):
         else:
             return link
 
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
@@ -89,13 +89,13 @@ class Scraper(scrapeit.Scraper):
     #     return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, headers=headers)
 
 
-    def _get_episode_url(self, show_url, video, sea, epi):
+    def _get_episode_url(self, show_url, video):
         show_url = urlparse.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, headers={'Referer': self.base_url}, cache_limit=24 * 7)
-        match = re.search('href="([^"]*season=0*%s(?!\d))[^"]*' % (sea), html)
+        match = re.search('href="([^"]*season=0*%s(?!\d))[^"]*' % (video.season), html)
         if match:
             season_url = show_url + match.group(1)
-            episode_pattern = 'href="([^"]*/0*%s-0*%s/[^"]*)' % (sea,epi)
+            episode_pattern = 'href="([^"]*/0*%s-0*%s/[^"]*)' % (int(video.season), int(video.episode))
             title_pattern = 'class="episodeDetail">.*?href="(?P<url>[^"]+)[^>]*>\s*(?P<title>.*?)\s*</a>'
             headers = {'Referer': show_url}
             return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, headers=headers)

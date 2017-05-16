@@ -63,7 +63,7 @@ class Scraper(scrapeit.Scraper):
         else:
             return link
     
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:

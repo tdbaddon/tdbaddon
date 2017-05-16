@@ -46,7 +46,7 @@ class Scraper(scrapeit.Scraper):
     def get_name(cls):
         return 'WatchEpisodes'
 
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
@@ -77,13 +77,13 @@ class Scraper(scrapeit.Scraper):
         main_scrape.apply_urlresolver(hosters)
         return hosters
 
-    def _get_episode_url(self, show_url, video, sea, epi):
+    def _get_episode_url(self, show_url, video):
     #def _get_episode_url(self, show_url, video):
         url = urlparse.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=2)
         if html:
             episodes = dom_parser.parse_dom(html, 'div', {'class': '\s*el-item\s*'})
-            episode_pattern = 'href="([^"]*-[sS]%02d[eE]%02d(?!\d)[^"]*)' % (int(sea),int(epi))
+            episode_pattern = 'href="([^"]*-[sS]%02d[eE]%02d(?!\d)[^"]*)' % (int(video.season), int(video.episode))
             match = re.search(episode_pattern, html)
             if match:
                 return scraper_utils.pathify_url(match.group(1))

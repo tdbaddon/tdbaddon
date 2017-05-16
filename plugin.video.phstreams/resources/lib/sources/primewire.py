@@ -37,7 +37,7 @@ class source:
         self.tvsearch_link = '/index.php?search_keywords=%s&key=%s&search_section=2'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             key = urlparse.urljoin(self.base_link, self.key_link)
             key = proxy.request(key, 'main_body')
@@ -83,7 +83,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             key = urlparse.urljoin(self.base_link, self.key_link)
             key = proxy.request(key, 'main_body')

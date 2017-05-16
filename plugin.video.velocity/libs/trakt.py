@@ -14,20 +14,11 @@ use_https = kodi.get_setting('use_https')
 list_size = int(kodi.get_setting('list_size'))
 TIMEOUT = int(kodi.get_setting('timeout'))
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
-
-BASE_URL = "api-v2launch.trakt.tv"
-
-
+BASE_URL = "api.trakt.tv"
 CLIENT_ID = 'a19aa7f7cf7fa27437254cc27fcba454664360086949e80029f83874fa455e8f'
 SECRET_ID = '5872236e7c198363867d89014ee334281648a7f433f9e4c362e5519e334693d1'
-
-
-PIN_URL = 'http://trakt.tv/pin/7558'
 DAYS_TO_GET = 21
-DECAY = 2
 ADDON_NAME = 'Velocity'
-
-
 
 class TraktAuthError(Exception):
     pass
@@ -37,8 +28,6 @@ class TraktNotFoundError(Exception):
 
 class TransientTraktError(Exception):
     pass
-
-
 
 class TraktError(Exception):
 	def __init__(self, value):
@@ -76,22 +65,10 @@ class TraktAPI():
 		url = '/users/%s' % (kodi.to_slug(username))
 		return self._call(url,auth=True)
 
-	# def authorize(self, pin):
-	# 	response = self._authorize(pin)
-	# 	if response:
-	# 		kodi.notify(header='Trakt', msg='You are now authorized' , duration=5000, sound=None)
-	# 		the_username=self.my_username()
-	# 		kodi.set_setting('trakt_username',the_username['username'])
-	# 	else:
-	# 		kodi.notify(header='Trakt', msg='Authorization Failed try again' , duration=5000, sound=None)
-	# 	return response
-
 	def my_username(self):
 		uri = '/users/me/'
 		results = self._call(uri, auth=True)
 		return results
-
-
 
 	def get_object_id(self, trakt_id = None, imdb_id=None, tmdb_id=None, id_type='trakt'):
 		if trakt_id is not None: return trakt_id
@@ -115,59 +92,52 @@ class TraktAPI():
 	
 	def lookup(self, media, id, id_type='imdb'):
 		uri = '/search'
-		record = self._call(uri, params={"id_type": id_type, "id": id, 'extended': 'full,images'})
+		record = self._call(uri, params={"id_type": id_type, "id": id, 'extended': 'full,metadata'})
 		metadata = self.process_record(record, media)
 		return metadata
 	
-	def get_episode_details(self, id, season, episode, params={'extended': 'full,images'}):
+	def get_episode_details(self, id, season, episode, params={'extended': 'full,metadata'}):
 		uri = '/shows/%s/seasons/%s/episodes/%s' % (id, season, episode)
 		episode = self._call(uri, params=params, auth=False)
 		show = self.get_show_details(id)
 		record = {"episode": episode, "show": show}
 		return self.process_record(record, media='episode')
-	
+
 	def get_show_details(self, id):
 		uri = '/shows/%s' % id
-		record = self._call(uri, params={'extended': 'full,images'}, auth=False)
+		record = self._call(uri, params={'extended': 'full,metadata'}, auth=False)
 		return record
-	
-	def get_movie_details(self, id):
-		uri = '/movies/%s' % (id)	
-		record = self._call(uri, params={'extended': 'full,images'}, auth=False)
-		return self.process_record(record, media='movie')
-		
-	def search_tv(self, query, media='show'):
-		uri = '/search'
-		return self._call(uri, params={'query': query, 'type': media, 'extended': 'full,images'})
 
-	def search_movies(self, query, media='movie'):
-		uri = '/search'
-		return self._call(uri, params={'query': query, 'type': media, 'extended': 'full,images'})
-		
+	def get_movie_details(self, id):
+		uri = '/movies/%s' % (id)
+		record = self._call(uri, params={'extended': 'full,metadata'}, auth=False)
+		return self.process_record(record, media='movie')
+
+
 	def get_calendar_shows(self):
 		from datetime import date, timedelta
-		d = date.today() - timedelta(days=(DAYS_TO_GET - 1)) 
+		d = date.today() - timedelta(days=(DAYS_TO_GET - 1))
 		today = d.strftime("%Y-%m-%d")
 		uri = '/calendars/my/shows/%s/%s' % (today, DAYS_TO_GET)
 		media='episode'
-		return self._call(uri, params={'extended': 'full,images'}, cache=False, auth=True)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=False, auth=True)
+
 	def get_calendar_daily_shows(self, delta=0, number=1):
 		from datetime import date, timedelta
 		d = date.today() - timedelta(days=delta)
 		start_date = d.strftime("%Y-%m-%d")
 		uri = '/calendars/my/shows/%s/%s' % (start_date, number)
 		media='episode'
-		return self._call(uri, params={'extended': 'full,images'}, cache=False, auth=True)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=False, auth=True)
+
 	def get_calendar_episodes(self, delta=0, number=1):
 		from datetime import date, timedelta
 		d = date.today() - timedelta(days=delta)
 		start_date = d.strftime("%Y-%m-%d")
 		uri = '/calendars/all/shows/%s/%s' % (start_date, number)
 		media='episode'
-		return self._call(uri, params={'extended': 'full,images'}, cache=False, auth=False)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=False, auth=False)
+
 	def get_calendar(self, calendar, delta=0, number=1):
 		from datetime import date, timedelta
 		d = date.today() - timedelta(days=delta)
@@ -175,28 +145,28 @@ class TraktAPI():
 		uri = '/calendars/%s/%s/%s' % (calendar, start_date, number)
 		media='episode'
 		auth = calendar.startswith("my")
-		return self._call(uri, params={'extended': 'full,images'}, cache=False, auth=auth)
-		
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=False, auth=auth)
+
 	def get_similar_tvshows(self, id):
 		uri = '/shows/%s/related' % id
 		media = 'show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_most_collected_tvshows(self):
 		uri = '/shows/collected'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 
 	def get_most_played_tvshows(self):
 		uri = '/shows/played/weekly'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_most_watched_tvshows(self):
 		uri = '/shows/watched/'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 
 
@@ -204,44 +174,40 @@ class TraktAPI():
 	def get_trending_tvshows(self):
 		uri = '/shows/trending'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
+
 	def get_anticipated_tvshows(self):
 		uri = '/shows/anticipated'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_my_collected_tvshows(self):
 		uri = '/sync/collection/shows'
 		media = 'show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=True)
 
 	def collection_progress(self,trakt_id):
 		uri = '/shows/'+trakt_id+'/progress/collection?hidden=true&specials=true'
 		media = 'show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=True)
 
 
 	def get_popular_tvshows(self):
 		uri = '/shows/popular'
 		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
-	
-	def get_recommended_tvshows(self):
-		uri = '/recommendations/shows'
-		media='show'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
+
+
 	def get_show_seasons(self, id):
 		uri = '/shows/%s/seasons' % id
 		return self._call(uri, params={})
-	
+
 	def get_show_episodes(self, id, season):
 		uri = '/shows/%s/seasons/%s' % (id, season)
 		media='episode'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset)
-	
-	def get_watchlist_tvshows(self, extended='full,images', simple=False, id_type='imdb'):
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset)
+
+	def get_watchlist_tvshows(self, extended='full,metadata', simple=False, id_type='imdb'):
 		uri = '/users/me/watchlist/shows'
 		media = 'tvshow'
 		if simple:
@@ -249,62 +215,62 @@ class TraktAPI():
 			return [record['show']['ids'][id_type] for record in records]
 		else:
 			return self._call(uri, params={'extended': extended}, cache=False, auth=True)
-	
-	def get_watchlist_movies(self, extended='full,images', simple=False, id_type='imdb'):
+
+	def get_watchlist_movies(self, extended='full,metadata', simple=False, id_type='imdb'):
 		uri = '/users/me/watchlist/movies'
 		if simple:
 			records = self._call(uri, auth=True)
 			return [record['movie']['ids'][id_type] for record in records]
 		else:
 			return self._call(uri, params={'extended': extended}, auth=True)
-	
+
 	def get_trending_movies(self):
 		uri = '/movies/trending'
 		media='movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_popular_movies(self):
 		uri = '/movies/popular'
 		media = 'movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_most_watched_movies(self):
 		uri = '/movies/watched/'
 		media='movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_most_played_movies(self):
 		uri = '/movies/played/weekly'
 		media='movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_most_collected_movies(self):
 		uri = '/movies/collected'
 		media='movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 	def get_boxoffice_movies(self):
 		uri = '/movies/boxoffice'
 		media='movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
 
 
-	
+
 	def get_recommended_movies(self):
 		uri = '/recommendations/movies'
 		media = 'movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=True)
 
 	def get_my_collected(self):
 		uri = '/sync/collection/movies'
 		media = 'movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=True)
+
 	def get_similar_movies(self, id):
 		uri = '/movies/%s/related' % id
 		media = 'movie'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
-	
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
+
 	def get_show_info(self, id, episodes=False):
 		if episodes:
 			uri = '/shows/%s/seasons' % id
@@ -312,20 +278,20 @@ class TraktAPI():
 		else:
 			uri = '/shows/%s' % id
 			return self._call(uri)
-	
+
 	def get_custom_lists(self):
 		uri = '/users/me/lists'
 		return sorted(self._call(uri, params={}, auth=True))
-	
+
 	def get_liked_lists(self):
 		uri = '/users/likes/lists'
 		return sorted(self._call(uri, params={}, auth=True))
-	
-	def get_custom_list(self, slug, media, username=None, params={'extended': 'full,images'}):
+
+	def get_custom_list(self, slug, media, username=None, params={'extended': 'full,metadata'}):
 		if media=='tvshows': media = 'show'
 		if media=='tv': media = 'show'
-		if username is None:	
-			uri = '/users/me/lists/%s/items' % slug 
+		if username is None:
+			uri = '/users/me/lists/%s/items' % slug
 			auth = True
 		else:
 			uri = '/users/%s/lists/%s/items' % (username.replace('.', '-'), slug)
@@ -335,8 +301,8 @@ class TraktAPI():
 		for r in temp:
 			if r['type'] == media:
 				results.append(r)
-		return results		
-	
+		return results
+
 	def create_custom_list(self, title):
 		uri = '/users/me/lists'
 		post_dict = {
@@ -347,7 +313,7 @@ class TraktAPI():
 			"allow_comments": True
 		}
 		return self._call(uri, data=post_dict, auth=True)
-	
+
 	def add_to_watchlist(self, media, id, id_type='trakt'):
 		if kodi.get_setting('debug') == "true":
 			print "Adding Trakt Id: "+id+" to Watchlist"
@@ -361,7 +327,7 @@ class TraktAPI():
 		uri = '/sync/watchlist/remove'
 		data = {media:  [{'ids': {id_type: id}}]}
 		return self._call(uri, data, auth=True)
-		
+
 	def add_to_custom_list(self, media, slug, id, id_type='trakt'):
 		if media=='movies':
 			post_dict = {'movies': [{'ids': {id_type: id}}]}
@@ -369,7 +335,7 @@ class TraktAPI():
 			post_dict = {'shows': [{'ids': {id_type: id}}]}
 		uri = '/users/me/lists/%s/items' % slug
 		return self._call(uri, data=post_dict, auth=True)
-	
+
 	def delete_from_custom_list(self, media, slug, id, id_type='trakt'):
 		if media=='movies' or media == 'movie':
 			post_dict = {'movies': [{'ids': {id_type: id}}]}
@@ -377,11 +343,11 @@ class TraktAPI():
 			post_dict = {'shows': [{'ids': {id_type: id}}]}
 		uri = '/users/me/lists/%s/items/remove' % slug
 		return self._call(uri, post_dict, auth=True)
-	
+
 	def delete_custom_list(self, slug):
 		uri = '/users/me/lists/%s' % slug
 		return self._delete(uri)
-	
+
 	def set_watched_state(self, media, id, watched, season=None):
 		uri = '/sync/history' if watched else '/sync/history/remove'
 		if media == 'episode':
@@ -391,7 +357,7 @@ class TraktAPI():
 		elif media == 'season':
 			post_dict = {'shows': [{'seasons': [{'number': int(season)}], 'ids': {'trakt': id}}]}
 		return self._call(uri, post_dict, auth=True)
-	
+
 	def get_watched_history(self, media):
 		uri = '/sync/watched/%s' % media
 		if media == 'shows':
@@ -412,8 +378,8 @@ class TraktAPI():
 				results['trakt'].append(r['movie']['ids']['trakt'])
 				results['imdb'].append(r['movie']['ids']['imdb'])
 				results['tmdb'].append(r['movie']['ids']['tmdb'])
-			return results	
-	
+			return results
+
 	def get_next_episodes(self):
 		uri = '/sync/history/episodes'
 		response = self._call(uri, auth=True)
@@ -421,7 +387,7 @@ class TraktAPI():
 			ADDON.log(r)
 		#ADDON.log(response)
 
-	
+
 	def get_bookmark(self, media, id, id_type = 'imdb', season=None, episode=None):
 		bookmarks = self.get_bookmarks(media)
 		for bookmark in bookmarks:
@@ -435,8 +401,8 @@ class TraktAPI():
 	def get_bookmarks(self, media):
 		uri = '/sync/playback/%s' % media
 		return self._call(uri, auth=True)
-		
-	
+
+
 	def process_record(self, record, media=None, watched=None):
 		if media=='movie':
 			meta = self.process_movie(record)
@@ -447,7 +413,7 @@ class TraktAPI():
 		elif media=='tvshow':
 			meta = self.process_show(record)
 			return meta
-	
+
 	def meta_map(self, path, object, default=''):
 		try:
 			if isinstance(path, list):
@@ -459,8 +425,8 @@ class TraktAPI():
 			return object
 		except:
 			return default
-		
-	
+
+
 	def process_show(self, record):
 		try:
 			show = record['show']
@@ -484,7 +450,7 @@ class TraktAPI():
 		meta['trailer_url'] = self.meta_map('trailer', show)
 		meta['genre'] = self.meta_map('genres', show)
 		meta['studio'] = self.meta_map('network', show)
-		meta['status'] = self.meta_map('status', show)     
+		meta['status'] = self.meta_map('status', show)
 		meta['cast'] = []
 		# meta['banner_url'] = self.meta_map(['images', 'thumb', 'full'], show)
 		# meta['cover_url'] = self.meta_map(['images', 'poster', 'full'], show)
@@ -492,7 +458,7 @@ class TraktAPI():
 		meta['overlay'] = 6
 		meta['playcount'] = 0
 		return meta
-		
+
 	def process_movie(self, record):
 		try:
 			movie = record['movie']
@@ -523,7 +489,7 @@ class TraktAPI():
 		meta['overlay'] = 6
 		meta['playcount'] = 0
 		return meta
-	
+
 	def process_episode(self, record, watched=None):
 		if 'show' in record.keys():
 			show = record['show']
@@ -534,7 +500,7 @@ class TraktAPI():
 			meta['tmdb_id']= self.meta_map(['ids', 'tmdb'], show) 				# show['ids']['tmdb']
 			meta['trakt_id']= self.meta_map(['ids', 'trakt'], episode) 			# episode['ids']['trakt']
 			meta['year'] = int(self.meta_map('year', show, default=0)) 			# int(show['year'])
-			meta['episode_id'] = ''                
+			meta['episode_id'] = ''
 			meta['season']= int(self.meta_map('season', episode, default=0)) 	# int(episode['season'])
 			meta['episode']= int(self.meta_map('number', episode, default=0)) 	# int(episode['number'])
 			meta['title']= self.meta_map('title', episode) 						# episode['title']
@@ -602,41 +568,13 @@ class TraktAPI():
 	def _authorize(self, pin=None):
 		return kodi.get_setting('trakt_oauth_token')
 
-		# if kodi.get_setting('debug') == "true":
-		# 	print "Attempting to login/refresh Trakt Account"
-		# uri = '/oauth/token'
-		# data = {'client_id': CLIENT_ID, 'client_secret': SECRET_ID, 'redirect_uri': REDIRECT_URI}
-		# if pin:
-		# 	data['code'] = pin
-		# 	data['grant_type'] = 'authorization_code'
-		# else:
-		# 	refresh_token = kodi.get_setting('trakt_refresh_token')
-		# 	if refresh_token:
-		# 		data['refresh_token'] = refresh_token
-		# 		data['grant_type'] = 'refresh_token'
-		# 	else:
-		# 		kodi.set_setting('trakt_oauth_token', '')
-		# 		kodi.set_setting('trakt_refresh_token', '')
-		# 		kodi.set_setting('trakt_authorized', 'false')
-		# 		return False
-		# if self.token is None: self.token = False
-		# response = self._call(uri, data, auth=False)
-		# if response is False or response is None:
-		# 	return False
-		# if 'access_token' in response.keys() and 'refresh_token' in response.keys():
-		# 	kodi.set_setting('trakt_oauth_token', response['access_token'])
-		# 	kodi.set_setting('trakt_refresh_token', response['refresh_token'])
-		# 	kodi.set_setting('trakt_authorized', "true")
-		# 	self.token = response['access_token']
-		# 	if kodi.get_setting('debug') == "true":
-		# 		print "YOU JUST AUTHORIZED TRAKT"
-		# 		#kodi.notify('TRAKT ','Account Authorized You may continue','5000','')
-		# 	return True
-
 	def search_tv(self, query, media='show'):
 		uri = '/search'
-		return self._call(uri, params={'query': query, 'type': media, 'extended': 'full,images'})
+		return self._call(uri, params={'query': query, 'type': media})
 
+	def search_movies(self, query, media='movie'):
+		uri = '/search'
+		return self._call(uri, params={'query': query, 'type': media})
 
 	def _call(self, uri, data=None, params=None, auth=False, cache=False, timeout=None,use_https=False):
 		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
@@ -648,8 +586,6 @@ class TraktAPI():
 			if set_token is None or set_token =='':
 				raise TraktError('Trakt Authorization Required: 400')
 			headers.update({'Authorization': 'Bearer %s' % (set_token)})
-		#url = '%s%s' % (BASE_URL, uri)
-		#print "URL IS = "+url
 		if params and not uri.endswith('/token'):
 			params['limit'] = self.limit
 		else:
@@ -695,7 +631,6 @@ class TraktAPI():
 					return response
 				else:
 					return response
-
 
 	def _callnetworks(self, uri, data=None, params=None, auth=False, cache=False, timeout=None):
 		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
@@ -757,7 +692,7 @@ class TraktAPI():
 					return response
 				else:
 					return response
-	
+
 	def _delete(self, uri, data=None, params=None, auth=True):
 		json_data = json.dumps(data) if data else None
 		url = '%s%s%s' % (self.protocol, BASE_URL, uri)
@@ -785,7 +720,7 @@ class TraktAPI():
 		media = 'show'
 		#if hidden: params['hidden'] = 'true'
 		#if specials: params['specials'] = 'true'
-		return self._call(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=True)
+		return self._call(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=True)
 
 
 	def add_to_collection(self, media, id, id_type='trakt'):
@@ -806,7 +741,7 @@ class TraktAPI():
 		uri = '/users/'+name+'/lists'
 		return sorted(self._call(uri, params={}))
 
-	def get_users_list(self, slug, media, username=None, params={'extended': 'full,images'}):
+	def get_users_list(self, slug, media, username=None, params={'extended': 'full,metadata'}):
 		if media=='tvshows': media = 'show'
 		if media=='tv': media = 'show'
 		if username is None:
@@ -822,7 +757,7 @@ class TraktAPI():
 				results.append(r)
 		return results
 
-	def get_special_list(self, slug, media, username=None, params={'extended': 'full,images'}):
+	def get_special_list(self, slug, media, username=None, params={'extended': 'full,metadata'}):
 		if media=='tvshows': media = 'show'
 		if media=='tv': media = 'show'
 		if media=='shows': media='show'
@@ -840,38 +775,36 @@ class TraktAPI():
 				results.append(r)
 		return results
 
-	def get_watched_movies(self, id):
-		uri = '/sync/history/movies/%s' % id
-		results = self._call(uri, auth=True)
-		return results
+#############NEW CALLS
 
-
-	def get_watched_shows(self, id):
-		uri = '/sync/history/shows/%s' % id
-		results = self._call(uri, auth=True)
-		return results
+	def get_recommended_tvshows(self):
+		uri = '/recommendations/shows'
+		return self._call(uri, auth=True)
 
 	def get_watched_seasons(self, id):
 		uri = '/sync/history/seasons/%s' % id
-		results = self._call(uri, auth=True)
-		return results
+		return self._call(uri, auth=True)
+
 
 	def get_watched_episodes(self, id):
 		uri = '/sync/history/episodes/%s' % id
-		results = self._call(uri, auth=True)
-		return results
+		return self._call(uri, auth=True)
+
 
 
 	def get_watched(self,media):
 		uri = '/sync/watched/%s' % (media)
-		response = self._call(uri, auth=True)
-		return response
+		return self._call(uri, auth=True)
 
 
 	def get_popular_networks(self):
 		uri = '/shows/popular'
 		media='show'
-		return self._callnetworks(uri, params={'extended': 'full,images'}, cache=self.cacheset, auth=False)
+		return self._callnetworks(uri, params={'extended': 'full,metadata'}, cache=self.cacheset, auth=False)
+
+	def get_history(self,media_type):
+		uri = '/sync/history/' + media_type
+		return self._call(uri, auth=True)
 '''
 movies = TraktAPI()
 #response =movies.get_movie_details("iron+man")

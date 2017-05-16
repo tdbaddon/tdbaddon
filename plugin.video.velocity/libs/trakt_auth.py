@@ -124,17 +124,17 @@ def auth_trakt():
         result = cd.start(__auth_trakt, [trakt_api, code,'TEST'])
 
     try:
-
+        trakt_api = trakt.TraktAPI()
         kodi.set_setting('trakt_oauth_token', result['access_token'])
         kodi.set_setting('trakt_refresh_token', result['refresh_token'])
         kodi.set_setting('trakt_authorized', "true")
-        kodi.notify(header='Trakt', msg='You are now authorized', duration=5000, sound=None)
-        trakt_api = trakt.Trakt_API(result['access_token'], use_https=True, timeout=trakt_timeout)
+        # trakt_api = trakt.Trakt_API(result['access_token'], use_https=True, timeout=trakt_timeout)
         kodi.log(result['access_token'])
         profile = trakt_api.my_username()
-        kodi.log("PROFILE RESULT " + profile)
-        kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
-        kodi.notify(msg='trakt_auth_complete', duration=3000)
+        #kodi.log("PROFILE RESULT " + profile['username'])
+        kodi.set_setting('trakt_username', profile['username']+'/'+ profile['name'])
+        kodi.notify(header='Trakt', msg='You are now authorized', duration=5000, sound=None)
+        #kodi.notify(msg='trakt_auth_complete', duration=3000)
     except Exception as e:
         log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
 

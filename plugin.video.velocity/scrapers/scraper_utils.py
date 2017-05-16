@@ -29,7 +29,7 @@ import os.path
 from libs import kodi
 from libs import log_utils
 import htmlentitydefs
-
+from libs.constants import *
 
 
 
@@ -137,8 +137,8 @@ def blog_get_quality(video, q_str, host):
     Use the q_str to determine the post quality; then use the host to determine host quality
     allow the host to drop the quality but not increase it
     """
-    q_str.replace(video.title, '')
-    q_str.replace(str(video.year), '')
+    # q_str.replace(video.title, '')
+    # q_str.replace(str(video.year), '')
     q_str = q_str.upper()
 
     post_quality = None

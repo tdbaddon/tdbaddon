@@ -62,7 +62,7 @@ class Scraper(scrapeit.Scraper):
             url = urllib.unquote_plus(match.group(1))
             return url
 
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         sources = []
         if source_url and source_url != FORCE_NO_MATCH:
@@ -151,7 +151,7 @@ class Scraper(scrapeit.Scraper):
                 results.append(result)
         return results
 
-    def _get_episode_url(self, show_url, video, sea, epi):
-        episode_pattern = 'href=(/ip\.php[^>]+)>%sx0?%s\s+' % (sea,epi)
+    def _get_episode_url(self, show_url, video):
+        episode_pattern = 'href=(/ip\.php[^>]+)>%sx0?%s\s+' % (int(video.season), int(video.episode))
         title_pattern = 'class=star>\s*<a href=(?P<url>[^>]+)>(?:\d+x\d+\s+)+(?P<title>[^<]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)

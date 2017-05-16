@@ -41,7 +41,7 @@ class Scraper(scrapeit.Scraper):
         if item['verified']: label = '[COLOR yellow]%s[/COLOR]' % (label)
         return label
 
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
@@ -95,8 +95,8 @@ class Scraper(scrapeit.Scraper):
             log_utils.log('Unable to locate PW search key', log_utils.LOGWARNING)
         return results
 
-    def _get_episode_url(self, show_url, video, sea, epi):
-        episode_pattern = '"tv_episode_item">[^>]+href="([^"]+/season-%s-episode-%s)">' % (sea,epi)
+    def _get_episode_url(self, show_url, video):
+        episode_pattern = '"tv_episode_item">[^>]+href="([^"]+/season-%s-episode-%s)">' % (int(video.season), int(video.episode))
         title_pattern = 'class="tv_episode_item".*?href="(?P<url>[^"]+).*?class="tv_episode_name">\s+-\s+(?P<title>[^<]+)'
         airdate_pattern = 'class="tv_episode_item">\s*<a\s+href="([^"]+)(?:[^<]+<){3}span\s+class="tv_episode_airdate">\s+-\s+{year}-{p_month}-{p_day}'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern)

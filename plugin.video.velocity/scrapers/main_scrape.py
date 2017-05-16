@@ -15,15 +15,12 @@ from Queue import Queue
 import json
 from libs import viewsetter
 
-import iwatchonline,primewire,afdah_scraper,icefilms,putlocker_both,real_scraper,swatch_scraper,watchepisodes
+import iwatchonline,primewire,afdah_scraper,icefilms,putlocker_both,real_scraper,swatch_scraper,watchepisodes,twoddl
 from libs import kodi,trakt_auth
 from libs import log_utils
 from libs.modules.addon import Addon
-
-
+from scrapers import ScraperVideo
 import threading
-import time
-import random
 import Queue
 
 
@@ -39,13 +36,22 @@ MAX_ERRORS = 10
 ssource=[]
 timeout = 30
 
+
+
+
 progressDialog = kodi.progressDialog
+
 q = Queue.Queue()
 
 percen = 0
 start_time = time.time()
+timetaken = time.time() - start_time
 
-scraper_timeout = int(kodi.get_setting('scraper2_timeout'))
+
+movie_scraper_timeout = int(kodi.get_setting('scraper2_timeout'))
+tv_scraper_timeout = int(kodi.get_setting('scraper3_timeout'))
+
+
 
 def find_source(name,thumb,media,movie_title):
 
@@ -58,11 +64,9 @@ def find_source(name,thumb,media,movie_title):
             else:
                 thumb = thumb
             q = Queue.Queue()
-            # r = threading.Thread(target=reporter, args=(q))
 
-
-            progressDialog.create(kodi.addonInfo('name'), '')
-            progressDialog.update(0, line1='Gathering Movie Sources ', line2='Please wait', line3='')
+            progressDialog.create(name, '')
+            progressDialog.update(0, line1='Gathering Movie Scrapers ', line2='Please wait', line3='')
 
 
             title = name[:-7]
@@ -70,41 +74,112 @@ def find_source(name,thumb,media,movie_title):
             year = movie_year.replace('(', '').replace(')', '')
             video_type = 'movies'
             total_items = 0
-
-            t1 = Thread(target=go_ice, args=(video_type, title, year,q))#
-            #############PRIMEWIRE########################
-            t2 = Thread(target=go_prime, args=(video_type, title, year,q))#
-            ##############IWATCH COMPLETE####################
-            t3 = Thread(target=go_iwatch, args=(video_type, title, year,q))########
-            #############AFDAH COMPLETE##################
-            t4 = Thread(target=go_afdah, args=(video_type, title, year,q))######
-            ############PUTLOCKER COMPLETE##################
-            t5 = Thread(target=go_putlocker, args=(video_type, title, year,q))############
-            ############REALMOVIES COMPLETE##################
-            t6 = Thread(target=go_real, args=(video_type, title, year,q))#
-             ############SWATCH COMPLETE##################
-            t7 = Thread(target=go_swatch, args=(video_type, title, year,q))#
-
-            # r = threading.Thread(target=reporter, args=(q, 3))
+            #<<<<<<<<<Build Threads>>>>>>>>>#
             thread_results = []
+            threads = []
+            RunAll =Run_Scrapers()
+            if kodi.get_setting('ice_films') == 'true':
+                thesearch = icefilms.Scraper()
+                t1 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "IceFilms", video_type, title, year, q),name = "IceFilms")
+                threads.insert(len(threads), t1)
 
-            threads = [t1,t2,t3,t4,t5,t6,t7]
+            if kodi.get_setting('primewire') == 'true':
+                thesearch = primewire.Scraper()
+                t2 = threading.Thread(target=RunAll.go_scraper, args=(thesearch,"PrimeWire", video_type, title, year, q),name = "Primewire")
+                threads.insert(len(threads), t2)
 
-            for t in threads:
-                t.start()
-                response = q.get()
-                #kodi.log("GOT THREAD RESPONSE")
-                thread_results.extend(response)
+            if kodi.get_setting('iwatchon') == 'true':
+                thesearch = iwatchonline.Scraper()
+                t3 = threading.Thread(target=RunAll.go_scraper, args=(thesearch,"IwatchOnline", video_type, title, year, q),name = "iWatchOnline")
+                threads.insert(len(threads), t3)
 
-            for t in threads:
-                t.join()
+            if kodi.get_setting('afdah') == 'true':
+                thesearch = afdah_scraper.Scraper()
+                t4 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "AFDAH", video_type, title, year, q),name = "Afdah")
+                threads.insert(len(threads), t4)
+
+            if kodi.get_setting('putlocker') == 'true':
+                thesearch = putlocker_both.Scraper()
+                t5 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "PutLocker", video_type, title, year, q),name = "Putlocker")
+                threads.insert(len(threads), t5)
+
+            if kodi.get_setting('real_movies') == 'true':
+                thesearch = real_scraper.Scraper()
+                t6 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "RealMovies", video_type, title, year, q),name = "RealMovies")
+                threads.insert(len(threads), t6)
+
+            if kodi.get_setting('swatch') == 'true':
+                thesearch = swatch_scraper.Scraper()
+                t7 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "SeriesWatch", video_type, title, year, q),name = "SeriesWatch")
+                threads.insert(len(threads), t7)
+
+            if kodi.get_setting('2ddl') == 'true':
+                thesearch = twoddl.Scraper()
+                t8 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "2DDL", video_type, title, year, q),name = "2DDL")
+                threads.insert(len(threads), t8)
+# TODO Finish Scene Release
+#             if kodi.get_setting('scener') == 'true':
+#                 thesearch = scener_scraper.Scraper()
+#                 t8 = threading.Thread(target=RunAll.go_scraper,args=(thesearch, "SceneRelease", video_type, title, year, q),name = "SceneRelease")
+#                 threads.insert(len(threads), t8)
+
+            [t.start() for t in threads]
+            string1 = "Time elapsed: %s seconds"
+            string3 = "Remaining providers: %s"
+            for t in range(0, (movie_scraper_timeout * 2) + 60):
+                try:
+                    if xbmc.abortRequested == True: return sys.exit()
+
+                    try:
+                        info = [[x.getName()] for x in threads if x.is_alive() == True]
+                    except:
+                        info = []
+
+                    timerange = int(t * 0.5)
+
+                    try:
+                        if progressDialog.iscanceled(): break
+                    except:
+                        pass
+                    try:
+                        string4 = string1 % str(timerange)
+                        if len(info) > 5:
+                            string5 = string3 % str(len(info))
+                        else:
+                            string5 = string3 % str(info).translate(None, "[]'")
+                        progressDialog.update(
+                            int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])),
+                            str(string4), str(string5))
+                    except:
+                        pass
+
+                    is_alive = [x.is_alive() for x in threads]
+                    if all(x == False for x in is_alive): break
+
+                    if timerange >= movie_scraper_timeout:
+                        is_alive = [x for x in threads if x.is_alive() == True]
+                        if not is_alive: break
+
+                    #time.sleep(0.5)
+                    response = q.get()
+                    thread_results.extend(response[2])
+                    all_results = len(thread_results)
+                except:
+                    pass
+            kodi.progressDialog.update(100, line1='[COLOR gold]COMPLETE[/COLOR]',line2='Sorting ' + str(all_results) + ' Results',line3='[COLOR green]Please Wait[/COLOR]')
+            xbmc.sleep(2000)
+            progressDialog.close()
+
 ########SORTING
+
             sorter = 'hostname'
             if kodi.get_setting('enable_sort') =='true':
                 if kodi.get_setting('sort_field') == "0":
                     sorter =  'quality'
                 elif kodi.get_setting('sort_field') == "1":
                     sorter = 'debrid'
+                elif kodi.get_setting('sort_field') == "2":
+                    sorter = 'host'
 ########SORTING
             my_list = sorted(thread_results, key=lambda k: k[sorter])
             for a in my_list:
@@ -127,8 +202,6 @@ def find_source(name,thumb,media,movie_title):
                                     quals = ''
                                 else:quals =" [COLOR red]["+ e['quality']+"][/COLOR]"
                                 menu_items=[]
-                                menu_items.append(('[COLOR gold]Add to Downloads[/COLOR]',      'XBMC.Container.Update(%s)' % addon.build_plugin_url({'mode':'setup_download', 'name':name,'url':urls,'thumb':thumb, 'media':media,'movie_title':movie_title})))
-#TODO Make Dialog Selections
                                 kodi.addDir(provider + names + quals + views + premium, urls, 'get_link', thumb,movie_title + movie_year, total_items, '', 'movies',menu_items=menu_items, is_folder=False, is_playable='true',fanart=fanart)
                                 viewsetter.set_view('files')
                         except:
@@ -142,28 +215,6 @@ def find_source(name,thumb,media,movie_title):
 
 
 
-def pick_list(pro_list):
-    kodi.log(pro_list)
-    for e in pro_list:
-
-        play_name=[]
-        play_name.append(e['proname'])
-        dialog = xbmcgui.Dialog()
-        index = dialog.select('Choose Your Desired Provider', play_name)
-        if index > -1:
-            try:
-                get_link(e['url'],e['movie_title'],e['thumb'],e['media'])
-                # if hoster['url']:
-                #     hoster_url = hoster['class'].resolve_link(hoster['url'])
-                #     log_utils.log('Attempting to play url: %s as direct: %s from: %s' % (
-                #         hoster_url, hoster['direct'], hoster['class'].get_name()))
-                #     return hoster_url, hoster['direct']
-            except Exception as e:
-                log_utils.log('Error (%s) while trying to resolve %s' % (str(e), hoster['url']),
-                              xbmc.LOGERROR)
-
-        return None, None
-
 def find_sourceTV(name,thumb,media,movie_title):
 
     try:
@@ -174,8 +225,8 @@ def find_sourceTV(name,thumb,media,movie_title):
 
         q = Queue.Queue()
 
-        progressDialog.create(kodi.addonInfo('name'), '')
-        progressDialog.update(+20, line1='Gathering TV Sources ', line2='Please wait', line3='')
+        progressDialog.create(movie_title+': '+name, '')
+        progressDialog.update(0, line1='Gathering TV Scrapers ', line2='Please wait', line3='')
 
         #############Constants########################
         title = movie_title[:-7]
@@ -183,34 +234,106 @@ def find_sourceTV(name,thumb,media,movie_title):
         year = movie_year.replace('(', '').replace(')', '')
         video_type = 'shows'
         total_items = 0
-        t1 = Thread(target=go_ice_tv, args=(video_type, title, year,name,q))
-        #############PRIMEWIRE########################
-        t2 = Thread(target=go_prime_tv, args=(video_type, title, year,name,q))
-        ##############IWATCH COMPLETE####################
-        t3 = Thread(target=go_iwatch_tv, args=(video_type, title, year,name,q))
-        ############PUTLOCKER COMPLETE##################
-        t4 = Thread(target=go_putlocker_tv, args=(video_type, title, year,name,q))
-        ############WATCHEPISODES COMPLETE##################
-        t5 = Thread(target=go_watchepisodes_tv, args=(video_type, title, year, name, q))
-
 
         thread_results = []
+        threads = []
+        RunAll = Run_Scrapers()
+        if kodi.get_setting('ice_films') == 'true':
+            thesearch = icefilms.Scraper()
+            t1 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "IceFilms", video_type, title, year,name,q),name = "IceFilms")
+            threads.insert(len(threads), t1)
 
-        threads = [t1, t2, t3, t4,t5]
+        if kodi.get_setting('primewire') == 'true':
+            thesearch = primewire.Scraper()
+            t2 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "PrimeWire", video_type, title, year,name,q),name = "Primewire")
+            threads.insert(len(threads), t2)
 
-        for t in threads:
-            t.start()
-            response = q.get()
-            thread_results.extend(response)
-        for t in threads:
-            t.join()
+        if kodi.get_setting('iwatchon') == 'true':
+            thesearch = iwatchonline.Scraper()
+            t3 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "IwatchOnline", video_type, title, year,name,q),name = "iWatchOnline")
+            threads.insert(len(threads), t3)
+
+        if kodi.get_setting('putlocker') == 'true':
+            thesearch = putlocker_both.Scraper()
+            t4 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "PutLocker", video_type, title, year,name,q),name = "Putlocker")
+            threads.insert(len(threads), t4)
+
+        if kodi.get_setting('watchepi') == 'true':
+            thesearch = watchepisodes.Scraper()
+            t5 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "WatchEpisodes", video_type, title, year,name,q),name = "WatchEpisodes")
+            threads.insert(len(threads), t5)
+
+        if kodi.get_setting('swatch') == 'true':
+            thesearch = swatch_scraper.Scraper()
+            t6 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "SeriesWatch",video_type, title, year,name,q),name = "SeriesWatch")
+            threads.insert(len(threads), t6)
+
+        if kodi.get_setting('2ddl') == 'true':
+            thesearch = twoddl.Scraper()
+            t8 = threading.Thread(target=RunAll.go_scraper_tv, args=(thesearch, "2DDL", video_type, title, year,name, q),name="2DDL")
+            threads.insert(len(threads), t8)
+#TODO Finish Scene Release
+        # if kodi.get_setting('scener') == 'true':
+        #     thesearch = scener_scraper.Scraper()
+        #     t7 = threading.Thread(target=RunAll.go_scraper_tv,args=(thesearch, "SceneRelease",video_type, title, year,name,q),name = "SceneRelease")
+        #     threads.insert(len(threads), t7)
+
+        [t.start() for t in threads]
+        string1 = "Time elapsed: %s seconds"
+        string3 = "Remaining providers: %s"
+        for t in range(0, (tv_scraper_timeout * 2) + 60):
+            try:
+                if xbmc.abortRequested == True: return sys.exit()
+
+                try:
+                    info = [[x.getName()] for x in threads if x.is_alive() == True]
+                except:
+                    info = []
+
+                timerange = int(t * 0.5)
+
+                try:
+                    if progressDialog.iscanceled(): break
+                except:
+                    pass
+                try:
+                    string4 = string1 % str(timerange)
+                    if len(info) > 5:
+                        string5 = string3 % str(len(info))
+                    else:
+                        string5 = string3 % str(info).translate(None, "[]'")
+                    progressDialog.update(
+                        int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])),
+                        str(string4), str(string5))
+                except:
+                    pass
+
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+
+                if timerange >= tv_scraper_timeout:
+                    is_alive = [x for x in threads if x.is_alive() == True]
+                    if not is_alive: break
+
+                # time.sleep(0.5)
+                response = q.get()
+                thread_results.extend(response[2])
+                all_results = len(thread_results)
+            except:
+                pass
+        kodi.progressDialog.update(100,line1='[COLOR gold]COMPLETE[/COLOR]',line2='Sorting '+str(all_results)+' Results',line3='[COLOR green]Please Wait[/COLOR]')
+        xbmc.sleep(2000)
+        progressDialog.close()
+
 #####SORTING
-            sorter = 'hostname'
-            if kodi.get_setting('enable_sort') == 'true':
-                if kodi.get_setting('sort_field') == "0":
-                    sorter = 'quality'
-                elif kodi.get_setting('sort_field') == "1":
-                    sorter = 'debrid'
+        sorter = 'hostname'
+        if kodi.get_setting('enable_sort') == 'true':
+            if kodi.get_setting('sort_field') == "0":
+                sorter = 'quality'
+            elif kodi.get_setting('sort_field') == "1":
+                sorter = 'debrid'
+            elif kodi.get_setting('sort_field') == "2":
+                sorter = 'host'
 ########SORTING
         my_list = sorted(thread_results, key=lambda k: k[sorter])
         for a in my_list:
@@ -234,24 +357,63 @@ def find_sourceTV(name,thumb,media,movie_title):
                         else:
                             quals = " [COLOR red][" + e['quality'] + "][/COLOR]"
                         menu_items=[]
-                        menu_items.append(('[COLOR gold]Add to Downloads[/COLOR]',      'XBMC.Container.Update(%s)' % addon.build_plugin_url({'mode':'setup_download', 'name':name,'url':urls,'thumb':thumb, 'media':media,'movie_title':movie_title})))
                         kodi.addDir(provider + names + quals + views + premium,urls,'get_tv_link',thumb,movie_title,total_items,'',name,menu_items=menu_items,is_playable='true',fanart=fanart)
-                        #kodi.addDir(provider+names+' ['+quals+']'+' [COLOR gold]'+str(premium)+'[/COLOR]',urls,'get_tv_link',thumb,movie_title,total_items,'',name,menu_items=menu_items,is_playable='true',fanart=fanart)
                         viewsetter.set_view('files')
                 except:
                     pass
-
-
-
 
     except Exception as e:
             log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
             if kodi.get_setting('error_notify') == "tru# e":
                 kodi.notify(header='Scraper',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 
+class Run_Scrapers():
+    def __init__(self):
+        self.sources = []
 
-def make_vid_params(video_type, title, year, season, episode, ep_title, ep_airdate):
-    return '|%s|%s|%s|%s|%s|%s|%s|' % (video_type, title, year, season, episode, ep_title, ep_airdate)
+    def go_scraper(self,thesearch, path, video_type, title, year, q):
+        try:
+            kodi.slog(path + ": Gathering Movie Sources")
+            thesource = thesearch.search(video_type, title, year)
+            if thesource == []:
+                blank_source = []
+                q.put(("done", path, blank_source, 0))
+                kodi.slog(path + " GOT NONE")
+            else:
+                for e in thesource:
+                    thesources = thesearch.get_sources(e, video_type)
+                    total_sources = len(thesources)
+                    q.put(("done", path, thesources, total_sources))
+
+        except Exception as e:
+            blank_source = []
+            q.put(("done", path, blank_source, 0))
+            kodi.slog(path + ' Failed Due to Error : ' + str(e))
+
+    def go_scraper_tv(self,thesearch,path,video_type, title, year, name, q):
+        try:
+            kodi.slog(path + ": Gathering TV Sources")
+            thesource = thesearch.search(video_type, title, year)
+            if thesource == []:
+                blank_source = []
+                q.put(("done", path, blank_source,0))
+                kodi.slog(path + " GOT NONE")
+            else:
+                for e in thesource:
+                    url = e['url']
+                    # TV MAIN URL RETURNED HERE
+                    newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
+                    for sea, epi, epi_title in newseas:
+                        video = ScraperVideo(video_type, title, year, '', sea, epi, epi_title, '')
+                        theepi = thesearch._get_episode_url(url, video)
+                        thehosters = thesearch.get_sources(theepi, video_type)
+                        total_sources = len(thehosters)
+                        q.put(("done", path, thehosters, total_sources))
+
+        except Exception as e:
+            blank_source = []
+            q.put(("done", path, blank_source, 0))
+            kodi.slog(path + ' Failed Due to Error : ' +str(e))
 
 
 
@@ -441,61 +603,61 @@ def check_tv_player(name,media):
 
 #######Real Debrid Check
 
-def apply_urlresolverHIS(hosters):
-    filter_debrid = kodi.get_setting('filter_debrid') == 'true'
-    show_debrid = kodi.get_setting('show_debrid') == 'true'
-    if not filter_debrid and not show_debrid:
-        print "RETURNING NON FILTERED"
-        return hosters
-
-    debrid_resolvers = [resolver() for resolver in urlresolver.relevant_resolvers(order_matters=True) if
-                        resolver.isUniversal()]
-    filtered_hosters = []
-    debrid_hosts = {}
-    unk_hosts = {}
-    known_hosts = {}
-    for hoster in hosters:
-        if 'direct' in hoster and hoster['direct'] == False and hoster['host']:
-            host = hoster['host']
-            if filter_debrid:
-                if host in unk_hosts:
-                    # log_utils.log('Unknown Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
-                    unk_hosts[host] += 1
-                    continue
-                elif host in known_hosts:
-                    # log_utils.log('Known Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
-                    known_hosts[host] += 1
-                    filtered_hosters.append(hoster)
-                else:
-                    hmf = urlresolver.HostedMediaFile(host=host,
-                                                      media_id='dummy')  # use dummy media_id to force host validation
-                    if hmf:
-                        # log_utils.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
-                        known_hosts[host] = known_hosts.get(host, 0) + 1
-                        filtered_hosters.append(hoster)
-                    else:
-                        # log_utils.log('Unknown Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
-                        unk_hosts[host] = unk_hosts.get(host, 0) + 1
-                        continue
-            else:
-                filtered_hosters.append(hoster)
-
-            if host in debrid_hosts:
-                # log_utils.log('Debrid cache found for %s: %s' % (host, debrid_hosts[host]), log_utils.LOGDEBUG)
-                hoster['debrid'] = debrid_hosts[host]
-            else:
-                temp_resolvers = [resolver.name[:3].upper() for resolver in debrid_resolvers if
-                                  resolver.valid_url('', host)]
-                # log_utils.log('%s supported by: %s' % (host, temp_resolvers), log_utils.LOGDEBUG)
-                debrid_hosts[host] = temp_resolvers
-                if temp_resolvers:
-                    hoster['debrid'] = temp_resolvers
-        else:
-            filtered_hosters.append(hoster)
-
-    log_utils.log('Discarded Hosts: %s' % (sorted(unk_hosts.items(), key=lambda x: x[1], reverse=True)),
-                  log_utils.LOGDEBUG, 'get_sources')
-    return filtered_hosters
+# def apply_urlresolverHIS(hosters):
+#     filter_debrid = kodi.get_setting('filter_debrid') == 'true'
+#     show_debrid = kodi.get_setting('show_debrid') == 'true'
+#     if not filter_debrid and not show_debrid:
+#         print "RETURNING NON FILTERED"
+#         return hosters
+#
+#     debrid_resolvers = [resolver() for resolver in urlresolver.relevant_resolvers(order_matters=True) if
+#                         resolver.isUniversal()]
+#     filtered_hosters = []
+#     debrid_hosts = {}
+#     unk_hosts = {}
+#     known_hosts = {}
+#     for hoster in hosters:
+#         if 'direct' in hoster and hoster['direct'] == False and hoster['host']:
+#             host = hoster['host']
+#             if filter_debrid:
+#                 if host in unk_hosts:
+#                     # log_utils.log('Unknown Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+#                     unk_hosts[host] += 1
+#                     continue
+#                 elif host in known_hosts:
+#                     # log_utils.log('Known Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+#                     known_hosts[host] += 1
+#                     filtered_hosters.append(hoster)
+#                 else:
+#                     hmf = urlresolver.HostedMediaFile(host=host,
+#                                                       media_id='dummy')  # use dummy media_id to force host validation
+#                     if hmf:
+#                         # log_utils.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+#                         known_hosts[host] = known_hosts.get(host, 0) + 1
+#                         filtered_hosters.append(hoster)
+#                     else:
+#                         # log_utils.log('Unknown Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+#                         unk_hosts[host] = unk_hosts.get(host, 0) + 1
+#                         continue
+#             else:
+#                 filtered_hosters.append(hoster)
+#
+#             if host in debrid_hosts:
+#                 # log_utils.log('Debrid cache found for %s: %s' % (host, debrid_hosts[host]), log_utils.LOGDEBUG)
+#                 hoster['debrid'] = debrid_hosts[host]
+#             else:
+#                 temp_resolvers = [resolver.name[:3].upper() for resolver in debrid_resolvers if
+#                                   resolver.valid_url('', host)]
+#                 # log_utils.log('%s supported by: %s' % (host, temp_resolvers), log_utils.LOGDEBUG)
+#                 debrid_hosts[host] = temp_resolvers
+#                 if temp_resolvers:
+#                     hoster['debrid'] = temp_resolvers
+#         else:
+#             filtered_hosters.append(hoster)
+#
+#     log_utils.log('Discarded Hosts: %s' % (sorted(unk_hosts.items(), key=lambda x: x[1], reverse=True)),
+#                   log_utils.LOGDEBUG, 'get_sources')
+#     return filtered_hosters
 
 
 def apply_urlresolver(hosters):
@@ -566,317 +728,3 @@ def apply_urlresolver(hosters):
     return filtered_hosters
 
 
-#################Scraper Functions###################################
-def reporter(mess, provide, total_sources,percen):
-    if mess == "update":
-        percen += percen
-        timetaken = time.time() - start_time
-        # update the screen here
-        progressDialog.update(int(percen), line1='[COLOR gold]Time Elapsed %.02f secs ' % timetaken+'-- Updates as sources return[/COLOR]' , line2=provide+' Sources Loaded : '+str(total_sources), line3='[COLOR green]Looking for more Sources[/COLOR]')
-
-
-
-def go_ice(video_type, title, year,q):
-    if kodi.get_setting('ice_films') == 'true':
-        icesearch = icefilms.Scraper()
-        icesource = icesearch.search(video_type, title, year)
-        if icesource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in icesource:
-                icesources = icesearch.get_sources(e)
-                total_sources = len(icesources)
-                q.put(icesources)
-                reporter("update", "IceFilms", total_sources,15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_real(video_type, title, year,q):
-    if kodi.get_setting('real_movies') == 'true':
-        realsearch = real_scraper.Scraper()
-        realsource = realsearch.search(video_type, title, year)
-        if realsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in realsource:
-                realsources = realsearch.get_sources(e)
-                total_sources = len(realsources)
-                q.put(realsources)
-                reporter("update", "RealMovies", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-
-def go_swatch(video_type, title, year,q):
-    if kodi.get_setting('swatch') == 'true':
-        swatchsearch = swatch_scraper.Scraper()
-        swatchsource = swatchsearch.search(video_type, title, year)
-        if swatchsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in swatchsource:
-                swatchsources = swatchsearch.get_sources(e,video_type)
-                total_sources = len(swatchsources)
-                q.put(swatchsources)
-                reporter("update", "SeriesWatch", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-
-def go_prime(video_type, title, year,q):
-
-    if kodi.get_setting('primewire') == 'true':
-        primesearch = primewire.Scraper()
-        primesource = primesearch.search(video_type, title, year)
-        if primesource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in primesource:
-                primesources = primesearch.get_sources(e)
-                total_sources = len(primesources)
-                q.put(primesources)
-                reporter("update", "PrimeWire", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_iwatch(video_type, title, year,q):
-
-    if kodi.get_setting('iwatchon') == 'true':
-        iwatchsearch = iwatchonline.Scraper()
-        iwatchsource = iwatchsearch.search(video_type, title, year)
-        if iwatchsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in iwatchsource:
-                iwatchsources = iwatchsearch.get_sources(e, video_type)
-                total_sources = len(iwatchsources)
-                q.put(iwatchsources)
-                reporter("update", "iWatchOnline", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_afdah(video_type, title, year,q):
-
-    if kodi.get_setting('afdah') == 'true':
-        afsearch = afdah_scraper.Scraper()
-        afsource = afsearch.search(video_type, title, year)
-        if afsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in afsource:
-                afdahsources = afsearch.get_sources(e)
-                total_sources = len(afdahsources)
-                q.put(afdahsources)
-                reporter("update", "AFDAH", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_putlocker(video_type, title, year,q):
-
-    if kodi.get_setting('putlocker') == 'true':
-        putsearch = putlocker_both.Scraper()
-        putsource = putsearch.search(video_type, title, year)
-        if putsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in putsource:
-                putsources = putsearch.get_sources(e)
-                total_sources = len(putsources)
-                q.put(putsources)
-                reporter("update", "PutLocker", total_sources, 15)
-                while True:
-                    if time.time() - start_time > scraper_timeout:
-                        blank_source = []
-                        q.put(blank_source)
-                        break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-#############TV SCRAPERS################
-
-def go_ice_tv(video_type, title, year,name,q):
-    if kodi.get_setting('ice_films') == 'true':
-        icesearch = icefilms.Scraper()
-        icesource = icesearch.search(video_type, title, year)
-        if icesource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in icesource:
-                url = e['url']
-                # TV MAIN URL RETURNED HERE
-                newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
-                for sea, epi, epi_title in newseas:
-                    video = make_vid_params('Episode', title, year, sea, epi, epi_title, '')
-                    iceepi = icesearch._get_episode_url(url, video, sea, epi)
-                    icehosters = icesearch.get_sources(iceepi)
-                    total_sources = len(icehosters)
-                    q.put(icehosters)
-                    reporter("update", "IceFilms", total_sources, 15)
-                    while True:
-                        if time.time() - start_time > scraper_timeout:
-                            blank_source = []
-                            q.put(blank_source)
-                            break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_iwatch_tv(video_type, title, year,name,q):
-    if kodi.get_setting('iwatchon') == 'true':
-        iwatchsearch = iwatchonline.Scraper()
-        iwatchsource = iwatchsearch.search(video_type, title, year)
-        if iwatchsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in iwatchsource:
-                url = e['url']
-                # TV MAIN URL RETURNED HERE
-                newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
-                for sea, epi, epi_title in newseas:
-                    video = make_vid_params('Episode', title, year, sea, epi, epi_title, '')
-                    iwatchepi = iwatchsearch._get_episode_url(url, video, sea, epi)
-                    iwatchhosters = iwatchsearch.get_sources(iwatchepi, video_type)
-                    total_sources = len(iwatchhosters)
-                    q.put(iwatchhosters)
-                    reporter("update", "iWatchOnline", total_sources, 15)
-                    while True:
-                        if time.time() - start_time > scraper_timeout:
-                            blank_source = []
-                            q.put(blank_source)
-                            break
-
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_prime_tv(video_type, title, year,name,q):
-    if kodi.get_setting('primewire') == 'true':
-        primesearch = primewire.Scraper()
-        primesource = primesearch.search(video_type, title, year)
-        if primesource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in primesource:
-                url = e['url']
-                # TV MAIN URL RETURNED HERE
-                newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
-                for sea, epi, epi_title in newseas:
-                    video = make_vid_params('Episode', title, year, sea, epi, epi_title, '')
-                    primeepi = primesearch._get_episode_url(url, video, sea, epi)
-                    primehosters = primesearch.get_sources(primeepi)
-                    total_sources = len(primehosters)
-                    q.put(primehosters)
-                    reporter("update", "PrimeWire", total_sources, 15)
-                    while True:
-                        if time.time() - start_time > scraper_timeout:
-                            blank_source = []
-                            q.put(blank_source)
-                            break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-def go_putlocker_tv(video_type, title, year,name,q):
-    if kodi.get_setting('putlocker') == 'true':
-        putsearch = putlocker_both.Scraper()
-        putsource = putsearch.search(video_type, title, year)
-        if putsource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in putsource:
-                url = e['url']
-                # TV MAIN URL RETURNED HERE
-                newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
-                for sea, epi, epi_title in newseas:
-                    video = make_vid_params('Episode', title, year, sea, epi, epi_title, '')
-                    putepi = putsearch._get_episode_url(url, video, sea, epi)
-                    puthosters = putsearch.get_sources(putepi)
-                    total_sources = len(puthosters)
-                    q.put(puthosters)
-                    reporter("update", "PutLocker", total_sources, 15)
-                    while True:
-                        if time.time() - start_time > scraper_timeout:
-                            blank_source = []
-                            q.put(blank_source)
-                            break
-    else:
-        blank_source = []
-        q.put(blank_source)
-
-
-def go_watchepisodes_tv(video_type, title, year,name,q):
-    if kodi.get_setting('watchepi') == 'true':
-        watchepisearch = watchepisodes.Scraper()
-        watchepisource = watchepisearch.search(video_type, title, year)
-        if watchepisource == []:
-            blank_source = []
-            q.put(blank_source)
-        else:
-            for e in watchepisource:
-                url = e['url']
-                #TV MAIN URL RETURNED HERE
-                newseas = re.compile('S(.+?)E(.+?)  (?P<name>[A-Za-z\t .]+)').findall(name)
-                for sea, epi, epi_title in newseas:
-                    video = make_vid_params('Episode', title, year, sea, epi, epi_title, '')
-                    watchepiepi = watchepisearch._get_episode_url(url, video, sea, epi)
-                    watchepihosters = watchepisearch.get_sources(watchepiepi)
-                    total_sources = len(watchepihosters)
-                    q.put(watchepihosters)
-                    reporter("update", "WatchEpisodes", total_sources, 15)
-                    while True:
-                        if time.time() - start_time > scraper_timeout:
-                            blank_source = []
-                            q.put(blank_source)
-                            break
-    else:
-        blank_source = []
-        q.put(blank_source)

@@ -24,7 +24,6 @@ import urlresolver
 import xbmcplugin,xbmcgui,xbmc, xbmcaddon, downloader, extract, time
 import tools
 from libs import kodi,trakt_auth,trakt
-xbmc.log("NAMESPACE ONE "+str(dir(kodi)))
 from libs import dl_control,cache_stat,watched_cache
 from libs import log_utils,message
 from libs import window_utils
@@ -100,22 +99,36 @@ def menu():
 	autoupdates.STARTUP()
 	kodi.addDir("Movies",'','movie_menu',artwork+'movies.png','',1,'','',fanart=fanart,description="View and Search for Movies.")
 	kodi.addDir("TV Shows",'','tv_menu',artwork+'tvshows.png','',1,'','',fanart=fanart,description="View and Search for TV Shows.")
-	kodi.addItem("General Settings",'','display_settings',artwork+'gen_settings.png',fanart=fanart,description="Adjust The General Addon Settings.")
-	kodi.addItem("Sorting Methods", '', 'display_sort_settings', artwork + 'gen_settings.png', fanart=fanart,description="Enable and Pick Sorting Methods.")
-	kodi.addItem("Enable Providers",'','display_scraper_settings',artwork+'scraper_settings.png',fanart=fanart,description="Adjust Your Provider/Scraper Settings.")
-	kodi.addItem("Trakt Settings",'','display_trakt_settings',artwork+'trakt_settings.png',fanart=fanart,description="Adjust and Set Trakt Intergration Settings.")
-	kodi.addItem("Url Resolver Settings",'','resolver_settings',artwork+'resolver_settings.png',fanart=fanart,description="Adjust and Set The Url Resolver Settings.")
-	kodi.addItem("Set Download Folder",'','display_download_settings',artwork+'down_settings.png',fanart=fanart,description="Set The Path For Your Downloaded Files.")
-	kodi.addDir("Manage Downloads",'','viewQueue',artwork+'manage_downloads.png','',1,'','',fanart=fanart,description="View and Manage Your Downloads.")
+	kodi.addDir("Settings", '', 'do_settings', artwork + 'gen_settings.png', '', 1, '', '', fanart=fanart,
+				description="View and Change Addon and System Settings.")
+	#kodi.addDir("Manage Downloads",'','viewQueue',artwork+'manage_downloads.png','',1,'','',fanart=fanart,description="View and Manage Your Downloads.")
 	#kodi.addDir("VERSION TEST ",'','get_kversion',artwork+'update.png','',1,'','',fanart=fanart)
 
 	if  kodi.get_setting('trakt_authorized') =='true':
 		kodi.addItem("[COLOR gold]Clear Trakt User[/COLOR] ",'','de_auth',artwork+'sign_out.png',fanart=fanart,description="Clear and Log Out Your Trakt Account.")
 	if  kodi.get_setting('trakt_authorized') =='false':
 		kodi.addItem("[COLOR gold]Trakt Integration[/COLOR]",'','get_pin',artwork+'trakt.png', fanart=fanart,description="Authorize your Trakt Account.")
-	viewsetter.set_view("sets")
+	kodi.addItem("[COLOR blue]This addon is developed and supported at www.tvaddons.ag [/COLOR]", '', '', artwork + 'tvaddons_logo.png', fanart=fanart,description="This software and addon is and always has been FREE, If you have paid for this software , request a refund, You have been duped!!.")
+	kodi.addItem("[COLOR red]Disclaimer [/COLOR]", '', '',
+				 artwork + 'tvaddons_logo.png', fanart=fanart,
+				 description="All videos are hosted by 3rd parties. All content linked to from this addon is intended for space shifting, time shifting, format shifting, backup, fair use, public domain, and educational purposes only. You are responsible for ensuring you have the right to access any linked content.")
+	viewsetter.set_view("seasons")
 	#xbmc.executebuiltin("Container.SetViewMode()")
 
+def do_settings():
+	kodi.addItem("General Settings", '', 'display_settings', artwork + 'gen_settings.png', fanart=fanart,
+				 description="Adjust The General Addon Settings.")
+	kodi.addItem("Sorting Methods", '', 'display_sort_settings', artwork + 'gen_settings.png', fanart=fanart,
+				 description="Enable and Pick Sorting Methods.")
+	kodi.addItem("Enable Providers", '', 'display_scraper_settings', artwork + 'scraper_settings.png', fanart=fanart,
+				 description="Adjust Your Provider/Scraper Settings.")
+	kodi.addItem("Trakt Settings", '', 'display_trakt_settings', artwork + 'trakt_settings.png', fanart=fanart,
+				 description="Adjust and Set Trakt Intergration Settings.")
+	kodi.addItem("Url Resolver Settings", '', 'resolver_settings', artwork + 'resolver_settings.png', fanart=fanart,
+				 description="Adjust and Set The Url Resolver Settings.")
+	#kodi.addItem("Set Download Folder", '', 'display_download_settings', artwork + 'down_settings.png', fanart=fanart,
+				 #description="Set The Path For Your Downloaded Files.")
+	viewsetter.set_view("seasons")
 def get_kversion():
 	full_version_info = xbmc.getInfoLabel('System.BuildVersion')
 	baseversion = full_version_info.split(".")
@@ -129,17 +142,17 @@ def movie_menu():
 		kodi.addDir("Most Played",'most_played','call_trakt_movies',artwork+'most_played.png','',1,'','',fanart=fanart,description="Most Played Movies Section.")
 		kodi.addDir("Most Collected",'most_collected','call_trakt_movies',artwork+'most_collected.png','',1,'','',fanart=fanart,description="Most Collected Movies.")
 		kodi.addDir("Box Office",'box_office','call_trakt_movies',artwork+'box_office.png','',1,'','',fanart=fanart,description="Movies in the Box Office.")
-		kodi.addItem("Search",'','trakt_search_movies',artwork+'search.png', fanart=fanart,description="Search for Movies.")
+		kodi.addDir("Search",'','trakt_search_movies',artwork+'search.png','',1,'','', fanart=fanart,description="Search for Movies.")
 		if kodi.get_setting('trakt_authorized') == 'true':
 			kodi.addDir("[COLOR gold]My Movie Collection[/COLOR]",'my_collected','call_trakt_movies',artwork+'my_collection.png','',1,'','',fanart=fanart,description="View Your own Movie Collection.")
 			kodi.addDir("[COLOR gold]Recomended for me[/COLOR]",'my_recomends','call_trakt_movies',artwork+'recomended.png','',1,'','',fanart=fanart,description="Movies recomended just for you!")
 			kodi.addDir("[COLOR gold]Movie Watchlist[/COLOR]",'get_watchlist_movies','call_trakt_movies',artwork+'watchlist.png','',1,'','',fanart=fanart,description="Your Own Movie Watchlist.")
-			kodi.addDir("[COLOR gold]Watched Movie History[/COLOR]",'get_watched_history','call_trakt_movies',artwork+'watchhistory.png','',1,'','',fanart=fanart,description="Your Watched Movie History.")
+			kodi.addDir("[COLOR gold]Movies Watched Recently[/COLOR]",'get_watched_history','call_trakt_movies',artwork+'watchhistory.png','',1,'','',fanart=fanart,description="Your Watched Movie History.")
 			kodi.addDir("[COLOR gold]My Custom Movie Lists[/COLOR]",'','custom_movie_lists',artwork+'custom_lists.png','',1,'',media,fanart=fanart,description="Here you will find your Custom Movie Lists and Creation.")
 			#kodi.addDir("[COLOR gold]Search Other Users Movie Lists[/COLOR]",' ','get_user_lists',artwork+'other_user_lists.png','',1,'',media,fanart=fanart)
 
 			#kodi.addDir("[COLOR gold]Special Movie Lists[/COLOR]",'','public_lists',artwork+'special_movie_lists.png','',1,'',media,fanart=fanart)
-		viewsetter.set_view("sets")
+		viewsetter.set_view("seasons")
 
 def tv_menu():
 
@@ -157,10 +170,10 @@ def tv_menu():
 			kodi.addDir("[COLOR gold]TV Shows Watchlist [/COLOR]",'get_watchlist_tvshows','call_trakt_tv',artwork+'my_tv_watchlist.png','',1,'','',fanart=fanart,description="Your Own TV Show Watchlist..")
 			#kodi.addDir("[COLOR gold]TV Shows Calendar[/COLOR]",'get_shows_calendar','call_trakt_tv',artwork+'watchlist.png','',1,'','',fanart=fanart)
 			kodi.addDir("[COLOR gold]Anticipated TV Shows[/COLOR]",'get_anticipated_tvshows','call_trakt_tv',artwork+'tv_antic.png','',1,'','',fanart=fanart,description="Look through anticipated TV Shows.")
-			#kodi.addDir("[COLOR gold]Watched TV History[/COLOR]",'get_watched_history','call_trakt_tv',artwork+'tv_watchhistory.png','',1,'','',fanart=fanart)
+			kodi.addDir("[COLOR gold]Shows Watched Recently[/COLOR]",'get_watched_history','call_trakt_tv',artwork+'tv_watchhistory.png','',1,'','',fanart=fanart)
 			kodi.addDir("[COLOR gold]My Custom TV Lists[/COLOR]",'','custom_movie_lists',artwork+'custom_lists.png','',1,'',media,fanart=fanart,description="Here you will find your Custom TV Show Lists and Creation.")
 			kodi.addDir("[COLOR gold]Network TV Lists[/COLOR]",'','public_lists',artwork+'networks.png','',1,'',media,fanart=fanart,description="Look through all the greatest Tv Show Networks.")
-	viewsetter.set_view("sets")
+	viewsetter.set_view("seasons")
 
 
 
@@ -243,166 +256,133 @@ def movistapp_lists():
 
 
 def call_trakt_tv(url):
-	#try:
+	try:
 		#Auth TV SHOWS
 		media = 'shows'
-		if url == 'get_watched_history':
-			links = trakt_api.get_watched_history(media)
-			for e in links:
-				Labels = trakt_api.get_show_details(e)
-				infoLabels={}
-				infoLabels.update(make_infoLabels(Labels,media=media))
-				menu_items=[]
-				trakt_id = str(infoLabels['trakt_id'])
-				trailer = infoLabels['trailer_url']
-				year = str(infoLabels['year'])
-				name = infoLabels['title'].encode('utf-8')
-				thumb=infoLabels['cover_url']
-				if thumb is None:
-					thumb = ''
-				menu_items=[]
-				menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-				menu_items.append(('[COLOR gold]Add as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
-				menu_items.append(('[COLOR gold]Find Similar Shows[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'similar_shows', 'name':name})))
-				menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
-				if url == 'get_watchlist_tvshows':
-					menu_items.append(('[COLOR gold]Remove From Want to Watch[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_watchlist', 'name':name, 'media':media})))
-				else:
-					menu_items.append(('[COLOR gold]Add to Want To Watch[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watchlist', 'name':name, 'media':media})))
-				if trailer:
-					utube = tools.make_trailer(trailer)
-					menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
-				kodi.addDir(name+' ('+year+')','','find_season',thumb,name,5,trakt_id,'shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=False)
-				viewsetter.set_view('tvshows')
+		#TODO FIX THIS
+		if url == 'need_to_watch':
+			try:
+				#link = trakt_api.get_calendar_shows()
+				link = trakt_api.get_my_collected_tvshows()#*** THIS ALMOST WORKS
+				#link = trakt_api.get_watched_history('shows')
+				#link = trakt_api.get_calendar_episodes(delta=1, number=2)
+				#link = trakt_api.get_calendar_daily_shows(delta=0, number=1)
+				for e in link:
+					infoLabels={}
+					infoLabels.update(make_infoLabels(e,media=media))
+					orig_ids1 = e
+					orig_ids = json.dumps(orig_ids1)
+					show_trakt_id = str(infoLabels['trakt_id'])
+					show_year = str(infoLabels['year'])
+					show_name = infoLabels['title'].encode('utf-8')
+					orig_name = show_name+' ('+show_year+')'
+					link = trakt_api.get_show_progress(show_trakt_id)
+					if link['next_episode'] is not None:
+						epi = link['next_episode']
+						title = epi['title'].encode('utf-8')
+						season = epi['season']
+						episode = epi['number']
+						trakt = epi['ids']
+						trakt_id = trakt['trakt']
+						infoLabels = trakt_api.get_episode_details(show_trakt_id,season,episode)
+						aired = infoLabels['premiered']
+						menu_items=[]
+						trailer = infoLabels['trailer_url']
+						year = str(infoLabels['year'])
+						name = infoLabels['title'].encode('utf-8')
+						if name == 'TBA':
+							name = '[COLORred]'+name+'[/COLOR]'
+						else:
+							name = '[COLORgreen]'+name+'[/COLOR]'
 
+						thumb=infoLabels['cover_url']
+						if thumb is None:
+							thumb = ''
+						d1 = str(infoLabels['premiered'])
+						d2 = str(datetime.date.today())
+						#print today - was_aired
+						#if infoLabels['premiered'] =='':
+						if d1 >= d2 or infoLabels['premiered'] == '':
+							if name :
+								menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
+
+								kodi.addDir('[COLOR red]S'+str(season)+'E'+str(episode)+'  '+orig_name+' / '+name+'[/COLOR]','','findsource',thumb,orig_name,5,'','shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=True,orig_ids=orig_ids)
+						else:
+							if 'null' in trailer or trailer == '':
+								menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
+								menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
+								menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
+								#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
+							else:
+								utube = tools.make_trailer(trailer)
+								menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
+								menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
+								menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
+								#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
+								menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
+							kodi.addDir('S'+str(season)+'E'+str(episode)+'  '+orig_name+' / '+name,'','findsource',thumb,orig_name,5,'','shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=True,orig_ids=orig_ids)
+						viewsetter.set_view('tvshows')
+			except Exception as e:
+				log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
+				if kodi.get_setting('error_notify') == "true":
+					kodi.notify(header='On Deck TV',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 		else:
-			#TODO FIX THIS
-			if url == 'need_to_watch':
-				try:
-					#link = trakt_api.get_calendar_shows()
-					link = trakt_api.get_my_collected_tvshows()#*** THIS ALMOST WORKS
-					#link = trakt_api.get_watched_history('shows')
-					#link = trakt_api.get_calendar_episodes(delta=1, number=2)
-					#link = trakt_api.get_calendar_daily_shows(delta=0, number=1)
-					for e in link:
-						infoLabels={}
-						infoLabels.update(make_infoLabels(e,media=media))
-						orig_ids1 = e
-						orig_ids = json.dumps(orig_ids1)
-						show_trakt_id = str(infoLabels['trakt_id'])
-						show_year = str(infoLabels['year'])
-						show_name = infoLabels['title'].encode('utf-8')
-						orig_name = show_name+' ('+show_year+')'
-						link = trakt_api.get_show_progress(show_trakt_id)
-						if link['next_episode'] is not None:
-							epi = link['next_episode']
-							title = epi['title'].encode('utf-8')
-							season = epi['season']
-							episode = epi['number']
-							trakt = epi['ids']
-							trakt_id = trakt['trakt']
-							infoLabels = trakt_api.get_episode_details(show_trakt_id,season,episode)
-							aired = infoLabels['premiered']
-							menu_items=[]
-							trailer = infoLabels['trailer_url']
-							year = str(infoLabels['year'])
-							name = infoLabels['title'].encode('utf-8')
-							if name == 'TBA':
-								name = '[COLORred]'+name+'[/COLOR]'
-							else:
-								name = '[COLORgreen]'+name+'[/COLOR]'
+			if url == 'get_watched_history':
+				link = trakt_api.get_history('show')
 
-							thumb=infoLabels['cover_url']
-							if thumb is None:
-								thumb = ''
-							d1 = str(infoLabels['premiered'])
-							d2 = str(datetime.date.today())
-							#print today - was_aired
-							#if infoLabels['premiered'] =='':
-							if d1 >= d2 or infoLabels['premiered'] == '':
-								if name :
-									menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
+			if url == 'get_anticipated_tvshows':
+				link = trakt_api.get_anticipated_tvshows()
+			if url == 'get_shows_calendar':
+				link = trakt_api.get_calendar_shows()
+			if url == 'get_watchlist_tvshows':
+				link = trakt_api.get_watchlist_tvshows()
+			if url == 'my_recomends_tvshows':
+				link = trakt_api.get_recommended_tvshows()
+			if url == 'my_collected_tvshows':
+				link = trakt_api.get_my_collected_tvshows()
 
-									kodi.addDir('[COLOR red]S'+str(season)+'E'+str(episode)+'  '+orig_name+' / '+name+'[/COLOR]','','findsource',thumb,orig_name,5,'','shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=True,orig_ids=orig_ids)
-							else:
-								if 'null' in trailer or trailer == '':
-									menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
-									menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-									menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
-									#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
-								else:
-									utube = tools.make_trailer(trailer)
-									menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
-									menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
-									menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-									#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
-									menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
-								kodi.addDir('S'+str(season)+'E'+str(episode)+'  '+orig_name+' / '+name,'','findsource',thumb,orig_name,5,'','shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=True,orig_ids=orig_ids)
-							viewsetter.set_view('tvshows')
-				except Exception as e:
-					log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
-					if kodi.get_setting('error_notify') == "true":
-						kodi.notify(header='On Deck TV',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
-			else:
-				if url == 'get_anticipated_tvshows':
-					link = trakt_api.get_anticipated_tvshows()
-				if url == 'get_shows_calendar':
-					link = trakt_api.get_calendar_shows()
-				if url == 'get_watchlist_tvshows':
-					link = trakt_api.get_watchlist_tvshows()
-				if url == 'my_recomends_tvshows':
-					link = trakt_api.get_recommended_tvshows()
-				if url == 'my_collected_tvshows':
-					link = trakt_api.get_my_collected_tvshows()
-
-				#TV STANDARD LISTS
-				if url =='popular_tv':
-					link = trakt_api.get_popular_tvshows()
-				if url == 'trending_tv':
-					link = trakt_api.get_trending_tvshows()
-				if url == 'most_watched_tv':
-					link = trakt_api.get_most_watched_tvshows()
-				if url == 'most_played_tv':
-					link = trakt_api.get_most_played_tvshows()
-				if url == 'most_collected_tv':
-					link = trakt_api.get_most_collected_tvshows()
+			#TV STANDARD LISTS
+			if url =='popular_tv':
+				link = trakt_api.get_popular_tvshows()
+			if url == 'trending_tv':
+				link = trakt_api.get_trending_tvshows()
+			if url == 'most_watched_tv':
+				link = trakt_api.get_most_watched_tvshows()
+			if url == 'most_played_tv':
+				link = trakt_api.get_most_played_tvshows()
+			if url == 'most_collected_tv':
+				link = trakt_api.get_most_collected_tvshows()
 #Sorting Here
-				if  kodi.get_setting('sort_tv') == "2":
-					try:
-						sorted_list = sorted(link, key=lambda k: (str(k['year'])))
-					except:
-						sorted_list = sorted(link, key=lambda k: (str(k['show']["year"])))
-
-
-				elif  kodi.get_setting('sort_tv') == "1":
-					try:
-						sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
-						#sorted_list = sorted(link, key=lambda k: (str(k['title'])))
-					except:
-						#sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
-						sorted_list = sorted(link, key=lambda k: re.sub('(^the |^a )','',(str(k['show']["title"].lower()))))
-				else:
-						sorted_list = link
+			if  kodi.get_setting('sort_tv') == "2":
+				try:
+					sorted_list = sorted(link, key=lambda k: (str(k['year'])))
+				except:
+					sorted_list = sorted(link, key=lambda k: (str(k['show']["year"])))
+			elif  kodi.get_setting('sort_tv') == "1":
+				try:
+					sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
+				except:
+					sorted_list = sorted(link, key=lambda k: re.sub('(^the |^a )','',(str(k['show']["title"].lower()))))
+			else:
+					sorted_list = link
 #End Sort Order
-				for e in sorted_list:
-						#kodi.log(e)
-						#kodi.log(e['show']['ids'])
+			for e in sorted_list:
+					if url == 'get_watched_history' and e['type'] == 'movie':
+						print "THIS IS A MOVIE >>> " + e['movie']['title']
+					else:
+						# print "THIS IS A TV SHOW >>> " + e['episode']['title']
 						infoLabels={}
 						infoLabels.update(make_infoLabels(e,media=media))
 						trailer = infoLabels['trailer_url']
 						trakt_id = str(infoLabels['trakt_id'])
-
 						orig_ids1 = e
 						orig_ids=json.dumps(orig_ids1)
-
-
 						imdb = str(infoLabels['imdb_id'])
 						year = str(infoLabels['year'])
 						name = infoLabels['title'].encode('utf-8')
 						thumb=infoLabels['cover_url']
 						################
 						was_watched=watched_cache.get_watched_cache(trakt_id)
-						#print "RETURNED ITEM IS "+str(was_watched)
 						if was_watched is not None:
 							infoLabels['playcount'] = 1
 						################
@@ -415,7 +395,6 @@ def call_trakt_tv(url):
 						menu_items=[]
 						if kodi.get_setting('trakt_authorized') == 'true':
 							menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
-							#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
 							menu_items.append(('[COLOR gold]Find Similar Shows[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'similar_shows', 'name':name})))
 						menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
 						if url == 'my_collected_tvshows':
@@ -433,10 +412,10 @@ def call_trakt_tv(url):
 							menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
 						kodi.addDir(name+' ('+year+')','','find_season',thumb,name,5,trakt_id,'shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=False,orig_ids=orig_ids)
 						viewsetter.set_view('tvshows')
-	# except Exception as e:
-	# 	log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
-	# 	if kodi.get_setting('error_notify') == "true":
-	# 		kodi.notify(header='Trakt TV',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
+	except Exception as e:
+		log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
+		if kodi.get_setting('error_notify') == "true":
+			kodi.notify(header='Trakt TV',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 
 
 
@@ -471,11 +450,9 @@ def find_episode(name,trakt_id,movie_title):
 	try:
 		media ='episode'
 		season = name.replace('Season ','')
-		#print "SHOW TRAKT IS : "+trakt_id
 		link = trakt_api.get_show_episodes(trakt_id,season)
 		for e in link:
 			ep_trakt_id= e['ids']['trakt']
-			#print "Episode TRAKT ID IS  : "+str(ep_trakt_id)
 			infoLabels={}
 			infoLabels.update(make_infoLabels(e,media='episodes'))
 			episode = infoLabels['episode']
@@ -485,7 +462,6 @@ def find_episode(name,trakt_id,movie_title):
 			trailer = infoLabels['trailer_url']
 			year = str(infoLabels['year'])
 			name = infoLabels['title'].encode('utf-8')
-			#kodi.log(infoLabels)
 			thumb=infoLabels['cover_url']
 			# ################
 			was_watched=watched_cache.get_watched_cache(ep_trakt_id)
@@ -494,17 +470,12 @@ def find_episode(name,trakt_id,movie_title):
 			# ################
 			if thumb is None:
 				thumb = ''
-			#print infoLabels['premiered'][:10]
-			#if (episode['first_aired'] != None and utils2.iso_2_utc(episode['first_aired']) <= time.time()) or (include_unknown and episode['first_aired'] == None):
 			d1 = str(infoLabels['premiered'])
 			d2 = str(datetime.date.today())
-			#print today - was_aired
-			#if infoLabels['premiered'] =='':
 			if d1 >= d2 or infoLabels['premiered'] == '':
 				if name is not '':
 					menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
 					kodi.addDir('[COLOR maroon]S'+str(season)+'E'+str(episode)+'  '+name+'[/COLOR]','','findsource',thumb,movie_title,5,'','shows',meta_data=infoLabels,menu_items=menu_items,replace_menu=True)
-					#name = name+" [COLOR red]Coming Soon[/COLOR]"
 			else:
 				menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
 				if kodi.get_setting('trakt_authorized') == 'true':
@@ -516,13 +487,6 @@ def find_episode(name,trakt_id,movie_title):
 		if kodi.get_setting('error_notify') == "true":
 			kodi.notify(header='Trakt Episodes',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
 
-
-					# trakt_id = str(infoLabels['trakt_id'])
-					# ################
-					# was_watched=watched_cache.get_watched_cache(trakt_id)
-					# if was_watched is not None:
-					# 	infoLabels['playcount'] = 1
-					# ################
 
 
 
@@ -571,75 +535,43 @@ def call_trakt_movies(url):
 
 	try:
 		media = 'movies'
-		#MOVIE Auth Lists
 		if url == 'get_watched_history':
-			links = trakt_api.get_watched_history('movies')
-			traktid = links['trakt']
-			for trakt_id in traktid:
-				infoLabels =trakt_api.get_movie_details(trakt_id)
-				#infoLabels.update(make_infoLabels(links))
-				menu_items=[]
-				trakt_id = str(infoLabels['trakt_id'])
-				trailer = infoLabels['trailer_url']
-				year = str(infoLabels['year'])
-				name = infoLabels['title'].encode('utf-8')
-				thumb=infoLabels['cover_url']
-				infoLabels['playcount'] = 1
-				if thumb is None:
-					thumb = ''
-					#TODO Fix refresh of container
-				menu_items.append(('[COLOR gold]Remove from Watched History[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'del_watched_history', 'name':name, 'media':media})))
-				menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-				menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
-				if trailer:
-					utube = tools.make_trailer(trailer)
-					menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
-				kodi.addDir(name+' ('+year+')','','findsource',thumb,name,5,'','movies',meta_data=infoLabels,menu_items=menu_items,replace_menu=True)
-				viewsetter.set_view("movies")
-		else:
-
-			if url == 'get_watchlist_movies':
-				link = trakt_api.get_watchlist_movies()
-			if url == 'my_recomends':
-				link = trakt_api.get_recommended_movies()
-			if url == 'my_collected':
-				link = trakt_api.get_my_collected()
-
-			#MOVIE Standard Lists
-			if url == 'trending':
-				link = trakt_api.get_trending_movies()
-			if url =='popular':
-				link = trakt_api.get_popular_movies()
-			if url == 'most_watched':
-				link = trakt_api.get_most_watched_movies()
-			if url == 'most_played':
-				link = trakt_api.get_most_played_movies()
-			if url == 'most_collected':
-				link = trakt_api.get_most_collected_movies()
-			if url == 'box_office':
-				link = trakt_api.get_boxoffice_movies()
-
-
+			link = trakt_api.get_history('movie')
+		if url == 'get_watchlist_movies':
+			link = trakt_api.get_watchlist_movies()
+		if url == 'my_recomends':
+			link = trakt_api.get_recommended_movies()
+		if url == 'my_collected':
+			link = trakt_api.get_my_collected()
+		#MOVIE Standard Lists
+		if url == 'trending':
+			link = trakt_api.get_trending_movies()
+		if url =='popular':
+			link = trakt_api.get_popular_movies()
+		if url == 'most_watched':
+			link = trakt_api.get_most_watched_movies()
+		if url == 'most_played':
+			link = trakt_api.get_most_played_movies()
+		if url == 'most_collected':
+			link = trakt_api.get_most_collected_movies()
+		if url == 'box_office':
+			link = trakt_api.get_boxoffice_movies()
 #Sorting Here
-			if  kodi.get_setting('sort_movies') == "2":
-				try:
-					sorted_list = sorted(link, key=lambda k: (str(k['year'])))
-				except:
-					sorted_list = sorted(link, key=lambda k: (str(k['movie']["year"])))
-
-
-			elif  kodi.get_setting('sort_movies') == "1":
-				try:
-					sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
-					#sorted_list = sorted(link, key=lambda k: (str(k['title'])))
-				except:
-					#sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
-					sorted_list = sorted(link, key=lambda k: re.sub('(^the |^a )','',(str(k['movie']["title"].lower()))))
-			else:
-					sorted_list = link
+		if  kodi.get_setting('sort_movies') == "2":
+			try:
+				sorted_list = sorted(link, key=lambda k: (str(k['year'])))
+			except:
+				sorted_list = sorted(link, key=lambda k: (str(k['movie']["year"])))
+		elif  kodi.get_setting('sort_movies') == "1":
+			try:
+				sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
+			except:
+				sorted_list = sorted(link, key=lambda k: re.sub('(^the |^a )','',(str(k['movie']["title"].lower()))))
+		else:
+				sorted_list = link
 #End Sort Order
-			for e in sorted_list:
-				#kodi.log(e)
+		for e in sorted_list:
+			if url != 'get_watched_history' or e['type'] == 'movie':
 				infoLabels={}
 				infoLabels.update(make_infoLabels(e,media=media))
 				menu_items=[]
@@ -662,7 +594,6 @@ def call_trakt_movies(url):
 						menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
 						menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
 						menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
-
 				if url == 'get_watchlist_movies':
 						menu_items.append(('[COLOR gold]Remove From Watchlist[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_watchlist', 'name':name, 'media':media})))
 				else:
@@ -712,14 +643,12 @@ def pick_custom_list(media,trakt_id):
 		dialog = xbmcgui.Dialog()
 		index = dialog.select('Choose Custom List', [e['name'] for e in get_lists if 'name' in e])
 		if index >=-1:
-			#print e['name']
 			picked_item = int(index)
 			picked_list =  [e['name'] for e in get_lists if 'name' in e]
 			end_list = picked_list[picked_item]
 			print "PICKED ITEM< :"+media+trakt_id+'  '+end_list
 			add_to_custom(media,trakt_id,end_list)
 			break
-		#kodi.addDir(name_id,slug_id,'add_to_custom','','',5,trakt_id,media)
 
 
 def add_to_custom(media,trakt_id,list):
@@ -793,11 +722,7 @@ def del_watched_history(media,trakt_id,season=None):
 	if media == 'movies': media = 'movie'
 	if media == 'shows': media = 'show'
 	kodi.notify(header='Trakt Says:',msg='Your '+media+' has been removed',duration=3000,sound=None)
-	#return
 
-# def add_watched_episode(media,trakt_id,season=None):
-# 	trakt_api.set_watched_state('episode', trakt_id, watched=True, season=None)
-# 	#return
 
 
 #Start Ketboard Function
@@ -902,7 +827,6 @@ def custom_list_view_tv(trakt_id,media):
 def get_public_lists(url,trakt_id,media):
 	try:
 		username = url
-		#print "public lists"
 		link = trakt_api.get_special_list(trakt_id,media,username=username)
 #Sorting Here
 		if  kodi.get_setting('sort_tv') == "2":
@@ -910,14 +834,10 @@ def get_public_lists(url,trakt_id,media):
 				sorted_list = sorted(link, key=lambda k: (str(k['year'])))
 			except:
 				sorted_list = sorted(link, key=lambda k: (str(k['show']["year"])))
-
-
 		elif  kodi.get_setting('sort_tv') == "1":
 			try:
 				sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
-				#sorted_list = sorted(link, key=lambda k: (str(k['title'])))
 			except:
-				#sorted_list =sorted(link, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
 				sorted_list = sorted(link, key=lambda k: re.sub('(^the |^a )','',(str(k['show']["title"].lower()))))
 		else:
 				sorted_list = link
@@ -975,8 +895,6 @@ def get_public_lists(url,trakt_id,media):
 					thumb = ''
 					# TODO FIX REFRESH
 				menu_items=[]
-				#menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-				#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
 				menu_items.append(('[COLOR gold]Find Similar Shows[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'similar_shows', 'name':name})))
 				menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
 				if url == 'my_collected_tvshows':
@@ -1063,48 +981,43 @@ def trakt_search_movies(url):
 	if not url:
 		url = _get_keyboard( heading="Searching for Movies" )
 		if ( not url ): return False, 0
-	try:
-		media = 'movies'
-		title = urllib.quote_plus(url)
-		link = trakt_api.search_movies(title)
-		for e in link:
-			infoLabels={}
-			infoLabels.update(make_infoLabels(e,media=media))
-			menu_items=[]
-			trakt_id = str(infoLabels['trakt_id'])
-			################
-			was_watched=watched_cache.get_watched_cache(trakt_id)
-			if was_watched is not None:
-				infoLabels['playcount'] = 1
-			################
-			trailer = infoLabels['trailer_url']
-			year = str(infoLabels['year'])
-			name = infoLabels['title'].encode('utf-8')
-			thumb=infoLabels['cover_url']
-			if thumb is None:
-				thumb = ''
-			if url == 'my_collected':
-				menu_items.append(('[COLOR gold]Remove From Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_collection', 'name':name, 'media':media})))
-			else:
-				menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
-			menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
-			if url == 'get_watchlist_movies':
-					menu_items.append(('[COLOR gold]Remove From Watchlist[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_watchlist', 'name':name, 'media':media})))
-			else:
-					menu_items.append(('[COLOR gold]Add to Watchlist[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watchlist', 'name':name, 'media':media})))
-			menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
-			menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
-			if trailer:
-				utube = tools.make_trailer(trailer)
-				menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
+	media = 'movies'
+	title = urllib.quote_plus(url)
+	link = trakt_api.search_movies(title)
+	for e in link:
+		infoLabels={}
+		infoLabels.update(make_infoLabels(e,media=media))
+		menu_items=[]
+		trakt_id = str(infoLabels['trakt_id'])
+		################
+		was_watched=watched_cache.get_watched_cache(trakt_id)
+		if was_watched is not None:
+			infoLabels['playcount'] = 1
+		################
+		trailer = infoLabels['trailer_url']
+		year = str(infoLabels['year'])
+		name = infoLabels['title'].encode('utf-8')
+		thumb=infoLabels['cover_url']
+		if thumb is None:
+			thumb = ''
+		if url == 'my_collected':
+			menu_items.append(('[COLOR gold]Remove From Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_collection', 'name':name, 'media':media})))
+		else:
+			menu_items.append(('[COLOR gold]Add to Collection[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_collection', 'name':name, 'media':media})))
+		menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
+		if url == 'get_watchlist_movies':
+				menu_items.append(('[COLOR gold]Remove From Watchlist[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'remove_watchlist', 'name':name, 'media':media})))
+		else:
+				menu_items.append(('[COLOR gold]Add to Watchlist[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watchlist', 'name':name, 'media':media})))
+		menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
+		menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
+		if trailer:
+			utube = tools.make_trailer(trailer)
+			menu_items.append(('[COLOR gold]Play Trailer[/COLOR]', 'PlayMedia('+utube+',xbmcgui.ListItem(title, iconImage=image, thumbnailImage=image))'))
 
 
-			kodi.addDir(name+' ('+year+')','','findsource',thumb,name,5,'','movies',meta_data=infoLabels,menu_items=menu_items,replace_menu=False)
-			viewsetter.set_view("movies")
-	except Exception as e:
-		log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
-		if kodi.get_setting('error_notify') == "true":
-			kodi.notify(header='Movies Search',msg='(error) %s  %s' % (str(e), ''),duration=5000,sound=None)
+		kodi.addDir(name+' ('+year+')','','findsource',thumb,name,5,'','movies',meta_data=infoLabels,menu_items=menu_items,replace_menu=False)
+		viewsetter.set_view("movies")
 
 
 def trakt_search_shows(url):
@@ -1182,7 +1095,6 @@ def fancy_list(url):
 				menu_items=[]
 				if kodi.get_setting('trakt_authorized') == 'true':
 					menu_items.append(('[COLOR gold]Add to Custom List[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'pick_custom_list', 'name':name, 'media':media})))
-					#menu_items.append(('[COLOR gold]Mark as Watched[/COLOR]',      'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'add_watched_history', 'name':name, 'media':media})))
 					menu_items.append(('[COLOR gold]Find Similar Shows[/COLOR]', 'RunPlugin(%s)' % addon.build_plugin_url({'trakt_id':trakt_id, 'mode':'similar_shows', 'name':name})))
 				menu_items.append(('[COLOR gold]Show Information[/COLOR]', 'XBMC.Action(Info)'))
 				if url == 'my_collected_tvshows':
@@ -1210,7 +1122,6 @@ def fancy_list(url):
 
 #################
 def make_infoLabels(item,media=None, show=None, people=None, orig_ids=None):
-	#kodi.log("ORIGINAL IDS ARE : "+str(orig_ids))
 	try:
 			item = item['movie']
 	except:
@@ -1246,7 +1157,6 @@ def make_infoLabels(item,media=None, show=None, people=None, orig_ids=None):
 	if 'episode' in item: infoLabels['episode'] = item['episode']  # needs check
 	if 'number' in item: infoLabels['episode'] = item['number']  # needs check
 	infoLabels.update(make_ids(item))
-	#infoLabels.update(make_art(item))
 	if media == 'movies':
 		infoLabels.update(make_art(item))
 	if media == 'shows':
@@ -1287,16 +1197,6 @@ def make_ids(item):
 	return infoLabels
 
 
-#OLD IMAGE GET
-# def make_art(item):
-# 	infoLabels= {}
-# 	infoLabels['thumb_url'] = meta_map(['images', 'thumb', 'full'], item)
-# 	infoLabels['cover_url'] = meta_map(['images', 'poster', 'full'], item)
-# 	infoLabels['backdrop_url'] = meta_map(['images', 'fanart', 'full'], item)
-# 	if 'screenshot' in item:
-# 		infoLabels['cover_url'] = meta_map(['images','screenshot','full'], item)
-# 	return infoLabels
-
 ##NEW IMAGE GET
 def make_art(item):
 	try:
@@ -1306,7 +1206,6 @@ def make_art(item):
 			log_utils.log('Error [%s]  %s' % (str(e), ''), xbmc.LOGERROR)
 			if kodi.get_setting('error_notify') == "true":
 				kodi.notify(header='Image Scraping', msg='(error) %s  %s' % (str(e), ''), duration=5000, sound=None)
-		#kodi.log(art)
 		infoLabels= {}
 		infoLabels['thumb_url'] = art['thumb']
 		infoLabels['cover_url'] = art['poster']
@@ -1317,8 +1216,6 @@ def make_art(item):
 	return infoLabels
 
 def make_show_art(item):
-	# kodi.log("SHOW ART")
-	# kodi.log(item['ids'])
 	try:
 		art = image_scraper.get_images('shows', item['ids'])
 		#kodi.log(art)
@@ -1333,22 +1230,16 @@ def make_show_art(item):
 
 
 def make_show_seasons_art(item):
-	#kodi.log("SEASON ART")
 	newIds = json.loads(item)
 	try:
 		end_ids = newIds['ids']
 	except:
 		end_ids = newIds['show']['ids']
-	#try:
 	art = image_scraper.get_images('seasons', end_ids)
-	#kodi.log(art)
 	infoLabels = {}
 	infoLabels['thumb_url'] = art['thumb']
 	infoLabels['cover_url'] = art['poster']
 	infoLabels['backdrop_url'] = art['fanart']
-	# except:
-	# 	infoLabels = {}
-	#kodi.log(infoLabels)
 	return infoLabels
 
 def make_show_episodes_art(item):
@@ -1555,9 +1446,6 @@ if kodi.get_setting('debug') == "true":
 if mode==None :
 		menu()
 
-# elif mode=='menu':
-# 		menu(url)
-
 elif mode=='de_auth':
 		de_auth()
 		xbmc.executebuiltin("XBMC.Container.Refresh")
@@ -1570,6 +1458,9 @@ elif mode=='call_trakt_tv':
 
 elif mode=='movie_menu':
 		movie_menu()
+
+elif mode=='do_settings':
+		do_settings()
 
 elif mode=='tv_menu':
 		tv_menu()
@@ -1591,9 +1482,6 @@ elif mode=='remove_collection':
 
 elif mode=='add_watched_history':
 		add_watched_history(media,trakt_id)
-
-# elif mode=='add_watched_episode':
-# 		add_watched_episode(media,trakt_id)
 
 elif mode=='del_watched_history':
 		del_watched_history(media,trakt_id)
@@ -1626,6 +1514,8 @@ elif mode=='get_tv_link':
 
 elif mode=='findsource':
 		main_scrape.find_source(name,thumb,media,movie_title)
+		# getsources = main_scrape.Get_Sources()
+		# getsources.find_source(name,thumb,media,movie_title)
 
 elif mode=='find_episode':
 		find_episode(name,trakt_id,movie_title)
@@ -1716,7 +1606,6 @@ elif mode=='add_to_queue':
 
 elif mode=='viewQueue':
 		dl_control.viewQueue()
-
 
 elif mode=='removeFromQueue':
 		dl_control.removeFromQueue(name,url,thumb,ext,media)

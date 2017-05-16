@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.airup" name="Airup Repository" version="1.0" provider-name="Airup">
+	<extension point="xbmc.addon.repository" name="Airup Repository">
+		<info compressed="false">https://airup.online/files/addons.xml</info>
+		<checksum>https://airup.online/files/addons.xml.md5</checksum>
+		<datadir zip="true">https://airup.online/files/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+		<description>Airup repository to install add-ons and our Kodi builds.</description>
+                <disclaimer lang="en">Visit us online @ https://airup.online</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+

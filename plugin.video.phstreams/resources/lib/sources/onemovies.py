@@ -63,55 +63,45 @@ class source:
         self.token_link = '/ajax/movie_token?eid=%s&mid=%s'
         self.sourcelink = '/ajax/movie_sources/%s?x=%s&y=%s'
 
-    def getOriginalTitle(self, imdb):
+    def matchAlias(self, title, aliases):
         try:
-            tmdb_link = base64.b64decode(
-                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
-            t = client.request(tmdb_link % imdb, timeout='10')
-            try: title = json.loads(t)['movie_results'][0]['original_title']
-            except: pass
-            try: title = json.loads(t)['tv_results'][0]['original_name']
-            except: pass
-            title = cleantitle.normalize(title)
-            return title
+            for alias in aliases:
+                if cleantitle.get(title) == cleantitle.get(alias['title']):
+                    return True
         except:
-            return
+            return False
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            r = self.searchMovie(title)
-
-            if r == None:
-                t = cache.get(self.getOriginalTitle, 900, imdb)
-                if t != title:
-                    r = self.searchMovie(t)
-
-            return urllib.urlencode({'url': r, 'episode': 0})
-        except:
-            return
-
-    def searchMovie(self, title):
-        try:
-            title = cleantitle.normalize(title)
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': title})
-            r = client.request(u, post=p, XHR=True)
-            r = json.loads(r)['content']
-            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
-            if r:
-                return r
-        except:
-            return
-
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
-        try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'localtvshowtitle': localtvshowtitle}
+            aliases.append({'country': 'us', 'title': title})
+            url = {'imdb': imdb, 'title': title, 'year': year, 'aliases': aliases}
             url = urllib.urlencode(url)
             return url
         except:
             return
 
-    def searchShow(self, title, season):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
+        try:
+            aliases.append({'country': 'us', 'title': tvshowtitle})
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'aliases': aliases}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            if url == None: return
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+    def searchShow(self, title, season, aliases, headers):
         try:
             title = cleantitle.normalize(title)
             u = urlparse.urljoin(self.base_link, self.search_link)
@@ -119,42 +109,23 @@ class source:
             r = client.request(u, post=p, XHR=True)
             r = json.loads(r)['content']
             r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
-            if r:
-                return r
+            r = [(i[0], i[1], re.findall('(.*?)\s+-\s+Season\s+(\d)', i[1])) for i in r]
+            r = [(i[0], i[1], i[2][0]) for i in r if len(i[2]) > 0]
+            url = [i[0] for i in r if self.matchAlias(i[2][0], aliases) and i[2][1] == season][0]
+            return url
         except:
             return
 
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+    def searchMovie(self, title, year, aliases, headers):
         try:
-            data = urlparse.parse_qs(url)
-            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-            season = '%01d' % int(season)
-            episode = '%01d' % int(episode)
-
-            if 'tvshowtitle' in data:
-                r = self.searchShow(data['tvshowtitle'], season)
-
-            if r == None:
-                t = cache.get(self.getOriginalTitle, 900, imdb)
-                if t != data['tvshowtitle']:
-                    r = self.searchShow(t, season)
-
-            return urllib.urlencode({'url': r, 'episode': episode})
-        except:
-            return
-
-    def onemovies_info(self, url):
-        try:
-            u = urlparse.urljoin(self.base_link, self.info_link)
-            u = client.request(u % url)
-
-            q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
-
-            y = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})
-            y = [i.strip() for i in y if i.strip().isdigit() and len(i.strip()) == 4][0]
-
-            return (y, q)
+            title = cleantitle.normalize(title)
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': title})
+            r = client.request(u, post=p, XHR=True)
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
+            url = [i[0] for i in r if self.matchAlias(i[1], aliases)][0]
+            return url
         except:
             return
 
@@ -166,11 +137,15 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = data['url']
-            episode = int(data['episode'])
+            aliases = eval(data['aliases'])
+            headers = {}
 
-            url = urlparse.urljoin(self.base_link, url)
-            url = url.replace('/watching.html', '')
+            if 'tvshowtitle' in data:
+                episode = int(data['episode'])
+                url = self.searchShow(data['tvshowtitle'], data['season'], aliases, headers)
+            else:
+                episode = 0
+                url = self.searchMovie(data['title'], data['year'], aliases, headers)
 
             mid = re.findall('-(\d+)', url)[-1]
 

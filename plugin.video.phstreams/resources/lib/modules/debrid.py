@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,23 +16,31 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
+from resources.lib.modules import log_utils
 
-def debridDict():
-    return {
-    'realdebrid': [],
-    'premiumize': [],
-    'alldebrid': [],
-    'rpnet': []
-    }
+try:
+    import urlresolver
+
+    debrid_resolvers = [resolver() for resolver in urlresolver.relevant_resolvers(order_matters=True) if resolver.isUniversal()]
+except:
+    debrid_resolvers = []
 
 
 def status():
-    return False
+    return debrid_resolvers != []
 
 
 def resolver(url, debrid):
-    return
+    try:
+        debrid_resolver = [resolver for resolver in debrid_resolvers if resolver.name == debrid][0]
 
+        debrid_resolver.login()
+        _host, _media_id = debrid_resolver.get_host_and_id(url)
+        stream_url = debrid_resolver.get_media_url(_host, _media_id)
 
+        return stream_url
+    except Exception as e:
+        log_utils.log('%s Resolve Failure: %s' % (debrid, e), log_utils.LOGWARNING)
+        return None

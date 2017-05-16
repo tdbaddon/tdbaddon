@@ -1,3 +1,7 @@
+[b]1.5.4[/b]
+- server fix
+[b]1.5.3[/b]
+- bug with liverwsolver fixed
 [b]1.5.2[/b]
 - Filmon section added with optional channel listings(needs to be enabled in settings). Code cleanup, favourites fix, TV Guide coming soon
 [b]1.5.1[/b]

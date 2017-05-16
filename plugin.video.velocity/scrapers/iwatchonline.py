@@ -134,7 +134,7 @@ class Scraper(scrapeit.Scraper):
                 results.append(result)
         return results
 
-    def _get_episode_url(self, show_url, video, sea, epi):
-        episode_pattern = 'href="([^"]+-s%02de%02d)"' % (int(sea), int(epi))
+    def _get_episode_url(self, show_url, video):
+        episode_pattern = 'href="([^"]+-s%02de%02d)"' % (int(video.season), int(video.episode))
         title_pattern = 'href="(?P<url>[^"]+)"><i class="icon-play-circle">.*?<td>(?P<title>[^<]+)</td>'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)

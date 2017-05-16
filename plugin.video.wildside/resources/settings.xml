@@ -1,0 +1,6 @@
+<settings>
+<category label="Parental Lock">
+	 <setting id="xxx" type="bool" label="Enable Parental Lock" default="true"/>
+	 <setting id="Pin" type="text" option="writeable,hidden" label="Pin: " default="1234" enable="!eq(-1,false)"/>
+</category>
+</settings>

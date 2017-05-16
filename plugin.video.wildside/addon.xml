@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.wildside" name="[COLOR purple][B]The Wildside[/B][/COLOR]" version="1.5" provider-name="sClarke">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.urlresolver" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">https://airup.online</summary>
+    <description lang="en">[COLOR purple]Upgrade to Jinx Tv for better quality and support - https://airup.online[/COLOR]</description>
+	<disclaimer lang="en">[COLOR purple][B]The Wildside[/B][/COLOR]</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>

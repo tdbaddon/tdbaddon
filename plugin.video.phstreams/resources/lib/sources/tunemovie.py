@@ -35,7 +35,7 @@ class source:
         self.search_link = '/search/%s.html'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             query = urlparse.urljoin(self.base_link, self.search_link)
             query = query % urllib.quote_plus(title)
@@ -54,7 +54,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)

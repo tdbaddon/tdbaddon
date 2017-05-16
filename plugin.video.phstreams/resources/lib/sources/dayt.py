@@ -34,7 +34,7 @@ class source:
         self.watch_link = '/watch/%s'
         self.watch_series_link = '/watch/%s/s%s/e%s'
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -42,7 +42,7 @@ class source:
         except:
             return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'title': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)

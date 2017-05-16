@@ -28,56 +28,50 @@ from resources.lib.modules import cleantitle
 class source:
     def __init__(self):
         self.priority = 1
-        self.language = ['en', 'de']
+        self.language = ['en', 'de', 'fr', 'ko', 'pl', 'pt']
         self.domains = []
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
-            return url
+            return urllib.urlencode({'imdb': imdb, 'title': title, 'localtitle': localtitle,'year': year})
         except:
             return
 
-
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
-            return url
+            return urllib.urlencode({'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year})
         except:
             return
-
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
+            if url is None:
+                return
 
             url = urlparse.parse_qs(url)
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urllib.urlencode(url)
-            return url
+            url.update({'premiered': premiered, 'season': season, 'episode': episode})
+            return urllib.urlencode(url)
         except:
             return
 
-
     def sources(self, url, hostDict, hostprDict):
-        try:
-            sources = []
+        sources = []
 
-            if url == None: return sources
+        try:
+            if url is None:
+                return sources
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            type = 'episode' if 'tvshowtitle' in data else 'movie'
+            content_type = 'episode' if 'tvshowtitle' in data else 'movie'
 
             years = (data['year'], str(int(data['year'])+1), str(int(data['year'])-1))
 
-
-            if type == 'movie':
+            if content_type == 'movie':
                 title = cleantitle.get(data['title'])
+                localtitle = cleantitle.get(data['localtitle'])
                 ids = [data['imdb']]
 
                 r = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"filter":{"or": [{"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}]}, "properties": ["imdbnumber", "title", "originaltitle", "file"]}, "id": 1}' % years)
@@ -90,10 +84,9 @@ class source:
                 r = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"properties": ["streamdetails", "file"], "movieid": %s }, "id": 1}' % str(r['movieid']))
                 r = unicode(r, 'utf-8', errors='ignore')
                 r = json.loads(r)['result']['moviedetails']
-
-
-            elif type == 'episode':
+            elif content_type == 'episode':
                 title = cleantitle.get(data['tvshowtitle'])
+                localtitle = cleantitle.get(data['localtvshowtitle'])
                 season, episode = data['season'], data['episode']
                 ids = [data['imdb'], data['tvdb']]
 
@@ -101,7 +94,7 @@ class source:
                 r = unicode(r, 'utf-8', errors='ignore')
                 r = json.loads(r)['result']['tvshows']
 
-                r = [i for i in r if str(i['imdbnumber']) in ids or title == cleantitle.get(i['title'].encode('utf-8'))][0]
+                r = [i for i in r if str(i['imdbnumber']) in ids or title in [cleantitle.get(i['title'].encode('utf-8')), cleantitle.get(i['originaltitle'].encode('utf-8'))]][0]
 
                 r = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"filter":{"and": [{"field": "season", "operator": "is", "value": "%s"}, {"field": "episode", "operator": "is", "value": "%s"}]}, "properties": ["file"], "tvshowid": %s }, "id": 1}' % (str(season), str(episode), str(r['tvshowid'])))
                 r = unicode(r, 'utf-8', errors='ignore')
@@ -113,15 +106,16 @@ class source:
                 r = unicode(r, 'utf-8', errors='ignore')
                 r = json.loads(r)['result']['episodedetails']
 
-
             url = r['file'].encode('utf-8')
 
             try: quality = int(r['streamdetails']['video'][0]['width'])
             except: quality = -1
-            if quality >= 1920: quality = '1080p'
-            elif 1280 <= quality < 1920: quality = 'HD'
-            elif 0 <= quality < 1280: quality = 'SD'
-            else: quality = '0'
+
+            if quality >= 2160: quality = '4K'
+            if quality >= 1440: quality = '1440p'
+            if quality >= 1080: quality = '1080p'
+            if 720 <= quality < 1080: quality = 'HD'
+            if quality < 720: quality = 'SD'
 
             info = []
             try:
@@ -131,7 +125,7 @@ class source:
             except:
                 pass
             try:
-                e = (urlparse.urlparse(url).path).split('.')[-1].upper()
+                e = urlparse.urlparse(url).path.split('.')[-1].upper()
                 info.append(e)
             except:
                 pass
@@ -143,7 +137,6 @@ class source:
             return sources
         except:
             return sources
-
 
     def resolve(self, url):
         return url

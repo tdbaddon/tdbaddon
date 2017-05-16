@@ -1,5 +1,13 @@
 Official Velocity addon For Kodi
 
+V1.1.2
+Improved Sourcing methods
+Removed Ability to Download
+Bug Fixes
+Added Screenshots to Info Pane
+Added News to Info Pane
+Added New Providers
+
 V1.1.1
 Bug fix in Providers
 

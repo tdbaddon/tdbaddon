@@ -61,7 +61,7 @@ class Scraper(scrapeit.Scraper):
     def get_name(cls):
         return 'RealMovies'
 
-    def get_sources(self, video):
+    def get_sources(self, video, video_type):
         source_url = self.get_url(video)
         sources = []
         if source_url and source_url != FORCE_NO_MATCH:

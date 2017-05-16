@@ -81,8 +81,8 @@ class Scraper(scrapeit.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        force_title = scraper_utils.force_title(video)
-        if not force_title and self.__match_episode(show_url, video):
+        #force_title = scraper_utils.force_title(video)
+        if self.__match_episode(show_url, video):
             return scraper_utils.pathify_url(show_url)
 
     def __match_episode(self, show_url, video):

@@ -1,2 +1,2 @@
-[B]3.3.1[/B]
-Scraper Updates - F4M tweak
+[B]3.3.2[/B]
+Module updates - scraper changes - debrid fixes
