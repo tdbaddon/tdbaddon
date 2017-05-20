@@ -26,6 +26,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'http://tvshows-hdtv.org'
 EP_PAGE = '/_new.episodes.%s.html'
 
@@ -87,7 +89,7 @@ class Scraper(scraper.Scraper):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             url = '/search?' + urllib.urlencode({'title': video.title, 'season': video.season, 'episode': video.episode, 'air_date': video.ep_airdate})
             self.db_connection().set_related_url(video.video_type, video.title, video.year, self.get_name(), url, video.season, video.episode)

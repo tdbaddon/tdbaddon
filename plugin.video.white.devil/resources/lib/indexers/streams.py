@@ -16,7 +16,7 @@ class indexer:
 
     def root(self):
         try:
-            url = 'http://brettusbuilds.com/.WHITE%20DEVIL/MAIN%20INDEX.XML'
+            url = 'http://brettusbuilds.com/.WHITE%20DEVIL/WDS%20SECTION/INDEX.XML'
             self.list = self.streams_list(url)
             self.addDirectory(self.list)
             return self.list

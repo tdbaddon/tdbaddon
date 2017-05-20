@@ -26,9 +26,10 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 
 QUALITY_MAP = {'HD': QUALITIES.HD720, 'HDTV': QUALITIES.HIGH, 'DVD': QUALITIES.HIGH, '3D': QUALITIES.HIGH, 'CAM': QUALITIES.LOW}
-BASE_URL = 'http://www.iwatchonline.cr'
+BASE_URL = 'https://www.iwatchonline.cr'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -47,7 +48,7 @@ class Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         url = scraper_utils.urljoin(self.base_url, link)
-        html = self._http_get(url, allow_redirect=False, cache_limit=.5)
+        html = self._http_get(url, allow_redirect=False, cache_limit=0)
         if html.startswith('http'):
             return html
         else:
@@ -62,28 +63,34 @@ class Scraper(scraper.Scraper):
         url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(url, cache_limit=.5)
 
-        fragment = dom_parser2.parse_dom(html, 'table', {'id': 'streamlinks'})
-        if not fragment: return hosters
-        
         max_age = 0
         now = min_age = int(time.time())
-        for _attrs, row in dom_parser2.parse_dom(fragment[0].content, 'tr', {'id': re.compile('pt\d+')}):
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
-            else:
-                pattern = 'href="([^"]+).*?/>([^<]+).*?(<span class="linkdate">.*?)</td>\s*<td>(.*?)</td>'
-            match = re.search(pattern, row, re.DOTALL)
-            if not match: continue
-            
-            url, host, age, quality = match.groups()
-            age = self.__get_age(now, age)
-            quality = quality.upper()
-            if age > max_age: max_age = age
-            if age < min_age: min_age = age
-            host = host.strip()
-            hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
-            hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
-            hosters.append(hoster)
+        for _attrs, row in dom_parser2.parse_dom(html, 'tr', {'id': re.compile('pt\d+')}):
+            stream_url = dom_parser2.parse_dom(row, 'a', {'class': 'spf-link'}, req='href')
+            host = dom_parser2.parse_dom(row, 'img', {'alt': ''}, req='src')
+            data = dom_parser2.parse_dom(row, 'td')
+            if stream_url and host:
+                stream_url = stream_url[0].attrs['href']
+                match = re.search('.*/(.*?)\.gif', host[0].attrs['src'])
+                host = match.group(1) if match else ''
+                
+                age = dom_parser2.parse_dom(row, 'span', {'class': 'linkdate'})
+                try: age = age[0].content
+                except:
+                    try: age = data[2].content
+                    except: age = 0
+                    
+                try: quality = data[3].content
+                except: quality = 'HDTV'
+                
+                age = self.__get_age(now, age)
+                if age > max_age: max_age = age
+                if age < min_age: min_age = age
+                
+                hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(stream_url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
+                quality = QUALITY_MAP.get(quality.upper(), QUALITIES.HIGH)
+                hoster['quality'] = scraper_utils.get_quality(video, host, quality)
+                hosters.append(hoster)
 
         unit = (max_age - min_age) / 100
         if unit > 0:
@@ -124,21 +131,24 @@ class Scraper(scraper.Scraper):
         search_in = 'm' if video_type == VIDEO_TYPES.MOVIE else 't'
         search_url = scraper_utils.urljoin(self.base_url, '/search')
         html = self._http_get(search_url, data={'searchquery': title, 'searchin': search_in}, cache_limit=8)
-        try:
-            fragment = dom_parser2.parse_dom(html, 'div', {'class': 'search-page'})
-            fragment = dom_parser2.parse_dom(fragment[0].content, 'table')
-            for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
-                match_url = attrs['href']
-                match_title, match_year = scraper_utils.extra_year(match_title_year)
-                if not year or not match_year or year == match_year:
-                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                    results.append(result)
-        except:
-            pass
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'search-page'})
+        if not fragment: return results
+        fragment = dom_parser2.parse_dom(fragment[0].content, 'table')
+        if not fragment: return results
+        for attrs, match_title_year in dom_parser2.parse_dom(fragment[0].content, 'a', req='href'):
+            match_url = attrs['href']
+            match_title, match_year = scraper_utils.extra_year(match_title_year)
+            if not year or not match_year or year == match_year:
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
         
         return results
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="([^"]+-s%02de%02d)"' % (int(video.season), int(video.episode))
-        title_pattern = 'href="(?P<url>[^"]+)"><i class="icon-play-circle">.*?<td>(?P<title>[^<]+)</td>'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        episode_pattern = 'href="([^"]+-s0*%se0*%s(?!\d))"' % (video.season, video.episode)
+        title_pattern = 'class="spf-link"[^>]+href="(?P<url>[^"]+).*?<td>(?P<title>.*?)</td>'
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        episodes = dom_parser2.parse_dom(html, 'tr', {'class': 'unwatched'})
+        fragment = '\n'.join(ep.content for ep in episodes)
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)

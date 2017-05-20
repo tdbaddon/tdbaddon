@@ -56,7 +56,7 @@ class Scraper(scraper.Scraper):
         page_url = scraper_utils.urljoin(self.base_url, source_url)
         html = self._http_get(page_url, cache_limit=.5)
         if video.video_type == VIDEO_TYPES.EPISODE:
-            gk_html = ''.join(match.group(0) for match in re.finditer('<a[^>]*>%s</a>' % (video.episode), html))
+            gk_html = ''.join(match.group(0) for match in re.finditer('<a[^>]*>(%s|Server \d+)</a>' % (video.episode), html, re.I))
         else:
             gk_html = html
         link_url = scraper_utils.urljoin(self.base_url, LINK_URL)
@@ -98,9 +98,11 @@ class Scraper(scraper.Scraper):
         return sources
         
     def _get_episode_url(self, season_url, video):
+        episode_pattern = 'href="([^"]+)[^>]*>\s*%s\s*<' % (video.episode)
         season_url = scraper_utils.urljoin(self.base_url, season_url)
-        episode_pattern = 'href="([^"]+)[^>]*title="Watch\s+Episode\s+\d+[^>]*>%s<' % (video.episode)
-        return self._default_get_episode_url(season_url, video, episode_pattern)
+        html = self._http_get(season_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'episode_show'})
+        return self._default_get_episode_url(fragment, video, episode_pattern)
     
     def search(self, video_type, title, year, season=''):
         results = []

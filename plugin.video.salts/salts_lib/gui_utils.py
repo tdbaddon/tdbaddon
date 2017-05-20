@@ -24,7 +24,7 @@ import log_utils
 from utils2 import reset_base_url, i18n
 
 INTERVALS = 5
-COMPONENT = __name__
+logger = log_utils.Logger.get_logger()
 
 def perform_auto_conf(responses):
     with kodi.WorkingDialog():
@@ -96,7 +96,7 @@ def do_ip_auth(scraper, visit_url, qr_code):
     
     class IpAuthDialog(xbmcgui.WindowXMLDialog):
         def onInit(self):
-            # log_utils.log('onInit:', log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onInit:', log_utils.LOGDEBUG)
             self.cancel = False
             self.getControl(INSTR_LABEL).setLabel(i18n('ip_auth_line1') + visit_url + i18n('ip_auth_line2'))
             self.progress = self.getControl(PROGRESS_CTRL)
@@ -106,21 +106,21 @@ def do_ip_auth(scraper, visit_url, qr_code):
                 img.setImage(qr_code)
             
         def onAction(self, action):
-            # log_utils.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG)
             if action == ACTION_PREVIOUS_MENU or action == ACTION_BACK:
                 self.cancel = True
                 self.close()
 
         def onControl(self, control):
-            # log_utils.log('onControl: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onControl: %s' % (control), log_utils.LOGDEBUG)
             pass
 
         def onFocus(self, control):
-            # log_utils.log('onFocus: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onFocus: %s' % (control), log_utils.LOGDEBUG)
             pass
 
         def onClick(self, control):
-            # log_utils.log('onClick: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onClick: %s' % (control), log_utils.LOGDEBUG)
             if control == CANCEL_BUTTON:
                 self.cancel = True
                 self.close()
@@ -156,7 +156,7 @@ def do_auto_config():
 
     class AutoConfDialog(xbmcgui.WindowXMLDialog):
         def onInit(self):
-            log_utils.log('onInit:', log_utils.LOGDEBUG, COMPONENT)
+            logger.log('onInit:', log_utils.LOGDEBUG)
             self.OK = False
             
             try: responses = json.loads(kodi.get_setting('prev_responses'))
@@ -168,20 +168,20 @@ def do_auto_config():
                 self.getControl(button).setSelected(response)
             
         def onAction(self, action):
-            # log_utils.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG)
             if action == ACTION_PREVIOUS_MENU or action == ACTION_BACK:
                 self.close()
 
         def onControl(self, control):
-            # log_utils.log('onControl: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onControl: %s' % (control), log_utils.LOGDEBUG)
             pass
 
         def onFocus(self, control):
-            # log_utils.log('onFocus: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onFocus: %s' % (control), log_utils.LOGDEBUG)
             pass
 
         def onClick(self, control):
-            # log_utils.log('onClick: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('onClick: %s' % (control), log_utils.LOGDEBUG)
             focus_button = self.getControl(control)
             if focus_button.getId() == RADIO_BUTTONS[-1]:
                 all_status = focus_button.isSelected()

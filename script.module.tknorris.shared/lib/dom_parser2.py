@@ -19,6 +19,9 @@ import re
 import log_utils
 from collections import namedtuple
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 DomMatch = namedtuple('DOMMatch', ['attrs', 'content'])
 re_type = type(re.compile(''))
 
@@ -105,29 +108,29 @@ def __get_attribs(element):
 def parse_dom(html, name='', attrs=None, req=False):
     if attrs is None: attrs = {}
     name = name.strip()
-    # log_utils.log('parse_dom: Name: |%s| Attrs: |%s| Ret: |%s| - HTML: %s' % (name, attrs, req, type(html)), log_utils.LOGDEBUG)
+    # logger.log('parse_dom: Name: |%s| Attrs: |%s| Ret: |%s| - HTML: %s' % (name, attrs, req, type(html)), log_utils.LOGDEBUG)
     if isinstance(html, unicode) or isinstance(html, DomMatch):
         html = [html]
     elif isinstance(html, str):
         try:
             html = [html.decode("utf-8")]  # Replace with chardet thingy
         except:
-            log_utils.log("HTML Decode Failed. Data length: %d" % len(html), log_utils.LOGWARNING)
+            logger.log("HTML Decode Failed. Data length: %d" % len(html), log_utils.LOGWARNING)
             try:
                 html = [html.decode("utf-8", "replace")]
             except:
-                log_utils.log("HTML Decode Failed (Replace). Data length: %d" % len(html), log_utils.LOGWARNING)
+                logger.log("HTML Decode Failed (Replace). Data length: %d" % len(html), log_utils.LOGWARNING)
                 html = [html]
     elif not isinstance(html, list):
-        log_utils.log("Input isn't list or string/unicode.", log_utils.LOGWARNING)
+        logger.log("Input isn't list or string/unicode.", log_utils.LOGWARNING)
         return ''
 
     if not name:
-        log_utils.log("Missing tag name", log_utils.LOGWARNING)
+        logger.log("Missing tag name", log_utils.LOGWARNING)
         return ''
     
     if not isinstance(attrs, dict):
-        log_utils.log("Attrs must be dictionary", log_utils.LOGWARNING)
+        logger.log("Attrs must be dictionary", log_utils.LOGWARNING)
         return ''
 
     if req:
@@ -149,5 +152,5 @@ def parse_dom(html, name='', attrs=None, req=False):
             item = item[item.find(temp, item.find(element)):]
         all_results += results
 
-    # log_utils.log("Done: %s" + (all_results), xbmc.LOGDEBUG)
+    # logger.log("Done: %s" + (all_results), xbmc.LOGDEBUG)
     return all_results

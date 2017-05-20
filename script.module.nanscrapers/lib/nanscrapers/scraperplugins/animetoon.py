@@ -26,16 +26,16 @@ class Animetoon(Scraper):
             #     url = self.base_link + title.replace(' ', '-').replace('!',
             #                                                            '') + '-season-' + season + '-episode-' + episode
             cleaned_title = clean_title(title)
-            q = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '+').replace('++', '+').lower()
+            q = title.translate(None, '\/:*?"\'<>|!,').replace(' ', '+').replace('++', '+').lower()
             query = urlparse.urljoin(self.base_link, self.search_link % q)
             html = BeautifulSoup(requests.get(query, timeout=30).content)
-            series_list = html.find('div', attrs={'class':'series_list'})
+            series_list = html.find('div', attrs={'class': 'series_list'})
             for header in series_list.findAll("h3"):
                 link = header.find('a')
                 href = link["href"]
                 link_title = link.text
                 cleaned_link_title = clean_title(link_title)
-                if (str(season) in ['1', '01'] and cleaned_link_title == cleaned_title) or ("season %s" % season in link_title and cleaned_link_title in link_title):
+                if (str(season) in ['1', '01'] and cleaned_link_title == cleaned_title) or ("season %s" % season in link_title and cleaned_link_title in link_title) or cleaned_link_title == cleaned_title:
                     pages = [href]
                     html2 = BeautifulSoup(requests.get(href).text)
                     pagination = html2.find('ul', attrs={'class': 'pagination'})
@@ -53,6 +53,10 @@ class Animetoon(Scraper):
                             html2 = BeautifulSoup(requests.get(page).text)
                         videos = html2.find('div', attrs={'id':'videos'})
                         for video in videos.findAll('a'):
+                            if "season" in video.text.lower():
+                                if not "season " + season in video.text.lower() or\
+                                   "season 0" + season in video.text.lower():
+                                    continue
                             if "episode " + str(episode) in video.text.lower():
                                 if " %s " % episode in video.text or video.text.lower().endswith('episode %s' % episode):
                                     url = video["href"]
@@ -67,6 +71,7 @@ class Animetoon(Scraper):
                         first_page = False
                         if found:
                             break
+
             return self.sources
         except:
             pass

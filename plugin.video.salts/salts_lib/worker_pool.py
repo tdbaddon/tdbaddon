@@ -19,8 +19,10 @@ import Queue
 import threading
 import log_utils
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 Empty = Queue.Empty
-COMPONENT = __name__
 
 class WorkerPool(object):
     def __init__(self, max_workers=None):
@@ -57,7 +59,7 @@ class WorkerPool(object):
         self.manager = threading.Thread(target=self.__manage_consumers)
         self.manager.daemon = True
         self.manager.start()
-        log_utils.log('Pool Manager(%s): started.' % (self), log_utils.LOGDEBUG, COMPONENT)
+        logger.log('Pool Manager(%s): started.' % (self), log_utils.LOGDEBUG)
         
     def __manage_consumers(self):
         while not self.closing:
@@ -74,7 +76,7 @@ class WorkerPool(object):
                     max_new = self.max_workers - len(self.workers)
                     
                 if max_new > 0:
-                    log_utils.log('Pool Manager: Requested: %s Allowed: %s - Pool Size: (%s / %s)' % (new_workers, max_new, len(self.workers), self.max_workers), log_utils.LOGDEBUG, COMPONENT)
+                    logger.log('Pool Manager: Requested: %s Allowed: %s - Pool Size: (%s / %s)' % (new_workers, max_new, len(self.workers), self.max_workers), log_utils.LOGDEBUG)
                     if new_workers > max_new:
                         new_workers = max_new
                         
@@ -84,23 +86,23 @@ class WorkerPool(object):
                             worker.daemon = True
                             worker.start()
                             self.workers.append(worker)
-                            log_utils.log('Pool Manager: %s thrown in Pool: (%s/%s)' % (worker.name, len(self.workers), self.max_workers), log_utils.LOGDEBUG, COMPONENT)
+                            logger.log('Pool Manager: %s thrown in Pool: (%s/%s)' % (worker.name, len(self.workers), self.max_workers), log_utils.LOGDEBUG)
                         except RuntimeError as e:
-                            try: log_utils.log('Pool Manager: %s missed Pool: %s - (%s/%s)' % (worker.name, e, len(self.workers), self.max_workers), log_utils.LOGWARNING)
+                            try: logger.log('Pool Manager: %s missed Pool: %s - (%s/%s)' % (worker.name, e, len(self.workers), self.max_workers), log_utils.LOGWARNING)
                             except UnboundLocalError: pass  # worker may not have gotten assigned
                         
-        log_utils.log('Pool Manager(%s): quitting.' % (self), log_utils.LOGDEBUG, COMPONENT)
+        logger.log('Pool Manager(%s): quitting.' % (self), log_utils.LOGDEBUG)
             
     def consumer(self):
         me = threading.current_thread()
         while True:
             job = self.in_q.get()
             if job is None:
-                log_utils.log('Worker: %s committing suicide.' % (me.name), log_utils.LOGDEBUG, COMPONENT)
+                logger.log('Worker: %s committing suicide.' % (me.name), log_utils.LOGDEBUG)
                 self.in_q.put(job)
                 break
             
-            # log_utils.log('Worker: %s handling job: |%s| with args: |%s| and kwargs: |%s|' % (me.name, job['func'], job['args'], job['kwargs']), log_utils.LOGDEBUG, COMPONENT)
+            # logger.log('Worker: %s handling job: |%s| with args: |%s| and kwargs: |%s|' % (me.name, job['func'], job['args'], job['kwargs']), log_utils.LOGDEBUG)
             result = job['func'](*job['args'], **job['kwargs'])
             self.out_q.put(result)
     
@@ -108,13 +110,13 @@ def reap_workers(workers, timeout=0):
     """
     Reap thread/process workers; don't block by default; return un-reaped workers
     """
-    log_utils.log('In Reap: Total Workers: %s' % (len(workers)), log_utils.LOGDEBUG, COMPONENT)
+    logger.log('In Reap: Total Workers: %s' % (len(workers)), log_utils.LOGDEBUG)
     living_workers = []
     for worker in workers:
         if worker:
-            log_utils.log('Reaping: %s' % (worker.name), log_utils.LOGDEBUG)
+            logger.log('Reaping: %s' % (worker.name), log_utils.LOGDEBUG)
             worker.join(timeout)
             if worker.is_alive():
-                log_utils.log('Worker %s still running' % (worker.name), log_utils.LOGDEBUG, COMPONENT)
+                logger.log('Worker %s still running' % (worker.name), log_utils.LOGDEBUG)
                 living_workers.append(worker)
     return living_workers

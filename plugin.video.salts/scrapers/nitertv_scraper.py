@@ -26,6 +26,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'http://niter.co'
 PHP_URL = BASE_URL + '/player/pk/pk/plugins/player_p2.php'
 DIR_URL = BASE_URL + '/player/getVideo.php'
@@ -126,7 +127,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, allow_redirect=allow_redirect, cache_limit=cache_limit)
         if auth and not re.search('href="[^"]+/logout"', html):
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, allow_redirect=allow_redirect, cache_limit=0)
 

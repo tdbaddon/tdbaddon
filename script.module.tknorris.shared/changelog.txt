@@ -1,3 +1,6 @@
+[B]Version 0.0.22[/B]
+- Create logger class
+
 [B]Version 0.0.21[/B]
 - Use "content" from DOMMatch if it's passed to the parser
 - Fix fallback for non-delimitted value matching

@@ -28,6 +28,7 @@ from salts_lib.constants import Q_ORDER
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'https://directdownload.tv'
 SEARCH_URL = '/api?key=%s&%s&keyword=%s'
 API_KEY = 'AFBF8E33A19787D1'
@@ -63,7 +64,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, cache_limit=.5)
         js_result = scraper_utils.parse_json(html, url)
         if 'error' in js_result:
-            log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
+            logger.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
             return hosters
 
         for result in js_result:
@@ -87,7 +88,7 @@ class Scraper(scraper.Scraper):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             date_match = False
             search_title = '%s S%02dE%02d' % (video.title, int(video.season), int(video.episode))
@@ -121,7 +122,7 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=.25)
         js_result = scraper_utils.parse_json(html, search_url)
         if 'error' in js_result:
-            log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], search_url), log_utils.LOGWARNING)
+            logger.log('DD.tv API error: "%s" @ %s' % (js_result['error'], search_url), log_utils.LOGWARNING)
             return results
         
         for match in js_result:
@@ -132,7 +133,7 @@ class Scraper(scraper.Scraper):
 
     def _http_get(self, url, data=None, cache_limit=8):
         if 'search?query' in url:
-            log_utils.log('Translating Search Url: %s' % (url), log_utils.LOGDEBUG)
+            logger.log('Translating Search Url: %s' % (url), log_utils.LOGDEBUG)
             url = self.__translate_search(url)
 
         return super(self.__class__, self)._http_get(url, data=data, require_debrid=True, cache_limit=cache_limit)

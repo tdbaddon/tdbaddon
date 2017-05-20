@@ -19,7 +19,7 @@
 '''
 
 
-import time,hashlib
+import os,time,hashlib
 
 try:
     from sqlite3 import dbapi2 as database
@@ -32,7 +32,8 @@ from resources.lib.modules import control
 def fetch(items, lang):
     try:
         t2 = int(time.time())
-        dbcon = database.connect(control.metacacheFile)
+        metacacheFile = os.path.join(control.dataPath, 'meta.5.db')
+        dbcon = database.connect(metacacheFile)
         dbcur = dbcon.cursor()
     except:
         return items
@@ -66,7 +67,8 @@ def fetch(items, lang):
 def insert(meta):
     try:
         control.makeFile(control.dataPath)
-        dbcon = database.connect(control.metacacheFile)
+        metacacheFile = os.path.join(control.dataPath, 'meta.5.db')
+        dbcon = database.connect(metacacheFile)
         dbcur = dbcon.cursor()
         dbcur.execute("CREATE TABLE IF NOT EXISTS meta (""imdb TEXT, ""tmdb TEXT, ""tvdb TEXT, ""lang TEXT, ""item TEXT, ""time TEXT, ""UNIQUE(imdb, tmdb, tvdb, lang)"");")
         t = int(time.time())

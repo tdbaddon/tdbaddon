@@ -32,6 +32,7 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import XHR
 from salts_lib.constants import QUALITIES
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'http://iomovies.net'
 VID_URL = '/api/get_episode/{data_i}/{data_e}'
 
@@ -75,7 +76,7 @@ class Scraper(scraper.Scraper):
                 vid_html = self._http_get(vid_url, headers=headers, cookies=cookies, cache_limit=.02)
                 streams.update(self.__get_js_sources(vid_html, vid_url, cookies, page_url))
             except scraper.ScrapeError as e:
-                log_utils.log('IOMovies Error (%s): %s in %s' % (e, vid_url, page_url))
+                logger.log('IOMovies Error (%s): %s in %s' % (e, vid_url, page_url))
                     
         for stream_url, values in streams.iteritems():
             if values['direct']:

@@ -37,7 +37,7 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            if not source_utils.is_anime('show', 'tvdb', tvdb): return '0'
+            if not source_utils.is_anime('show', 'tvdb', tvdb): return
 
             tv_maze = tvmaze.tvMaze()
             tvshowtitle = tv_maze.showLookup('thetvdb', tvdb)

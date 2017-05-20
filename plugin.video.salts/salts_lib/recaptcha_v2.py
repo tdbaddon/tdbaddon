@@ -28,7 +28,8 @@ import log_utils
 import kodi
 import scraper_utils
 
-COMPONENT = __name__
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
 
 class cInputWindow(xbmcgui.WindowDialog):
     def __init__(self, *args, **kwargs):  # @UnusedVariable
@@ -151,9 +152,9 @@ class UnCaptchaReCaptcha:
             if not message:
                 token = re.findall('"this\.select\(\)">(.*?)</textarea>', html)[0]
                 if token:
-                    log_utils.log('Captcha Success: %s' % (token), log_utils.LOGDEBUG, COMPONENT)
+                    logger.log('Captcha Success: %s' % (token), log_utils.LOGDEBUG)
                 else:
-                    log_utils.log('Captcha Failed', log_utils.LOGDEBUG, COMPONENT)
+                    logger.log('Captcha Failed', log_utils.LOGDEBUG)
                 break
             else:
                 message = message[0]
@@ -177,7 +178,7 @@ def get_url(url, data=None, timeout=20, headers=None):
     post_data = urllib.urlencode(data, doseq=True)
     if 'User-Agent' not in headers:
         headers['User-Agent'] = scraper_utils.get_ua()
-    log_utils.log('URL: |%s| Data: |%s| Headers: |%s|' % (url, post_data, headers), log_utils.LOGDEBUG, COMPONENT)
+    logger.log('URL: |%s| Data: |%s| Headers: |%s|' % (url, post_data, headers), log_utils.LOGDEBUG)
 
     try:
         req = urllib2.Request(url)
@@ -188,10 +189,10 @@ def get_url(url, data=None, timeout=20, headers=None):
         result = response.read()
         response.close()
     except urllib2.HTTPError as e:
-        log_utils.log('ReCaptcha.V2 HTTP Error: %s on url: %s' % (e.code, url), log_utils.LOGWARNING, COMPONENT)
+        logger.log('ReCaptcha.V2 HTTP Error: %s on url: %s' % (e.code, url), log_utils.LOGWARNING)
         result = ''
     except urllib2.URLError as e:
-        log_utils.log('ReCaptcha.V2 URLError Error: %s on url: %s' % (e, url), log_utils.LOGWARNING, COMPONENT)
+        logger.log('ReCaptcha.V2 URLError Error: %s on url: %s' % (e, url), log_utils.LOGWARNING)
         result = ''
 
     return result

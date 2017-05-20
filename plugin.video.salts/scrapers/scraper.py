@@ -41,6 +41,8 @@ try:
 except:
     kodi.notify(msg=i18n('smu_failed'), duration=5000)
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = ''
 COOKIEPATH = kodi.translate_path(kodi.get_profile())
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -52,7 +54,7 @@ class ScrapeError(Exception):
 
 class NoRedirection(urllib2.HTTPErrorProcessor):
     def http_response(self, request, response):  # @UnusedVariable
-        log_utils.log('Stopping Redirect', log_utils.LOGDEBUG)
+        logger.log('Stopping Redirect', log_utils.LOGDEBUG)
         return response
 
     https_response = http_response
@@ -240,7 +242,7 @@ class Scraper(object):
             result = self.db_connection().get_related_url(temp_video_type, video.title, video.year, self.get_name(), season)
             if result:
                 url = result[0][0]
-                log_utils.log('Got local related url: |%s|%s|%s|%s|%s|%s|' % (temp_video_type, video.title, video.year, season, self.get_name(), url), log_utils.LOGDEBUG)
+                logger.log('Got local related url: |%s|%s|%s|%s|%s|%s|' % (temp_video_type, video.title, video.year, season, self.get_name(), url), log_utils.LOGDEBUG)
             else:
                 results = self.search(temp_video_type, video.title, video.year, season)
                 if results:
@@ -256,7 +258,7 @@ class Scraper(object):
                 if result:
                     url = result[0][0]
                     if isinstance(url, unicode): url = url.encode('utf-8')
-                    log_utils.log('Got local related url: |%s|%s|%s|' % (video, self.get_name(), url), log_utils.LOGDEBUG)
+                    logger.log('Got local related url: |%s|%s|%s|' % (video, self.get_name(), url), log_utils.LOGDEBUG)
                 else:
                     url = self._get_episode_url(url, video)
                     if url:
@@ -270,7 +272,7 @@ class Scraper(object):
                                      read_error=read_error, cache_limit=cache_limit)
         sucuri_cookie = scraper_utils.get_sucuri_cookie(html)
         if sucuri_cookie:
-            log_utils.log('Setting sucuri cookie: %s' % (sucuri_cookie), log_utils.LOGDEBUG)
+            logger.log('Setting sucuri cookie: %s' % (sucuri_cookie), log_utils.LOGDEBUG)
             if cookies is not None:
                 cookies = cookies.update(sucuri_cookie)
             else:
@@ -286,7 +288,7 @@ class Scraper(object):
             if Scraper.debrid_resolvers is None:
                 Scraper.debrid_resolvers = [resolver for resolver in urlresolver.relevant_resolvers() if resolver.isUniversal()]
             if not Scraper.debrid_resolvers:
-                log_utils.log('%s requires debrid: %s' % (self.__module__, Scraper.debrid_resolvers), log_utils.LOGDEBUG)
+                logger.log('%s requires debrid: %s' % (self.__module__, Scraper.debrid_resolvers), log_utils.LOGDEBUG)
                 return ''
                 
         if cookies is None: cookies = {}
@@ -299,7 +301,7 @@ class Scraper(object):
                 url += '/'
                 
             url += '?' + urllib.urlencode(params)
-        log_utils.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers), log_utils.LOGDEBUG)
+        logger.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers), log_utils.LOGDEBUG)
         if data is not None:
             if isinstance(data, basestring):
                 data = data
@@ -312,7 +314,7 @@ class Scraper(object):
 
         _created, _res_header, html = self.db_connection().get_cached_url(url, data, cache_limit)
         if html:
-            log_utils.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
+            logger.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
             return html
 
         try:
@@ -342,7 +344,7 @@ class Scraper(object):
             response = urllib2.urlopen(request, timeout=timeout)
             self.cj.extract_cookies(response, request)
             if kodi.get_setting('cookie_debug') == 'true':
-                log_utils.log('Response Cookies: %s - %s' % (url, scraper_utils.cookies_as_str(self.cj)), log_utils.LOGDEBUG)
+                logger.log('Response Cookies: %s - %s' % (url, scraper_utils.cookies_as_str(self.cj)), log_utils.LOGDEBUG)
             self.cj._cookies = scraper_utils.fix_bad_cookies(self.cj._cookies)
             self.cj.save(ignore_discard=True)
             if not allow_redirect and (response.getcode() in [301, 302, 303, 307] or response.info().getheader('Refresh')):
@@ -357,7 +359,7 @@ class Scraper(object):
             
             content_length = response.info().getheader('Content-Length', 0)
             if int(content_length) > MAX_RESPONSE:
-                log_utils.log('Response exceeded allowed size. %s => %s / %s' % (url, content_length, MAX_RESPONSE), log_utils.LOGWARNING)
+                logger.log('Response exceeded allowed size. %s => %s / %s' % (url, content_length, MAX_RESPONSE), log_utils.LOGWARNING)
             
             if method == 'HEAD':
                 return ''
@@ -381,11 +383,11 @@ class Scraper(object):
                 if not html:
                     return ''
             else:
-                log_utils.log('Error (%s) during scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
+                logger.log('Error (%s) during scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
                 if not read_error:
                     return ''
         except Exception as e:
-            log_utils.log('Error (%s) during scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
+            logger.log('Error (%s) during scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
             return ''
 
         self.db_connection().cache_url(url, html, data)
@@ -397,7 +399,7 @@ class Scraper(object):
         try: cj.load(ignore_discard=True)
         except: pass
         if kodi.get_setting('cookie_debug') == 'true':
-            log_utils.log('Before Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
+            logger.log('Before Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
         domain = urlparse.urlsplit(base_url).hostname
         for key in cookies:
             c = cookielib.Cookie(0, key, str(cookies[key]), port=None, port_specified=False, domain=domain, domain_specified=True,
@@ -406,48 +408,44 @@ class Scraper(object):
             cj.set_cookie(c)
         cj.save(ignore_discard=True)
         if kodi.get_setting('cookie_debug') == 'true':
-            log_utils.log('After Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
+            logger.log('After Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
         return cj
 
-    def _default_get_episode_url(self, show_url, video, episode_pattern, title_pattern='', airdate_pattern='', data=None, headers=None, method=None):
-        if isinstance(show_url, unicode): show_url = show_url.encode('utf-8')
-        log_utils.log('Default Episode Url: |%s|%s|%s|%s|' % (self.base_url, show_url, str(video), data), log_utils.LOGDEBUG)
-        if not show_url.startswith('http'):
-            url = scraper_utils.urljoin(self.base_url, show_url)
+    def _default_get_episode_url(self, html, video, episode_pattern, title_pattern='', airdate_pattern=''):
+        logger.log('Default Episode Url: |%s|%s|' % (self.get_name(), video), log_utils.LOGDEBUG)
+        if not html: return
+        
+        try: html = html[0].content
+        except AttributeError: pass
+        force_title = scraper_utils.force_title(video)
+        if not force_title:
+            if episode_pattern:
+                match = re.search(episode_pattern, html, re.DOTALL | re.I)
+                if match:
+                    return scraper_utils.pathify_url(match.group(1))
+
+            if kodi.get_setting('airdate-fallback') == 'true' and airdate_pattern and video.ep_airdate:
+                airdate_pattern = airdate_pattern.replace('{year}', str(video.ep_airdate.year))
+                airdate_pattern = airdate_pattern.replace('{month}', str(video.ep_airdate.month))
+                airdate_pattern = airdate_pattern.replace('{p_month}', '%02d' % (video.ep_airdate.month))
+                airdate_pattern = airdate_pattern.replace('{month_name}', MONTHS[video.ep_airdate.month - 1])
+                airdate_pattern = airdate_pattern.replace('{short_month}', SHORT_MONS[video.ep_airdate.month - 1])
+                airdate_pattern = airdate_pattern.replace('{day}', str(video.ep_airdate.day))
+                airdate_pattern = airdate_pattern.replace('{p_day}', '%02d' % (video.ep_airdate.day))
+                logger.log('Air Date Pattern: %s' % (airdate_pattern), log_utils.LOGDEBUG)
+
+                match = re.search(airdate_pattern, html, re.DOTALL | re.I)
+                if match:
+                    return scraper_utils.pathify_url(match.group(1))
         else:
-            url = show_url
-        html = self._http_get(url, data=data, headers=headers, method=method, cache_limit=2)
-        if html:
-            force_title = scraper_utils.force_title(video)
+            logger.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
 
-            if not force_title:
-                if episode_pattern:
-                    match = re.search(episode_pattern, html, re.DOTALL | re.I)
-                    if match:
-                        return scraper_utils.pathify_url(match.group(1))
-
-                if kodi.get_setting('airdate-fallback') == 'true' and airdate_pattern and video.ep_airdate:
-                    airdate_pattern = airdate_pattern.replace('{year}', str(video.ep_airdate.year))
-                    airdate_pattern = airdate_pattern.replace('{month}', str(video.ep_airdate.month))
-                    airdate_pattern = airdate_pattern.replace('{p_month}', '%02d' % (video.ep_airdate.month))
-                    airdate_pattern = airdate_pattern.replace('{month_name}', MONTHS[video.ep_airdate.month - 1])
-                    airdate_pattern = airdate_pattern.replace('{short_month}', SHORT_MONS[video.ep_airdate.month - 1])
-                    airdate_pattern = airdate_pattern.replace('{day}', str(video.ep_airdate.day))
-                    airdate_pattern = airdate_pattern.replace('{p_day}', '%02d' % (video.ep_airdate.day))
-                    log_utils.log('Air Date Pattern: %s' % (airdate_pattern), log_utils.LOGDEBUG)
-
-                    match = re.search(airdate_pattern, html, re.DOTALL | re.I)
-                    if match:
-                        return scraper_utils.pathify_url(match.group(1))
-            else:
-                log_utils.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
-
-            if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title and title_pattern:
-                norm_title = scraper_utils.normalize_title(video.ep_title)
-                for match in re.finditer(title_pattern, html, re.DOTALL | re.I):
-                    episode = match.groupdict()
-                    if norm_title == scraper_utils.normalize_title(episode['title']):
-                        return scraper_utils.pathify_url(episode['url'])
+        if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title and title_pattern:
+            norm_title = scraper_utils.normalize_title(video.ep_title)
+            for match in re.finditer(title_pattern, html, re.DOTALL | re.I):
+                episode = match.groupdict()
+                if norm_title == scraper_utils.normalize_title(episode['title']):
+                    return scraper_utils.pathify_url(episode['url'])
 
     def _blog_proc_results(self, html, post_pattern, date_format, video_type, title, year):
         results = []
@@ -483,7 +481,7 @@ class Scraper(object):
                 filter_days = datetime.timedelta(days=filter_days)
                 post_date = scraper_utils.to_datetime(post_data['date'], date_format).date()
                 if not post_date:
-                    log_utils.log('Failed date Check in %s: |%s|%s|%s|' % (self.get_name(), post_data['date'], date_format), log_utils.LOGWARNING)
+                    logger.log('Failed date Check in %s: |%s|%s|%s|' % (self.get_name(), post_data['date'], date_format), log_utils.LOGWARNING)
                     post_date = today
                         
                 if today - post_date > filter_days:
@@ -509,7 +507,7 @@ class Scraper(object):
             year_match = not year or not match_year or year == match_year
             sxe_match = not search_sxe or (search_sxe == match_sxe)
             date_match = not search_date or (search_date == match_date)
-            log_utils.log('Blog Results: |%s|%s|%s| - |%s|%s|%s| - |%s|%s|%s| - |%s|%s|%s| (%s)' %
+            logger.log('Blog Results: |%s|%s|%s| - |%s|%s|%s| - |%s|%s|%s| - |%s|%s|%s| (%s)' %
                           (match_norm_title, norm_title, title_match, year, match_year, year_match,
                            search_date, match_date, date_match, search_sxe, match_sxe, sxe_match, self.get_name()),
                           log_utils.LOGDEBUG)
@@ -524,7 +522,7 @@ class Scraper(object):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             try: select = int(kodi.get_setting('%s-select' % (self.get_name())))
             except: select = 0
@@ -565,9 +563,9 @@ class Scraper(object):
                                 q_str = match.group(1) if match else ''
                                 quality = scraper_utils.blog_get_quality(video, q_str, '')
                                 
-                        log_utils.log('result: |%s|%s|%s|' % (result, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
+                        logger.log('result: |%s|%s|%s|' % (result, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
                         if Q_ORDER[quality] > best_qorder:
-                            log_utils.log('Setting best as: |%s|%s|%s|' % (result, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
+                            logger.log('Setting best as: |%s|%s|%s|' % (result, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
                             best_result = result
                             best_qorder = Q_ORDER[quality]
 

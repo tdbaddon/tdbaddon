@@ -20,11 +20,13 @@ import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
 from salts_lib import scraper_utils
+from salts_lib import pyaes
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'http://moviewatcher.io'
 
 class Scraper(scraper.Scraper):
@@ -77,13 +79,17 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="([^"]*/s0*%se0*%s(?!\d)[^"]*)' % (video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'show_season%s' % (video.season)})
+        episode_pattern = 'href="([^"]+)[^>]*>0*%s<' % (video.episode)
+        return self._default_get_episode_url(fragment, video, episode_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
         search_url = scraper_utils.urljoin(self.base_url, '/search')
-        html = self._http_get(search_url, params={'query': title.lower()}, cache_limit=0)
+        search_type = 'movies' if video_type == VIDEO_TYPES.MOVIE else 'series'
+        html = self._http_get(search_url, params={'query': title.lower(), 'type': search_type}, cache_limit=8)
         for _attrs, item in dom_parser2.parse_dom(html, 'div', {'class': 'one_movie-item'}):
             match_url = dom_parser2.parse_dom(item, 'a', req='href')
             match_title = dom_parser2.parse_dom(item, 'img', req='alt')
@@ -108,3 +114,38 @@ class Scraper(scraper.Scraper):
                     results.append(result)
 
         return results
+
+    def _http_get(self, url, params=None, data=None, multipart_data=None, headers=None, cookies=None, allow_redirect=True, method=None, require_debrid=False, read_error=False, cache_limit=8):
+        html = super(self.__class__, self)._http_get(url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error, cache_limit=cache_limit)
+        if 'toNumbers' in html:
+            if cookies is None: cookies = {}
+            cookies.update(self.__get_cookie(html))
+            logger.log('Cookie JS Detected: %s' % (cookies), log_utils.LOGDEBUG)
+            html = super(self.__class__, self)._http_get(url, params=params, data=data, multipart_data=multipart_data, headers=headers, cookies=cookies, allow_redirect=allow_redirect, method=method, require_debrid=require_debrid, read_error=read_error, cache_limit=0)
+        
+        return html
+            
+    def __get_cookie(self, html):
+        try:
+            in_vars = [self.__to_numbers(match.group(1)) for match in re.finditer('toNumbers\("([^"]+)', html)]
+            aes_key, iv, message = in_vars
+            match = re.search('cookie="([^=]+)', html)
+            try: key = match.group(1)
+            except: key = 'BPC'
+            value = self.__to_hex(self.__decrypt(message, aes_key, iv))
+            return {key: value}
+        except ValueError:
+            return {}
+
+    def __to_numbers(self, s):
+        return s.decode('hex')
+    
+    def __to_hex(self, s):
+        return s.encode('hex')
+    
+    def __decrypt(self, message, key, iv):
+        decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(key, iv))
+        plain_text = decrypter.feed(message)
+        plain_text += decrypter.feed()
+        plain_text = plain_text.split('\0', 1)[0]
+        return plain_text

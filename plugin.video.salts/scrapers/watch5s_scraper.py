@@ -29,6 +29,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'https://watch5s.rs'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD-720P': QUALITIES.HD720}
 
@@ -170,7 +172,7 @@ class Scraper(scraper.Scraper):
             base_url = 'https://' + hostname
             js_url = scraper_utils.urljoin(base_url, js_url)
          
-        log_utils.log('Getting JS: |%s| - |%s|' % (js_url, headers))
+        logger.log('Getting JS: |%s| - |%s|' % (js_url, headers))
         try: js = self._http_get(js_url, headers=headers)
         except: js = ''
         return js
@@ -198,7 +200,7 @@ class Scraper(scraper.Scraper):
                 else:
                     quality = QUALITIES.HIGH
                 
-                log_utils.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
+                logger.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
                 sources[stream_url] = {'quality': quality, 'direct': True}
                 if not kodi.get_setting('scraper_url'): break
         return sources

@@ -34,7 +34,7 @@ from salts_lib.constants import XHR
 from salts_lib.utils2 import i18n
 import scraper
 
-
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'https://istream.is'
 API_BASE_URL = 'https://api.istream.is'
 EMBED_URL = '/ajax/jne.php'
@@ -130,11 +130,14 @@ class Scraper(scraper.Scraper):
         return results
 
     def _get_episode_url(self, show_url, video):
-        season_url = show_url + '/season/%s' % (video.season)
         episode_pattern = 'href="([^"]+/season/%s/episode/%s/?)"' % (video.season, video.episode)
-        title_pattern = 'href="(?P<url>[^"]+/season/%s/episode/%s/?)"\s+title="(?P<title>[^"]+)'
+        title_pattern = 'href="(?P<url>[^"]+)"[^>]+title="(?:S\d+\s*E\d+:\s*)?(?P<title>[^"]+)'
         headers = {'Referer': scraper_utils.urljoin(self.base_url, show_url)}
-        return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, headers=headers)
+        season_url = scraper_utils.urljoin(show_url, '/season/%s' % (video.season))
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
+        html = self._http_get(season_url, headers=headers, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'episodes'})
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)
 
     @classmethod
     def get_settings(cls):
@@ -151,7 +154,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, data=data, headers=headers, method=method, cache_limit=cache_limit)
         if '<span>Log In</span>' in html:
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, data=data, headers=headers, method=method, cache_limit=0)
 
@@ -199,7 +202,7 @@ class Scraper(scraper.Scraper):
             if match:
                 self.__token = match.group(1)
             else:
-                log_utils.log('Unable to locate Flixanity token', log_utils.LOGWARNING)
+                logger.log('Unable to locate Flixanity token', log_utils.LOGWARNING)
     
     def __get_s(self):
         return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])

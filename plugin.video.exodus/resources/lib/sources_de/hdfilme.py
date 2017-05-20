@@ -123,6 +123,10 @@ class source:
 
             r = dom_parser.parse_dom(r, 'ul', attrs={'class': ['products', 'row']})
             r = dom_parser.parse_dom(r, 'div', attrs={'class': ['box-product', 'clearfix']})
+            if int(season) > 0:
+                r = [i for i in r if dom_parser.parse_dom(i, 'div', attrs={'class': 'episode'})]
+            else:
+                r = [i for i in r if not dom_parser.parse_dom(i, 'div', attrs={'class': 'episode'})]
             r = dom_parser.parse_dom(r, 'h3', attrs={'class': 'title-product'})
             r = dom_parser.parse_dom(r, 'a', req='href')
             r = [(i.attrs['href'], i.content.lower()) for i in r if i]
@@ -130,7 +134,7 @@ class source:
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
             r = [(i[0], i[1], i[2], re.findall('(.+?)\s+(?:staf+el|s)\s+(\d+)', i[1])) for i in r]
             r = [(i[0], i[3][0][0] if len(i[3]) > 0 else i[1], i[2], i[3][0][1] if len(i[3]) > 0 else '0') for i in r]
-            r = [(i[0], i[1].replace(' hd', ''), i[2], i[3]) for i in r]
+            r = [(i[0], i[1].replace(' hd', ''), i[2], '1' if int(season) > 0 and i[3] == '0' else i[3]) for i in r]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [(i[0], i[1]) for i in r if i[2] in y and int(i[3]) == int(season)]
 

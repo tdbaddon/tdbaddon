@@ -388,7 +388,7 @@ class tvshows:
             dupes = []
 
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            q.update({'extended': 'full,images'})
+            q.update({'extended': 'full'})
             q = (urllib.urlencode(q)).replace('%2C', ',')
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
 
@@ -1057,7 +1057,7 @@ class tvshows:
                 meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
                 meta.update({'tvdb_id': tvdb})
                 meta.update({'mediatype': 'tvshow'})
-                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, urllib.quote_plus(label))})
                 if not 'duration' in i: meta.update({'duration': '60'})
                 elif i['duration'] == '0': meta.update({'duration': '60'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})

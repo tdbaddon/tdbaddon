@@ -273,6 +273,11 @@ def Addtypes():
     addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,os.path.join(home,'icons','Punjabi Live Channels.png'))
     addDir('Movies' ,'pv2',66,os.path.join(home,'icons','Movies.png'))
     addDir('Sports' ,'Live' ,13,os.path.join(home,'icons','Sports.png'))
+    try:
+        import testarea
+        if testarea.testenabled():
+            addDir('Test Area' ,'Live' ,99,os.path.join(home,'icons','Sports.png'))
+    except: traceback.print_exc(file=sys.stdout)
     addDir('Settings' ,'Live' ,6,os.path.join(home,'icons','Settings.png'),isItFolder=False)
     addDir('Clear Cache' ,'Live' ,54,os.path.join(home,'icons','Clear Cache.png'),isItFolder=False)
     addDir(Colored('Status Report', 'red') ,'live',7,os.path.join(home,'icons','status report.png'),isItFolder=False)
@@ -1624,6 +1629,14 @@ def AddMonaChannels(url=None):
        
         #addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
         addDir(cname.encode("utf-8") ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    return   
+    
+def AddTestChannels(url=None):
+    import testarea
+    for cname,ctype,curl,imgurl in testarea.getChannels(url,mode):
+        cname=cname.encode('ascii', 'ignore').decode('ascii')
+        mm=11
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return   
     
 def AddUKTVNowChannels(url=None):
@@ -6721,6 +6734,10 @@ def PlayOtherUrl ( url ):
     if "uktvnow:" in url:
         PlayUKTVNowChannels(url.split('uktvnow:')[1])
         return
+    if "testpage:" in url:
+        import testarea
+        testarea.play(name,url.split('testpage:')[1],mode)
+        return
     if "direct:" in url:
         PlayGen(base64.b64encode(url.split('direct:')[1]))
         return    
@@ -8083,7 +8100,7 @@ try:
         AddSports365Channels(url) 
     elif mode==57 :
         print "Play url is 57"+url
-        AddUKTVNowChannels(url)     
+        AddUKTVNowChannels(url)           
     elif mode==60 :
         print "Play url is 60"+url
         AddYuppSports(url)     
@@ -8200,6 +8217,11 @@ try:
                 ok = dialog.ok('XBMC', 'Not updated, perhaps no change?')  
                 print 'Updated files'
         except: traceback.print_exc(file=sys.stdout)
+    elif mode==99 :
+        print "Play url is 57"+url
+        AddTestChannels(url)           
+        
+        
 except:
 
     print 'somethingwrong'

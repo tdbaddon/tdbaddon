@@ -27,6 +27,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
+
 BASE_URL = 'https://vivo.to'
 LINK_URL = '/ip.file/swf/plugins/ipplugins.php'
 PLAYER_URL = '/ip.file/swf/ipplayer/ipplayer.php'
@@ -95,8 +97,11 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, season_url, video):
-        episode_pattern = 'href="([^"]+)[^>]*title="Watch\s+Episode\s+%s"' % (video.episode)
-        return self._default_get_episode_url(season_url, video, episode_pattern)
+        episode_pattern = 'href="([^"]+)[^>]*>\s*%s\s*<' % (video.episode)
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
+        html = self._http_get(season_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'div_episode'})
+        return self._default_get_episode_url(fragment, video, episode_pattern)
     
     def search(self, video_type, title, year, season=''):
         results = []

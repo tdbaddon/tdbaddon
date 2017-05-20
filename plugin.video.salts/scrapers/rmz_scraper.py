@@ -29,6 +29,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'http://rmz.cr'
 
 class Scraper(scraper.Scraper):
@@ -113,9 +115,9 @@ class Scraper(scraper.Scraper):
                     break
                 else:
                     quality = scraper_utils.height_get_quality(meta['height'])
-                    log_utils.log('result: |%s|%s|%s|' % (page_url, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
+                    logger.log('result: |%s|%s|%s|' % (page_url, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
                     if Q_ORDER[quality] > best_qorder:
-                        log_utils.log('Setting best as: |%s|%s|%s|' % (page_url, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
+                        logger.log('Setting best as: |%s|%s|%s|' % (page_url, quality, Q_ORDER[quality]), log_utils.LOGDEBUG)
                         best_page = page_url
                         best_qorder = Q_ORDER[quality]
             

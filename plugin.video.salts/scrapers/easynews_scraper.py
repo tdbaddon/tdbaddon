@@ -26,7 +26,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
-
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'https://members.easynews.com'
 SEARCH_URL = '/2.0/search/solr-search/advanced'
 SORT = {'s1': 'relevance', 's1d': '-', 's2': 'dsize', 's2d': '-', 's3': 'dtime', 's3d': '-'}
@@ -98,7 +98,7 @@ class Scraper(scraper.Scraper):
             if 'virus' in item and item['virus']: checks[4] = True
             if 'type' in item and item['type'].upper() != 'VIDEO': checks[5] = True
             if any(checks):
-                log_utils.log('EasyNews Post excluded: %s - |%s|' % (checks, item), log_utils.LOGDEBUG)
+                logger.log('EasyNews Post excluded: %s - |%s|' % (checks, item), log_utils.LOGDEBUG)
                 continue
             
             stream_url = down_url + urllib.quote('/%s/%s/%s%s/%s%s' % (dl_farm, dl_port, post_hash, ext, post_title, ext))
@@ -123,7 +123,7 @@ class Scraper(scraper.Scraper):
                 if match:
                     size_bytes = scraper_utils.to_bytes(*match.groups())
                     if size_bytes > self.max_bytes:
-                        log_utils.log('Result skipped, Too big: |%s| - %s (%s) > %s (%s GB)' % (post_title, size_bytes, size, self.max_bytes, self.max_gb))
+                        logger.log('Result skipped, Too big: |%s| - %s (%s) > %s (%s GB)' % (post_title, size_bytes, size, self.max_bytes, self.max_gb))
                         continue
 
             hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
@@ -138,7 +138,7 @@ class Scraper(scraper.Scraper):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             if video.video_type == VIDEO_TYPES.MOVIE:
                 query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)

@@ -25,6 +25,7 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 
 BASE_URL = 'http://www.dizigold1.com'
 AJAX_URL = '/sistem/ajax.php'
@@ -102,8 +103,11 @@ class Scraper(scraper.Scraper):
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+/%s-sezon/%s-[^"]*bolum[^"]*)' % (video.season, video.episode)
-        title_pattern = 'href="(?P<url>[^"]+)"\s+class="realcuf".*?<p\s+class="realcuf">(?P<title>[^<]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        title_pattern = 'href="(?P<url>[^"]+)"[^>]+class="realcuf".*?class="realcuf">(?P<title>[^<]+)'
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'sezonlar'})
+        return self._default_get_episode_url(fragment or html, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

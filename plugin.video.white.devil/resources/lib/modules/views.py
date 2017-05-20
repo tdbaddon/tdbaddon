@@ -21,10 +21,8 @@
 
 import re,os
 
-try:
-    from sqlite3 import dbapi2 as database
-except:
-    from pysqlite2 import dbapi2 as database
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import control
 
@@ -57,9 +55,12 @@ def addView(content):
         dbcur.execute("DELETE FROM views WHERE skin = '%s' AND view_type = '%s'" % (record[0], record[1]))
         dbcur.execute("INSERT INTO views Values (?, ?, ?)", record)
         dbcon.commit()
-        viewName = control.infoLabel('Container.Viewmode')
 
-        control.infoDialog(control.lang(30491).encode('utf-8'), heading=viewName)
+        viewName = control.infoLabel('Container.Viewmode')
+        skinName = control.addon(skin).getAddonInfo('name')
+        skinIcon = control.addon(skin).getAddonInfo('icon')
+
+        control.infoDialog(viewName, heading=skinName, sound=True, icon=skinIcon)
     except:
         return
 
@@ -82,4 +83,5 @@ def setView(content, viewDict=None):
                 except: return
 
         control.sleep(100)
+
 

@@ -31,7 +31,9 @@ __all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'watchseries_scrap
            'ol_scraper', 'real_scraper', 'movytvy_scraper', 'vumoo_scraper', 'vebup_scraper', 'mvgee_proxy']
 
 from . import *
-    
+
+logger = log_utils.Logger.get_logger()
+  
 class ScraperVideo:
     def __init__(self, video_type, title, year, trakt_id, season='', episode='', ep_title='', ep_airdate=''):
         assert(video_type in (VIDEO_TYPES.__dict__[k] for k in VIDEO_TYPES.__dict__ if not k.startswith('__')))
@@ -59,7 +61,7 @@ def update_xml(xml, new_settings, cat_count):
         if old_settings != new_settings:
             xml = xml.replace(old_settings, new_settings)
     else:
-        log_utils.log('Unable to match category: %s' % (cat_count), log_utils.LOGWARNING)
+        logger.log('Unable to match category: %s' % (cat_count), log_utils.LOGWARNING)
     return xml
 
 def update_settings():
@@ -70,7 +72,7 @@ def update_settings():
         with open(full_path, 'a') as f:
             pass
     except Exception as e:
-        log_utils.log('Dynamic settings update skipped: %s' % (e), log_utils.LOGWARNING)
+        logger.log('Dynamic settings update skipped: %s' % (e), log_utils.LOGWARNING)
     else:
         with open(full_path, 'r') as f:
             xml = f.read()
@@ -95,7 +97,7 @@ def update_settings():
             with open(full_path, 'w') as f:
                 f.write(xml)
         else:
-            log_utils.log('No Settings Update Needed', log_utils.LOGDEBUG)
+            logger.log('No Settings Update Needed', log_utils.LOGDEBUG)
 
 
 def update_all_scrapers():
@@ -122,7 +124,7 @@ def update_all_scrapers():
                             if scraper_url.startswith('http'):
                                 update_scraper(filename, scraper_url)
                 except Exception as e:
-                    log_utils.log('Exception during scraper update: %s' % (e), log_utils.LOGWARNING)
+                    logger.log('Exception during scraper update: %s' % (e), log_utils.LOGWARNING)
     
 def update_scraper(filename, scraper_url):
     try:
@@ -142,7 +144,7 @@ def update_scraper(filename, scraper_url):
 
             new_etag, new_py = utils2.get_and_decrypt(scraper_url, scraper_password, old_etag)
             if new_py:
-                log_utils.log('%s path: %s, new_py: %s, match: %s' % (filename, py_path, bool(new_py), new_py == old_py), log_utils.LOGDEBUG)
+                logger.log('%s path: %s, new_py: %s, match: %s' % (filename, py_path, bool(new_py), new_py == old_py), log_utils.LOGDEBUG)
                 if old_py != new_py:
                     with open(py_path, 'w') as f:
                         f.write('# Etag: %s\n' % (new_etag))
@@ -150,7 +152,7 @@ def update_scraper(filename, scraper_url):
                     kodi.notify(msg=utils2.i18n('scraper_updated') + filename)
                         
     except Exception as e:
-        log_utils.log('Failure during %s scraper update: %s' % (filename, e), log_utils.LOGWARNING)
+        logger.log('Failure during %s scraper update: %s' % (filename, e), log_utils.LOGWARNING)
 
 update_settings()
 update_all_scrapers()

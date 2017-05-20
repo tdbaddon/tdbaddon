@@ -30,6 +30,8 @@ import xbmcgui
 import xbmcvfs
 import xbmc
 
+logger = log_utils.Logger.get_logger(__name__)
+
 def __enum(**enums):
     return type('Enum', (), enums)
 
@@ -139,14 +141,14 @@ def download_media(url, path, file_name, translations, progress=None):
     
             file_name += '.' + get_extension(url, response)
             full_path = os.path.join(path, file_name)
-            log_utils.log('Downloading: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
+            logger.log('Downloading: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
     
             path = kodi.translate_path(xbmc.makeLegalFilename(path))
             try:
                 try: xbmcvfs.mkdirs(path)
                 except: os.makedirs(path)
             except Exception as e:
-                log_utils.log('Path Create Failed: %s (%s)' % (e, path), log_utils.LOGDEBUG)
+                logger.log('Path Create Failed: %s (%s)' % (e, path), log_utils.LOGDEBUG)
     
             if not path.endswith(os.sep): path += os.sep
             if not xbmcvfs.exists(path):
@@ -169,17 +171,17 @@ def download_media(url, path, file_name, translations, progress=None):
                     raise Exception(i18n('failed_write_file'))
     
                 percent_progress = (total_len) * 100 / content_length if content_length > 0 else 0
-                log_utils.log('Position : %s / %s = %s%%' % (total_len, content_length, percent_progress), log_utils.LOGDEBUG)
+                logger.log('Position : %s / %s = %s%%' % (total_len, content_length, percent_progress), log_utils.LOGDEBUG)
                 pd.update(percent_progress)
             
             file_desc.close()
 
         if not cancel:
             kodi.notify(msg=i18n('download_complete') % (file_name), duration=5000)
-            log_utils.log('Download Complete: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
+            logger.log('Download Complete: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
 
     except Exception as e:
-        log_utils.log('Error (%s) during download: %s -> %s' % (str(e), url, file_name), log_utils.LOGERROR)
+        logger.log('Error (%s) during download: %s -> %s' % (str(e), url, file_name), log_utils.LOGERROR)
         kodi.notify(msg=i18n('download_error') % (str(e), file_name), duration=5000)
 
 def get_extension(url, response):
@@ -230,7 +232,7 @@ def auth_trakt(Trakt_API, translations):
         kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
         kodi.notify(msg=i18n('trakt_auth_complete'), duration=3000)
     except Exception as e:
-        log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
+        logger.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
         
         
 def __auth_trakt(trakt_api, code, i18n):

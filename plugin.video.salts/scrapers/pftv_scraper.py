@@ -25,7 +25,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://project-free-tv.im'
+BASE_URL = 'http://project-free-tv.li'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -74,7 +74,10 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+season-%s-episode-%s/)' % (video.season, video.episode)
         airdate_pattern = '{day} {short_month} {year}\s*<a\s+href="([^"]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, airdate_pattern=airdate_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'table', {'class': 'alternate_color'})
+        return self._default_get_episode_url(fragment or html, video, episode_pattern, airdate_pattern=airdate_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

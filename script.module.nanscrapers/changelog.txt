@@ -1,3 +1,8 @@
+v0.5.16
+- removed solar
+- added cinemabox (thx ard)
+- fixed link bug in animetoon
+
 v0.5.15
 - fixed most existing scrapers
 - improved some scrapers

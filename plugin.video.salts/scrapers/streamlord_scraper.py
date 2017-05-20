@@ -27,6 +27,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'http://www.streamlord.com'
 LOGIN_URL = '/login.html'
 
@@ -98,9 +100,12 @@ class Scraper(scraper.Scraper):
             return fragment[0].content
     
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="(episode[^"]*-[Ss]%02d[Ee]%02d-[^"]+)' % (int(video.season), int(video.episode))
+        episode_pattern = 'href="([^"]*-[Ss]0*%s[Ee]0*%s-[^"]+)' % (video.season, video.episode)
         title_pattern = 'class="head".*?</span>(?P<title>.*?)</a>.*?href="(?P<url>[^"]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'season-wrapper'})
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)
         
     @classmethod
     def get_settings(cls):
@@ -148,7 +153,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=cache_limit)
         if auth and LOGIN_URL in html:
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, data=data, headers=headers, method=method, cache_limit=0)
 

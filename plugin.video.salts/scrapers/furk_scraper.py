@@ -29,6 +29,7 @@ import scraper
 import xml.etree.ElementTree as ET
 import xbmcgui
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'https://www.furk.net'
 SEARCH_URL = '/api/plugins/metasearch'
 LOGIN_URL = '/api/login/login'
@@ -76,7 +77,7 @@ class Scraper(scraper.Scraper):
             elif locations:
                 return locations[0]['url']
         except Exception as e:
-            log_utils.log('Failure during furk playlist parse: %s' % (e), log_utils.LOGWARNING)
+            logger.log('Failure during furk playlist parse: %s' % (e), log_utils.LOGWARNING)
         
     def get_sources(self, video):
         hosters = []
@@ -118,7 +119,7 @@ class Scraper(scraper.Scraper):
             if item.get('video_info') and not re.search('#0:(0|1)(\((eng|und)\))?:\s*Audio:', item['video_info'], re.I): checks[4] = True
             if not scraper_utils.release_check(video, item['name']): checks[5] = True
             if any(checks):
-                log_utils.log('Furk.net result excluded: %s - |%s|' % (checks, item['name']), log_utils.LOGDEBUG)
+                logger.log('Furk.net result excluded: %s - |%s|' % (checks, item['name']), log_utils.LOGDEBUG)
                 continue
             
             match = re.search('(\d{3,})\s*x\s*(\d{3,})', item['video_info'])
@@ -135,7 +136,7 @@ class Scraper(scraper.Scraper):
             if 'url_pls' in item:
                 size_gb = scraper_utils.format_size(int(item['size']), 'B')
                 if self.max_bytes and int(item['size']) > self.max_bytes:
-                    log_utils.log('Result skipped, Too big: |%s| - %s (%s) > %s (%sGB)' % (item['name'], item['size'], size_gb, self.max_bytes, self.max_gb))
+                    logger.log('Result skipped, Too big: |%s| - %s (%s) > %s (%sGB)' % (item['name'], item['size'], size_gb, self.max_bytes, self.max_gb))
                     continue
 
                 stream_url = item['url_pls']
@@ -145,7 +146,7 @@ class Scraper(scraper.Scraper):
                 hoster['extra'] = item['name']
                 hosters.append(hoster)
             else:
-                log_utils.log('Furk.net result skipped - no playlist: |%s|' % (json.dumps(item)), log_utils.LOGDEBUG)
+                logger.log('Furk.net result skipped - no playlist: |%s|' % (json.dumps(item)), log_utils.LOGDEBUG)
                     
         return hosters
     
@@ -154,7 +155,7 @@ class Scraper(scraper.Scraper):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             if video.video_type == VIDEO_TYPES.MOVIE:
                 query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)
@@ -189,21 +190,21 @@ class Scraper(scraper.Scraper):
                 js_result = json.loads(result)
             except (ValueError, TypeError):
                 if 'msg_key=session_invalid' in result:
-                    log_utils.log('Logging in for url (%s) (Session Expired)' % (url), log_utils.LOGDEBUG)
+                    logger.log('Logging in for url (%s) (Session Expired)' % (url), log_utils.LOGDEBUG)
                     self.__login()
                     js_result = self._http_get(url, data=data, retry=False, allow_redirect=allow_redirect, cache_limit=0)
                 else:
-                    log_utils.log('Invalid JSON returned: %s: %s' % (url, result), log_utils.LOGWARNING)
+                    logger.log('Invalid JSON returned: %s: %s' % (url, result), log_utils.LOGWARNING)
                     js_result = {}
             else:
                 if js_result.get('status') == 'error':
                     error = js_result.get('error', 'Unknown Error')
                     if retry and any(e for e in ['access denied', 'session has expired', 'clear cookies'] if e in error):
-                        log_utils.log('Logging in for url (%s) - (%s)' % (url, error), log_utils.LOGDEBUG)
+                        logger.log('Logging in for url (%s) - (%s)' % (url, error), log_utils.LOGDEBUG)
                         self.__login()
                         js_result = self._http_get(url, data=data, retry=False, allow_redirect=allow_redirect, cache_limit=0)
                     else:
-                        log_utils.log('Error received from furk.net (%s)' % (error), log_utils.LOGWARNING)
+                        logger.log('Error received from furk.net (%s)' % (error), log_utils.LOGWARNING)
                         js_result = {}
             
         return js_result

@@ -14,6 +14,8 @@
 		<setting id="animetoon_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="Bobby" type="lsep"/>
 		<setting id="Bobby_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="Cinemabox" type="lsep"/>
+		<setting id="Cinemabox_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="dizi720p" type="lsep"/>
 		<setting id="dizi720p_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="dizigold" type="lsep"/>
@@ -42,8 +44,6 @@
 		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.ac"/>
 		<setting label="sezonlukdizi" type="lsep"/>
 		<setting id="sezonlukdizi_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="Solar" type="lsep"/>
-		<setting id="Solar_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchcartoon" type="lsep"/>
 		<setting id="watchcartoon_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchfree" type="lsep"/>

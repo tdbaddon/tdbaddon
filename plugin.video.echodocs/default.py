@@ -1,5 +1,8 @@
-import xbmc,xbmcaddon,xbmcgui,xbmcplugin,urllib,urllib2,os,re,sys,base64
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin,urllib,urllib2,os,re,sys,base64,urlparse,time
+from resources.lib.modules import client
 from resources.lib.modules import plugintools
+from resources.lib.modules import dom_parser
+from resources.lib.modules import kodi
 
 addon_id            = 'plugin.video.echodocs'
 AddonTitle          = '[COLOR yellowgreen]Echo Documentaries[/COLOR]'
@@ -12,9 +15,10 @@ def GetMenu():
 
     addLink('[COLOR yellowgreen][B]Watch A Random Documentary[/B][/COLOR]',base64.b64decode(b'aHR0cHM6Ly9kb2N1bWVudGFyeXN0b3JtLmNvbS8/cmFuZG9t'),902,icon,fanarts,'Watch a random documentary!')
     addDir('Search....','url',998,icon,fanarts,'Search through all of our supported websites for a documentary of your choice!')
-    addDir('[COLOR white]Crime Documentaries[/COLOR]',base64.b64decode(b'aHR0cDovL2NyaW1lZG9jdW1lbnRhcnkuY29t'),33,icon,fanarts,'')
+    addDir('[COLOR white]Crime Documentaries[/COLOR]',base64.b64decode(b'aHR0cDovL2NyaW1lZG9jdW1lbnRhcnkuY29t'),33,icon,fanarts,'The sites linked from the crimedocumentary.com web site (via ordinary links, affiliates, videos or advertisements) are not under crimedocumentary.com control.')
     addDir('[COLOR white]Documentary Addicts[/COLOR]',base64.b64decode(b'aHR0cHM6Ly9kb2N1bWVudGFyeWFkZGljdC5jb20='),30,icon,fanarts,'Now part of 5,341 documentaries online and counting! Welcome to the largest and best curated collection of documentaries on the planet.')
     addDir('[COLOR white]Documentary Heaven[/COLOR]',base64.b64decode(b'aHR0cDovL2RvY3VtZW50YXJ5aGVhdmVuLmNvbQ=='),19,icon,fanarts,'DocumentaryHeaven.com personally will only collect visitor information when our commenting system is used. This includes a users  IP address and e-mail address via our commenting system. This is only used to help us improve our site, and to prevent abuse of our commenting system DocumentaryHeaven.com will under no circumstances disclose any information collected unless required to do so by law or court order. Our visitors privacy is paramount to us!')
+    addDir('[COLOR white]Documentary Arena[/COLOR]',base64.b64decode(b'aHR0cDovL3d3dy5kb2N1bWVudGFyeWFyZWEuY29t'),40,icon,fanarts,'Simply the best Documentaries.')
     addDir('[COLOR white]Documentary Lovers[/COLOR]',base64.b64decode(b'aHR0cDovL2RvY3VtZW50YXJ5bG92ZXJzLmNvbQ=='),14,icon,fanarts,'We are a curated movie catalog bringing you the best and most intriguing documentaries free to watch online from any device. Our list consists of short and full-length films, educational talks and video previews that you can sort by topic to pique your curiosity.')
     addDir('[COLOR white]Documentaries Storm[/COLOR]',base64.b64decode(b'aHR0cHM6Ly9kb2N1bWVudGFyeXN0b3JtLmNvbQ=='),9,icon,fanarts,'Welcome to DocumentaryStorm, the leading source for 100% free documentary films. We curate the best documentary films available online for educational purposes as well as personal enjoyment.')
     addDir('[COLOR white]Documentary Tube[/COLOR]',base64.b64decode(b'aHR0cDovL3d3dy5kb2N1bWVudGFyeXR1YmUuY29t'),24,icon,fanarts,"We're committed to providing the best documentaries from around the World. With hundreds of free documentaries published and categorised every month, there's something for every taste.")   
@@ -419,7 +423,7 @@ def Documentary_Lovers_Main(name,url,iconimage):
     link = open_url(url).replace('\n','').replace('\r','')
     match = re.compile('id="menu-item(.+?)/a>',re.DOTALL).findall(link)
     
-    blacklist = ["genres","topics"]
+    blacklist = ["genres","topics","videos","categories","movie wall","top documentaries"]
     
     for item in match:
         try:
@@ -435,12 +439,14 @@ def Documentary_Lovers_Main(name,url,iconimage):
        
 def Documentary_Lovers_Browse(name,url,iconimage):
 
+    genre = name.replace('[COLOR white]','').replace('[/COLOR]','')
     link = open_url(url).replace('\n','').replace('\r','')
     match = re.compile('<article(.+?)</article>',re.DOTALL).findall(link)
     
     if "top-films" in url:
         for item in match:
             name = re.compile('<h2>(.+?)</h2>').findall(item)[0]
+            if genre.lower() in name.lower(): name = name.lower().split(genre.lower())[0]
             url = re.compile('href="(.+?)"').findall(item)[0]
             iconimage = re.compile('src="(.+?)"').findall(item)[0]
             try:
@@ -453,7 +459,7 @@ def Documentary_Lovers_Browse(name,url,iconimage):
                 desc = re.compile('<p>(.+?)</p>').findall(item)[-1]
             except: desc = "Unknown"
             name = Cleaner(name)
-            addLink('[COLOR yellowgreen]Rank: ' + rank + '[/COLOR][COLOR white] - ' + name + ' - Stars: [COLOR yellowgreen]' + rating + '[/COLOR][/COLOR]',url,903,iconimage,fanarts,desc)
+            addLink('[COLOR yellowgreen]Rank: ' + rank + '[/COLOR][COLOR white] - ' + name.title() + ' - Stars: [COLOR yellowgreen]' + rating + '[/COLOR][/COLOR]',url,903,iconimage,fanarts,desc)
     else:    
         for item in match:
             if "/film" in url:
@@ -462,6 +468,7 @@ def Documentary_Lovers_Browse(name,url,iconimage):
             else: 
                 name = re.compile('title="(.+?)"').findall(item)[0]
                 url = re.compile('href="(.+?)"').findall(item)[0]
+            if genre.lower() in name.lower(): name = name.lower().split(genre.lower())[0]
             iconimage = re.compile('src="(.+?)"').findall(item)[0]
             try:
                 min = re.compile('class=\"ico dl_icon dl_time\"><\/i>(.+?)<\/span>').findall(item)[0]
@@ -473,7 +480,7 @@ def Documentary_Lovers_Browse(name,url,iconimage):
                 desc = re.compile('class="description_text">(.+?)<\/div>').findall(item)[0]
             except: desc = "Unknown"
             name = Cleaner(name)
-            addLink('[COLOR white]' + name + ' | Runtime: [COLOR yellowgreen]' + min + '[/COLOR] - Stars: [COLOR yellowgreen]' + rating + '[/COLOR][/COLOR]',url,903,iconimage,fanarts,desc)
+            addLink('[COLOR white]' + name.title() + ' | Runtime: [COLOR yellowgreen]' + min + '[/COLOR] - Stars: [COLOR yellowgreen]' + rating + '[/COLOR][/COLOR]',url,903,iconimage,fanarts,desc)
 
     try:
         np = re.compile('rel="next" href="(.+?)"').findall(link)[0]
@@ -1223,15 +1230,36 @@ def Crime_Documentaries_Shows(name,url,iconimage):
 
 def Crime_Documentaries_BrowseAll(name,url,iconimage):
 
-    link = open_url(url).replace('\n','').replace('\r','')
-    match = re.compile('<article class=(.+?)</article>',re.DOTALL).findall(link)
+    ori = 'http://crimedocumentary.com'
+    ref = 'http://crimedocumentary.com/browse-all'
+    post_url = 'http://crimedocumentary.com/wp-admin/admin-ajax.php'
+
+    if 'http' not in url: url = int(url) + 1
+    else: url = 1
     
-    for item in match:
-        name = re.compile('<a href=".+?" target="_self">(.+?)</a>').findall(item)[0]
-        url = re.compile('<a href="(.+?)" target="_self">.+?</a>').findall(item)[0]
-        iconimage = re.compile('url\((.+?)\)').findall(item)[0]
-        name = Cleaner(name)
-        addDir('[COLOR white]' + name + '[/COLOR]',url,38,iconimage,fanarts,'')
+    if url == 1: range = (0,5)
+    
+    if url == 2: range = (6,10)
+    elif url == 3: range = (11,15)
+    elif url == 4: range = (16,20)
+    else: next_range = 'Null'
+    
+    for u in range:
+        post = 'action=the_grid_load_more&grid_nonce=59a4d8f3cb&grid_name=Browse+All&grid_page=%s' % str(u)
+
+        r = client.request(post_url, post=post, headers={'Origin': ori}, XHR=True, referer=ref)
+        r = r.replace('\\','')
+        r = dom_parser.parse_dom(r,'article', {'class': 'tg-item'})
+        for i in r:
+            try:
+                title = re.compile('<a href=".+?>(.+?)<\/a>').findall(i.content)[0].encode('utf-8')
+                new_url = re.compile('href="([^"]+)').findall(i.content)[0].encode('utf-8')
+                iconimage = re.compile('url\((.+?)\)').findall(i.content)[0].encode('utf-8')
+                title = client.replaceHTMLCodes(title)
+                addDir('[COLOR white]' + title + '[/COLOR]',new_url,38,iconimage,fanarts,'')
+            except: pass
+    
+    if url < 5: addDir('[COLOR white]Load More...[/COLOR]',str(url),36,icon,fanarts,'')
 
 def Crime_Documentaries_Browse(name,url,iconimage):
 
@@ -1341,6 +1369,142 @@ def Play_Crime_Documentaries(name,url,iconimage):
     dp.create(AddonTitle, "Getting playable link.............","Please wait....")
     Play_Link(name,url,iconimage)
 
+def Documentary_Arena_Main(name,url,iconimage):
+
+    addDir('[COLOR yellowgreen]Search...[/COLOR]',url,43,icon,fanarts,"")
+
+    da_base = 'http://www.documentaryarea.com'
+
+    r = client.request(url)
+
+    u = re.compile('<li>.+?href=[\"\'](.+?)[\"\'>](.+?)<\/a>').findall(r)
+
+    u = [(urlparse.urljoin(da_base,url),title) for url,title in u if '"' not in title]
+
+    for url,title in u:
+        title = title.replace('>','').replace('</span','').replace('<span','').lstrip()
+        addDir(title,url,41,icon,fanarts,'')
+    
+def Documentary_Arena_Content(name,url,iconimage):
+
+    da_base = 'http://www.documentaryarea.com'
+
+    r = client.request(url)
+
+    u = dom_parser.parse_dom(r, 'div', {'class': 'ajuste4'})
+  
+    for i in u:
+        try:
+            name = re.compile('alt="([^"]+)').findall(i.content)[0]
+            url = re.compile('<a href="([^"]+)').findall(i.content)[0]
+            iconimage = re.compile('<img src="([^"]+)').findall(i.content)[0]
+            try: description = re.compile('title="(.+?)"').findall(i.content)[0]
+            except: description = 'None'
+            addLink(name,urlparse.urljoin(da_base,url),42,urlparse.urljoin(da_base,iconimage),fanarts,description)
+        except: pass
+    try:
+        np = re.compile('<span class="page active">\d<\/span>.+?<a href="(.+?)"',re.DOTALL).findall(r)[0]
+        np = np.replace('&amp;','&')
+        addDir('Next Page -->',urlparse.urljoin(da_base,np),41,icon,fanarts,'')
+    except: pass
+    
+def Documentary_Arena_Play(name,url,iconimage):
+
+    url = url.replace(' ','%20')
+    r = client.request(url)
+    url = re.compile('\s\w+:\s\"([^"]+)').findall(r)
+    s = [i for i in url if 'mp4' in i]
+
+    u = Sort_Links(s, single=False)
+    Auto_Play(u)
+    
+def Documentary_Arena_Search(url):
+
+    da_base = 'http://www.documentaryarea.com'
+
+    string =''
+    keyboard = xbmc.Keyboard(string, 'Enter Search Term')
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        string = keyboard.getText()
+        if len(string)>1:
+            term = string.lower()
+            term = term.replace(" ","+")
+        else: quit()
+    else: quit()
+
+    namelist      = []
+    urllist       = []
+    iconlist      = []
+    desclist      = []
+    modelist      = []
+    combinedlists = []
+
+    url = 'http://www.documentaryarea.com/results.php?search=%s&genre=' % term
+    
+    r = client.request(url)
+
+    u = dom_parser.parse_dom(r, 'div', {'class': 'ajuste4'})
+  
+    for i in u:
+        name = re.compile('alt="([^"]+)').findall(i.content)[0]
+        url = re.compile('<a href="([^"]+)').findall(i.content)[0]
+        iconimage = re.compile('<img src="([^"]+)').findall(i.content)[0]
+        try: description = re.compile('title="(.+?)"').findall(i.content)[0]
+        except: description = 'None'
+        name = '[COLOR white]' + name + '[/COLOR]'
+        namelist.append(name)
+        urllist.append(urlparse.urljoin(da_base,url))
+        iconlist.append(urlparse.urljoin(da_base,iconimage))
+        desclist.append(description)
+        modelist.append("42")
+        combinedlists = list(zip(namelist,urllist,iconlist,desclist,modelist))
+
+    for name,url,iconimage,desc,mode in sorted(combinedlists):
+        if " " in string:
+            checks = string.split(" ")
+            notfound = 0
+            for check in checks:
+                if not check.lower() in name.lower():
+                    notfound = 1
+            if notfound == 0:    
+                addLink(name,url,int(mode),iconimage,fanarts,desc)
+        else:
+            addLink(name,url,int(mode),iconimage,fanarts,desc)
+
+    try:
+        np = re.compile('<span class="page active">\d<\/span>.+?<a href="(.+?)"',re.DOTALL).findall(r)[0]
+        np = np.replace('&amp;','&')
+        addDir('Next Page -->',urlparse.urljoin(da_base,np),41,icon,fanarts,'')
+    except: pass
+    
+def Auto_Play(u):
+
+    p = 0
+    timer = 0
+    
+    xbmc.executebuiltin("ActivateWindow(busydialog)")
+    while not xbmc.Player().isPlayingVideo():
+        try:
+            if timer == 0:
+                liz = xbmcgui.ListItem(name,iconImage=iconimage, thumbnailImage=iconimage)
+                url = u[p][0]
+                liz.setPath(url)
+                xbmc.Player().play(url, liz, False)
+            time.sleep(1)
+            timer += 1
+            if timer == 8:
+                try: xbmc.Player.stop()
+                except: pass
+                kodi.notify(msg='Link %s failed. Trying next link.' % (str(p+1)), duration=2000, sound=True)
+                timer = 0
+                p += 1
+        except:
+            xbmc.executebuiltin("Dialog.Close(busydialog)")
+            kodi.notify(msg='Failed to play %s' % name, duration=5000, sound=True)
+            quit()
+    xbmc.executebuiltin("Dialog.Close(busydialog)")
+
 def Multi_Search():
 
     string =''
@@ -1355,7 +1519,7 @@ def Multi_Search():
     else: quit()
 
     current = 0
-    totalsites = 8
+    totalsites = 9
 
     dp.create(AddonTitle, '[COLOR white]Searching for ' + string.title())
     dp.update(0)
@@ -1617,10 +1781,10 @@ def Multi_Search():
 
         url = "https://documentaryaddict.com/films?utf8=&q%5BC_Name_cont%5D=" + term
         
-        link = open_url(url).replace('\n','').replace('\r','')
-        match = re.compile('<div class="col-xs-12 col-sm-6 col-md-3 widget-film">(.+?)</div></div>',re.DOTALL).findall(link)
-        
         try:
+            link = open_url(url).replace('\n','').replace('\r','')
+            match = re.compile('<div class="col-xs-12 col-sm-6 col-md-3 widget-film">(.+?)</div></div>',re.DOTALL).findall(link)
+            
             for item in match:
                 name = re.compile('<a title="(.+?)" href=".+?">').findall(item)[0]
                 url = re.compile('<a title=".+?" href="(.+?)">').findall(item)[0]
@@ -1668,6 +1832,42 @@ def Multi_Search():
                 combinedlists = list(zip(namelist,urllist,iconlist,desclist,modelist))
         except: pass
 
+    if not dp.iscanceled(): 
+        current = current + 1
+        progress = 100 * int(current)/int(totalsites)
+        dp.update(progress, '','[COLOR yellowgreen]Currently searching Documentary Arena...','[COLOR blue]Site number ' + str(current) + ' of ' + str(totalsites) + '[/COLOR]')
+
+        try:
+            da_base = 'http://www.documentaryarea.com'
+
+            namelist      = []
+            urllist       = []
+            iconlist      = []
+            desclist      = []
+            modelist      = []
+            combinedlists = []
+
+            url = 'http://www.documentaryarea.com/results.php?search=%s&genre=' % term
+            
+            r = client.request(url)
+
+            u = dom_parser.parse_dom(r, 'div', {'class': 'ajuste4'})
+          
+            for i in u:
+                name = re.compile('alt="([^"]+)').findall(i.content)[0]
+                url = re.compile('<a href="([^"]+)').findall(i.content)[0]
+                iconimage = re.compile('<img src="([^"]+)').findall(i.content)[0]
+                try: description = re.compile('title="(.+?)"').findall(i.content)[0]
+                except: description = 'None'
+                name = '[COLOR white]' + name + '[/COLOR]'
+                namelist.append(name)
+                urllist.append(urlparse.urljoin(da_base,url))
+                iconlist.append(urlparse.urljoin(da_base,iconimage))
+                desclist.append(description)
+                modelist.append("42")
+                combinedlists = list(zip(namelist,urllist,iconlist,desclist,modelist))
+        except: pass
+        
     dp.update(progress, '','[COLOR yellowgreen]Filtering results...','[COLOR blue]Please wait...[/COLOR]')
 
     finalnamelist       = []
@@ -1746,6 +1946,21 @@ def Cleaner(string):
 
     return string
 
+def Sort_Links(s, single=None):
+
+    u = []
+    for i in s:
+        c = client.request(i, output='headers')
+        checks = ['video','mpegurl']
+        if any(f for f in checks if f in c['Content-Type']): u.append((i, int(c['Content-Length'])))
+
+    u = sorted(u, key=lambda x: x[1])[::-1]
+    if single == False:
+        return u
+    else:
+        u = client.request(u[0][0], output='geturl', referer=url)
+        return u
+
 def Play_Link(name,url,iconimage):
 
     import urlresolver
@@ -1803,6 +2018,8 @@ def get_params():
     
 def addDir(name,url,mode,iconimage,fanart,description):
 
+    try: description = client.replaceHTMLCodes(description)
+    except: pass
     description = '[COLOR yellowgreen]' + description + '[/COLOR]'
     u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)
     ok=True
@@ -1815,7 +2032,8 @@ def addDir(name,url,mode,iconimage,fanart,description):
 
 def addLink(name, url, mode, iconimage, fanart, description):
 
-    description = Cleaner(description)
+    try: description = client.replaceHTMLCodes(description)
+    except: pass
     description = '[COLOR yellowgreen]' + description + '[/COLOR]'
     u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)
     ok=True
@@ -1880,6 +2098,10 @@ elif mode==36:Crime_Documentaries_BrowseAll(name,url,iconimage)
 elif mode==37:Crime_Documentaries_Browse(name,url,iconimage)
 elif mode==38:Crime_Documentaries_List_Eps(name,url,iconimage)
 elif mode==39:Search_Crime_Documentaries(url)
+elif mode==40:Documentary_Arena_Main(name,url,iconimage)
+elif mode==41:Documentary_Arena_Content(name,url,iconimage)
+elif mode==42:Documentary_Arena_Play(name,url,iconimage)
+elif mode==43:Documentary_Arena_Search(url)
 elif mode==900:Play_Top_Documentaries(name,url,iconimage)
 elif mode==901:Play_Free_Documentaries(name,url,iconimage)
 elif mode==902:Play_Documentary_Storm(name,url,iconimage)

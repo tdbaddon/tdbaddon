@@ -33,7 +33,7 @@ addon = xbmcaddon.Addon()
 get_setting = addon.getSetting
 show_settings = addon.openSettings
 sleep = xbmc.sleep
-__log = xbmc.log
+_log = xbmc.log
 
 def execute_jsonrpc(command):
     if not isinstance(command, basestring):
@@ -174,7 +174,7 @@ def set_view(content, set_view=False, set_sort=False):
     if set_view:
         view = get_setting('%s_view' % (content))
         if view and view != '0':
-            __log('Setting View to %s (%s)' % (view, content), xbmc.LOGDEBUG)
+            _log('Setting View to %s (%s)' % (view, content), xbmc.LOGDEBUG)
             xbmc.executebuiltin('Container.SetViewMode(%s)' % (view))
 
     # set sort methods - probably we don't need all of them

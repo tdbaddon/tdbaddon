@@ -21,9 +21,12 @@ import kodi
 import log_utils  # @UnusedImport
 import dom_parser2
 from salts_lib import scraper_utils
+from salts_lib import jsunpack
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
+
+logger = log_utils.Logger.get_logger(__name__)
 
 BASE_URL = 'http://diziay.com'
 SEASON_URL = '/posts/filmgonder.php?action=sezongets'
@@ -58,13 +61,14 @@ class Scraper(scraper.Scraper):
         iframe_url = dom_parser2.parse_dom(fragment[0].content, 'iframe', req='src')
         if not iframe_url: return hosters
         
-        html = self._http_get(iframe_url[0].attrs['src'], cache_limit=.5)
+        html = self._http_get(iframe_url[0].attrs['src'], cache_limit=.25)
         sources.append(self.__get_embedded_sources(html))
         sources.append(self.__get_linked_sources(html))
         for source in sources:
             for stream_url in source['sources']:
                 host = scraper_utils.get_direct_hostname(self, stream_url)
                 if host == 'gvideo':
+                    stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
                     quality = scraper_utils.gv_get_quality(stream_url)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
                     hoster['subs'] = source.get('subs', True)
@@ -78,6 +82,13 @@ class Scraper(scraper.Scraper):
         subs = '' if re.search('''"?kind"?\s*:\s*"?captions"?''', html) else 'Turkish subtitles'
         for attrs, _content in dom_parser2.parse_dom(html, 'source', {'type': 'video/mp4'}, req='src'):
             sources.append(attrs['src'])
+        
+        for match in re.finditer('(eval\(function\(.*?)</script>', html, re.DOTALL):
+            js_data = jsunpack.unpack(match.group(1))
+            js_data = js_data.replace('\\', '')
+            html += js_data
+
+        sources += [source for source in scraper_utils.parse_sources_list(self, html, var="source")]
         return {'sources': sources, 'subs': subs}
         
     def __get_linked_sources(self, html):
@@ -100,10 +111,12 @@ class Scraper(scraper.Scraper):
         html = self._http_get(url, cache_limit=24)
         show_id = dom_parser2.parse_dom(html, 'div', {'id': 'icerikid'}, req='value')
         if show_id:
+            episode_pattern = 'href="([^"]*-%s-sezon-%s-bolum[^"]*)"' % (video.season, video.episode)
+            title_pattern = 'href="(?P<url>[^"]+)[^>]*class="realcuf".*?class="realcuf">(?P<title>[^<]*)'
+            season_url = scraper_utils.urljoin(self.base_url, SEASON_URL)
             data = {'sezon_id': video.season, 'dizi_id': show_id[0].attrs['value'], 'tip': 'dizi', 'bolumid': ''}
-            episode_pattern = 'href="([^"]+/[^"]*%s-sezon-%s-bolum[^"]*)"' % (video.season, video.episode)
-            title_pattern = 'href="(?P<url>[^"]*-\d+-sezon-\d+-bolum[^"]*)[^>]*>.*?class="realcuf">(?P<title>[^<]*)'
-            return self._default_get_episode_url(SEASON_URL, video, episode_pattern, title_pattern, data=data, headers=XHR)
+            html = self._http_get(season_url, data=data, headers=XHR, cache_limit=2)
+            return self._default_get_episode_url(html, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

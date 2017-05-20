@@ -26,6 +26,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'https://ororo.tv'
 
 class Scraper(scraper.Scraper):
@@ -80,7 +81,7 @@ class Scraper(scraper.Scraper):
                                 if video.ep_airdate == (ep_airdate - datetime.timedelta(days=1)):
                                     return scraper_utils.pathify_url('?id=%s' % (episode['id']))
                 else:
-                    log_utils.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
+                    logger.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
                 
                 if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
                     norm_title = scraper_utils.normalize_title(video.ep_title)

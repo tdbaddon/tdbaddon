@@ -28,6 +28,9 @@ from constants import SRT_SOURCE
 from constants import USER_AGENT
 from db_utils import DB_Connection
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 BASE_URL = 'http://www.addic7ed.com'
 
 class SRT_Scraper():
@@ -39,7 +42,7 @@ class SRT_Scraper():
         rows = self.db_connection.get_related_url(VIDEO_TYPES.TVSHOW, title, year, SRT_SOURCE)
         if rows:
             tvshow_id = rows[0][0]
-            log_utils.log('Returning local tvshow id: |%s|%s|%s|' % (title, year, tvshow_id), log_utils.LOGDEBUG)
+            logger.log('Returning local tvshow id: |%s|%s|%s|' % (title, year, tvshow_id), log_utils.LOGDEBUG)
             return tvshow_id
 
         html = self.__get_cached_url(BASE_URL, 24)
@@ -145,7 +148,7 @@ class SRT_Scraper():
                 try: xbmcvfs.mkdirs(os.path.dirname(final_path))
                 except: os.makedirs(os.path.dirname(final_path))
             except:
-                log_utils.log('Failed to create directory %s' % os.path.dirname(final_path), log_utils.LOGERROR)
+                logger.log('Failed to create directory %s' % os.path.dirname(final_path), log_utils.LOGERROR)
                 raise
 
         with open(final_path, 'w') as f:
@@ -165,21 +168,21 @@ class SRT_Scraper():
             body = body.encode('utf-8')
         except Exception as e:
             kodi.notify(msg='Failed to connect to URL: %s' % (url), duration=5000)
-            log_utils.log('Failed to connect to URL %s: (%s)' % (url, e), log_utils.LOGERROR)
+            logger.log('Failed to connect to URL %s: (%s)' % (url, e), log_utils.LOGERROR)
             return ('', '')
 
         return (response, body)
 
     def __get_cached_url(self, url, cache=8):
-        log_utils.log('Fetching Cached URL: %s' % url, log_utils.LOGDEBUG)
+        logger.log('Fetching Cached URL: %s' % url, log_utils.LOGDEBUG)
         before = time.time()
 
         _created, _res_header, html = self.db_connection.get_cached_url(url, cache_limit=cache)
         if html:
-            log_utils.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
+            logger.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
             return html.decode('utf-8')
 
-        log_utils.log('No cached url found for: %s' % url, log_utils.LOGDEBUG)
+        logger.log('No cached url found for: %s' % url, log_utils.LOGDEBUG)
         req = urllib2.Request(url)
 
         host = BASE_URL.replace('http://', '')
@@ -192,10 +195,10 @@ class SRT_Scraper():
             html = utils2.cleanse_title(html)
         except Exception as e:
             kodi.notify(msg='Failed to connect to URL: %s' % (url), duration=5000)
-            log_utils.log('Failed to connect to URL %s: (%s)' % (url, e), log_utils.LOGERROR)
+            logger.log('Failed to connect to URL %s: (%s)' % (url, e), log_utils.LOGERROR)
             return ''
 
         self.db_connection.cache_url(url, html)
         after = time.time()
-        log_utils.log('Cached Url Fetch took: %.2f secs' % (after - before), log_utils.LOGDEBUG)
+        logger.log('Cached Url Fetch took: %.2f secs' % (after - before), log_utils.LOGDEBUG)
         return html

@@ -77,8 +77,11 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="([^"]*s%s_e%s(?!\d)[^"]*)' % (video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)
+        episode_pattern = 'href="([^"]*s0*%s_e0*%s(?!\d)[^"]*)' % (video.season, video.episode)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'seasons-grid'})
+        return self._default_get_episode_url(fragment, video, episode_pattern)
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

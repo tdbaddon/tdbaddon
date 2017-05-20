@@ -27,6 +27,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'http://opentuner.is'
 
 class Scraper(scraper.Scraper):
@@ -62,15 +64,19 @@ class Scraper(scraper.Scraper):
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
                 hosters.append(hoster)
             except Exception as e:
-                log_utils.log('Exception during tvonline source: %s - |%s|' % (e, button), log_utils.LOGDEBUG)
+                logger.log('Exception during tvonline source: %s - |%s|' % (e, button), log_utils.LOGDEBUG)
                 raise
     
         return hosters
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = '''href=['"]([^'"]+/season-%s-episode-%s/?)''' % (video.season, video.episode)
-        title_pattern = '''href=['"](?P<url>[^'"]+/season-\d+-episode-\d+/?).*?>\s*\d+\s*-\s*(?P<title>.*?)</a>'''
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        title_pattern = '''href=['"](?P<url>[^'"]+).*?</strong>\s*\d+\s*-\s*(?P<title>.*?)</a>'''
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        parts = dom_parser2.parse_dom(html, 'div', {'class': 'Season'})
+        fragment = '\n'.join(part.content for part in parts)
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

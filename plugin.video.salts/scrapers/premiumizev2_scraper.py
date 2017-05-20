@@ -26,6 +26,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import DELIM
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 VIDEO_EXT = ['MKV', 'AVI', 'MP4']
 MIN_MEG = 100
 LIST_URL = '/api/transfer/list'
@@ -204,7 +206,7 @@ class Scraper(scraper.Scraper):
         result = super(self.__class__, self)._http_get(url, params=params, data=data, allow_redirect=allow_redirect, cache_limit=cache_limit)
         js_result = scraper_utils.parse_json(result, url)
         if 'status' in js_result and js_result['status'] == 'error':
-            log_utils.log('Premiumize V2 Scraper Error: %s - (%s)' % (url, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
+            logger.log('Premiumize V2 Scraper Error: %s - (%s)' % (url, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
             js_result = {}
             
         return js_result

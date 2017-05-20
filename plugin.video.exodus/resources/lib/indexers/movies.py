@@ -58,7 +58,6 @@ class movies:
         self.search_link = 'http://api.trakt.tv/search/movie?limit=20&page=1&query='
         self.imdb_info_link = 'http://www.omdbapi.com/?i=%s&plot=full&r=json'
         self.trakt_info_link = 'http://api.trakt.tv/movies/%s'
-        self.trakt_lang_link = 'http://api.trakt.tv/movies/%s/translations/%s'
         self.fanart_tv_art_link = 'http://webservice.fanart.tv/v3/movies/%s'
         self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
         self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=' + self.tm_user
@@ -332,7 +331,7 @@ class movies:
     def trakt_list(self, url, user):
         try:
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            q.update({'extended': 'full,images'})
+            q.update({'extended': 'full'})
             q = (urllib.urlencode(q)).replace('%2C', ',')
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
 
@@ -405,7 +404,12 @@ class movies:
                 if plot == None: plot = '0'
                 plot = client.replaceHTMLCodes(plot)
 
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'imdb': imdb, 'tvdb': '0', 'poster': '0', 'next': next})
+                try: tagline = item['tagline']
+                except: tagline = '0'
+                if tagline == None: tagline = '0'
+                tagline = client.replaceHTMLCodes(tagline)
+
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'tagline': tagline, 'imdb': imdb, 'tvdb': '0', 'poster': '0', 'next': next})
             except:
                 pass
 
@@ -564,7 +568,7 @@ class movies:
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
 
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'cast': cast, 'plot': plot, 'imdb': imdb, 'tvdb': '0', 'poster': poster, 'next': next})
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'cast': cast, 'plot': plot, 'tagline': '0', 'imdb': imdb, 'tvdb': '0', 'poster': poster, 'next': next})
             except:
                 pass
 
@@ -823,26 +827,21 @@ class movies:
             except:
                 fanart2 = '0'
 
+            tagline = self.list[i].get('tagline', '0')
 
             try:
                 if self.lang == 'en': raise Exception()
 
-                url = self.trakt_lang_link % (imdb, self.lang)
+                item = trakt.getMovieTranslation(imdb, self.lang, full=True)
 
-                item = trakt.getTraktAsJson(url)[0]
-
-                t = item.get('title')
-                if t:
-                    title = t
-
-                t = item.get('overview')
-                if t:
-                    plot = t
+                title = item.get('title') or title
+                tagline = item.get('tagline') or tagline
+                plot = item.get('overview') or plot
             except:
                 pass
 
 
-            item = {'title': title, 'originaltitle': originaltitle, 'year': year, 'imdb': imdb, 'poster': poster, 'poster2': poster2, 'poster3': poster3, 'banner': banner, 'fanart': fanart, 'fanart2': fanart2, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}
+            item = {'title': title, 'originaltitle': originaltitle, 'year': year, 'imdb': imdb, 'poster': poster, 'poster2': poster2, 'poster3': poster3, 'banner': banner, 'fanart': fanart, 'fanart2': fanart2, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': tagline}
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
             self.list[i].update(item)
 
@@ -897,7 +896,7 @@ class movies:
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
                 meta.update({'mediatype': 'movie'})
-                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, urllib.quote_plus(label))})
                 #meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
                 if not 'duration' in i: meta.update({'duration': '120'})
                 elif i['duration'] == '0': meta.update({'duration': '120'})

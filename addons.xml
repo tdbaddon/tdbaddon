@@ -496,6 +496,29 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
+<addon id="plugin.program.BRETTUSmessages" version="1.1.1" name="BRETTUS MESSAGES" provider-name="BRETTUS">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+  	<import addon="script.module.addon.common" optional="true" />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+  	<summary></summary>
+  	<description>This is a modified version of TVADDONS Notifications.</description>
+  	<disclaimer></disclaimer>
+  	<language>en</language>
+  	<platform>all</platform>
+  	<forum></forum>
+  	<website></website>
+  	<source></source>
+  	<email></email>
+  </extension>
+</addon>
+
 <addon id="plugin.program.chrome.launcher" name="Chrome Launcher" version="1.1.5" provider-name="alelec (AddonScriptorDE)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1052,7 +1075,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.echodocs"
          name="Echo Documentaries"
-         version="1.06"
+         version="1.07"
          provider-name="Echo Coder">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1190,7 +1213,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.11" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.12" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1221,10 +1244,10 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Tweaked German providers
-- Updated Polish providers (homik)
-- Fix Trakt sorting
-- Added logging for Trakt and Web-Requests</news>
+		<news>- Updated existing providers
+- Updated german providers
+- Tweaked localized trailers
+- Fixed issue with Trakt login</news>
 	</extension>
 </addon>
 
@@ -2390,13 +2413,14 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.185" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.187" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
         <import addon="script.module.myconnpy" version="1.1.6" />
         <import addon="script.module.tknorris.shared" version="0.0.19"/>
         <import addon="script.module.six"/>
+        <import addon="script.module.dateutil"/>
         <import addon="script.module.image_cache" version="0.0.1" optional="true"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
@@ -3055,23 +3079,27 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
-<addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="2.0.1" provider-name="Ozzy And Brettus">
+<addon id="plugin.video.white.devil" version="3.5.9" name="[COLOR dodgerblue].White Devil Streams[/COLOR]" provider-name="WDS Brettus And Ozzy">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="plugin.program.BRETTUSmessages" optional="false"/>
+		<import addon="script.module.simplejson" version="3.3.0"/>
 		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.whitedevil" version="1.0.4" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">White Devil-Streams</summary>
-		<description lang="en">White Devil-Streams</description>
+		<summary lang="en">White Devil Streams</summary>
+		<description lang="en">White Devil Streams</description>
 		<platform>all</platform>
-		<forum>White Devil-Streams</forum>
-		<website>White Devil-Streams</website>
+		<forum>https://www.facebook.com/groups/WhiteDevilStreams/</forum>
+		<website>https://www.facebook.com/groups/WhiteDevilStreams/</website>
 	</extension>
 </addon>
 
@@ -3120,7 +3148,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.5" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.7" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -3212,7 +3240,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.6.7"
+       version="6.6.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3401,6 +3429,19 @@ Enjoy!</description>
 <description>Download and install addons from Blazetamer.......For Official Support Visit TVADDONS.AG</description>
 <platform>all</platform>
 </extension>
+</addon>
+
+<addon id="repository.Brettusrepo" name="Brettus Builds repository" version="1.0" provider-name="Brettus">
+	<extension point="xbmc.addon.repository" name="Brettus Builds repository">
+		<info compressed="false">http://brettusbuilds.com/brettusrepo/files/addons.xml</info>
+		<checksum>http://brettusbuilds.com/brettusrepo/files/addons.xml.md5</checksum>
+		<datadir zip="true">http://brettusbuilds.com/brettusrepo/files/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+		<description></description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.communityrepo" name="[COLOR darkorange][B]The Community Repository[/B][/COLOR]" version="9.9.3" provider-name="@CommunityRepo">
@@ -4220,6 +4261,21 @@ Addons Included
  </extension>
 </addon>
 
+<addon id="repository.whitedevil" name="White Devil Addon Repository" version="1.0.2" provider-name="White Devil Team">
+	<extension point="xbmc.addon.repository" name="White Devil Add-on Repository">
+		<dir>
+			<info compressed="false">http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/addons.xml</info>
+			<checksum>http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/addons.xml.md5</checksum>
+			<datadir zip="true">http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons from White Devil</summary>
+		<description lang="en">Download and install add-ons from White Devil</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.wiiego" name="Wiiego's XBMC Addons" version="1.0.1" provider-name="wiiego">
 	<extension point="xbmc.addon.repository" name="Wiiego's XBMC Addons Repository">
 		<info compressed="false">https://github.com/diegofn/wiiego-xbmc-addons/raw/master/addons.xml</info>
@@ -4931,7 +4987,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.15" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.16" provider-name="Team NaN">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -5203,7 +5259,7 @@ level.</description>
   </extension>
 </addon>
 
-<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.21" provider-name="tknorris">
+<addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.22" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -5260,6 +5316,27 @@ level.</description>
 		<summary lang="en">Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
 		<description lang="en">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
 	</extension>
+</addon>
+
+<addon id="script.module.whitedevil"
+       name="[B][COLOR white]W[/COLOR][COLOR dodgerblue]hitedevil[/COLOR][/B]"
+	   version="1.0.4"
+	   provider-name="[B][COLOR dodgerblue]Whitedevil[/COLOR][/B]">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="script.module.urlresolver" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dependency For whitedevil</summary>
+    <description lang="en">Dependency For whitedevil</description>
+	<disclaimer lang="en">Dependency For whitedevil</disclaimer>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="script.module.wolfpack"

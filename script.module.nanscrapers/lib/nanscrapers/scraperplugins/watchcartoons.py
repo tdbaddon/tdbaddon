@@ -18,11 +18,13 @@ class Watchcartoons(Scraper):
         
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
+            cleaned_title = title.replace(' ', '').replace('amp;', '').replace('\'','').lower()
             for link in [self.base_link_cartoons, self.dubbed_link_cartoons]:
                 html = requests.get(link).text
                 match = re.compile('<a href="(.+?)" title=".+?">(.+?)</a>').findall(html)
                 for url, name in match:
-                    if title.replace(' ', '').replace('amp;', '').replace('\'','').lower() == name.replace(' ', '').replace('amp;','').replace('\'','').lower():
+                    link_title = name.replace(' ', '').replace('amp;','').replace('\'','').lower()
+                    if (str(season) in ['1', '01'] and link_title == cleaned_title) or ("season %s" % season in link_title and cleaned_title in link_title):
                         html2 = requests.get(url).text
                         match2 = re.compile(
                             '<li><a href="(.+?)" rel="bookmark" title=".+?" class="sonra">(.+?)</a>').findall(html2)

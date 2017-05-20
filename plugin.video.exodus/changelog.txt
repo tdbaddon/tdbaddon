@@ -1,3 +1,9 @@
+[B]3.1.12[/B]
+- Updated existing providers
+- Updated german providers
+- Tweaked localized trailers
+- Fixed issue with Trakt login
+
 [B]3.1.11[/B]
 - Tweaked German providers
 - Updated Polish providers (homik)

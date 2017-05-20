@@ -28,6 +28,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
+
 BASE_URL = 'http://dizilab.net'
 AJAX_URL = '/request/php/'
 ICONS = {'icon-tr': 'Turkish Subtitles', 'icon-en': 'English Subtitles', 'icon-orj': ''}
@@ -161,7 +163,10 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'class="episode"\s+href="([^"]+/sezon-%s/bolum-%s)"' % (video.season, video.episode)
         title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)">\s*(?P<title>[^<]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
+        return self._default_get_episode_url(fragment or html, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

@@ -48,14 +48,14 @@ def __getTrakt(url, post=None):
         resp_header = result[2]
         result = result[0]
 
-        if resp_code in [500, 502, 503, 504, 520, 521, 522, 524]:
+        if resp_code in ['500', '502', '503', '504', '520', '521', '522', '524']:
             log_utils.log('Temporary Trakt Error: %s' % resp_code, log_utils.LOGWARNING)
             return
-        elif resp_code in [404]:
+        elif resp_code in ['404']:
             log_utils.log('Object Not Found : %s' % resp_code, log_utils.LOGWARNING)
             return
 
-        if resp_code not in [401, 405]:
+        if resp_code not in ['401', '405']:
             return result, resp_header
 
         oauth = urlparse.urljoin(BASE_URL, '/oauth/token')
@@ -71,7 +71,7 @@ def __getTrakt(url, post=None):
 
         headers['Authorization'] = 'Bearer %s' % token
 
-        result = client.request(url, post=post, headers=headers, output='extended')
+        result = client.request(url, post=post, headers=headers, output='extended', error=True)
         return result[0], result[2]
     except Exception as e:
         log_utils.log('Unknown Trakt Error: %s' % e, log_utils.LOGWARNING)
@@ -371,16 +371,26 @@ def markEpisodeAsNotWatched(tvdb, season, episode):
     return __getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})[0]
 
 
-def getMovieTranslation(id, lang):
+def getMovieTranslation(id, lang, full=False):
     url = '/movies/%s/translations/%s' % (id, lang)
-    try: return getTraktAsJson(url)[0]['title']
-    except: pass
+    try:
+        item = getTraktAsJson(url)[0]
+        return item if full else item.get('title')
+    except:
+        pass
 
 
-def getTVShowTranslation(id, lang):
-    url = '/shows/%s/translations/%s' % (id, lang)
-    try: return getTraktAsJson(url)[0]['title']
-    except: pass
+def getTVShowTranslation(id, lang, season=None, episode=None, full=False):
+    if season and episode:
+        url = '/shows/%s/seasons/%s/episodes/%s/translations/%s' % (id, season, episode, lang)
+    else:
+        url = '/shows/%s/translations/%s' % (id, lang)
+
+    try:
+        item = getTraktAsJson(url)[0]
+        return item if full else item.get('title')
+    except:
+        pass
 
 
 def getMovieAliases(id):

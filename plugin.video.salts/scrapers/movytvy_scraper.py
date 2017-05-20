@@ -85,13 +85,15 @@ class Scraper(scraper.Scraper):
         show_url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, require_debrid=True, cache_limit=8)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'seasons'})
-        if fragment:
-            match = re.search('href="([^"]+)[^>]*>%s<' % (video.season), fragment[0].content)
-            if match:
-                season_url = scraper_utils.pathify_url(match.group(1))
-                episode_pattern = 'href="([^"]*/seasons/%s/episodes/%s(?!\d)[^"]*)' % (video.season, video.episode)
-                title_pattern = 'href="(?P<url>[^"]+)[^>]*>Episode\s+\d+\s+-\s+(<?P<title>[^<]+)'
-                return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern)
+        if not fragment: return
+        match = re.search('href="([^"]+)[^>]*>%s<' % (video.season), fragment[0].content)
+        if not match: return
+        
+        html = self._http_get(match.group(1), cache_limit=2)
+        episode_pattern = 'href="([^"]*/episodes/%s(?!\d)[^"]*)' % (video.episode)
+        title_pattern = 'href="(?P<url>[^"]+)[^>]*>Episode\s*\d+\s*-\s*(<?P<title>.*?)</a>'
+        fragment = dom_parser2.parse_dom(html, 'ul', {'id': 'episode-list'})
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

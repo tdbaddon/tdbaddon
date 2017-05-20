@@ -28,6 +28,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib import gui_utils
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 SEARCH_TYPES = {VIDEO_TYPES.MOVIE: 'movies', VIDEO_TYPES.TVSHOW: 'series'}
 
@@ -85,7 +87,7 @@ class Scraper(scraper.Scraper):
             else:
                 return result[key]
         except Exception as e:
-            log_utils.log('Failure during torba resolver: %s' % (e), log_utils.LOGWARNING)
+            logger.log('Failure during torba resolver: %s' % (e), log_utils.LOGWARNING)
 
     # do ip whitelist authorization
     def __authorize_ip(self, auth_url):
@@ -97,7 +99,7 @@ class Scraper(scraper.Scraper):
                 self.auth_url = auth_url
                 return gui_utils.do_ip_auth(self, response['url'], response.get('qrcode'))
             else:
-                log_utils.log('Unusable JSON from Torba: %s' % (response), log_utils.LOGWARNING)
+                logger.log('Unusable JSON from Torba: %s' % (response), log_utils.LOGWARNING)
                 return False
     
     def check_auth2(self, auth_url):
@@ -151,10 +153,11 @@ class Scraper(scraper.Scraper):
         match = re.search('href="([^"]+)[^>]+>\s*season\s+%s\s*<' % (video.season), fragment[0].content, re.I)
         if not match: return
         
-        season_url = match.group(1)
         episode_pattern = 'href="([^"]*%s/%s/%s)"' % (show_url, video.season, video.episode)
         title_pattern = 'href="(?P<url>[^"]+)"[^>]*>\s*<div class="series-item-title">(?P<title>[^<]+)'
-        return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern)
+        season_url = scraper_utils.urljoin(self.base_url, match.group(1))
+        html = self._http_get(season_url, cache_limit=2)
+        return self._default_get_episode_url(html, video, episode_pattern, title_pattern)
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

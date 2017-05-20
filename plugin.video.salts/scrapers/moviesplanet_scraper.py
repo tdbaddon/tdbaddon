@@ -30,7 +30,7 @@ from salts_lib.constants import XHR
 from salts_lib.utils2 import i18n
 import scraper
 
-
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'https://www.moviesplanet.tv'
 GK_KEY = base64.urlsafe_b64decode('MllVcmlZQmhTM2swYU9BY0lmTzQ=')
 QUALITY_MAP = {'HD': QUALITIES.HD720}
@@ -123,7 +123,9 @@ class Scraper(scraper.Scraper):
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+/season/0*%s/episode/0*%s/?)"' % (video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        return self._default_get_episode_url(html, video, episode_pattern)
 
     @classmethod
     def get_settings(cls):
@@ -140,7 +142,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=cache_limit)
         if re.search('Please Register or Login', html, re.I):
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=0)
         return html

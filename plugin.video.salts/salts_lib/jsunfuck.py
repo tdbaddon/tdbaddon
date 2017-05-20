@@ -69,7 +69,7 @@ class JSUnfuck(object):
     def __init__(self, js):
         self.js = js
         
-    def decode(self):
+    def decode(self, replace_plus=True):
         while True:
             start_js = self.js
             self.repl_words(self.words)
@@ -79,7 +79,8 @@ class JSUnfuck(object):
             if start_js == self.js:
                 break
     
-        self.js = self.js.replace('+', '')
+        if replace_plus:
+            self.js = self.js.replace('+', '')
         self.js = re.sub('\[[A-Za-z]*\]', '', self.js)
         self.js = re.sub('\[(\d+)\]', '\\1', self.js)
         return self.js
@@ -177,8 +178,10 @@ class JSUnfuck(object):
              '[+!+[]+[+[]]]': '[10]', '+(1+1)': '11', '(+20)': '20'}
         
         for i in xrange(2, 20):
-            key = '+!![]' * (i - 1) + '+[]'
+            key = '+!![]' * (i - 1)
             key = '!+[]' + key
+            n['(' + key + ')'] = str(i)
+            key += '+[]'
             n['(' + key + ')'] = str(i)
             n['[' + key + ']'] = '[' + str(i) + ']'
      

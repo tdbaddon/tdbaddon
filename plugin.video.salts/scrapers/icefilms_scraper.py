@@ -29,7 +29,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-
+logger = log_utils.Logger.get_logger()
 QUALITY_MAP = {'HD720P': QUALITIES.HD720, 'HD720P+': QUALITIES.HD720, 'DVDRIP/STANDARDDEF': QUALITIES.HIGH,
                'SD/DVD480P': QUALITIES.HIGH, 'DVDSCREENER': QUALITIES.HIGH, 'FASTSTREAM/LOWQUALITY': QUALITIES.HIGH}
 BASE_URL = 'http://www.icefilms.info'
@@ -110,7 +110,7 @@ class Scraper(scraper.Scraper):
                     sources.append(source)
                     
         except Exception as e:
-            log_utils.log('Failure (%s) during icefilms get sources: |%s|' % (str(e), video), log_utils.LOGWARNING)
+            logger.log('Failure (%s) during icefilms get sources: |%s|' % (str(e), video), log_utils.LOGWARNING)
             
         return sources
 
@@ -146,6 +146,9 @@ class Scraper(scraper.Scraper):
         return results
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href=(/ip\.php[^>]+)>%sx0?%s\s+' % (video.season, video.episode)
-        title_pattern = 'class=star>\s*<a href=(?P<url>[^>]+)>(?:\d+x\d+\s+)+(?P<title>[^<]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        episode_pattern = 'href=([^>]+)>0*%sx0*%s\s+' % (video.season, video.episode)
+        title_pattern = 'href=(?P<url>[^>]+)>(?:\d+x\d+\s+)+(?P<title>[^<]+)'
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'span', {'class': 'list'})
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)

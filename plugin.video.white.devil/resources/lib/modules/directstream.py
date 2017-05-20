@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,os,urllib,urlparse,json,binascii
 from resources.lib.modules import client
 
 
@@ -29,25 +29,28 @@ def google(url):
         netloc = urlparse.urlparse(url.strip().lower()).netloc
         netloc = netloc.split('.google')[0]
 
-
-
         if netloc == 'docs' or netloc == 'drive':
             url = url.split('/preview', 1)[0]
             url = url.replace('drive.google.com', 'docs.google.com')
 
-            result = client.request(url, headers={'User-Agent': client.agent()})
+        headers = {'User-Agent': client.agent()}
 
+        result = client.request(url, output='extended', headers=headers)
+
+        try: headers['Cookie'] = result[2]['Set-Cookie']
+        except: pass
+
+        result = result[0]
+
+
+        if netloc == 'docs' or netloc == 'drive':
             result = re.compile('"fmt_stream_map",(".+?")').findall(result)[0]
-
             result = json.loads(result)
             result = [i.split('|')[-1] for i in result.split(',')]
             result = sum([googletag(i) for i in result], [])
 
 
-
         elif netloc == 'photos':
-            result = client.request(url, headers={'User-Agent': client.agent()})
-
             result = result.replace('\r','').replace('\n','').replace('\t','')
             result = re.compile('"\d*/\d*x\d*.+?","(.+?)"').findall(result)[0]
 
@@ -58,11 +61,8 @@ def google(url):
             result = [googletag(i)[0] for i in result]
 
 
-
         elif netloc == 'picasaweb':
             id = re.compile('#(\d*)').findall(url)[0]
-
-            result = client.request(url, headers={'User-Agent': client.agent()})
 
             result = re.search('feedPreload:\s*(.*}]}})},', result, re.DOTALL).group(1)
             result = json.loads(result)['feed']['entry']
@@ -75,11 +75,9 @@ def google(url):
             result = sum([googletag(i) for i in result], [])
 
 
-
         elif netloc == 'plus':
-            result = client.source(url, headers={'User-Agent': client.agent()})
-
             id = (urlparse.urlparse(url).path).split('/')[-1]
+
             result = result.replace('\r','').replace('\n','').replace('\t','')
             result = result.split('"%s"' % id)[-1].split(']]')[0]
 
@@ -90,7 +88,6 @@ def google(url):
             result = [googletag(i)[0] for i in result]
 
 
-
         url = []
         try: url += [[i for i in result if i['quality'] == '1080p'][0]]
         except: pass
@@ -98,6 +95,8 @@ def google(url):
         except: pass
         try: url += [[i for i in result if i['quality'] == 'SD'][0]]
         except: pass
+
+        for i in url: i.update({'url': i['url'] + '|%s' % urllib.urlencode(headers)})
 
         if url == []: return
         return url
@@ -125,67 +124,53 @@ def googletag(url):
         return []
 
 
+def googlepass(url):
+    try:
+        try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
+        except: headers = None
+        url = client.request(url.split('|')[0], headers=headers, output='geturl')
+        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+        else: url = url.replace('https://', 'http://')
+        if headers: url += '|%s' % urllib.urlencode(headers)
+        return url
+    except:
+        return
+
+
 
 def vk(url):
     try:
-        try: oid, id = urlparse.parse_qs(urlparse.urlparse(url).query)['oid'][0] , urlparse.parse_qs(urlparse.urlparse(url).query)['id'][0]
-        except: oid, id = re.compile('\/video(.*)_(.*)').findall(url)[0]
-        try: hash = urlparse.parse_qs(urlparse.urlparse(url).query)['hash'][0]
-        except: hash = vk_hash(oid, id)
+        query = urlparse.parse_qs(urlparse.urlparse(url).query)
 
-        u = 'http://api.vk.com/method/video.getEmbed?oid=%s&video_id=%s&embed_hash=%s' % (oid, id, hash)
- 
-        result = client.request(u)
-        result = re.sub(r'[^\x00-\x7F]+',' ', result)
+        try: oid, video_id = query['oid'][0], query['id'][0]
+        except: oid, video_id = re.findall('\/video(.*)_(.*)', url)[0]
 
-        try: result = json.loads(result)['response']
-        except: result = vk_private(oid, id)
+        sources_url = 'http://vk.com/al_video.php?act=show_inline&al=1&video=%s_%s' % (oid, video_id)
+        html = client.request(sources_url)
+        html = re.sub(r'[^\x00-\x7F]+', ' ', html)
+
+        sources = re.findall('(\d+)x\d+.+?(http.+?\.m3u8.+?)n', html)
+
+        if not sources:
+            sources = re.findall('"url(\d+)"\s*:\s*"(.+?)"', html)
+
+        sources = [(i[0], i[1].replace('\\', '')) for i in sources]
+        sources = dict(sources)
 
         url = []
-        try: url += [{'quality': 'HD', 'url': result['url720']}]
+        try: url += [{'quality': 'HD', 'url': sources['720']}]
         except: pass
-        try: url += [{'quality': 'SD', 'url': result['url540']}]
+        try: url += [{'quality': 'SD', 'url': sources['540']}]
         except: pass
-        try: url += [{'quality': 'SD', 'url': result['url480']}]
-        except: pass
-        if not url == []: return url
-        try: url += [{'quality': 'SD', 'url': result['url360']}]
+        try: url += [{'quality': 'SD', 'url': sources['480']}]
         except: pass
         if not url == []: return url
-        try: url += [{'quality': 'SD', 'url': result['url240']}]
+        try: url += [{'quality': 'SD', 'url': sources['360']}]
         except: pass
-
         if not url == []: return url
-
-    except:
-        return
-
-
-def vk_hash(oid, id):
-    try:
-        url = 'http://vk.com/al_video.php?act=show_inline&al=1&video=%s_%s' % (oid, id)
-        result = client.request(url)
-        result = result.replace('\'', '"').replace(' ', '')
-
-        hash = re.compile('"hash2":"(.+?)"').findall(result)
-        hash += re.compile('"hash":"(.+?)"').findall(result)
-        hash = hash[0]
-
-        return hash
-    except:
-        return
-
-
-def vk_private(oid, id):
-    try:
-        url = 'http://vk.com/al_video.php?act=show_inline&al=1&video=%s_%s' % (oid, id)
-
-        result = client.request(url)
-        result = re.compile('var vars *= *({.+?});').findall(result)[0]
-        result = re.sub(r'[^\x00-\x7F]+',' ', result)
-        result = json.loads(result)
-
-        return result
+        try: url += [{'quality': 'SD', 'url': sources['240']}]
+        except: pass
+        if not url == []: return url
     except:
         return
 
@@ -217,6 +202,52 @@ def odnoklassniki(url):
         url = hd + sd[:1]
         if not url == []: return url
 
+    except:
+        return
+
+
+
+def cldmailru(url):
+    try:
+        v = url.split('public')[-1]
+
+        r = client.request(url)
+        r = re.sub(r'[^\x00-\x7F]+',' ', r)
+
+        tok = re.findall('"tokens"\s*:\s*{\s*"download"\s*:\s*"([^"]+)', r)[0]
+
+        url = re.findall('"weblink_get"\s*:\s*\[.+?"url"\s*:\s*"([^"]+)', r)[0]
+
+        url = '%s%s?key=%s' % (url, v, tok)
+
+        return url
+    except:
+        return
+
+
+
+def yandex(url):
+    try:
+        cookie = client.request(url, output='cookie')
+
+        r = client.request(url, cookie=cookie)
+        r = re.sub(r'[^\x00-\x7F]+',' ', r)
+
+        sk = re.findall('"sk"\s*:\s*"([^"]+)', r)[0]
+
+        idstring = re.findall('"id"\s*:\s*"([^"]+)', r)[0]
+
+        idclient = binascii.b2a_hex(os.urandom(16))
+
+        post = {'idClient': idclient, 'version': '3.9.2', 'sk': sk, '_model.0': 'do-get-resource-url', 'id.0': idstring}
+        post = urllib.urlencode(post)
+
+        r = client.request('https://yadi.sk/models/?_m=do-get-resource-url', post=post, cookie=cookie)
+        r = json.loads(r)
+
+        url = r['models'][0]['data']['file']
+
+        return url
     except:
         return
 

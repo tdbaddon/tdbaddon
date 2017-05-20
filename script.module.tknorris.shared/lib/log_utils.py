@@ -22,6 +22,7 @@ import StringIO
 import pstats
 from xbmc import LOGDEBUG, LOGERROR, LOGFATAL, LOGINFO, LOGNONE, LOGNOTICE, LOGSEVERE, LOGWARNING  # @UnusedImport
 
+# TODO: Remove after next SALTS release
 name = kodi.get_name()
 enabled_comp = kodi.get_setting('enabled_comp')
 if enabled_comp:
@@ -40,11 +41,65 @@ def log(msg, level=LOGDEBUG, component=None):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
         if req_level != LOGDEBUG or (enabled_comp is None or component in enabled_comp):
-            kodi.__log('%s: %s' % (name, msg), level)
+            kodi._log('%s: %s' % (name, msg), level)
             
     except Exception as e:
-        try: kodi.__log('Logging Failure: %s' % (e), level)
+        try: kodi._log('Logging Failure: %s' % (e), level)
         except: pass  # just give up
+
+def _is_debugging():
+    command = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.getSettings', 'params': {'filter': {'section': 'system', 'category': 'logging'}}}
+    js_data = kodi.execute_jsonrpc(command)
+    for item in js_data.get('result', {}).get('settings', {}):
+        if item['id'] == 'debug.showloginfo':
+            return item['value']
+    
+    return False
+
+class Logger(object):
+    __loggers = {}
+    __name = kodi.get_name()
+    __addon_debug = kodi.get_setting('addon_debug') == 'true'
+    __debug_on = _is_debugging()
+    __disabled = set()
+    
+    @staticmethod
+    def get_logger(name=None):
+        if name not in Logger.__loggers:
+            Logger.__loggers[name] = Logger()
+        
+        return Logger.__loggers[name]
+        
+    def disable(self):
+        if self not in Logger.__disabled:
+            Logger.__disabled.add(self)
+    
+    def enable(self):
+        if self in Logger.__disabled:
+            Logger.__disabled.remove(self)
+            
+    def log(self, msg, level=LOGDEBUG):
+        # if debug isn't on, skip disabled loggers unless addon_debug is on
+        if not self.__debug_on:
+            if self in self.__disabled:
+                return
+            elif level == LOGDEBUG:
+                if self.__addon_debug:
+                    level = LOGNOTICE
+                else:
+                    return
+        
+        try:
+            if isinstance(msg, unicode):
+                msg = '%s (ENCODED)' % (msg.encode('utf-8'))
+    
+            kodi._log('%s: %s' % (self.__name, msg), level)
+                
+        except Exception as e:
+            try: kodi._log('Logging Failure: %s' % (e), level)
+            except: pass  # just give up
+
+logger = Logger.get_logger()
 
 class Profiler(object):
     def __init__(self, file_path, sort_by='time', builtins=False):
@@ -60,7 +115,7 @@ class Profiler(object):
                 self._profiler.disable()
                 return result
             except Exception as e:
-                log('Profiler Error: %s' % (e), LOGWARNING)
+                logger.log('Profiler Error: %s' % (e), LOGWARNING)
                 return f(*args, **kwargs)
         
         def method_profile_off(*args, **kwargs):
@@ -89,7 +144,7 @@ def trace(method):
         start = time.time()
         result = method(*args, **kwargs)
         end = time.time()
-        log('{name!r} time: {time:2.4f}s args: |{args!r}| kwargs: |{kwargs!r}|'.format(name=method.__name__, time=end - start, args=args, kwargs=kwargs), LOGDEBUG)
+        logger.log('{name!r} time: {time:2.4f}s args: |{args!r}| kwargs: |{kwargs!r}|'.format(name=method.__name__, time=end - start, args=args, kwargs=kwargs), LOGDEBUG)
         return result
 
     def method_trace_off(*args, **kwargs):
@@ -100,11 +155,3 @@ def trace(method):
     else:
         return method_trace_off
 
-def _is_debugging():
-    command = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.getSettings', 'params': {'filter': {'section': 'system', 'category': 'logging'}}}
-    js_data = kodi.execute_jsonrpc(command)
-    for item in js_data.get('result', {}).get('settings', {}):
-        if item['id'] == 'debug.showloginfo':
-            return item['value']
-    
-    return False

@@ -31,6 +31,9 @@ from trakt_api import Trakt_API
 from db_utils import DB_Connection
 from scrapers import *  # import all scrapers into this namespace @UnusedWildImport
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 db_connection = DB_Connection()
 last_check = datetime.datetime.fromtimestamp(0)
 TOKEN = kodi.get_setting('trakt_oauth_token')
@@ -44,8 +47,8 @@ GENRES = {}
 def make_info(item, show=None, people=None):
     if people is None: people = {}
     if show is None: show = {}
-    # log_utils.log('Making Info: Show: %s' % (show), log_utils.LOGDEBUG)
-    # log_utils.log('Making Info: Item: %s' % (item), log_utils.LOGDEBUG)
+    # logger.log('Making Info: Show: %s' % (show), log_utils.LOGDEBUG)
+    # logger.log('Making Info: Item: %s' % (item), log_utils.LOGDEBUG)
     info = {}
     info['originaltitle'] = info['title'] = item['title']
     if 'originaltitle' in item: info['originaltitle'] = item['originaltitle']
@@ -112,7 +115,7 @@ def make_cast(ids, people, cached=True):
     return cast
 
 def update_url(video, source, old_url, new_url):
-    log_utils.log('Setting Url: %s -> |%s|%s|%s|' % (video, source, old_url, new_url), log_utils.LOGDEBUG)
+    logger.log('Setting Url: %s -> |%s|%s|%s|' % (video, source, old_url, new_url), log_utils.LOGDEBUG)
     if new_url:
         db_connection.set_related_url(video.video_type, video.title, video.year, source, new_url, video.season, video.episode)
     else:
@@ -161,12 +164,12 @@ def parallel_search(scraper, video_type, title, year, season):
 def parallel_get_progress(trakt_id, cached, cache_limit):
     progress = trakt_api.get_show_progress(trakt_id, full=True, cached=cached, cache_limit=cache_limit)
     progress['trakt'] = trakt_id  # add in a hacked show_id to be used to match progress up to the show its for
-    log_utils.log('Got progress for Trakt ID: %s' % (trakt_id), log_utils.LOGDEBUG)
+    logger.log('Got progress for Trakt ID: %s' % (trakt_id), log_utils.LOGDEBUG)
     return progress
 
 def parallel_get_url(scraper, video):
     url = scraper.get_url(video)
-    log_utils.log('%s returned url %s' % (scraper.get_name(), url), log_utils.LOGDEBUG)
+    logger.log('%s returned url %s' % (scraper.get_name(), url), log_utils.LOGDEBUG)
     if not url: url = ''
     if url == FORCE_NO_MATCH:
         label = '[%s] [COLOR green]%s[/COLOR]' % (scraper.get_name(), utils2.i18n('force_no_match'))
@@ -185,7 +188,7 @@ def parallel_get_sources(scraper, video):
     found = False
     for hoster in hosters:
         if hoster['host'] is None:
-            log_utils.log('Hoster missing host: %s - %s' % (scraper.get_name(), hoster), log_utils.LOGWARNING)
+            logger.log('Hoster missing host: %s - %s' % (scraper.get_name(), hoster), log_utils.LOGWARNING)
             found = True
         elif not hoster['direct']:
             hoster['host'] = hoster['host'].lower().strip()
@@ -195,7 +198,7 @@ def parallel_get_sources(scraper, video):
     if found:
         hosters = [hoster for hoster in hosters if hoster['host'] is not None]
         
-    log_utils.log('%s returned %s sources in %.2fs' % (scraper.get_name(), len(hosters), time.time() - start), log_utils.LOGDEBUG)
+    logger.log('%s returned %s sources in %.2fs' % (scraper.get_name(), len(hosters), time.time() - start), log_utils.LOGDEBUG)
     result = {'name': scraper.get_name(), 'hosters': hosters}
     return result
 
@@ -203,7 +206,7 @@ def parallel_get_sources(scraper, video):
 def do_startup_task(task):
     run_on_startup = kodi.get_setting('auto-%s' % task) == 'true' and kodi.get_setting('%s-during-startup' % task) == 'true'
     if run_on_startup and not xbmc.abortRequested:
-        log_utils.log('Service: Running startup task [%s]' % (task), log_utils.LOGNOTICE)
+        logger.log('Service: Running startup task [%s]' % (task), log_utils.LOGNOTICE)
         now = datetime.datetime.now()
         xbmc.executebuiltin('RunPlugin(plugin://%s/?mode=%s)' % (kodi.get_id(), task))
         db_connection.set_setting('%s-last_run' % (task), now.strftime("%Y-%m-%d %H:%M:%S.%f"))
@@ -214,27 +217,27 @@ def do_scheduled_task(task, isPlaying):
     now = datetime.datetime.now()
     if kodi.get_setting('auto-%s' % task) == 'true':
         if last_check < now - datetime.timedelta(minutes=1):
-            # log_utils.log('Check Triggered: Last: %s Now: %s' % (last_check, now), log_utils.LOGDEBUG)
+            # logger.log('Check Triggered: Last: %s Now: %s' % (last_check, now), log_utils.LOGDEBUG)
             next_run = get_next_run(task)
             last_check = now
         else:
             # hack next_run to be in the future
             next_run = now + datetime.timedelta(seconds=1)
 
-        # log_utils.log("Update Status on [%s]: Currently: %s Will Run: %s Last Check: %s" % (task, now, next_run, last_check), log_utils.LOGDEBUG)
+        # logger.log("Update Status on [%s]: Currently: %s Will Run: %s Last Check: %s" % (task, now, next_run, last_check), log_utils.LOGDEBUG)
         if now >= next_run:
             is_scanning = xbmc.getCondVisibility('Library.IsScanningVideo')
             if not is_scanning:
                 during_playback = kodi.get_setting('%s-during-playback' % (task)) == 'true'
                 if during_playback or not isPlaying:
-                    log_utils.log('Service: Running Scheduled Task: [%s]' % (task), log_utils.LOGNOTICE)
+                    logger.log('Service: Running Scheduled Task: [%s]' % (task), log_utils.LOGNOTICE)
                     builtin = 'RunPlugin(plugin://%s/?mode=%s)' % (kodi.get_id(), task)
                     xbmc.executebuiltin(builtin)
                     db_connection.set_setting('%s-last_run' % task, now.strftime("%Y-%m-%d %H:%M:%S.%f"))
                 else:
-                    log_utils.log('Service: Playing... Busy... Postponing [%s]' % (task), log_utils.LOGDEBUG)
+                    logger.log('Service: Playing... Busy... Postponing [%s]' % (task), log_utils.LOGDEBUG)
             else:
-                log_utils.log('Service: Scanning... Busy... Postponing [%s]' % (task), log_utils.LOGDEBUG)
+                logger.log('Service: Scanning... Busy... Postponing [%s]' % (task), log_utils.LOGDEBUG)
 
 def get_next_run(task):
     last_run_string = db_connection.get_setting(task + '-last_run')
@@ -246,7 +249,7 @@ def get_next_run(task):
 def keep_search(section, search_text):
     head = int(kodi.get_setting('%s_search_head' % (section)))
     new_head = (head + 1) % SEARCH_HISTORY
-    log_utils.log('Setting %s to %s' % (new_head, search_text), log_utils.LOGDEBUG)
+    logger.log('Setting %s to %s' % (new_head, search_text), log_utils.LOGDEBUG)
     db_connection.set_setting('%s_search_%s' % (section, new_head), search_text)
     kodi.set_setting('%s_search_head' % (section), str(new_head))
 
@@ -306,16 +309,16 @@ def url_exists(video):
     check each source for a url for this video; return True as soon as one is found. If none are found, return False
     """
     max_timeout = int(kodi.get_setting('source_timeout'))
-    log_utils.log('Checking for Url Existence: |%s|' % (video), log_utils.LOGDEBUG)
+    logger.log('Checking for Url Existence: |%s|' % (video), log_utils.LOGDEBUG)
     for cls in relevant_scrapers(video.video_type):
         if kodi.get_setting('%s-sub_check' % (cls.get_name())) == 'true':
             scraper_instance = cls(max_timeout)
             url = scraper_instance.get_url(video)
             if url:
-                log_utils.log('Found url for |%s| @ %s: %s' % (video, cls.get_name(), url), log_utils.LOGDEBUG)
+                logger.log('Found url for |%s| @ %s: %s' % (video, cls.get_name(), url), log_utils.LOGDEBUG)
                 return True
 
-    log_utils.log('No url found for: |%s|' % (video), log_utils.LOGDEBUG)
+    logger.log('No url found for: |%s|' % (video), log_utils.LOGDEBUG)
     return False
 
 def do_disable_check():
@@ -354,7 +357,7 @@ def record_sru_failures(fails, total_scrapers, related_list):
 
 def is_salts():
     plugin_name = xbmc.getInfoLabel('Container.PluginName')
-    log_utils.log('Is_Salts Test (1): |%s|' % (plugin_name))
+    logger.log('Is_Salts Test (1): |%s|' % (plugin_name))
     if plugin_name == kodi.get_id():
         return True
     elif not plugin_name:
@@ -362,11 +365,11 @@ def is_salts():
         if not path:
             path = xbmc.getInfoLabel('ListItem.Path')
         
-        log_utils.log('Is_Salts Test (2): |%s|' % (path))
+        logger.log('Is_Salts Test (2): |%s|' % (path))
         if path:
             try:
                 lines = xbmcvfs.File(path).read()
-                log_utils.log('Is_Salts Test (3): |%s|%s|' % (lines, kodi.get_id()))
+                logger.log('Is_Salts Test (3): |%s|%s|' % (lines, kodi.get_id()))
                 if lines:
                     return lines.startswith('plugin://%s' % (kodi.get_id()))
             except:
@@ -393,4 +396,4 @@ def clear_thumbnails(images):
         else:
             continue
         
-        log_utils.log('Removed thumbnail: %s' % (file_path))
+        logger.log('Removed thumbnail: %s' % (file_path))

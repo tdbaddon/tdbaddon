@@ -18,9 +18,11 @@
 import log_utils  # @UnusedImport
 import proxy
 
+logger = log_utils.Logger.get_logger()
+
 class Proxy(proxy.Proxy):
     try:
         from mvl_scraper import Scraper as real_scraper
     except Exception as e:
         real_scraper = None
-        log_utils.log('import failed: %s' % (e), log_utils.LOGDEBUG)
+        logger.log('import failed: %s' % (e), log_utils.LOGDEBUG)

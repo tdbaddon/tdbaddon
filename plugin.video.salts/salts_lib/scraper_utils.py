@@ -34,6 +34,9 @@ from salts_lib import pyaes
 from salts_lib import utils2
 from salts_lib.constants import *  # @UnusedWildImport
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 cleanse_title = utils2.cleanse_title
 to_datetime = utils2.to_datetime
 normalize_title = utils2.normalize_title
@@ -52,7 +55,7 @@ def get_ua():
         index = random.randrange(len(RAND_UAS))
         versions = {'win_ver': random.choice(WIN_VERS), 'feature': random.choice(FEATURES), 'br_ver': random.choice(BR_VERS[index])}
         user_agent = RAND_UAS[index].format(**versions)
-        log_utils.log('Creating New User Agent: %s' % (user_agent), log_utils.LOGDEBUG)
+        logger.log('Creating New User Agent: %s' % (user_agent), log_utils.LOGDEBUG)
         kodi.set_setting('current_ua', user_agent)
         kodi.set_setting('last_ua_create', str(int(time.time())))
     else:
@@ -79,7 +82,7 @@ def fix_bad_cookies(cookies):
             for key in cookies[domain][path]:
                 cookie = cookies[domain][path][key]
                 if cookie.expires > sys.maxint:
-                    log_utils.log('Fixing cookie expiration for %s: was: %s now: %s' % (key, cookie.expires, sys.maxint), log_utils.LOGDEBUG)
+                    logger.log('Fixing cookie expiration for %s: was: %s now: %s' % (key, cookie.expires, sys.maxint), log_utils.LOGDEBUG)
                     cookie.expires = sys.maxint
     return cookies
 
@@ -123,7 +126,7 @@ def get_quality(video, host, base_quality=None):
                 host_quality = key
                 break
 
-    # log_utils.log('q_str: %s, host: %s, post q: %s, host q: %s' % (q_str, host, post_quality, host_quality), log_utils.LOGDEBUG)
+    # logger.log('q_str: %s, host: %s, post q: %s, host q: %s' % (q_str, host, post_quality, host_quality), log_utils.LOGDEBUG)
     if host_quality is not None and Q_ORDER[host_quality] < Q_ORDER[quality]:
         quality = host_quality
 
@@ -211,7 +214,7 @@ def get_sucuri_cookie(html):
                 if match:
                     return {match.group(1): match.group(2)}
             except Exception as e:
-                log_utils.log('Exception during sucuri js: %s' % (e), log_utils.LOGWARNING)
+                logger.log('Exception during sucuri js: %s' % (e), log_utils.LOGWARNING)
     
     return {}
     
@@ -223,7 +226,7 @@ def gk_decrypt(name, key, cipher_link):
         plain_text += decrypter.feed()
         plain_text = plain_text.split('\0', 1)[0]
     except Exception as e:
-        log_utils.log('Exception (%s) during %s gk decrypt: cipher_link: %s' % (e, name, cipher_link), log_utils.LOGWARNING)
+        logger.log('Exception (%s) during %s gk decrypt: cipher_link: %s' % (e, name, cipher_link), log_utils.LOGWARNING)
         plain_text = ''
 
     return plain_text
@@ -275,7 +278,7 @@ def parse_link(link, item, patterns):
             item.update(match)
             break
     else:
-        log_utils.log('No Regex Match: |%s|%s|' % (item, link), log_utils.LOGDEBUG)
+        logger.log('No Regex Match: |%s|%s|' % (item, link), log_utils.LOGDEBUG)
 
     extra = item['extra'].upper()
     if 'X265' in extra or 'HEVC' in extra:
@@ -318,7 +321,7 @@ def meta_release_check(video_type, left_meta, right_meta, require_title=True):
         matches = matches and (sxe_match or airdate_match)
         
     if not matches:
-        log_utils.log('*%s*%s* - |%s|%s|%s|%s|' % (left_meta, right_meta, title_match, year_match, sxe_match, airdate_match), log_utils.LOGDEBUG)
+        logger.log('*%s*%s* - |%s|%s|%s|%s|' % (left_meta, right_meta, title_match, year_match, sxe_match, airdate_match), log_utils.LOGDEBUG)
     return matches
 
 def pathify_url(url):
@@ -353,10 +356,10 @@ def parse_json(html, url=''):
             else:
                 return js_data
         except (ValueError, TypeError):
-            log_utils.log('Invalid JSON returned: %s: %s' % (html, url), log_utils.LOGWARNING)
+            logger.log('Invalid JSON returned: %s: %s' % (html, url), log_utils.LOGWARNING)
             return {}
     else:
-        log_utils.log('Empty JSON object: %s: %s' % (html, url), log_utils.LOGDEBUG)
+        logger.log('Empty JSON object: %s: %s' % (html, url), log_utils.LOGDEBUG)
         return {}
 
 def format_size(num, suffix='B'):
@@ -386,7 +389,7 @@ def update_scraper(file_name, scraper_url, scraper_key):
             else:
                 old_py = ''
             
-            log_utils.log('%s path: %s, new_py: %s, match: %s' % (__file__, py_path, bool(new_py), new_py == old_py), log_utils.LOGDEBUG)
+            logger.log('%s path: %s, new_py: %s, match: %s' % (__file__, py_path, bool(new_py), new_py == old_py), log_utils.LOGDEBUG)
             if old_py != new_py:
                 with open(py_path, 'w') as f:
                     f.write(new_py)
@@ -577,7 +580,7 @@ def get_gk_links(scraper, html, page_url, page_quality, link_url, player_url):
 
     sources = {}
     for attrs, _content in dom_parser2.parse_dom(html, 'a', req=['data-film', 'data-name', 'data-server']):
-        data = {'ipplugins': 1, 'ip_film': attrs['data-film'], 'ip_server': attrs['data-server'], 'ip_name': attrs['data-name'], 'fix': 0}
+        data = {'ipplugins': 1, 'ip_film': attrs['data-film'], 'ip_server': attrs['data-server'], 'ip_name': attrs['data-name']}
         headers = {'Referer': page_url}
         headers.update(XHR)
         html = scraper._http_get(link_url, data=data, headers=headers, cache_limit=.25)
@@ -690,7 +693,7 @@ def parse_gplus(vid_id, html, link=''):
                                 sources = extract_video(item2)
                                 
         except Exception as e:
-            log_utils.log('Google Plus Parse failure: %s - %s' % (link, e), log_utils.LOGWARNING)
+            logger.log('Google Plus Parse failure: %s - %s' % (link, e), log_utils.LOGWARNING)
     return sources
 
 def parse_gdocs(scraper, link):

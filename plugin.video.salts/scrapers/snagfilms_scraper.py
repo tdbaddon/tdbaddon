@@ -28,6 +28,8 @@ from salts_lib.constants import XHR
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'http://www.snagfilms.com'
 SOURCE_BASE_URL = 'http://mp4.snagfilms.com'
 SEARCH_URL = '/apis/search.json'
@@ -80,7 +82,9 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, season_url, video):
         episode_pattern = 'data-title\s*=\s*"Season\s+0*%s\s+Episode\s+0*%s[^>]*data-permalink\s*=\s*"([^"]+)' % (video.season, video.episode)
         title_pattern = 'data-title\s*=\s*"Season\s+\d+\s+Episode\s+\d+\s*(?P<title>[^"]+)[^>]+data-permalink\s*=\s*"(?P<url>[^"]+)'
-        return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern)
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
+        html = self._http_get(season_url, cache_limit=2)
+        return self._default_get_episode_url(html, video, episode_pattern, title_pattern)
     
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -117,7 +121,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=cache_limit)
         if auth and not dom_parser2.parse_dom(html, 'span', {'class': 'user-name'}):
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=0)
 

@@ -1,4 +1,20 @@
-[B]Version 2.0.184[/B]
+[B]Version 2.0.187[/B]
+- Make episode detection faster across all scrapers
+- Fix m4ufree
+- Fix MovieHubs
+- Fix diziay
+- Fix iwatch
+- Fix MovieSub
+- Fix MovieWatcher
+- Fix Sezon
+- Fix MovieXK
+- Fix Quikr
+- Fix Pubfilm
+- Migrate to logger class
+- Improve js2py
+- Improve jsunfuck
+
+[B]Version 2.0.185[/B]
 - Improve image scraping (fix using thumbnails as fanart)
 - Add RMZ
 - Improve Premiumize.V2

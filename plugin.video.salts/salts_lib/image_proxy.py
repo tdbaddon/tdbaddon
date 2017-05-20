@@ -30,6 +30,9 @@ import worker_pool
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from BaseHTTPServer import HTTPServer
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 class ValidationError(Exception):
     pass
 
@@ -56,16 +59,16 @@ class ImageProxy(object):
             self.httpd.shutdown()
         
         if self.svr_thread is not None:
-            log_utils.log('Reaping proxy thread: %s' % (self.svr_thread))
+            logger.log('Reaping proxy thread: %s' % (self.svr_thread))
             self.svr_thread.join()
             self.svr_thread = None
 
     def __run(self):
         server_address = (self.host, self.port)
-        log_utils.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        logger.log('Starting Image Proxy: %s:%s' % (server_address), log_utils.LOGNOTICE)
         self.httpd = MyHTTPServer(server_address, MyRequestHandler)
         self.httpd.serve_forever(.5)
-        log_utils.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
+        logger.log('Image Proxy Exitting: %s:%s' % (server_address), log_utils.LOGNOTICE)
         self.httpd.server_close()
 
     @staticmethod
@@ -88,7 +91,7 @@ class MyHTTPServer(HTTPServer):
         try:
             HTTPServer.process_request(self, request, client_address)
         except IOError as e:
-            log_utils.log('Image Proxy Error: (%s) %s - %s' % (threading.current_thread().getName(), type(e), e), log_utils.LOGDEBUG)
+            logger.log('Image Proxy Error: (%s) %s - %s' % (threading.current_thread().getName(), type(e), e), log_utils.LOGDEBUG)
     
     def server_close(self):
         try:

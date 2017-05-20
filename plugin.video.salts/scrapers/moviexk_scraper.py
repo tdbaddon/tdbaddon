@@ -26,7 +26,8 @@ from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://moviexk.org'
+logger = log_utils.Logger.get_logger(__name__)
+BASE_URL = 'https://moviexk.org'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -47,38 +48,44 @@ class Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         hosters = []
         if not source_url or source_url == FORCE_NO_MATCH: return hosters
-        url = scraper_utils.urljoin(self.base_url, source_url)
-        headers = {'Referer': url}
-        html = self._http_get(url, headers=headers, cache_limit=0)
+        page_url = scraper_utils.urljoin(self.base_url, source_url)
+        headers = {'Referer': page_url}
+        html = self._http_get(page_url, headers=headers, cache_limit=.5)
         if video.video_type == VIDEO_TYPES.MOVIE:
             fragment = dom_parser2.parse_dom(html, 'div', {'class': 'poster'})
             if fragment:
                 movie_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
                 if movie_url:
-                    url = scraper_utils.urljoin(self.base_url, movie_url[0].attrs['href'])
-                    html = self._http_get(url, cache_limit=.5)
+                    page_url = scraper_utils.urljoin(self.base_url, movie_url[0].attrs['href'])
+                    html = self._http_get(page_url, cache_limit=.5)
                     episodes = self.__get_episodes(html)
-                    url = self.__get_best_page(episodes)
-                    if not url:
+                    page_url = self.__get_best_page(episodes)
+                    if not page_url:
                         return hosters
                     else:
-                        url = scraper_utils.urljoin(self.base_url, url)
-                        html = self._http_get(url, cache_limit=.5)
+                        page_url = scraper_utils.urljoin(self.base_url, page_url)
+                        html = self._http_get(page_url, cache_limit=.5)
         
         streams = dom_parser2.parse_dom(html, 'iframe', req='src')
         if streams:
             streams = [(attrs['src'], 480) for attrs, _content in streams]
             direct = False
         else:
-            streams = [(attrs['src'], attrs['data-res']) for attrs, _content in dom_parser2.parse_dom(html, 'source', req=['src', 'data-res'])]
+            streams = [(attrs['src'], attrs.get('data-res', 480)) for attrs, _content in dom_parser2.parse_dom(html, 'source', req=['src'])]
             direct = True
             
+        headers = {'User-Agent': scraper_utils.get_ua(), 'Referer': page_url}
         for stream_url, height in streams:
-            if 'video.php' in stream_url:
-                redir_url = self._http_get(stream_url, allow_redirect=False, method='HEAD', cache_limit=0)
+            if 'video.php' in stream_url or 'moviexk.php' in stream_url:
+                if 'title=' in stream_url:
+                    title = stream_url.split('title=')[-1]
+                    stream_url = stream_url.replace(title, urllib.quote(title))
+                redir_url = self._http_get(stream_url, headers=headers, allow_redirect=False, method='HEAD', cache_limit=0)
                 if redir_url.startswith('http'):
                     redir_url = redir_url.replace(' ', '').split(';codec')[0]
                     stream_url = redir_url
+                else:
+                    continue
             
             if direct:
                 host = scraper_utils.get_direct_hostname(self, stream_url)
@@ -86,7 +93,7 @@ class Scraper(scraper.Scraper):
                     quality = scraper_utils.gv_get_quality(stream_url)
                 else:
                     quality = scraper_utils.height_get_quality(height)
-                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': url})
+                stream_url += scraper_utils.append_headers(headers)
             else:
                 host = urlparse.urlparse(stream_url).hostname
                 quality = scraper_utils.height_get_quality(height)
@@ -145,8 +152,11 @@ class Scraper(scraper.Scraper):
         url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(url, cache_limit=24)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'poster'})
-        if fragment:
-            show_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
-            if show_url:
-                episode_pattern = 'href="([^"]+)[^>]+>[Ee][Pp]\s*(?:[Ss]0*%s-)?E?p?0*%s(?!\d)' % (video.season, video.episode)
-                return self._default_get_episode_url(show_url[0].attrs['href'], video, episode_pattern)
+        if not fragment: return
+        show_url = dom_parser2.parse_dom(fragment[0].content, 'a', req='href')
+        if not show_url: return
+        show_url = scraper_utils.urljoin(self.base_url, show_url[0].attrs['href'])
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'servers'})
+        episode_pattern = 'href="([^"]+)[^>]+>[Ee][Pp]\s*(?:[Ss]0*%s-)?E?p?0*%s(?!\d)' % (video.season, video.episode)
+        return self._default_get_episode_url(fragment or html, video, episode_pattern)

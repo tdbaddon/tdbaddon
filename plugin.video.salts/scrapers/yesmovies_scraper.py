@@ -32,6 +32,8 @@ from salts_lib.constants import XHR
 import scraper
 import xml.etree.ElementTree as ET
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'https://yesmovies.to'
 QP_URL = '/ajax/v2_movie_quick_play/{slug}/{movie_id}/{vid_type}.html'
 SL_URL = '/ajax/v4_movie_episodes/{movie_id}'
@@ -147,9 +149,9 @@ class Scraper(scraper.Scraper):
                         meta = scraper_utils.parse_episode_link(stream_url)
                     quality = scraper_utils.height_get_quality(meta['height'])
                 sources[stream_url] = {'quality': quality, 'direct': True}
-                log_utils.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
+                logger.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
         except Exception as e:
-            log_utils.log('Exception during yesmovies extract: %s' % (e), log_utils.LOGDEBUG)
+            logger.log('Exception during yesmovies extract: %s' % (e), log_utils.LOGDEBUG)
         return sources
     
     def __get_links_from_xml(self, url, video, page_url, cookies):
@@ -173,9 +175,9 @@ class Scraper(scraper.Scraper):
                     else:
                         quality = scraper_utils.blog_get_quality(video, stream_url, '')
                     sources[stream_url] = {'quality': quality, 'direct': True}
-                    log_utils.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
+                    logger.log('Adding stream: %s Quality: %s' % (stream_url, quality), log_utils.LOGDEBUG)
         except Exception as e:
-            log_utils.log('Exception during YesMovies XML Parse: %s' % (e), log_utils.LOGWARNING)
+            logger.log('Exception during YesMovies XML Parse: %s' % (e), log_utils.LOGWARNING)
 
         return sources
     
@@ -270,7 +272,7 @@ class Scraper(scraper.Scraper):
             params = self.__uncensored3(script)
             
         if params is None:
-            log_utils.log('Unrecognized js in %s' % (token_url))
+            logger.log('Unrecognized js in %s' % (token_url))
 
         return params
     
@@ -314,26 +316,26 @@ class Scraper(scraper.Scraper):
             data = vLocals['param'].decode('string_escape')
             x = re.search('''_x=['"]([^"']+)''', data).group(1)
             y = re.search('''_y=['"]([^"']+)''', data).group(1)
-            log_utils.log('Used $_$ method to decode x/y: |%s|%s|' % (x, y))
+            logger.log('Used $_$ method to decode x/y: |%s|%s|' % (x, y))
             return {'x': x, 'y': y}
         except Exception as e:
-            log_utils.log('Exception in x/y decode (1): %s' % (e), log_utils.LOGWARNING)
+            logger.log('Exception in x/y decode (1): %s' % (e), log_utils.LOGWARNING)
 
     def __uncensored2(self, script):
         try:
             js = jsunfuck.JSUnfuck(script).decode()
             x = re.search('''_x=['"]([^"']+)''', js).group(1)
             y = re.search('''_y=['"]([^"']+)''', js).group(1)
-            log_utils.log('Used jsunfuck to decode x/y: |%s|%s|' % (x, y))
+            logger.log('Used jsunfuck to decode x/y: |%s|%s|' % (x, y))
             return {'x': x, 'y': y}
         except Exception as e:
-            log_utils.log('Exception in x/y decode (2): %s' % (e), log_utils.LOGWARNING)
+            logger.log('Exception in x/y decode (2): %s' % (e), log_utils.LOGWARNING)
 
     def __uncensored3(self, script):
         try:
             xx = re.search('''_x=['"]([^"']+)''', script).group(1)
             xy = re.search('''_y=['"]([^"']+)''', script).group(1)
-            log_utils.log('script used decode xx/xy: |%s|%s|' % (xx, xy))
+            logger.log('script used decode xx/xy: |%s|%s|' % (xx, xy))
             return {'x': xx, 'y': xy}
         except Exception as e:
-            log_utils.log('Exception in xx/xy decode (2): %s' % (e), log_utils.LOGWARNING)
+            logger.log('Exception in xx/xy decode (2): %s' % (e), log_utils.LOGWARNING)

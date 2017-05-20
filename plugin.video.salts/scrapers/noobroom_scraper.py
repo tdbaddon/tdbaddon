@@ -27,6 +27,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'http://superchillin.com'
 
 class Scraper(scraper.Scraper):
@@ -104,7 +105,9 @@ class Scraper(scraper.Scraper):
         episode_pattern = "%sx%02d\s*-\s*.*?href='([^']+)" % (video.season, int(video.episode))
         title_pattern = "\d+x\d+\s*-\s*.*?href='(?P<url>[^']+)'>(?P<title>[^<]+)"
         airdate_pattern = "href='([^']+)(?:[^>]+>){3}\s*-\s*\(Original Air Date:\s+{day}-{month}-{year}"
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        return self._default_get_episode_url(html, video, episode_pattern, title_pattern, airdate_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         if not self.include_paid and video_type != VIDEO_TYPES.MOVIE: return []
@@ -145,7 +148,7 @@ class Scraper(scraper.Scraper):
 
         html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=cache_limit)
         if 'href="logout.php"' not in html:
-            log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+            logger.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login(html)
             html = super(self.__class__, self)._http_get(url, params=params, data=data, headers=headers, method=method, cache_limit=0)
 

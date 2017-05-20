@@ -105,7 +105,7 @@ class source:
                         if s == 'url' and 'http' not in url:
                             url = self.__decode_hash(url)
                         elif s == 'other':
-                            url = dom_parser.parse_dom(url, 'iframe', reg='src')
+                            url = dom_parser.parse_dom(url, 'iframe', req='src')
                             if len(url) < 1: continue
                             url = url[0].attrs['src']
                             if '/old/seframer.php' in url: url = self.__get_old_url(url)

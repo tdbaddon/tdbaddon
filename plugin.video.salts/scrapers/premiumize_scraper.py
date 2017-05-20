@@ -30,6 +30,8 @@ from salts_lib.constants import DELIM
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 BASE_URL = 'premiumize.me'
 CHECKHASH_URL = '/api/torrent/checkhashes?'
 ADD_URL = '/api/transfer/create?type=torrent'
@@ -289,7 +291,7 @@ class Scraper(scraper.Scraper):
         js_result = scraper_utils.parse_json(result, url)
         if js_result.get('status') == 'error':
             msg = js_result.get('message', js_result.get('status_message', 'Unknown Error'))
-            log_utils.log('Premiumize Scraper Error: %s - (%s)' % (url, msg), log_utils.LOGWARNING)
+            logger.log('Premiumize Scraper Error: %s - (%s)' % (url, msg), log_utils.LOGWARNING)
             js_result = {}
             
         return js_result

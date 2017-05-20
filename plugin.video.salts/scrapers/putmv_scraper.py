@@ -75,7 +75,10 @@ class Scraper(scraper.Scraper):
 
     def _get_episode_url(self, season_url, video):
         episode_pattern = 'href="([^"]+)[^>]*>%s<' % (video.episode)
-        return self._default_get_episode_url(season_url, video, episode_pattern)
+        season_url = scraper_utils.urljoin(self.base_url, season_url)
+        html = self._http_get(season_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'id': 'episode_show'})
+        return self._default_get_episode_url(fragment, video, episode_pattern)
     
     def search(self, video_type, title, year, season=''):
         results = []

@@ -28,6 +28,7 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.utils2 import i18n
 import scraper
 
+logger = log_utils.Logger.get_logger()
 Q_LIST = [item[0] for item in sorted(Q_ORDER.items(), key=lambda x:x[1])]
 
 BASE_URL = 'http://www.alluc.ee'
@@ -85,7 +86,7 @@ class Scraper(scraper.Scraper):
             html = self._http_get(search_url, params=params, cache_limit=.5)
             js_result = scraper_utils.parse_json(html, search_url)
             if js_result.get('status') != 'success':
-                log_utils.log('Alluc API Error: |%s|%s|: %s' % (search_url, params, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
+                logger.log('Alluc API Error: |%s|%s|: %s' % (search_url, params, js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
                 continue
             
             for result in js_result['result']:
@@ -117,7 +118,7 @@ class Scraper(scraper.Scraper):
             if any(q in title for q in QUALITY_MAP[key]):
                 post_quality = key
 
-        # log_utils.log('Setting |%s| to |%s|' % (title, post_quality), log_utils.LOGDEBUG)
+        # logger.log('Setting |%s| to |%s|' % (title, post_quality), log_utils.LOGDEBUG)
         return post_quality
     
     def get_url(self, video):
@@ -125,7 +126,7 @@ class Scraper(scraper.Scraper):
         result = self.db_connection().get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
+            logger.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             if video.video_type == VIDEO_TYPES.MOVIE:
                 query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)

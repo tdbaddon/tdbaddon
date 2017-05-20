@@ -33,6 +33,9 @@ from db_utils import DB_Connection
 from constants import VIDEO_TYPES
 import xml.etree.ElementTree as ET
 
+logger = log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 CACHE_INSTALLED = kodi.has_addon('script.module.image_cache')
 if CACHE_INSTALLED:
     import image_cache
@@ -77,13 +80,13 @@ class Scraper(object):
         if params: url += '?' + urllib.urlencode(params)
         _created, cached_headers, html = db_connection.get_cached_url(url, data, cache_limit=cache_limit)
         if html:
-            log_utils.log('Using Cached result for: %s' % (url))
+            logger.log('Using Cached result for: %s' % (url))
             result = html
             res_headers = dict(cached_headers)
         else:
             try:
                 headers['Accept-Encoding'] = 'gzip'
-                log_utils.log('+++Image Scraper Call: %s, header: %s, data: %s cache_limit: %s' % (url, headers, data, cache_limit), log_utils.LOGDEBUG)
+                logger.log('+++Image Scraper Call: %s, header: %s, data: %s cache_limit: %s' % (url, headers, data, cache_limit), log_utils.LOGDEBUG)
                 request = urllib2.Request(url, data=data, headers=headers)
                 response = urllib2.urlopen(request)
                 result = ''
@@ -96,14 +99,14 @@ class Scraper(object):
                     result = utils2.ungz(result)
                 db_connection.cache_url(url, result, data, res_header=res_headers)
             except (ssl.SSLError, socket.timeout) as e:
-                log_utils.log('Image Scraper Timeout: %s' % (url))
+                logger.log('Image Scraper Timeout: %s' % (url))
                 return {}
             except urllib2.HTTPError as e:
                 if e.code != 404:
-                    log_utils.log('HTTP Error (%s) during image scraper http get: %s' % (e, url))
+                    logger.log('HTTP Error (%s) during image scraper http get: %s' % (e, url), log_utils.LOGWARNING)
                 return {}
             except Exception as e:
-                log_utils.log('Error (%s) during image scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
+                logger.log('Error (%s) during image scraper http get: %s' % (str(e), url), log_utils.LOGWARNING)
                 return {}
 
         try:
@@ -116,7 +119,7 @@ class Scraper(object):
         except ValueError:
             return_data = ''
             if result:
-                log_utils.log('Invalid JSON API Response: %s - |%s|' % (url, return_data), log_utils.LOGERROR)
+                logger.log('Invalid JSON API Response: %s - |%s|' % (url, return_data), log_utils.LOGERROR)
 
         return return_data
         
@@ -245,7 +248,7 @@ class TMDBScraper(Scraper):
         if 'tmdb' in ids and ids['tmdb'] and any_art and self.__get_image_base():
             if CACHE_INSTALLED:
                 images = image_cache.get_movie_images(ids['tmdb'])
-                if images: log_utils.log('---Using Cached response for movie images')
+                if images: logger.log('---Using Cached response for movie images')
             else:
                 images = {}
             
@@ -267,7 +270,7 @@ class TMDBScraper(Scraper):
         if 'tmdb' in ids and ids['tmdb'] and self.__get_image_base():
             if CACHE_INSTALLED:
                 images = image_cache.get_person_images(ids['tmdb'])
-                if images: log_utils.log('---Using Cached response for person images: %s' % (ids))
+                if images: logger.log('---Using Cached response for person images: %s' % (ids))
             else:
                 images = {}
             
@@ -464,7 +467,7 @@ class TVDBScraper(Scraper):
                     zip_file = zipfile.ZipFile(StringIO.StringIO(zip_data))
                     xml = zip_file.read(file_name)
                 except Exception as e:
-                    log_utils.log('TVDB Zip Error (%s): %s' % (e, url), log_utils.LOGWARNING)
+                    logger.log('TVDB Zip Error (%s): %s' % (e, url), log_utils.LOGWARNING)
                 finally:
                     try: zip_file.close()
                     except UnboundLocalError: pass
@@ -619,14 +622,14 @@ def scrape_person_images(video_ids, person, cached=True):
         cached_art = {}
     
     if not cached_art:
-        log_utils.log('Getting person images for |%s| in media |%s|' % (person, video_ids), log_utils.LOGDEBUG)
+        logger.log('Getting person images for |%s| in media |%s|' % (person, video_ids), log_utils.LOGDEBUG)
         tried = False
         if not person_art['thumb'] and 'tvdb' in video_ids and video_ids['tvdb']:
             norm_name = utils2.normalize_title(person['person']['name'])
             for member in tvdb_scraper.get_cast(video_ids['tvdb']):
                 tried = True
                 if norm_name == utils2.normalize_title(member['name']):
-                    log_utils.log('Found %s as |%s| in %s' % (person['person']['name'], norm_name, video_ids))
+                    logger.log('Found %s as |%s| in %s' % (person['person']['name'], norm_name, video_ids))
                     person_art['thumb'] = member['thumb']
                     break
         
@@ -744,7 +747,7 @@ def scrape_images(video_type, video_ids, season='', episode='', cached=True):
                     art_dict['poster'] = tvmaze_art['poster']
                     
         if not art_dict['thumb']:
-            log_utils.log('Doing %s thumb fallback |%s|' % (video_type, art_dict))
+            logger.log('Doing %s thumb fallback |%s|' % (video_type, art_dict))
             if video_type == VIDEO_TYPES.MOVIE:
                 if art_dict['poster'] != PLACE_POSTER: art_dict['thumb'] = art_dict['poster']
                 elif art_dict['fanart'] != DEFAULT_FANART: art_dict['thumb'] = art_dict['fanart']
@@ -754,7 +757,7 @@ def scrape_images(video_type, video_ids, season='', episode='', cached=True):
                 elif art_dict['poster'] != PLACE_POSTER: art_dict['thumb'] = art_dict['poster']
                 else: art_dict['thumb'] = art_dict['fanart']
         elif art_dict['fanart'] == DEFAULT_FANART:
-            log_utils.log('Doing %s fanart fallback |%s|' % (video_type, art_dict))
+            logger.log('Doing %s fanart fallback |%s|' % (video_type, art_dict))
             art_dict['fanart'] = art_dict['thumb']
             
         db_connection.cache_images(object_type, trakt_id, art_dict, season, episode)

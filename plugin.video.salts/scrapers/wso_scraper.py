@@ -26,6 +26,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'http://watchseries-online.pl'
 
 class Scraper(scraper.Scraper):
@@ -60,9 +61,12 @@ class Scraper(scraper.Scraper):
         return hosters
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = "href='([^']*([Ss]%02d[Ee]%02d|-%sx%s-|-season-%s-episode-%s(?!\d))[^']*)"  \
-            % (int(video.season), int(video.episode), video.season, video.episode, video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)
+        episode_pattern = '''href=['"]([^"']*([Ss]0*{season}[Ee]0*{episode}|-{season}x{episode}-|-season-{season}-episode-{episode}(?!\d))[^"']*)''' .format(
+            season=video.season, episode=video.episode)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'listEpisodes'})
+        return self._default_get_episode_url(fragment or html, video, episode_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

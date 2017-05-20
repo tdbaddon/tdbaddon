@@ -27,6 +27,8 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
+
 BASE_URL = 'https://www.vidics.to'
 FRAGMENTS = {VIDEO_TYPES.MOVIE: '/film/', VIDEO_TYPES.TVSHOW: '/serie/'}
 
@@ -109,8 +111,11 @@ class Scraper(scraper.Scraper):
         return results
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="(/Serie/[^"]+-Season-%s-Episode-%s)' % (video.season, video.episode)
-        title_pattern = 'class="episode"\s+href="(?P<url>[^"]+).*?class="episode_title">\s*-\s*(?P<title>.*?) \('
-        airdate_pattern = 'class="episode"\s+(?:style="[^"]+")?\s+href="([^"]+)(?:[^>]+>){2}[^<]+\s+\({year} {month_name} {p_day}\)'
-        headers = {'Referer': self.base_url}
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern, headers=headers)
+        episode_pattern = 'href="([^"]+-Season-%s-Episode-%s)' % (video.season, video.episode)
+        title_pattern = 'href="(?P<url>[^"]+).*?class="episode_title">\s*-\s*(?P<title>.*?)\s+\('
+        airdate_pattern = 'href="([^"]+)(?:[^>]+>){2}[^<][^<]+\({year} {month_name} {p_day}\)'
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, headers={'Referer': self.base_url}, cache_limit=2)
+        parts = dom_parser2.parse_dom(html, 'div', {'class': 'season'})
+        fragment = '\n'.join(part.content for part in parts)
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern, airdate_pattern)

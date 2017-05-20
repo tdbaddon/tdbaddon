@@ -23,11 +23,13 @@ ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
 messagetext     = 'https://pbear90.000webhostapp.com/wweondemand/info.xml'
+startinfo       = 'https://pbear90.000webhostapp.com/wweondemand/startinfo.xml'
 wweschedule      = 'https://pbear90.000webhostapp.com/wweondemand/schedule.xml'
 RUNNER 			= base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
                                                                
 def GetMenu():
+        popup()
         xbmc.executebuiltin('Container.SetViewMode(55)')
         url = baseurl
         addDir('[B][COLOR gold]Whats New[/COLOR][/B]',url,10,newicon,fanarts)
@@ -122,7 +124,7 @@ def GetMenu():
         addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)		
 
 def popup():
-        message=open_url2(messagetext)
+        message=open_url2(startinfo)
         if len(message)>1:
                 path = xbmcaddon.Addon().getAddonInfo('path')
                 comparefile = os.path.join(os.path.join(path,''), 'compare.txt')
@@ -130,7 +132,7 @@ def popup():
                 compfile = r.read()       
                 if compfile == message:pass
                 else:
-                        showText('[B][COLOR gold]Whats New[/COLOR][/B]', message)
+                        showText('[B][COLOR gold]IMPORTANT NEWS AND INFO[/COLOR][/B]', message)
                         text_file = open(comparefile, "w")
                         text_file.write(message)
                         text_file.close()
@@ -447,7 +449,15 @@ def PLAYLINK(name,url,iconimage):
         liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setPath(stream_url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-                            
+
+        if '.ts'in url:
+                url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+url
+        elif urlresolver.HostedMediaFile(url).valid_url():
+                url = urlresolver.HostedMediaFile(url).resolve()           
+        elif liveresolver.isValid(url)==True:
+                url=liveresolver.resolve(url)
+        PLAYLINK(name,url,iconimage)		
+                                                       
 def PLAYVIDEO(url):
 
 	xbmc.Player().play(url)
@@ -526,6 +536,7 @@ def addDir(name,url,mode,iconimage,fanart,description=''):
     liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
     liz.setProperty('fanart_image', fanart)
+    if 'plugin://' in url:u=url
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
     return ok
 
@@ -535,6 +546,7 @@ def addLink(name, url, mode, iconimage, fanart, description=''):
     liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setProperty('fanart_image', fanart)
     liz.setProperty("IsPlayable","true")
+    if 'plugin://' in url:u=url
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
     return ok
 

@@ -50,6 +50,8 @@ try:
 except:
     kodi.notify(msg=i18n('smu_failed'), duration=5000)
 
+logger = log_utils.Logger.get_logger()
+
 TOKEN = kodi.get_setting('trakt_oauth_token')
 use_https = kodi.get_setting('use_https') == 'true'
 trakt_timeout = int(kodi.get_setting('trakt_timeout'))
@@ -166,7 +168,7 @@ def show_genre(genre, section, page=1):
     elif genre_list == GENRE_LIST.MOST_COLLECTED_ALL:
         list_data = trakt_api.get_most_collected(section, 'all', page, filters=filters)
     else:
-        log_utils.log('Unrecognized genre list: %s' % (genre_list), log_utils.LOGWARNING, 'genre')
+        logger.log('Unrecognized genre list: %s' % (genre_list), log_utils.LOGWARNING)
         list_data = []
         
     make_dir_from_list(section, list_data, query={'mode': MODES.SHOW_GENRE, 'genre': genre, 'section': section}, page=page)
@@ -319,7 +321,7 @@ def add_search_item(queries, label, thumb, clear_mode):
 @url_dispatcher.register(MODES.FORCE_REFRESH, ['refresh_mode'], ['section', 'slug', 'username'])
 def force_refresh(refresh_mode, section=None, slug=None, username=None):
     kodi.notify(msg=i18n('forcing_refresh'))
-    log_utils.log('Forcing refresh for mode: |%s|%s|%s|%s|' % (refresh_mode, section, slug, username), log_utils.LOGDEBUG, 'refresh')
+    logger.log('Forcing refresh for mode: |%s|%s|%s|%s|' % (refresh_mode, section, slug, username), log_utils.LOGDEBUG)
     now = datetime.datetime.now()
     offset = int(kodi.get_setting('calendar-day'))
     start_date = now + datetime.timedelta(days=offset)
@@ -355,10 +357,10 @@ def force_refresh(refresh_mode, section=None, slug=None, username=None):
             try: worker_pool.reap_workers(workers, None)
             except: pass
     else:
-        log_utils.log('Force refresh on unsupported mode: |%s|' % (refresh_mode), log_utils.LOGWARNING, 'refresh')
+        logger.log('Force refresh on unsupported mode: |%s|' % (refresh_mode), log_utils.LOGWARNING)
         return
 
-    log_utils.log('Force refresh complete: |%s|%s|%s|%s|' % (refresh_mode, section, slug, username), log_utils.LOGDEBUG, 'refresh')
+    logger.log('Force refresh complete: |%s|%s|%s|%s|' % (refresh_mode, section, slug, username), log_utils.LOGDEBUG)
     kodi.notify(msg=i18n('force_refresh_complete'))
 
 @url_dispatcher.register(MODES.MOSTS, ['section'])
@@ -654,7 +656,7 @@ def add_other_list_item(mode, section, other_list, total_items=0):
     try:
         header = trakt_api.get_list_header(other_list[1], other_list[0], bool(TOKEN))
     except (TraktNotFoundError, TraktAuthError) as e:
-        log_utils.log('List Access Failure: %s' % (e), log_utils.LOGWARNING)
+        logger.log('List Access Failure: %s' % (e), log_utils.LOGWARNING)
         header = None
 
     if header:
@@ -768,12 +770,12 @@ def get_rewatches(cached=True):
             
             while len(rewatches) < list_size:
                 try:
-                    log_utils.log('Waiting on progress - Timeout: %s' % (timeout), log_utils.LOGDEBUG, 'rewatch')
+                    logger.log('Waiting on progress - Timeout: %s' % (timeout), log_utils.LOGDEBUG)
                     progress = wp.receive(timeout)
                     trakt_id = progress['trakt']
                     next_episode = utils2.get_next_rewatch(trakt_id, plays, progress)
                     show = shows[trakt_id]['show']
-                    log_utils.log('Next Rewatch: %s (%s) - %s - %s' % (show['title'], show['year'], trakt_id, next_episode), log_utils.LOGDEBUG, 'rewatch')
+                    logger.log('Next Rewatch: %s (%s) - %s - %s' % (show['title'], show['year'], trakt_id, next_episode), log_utils.LOGDEBUG)
                     if next_episode:
                         rewatch = {'episode': next_episode}
                         rewatch.update(shows[trakt_id])
@@ -783,17 +785,17 @@ def get_rewatches(cached=True):
                         timeout = max_timeout - (time.time() - begin)
                         if timeout < 0: timeout = 0
                 except worker_pool.Empty:
-                    log_utils.log('Get Progress Process Timeout', log_utils.LOGWARNING, 'rewatch')
+                    logger.log('Get Progress Process Timeout', log_utils.LOGWARNING)
                     timeout = True
                     break
             else:
-                log_utils.log('All progress results received', log_utils.LOGDEBUG, 'rewatch')
+                logger.log('All progress results received', log_utils.LOGDEBUG)
                 timeout = False
                 
             if timeout:
                 timeout_msg = i18n('progress_timeouts') % (list_size - len(rewatches), list_size)
                 kodi.notify(msg=timeout_msg, duration=5000)
-                log_utils.log(timeout_msg, log_utils.LOGWARNING, 'rewatch')
+                logger.log(timeout_msg, log_utils.LOGWARNING)
             
             rewatches.sort(key=lambda x: list_order[x['show']['ids']['trakt']])
         finally:
@@ -884,7 +886,7 @@ def show_collection(section):
     if section == SECTIONS.TV:
         for item in items:
             collected_episodes = len([e for s in item['seasons'] if s['number'] != 0 for e in s['episodes']])
-            log_utils.log('%s/%s: Collected: %s - Aired: %s' % (item['ids']['trakt'], item['ids']['slug'], collected_episodes, item['aired_episodes']), log_utils.LOGDEBUG, 'collection')
+            logger.log('%s/%s: Collected: %s - Aired: %s' % (item['ids']['trakt'], item['ids']['slug'], collected_episodes, item['aired_episodes']), log_utils.LOGDEBUG)
             if collected_episodes > item['aired_episodes']:
                 item['aired_episodes'] = collected_episodes
 
@@ -927,7 +929,7 @@ def get_progress(cached=True):
                 
                 # skip cached ended 100% shows
                 if use_exclusion and str(trakt_id) in filter_list and str(trakt_id) not in force_list:
-                    log_utils.log('Skipping %s (%s) as cached MNE ended exclusion' % (trakt_id, show['show']['title']), log_utils.LOGDEBUG, 'progress')
+                    logger.log('Skipping %s (%s) as cached MNE ended exclusion' % (trakt_id, show['show']['title']), log_utils.LOGDEBUG)
                     continue
         
                 percent = (i + 1) * 25 / progress_size + 10
@@ -939,7 +941,7 @@ def get_progress(cached=True):
             progress_count = 0
             while progress_count < total_shows:
                 try:
-                    log_utils.log('Waiting for Progress - Timeout: %s' % (timeout), log_utils.LOGDEBUG, 'progress')
+                    logger.log('Waiting for Progress - Timeout: %s' % (timeout), log_utils.LOGDEBUG)
                     progress = wp.receive(timeout)
                     progress_count += 1
                     trakt_id = progress['trakt']
@@ -956,18 +958,18 @@ def get_progress(cached=True):
                         ended = show['status'] and show['status'].upper() == 'ENDED'
                         completed = progress['completed'] == progress['aired']
                         if ended and completed and str(trakt_id) not in filter_list and str(trakt_id) not in force_list:
-                            log_utils.log('Adding %s (%s) (%s - %s) to MNE exclusion list' % (trakt_id, show['title'], progress['completed'], progress['aired']), log_utils.LOGDEBUG, 'progress')
+                            logger.log('Adding %s (%s) (%s - %s) to MNE exclusion list' % (trakt_id, show['title'], progress['completed'], progress['aired']), log_utils.LOGDEBUG)
                             manage_progress_cache(ACTIONS.ADD, progress['trakt'])
                     
                     if max_timeout > 0:
                         timeout = max_timeout - (time.time() - begin)
                         if timeout < 0: timeout = 0
                 except worker_pool.Empty:
-                    log_utils.log('Get Progress Process Timeout', log_utils.LOGWARNING, 'progress')
+                    logger.log('Get Progress Process Timeout', log_utils.LOGWARNING)
                     timeout = True
                     break
             else:
-                log_utils.log('All progress results received', log_utils.LOGDEBUG, 'progress')
+                logger.log('All progress results received', log_utils.LOGDEBUG)
                 timeout = False
         finally:
             workers = wp.close()
@@ -976,7 +978,7 @@ def get_progress(cached=True):
             timeouts = total_shows - progress_count
             timeout_msg = i18n('progress_timeouts') % (timeouts, total_shows)
             kodi.notify(msg=timeout_msg, duration=5000)
-            log_utils.log(timeout_msg, log_utils.LOGWARNING, 'progress')
+            logger.log(timeout_msg, log_utils.LOGWARNING)
         else:
             # only cache the results if all results were successful
             db_connection.cache_function(get_progress.__name__, result=episodes)
@@ -988,7 +990,7 @@ def show_progress():
     try:
         workers, progress = get_progress()
         for episode in progress:
-            log_utils.log('Episode: Sort Keys: Tile: |%s| Last Watched: |%s| Percent: |%s%%| Completed: |%s|' % (episode['show']['title'], episode['last_watched_at'], episode['percent_completed'], episode['completed']), log_utils.LOGDEBUG, 'progress')
+            logger.log('Episode: Sort Keys: Tile: |%s| Last Watched: |%s| Percent: |%s%%| Completed: |%s|' % (episode['show']['title'], episode['last_watched_at'], episode['percent_completed'], episode['completed']), log_utils.LOGDEBUG)
             first_aired_utc = utils.iso_2_utc(episode['episode']['first_aired'])
             if kodi.get_setting('show_unaired_next') == 'true' or first_aired_utc <= time.time():
                 show = episode['show']
@@ -1123,7 +1125,7 @@ def clear_recent(section):
 def delete_recent(section, index):
     index = int(index)
     head = int(kodi.get_setting('%s_search_head' % (section)))
-    log_utils.log('Head is: %s' % (head), log_utils.LOGDEBUG, 'recent')
+    logger.log('Head is: %s' % (head), log_utils.LOGDEBUG)
     for i in range(SEARCH_HISTORY, 0, -1):
         pos = (i - 1 + index) % SEARCH_HISTORY
         last_pos = (pos + 1) % SEARCH_HISTORY
@@ -1131,10 +1133,10 @@ def delete_recent(section, index):
             break
         
         search_text = db_connection.get_setting('%s_search_%s' % (section, pos))
-        log_utils.log('Moving %s to position %s' % (search_text, last_pos), log_utils.LOGDEBUG, 'recent')
+        logger.log('Moving %s to position %s' % (search_text, last_pos), log_utils.LOGDEBUG)
         db_connection.set_setting('%s_search_%s' % (section, last_pos), search_text)
 
-    log_utils.log('Blanking position %s' % (last_pos), log_utils.LOGDEBUG, 'recent')
+    logger.log('Blanking position %s' % (last_pos), log_utils.LOGDEBUG)
     db_connection.set_setting('%s_search_%s' % (section, last_pos), '')
     kodi.refresh_container()
 
@@ -1232,12 +1234,12 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
             result_count = 0
             while result_count < total_scrapers:
                 try:
-                    log_utils.log('Waiting on sources - Timeout: %s' % (timeout), log_utils.LOGDEBUG, 'get_sources')
+                    logger.log('Waiting on sources - Timeout: %s' % (timeout), log_utils.LOGDEBUG)
                     result = wp.receive(timeout)
                     result_count += 1
                     hoster_count = len(result['hosters'])
                     counts[result['name']] = hoster_count
-                    log_utils.log('Got %s Source Results from %s' % (hoster_count, result['name']), log_utils.LOGDEBUG, 'get_sources')
+                    logger.log('Got %s Source Results from %s' % (hoster_count, result['name']), log_utils.LOGDEBUG)
                     progress = (result_count * 75 / total_scrapers) + 25
                     hosters += result['hosters']
                     fails.remove(result['name'])
@@ -1252,7 +1254,7 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
                     pd.update(progress, line2=i18n('received_sources_from') % (hoster_count, len(hosters), result['name']), line3=line3)
     
                     if max_results > 0 and len(hosters) >= max_results:
-                        log_utils.log('Exceeded max results: %s/%s' % (max_results, len(hosters)), log_utils.LOGDEBUG, 'get_sources')
+                        logger.log('Exceeded max results: %s/%s' % (max_results, len(hosters)), log_utils.LOGDEBUG)
                         fails = {}
                         break
     
@@ -1260,11 +1262,11 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
                         timeout = max_timeout - (time.time() - begin)
                         if timeout < 0: timeout = 0
                 except worker_pool.Empty:
-                    log_utils.log('Get Sources Scraper Timeouts: %s' % (', '.join(fails)), log_utils.LOGWARNING, 'get_sources')
+                    logger.log('Get Sources Scraper Timeouts: %s' % (', '.join(fails)), log_utils.LOGWARNING)
                     break
     
             else:
-                log_utils.log('All source results received', log_utils.LOGDEBUG, 'get_sources')
+                logger.log('All source results received', log_utils.LOGDEBUG)
         finally:
             workers = wp.close()
             
@@ -1279,7 +1281,7 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
                     timeout_msg = i18n('scraper_timeout_list') % ('/'.join([name for name in fails]))
             
             if not hosters:
-                log_utils.log('No Sources found for: |%s|' % (video), log_utils.LOGWARNING, 'get_sources')
+                logger.log('No Sources found for: |%s|' % (video), log_utils.LOGWARNING)
                 msg = i18n('no_sources')
                 msg += ' (%s)' % timeout_msg if timeout_msg else ''
                 kodi.notify(msg=msg, duration=5000)
@@ -1310,7 +1312,7 @@ def get_sources(mode, video_type, title, year, trakt_id, season='', episode='', 
     
     try:
         if not hosters:
-            log_utils.log('No Usable Sources found for: |%s|' % (video), log_utils.LOGDEBUG, 'get_sources')
+            logger.log('No Usable Sources found for: |%s|' % (video), log_utils.LOGDEBUG)
             msg = ' (%s)' % timeout_msg if timeout_msg else ''
             kodi.notify(msg=i18n('no_useable_sources') % (msg), duration=5000)
             return False
@@ -1345,39 +1347,39 @@ def apply_urlresolver(hosters):
             host = hoster['host']
             if filter_unusable:
                 if host in unk_hosts:
-                    # log_utils.log('Unknown Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+                    # logger.log('Unknown Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                     unk_hosts[host] += 1
                     continue
                 elif host in known_hosts:
-                    # log_utils.log('Known Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+                    # logger.log('Known Hit: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                     known_hosts[host] += 1
                     filtered_hosters.append(hoster)
                 else:
                     hmf = urlresolver.HostedMediaFile(host=host, media_id='12345678901')  # use dummy media_id to force host validation
                     if hmf:
-                        # log_utils.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+                        # logger.log('Known Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                         known_hosts[host] = known_hosts.get(host, 0) + 1
                         filtered_hosters.append(hoster)
                     else:
-                        # log_utils.log('Unknown Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
+                        # logger.log('Unknown Miss: %s from %s' % (host, hoster['class'].get_name()), log_utils.LOGDEBUG)
                         unk_hosts[host] = unk_hosts.get(host, 0) + 1
                         continue
             else:
                 filtered_hosters.append(hoster)
             
             if host in debrid_hosts:
-                # log_utils.log('Debrid cache found for %s: %s' % (host, debrid_hosts[host]), log_utils.LOGDEBUG)
+                # logger.log('Debrid cache found for %s: %s' % (host, debrid_hosts[host]), log_utils.LOGDEBUG)
                 hoster['debrid'] = debrid_hosts[host]
             else:
                 temp_resolvers = [resolver.name[:3].upper() for resolver in debrid_resolvers if resolver.valid_url('', host)]
-                # log_utils.log('%s supported by: %s' % (host, temp_resolvers), log_utils.LOGDEBUG)
+                # logger.log('%s supported by: %s' % (host, temp_resolvers), log_utils.LOGDEBUG)
                 debrid_hosts[host] = temp_resolvers
                 if temp_resolvers:
                     hoster['debrid'] = temp_resolvers
         else:
             filtered_hosters.append(hoster)
             
-    log_utils.log('Discarded Hosts: %s' % (sorted(unk_hosts.items(), key=lambda x: x[1], reverse=True)), log_utils.LOGDEBUG, 'get_sources')
+    logger.log('Discarded Hosts: %s' % (sorted(unk_hosts.items(), key=lambda x: x[1], reverse=True)), log_utils.LOGDEBUG)
     return filtered_hosters
 
 @url_dispatcher.register(MODES.RESOLVE_SOURCE, ['mode', 'class_url', 'direct', 'video_type', 'trakt_id', 'class_name'], ['season', 'episode'])
@@ -1388,7 +1390,7 @@ def resolve_source(mode, class_url, direct, video_type, trakt_id, class_name, se
             scraper_instance = cls()
             break
     else:
-        log_utils.log('Unable to locate scraper with name: %s' % (class_name), log_utils.LOGWARNING, 'get_sources')
+        logger.log('Unable to locate scraper with name: %s' % (class_name), log_utils.LOGWARNING)
         return False
 
     hoster_url = scraper_instance.resolve_link(class_url)
@@ -1425,13 +1427,13 @@ def play_source(mode, hoster_url, direct, video_type, trakt_id, season='', episo
 
     with kodi.WorkingDialog() as wd:
         if direct:
-            log_utils.log('Treating hoster_url as direct: %s' % (hoster_url), log_utils.LOGDEBUG, 'play_source')
+            logger.log('Treating hoster_url as direct: %s' % (hoster_url), log_utils.LOGDEBUG)
             stream_url = hoster_url
         else:
             wd.update(25)
             hmf = urlresolver.HostedMediaFile(url=hoster_url)
             if not hmf:
-                log_utils.log('Indirect hoster_url not supported by urlresolver: %s' % (hoster_url), log_utils.LOGDEBUG, 'play_source')
+                logger.log('Indirect hoster_url not supported by urlresolver: %s' % (hoster_url), log_utils.LOGDEBUG)
                 stream_url = hoster_url
             else:
                 try:
@@ -1453,7 +1455,7 @@ def play_source(mode, hoster_url, direct, video_type, trakt_id, season='', episo
         if salts_utils.bookmark_exists(trakt_id, season, episode):
             if salts_utils.get_resume_choice(trakt_id, season, episode):
                 resume_point = salts_utils.get_bookmark(trakt_id, season, episode)
-                log_utils.log('Resume Point: %s' % (resume_point), log_utils.LOGDEBUG, 'play_source')
+                logger.log('Resume Point: %s' % (resume_point), log_utils.LOGDEBUG)
     
     with kodi.WorkingDialog() as wd:
         from_library = xbmc.getInfoLabel('Container.PluginName') == ''
@@ -1502,7 +1504,7 @@ def play_source(mode, hoster_url, direct, video_type, trakt_id, season='', episo
                 path = make_path(path, video_type, movie_meta['title'], movie_meta['year'])
                 file_name = utils2.filename_from_title(movie_meta['title'], video_type, movie_meta['year'])
         except TransientTraktError as e:
-            log_utils.log('During Playback: %s' % (str(e)), log_utils.LOGWARNING, 'play_source')  # just log warning if trakt calls fail and leave meta and art blank
+            logger.log('During Playback: %s' % (str(e)), log_utils.LOGWARNING)  # just log warning if trakt calls fail and leave meta and art blank
         wd.update(75)
 
     if mode in [MODES.DOWNLOAD_SOURCE, MODES.DIRECT_DOWNLOAD]:
@@ -1514,7 +1516,7 @@ def play_source(mode, hoster_url, direct, video_type, trakt_id, season='', episo
         if video_type == VIDEO_TYPES.EPISODE and utils2.srt_download_enabled() and show_meta:
             srt_path = download_subtitles(kodi.get_setting('subtitle-lang'), show_meta['title'], show_meta['year'], season, episode)
             if utils2.srt_show_enabled() and srt_path:
-                log_utils.log('Setting srt path: %s' % (srt_path), log_utils.LOGDEBUG, 'play_source')
+                logger.log('Setting srt path: %s' % (srt_path), log_utils.LOGDEBUG)
                 win.setProperty('salts.playing.srt', srt_path)
     
         listitem = xbmcgui.ListItem(path=stream_url, iconImage=art['thumb'], thumbnailImage=art['thumb'])
@@ -1545,14 +1547,14 @@ def auto_play_sources(hosters, video_type, trakt_id, season, episode):
             pd.update(percent, current, prev)
             if pd.is_canceled(): return False
             hoster_url = item['class'].resolve_link(item['url'])
-            log_utils.log('Auto Playing: %s' % (hoster_url), log_utils.LOGDEBUG, 'play_source')
+            logger.log('Auto Playing: %s' % (hoster_url), log_utils.LOGDEBUG)
             if play_source(MODES.GET_SOURCES, hoster_url, item['direct'], video_type, trakt_id, season, episode):
                 return True
             if pd.is_canceled(): return False
             prev = i18n('failed_source') % (item['quality'], item['host'], item['class'].get_name())
         else:
             msg = i18n('all_sources_failed')
-            log_utils.log(msg, log_utils.LOGERROR, 'play_source')
+            logger.log(msg, log_utils.LOGERROR)
             kodi.notify(msg=msg, duration=5000)
 
 def pick_source_dialog(hosters):
@@ -1568,10 +1570,10 @@ def pick_source_dialog(hosters):
             hoster = hosters[index]
             if hoster['url']:
                 hoster_url = hoster['class'].resolve_link(hoster['url'])
-                log_utils.log('Attempting to play url: %s as direct: %s from: %s' % (hoster_url, hoster['direct'], hoster['class'].get_name()), log_utils.LOGNOTICE, 'play_source')
+                logger.log('Attempting to play url: %s as direct: %s from: %s' % (hoster_url, hoster['direct'], hoster['class'].get_name()), log_utils.LOGNOTICE)
                 return hoster_url, hoster['direct']
         except Exception as e:
-            log_utils.log('Error (%s) while trying to resolve %s' % (str(e), hoster['url']), log_utils.LOGERROR, 'play_source')
+            logger.log('Error (%s) while trying to resolve %s' % (str(e), hoster['url']), log_utils.LOGERROR)
 
     return None, None
 
@@ -1597,7 +1599,7 @@ def build_source_dir(prev_mode, video_type, trakt_id, season='', episode=''):
         if item['name'] in scrapers:
             item['class'] = scrapers[item['name']]()
         else:
-            log_utils.log('Skipping hoster with unknown name: %s' % (item), 'play_source')
+            logger.log('Skipping hoster with unknown name: %s' % (item))
             continue
 
         if item['multi-part']:
@@ -1674,7 +1676,7 @@ def sru_search_all(video, related_list):
             wp = worker_pool.WorkerPool()
             total_scrapers = len(blank_list)
             for i, related in enumerate(blank_list):
-                log_utils.log('Searching for: |%s|%s|%s|%s|' % (related['name'], temp_title, temp_year, temp_season), log_utils.LOGDEBUG, 'sru')
+                logger.log('Searching for: |%s|%s|%s|%s|' % (related['name'], temp_title, temp_year, temp_season), log_utils.LOGDEBUG)
                 wp.request(salts_utils.parallel_search, [related['class'], video.video_type, temp_title, temp_year, temp_season])
                 progress = i * 50 / total_scrapers
                 pd.update(progress, line2=i18n('req_result') % (related['name']))
@@ -1683,11 +1685,11 @@ def sru_search_all(video, related_list):
             result_count = 0
             while result_count < total_scrapers:
                 try:
-                    log_utils.log('Waiting for Urls - Timeout: %s' % (timeout), log_utils.LOGDEBUG, 'sru')
+                    logger.log('Waiting for Urls - Timeout: %s' % (timeout), log_utils.LOGDEBUG)
                     results = wp.receive(timeout)
                     fails.remove(results['name'])
                     result_count += 1
-                    log_utils.log('Got result: %s' % (results), log_utils.LOGDEBUG, 'sru')
+                    logger.log('Got result: %s' % (results), log_utils.LOGDEBUG)
                     if results['results']:
                         for i, item in enumerate(related_list):
                             if item['name'] == results['name']:
@@ -1707,10 +1709,10 @@ def sru_search_all(video, related_list):
                         timeout = max_timeout - (time.time() - begin)
                         if timeout < 0: timeout = 0
                 except worker_pool.Empty:
-                    log_utils.log('Get Url Timeout', log_utils.LOGWARNING, 'sru')
+                    logger.log('Get Url Timeout', log_utils.LOGWARNING)
                     break
             else:
-                log_utils.log('All source results received', log_utils.LOGDEBUG, 'sru')
+                logger.log('All source results received', log_utils.LOGDEBUG)
         finally:
             workers = wp.close()
     
@@ -1750,10 +1752,10 @@ def get_related_urls(video):
             result_count = 0
             while result_count < total_scrapers:
                 try:
-                    log_utils.log('Waiting for Urls - Timeout: %s' % (timeout), log_utils.LOGDEBUG, 'sru')
+                    logger.log('Waiting for Urls - Timeout: %s' % (timeout), log_utils.LOGDEBUG)
                     result = wp.receive(timeout)
                     result_count += 1
-                    log_utils.log('Got result: %s' % (result), log_utils.LOGDEBUG, 'sru')
+                    logger.log('Got result: %s' % (result), log_utils.LOGDEBUG)
                     for i, item in enumerate(related_list):
                         if item['name'] == result['name']:
                             related_list[i] = result
@@ -1769,10 +1771,10 @@ def get_related_urls(video):
                         timeout = max_timeout - (time.time() - begin)
                         if timeout < 0: timeout = 0
                 except worker_pool.Empty:
-                    log_utils.log('Get Url Timeout', log_utils.LOGWARNING, 'sru')
+                    logger.log('Get Url Timeout', log_utils.LOGWARNING)
                     break
             else:
-                log_utils.log('All source results received', log_utils.LOGDEBUG, 'sru')
+                logger.log('All source results received', log_utils.LOGDEBUG)
                             
         finally:
             workers = wp.close()
@@ -1786,7 +1788,7 @@ def sru_search(video, related):
         dialog = xbmcgui.Dialog()
         choices = [i18n('manual_search'), '[COLOR green]%s[/COLOR]' % (i18n('force_no_match'))]
         try:
-            log_utils.log('Searching for: |%s|%s|%s|' % (temp_title, temp_year, temp_season), log_utils.LOGDEBUG, 'sru')
+            logger.log('Searching for: |%s|%s|%s|' % (temp_title, temp_year, temp_season), log_utils.LOGDEBUG)
             results = related['class'].search(video.video_type, temp_title, temp_year, temp_season)
             choices += ['%s (%s)' % (result['title'], result['year']) if result['year'] else result['title'] for result in results]
             results_index = dialog.select(i18n('select_related'), choices)
@@ -1804,7 +1806,7 @@ def sru_search(video, related):
             else:
                 break
         except NotImplementedError:
-            log_utils.log('%s Scraper does not support searching.' % (related['class'].get_name()), log_utils.LOGDEBUG, 'sru')
+            logger.log('%s Scraper does not support searching.' % (related['class'].get_name()), log_utils.LOGDEBUG)
             kodi.notify(msg=i18n('scraper_no_search'), duration=5000)
             break
     
@@ -1963,7 +1965,7 @@ def manage_progress_cache(action, trakt_id):
 
 @url_dispatcher.register(MODES.TOGGLE_WATCHED, ['section', 'id_type', 'show_id'], ['watched', 'season', 'episode'])
 def toggle_watched(section, id_type, show_id, watched=True, season='', episode=''):
-    log_utils.log('In Watched: |%s|%s|%s|%s|%s|%s|' % (section, id_type, show_id, season, episode, watched), log_utils.LOGDEBUG)
+    logger.log('In Watched: |%s|%s|%s|%s|%s|%s|' % (section, id_type, show_id, season, episode, watched), log_utils.LOGDEBUG)
     item = {id_type: show_id}
     trakt_api.set_watched(section, item, season, episode, watched)
     w_str = i18n('watched') if watched else i18n('unwatched')
@@ -1990,7 +1992,7 @@ def toggle_url_exists(trakt_id):
 
 @url_dispatcher.register(MODES.UPDATE_SUBS)
 def update_subscriptions():
-    log_utils.log('Updating Subscriptions', log_utils.LOGDEBUG, 'subscriptions')
+    logger.log('Updating Subscriptions', log_utils.LOGDEBUG)
     active = kodi.get_setting(MODES.UPDATE_SUBS + '-notify') == 'true'
     with kodi.ProgressDialog(kodi.get_name(), line1=i18n('updating_subscriptions'), background=True, active=active) as pd:
         update_strms(SECTIONS.TV, pd)
@@ -2027,7 +2029,7 @@ def update_strms(section, dialog=None):
         try:
             add_to_library(section_params['video_type'], item['title'], item['year'], item['ids']['trakt'])
         except Exception as e:
-            log_utils.log('Subscription Update Exception: |%s|%s|%s|%s| - %s' % (section_params['video_type'], item['title'], item['year'], item['ids']['trakt'], e), log_utils.LOGDEBUG, 'subscriptions')
+            logger.log('Subscription Update Exception: |%s|%s|%s|%s| - %s' % (section_params['video_type'], item['title'], item['year'], item['ids']['trakt'], e), log_utils.LOGDEBUG)
 
 @url_dispatcher.register(MODES.CLEAN_SUBS)
 def clean_subs():
@@ -2107,10 +2109,10 @@ def prune_cache():
             if not db_connection.prune_cache():
                 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                 db_connection.set_setting('%s-last_run' % (MODES.PRUNE_CACHE), now)
-                log_utils.log('Prune Completed Successfully @ %s' % (now), log_utils.LOGDEBUG, 'prune')
+                logger.log('Prune Completed Successfully @ %s' % (now), log_utils.LOGDEBUG)
                 break
         else:
-            log_utils.log('SALTS Active... Busy... Postponing [%s]' % (MODES.PRUNE_CACHE), log_utils.LOGDEBUG, 'prune')
+            logger.log('SALTS Active... Busy... Postponing [%s]' % (MODES.PRUNE_CACHE), log_utils.LOGDEBUG)
             if monitor.waitForAbort(30000):
                 break
 
@@ -2135,7 +2137,7 @@ def export_db():
                 db_connection.export_from_db(export_file)
                 kodi.notify(header=i18n('export_successful'), msg=i18n('exported_to') % (export_file), duration=5000)
     except Exception as e:
-        log_utils.log('Export Failed: %s' % (e), log_utils.LOGERROR, 'db_export')
+        logger.log('Export Failed: %s' % (e), log_utils.LOGERROR)
         kodi.notify(header=i18n('export'), msg=i18n('export_failed'))
 
 @url_dispatcher.register(MODES.IMPORT_DB)
@@ -2148,7 +2150,7 @@ def import_db():
             db_connection.import_into_db(import_file)
             kodi.notify(header=i18n('import_success'), msg=i18n('imported_from') % (import_file))
     except Exception as e:
-        log_utils.log('Import Failed: %s' % (e), log_utils.LOGERROR, 'db_import')
+        logger.log('Import Failed: %s' % (e), log_utils.LOGERROR)
         kodi.notify(header=i18n('import'), msg=i18n('import_failed'))
 
 @url_dispatcher.register(MODES.ADD_TO_LIBRARY, ['video_type', 'title', 'year', 'trakt_id'])
@@ -2166,7 +2168,7 @@ def man_add_to_library(video_type, title, year, trakt_id):
     kodi.notify(msg=i18n('added_to_lib') % (msg), duration=5000)
 
 def add_to_library(video_type, title, year, trakt_id):
-    log_utils.log('Creating .strm for |%s|%s|%s|%s|' % (video_type, title, year, trakt_id), log_utils.LOGDEBUG, 'subscriptions')
+    logger.log('Creating .strm for |%s|%s|%s|%s|' % (video_type, title, year, trakt_id), log_utils.LOGDEBUG)
     scraper = local_scraper.Scraper()
     exclude_local = kodi.get_setting('exclude_local') == 'true'
     create_nfo = int(kodi.get_setting('create_nfo'))  # 0 = None | 1 = Won't scrape | 2 = All
@@ -2180,7 +2182,7 @@ def add_to_library(video_type, title, year, trakt_id):
         include_unknown = kodi.get_setting('include_unknown') == 'true'
 
         if not seasons:
-            log_utils.log('No Seasons found for %s (%s)' % (show['title'], show['year']), log_utils.LOGERROR, 'subscriptions')
+            logger.log('No Seasons found for %s (%s)' % (show['title'], show['year']), log_utils.LOGERROR)
         else:
             if create_nfo > 0:
                 show_path = make_path(save_path, video_type, show['title'], show['year'])
@@ -2269,7 +2271,7 @@ def write_nfo(path, video_type, meta_ids):
                 try: xbmcvfs.mkdirs(os.path.dirname(path))
                 except: os.makedirs(os.path.dirname(path))
             except Exception as e:
-                log_utils.log('Failed to create directory %s: %s' % (path, str(e)), log_utils.LOGERROR, 'subscriptions')
+                logger.log('Failed to create directory %s: %s' % (path, str(e)), log_utils.LOGERROR)
 
             old_nfo_string = ''
             try:
@@ -2280,12 +2282,12 @@ def write_nfo(path, video_type, meta_ids):
 
             if nfo_string != old_nfo_string:
                 try:
-                    log_utils.log('Writing nfo: %s' % nfo_string, log_utils.LOGDEBUG, 'subscriptions')
+                    logger.log('Writing nfo: %s' % nfo_string, log_utils.LOGDEBUG)
                     file_desc = xbmcvfs.File(path, 'w')
                     file_desc.write(nfo_string)
                     file_desc.close()
                 except Exception as e:
-                    log_utils.log('Failed to create .nfo file (%s): %s' % (path, e), log_utils.LOGERROR, 'subscriptions')
+                    logger.log('Failed to create .nfo file (%s): %s' % (path, e), log_utils.LOGERROR)
 
 def write_strm(stream, path, video_type, title, year, trakt_id, season='', episode='', require_source=False):
     path = xbmc.makeLegalFilename(path)
@@ -2294,7 +2296,7 @@ def write_strm(stream, path, video_type, title, year, trakt_id, season='', episo
             try: xbmcvfs.mkdirs(os.path.dirname(path))
             except: os.makedirs(os.path.dirname(path))
         except Exception as e:
-            log_utils.log('Failed to create directory %s: %s' % (path, str(e)), log_utils.LOGERROR, 'subscriptions')
+            logger.log('Failed to create directory %s: %s' % (path, str(e)), log_utils.LOGERROR)
 
     try:
         f = xbmcvfs.File(path, 'r')
@@ -2308,14 +2310,14 @@ def write_strm(stream, path, video_type, title, year, trakt_id, season='', episo
     if stream != old_strm_string:
         try:
             if not require_source or salts_utils.url_exists(ScraperVideo(video_type, title, year, trakt_id, season, episode)):
-                log_utils.log('Writing strm: %s' % stream, log_utils.LOGDEBUG, 'subscriptions')
+                logger.log('Writing strm: %s' % stream, log_utils.LOGDEBUG)
                 file_desc = xbmcvfs.File(path, 'w')
                 file_desc.write(stream)
                 file_desc.close()
             else:
-                log_utils.log('No strm written for |%s|%s|%s|%s|%s|' % (video_type, title, year, season, episode), log_utils.LOGWARNING, 'subscriptions')
+                logger.log('No strm written for |%s|%s|%s|%s|%s|' % (video_type, title, year, season, episode), log_utils.LOGWARNING)
         except Exception as e:
-            log_utils.log('Failed to create .strm file (%s): %s' % (path, e), log_utils.LOGERROR, 'subscriptions')
+            logger.log('Failed to create .strm file (%s): %s' % (path, e), log_utils.LOGERROR)
 
 def show_pickable_list(slug, pick_label, pick_mode, section):
     if not slug:
@@ -2370,7 +2372,7 @@ def make_dir_from_list(section, list_data, slug=None, query=None, page=None):
             show['watched'] = watched.get(trakt_id, False)
         else:
             try:
-                log_utils.log('%s/%s: Watched: %s - Aired: %s' % (trakt_id, show['ids']['slug'], watched.get(trakt_id, 'NaN'), show['aired_episodes']), log_utils.LOGDEBUG)
+                logger.log('%s/%s: Watched: %s - Aired: %s' % (trakt_id, show['ids']['slug'], watched.get(trakt_id, 'NaN'), show['aired_episodes']), log_utils.LOGDEBUG)
                 show['watched'] = watched[trakt_id] >= show['aired_episodes']
                 show['watched_count'] = watched[trakt_id]
             except: show['watched'] = False
@@ -2420,10 +2422,10 @@ def make_dir_from_cal(mode, start_date, days):
         except: episode['watched'] = False
 
         if show_date < start_date.date():
-            log_utils.log('Skipping show date |%s| before start: |%s|' % (show_date, start_date.date()), log_utils.LOGDEBUG, 'calendar')
+            logger.log('Skipping show date |%s| before start: |%s|' % (show_date, start_date.date()), log_utils.LOGDEBUG)
             continue
         elif show_date >= next_week.date():
-            log_utils.log('Stopping because show date |%s| >= end: |%s|' % (show_date, next_week.date()), log_utils.LOGDEBUG, 'calendar')
+            logger.log('Stopping because show date |%s| >= end: |%s|' % (show_date, next_week.date()), log_utils.LOGDEBUG)
             break
 
         date = utils2.make_day(datetime.date.fromtimestamp(utc_secs).isoformat())
@@ -2454,7 +2456,7 @@ def make_season_item(season, info, trakt_id, title, year, tvdb_id):
     ids = {'trakt': trakt_id, 'tvdb': tvdb_id}
     art = image_scraper.get_images(VIDEO_TYPES.SEASON, ids, season['number'])
     liz = utils.make_list_item(label, season, art)
-    log_utils.log('Season Info: %s' % (info), log_utils.LOGDEBUG, 'season')
+    logger.log('Season Info: %s' % (info), log_utils.LOGDEBUG)
     info['mediatype'] = 'season'
     liz.setInfo('video', info)
     menu_items = []
@@ -2485,8 +2487,8 @@ def make_season_item(season, info, trakt_id, title, year, tvdb_id):
     return liz
 
 def make_episode_item(show, episode, show_subs=True, menu_items=None):
-    # log_utils.log('Make Episode: Show: %s, Episode: %s, Show Subs: %s' % (show, episode, show_subs), log_utils.LOGDEBUG)
-    # log_utils.log('Make Episode: Episode: %s' % (episode), log_utils.LOGDEBUG)
+    # logger.log('Make Episode: Show: %s, Episode: %s, Show Subs: %s' % (show, episode, show_subs), log_utils.LOGDEBUG)
+    # logger.log('Make Episode: Episode: %s' % (episode), log_utils.LOGDEBUG)
     if menu_items is None: menu_items = []
     show['title'] = re.sub(' \(\d{4}\)$', '', show['title'])
     if episode['title'] is None:
@@ -2498,8 +2500,8 @@ def make_episode_item(show, episode, show_subs=True, menu_items=None):
     try: time_str = time.asctime(time.localtime(utc_air_time))
     except: time_str = i18n('unavailable')
 
-    log_utils.log('First Aired: Title: %s S/E: %s/%s fa: %s, utc: %s, local: %s' %
-                  (show['title'], episode['season'], episode['number'], episode['first_aired'], utc_air_time, time_str), log_utils.LOGDEBUG, 'episode')
+    logger.log('First Aired: Title: %s S/E: %s/%s fa: %s, utc: %s, local: %s' %
+                  (show['title'], episode['season'], episode['number'], episode['first_aired'], utc_air_time, time_str), log_utils.LOGDEBUG)
 
     if kodi.get_setting('unaired_indicator') == 'true' and (not episode['first_aired'] or utc_air_time > time.time()):
         label = '[I][COLOR chocolate]%s[/COLOR][/I]' % (label)
@@ -2732,7 +2734,7 @@ def get_list(section, slug, username=None, cached=True):
         except TraktNotFoundError:
             msg = i18n('list_not_exist') % (slug)
             kodi.notify(msg=msg, duration=5000)
-            log_utils.log(msg, log_utils.LOGWARNING, 'get_list')
+            logger.log(msg, log_utils.LOGWARNING)
             return
     
     return items
@@ -2740,8 +2742,8 @@ def get_list(section, slug, username=None, cached=True):
 def main(argv=None):
     if sys.argv: argv = sys.argv
     queries = kodi.parse_query(sys.argv[2])
-    log_utils.log('Version: |%s| Queries: |%s|' % (kodi.get_version(), queries), log_utils.LOGNOTICE, 'main')
-    log_utils.log('Args: |%s|' % (argv), log_utils.LOGNOTICE, 'main')
+    logger.log('Version: |%s| Queries: |%s|' % (kodi.get_version(), queries), log_utils.LOGNOTICE)
+    logger.log('Args: |%s|' % (argv), log_utils.LOGNOTICE)
 
     # don't process params that don't match our url exactly. (e.g. plugin://plugin.video.1channel/extrafanart)
     plugin_url = 'plugin://%s/' % (kodi.get_id())
@@ -2754,10 +2756,10 @@ def main(argv=None):
         mode = queries.get('mode', None)
         url_dispatcher.dispatch(mode, queries)
     except (TransientTraktError, TraktError, TraktAuthError) as e:
-        log_utils.log(str(e), log_utils.LOGERROR, 'main')
+        logger.log(str(e), log_utils.LOGERROR)
         kodi.notify(msg=str(e), duration=5000)
     except DatabaseRecoveryError as e:
-        log_utils.log('Attempting DB recovery due to Database Error: %s' % (e), log_utils.LOGWARNING, 'main')
+        logger.log('Attempting DB recovery due to Database Error: %s' % (e), log_utils.LOGWARNING)
         db_connection.attempt_db_recovery()
 
 if __name__ == '__main__':

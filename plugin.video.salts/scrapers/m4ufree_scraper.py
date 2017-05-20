@@ -28,7 +28,7 @@ from salts_lib.constants import XHR
 import scraper
 
 BASE_URL = 'http://m4ufree.info'
-AJAX_URL = '/demo.php'
+AJAX_URL = '/ajax.php'
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL

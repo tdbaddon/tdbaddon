@@ -249,7 +249,7 @@
          <setting id="Dizilab-base_url" type="text" label="    Base Url" default="http://dizilab.net" visible="eq(-1,true)"/>
          <setting id="Dizilab-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizimag-enable" type="bool" label="Dizimag Enabled" default="true" visible="true"/>
-         <setting id="Dizimag-base_url" type="text" label="    Base Url" default="http://dizimag1.co" visible="eq(-1,true)"/>
+         <setting id="Dizimag-base_url" type="text" label="    Base Url" default="http://dizimag2.co" visible="eq(-1,true)"/>
          <setting id="Dizimag-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Dizipas-enable" type="bool" label="Dizipas Enabled" default="true" visible="true"/>
          <setting id="Dizipas-base_url" type="text" label="    Base Url" default="http://dizipas.com" visible="eq(-1,true)"/>
@@ -310,7 +310,7 @@
          <setting id="IOMovies-base_url" type="text" label="    Base Url" default="http://iomovies.net" visible="eq(-1,true)"/>
          <setting id="IOMovies-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="iWatchOnline-enable" type="bool" label="iWatchOnline Enabled" default="true" visible="true"/>
-         <setting id="iWatchOnline-base_url" type="text" label="    Base Url" default="http://www.iwatchonline.cr" visible="eq(-1,true)"/>
+         <setting id="iWatchOnline-base_url" type="text" label="    Base Url" default="https://www.iwatchonline.cr" visible="eq(-1,true)"/>
          <setting id="iWatchOnline-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Local-enable" type="bool" label="Local Enabled" default="true" visible="true"/>
          <setting id="Local-base_url" type="text" label="    Base Url" default="" visible="eq(-1,true)"/>
@@ -341,7 +341,7 @@
          <setting id="MovieGo-base_url" type="text" label="    Base Url" default="http://moviego.cc" visible="eq(-1,true)"/>
          <setting id="MovieGo-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="MovieHubs-enable" type="bool" label="MovieHubs Enabled" default="true" visible="true"/>
-         <setting id="MovieHubs-base_url" type="text" label="    Base Url" default="http://putlockers.mn" visible="eq(-1,true)"/>
+         <setting id="MovieHubs-base_url" type="text" label="    Base Url" default="http://mohubs.com" visible="eq(-1,true)"/>
          <setting id="MovieHubs-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="MovieHut-enable" type="bool" label="MovieHut Enabled" default="true" visible="true"/>
          <setting id="MovieHut-base_url" type="text" label="    Base Url" default="http://netflix-putlocker.com" visible="eq(-1,true)"/>
@@ -364,7 +364,7 @@
          <setting id="MovieWatcher-base_url" type="text" label="    Base Url" default="http://moviewatcher.io" visible="eq(-1,true)"/>
          <setting id="MovieWatcher-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="MovieXK-enable" type="bool" label="MovieXK Enabled" default="true" visible="true"/>
-         <setting id="MovieXK-base_url" type="text" label="    Base Url" default="http://moviexk.org" visible="eq(-1,true)"/>
+         <setting id="MovieXK-base_url" type="text" label="    Base Url" default="https://moviexk.org" visible="eq(-1,true)"/>
          <setting id="MovieXK-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="MovyTvy-enable" type="bool" label="MovyTvy Enabled" default="true" visible="true"/>
          <setting id="MovyTvy-base_url" type="text" label="    Base Url" default="http://movytvy.com" visible="eq(-1,true)"/>
@@ -405,7 +405,7 @@
          <setting id="PelisPedia-base_url" type="text" label="    Base Url" default="http://www.pelispedia.tv" visible="eq(-1,true)"/>
          <setting id="PelisPedia-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="pftv-enable" type="bool" label="pftv Enabled" default="true" visible="true"/>
-         <setting id="pftv-base_url" type="text" label="    Base Url" default="http://project-free-tv.im" visible="eq(-1,true)"/>
+         <setting id="pftv-base_url" type="text" label="    Base Url" default="http://project-free-tv.li" visible="eq(-1,true)"/>
          <setting id="pftv-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="PirateJunkies-enable" type="bool" label="PirateJunkies Enabled" default="true" visible="true"/>
          <setting id="PirateJunkies-base_url" type="text" label="    Base Url" default="http://www.iframetv.com" visible="eq(-1,true)"/>
@@ -425,7 +425,7 @@
          <setting id="PrimeWire-base_url" type="text" label="    Base Url" default="http://www.primewire.ag" visible="eq(-1,true)"/>
          <setting id="PrimeWire-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="pubfilm-enable" type="bool" label="pubfilm Enabled" default="true" visible="true"/>
-         <setting id="pubfilm-base_url" type="text" label="    Base Url" default="http://pubfilm.ac" visible="eq(-1,true)"/>
+         <setting id="pubfilm-base_url" type="text" label="    Base Url" default="http://pubfilm.io" visible="eq(-1,true)"/>
          <setting id="pubfilm-sub_check" type="bool" label="    Include in Page Existence checks?" default="true" visible="eq(-2,true)"/>
          <setting id="Putlocker-enable" type="bool" label="Putlocker Enabled" default="true" visible="true"/>
          <setting id="Putlocker-base_url" type="text" label="    Base Url" default="http://putlocker9.is" visible="eq(-1,true)"/>

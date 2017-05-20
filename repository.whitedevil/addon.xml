@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.whitedevil" name="White Devil Addon Repository" version="1.0.2" provider-name="White Devil Team">
+	<extension point="xbmc.addon.repository" name="White Devil Add-on Repository">
+		<dir>
+			<info compressed="false">http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/addons.xml</info>
+			<checksum>http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/addons.xml.md5</checksum>
+			<datadir zip="true">http://brettusbuilds.com/.WHITE%20DEVIL/white.devil.repo/files/</datadir>
+		</dir>		
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons from White Devil</summary>
+		<description lang="en">Download and install add-ons from White Devil</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

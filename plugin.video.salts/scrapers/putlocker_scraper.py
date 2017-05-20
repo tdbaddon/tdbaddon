@@ -25,6 +25,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'http://putlocker9.is'
 
 class Scraper(scraper.Scraper):
@@ -96,9 +97,12 @@ class Scraper(scraper.Scraper):
         show_url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, headers={'Referer': self.base_url}, cache_limit=24 * 7)
         match = re.search('href="([^"]*season=0*%s(?!\d))[^"]*' % (video.season), html)
-        if match:
-            season_url = show_url + match.group(1)
-            episode_pattern = 'href="([^"]*/0*%s-0*%s/[^"]*)' % (video.season, video.episode)
-            title_pattern = 'class="episodeDetail">.*?href="(?P<url>[^"]+)[^>]*>\s*(?P<title>.*?)\s*</a>'
-            headers = {'Referer': show_url}
-            return self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, headers=headers)
+        if not match: return
+
+        episode_pattern = 'href="([^"]*/0*%s-0*%s/[^"]*)' % (video.season, video.episode)
+        title_pattern = 'href="(?P<url>[^"]+)[^>]*>\s*(?P<title>.*?)\s*</a>'
+        season_url = scraper_utils.urljoin(show_url, match.group(1))
+        html = self._http_get(season_url, headers={'Referer': show_url}, cache_limit=2)
+        episodes = dom_parser2.parse_dom(html, 'div', {'class': 'episodeDetail'})
+        fragment = '\n'.join(ep.content for ep in episodes)
+        return self._default_get_episode_url(fragment, video, episode_pattern, title_pattern)

@@ -36,6 +36,7 @@ try:
 except ImportError:
     class ParseError(Exception): pass
 
+logger = log_utils.Logger.get_logger()
 BASE_URL = 'http://dizipas.com'
 AJAX_URL = 'http://dizipas.org/player/ajax.php'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
@@ -157,7 +158,10 @@ class Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'class="episode"\s+href="([^"]+/sezon-%s/bolum-%s)"' % (video.season, video.episode)
         title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)">(?P<title>[^<]+)'
-        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        show_url = scraper_utils.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=2)
+        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
+        return self._default_get_episode_url(fragment or html, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []
@@ -175,6 +179,6 @@ class Scraper(scraper.Scraper):
                         result = {'url': scraper_utils.pathify_url(url.text), 'title': scraper_utils.cleanse_title(name.text), 'year': ''}
                         results.append(result)
         except (ParseError, ExpatError) as e:
-            log_utils.log('Dizilab Search Parse Error: %s' % (e), log_utils.LOGWARNING)
+            logger.log('Dizilab Search Parse Error: %s' % (e), log_utils.LOGWARNING)
 
         return results

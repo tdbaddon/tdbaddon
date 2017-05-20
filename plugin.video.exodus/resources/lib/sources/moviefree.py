@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,86 +16,97 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-
-import re,urllib,urlparse,json
+import json
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import dom_parser
+from resources.lib.modules import source_utils
 
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['moviefree.to']
-        self.base_link = 'http://moviefree.to'
-        self.search_link = '/watch/%s-%s.html'
-
+        self.domains = ['moviefree.to', 'http://topfreemovies.online']
+        self.base_link = 'http://topfreemovies.online'
+        self.search_link = '/search/%s'
+        self.server_link = '/ajax/loadServer'
+        self.episode_link = '/ajax/loadEpisode'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = self.search_link % (cleantitle.geturl(title), year)
-            url = urlparse.urljoin(self.base_link, url)
+            query = self.search_link % (urllib.quote_plus(title))
+            query = urlparse.urljoin(self.base_link, query)
 
-            r = client.request(url, limit='1')
-            r = client.parseDOM(r, 'title')[0]
-            if r == '': raise Exception()
+            t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            r = client.request(query)
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'item'})
+            r = [(dom_parser.parse_dom(i, 'a', attrs={'class': 'cluetip'}, req='href'), dom_parser.parse_dom(i, 'div', attrs={'class': 'description'})) for i in r]
+            r = [(i[0][0].attrs['href'], dom_parser.parse_dom(i[1], 'h3', attrs={'class': 'text-nowrap'}), dom_parser.parse_dom(i[1], 'div', attrs={'class': 'meta'})) for i in r if i[0] and i[1]]
+            r = [(i[0], i[1][0].content, dom_parser.parse_dom(i[2], 'span', attrs={'class': 'pull-left'})) for i in r if i[0] and i[1] and i[2]]
+            r = [(i[0], i[1], re.sub('[^\d]+', '', i[2][0].content)) for i in r if i[2]]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+            r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
+
+            return source_utils.strip_domain(r)
         except:
             return
 
-
     def sources(self, url, hostDict, hostprDict):
-        try:
-            sources = []
+        sources = []
 
-            if url == None: return sources
+        try:
+            if not url:
+                return sources
+
+            hostDict.append('fastload.co')  # seems like the internal host
 
             url = urlparse.urljoin(self.base_link, url)
-
             url = url.replace('-online.html', '.html')
 
             r = client.request(url)
+            r = dom_parser.parse_dom(r, 'img', attrs={'class': 'info-poster-img'}, req=['data-id', 'data-name'])[0]
+            id = r.attrs['data-id']
+            n = r.attrs['data-name']
 
-            s = re.findall('data-film\s*=\s*"(.+?)"\s+data-name\s*=\s*"(.+?)"\s+data-server\s*=\s*"(.+?)"', r)
+            r = client.request(urlparse.urljoin(self.base_link, self.server_link), post={'film_id': id, 'n': n, 'epid': 0}, referer=url)
+            r = json.loads(r).get('list', '')
 
-            ref = url
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'server-film'})
+            r = dom_parser.parse_dom(r, 'a', attrs={'class': 'btn'}, req='data-id')
 
-            for u in s:
+            for i in r:
                 try:
-                    if not u[2] in ['1', '11', '4']: raise Exception() 
-                    url = urlparse.urljoin(self.base_link, '/ip.file/swf/plugins/ipplugins.php')
+                    l = client.request(urlparse.urljoin(self.base_link, self.episode_link), post={'epid': i.attrs['data-id']}, referer=url)
+                    l = json.loads(l).get('link', {})
 
-                    post = {'ipplugins': '1', 'ip_film': u[0], 'ip_name': u[1] , 'ip_server': u[2]}
-                    post = urllib.urlencode(post)
+                    l = zip(l.get('l', []), l.get('q', []))
+                    l = [(link[0], re.sub('[^\d]+', '', link[1])) for link in l]
 
-                    r = client.request(url, post=post, XHR=True, referer=ref)
-                    r = json.loads(r)
+                    links = [(x[0], '4K') for x in l if int(x[1]) >= 2160]
+                    links += [(x[0], '1440p') for x in l if int(x[1]) >= 1440]
+                    links += [(x[0], '1080p') for x in l if int(x[1]) >= 1080]
+                    links += [(x[0], 'HD') for x in l if 720 <= int(x[1]) < 1080]
+                    links += [(x[0], 'SD') for x in l if int(x[1]) < 720]
 
-                    url = urlparse.urljoin(self.base_link, '/ip.file/swf/ipplayer/ipplayer.php')
+                    for link, quality in links:
+                        valid, host = source_utils.is_host_valid(link, hostDict)
+                        if not valid: continue
 
-                    post = {'u': r['s'], 'w': '100%', 'h': '500' , 's': r['v'], 'n':'0'}
-                    post = urllib.urlencode(post)
+                        if directstream.googletag(link): host = 'gvideo'; direct = True
+                        elif 'fastload.co' in link: direct = True
+                        else: direct = False
 
-                    r = client.request(url, post=post, XHR=True, referer=ref)
-                    r = json.loads(r)
-
-                    try: url = [i['files'] for i in r['data']]
-                    except: url = [r['data']]
-
-                    for i in url:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
-
-                    if 'openload' in url[0]:
-                        sources.append({'source': 'openload.co', 'quality': 'HD', 'language': 'en', 'url': i, 'direct': False, 'debridonly': False})
+                        sources.append({'source': host, 'quality': quality, 'language': 'de', 'url': link, 'direct': direct, 'debridonly': False})
                 except:
                     pass
 
@@ -103,8 +114,7 @@ class source:
         except:
             return sources
 
-
     def resolve(self, url):
-        return directstream.googlepass(url)
+        return url
 
 

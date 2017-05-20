@@ -19,12 +19,16 @@
 '''
 
 
-import os,xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
+import urlparse,os,sys
+
+import xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
 
 
 integer = 1000
 
 lang = xbmcaddon.Addon().getLocalizedString
+
+lang2 = xbmc.getLocalizedString
 
 setting = xbmcaddon.Addon().getSetting
 
@@ -56,6 +60,8 @@ dialog = xbmcgui.Dialog()
 
 progressDialog = xbmcgui.DialogProgress()
 
+progressDialogBG = xbmcgui.DialogProgressBG()
+
 windowDialog = xbmcgui.WindowDialog()
 
 button = xbmcgui.ControlButton
@@ -82,6 +88,8 @@ makeFile = xbmcvfs.mkdir
 
 deleteFile = xbmcvfs.delete
 
+deleteDir = xbmcvfs.rmdir
+
 listDir = xbmcvfs.listdir
 
 transPath = xbmc.translatePath
@@ -98,72 +106,72 @@ viewsFile = os.path.join(dataPath, 'views.db')
 
 bookmarksFile = os.path.join(dataPath, 'bookmarks.db')
 
-providercacheFile = os.path.join(dataPath, 'providers.4.db')
+providercacheFile = os.path.join(dataPath, 'providers.12.db')
 
-metacacheFile = os.path.join(dataPath, 'meta.db')
+metacacheFile = os.path.join(dataPath, 'meta.4.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 
 
 def addonIcon():
-    appearance = setting('appearance.1').lower()
-    if appearance in ['-', '']: return addonInfo('icon')
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'icon.png')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'icon.png')
+    return addonInfo('icon')
 
 
 def addonThumb():
-    appearance = setting('appearance.1').lower()
-    if appearance == '-': return 'DefaultFolder.png'
-    elif appearance == '': return addonInfo('icon')
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'icon.png')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'poster.png')
+    elif theme == '-': return 'DefaultFolder.png'
+    return addonInfo('icon')
 
 
 def addonPoster():
-    appearance = setting('appearance.1').lower()
-    if appearance in ['-', '']: return 'DefaultVideo.png'
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'poster.png')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'poster.png')
+    return 'DefaultVideo.png'
 
 
 def addonBanner():
-    appearance = setting('appearance.1').lower()
-    if appearance in ['-', '']: return 'DefaultVideo.png'
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'banner.png')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'banner.png')
+    return 'DefaultVideo.png'
 
 
 def addonFanart():
-    appearance = setting('appearance.1').lower()
-    if appearance == '-': return
-    elif appearance == '': return addonInfo('fanart')
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'fanart.jpg')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'fanart.jpg')
+    return addonInfo('fanart')
 
 
 def addonNext():
-    appearance = setting('appearance.1').lower()
-    if appearance in ['-', '']: return 'DefaultFolderBack.png'
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance, 'next.png')
-    except: pass
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'next.png')
+    return 'DefaultVideo.png'
 
 
 def artPath():
-    appearance = setting('appearance.1').lower()
-    if appearance in ['-', '']: return
-    try: return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', appearance)
-    except: pass
+    theme = appearance()
+    if theme in ['-', '']: return
+    elif condVisibility('System.HasAddon(script.exodus.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.exodus.artwork').getAddonInfo('path'), 'resources', 'media', theme)
+
+
+def appearance():
+    appearance = setting('appearance.1').lower() if condVisibility('System.HasAddon(script.exodus.artwork)') else setting('appearance.alt').lower()
+    return appearance
 
 
 def artwork():
     execute('RunPlugin(plugin://script.exodus.artwork)')
 
 
-def infoDialog(message, heading=addonInfo('name'), icon='', time=3000):
+def infoDialog(message, heading=addonInfo('name'), icon='', time=3000, sound=False):
     if icon == '': icon = addonIcon()
-    try: dialog.notification(heading, message, icon, time, sound=False)
-    except: execute("Notification(%s,%s, %s, %s)" % (heading, message, time, icon))
+    elif icon == 'INFO': icon = xbmcgui.NOTIFICATION_INFO
+    elif icon == 'WARNING': icon = xbmcgui.NOTIFICATION_WARNING
+    elif icon == 'ERROR': icon = xbmcgui.NOTIFICATION_ERROR
+    dialog.notification(heading, message, icon, time, sound=sound)
 
 
 def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yeslabel=''):
@@ -172,6 +180,17 @@ def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yesl
 
 def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
+
+
+def moderator():
+    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.streamarmy', 'plugin.video.tinklepad', 'plugin.video.metallic']
+
+    if not infoLabel('Container.PluginName') in netloc: sys.exit()
+
+
+def metaFile():
+    if condVisibility('System.HasAddon(script.exodus.metadata)'):
+        return os.path.join(xbmcaddon.Addon('script.exodus.metadata').getAddonInfo('path'), 'resources', 'data', 'meta.db')
 
 
 def apiLanguage():
@@ -201,6 +220,25 @@ def version():
     return int(num)
 
 
+def cdnImport(uri, name):
+    import imp
+    from resources.lib.modules import client
+
+    path = os.path.join(dataPath, 'py')
+    path = path.decode('utf-8')
+
+    deleteDir(os.path.join(path, ''), force=True)
+    makeFile(dataPath) ; makeFile(path)
+
+    r = client.request(uri)
+    p = os.path.join(path, name + '.py')
+    f = openFile(p, 'w') ; f.write(r) ; f.close()
+    m = imp.load_source(name, p)
+
+    deleteDir(os.path.join(path, ''), force=True)
+    return m
+
+
 def openSettings(query=None, id=addonInfo('id')):
     try:
         idle()
@@ -211,10 +249,6 @@ def openSettings(query=None, id=addonInfo('id')):
         execute('SetFocus(%i)' % (int(f) + 200))
     except:
         return
-
-
-def openPlaylist():
-    return execute('ActivateWindow(VideoPlaylist)')
 
 
 def refresh():

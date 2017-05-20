@@ -1,9 +1,9 @@
-# Addon Name: White Devil Streams
-# Addon id: plugin.video.white.devil
-# Addon Provider: Whit Devil Streams
+# Addon Name: .White Devil Streams
+# Addon id: plugin.video.phstreams
+# Addon Provider: White Devil
 msgid ""
 msgstr ""
-"Project-Id-Version: White Devil Streams\n"
+"Project-Id-Version: white devil\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: English\n"
@@ -39,19 +39,11 @@ msgid "Discover Great Streaming Playlists!"
 msgstr ""
 
 msgctxt "#30707"
-msgid "Watch Trailer"
+msgid "Trailer"
 msgstr ""
 
 msgctxt "#30708"
-msgid "Movie Information"
-msgstr ""
-
-msgctxt "#30709"
-msgid "TV Show Information"
-msgstr ""
-
-msgctxt "#30710"
-msgid "Episode Information"
+msgid "Information"
 msgstr ""
 
 msgctxt "#30711"
@@ -103,11 +95,7 @@ msgid "Download item"
 msgstr ""
 
 msgctxt "#30723"
-msgid "NHL"
-msgstr ""
-
-msgctxt "#30724"
-msgid "Tweak for Android"
+msgid "Queue item"
 msgstr ""
 
 msgctxt "#30725"
@@ -138,30 +126,6 @@ msgctxt "#30731"
 msgid "Please wait..."
 msgstr ""
 
-msgctxt "#30751"
-msgid "Scoreboard"
-msgstr ""
-
-msgctxt "#30752"
-msgid "Archived Games"
-msgstr ""
-
-msgctxt "#30753"
-msgid "Live Games , Requires some modifications to get working visit forum."
-msgstr ""
-
-msgctxt "#30754"
-msgid "If list returns BLANK, Feed is not up yet."
-msgstr ""
-
-msgctxt "#30755"
-msgid "Feed not available yet"
-msgstr ""
-
-msgctxt "#30756"
-msgid "Pick A Bandwidth"
-msgstr ""
-
 msgctxt "#30401"
 msgid "Are you sure?"
 msgstr ""
@@ -170,7 +134,26 @@ msgctxt "#30402"
 msgid "Process Complete"
 msgstr ""
 
-msgctxt "#30491"
-msgid "This View is now Default"
+msgctxt "#30500"
+msgid "[I]Next Page[/I]"
 msgstr ""
 
+msgctxt "#32501"
+msgid "Start from beginning"
+msgstr ""
+
+msgctxt "#32502"
+msgid "Resume from %s"
+msgstr ""
+
+msgctxt "#32503"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#32504"
+msgid "URLResolver"
+msgstr ""
+
+msgctxt "#32505"
+msgid "Settings"
+msgstr ""

@@ -19,6 +19,8 @@ import abc
 import log_utils  # @UnusedImport
 import scraper
 
+logger = log_utils.Logger.get_logger()
+
 class Proxy(scraper.Scraper):
     __metaclass__ = abc.ABCMeta
     base_url = ''
@@ -30,7 +32,7 @@ class Proxy(scraper.Scraper):
         try:
             self.__scraper = self.real_scraper(timeout)
         except Exception as e:
-            log_utils.log('Failure during %s scraper creation: %s' % (self.get_name(), e), log_utils.LOGDEBUG)
+            logger.log('Failure during %s scraper creation: %s' % (self.get_name(), e), log_utils.LOGDEBUG)
    
     @classmethod
     def provides(cls):
