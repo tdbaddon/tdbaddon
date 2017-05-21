@@ -1,3 +1,5 @@
+[b]1.5.5[/b]
+- bump version # to fix update issue
 [b]1.5.4[/b]
 - server fix
 [b]1.5.3[/b]

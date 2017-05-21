@@ -347,8 +347,13 @@ def IIIii1II1II ( item , url , iconimage ) :
   if 67 - 67: IiIi1Iii1I1 - ooOoo0O
 def oOoOooOo0o0 ( url ) :
  oooO0oo0oOOOO = O0oO ( url )
+ print url
  oo00 = re . compile ( 'name="(.+?)".+?rl="(.+?)".+?mg="(.+?)"' , re . DOTALL ) . findall ( oooO0oo0oOOOO )
+ if 'tv%20shows' in url or 'cartoons' in url :
+  oo00 = sorted ( oo00 )
  for o00 , url , IIi1IiiiI1Ii in oo00 :
+  if o00 [ 0 ] == '0' :
+   o00 = o00 [ 1 : ] + '[COLOR gold]   (New)[/COLOR]'
   if 'youtube.com/playlist?list=' in url :
    i1 ( o00 , url , 18 , IIi1IiiiI1Ii , O00ooooo00 )
   elif 'youtube.com/results?search_query=' in url :

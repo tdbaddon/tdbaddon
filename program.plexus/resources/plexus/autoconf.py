@@ -29,12 +29,12 @@ from plexusutils.webutils import download_tools,get_page_source
 from plexusutils.utilities import *
 
 """ Platform dependent files downloaded during the addon configuration"""
-trunkfolder = "https://github.com/tvaddonsag/plexus-dependencies/raw/master"
+trunkfolder = "https://github.com/ronniehd/plexus-dependencies/raw/master"
 version_control = trunkfolder + "/Control/versions.info"
 
 #Linux Arm
 sopcast_raspberry = trunkfolder + "/Modules/Linux/arm/rpi2/sopcast-raspberry.tar.gz"
-acestream_rpi2 = trunkfolder + "/Modules/Linux/arm/rpi2/acestream-rpi2.tar.gz"
+acestream_rpi2 = trunkfolder + "/Modules/Linux/arm/rpi2/acestream-raspberry.tar.gz"
 
 #Linux i386 and x86_64 (including openelec)
 sopcast_linux_generico =  trunkfolder + "/Modules/Linux/Sopcastx86_64i386/sopcast_linux.tar.gz"
@@ -46,13 +46,11 @@ openeelcxi386_acestream = trunkfolder + "/Modules/Linux/i386/openelec/acestream_
 acestream_linux_x64_generic = trunkfolder + "/Modules/Linux/x86_64/acestream-linux-x86_64_3051.tar.gz"
 acestream_linux_i386_generic = trunkfolder + "/Modules/Linux/i386/acestream-linux-i386_303.tar.gz"
 #Android
-sopcast_apk = trunkfolder + "/Modules/Android/SopCast.apk.tar.gz"
-acestreamengine_apk_arm = trunkfolder + "/Modules/Android/AceStream-3.0.6-2in1.apk.tar.gz"
-acestreamengine_apk_x86 = trunkfolder + "/Modules/Android/AceStream-3.0.6-2in1.apk.tar.gz"
-android_aceengine_arm = trunkfolder + "/Modules/Android/org.acestream.engine-arm-3.0.6.tar.gz"
-android_aceengine_x86 = trunkfolder + "/Modules/Android/org.acestream.engine_x86.tar.gz"
-android_aceplayer_arm = trunkfolder + "/Modules/Android/AcePlayer-3.0.6-2in1.apk.tar.gz"
-android_aceplayer_x86 = trunkfolder + "/Modules/Android/AcePlayer-3.0.6-2in1.apk.tar.gz"
+sopcast_apk = trunkfolder + "/Modules/Android/SopCast-1.2.8.tar.gz"
+acestreamengine_apk_arm = trunkfolder + "/Modules/Android/AceStream-3.1.6.0-2in1.tar.gz"
+acestreamengine_apk_x86 = trunkfolder + "/Modules/Android/AceStream-3.1.6.0-2in1.tar.gz"
+torrentcontroller_apk_arm = trunkfolder + "/Modules/Android/TSC-1.6.10.tar.gz"
+torrentcontroller_apk_x86 = trunkfolder + "/Modules/Android/TSC-1.6.10.tar.gz"
 #Mac OSX #TODO
 osx_i386_sopcast = trunkfolder + "/Modules/MacOsx/i386/sopcast_osxi386.tar.gz"
 osx_i386_acestream = trunkfolder + "/Modules/MacOsx/AceStreamWineOSX.zip"
@@ -625,56 +623,8 @@ def configure_acestream(latest_version):
 		if found == True:
 			settings.setSetting('app_id',app_id)
 			#Acestreamconfiguration for android starts here
-			if "arm" in os.uname()[4]:
-				acebundle = os.path.join(pastaperfil,android_aceengine_arm.split("/")[-1])
-				download_tools().Downloader(android_aceengine_arm,acebundle,translate(30111),translate(30000))
-			else:
-				acebundle = os.path.join(pastaperfil,android_aceengine_x86.split("/")[-1])
-				download_tools().Downloader(android_aceengine_x86,acebundle,translate(30111),translate(30000))
-			if tarfile.is_tarfile(acebundle):
-				download_tools().extract(acebundle,pastaperfil)
-				download_tools().remove(acebundle)
-			orgacestreamenginefolder = os.path.join(pastaperfil,"org.acestream.engine")
-			xbmc_data_path = os.path.join("/data", "data", app_id)
-			if os.path.exists(xbmc_data_path) and uid == os.stat(xbmc_data_path).st_uid:
-				android_binary_dir = os.path.join(xbmc_data_path, "files", "program.plexus")
-				if not os.path.exists(android_binary_dir): os.makedirs(android_binary_dir)
-            		android_acestream_folder = os.path.join(android_binary_dir,"org.acestream.engine")
-            		if not os.path.exists(android_acestream_folder): os.makedirs(android_acestream_folder)
-            		else:
-            			#clean install for android - delete old folder
-            			print android_acestream_folder
-            			try:
-            				os.system("chmod -R 777 "+android_acestream_folder+"/*")
-            				os.system("rm -r '"+android_acestream_folder+"'")
-            			except: pass
-            			try: os.makedirs(android_acestream_folder)
-            			except: pass
-            		xbmc.sleep(200)
-            		#clean install in android - remove /sdcard/.ACEStream folder if it exists (to be enabled between versions if we need to remove older settings
-            		#if os.path.exists(os.path.join('/sdcard','.ACEStream')):
-				#	try:
-				#		hidden_ace = os.path.join('/sdcard','.ACEStream')
-				#		os.system("chmod -R 777 "+hidden_ace+"/*")
-				#		os.system("rm -r '"+hidden_ace+"'")
-				#	except: pass
-            		recursive_overwrite(orgacestreamenginefolder, android_acestream_folder, ignore=None)
-            		pythonbin = os.path.join(android_acestream_folder,"files","python","bin","python")
-            		st = os.stat(pythonbin)
-            		import stat
-            		os.chmod(pythonbin, st.st_mode | stat.S_IEXEC)
-            		if os.path.exists(orgacestreamenginefolder):
-					try:
-						os.system("chmod -R 777 "+orgacestreamenginefolder+"/*")
-						os.system("rm -r '"+orgacestreamenginefolder+"'")
-					except: pass
-            		try: xbmcvfs.mkdir(os.path.join('/sdcard','org.acestream.engine'))
-            		except: pass
-			opcao= xbmcgui.Dialog().yesno(translate(30000), translate(30112),translate(30113))
-			if not opcao:
-				settings.setSetting('engine_app','0')
-			else:
-				mensagemok(translate(30000),translate(30114),translate(30115),translate(30116))
+			opcao= xbmcgui.Dialog().yesno(translate(30000), translate(30112),translate(30113),translate(30114))
+			if opcao:
 				if os.path.exists(os.path.join("sdcard","Download")):
 					pasta = os.path.join("sdcard","Download")
 					if "arm" in os.uname()[4]: acefile = os.path.join("sdcard","Download",acestreamengine_apk_arm.split("/")[-1])
@@ -691,29 +641,28 @@ def configure_acestream(latest_version):
 					download_tools().remove(acefile)
 				xbmc.sleep(2000)
 				mensagemok(translate(30000),translate(30118),pasta,translate(30108))
-				mensagemok(translate(30000),translate(30119),translate(30120),translate(30121))
-				settings.setSetting('engine_app','1')
-			opcao= xbmcgui.Dialog().yesno(translate(30000), translate(30122),translate(30123))
-			if opcao:
-				if os.path.exists(os.path.join("sdcard","Download")):
-					pasta = os.path.join("sdcard","Download")
-					if "arm" in os.uname()[4]: acefile = os.path.join("sdcard","Download",android_aceplayer_arm.split("/")[-1])
-					else: os.path.join("sdcard","Download",android_aceplayer_x86.split("/")[-1])
-				else:
-					dialog = xbmcgui.Dialog()
-					pasta = dialog.browse(int(0), translate(30105), 'myprograms')
-					if "arm" in os.uname()[4]: acefile = os.path.join(pasta,acestreamengine_apk_arm.split("/")[-1])
-					else: acefile = os.path.join(pasta,acestreamengine_apk_x86.split("/")[-1])
-				if "arm" in os.uname()[4]: download_tools().Downloader(android_aceplayer_arm,acefile,translate(30124),translate(30000))
-				else: download_tools().Downloader(android_aceplayer_x86,acefile,translate(30124),translate(30000))
-				if tarfile.is_tarfile(acefile):
-					download_tools().extract(acefile,pasta)
-					download_tools().remove(acefile)
-				xbmc.sleep(2000)
-				mensagemok(translate(30000),translate(30125),pasta,translate(30108))
-				opcao= xbmcgui.Dialog().yesno(translate(30000), translate(30126))
+				mensagemok(translate(30000),translate(30121))
+				settings.setSetting('engine_app','0')
+			else:	
+				opcao= xbmcgui.Dialog().yesno(translate(30000), translate(30122),translate(30123))
 				if opcao:
-					settings.setSetting('engine_app','2')							
+					if os.path.exists(os.path.join("sdcard","Download")):
+						pasta = os.path.join("sdcard","Download")
+						if "arm" in os.uname()[4]: acefile = os.path.join("sdcard","Download",torrentcontroller_apk_arm.split("/")[-1])
+						else: acefile = os.path.join("sdcard","Download",torrentcontroller_apk_x86.split("/")[-1])
+					else:
+						dialog = xbmcgui.Dialog()
+						pasta = dialog.browse(int(0), translate(30105), 'myprograms')
+						if "arm" in os.uname()[4]: acefile = os.path.join(pasta,torrentcontroller_apk_arm.split("/")[-1])
+						else: acefile = os.path.join(pasta,torrentcontroller_apk_x86.split("/")[-1])
+					if "arm" in os.uname()[4]: download_tools().Downloader(torrentcontroller_apk_arm,acefile,translate(30124),translate(30000))
+					else: download_tools().Downloader(torrentcontroller_apk_x86,acefile,translate(30124),translate(30000))
+					if tarfile.is_tarfile(acefile):
+						download_tools().extract(acefile,pasta)
+						download_tools().remove(acefile)
+					xbmc.sleep(2000)
+					mensagemok(translate(30000),translate(30125),pasta,translate(30108))
+					settings.setSetting('engine_app','2')
 			if latest_version: settings.setSetting('acestream_version',value=latest_version)
 			mensagemok(translate(30000),translate(30127))
 			return			

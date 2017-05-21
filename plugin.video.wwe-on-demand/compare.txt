@@ -1,18 +1,19 @@
-CURRENT STATUS: [COLORred]PROBLEMS[/COLOR]
+CURRENT STATUS: [COLORyellow]Moderate Issues[/COLOR]
 
-Apparently one of my hosts has been doss attacked. 
-So alot of content is unavailable until they resolve it. 
+One of the host is still down. 
+We are currently adding additional links for these.
 
-Sorry for any inconvenience.
+Sections down:
 
-When its back up, I shall let you know! 
+x 1998 Raw
+x 2001 Raw and Smackdown
+x Most of WWE Network Collections
+x Certain Shows
 
-Sections mostly effected:
+If there is something you wish to see thats giving an error let us know.
 
-× The Archives
-× Network Collections
-× Random Events 
-× Shows
+Check The 'Whats New' to see what has been fixed and added. 
 
+Thanks.
 
-Alternative links will available however. This won't effect this week's weekly shows, you will still be able to watch this week's no problem! 
+|===== ALWAYS CLEAR CACHE AND PURGE PACKAGES =====|

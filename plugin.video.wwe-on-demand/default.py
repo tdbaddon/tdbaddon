@@ -25,7 +25,7 @@ metaset         = selfAddon.getSetting('enable_meta')
 messagetext     = 'https://pbear90.000webhostapp.com/wweondemand/info.xml'
 startinfo       = 'https://pbear90.000webhostapp.com/wweondemand/startinfo.xml'
 wweschedule      = 'https://pbear90.000webhostapp.com/wweondemand/schedule.xml'
-RUNNER 			= base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
+RUNNER          = base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
                                                                
 def GetMenu():
@@ -121,7 +121,7 @@ def GetMenu():
             except:pass
             view(link)
         addDir('[B][COLOR silver]WWE Schedule[/COLOR][/B]',url,11,schedule,fanarts)
-        addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)		
+        addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)        
 
 def popup():
         message=open_url2(startinfo)
@@ -220,33 +220,33 @@ def WWESCHEDULE():
 
 def YOUTUBE_CHANNEL(url):
 
-	CHANNEL = RUNNER + url
-	link = open_url(CHANNEL)
-	patron = "<video>(.*?)</video>"
-	videos = re.findall(patron,link,re.DOTALL)
+    CHANNEL = RUNNER + url
+    link = open_url(CHANNEL)
+    patron = "<video>(.*?)</video>"
+    videos = re.findall(patron,link,re.DOTALL)
 
-	items = []
-	for video in videos:
-		item = {}
-		item["name"] = find_single_match(video,"<name>([^<]+)</name>")
-		item["url"] = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9") + find_single_match(video,"<id>([^<]+)</id>")
-		item["author"] = find_single_match(video,"<author>([^<]+)</author>")
-		item["iconimage"] = find_single_match(video,"<iconimage>([^<]+)</iconimage>")
-		item["date"] = find_single_match(video,"<date>([^<]+)</date>")
-		
-		addLink('[COLOR white]' + item["name"] + ' - on ' + item["date"] + '[/COLOR]',item["url"],7,item["iconimage"],fanart)
+    items = []
+    for video in videos:
+        item = {}
+        item["name"] = find_single_match(video,"<name>([^<]+)</name>")
+        item["url"] = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9") + find_single_match(video,"<id>([^<]+)</id>")
+        item["author"] = find_single_match(video,"<author>([^<]+)</author>")
+        item["iconimage"] = find_single_match(video,"<iconimage>([^<]+)</iconimage>")
+        item["date"] = find_single_match(video,"<date>([^<]+)</date>")
+        
+        addLink('[COLOR white]' + item["name"] + ' - on ' + item["date"] + '[/COLOR]',item["url"],7,item["iconimage"],fanart)
 
-	
+    
 def SEARCH():
-	keyb = xbmc.Keyboard('', '[COLOR gold]Search[/COLOR]')
-	keyb.doModal()
-	if (keyb.isConfirmed()):
-		searchterm=keyb.getText()
-		searchterm=searchterm.upper()
-	else:quit()
-	link=open_url('https://pbear90.000webhostapp.com/wweondemand/search.xml')
-	slist=re.compile('<link>(.+?)</link>').findall(link)
-	for url in slist:
+    keyb = xbmc.Keyboard('', '[COLOR gold]Search[/COLOR]')
+    keyb.doModal()
+    if (keyb.isConfirmed()):
+        searchterm=keyb.getText()
+        searchterm=searchterm.upper()
+    else:quit()
+    link=open_url('https://pbear90.000webhostapp.com/wweondemand/search.xml')
+    slist=re.compile('<link>(.+?)</link>').findall(link)
+    for url in slist:
                 url2=url
                 link=open_url(url)
                 entries= re.compile('<item>(.+?)</item>').findall(link)
@@ -366,27 +366,27 @@ def PLAYSD(name,url,iconimage):
 
 def PLAYREGEX(name,url,iconimage):
 
-	name = name.replace('  ','')
-	if not 'f4m'in url:
-		if '.m3u8' in url:
-			url = 'plugin://plugin.video.f4mTester/?streamtype=HLSRETRY&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
-		elif '.ts'in url:
-			url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
-	else: url = url + '|User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-	
-	import urlresolver
-	if urlresolver.HostedMediaFile(url).valid_url(): 
-		stream_url = urlresolver.HostedMediaFile(url).resolve()
-		liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
-		liz.setPath(stream_url)
-		xbmc.Player ().play(stream_url, liz, False)
-		quit()
-	else:
-		stream_url=url
-		liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
-		liz.setPath(stream_url)
-		xbmc.Player ().play(stream_url, liz, False)
-		quit()
+    name = name.replace('  ','')
+    if not 'f4m'in url:
+        if '.m3u8' in url:
+            url = 'plugin://plugin.video.f4mTester/?streamtype=HLSRETRY&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
+        elif '.ts'in url:
+            url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+url+'&amp;iconImage='+icon
+    else: url = url + '|User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+    
+    import urlresolver
+    if urlresolver.HostedMediaFile(url).valid_url(): 
+        stream_url = urlresolver.HostedMediaFile(url).resolve()
+        liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
+        liz.setPath(stream_url)
+        xbmc.Player ().play(stream_url, liz, False)
+        quit()
+    else:
+        stream_url=url
+        liz = xbmcgui.ListItem(name,iconImage=icon, thumbnailImage=icon)
+        if 'plugin://' not in stream_url:
+            liz.setPath(stream_url)
+        xbmc.Player ().play(stream_url, liz, False)
 
         
 def PLAYLINK(name,url,iconimage):
@@ -446,21 +446,18 @@ def PLAYLINK(name,url,iconimage):
         if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
         elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
         else: stream_url=url
+        if '.ts'in stream_url:
+                stream_url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+stream_url
         liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setPath(stream_url)
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        if 'plugin://' not in stream_url:
+            liz.setPath(stream_url) 
+            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
-        if '.ts'in url:
-                url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+url
-        elif urlresolver.HostedMediaFile(url).valid_url():
-                url = urlresolver.HostedMediaFile(url).resolve()           
-        elif liveresolver.isValid(url)==True:
-                url=liveresolver.resolve(url)
-        PLAYLINK(name,url,iconimage)		
-                                                       
+        xbmc.Player ().play(stream_url, liz, False)
+                                                        
 def PLAYVIDEO(url):
 
-	xbmc.Player().play(url)
+    xbmc.Player().play(url)
 
 def open_url(url):
     try:
@@ -508,28 +505,28 @@ def get_params():
 
 
 def addLinkMeta(name,url,mode,iconimage,itemcount,isFolder=False):
-        splitName=name.partition('(')
-	simplename=""
-	simpleyear=""
-	if len(splitName)>0:
-                simplename=splitName[0]
-		simpleyear=splitName[2].partition(')')
-	if len(simpleyear)>0:
-		simpleyear=simpleyear[0]
-	mg = metahandlers.MetaData()
-	meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
-	ok=True
-	liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
-	liz.setInfo( type="Video", infoLabels= meta )
-	contextMenuItems = []
-	contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
-	liz.addContextMenuItems(contextMenuItems, replaceItems=False)
-	if not meta['backdrop_url'] == '': liz.setProperty('fanart_image', meta['backdrop_url'])
-	else: liz.setProperty('fanart_image', fanart)
-	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=isFolder,totalItems=itemcount)
-	return ok
-	
+    splitName=name.partition('(')
+    simplename=""
+    simpleyear=""
+    if len(splitName)>0:
+        simplename=splitName[0]
+        simpleyear=splitName[2].partition(')')
+    if len(simpleyear)>0:
+        simpleyear=simpleyear[0]
+    mg = metahandlers.MetaData()
+    meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
+    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
+    liz.setInfo( type="Video", infoLabels= meta )
+    contextMenuItems = []
+    contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
+    liz.addContextMenuItems(contextMenuItems, replaceItems=False)
+    if not meta['backdrop_url'] == '': liz.setProperty('fanart_image', meta['backdrop_url'])
+    else: liz.setProperty('fanart_image', fanart)
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=isFolder,totalItems=itemcount)
+    return ok
+    
 def addDir(name,url,mode,iconimage,fanart,description=''):
     u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)+"&fanart="+urllib.quote_plus(fanart)
     ok=True
@@ -545,8 +542,6 @@ def addLink(name, url, mode, iconimage, fanart, description=''):
     ok=True
     liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setProperty('fanart_image', fanart)
-    liz.setProperty("IsPlayable","true")
-    if 'plugin://' in url:u=url
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
     return ok
 
@@ -559,13 +554,13 @@ def addLinkRegex(name, url, mode, iconimage, fanart, description=''):
     return ok
 
 def addItem(name,url,mode,iconimage,fanart, description=''):
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
-	ok=True
-	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title": name } )
-	liz.setProperty( "Fanart_Image", fanart )
-	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-	return ok
+    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+    liz.setInfo( type="Video", infoLabels={ "Title": name } )
+    liz.setProperty( "Fanart_Image", fanart )
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+    return ok
 
 def SHOW_PICTURE(url):
 
@@ -600,14 +595,14 @@ def showText(heading, text):
     win = xbmcgui.Window(id)
     retry = 50
     while (retry > 0):
-	try:
-	    xbmc.sleep(10)
-	    retry -= 1
-	    win.getControl(1).setLabel(heading)
-	    win.getControl(5).setText(text)
-	    return
-	except:
-	    pass
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel(heading)
+            win.getControl(5).setText(text)
+            return
+        except:
+            pass
 
 def view(link):
         try:

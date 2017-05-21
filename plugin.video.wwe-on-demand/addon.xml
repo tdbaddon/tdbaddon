@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.7" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.8" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>

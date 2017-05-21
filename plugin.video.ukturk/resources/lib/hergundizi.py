@@ -9,7 +9,7 @@ def TVShows(url):
     except: pass
     shows=re.compile('<article class="film1">(.+?)</article>',re.DOTALL).findall(link)
     for show in shows:
-        name=re.compile(">(.+?)</a>").findall(show)[1].split('Full')[0]
+        name=re.compile(">(.+?)</a>").findall(show)[1].split('>')[-1].split('Full')[0].replace('&#8220;','').replace('&#8221;','')
         iconimage=re.compile('<img src="(.+?)">').findall(show)[0]
         url=re.compile('<a href="(.+?)">').findall(show)[0]
         string='<start>'+name+'<sep>'+url+'<sep>'+iconimage+'<end>'
@@ -26,11 +26,14 @@ def Parts(url):
         parts.append(page)
     return parts
     
-
 def Stream(url):
     link=open_url(url)
-    host_link=re.compile('height=".+?" src="(.+?)"').findall(link)[1]
-    return host_link
+    host_link=re.compile('src="(.+?)"').findall(link)
+    print host_link
+    for host in host_link:
+        if 'dailymotion' in host:
+            return host
+
 
 def open_url(url):
     req = urllib2.Request(url)

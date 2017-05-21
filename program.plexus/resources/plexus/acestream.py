@@ -34,8 +34,8 @@ def acestreams(name,iconimage,chid):
 	if settings.getSetting('addon_history') == "true":
 		try: add_to_history(name, str(chid),1, iconimage)
 		except: pass
-	if settings.getSetting('engine_app') != '2' and settings.getSetting('engine_app') != '3':
-		if settings.getSetting('aceplay_type') == "2":
+	if settings.getSetting('engine_app') != '1' and settings.getSetting('engine_app') != '2':
+		if settings.getSetting('aceplay_type') == "1":
 			pDialog = xbmcgui.DialogProgress()
 			ret = pDialog.create(translate(30000), translate(30038),translate(30039),translate(30040))
 			pDialog.update(0)
@@ -57,9 +57,9 @@ def acestreams(name,iconimage,chid):
 		else:
 			if 'acestream://' in chid: pass
 			else: chid = 'acestream://' + chid
-		if settings.getSetting('engine_app') == '2':
-			xbmc.executebuiltin('XBMC.StartAndroidActivity("org.acestream","android.intent.action.VIEW","","'+chid+'")')
-		elif settings.getSetting('engine_app') == '3':
+		if settings.getSetting('engine_app') == '1':
+			xbmc.executebuiltin('XBMC.StartAndroidActivity("org.acestream.media","android.intent.action.VIEW","","'+chid+'")')
+		elif settings.getSetting('engine_app') == '2':
 			xbmc.executebuiltin('XBMC.StartAndroidActivity("ru.vidsoftware.acestreamcontroller.free","android.intent.action.VIEW","","'+chid+'")')
 
 def acestreams_builtin(name,iconimage,chid):

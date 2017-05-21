@@ -1734,7 +1734,7 @@ def AddSafeLang(url=None):
 def getTVPlayerChannels(thesechannels=[]):
 
     headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
-    mainhtml=getUrl('http://tvplayer.com/watch/bbcone',headers=headers)
+    mainhtml=getUrl('https://tvplayer.com/watch/bbcone',headers=headers)
     cdata=re.findall('<li .*? class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)"',mainhtml)
     ret=[]
     for cc in cdata:
@@ -1748,7 +1748,7 @@ def getTVPlayerChannels(thesechannels=[]):
             cname=cname.replace('Watch ','')
         curl=cc[0]
         if not curl.startswith('http'):
-            curl= 'http://tvplayer.com/'+curl
+            curl= 'https://tvplayer.com/'+curl
         if len(thesechannels)==0 or cname.lower() in thesechannels:
             ret.append( (cname.capitalize() ,base64.b64encode('tvplayer:'+curl) ,mm ,logo) )		#name,url,mode,icon
     return ret
@@ -7664,7 +7664,7 @@ def playtvplayer(url):
         validate=contextjs["validate"]
         #cj = cookielib.LWPCookieJar()
         data = urllib.urlencode({'service':'1','platform':'chrome','validate':validate ,'id' : channelid})
-        headers=[('Referer','http://tvplayer.com/watch/'),('Origin','http://tvplayer.com'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+        headers=[('Referer','https://tvplayer.com/watch/'),('Origin','http://tvplayer.com'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
         retjson=getUrl("http://api.tvplayer.com/api/v2/stream/live",post=data, headers=headers,cookieJar=cj);
         jsondata=json.loads(retjson)
     #    print cj
@@ -7672,12 +7672,12 @@ def playtvplayer(url):
         playurl1=jsondata["tvplayer"]["response"]["stream"]
         m3utext=getUrl(playurl1, headers=headers,cookieJar=cj);
         #playurl1=re.findall('(http.*)',m3utext)[-1]
-        playurl=playurl1+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj)
+        playurl=playurl1+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=https://tvplayer.com/watch/'%getCookiesString(cj)
         
     except: 
         traceback.print_exc(file=sys.stdout)
         playurl=''
-    if playurl=='' or not tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj),listitem):
+    if playurl=='' or not tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=https://tvplayer.com/watch/'%getCookiesString(cj),listitem):
         playtvplayerfallback(url)
     return 
     
@@ -7697,7 +7697,7 @@ def playtvplayerfallback(url):
     playurl=jsondata["tvplayer"]["response"]["stream"]
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
 
-    return tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj),listitem)
+    return tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=https://tvplayer.com/watch/'%getCookiesString(cj),listitem)
     
     
 def ShowAllSources(url, loadedLink=None):

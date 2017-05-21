@@ -6,412 +6,413 @@ msgid ""
 msgstr ""
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: RonnieHD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
 msgctxt "#30000"
 msgid "Plexus"
-msgstr ""
+msgstr "Plexus"
 
 msgctxt "#30001"
 msgid "My Streams"
-msgstr ""
+msgstr "Mis Transmisiones"
 
 msgctxt "#30002"
 msgid "Played history"
-msgstr ""
+msgstr "Historial de reproduccion"
 
 msgctxt "#30003"
 msgid "AceStream: "
-msgstr ""
+msgstr "AceStream: "
 
 msgctxt "#30004"
 msgid "SopCast: "
-msgstr ""
+msgstr "SopCast: "
 
 msgctxt "#30005"
 msgid "Play Acestream hash / Torrent URI"
-msgstr ""
+msgstr "Reproducir identificador Acestream / Torrent URI"
 
 msgctxt "#30006"
 msgid "Load local .torrent file"
-msgstr ""
+msgstr "Cargar archivo .torrent local"
 
 msgctxt "#30007"
 msgid "Play SopCast ID"
-msgstr ""
+msgstr "Reproducir ID de SopCast"
 
 msgctxt "#30008"
 msgid "Play SopCast URI"
-msgstr ""
+msgstr "Reproducir Enlace SopCast"
 
 msgctxt "#30009"
 msgid "Add stream"
-msgstr ""
+msgstr "Añadir Canal"
 
 msgctxt "#30010"
 msgid "Stream url"
-msgstr ""
+msgstr "Enlace del Canal"
 
 msgctxt "#30011"
 msgid "Url is not valid"
-msgstr ""
+msgstr "Enlace no valido"
 
 msgctxt "#30012"
 msgid "Do you want to set an icon for the stream?"
-msgstr ""
+msgstr "¿Desea añadir un icono al canal? "
 
 msgctxt "#30013"
 msgid "Choose the icon"
-msgstr ""
+msgstr "Elija un icono"
 
 msgctxt "#30014"
 msgid "Stream name"
-msgstr ""
+msgstr "Nombre del Canal"
 
 msgctxt "#30015"
 msgid "Successfully added!"
-msgstr ""
+msgstr "Añadido satisfactoriamente!"
 
 msgctxt "#30016"
 msgid "Successfully removed!"
-msgstr ""
+msgstr "Removido satisfactoriamente!"
 
 msgctxt "#30017"
 msgid "Setting changed successfully!"
-msgstr ""
+msgstr "Configuracion cambiada con exito!"
 
 msgctxt "#30018"
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgctxt "#30019"
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgctxt "#30020"
 msgid "User ID"
-msgstr ""
+msgstr "ID de Usuario"
 
 msgctxt "#30021"
 msgid "User URI"
-msgstr ""
+msgstr "URI de Usuario"
 
 msgctxt "#30022"
 msgid "Acestream hash"
-msgstr ""
+msgstr "Identificador Acestream"
 
 msgctxt "#30023"
 msgid "Extracting module contents. Please wait."
-msgstr ""
+msgstr "Extrayendo contenido del módulo. Por favor espere."
 
 msgctxt "#30024"
 msgid "Removing files."
-msgstr ""
+msgstr "Removiendo archivos."
 
 msgctxt "#30025"
 msgid "Remove from my streams"
-msgstr ""
+msgstr "Remover de mis transmisiones"
 
 msgctxt "#30026"
 msgid "Add to my streams"
-msgstr ""
+msgstr "Añadir a mis transmisiones"
 
 msgctxt "#30027"
 msgid "(Windows) SopCast configuration incomplete!"
-msgstr ""
+msgstr "(Windows) Configuracion de SopCast incompleta!"
 
 msgctxt "#30028"
 msgid "Enable 'Configuration on next run' in the addon settings"
-msgstr ""
+msgstr "Habilitar 'Configuracion en la siguiente ejecucion' en los ajustes del addon "
 
 msgctxt "#30029"
 msgid "and re-enter the addon (as administrator)"
-msgstr ""
+msgstr "y vuelva a entrar al addon (como administrador)"
 
 msgctxt "#30030"
 msgid "SopCast - Checking service. Please wait..."
-msgstr ""
+msgstr "SopCast - Comprobando servicio. Por favor espere..."
 
 msgctxt "#30031"
 msgid "Service created. Attempting to play..."
-msgstr ""
+msgstr "Servicio creado. Intentando reproducir..."
 
 msgctxt "#30032"
 msgid "Channel initialization failed"
-msgstr ""
+msgstr "Fallo en la inicializacion del Canal"
 
 msgctxt "#30033"
 msgid "Another instance of SopCast is still running on the background"
-msgstr ""
+msgstr "Otra instancia de SopCast sigue ejecutándose en segundo plano"
 
 msgctxt "#30034"
 msgid "Do you want to play it?"
-msgstr ""
+msgstr "¿Desea reproducirlo?"
 
 msgctxt "#30035"
 msgid "Loading stream. Please wait %s seconds."
-msgstr ""
+msgstr "Cargando. Por favor espere %s segundos"
 
 msgctxt "#30036"
 msgid "Waiting till timeout..."
-msgstr ""
+msgstr "Esperando hasta que se agote el tiempo..."
 
 msgctxt "#30037"
 msgid "Choose the local torrent file."
-msgstr ""
+msgstr "Elija el archivo torrent local"
 
 msgctxt "#30038"
 msgid "Starting AceStream (ValdikSS proxy mode)"
-msgstr ""
+msgstr "Iniciando AceStream (modo ValdikSS proxy)"
 
 msgctxt "#30039"
 msgid "If the playback fails try to increase the player"
-msgstr ""
+msgstr "Si la reproducción falla, intente incrementar el reproductor"
 
 msgctxt "#30040"
 msgid "timeout!"
-msgstr ""
+msgstr "tiempo agotado!"
 
 msgctxt "#30041"
 msgid "AceStream module not installed."
-msgstr ""
+msgstr "Modulo AceStream no instalado"
 
 msgctxt "#30042"
 msgid "Torrent not available or invalid."
-msgstr ""
+msgstr "Torrent no disponible o inválido"
 
 msgctxt "#30043"
 msgid "Starting..."
-msgstr ""
+msgstr "Iniciando..."
 
 msgctxt "#30044"
 msgid "Awaiting response"
-msgstr ""
+msgstr "Esperando respuesta"
 
 msgctxt "#30045"
 msgid "Connecting"
-msgstr ""
+msgstr "Conectando"
 
 msgctxt "#30046"
 msgid "Starting AceStream Engine."
-msgstr ""
+msgstr "Iniciando Motor AceStream."
 
 msgctxt "#30047"
 msgid "Inital wait:"
-msgstr ""
+msgstr "Espera inicial:"
 
 msgctxt "#30048"
 msgid "seconds"
-msgstr ""
+msgstr "segundos"
 
 msgctxt "#30049"
 msgid "Playing"
-msgstr ""
+msgstr "Reproduciendo"
 
 msgctxt "#30050"
 msgid "Link received"
-msgstr ""
+msgstr "Enlace recibido"
 
 msgctxt "#30051"
 msgid "Saving file"
-msgstr ""
+msgstr "Guardando archivo"
 
 msgctxt "#30052"
 msgid "Downloading"
-msgstr ""
+msgstr "Descargando"
 
 msgctxt "#30053"
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando..."
 
 msgctxt "#30054"
 msgid "Loading acestream"
-msgstr ""
+msgstr "Cargando acestream"
 
 msgctxt "#30055"
 msgid "AceStream engine waiting"
-msgstr ""
+msgstr "Motor AceStream esperando"
 
 msgctxt "#30056"
 msgid "Playing torrent."
-msgstr ""
+msgstr "Reproduciendo torrent."
 
 msgctxt "#30057"
 msgid "No response"
-msgstr ""
+msgstr "No hay respuesta"
 
 msgctxt "#30058"
 msgid "Verifying data"
-msgstr ""
+msgstr "Verificando datos"
 
 msgctxt "#30059"
 msgid "Pre-buffering"
-msgstr ""
+msgstr "Pre-buffering"
 
 msgctxt "#30060"
 msgid "Downloading"
-msgstr ""
+msgstr "Descargando"
 
 msgctxt "#30061"
 msgid "Buffering"
-msgstr ""
+msgstr "Buffering"
 
 msgctxt "#30062"
 msgid "AceStream Engine"
-msgstr ""
+msgstr "AceStream Engine"
 
 msgctxt "#30063"
 msgid "Stats"
-msgstr ""
+msgstr "Estadísticas"
 
 msgctxt "#30064"
 msgid "Action:"
-msgstr ""
+msgstr "Acción:"
 
 msgctxt "#30065"
 msgid "Download:"
-msgstr ""
+msgstr "Descarga:"
 
 msgctxt "#30066"
 msgid "Upload:"
-msgstr ""
+msgstr "Subida:"
 
 msgctxt "#30067"
 msgid "Seeds:"
-msgstr ""
+msgstr "Semillas:"
 
 msgctxt "#30068"
 msgid "Downloaded:"
-msgstr ""
+msgstr "Descargado:"
 
 msgctxt "#30069"
 msgid "Uploaded:"
-msgstr ""
+msgstr "Subido:"
 
 msgctxt "#30070"
 msgid "Left:"
-msgstr ""
+msgstr "Quedan:"
 
 msgctxt "#30071"
 msgid "seconds"
-msgstr ""
+msgstr "segundos"
 
 msgctxt "#30072"
 msgid "Unable to detect your operating system"
-msgstr ""
+msgstr "No se pudo detectar su sistema operativo"
 
 msgctxt "#30073"
 msgid "Select it from the list"
-msgstr ""
+msgstr "Seleccione de la lista"
 
 msgctxt "#30074"
 msgid "Are you using OpenELEC x86_x64?"
-msgstr ""
+msgstr "¿Está usando OpenELEC x86_x64?"
 
 msgctxt "#30075"
 msgid "Are you usng OpenELEC i386?"
-msgstr ""
+msgstr "¿Está usando OpenELEC i386?"
 
 msgctxt "#30076"
 msgid "Downloading SopCast modules."
-msgstr ""
+msgstr "Descargando modulos SopCast."
 
 msgctxt "#30077"
 msgid "Kodi has to be running as administrator."
-msgstr ""
+msgstr "Kodi debe ser ejecutado como administrador"
 
 msgctxt "#30078"
 msgid "to configure SopCast in Windows."
-msgstr ""
+msgstr "para configurar SopCast en WIndows"
 
 msgctxt "#30079"
 msgid "Checking if SopCast is installed..."
-msgstr ""
+msgstr "Comprobando si SopCast está instalado..."
 
 msgctxt "#30080"
 msgid "Finished."
-msgstr ""
+msgstr "Terminado."
 
 msgctxt "#30081"
 msgid "SopCast.exe is not installed!"
-msgstr ""
+msgstr "SopCast.exe no está instalado!"
 
 msgctxt "#30082"
 msgid "Download it from SopCast.org and install it!"
-msgstr ""
+msgstr "Descarguelo de SopCast.org e instálelo!"
 
 msgctxt "#30083"
 msgid "Getting Windows user ID's..."
-msgstr ""
+msgstr "Obteniendo los ID's de usuario de Windows..."
 
 msgctxt "#30084"
 msgid "Unable to get users list"
-msgstr ""
+msgstr "No se pudo obtener la lista de usuarios"
 
 msgctxt "#30085"
 msgid "Getting Windows user ID's..."
-msgstr ""
+msgstr "Obteniendo los ID's de usuario de Windows..."
 
 msgctxt "#30086"
 msgid "Starting SRVany download..."
-msgstr ""
+msgstr "Iniciando descarga de SRVany..."
 
 msgctxt "#30087"
 msgid "Downloading SRVany..."
-msgstr ""
+msgstr "Descargando SRVany..."
 
 msgctxt "#30088"
 msgid "Creating 'sopcastp2p' service..."
-msgstr ""
+msgstr "Creando servicio 'sopcastp2p'..."
 
 msgctxt "#30089"
 msgid "Unable to create service!"
-msgstr ""
+msgstr "No se pudo crear el servicio!"
 
 msgctxt "#30090"
 msgid "Modifying regedit..."
-msgstr ""
+msgstr "Modificando regedit..."
 
 msgctxt "#30091"
 msgid "Error: Unable to modify regedit."
-msgstr ""
+msgstr "Error: No se puedo modificar regedit."
 
 msgctxt "#30092"
 msgid "Trying to get service permissions..."
-msgstr ""
+msgstr "Tratando de obtener permisos de servicio..."
 
 msgctxt "#30093"
 msgid "Error: Unable to change permissions."
-msgstr ""
+msgstr "Error: No se pudo cambiar permisos."
 
 msgctxt "#30094"
 msgid "Trying to set service permissions..."
-msgstr ""
+msgstr "Tratando de establecer permisos de servicio"
 
 msgctxt "#30095"
 msgid "Error: Unable to change service permissons."
-msgstr ""
+msgstr "Error: No se pudo cambiar permisos de servicio."
 
 msgctxt "#30096"
 msgid "Starting regini download..."
-msgstr ""
+msgstr "Iniciando descarga regini..."
 
 msgctxt "#30097"
 msgid "Downloading regini..."
-msgstr ""
+msgstr "Descargando regini..."
 
 msgctxt "#30098"
 msgid "Running regini..."
-msgstr ""
+msgstr "Ejecutando regini..."
 
 msgctxt "#30099"
 msgid "Sopcast: All done sucessfully!"
-msgstr ""
+msgstr "Sopcast: Terminado con éxito!"
 
 msgctxt "#30100"
 msgid "Not available for the architecture of your Mac."
@@ -419,39 +420,39 @@ msgstr ""
 
 msgctxt "#30101"
 msgid "By default Sopcast will use the Kodi player."
-msgstr ""
+msgstr "Por defecto Sopcast usará el reproductor de Kodi"
 
 msgctxt "#30103"
 msgid "Do you want to use an external application/player?"
-msgstr ""
+msgstr "¿Desea usar una aplicación/reproductor externo?"
 
 msgctxt "#30104"
 msgid "Click ok to download SopCast.apk"
-msgstr ""
+msgstr "Click en ok para descargar SopCast.apk"
 
 msgctxt "#30105"
 msgid "Select the folder to save the apks"
-msgstr ""
+msgstr "Seleccione una carpeta para guardar las apks"
 
 msgctxt "#30106"
 msgid "Downloading SopCast.apk"
-msgstr ""
+msgstr "Descargando SopCast.apk"
 
 msgctxt "#30107"
 msgid "SopCast.apk downloaded to folder:"
-msgstr ""
+msgstr "SopCast.apk se descargó a la carpeta:"
 
 msgctxt "#30108"
 msgid "Please install it!"
-msgstr ""
+msgstr "Por favor instálelo!"
 
 msgctxt "#30109"
 msgid "AppID not detected"
-msgstr ""
+msgstr "AppID no detectado"
 
 msgctxt "#30110"
 msgid "Downloading AceStream modules."
-msgstr ""
+msgstr "Descargando módulos de AceStream"
 
 msgctxt "#30111"
 msgid "Downloading AceStream Engine bundle for Android"
@@ -459,217 +460,217 @@ msgstr ""
 
 msgctxt "#30112"
 msgid "It is necessary to have AceStream.apk or TSC.apk installed"
-msgstr ""
+msgstr "Es necesario tener AceStream.apk ó TSC.apk instalados"
 
 msgctxt "#30113"
 msgid "Select YES to download AceStream Engine and use it with Kodi"
-msgstr ""
+msgstr "Seleccione SI para descargar AceStream Engine y usarlo con Kodi"
 
 msgctxt "#30114"
 msgid "Select NO to continue to next option..."
-msgstr ""
+msgstr "Seleccione NO para continuar a la siguiente opción..."
 
 msgctxt "#30115"
 msgid "to play AceStream's links."
-msgstr ""
+msgstr "para reproducir enlaces AceStream"
 
 msgctxt "#30116"
 msgid "It will be downloaded now!"
-msgstr ""
+msgstr "Será descargado a continuación!"
 
 msgctxt "#30117"
 msgid "Downloading AceStream.apk"
-msgstr ""
+msgstr "Descargando AceStream.apk"
 
 msgctxt "#30118"
 msgid "AceStream.apk downloaded to folder:"
-msgstr ""
+msgstr "AceStream.apk se descargó a la carpeta:"
 
 msgctxt "#30119"
 msgid "Don't forget AceStream Engine app should be running"
-msgstr ""
+msgstr "Nó olvide que la aplicación AceStream Engine debe ejecutarse"
 
 msgctxt "#30120"
 msgid "before starting any AceStream!"
-msgstr ""
+msgstr "antes de iniciar cualquier enlace AceStream!"
 
 msgctxt "#30121"
 msgid "If default option Engine+Kodi Player does not work for you, then manually switch to Engine+External Player within AceStream Configurations"
-msgstr ""
+msgstr "Si la opción por defecto Engine+Kodi Player no le funciona bien, entonces cambie manualmente a Engine+External Player dentro de Ajustes de AceStream"
 
 msgctxt "#30122"
 msgid "Do you want to download Torrent Stream Controller?"
-msgstr ""
+msgstr "¿Desea descargar Torrent Stream Controller?"
 
 msgctxt "#30123"
 msgid "This will enable you the option to use an external player instead of Kodi."
-msgstr ""
+msgstr "Esto le habilitará la opción de usar un reproductor externo en vez de Kodi."
 
 msgctxt "#30124"
 msgid "Downloading TSC.apk"
-msgstr ""
+msgstr "Descargando TSC.apk"
 
 msgctxt "#30125"
 msgid "TSC.apk downladed to folder:"
-msgstr ""
+msgstr "TSC.apk se descargó a la carpeta:"
 
 msgctxt "#30126"
 msgid "Do you want to use the external player as default?"
-msgstr ""
+msgstr "¿Desea usar el reproductor externo por defecto?"
 
 msgctxt "#30127"
 msgid "AceStream: All done sucessfully!"
-msgstr ""
+msgstr "AceStream: Terminado con éxito!"
 
 msgctxt "#30128"
 msgid "Plexus is only available for certain linux arm platforms."
-msgstr ""
+msgstr "Plexus solo está disponible para ciertas plataformas arm linux"
 
 msgctxt "#30129"
 msgid "Please select yours from the following list."
-msgstr ""
+msgstr "Por favor seleccione el suyo de la siguiente lista."
 
 msgctxt "#30130"
 msgid "Select your operating system"
-msgstr ""
+msgstr "Seleccione su sistema operativo"
 
 msgctxt "#30131"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgctxt "#30132"
 msgid "Repeat configuration on the next run"
-msgstr ""
+msgstr "Repita la configuración en la siguiente ejecución"
 
 msgctxt "#30133"
 msgid "Force use of dvdplayer"
-msgstr ""
+msgstr "Forzar el uso de dvdplayer"
 
 msgctxt "#30134"
 msgid "Enable debug mode"
-msgstr ""
+msgstr "Habilitar el modo depuración"
 
 msgctxt "#30135"
 msgid "Enable addon history"
-msgstr ""
+msgstr "Habilitar historial del addon"
 
 msgctxt "#30136"
 msgid "Number of items to save"
-msgstr ""
+msgstr "Número de elementos a guardar"
 
 msgctxt "#30137"
 msgid "Clear addon history"
-msgstr ""
+msgstr "Limpiar historial del addon"
 
 msgctxt "#30138"
 msgid "SopCast Configuration"
-msgstr ""
+msgstr "Ajustes de SopCast"
 
 msgctxt "#30139"
 msgid "Player Type"
-msgstr ""
+msgstr "Tipo de Reproductor"
 
 msgctxt "#30140"
 msgid "Find ip address automatically"
-msgstr ""
+msgstr "Encontrar dirección ip automáticamente"
 
 msgctxt "#30141"
 msgid "Ip address"
-msgstr ""
+msgstr "Dirección IP"
 
 msgctxt "#30142"
 msgid "Local port"
-msgstr ""
+msgstr "Puerto local"
 
 msgctxt "#30143"
 msgid "Video port"
-msgstr ""
+msgstr "Puerto de Video"
 
 msgctxt "#30144"
 msgid "Buffer size"
-msgstr ""
+msgstr "Tamaño de buffer"
 
 msgctxt "#30145"
 msgid "Player start timeout"
-msgstr ""
+msgstr "Tiempo de inico del reproductor"
 
 msgctxt "#30146"
 msgid "Player start delay"
-msgstr ""
+msgstr "Retardo de inicio del reproductor"
 
 msgctxt "#30147"
 msgid "Service creation timeout"
-msgstr ""
+msgstr "Tiempo de creación del servicio"
 
 msgctxt "#30148"
 msgid "Stream creation timeout"
-msgstr ""
+msgstr "Tiempo de creación de la transmisión"
 
 msgctxt "#30149"
 msgid "Auto-detect android app id"
-msgstr ""
+msgstr "Auto-detectar id de aplicación android"
 
 msgctxt "#30150"
 msgid "Custom app id"
-msgstr ""
+msgstr "ID de aplicación personalizada"
 
 msgctxt "#30151"
 msgid "AceStream Configurations"
-msgstr ""
+msgstr "Ajustes de AceStream"
 
 msgctxt "#30152"
 msgid "AceStreams"
-msgstr ""
+msgstr "AceStreams"
 
 msgctxt "#30153"
 msgid "AceStream player type"
-msgstr ""
+msgstr "Tipo de reproductor AceStream"
 
 msgctxt "#30154"
 msgid "AceStream command"
-msgstr ""
+msgstr "Comando AceStream"
 
 msgctxt "#30155"
 msgid "AceStream alternative cmd"
-msgstr ""
+msgstr "AceStream comando alternativo"
 
 msgctxt "#30156"
 msgid "AceStream engine ip address"
-msgstr ""
+msgstr "Dirección ip del motor AceStream"
 
 msgctxt "#30157"
 msgid "AceStream engine port"
-msgstr ""
+msgstr "Puerto del motor AceStream"
 
 msgctxt "#30158"
 msgid "AceStream engine player port"
-msgstr ""
+msgstr "Puerto del reproductor del motor AceStream"
 
 msgctxt "#30159"
 msgid "Show AceStream engine status on video OSD"
-msgstr ""
+msgstr "Mostrar el estado del motor AceStream en video OSD"
 
 msgctxt "#30160"
 msgid "Auto pause mode"
-msgstr ""
+msgstr "Modo de pausa automática"
 
 msgctxt "#30161"
 msgid "Keep downloaded files in disk"
-msgstr ""
+msgstr "Mantener los archivos descargados en el disco"
 
 msgctxt "#30162"
 msgid "Download path"
-msgstr ""
+msgstr "Ruta de descarga"
 
 msgctxt "#30163"
 msgid "Shutdown AceStream engine on playback stop"
-msgstr ""
+msgstr "Apagar el motor AceStream cuando se pare el reproductor"
 
 msgctxt "#30164"
 msgid "AceStream shutdown type"
-msgstr ""
+msgstr "AceStream tipo de apagado"
 
 msgctxt "#30165"
 msgid "Custom Acestream engine shutdown command"
-msgstr ""
+msgstr "Comando de apagado personalizado para el motor AceStream"
 
