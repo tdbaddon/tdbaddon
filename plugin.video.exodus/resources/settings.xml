@@ -29,7 +29,6 @@
 		<setting id="bookmarks" type="bool" label="32344" default="true" />
 	</category>
 	<category label="32345">
-		<setting id="provider.123movieshd" type="bool" label="123MOVIESHD" default="true" />
 		<setting id="provider.1movies" type="bool" label="1MOVIES" default="true" />
 		<setting id="provider.afdah" type="bool" label="AFDAH" default="true" />
 		<setting id="provider.animeultima" type="bool" label="ANIMEULTIMA" default="true" />
@@ -119,6 +118,7 @@
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
 		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
+		<setting id="provider.streamflix" type="bool" label="STREAMFLIX" default="true" />
 		<setting id="provider.streamit" type="bool" label="STREAMIT" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
 		<setting id="provider.tata" type="bool" label="TATA" default="true" />

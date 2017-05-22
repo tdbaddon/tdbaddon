@@ -276,7 +276,7 @@ def Addtypes():
     try:
         import testarea
         if testarea.testenabled():
-            addDir('Test Area' ,'Live' ,99,os.path.join(home,'icons','Sports.png'))
+            addDir('Test Area' ,'TUFJTg==' ,99,os.path.join(home,'icons','Sports.png'))
     except: traceback.print_exc(file=sys.stdout)
     addDir('Settings' ,'Live' ,6,os.path.join(home,'icons','Settings.png'),isItFolder=False)
     addDir('Clear Cache' ,'Live' ,54,os.path.join(home,'icons','Clear Cache.png'),isItFolder=False)
@@ -1633,10 +1633,17 @@ def AddMonaChannels(url=None):
     
 def AddTestChannels(url=None):
     import testarea
-    for cname,ctype,curl,imgurl in testarea.getChannels(url,mode):
+    for cname,ctype,curl,imgurl,itemtype in testarea.getChannels(url,mode):
+        print cname,ctype,curl,imgurl,itemtype
         cname=cname.encode('ascii', 'ignore').decode('ascii')
-        mm=11
-        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+        isfolder=False
+        if itemtype=="folder":
+            mm=99
+            isfolder=True
+        else:
+            mm=11
+        
+        addDir(ColoredOpt(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=isfolder)		#name,url,mode,icon
     return   
     
 def AddUKTVNowChannels(url=None):

@@ -306,8 +306,11 @@ class sources:
         content = 'movie' if tvshowtitle == None else 'episode'
         if content == 'movie':
             sourceDict = [(i[0], i[1], getattr(i[1], 'movie', None)) for i in sourceDict]
+            genres = trakt.getGenre('movie', 'imdb', imdb)
         else:
             sourceDict = [(i[0], i[1], getattr(i[1], 'tvshow', None)) for i in sourceDict]
+            genres = trakt.getGenre('show', 'tvdb', tvdb)
+        sourceDict = [(i[0], i[1], i[2]) for i in sourceDict if not hasattr(i[1], 'genre_filter') or not i[1].genre_filter or any(x in i[1].genre_filter for x in genres)]
         sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == None]
 
         language = self.getLanguage()
@@ -904,14 +907,9 @@ class sources:
 
         self.metaProperty = 'plugin.video.exodus.container.meta'
 
-        from resources.lib.sources import sources as sources
-        from resources.lib.sources_de import sources as sources_de
-        from resources.lib.sources_fr import sources as sources_fr
-        from resources.lib.sources_pt import sources as sources_pt
-        from resources.lib.sources_pl import sources as sources_pl
-        from resources.lib.sources_ko import sources as sources_ko
+        from resources.lib.sources import sources
 
-        self.sourceDict = sources() + sources_de() + sources_fr() + sources_pt() + sources_pl() + sources_ko()
+        self.sourceDict = sources()
 
         try:
             self.hostDict = urlresolver.relevant_resolvers(order_matters=True)

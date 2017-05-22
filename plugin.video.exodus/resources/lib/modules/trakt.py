@@ -403,12 +403,57 @@ def getTVShowAliases(id):
     except: return []
 
 
-def getMovieSummary(id):
-    return __getTrakt('/movies/%s' % id)[0]
+def getMovieSummary(id, full=True):
+    try:
+        url = '/movies/%s' % id
+        if full: url += '?extended=full'
+        return getTraktAsJson(url)
+    except:
+        return
 
 
-def getTVShowSummary(id):
-    return __getTrakt('/shows/%s' % id)[0]
+def getTVShowSummary(id, full=True):
+    try:
+        url = '/shows/%s' % id
+        if full: url += '?extended=full'
+        return getTraktAsJson(url)
+    except:
+        return
+
+
+def getPeople(id, content_type, full=True):
+    try:
+        url = '/%s/%s/people' % (content_type, id)
+        if full: url += '?extended=full'
+        return getTraktAsJson(url)
+    except:
+        return
+
+def SearchAll(title, year, full=True):
+    try:
+        return SearchMovie(title, year, full) + SearchTVShow(title, year, full)
+    except:
+        return
+
+def SearchMovie(title, year, full=True):
+    try:
+        url = '/search/movie?query=%s' % title
+
+        if year: url += '&year=%s' % year
+        if full: url += '&extended=full'
+        return getTraktAsJson(url)
+    except:
+        return
+
+def SearchTVShow(title, year, full=True):
+    try:
+        url = '/search/show?query=%s' % title
+
+        if year: url += '&year=%s' % year
+        if full: url += '&extended=full'
+        return getTraktAsJson(url)
+    except:
+        return
 
 
 def getGenre(content, type, type_id):

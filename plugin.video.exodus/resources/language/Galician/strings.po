@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-05-11 15:45+0000\n"
+"PO-Revision-Date: 2017-05-14 02:35+0000\n"
 "Last-Translator: Emilio Rodríguez Tilve\n"
 "Language-Team: Galician (http://www.transifex.com/tv-addons/exodus/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 msgctxt "#32001"
 msgid "Movies"
-msgstr "Películas"
+msgstr "Filmes"
 
 msgctxt "#32002"
 msgid "TV Shows"
@@ -43,7 +43,7 @@ msgstr "Series"
 
 msgctxt "#32003"
 msgid "My Movies"
-msgstr "As miñas Películas"
+msgstr "Os meus Filmes"
 
 msgctxt "#32004"
 msgid "My TV Shows"
@@ -51,15 +51,15 @@ msgstr "As miñas Series"
 
 msgctxt "#32005"
 msgid "New Movies"
-msgstr "Novas Películas"
+msgstr "Novos Filmes"
 
 msgctxt "#32006"
 msgid "New Episodes"
-msgstr "Novos Episodios"
+msgstr "Novos Capítulos"
 
 msgctxt "#32007"
 msgid "Channels"
-msgstr "Can"
+msgstr "Canais"
 
 msgctxt "#32008"
 msgid "Tools"
@@ -71,7 +71,7 @@ msgstr "Descargas"
 
 msgctxt "#32010"
 msgid "Search"
-msgstr "Pesquisa"
+msgstr "Pesquisar"
 
 msgctxt "#32011"
 msgid "Genres"
@@ -139,7 +139,7 @@ msgstr "Novas Series"
 
 msgctxt "#32027"
 msgid "TV Calendar"
-msgstr "Grella de TV"
+msgstr "Calendario de TV"
 
 msgctxt "#32028"
 msgid "People Search"
@@ -147,7 +147,7 @@ msgstr "Percurar Xente"
 
 msgctxt "#32029"
 msgid "People (Movies)"
-msgstr "Xente (Películas)"
+msgstr "Xente (Filmes)"
 
 msgctxt "#32030"
 msgid "People (TV)"
@@ -183,11 +183,11 @@ msgstr "Progreso"
 
 msgctxt "#32038"
 msgid "Episodes"
-msgstr "Episodios"
+msgstr "Capítulos"
 
 msgctxt "#32039"
 msgid "Movie Lists"
-msgstr "Listas de Películas"
+msgstr "Listas de Filmes"
 
 msgctxt "#32040"
 msgid "TV Show Lists"
@@ -195,7 +195,7 @@ msgstr "Listas de Series"
 
 msgctxt "#32041"
 msgid "Episode Lists"
-msgstr "Listas de Episodios"
+msgstr "Listas de Capítulos"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
@@ -247,11 +247,11 @@ msgstr "[I]Páxina Seguinte[/I]"
 
 msgctxt "#32054"
 msgid "Seasons"
-msgstr "Temporadas"
+msgstr "Tempadas"
 
 msgctxt "#32055"
 msgid "Season"
-msgstr "Temporada"
+msgstr "Tempada"
 
 msgctxt "#32056"
 msgid "Are you sure?"
@@ -312,7 +312,7 @@ msgstr "Non Vista en Trakt"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
-msgstr "Administración de Trakt"
+msgstr "Xestionar de Trakt"
 
 msgctxt "#32071"
 msgid "Browse Series"
@@ -376,7 +376,7 @@ msgstr "Apariencia"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
-msgstr "Tempo de Espera para as Fornecedoras"
+msgstr "Tempo de espera para as fornecedoras"
 
 msgctxt "#32313"
 msgid "Indicators"
@@ -392,15 +392,15 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Info da Língua"
+msgstr "Lingua da info"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
-msgstr "Aplanar Temporadas de Series"
+msgstr "Aplanar Tempadas de Series"
 
 msgctxt "#32318"
 msgid "Enable Fanart"
-msgstr "Permitir Fanart"
+msgstr "Ativar Fanart"
 
 msgctxt "#32319"
 msgid "Menu"
@@ -408,7 +408,7 @@ msgstr "Menú"
 
 msgctxt "#32320"
 msgid "New Movies"
-msgstr "Novas Películas"
+msgstr "Novos Filmes"
 
 msgctxt "#32321"
 msgid "Featured"
@@ -452,7 +452,7 @@ msgstr "Reprodución"
 
 msgctxt "#32331"
 msgid "Default action"
-msgstr "Acción por defecto"
+msgstr "Ación por defecto"
 
 msgctxt "#32332"
 msgid "Dialog"
@@ -520,11 +520,11 @@ msgstr "Descargas"
 
 msgctxt "#32348"
 msgid "Enable downloads"
-msgstr "Permitir descargas"
+msgstr "Ativar descargas"
 
 msgctxt "#32349"
 msgid "Movies"
-msgstr "Películas"
+msgstr "Filmes"
 
 msgctxt "#32350"
 msgid "TV"
@@ -536,7 +536,7 @@ msgstr "Descargar características desativado por defecto."
 
 msgctxt "#32352"
 msgid "Set up your download folders in order to enable them."
-msgstr "Configura os cartafoles de descargas para activalas."
+msgstr "Configura os cartafoles de descargas para ativalas."
 
 msgctxt "#32353"
 msgid "Subtitles"
@@ -576,7 +576,7 @@ msgstr "Sen streams dispoñíbeis"
 
 msgctxt "#32402"
 msgid "Playback outside Exodus is not allowed"
-msgstr "A reproducción fora de Exodus non está permitida"
+msgstr "A reprodución fora de Exodus non está permitida"
 
 msgctxt "#32403"
 msgid "Download"
@@ -620,7 +620,7 @@ msgstr "Xa existe unha conta."
 
 msgctxt "#32512"
 msgid "Do you want to reset?"
-msgstr "Queres resetear?"
+msgstr "Queres restablecer?"
 
 msgctxt "#32513"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -632,15 +632,15 @@ msgstr "2) Cando sexa solicitado introduce : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32515"
 msgid "Trakt Manager"
-msgstr "Administración de Trakt"
+msgstr "Xestor de Trakt"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
-msgstr "Engadir á [B]Colección[/B]"
+msgstr "Engadir á [B]Coleción[/B]"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr "Quitar da [B]Colección[/B]"
+msgstr "Quitar da [B]Coleción[/B]"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
@@ -668,7 +668,7 @@ msgstr "Xa existe unha conta."
 
 msgctxt "#32532"
 msgid "Do you want to reset?"
-msgstr "Queres resetear?"
+msgstr "Queres restablecer?"
 
 msgctxt "#32533"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -696,9 +696,9 @@ msgstr "DEBRID-SERVICE"
 
 msgctxt "#32539"
 msgid "Configure Debrid Services in URLResolver Settings."
-msgstr "Configura \"Debrid Services\" na Configuración do URLResolver"
+msgstr "Configura \"Debrid Services\" nos Axustes do URLResolver"
 
 msgctxt "#32540"
 msgid "URLResolver Settings"
-msgstr "Configuración do URLResolver"
+msgstr "Axustes do URLResolver"
 

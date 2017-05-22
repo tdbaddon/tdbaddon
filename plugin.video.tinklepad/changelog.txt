@@ -1,4 +1,9 @@
 ------------------------
+TinklePad v1.2.5 (21 May-17)
+
+- Update for site changes
+
+------------------------
 TinklePad v1.2.4 (13 May-17)
 
 - Update for site changes

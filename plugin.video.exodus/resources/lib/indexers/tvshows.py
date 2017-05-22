@@ -62,7 +62,6 @@ class tvshows:
         self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
         self.tvdb_by_imdb = 'http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=%s'
         self.tvdb_by_query = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s'
-        self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.tvdb_image = 'http://thetvdb.com/banners/'
 
         self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
@@ -803,14 +802,15 @@ class tvshows:
             tvdb = self.list[i]['tvdb'] if 'tvdb' in self.list[i] else '0'
 
             if imdb == '0':
-                url = self.imdb_by_query % (urllib.quote_plus(self.list[i]['title']), self.list[i]['year'])
+                try:
+                    imdb = trakt.SearchTVShow(urllib.quote_plus(self.list[i]['title']), self.list[i]['year'], full=False)[0]
+                    imdb = imdb.get('show', '0')
+                    imdb = imdb.get('ids', {}).get('imdb', '0')
+                    imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
-                imdb = client.request(url, timeout='10')
-                try: imdb = json.loads(imdb)['imdbID']
-                except: imdb = '0'
-
-                if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
-
+                    if not imdb: imdb = '0'
+                except:
+                    imdb = '0'
 
             if tvdb == '0' and not imdb == '0':
                 url = self.tvdb_by_imdb % imdb

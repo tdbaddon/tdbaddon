@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.4" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.5" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>

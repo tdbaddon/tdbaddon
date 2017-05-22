@@ -76,20 +76,25 @@ def getVideoPage(url,mode):
     import time
     post={'mode':str(mode),'data':url,'id':getmyidentity()}
     post = urllib.urlencode(post)
-    ticketurl="aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3Rlc3RwYWdlLnBocD90PSVz".decode("base64")%(str(int(time.time())))
+    ticketurl="aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3Rlc3RyZXNvdXJjZXMvdGVzdHBhZ2VuZXcucGhwP3Q9JXM=".decode("base64")%(str(int(time.time())))
     return getUrl(ticketurl,post=post)
     
     
 def getChannels(url,mode):
+    url=url.decode("base64")
     ret=[]
     try:
         import json
         jsondata=json.loads(getVideoPage(url,mode))
         for channel in jsondata["data"]:
             cname=channel["cname"]
-            curl='testpage:'+channel["curl"]+"|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)"
+            type=channel["type"]
+            if type=="folder":
+                curl=channel["curl"]
+            else:
+                curl='testpage:'+channel["curl"]+"|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)"
             cimage=channel["cimage"]+"|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)"
-            ret.append((cname ,'manual', curl ,cimage))  
+            ret.append((cname ,'manual', curl ,cimage,type))  
         if len(ret)>0:
             ret=sorted(ret,key=lambda s: s[0].lower() )                        
     except:

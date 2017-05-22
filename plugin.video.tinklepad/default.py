@@ -1634,10 +1634,18 @@ class resolver:
         try: url = client.parseDOM(result, 'IFRAME', ret='src', attrs={"id": "showvideo"})[0]
         except: url = client.parseDOM(result, 'iframe', ret='src', attrs={"id": "showvideo"})[0]'''
         
-        url = urlparse.urlparse(url).path
+        """url = urlparse.urlparse(url).path
         url = url.split("/")[2]
         url = base64.b64decode(url)
-        url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
+        url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]"""
+        
+        src_id = re.search(r'\?lk=(.+)', url).groups()[0]
+        src_url = 'http://5movies.to/getlink.php'
+        data = {'Action': 'get', 'lk': src_id}
+        data = urllib.urlencode(data)
+        result = client.request(src_url, post=data, referer=url)
+        try: url = client.parseDOM(result, 'a', ret='href')[0]
+        except: url = result
         
         url = client.replaceHTMLCodes(url)
         url = url.encode('utf-8')
@@ -1669,7 +1677,7 @@ class resolver:
                 #url = self.source(url)
                 #if HostedMediaFile(url).valid_url():
                 if HostedMediaFile(host=host, media_id="dummy").valid_url():
-                    srcs.append([host, url])
+                    srcs.append([host, '%s%s' % (referer, url)])
                 i += 1
                 
             

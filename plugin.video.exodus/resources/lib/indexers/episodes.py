@@ -51,7 +51,6 @@ class seasons:
         self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (self.tvdb_key.decode('base64'), '%s', '%s')
         self.tvdb_by_imdb = 'http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=%s'
         self.tvdb_by_query = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s'
-        self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.tvdb_image = 'http://thetvdb.com/banners/'
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
@@ -72,14 +71,15 @@ class seasons:
     def tvdb_list(self, tvshowtitle, year, imdb, tvdb, lang, limit=''):
         try:
             if imdb == '0':
-                url = self.imdb_by_query % (urllib.quote_plus(tvshowtitle), year)
+                try:
+                    imdb = trakt.SearchTVShow(urllib.quote_plus(tvshowtitle), year, full=False)[0]
+                    imdb = imdb.get('show', '0')
+                    imdb = imdb.get('ids', {}).get('imdb', '0')
+                    imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
-                imdb = client.request(url, timeout='10')
-                try: imdb = json.loads(imdb)['imdbID']
-                except: imdb = '0'
-
-                if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
-
+                    if not imdb: imdb = '0'
+                except:
+                    imdb = '0'
 
             if tvdb == '0' and not imdb == '0':
                 url = self.tvdb_by_imdb % imdb
