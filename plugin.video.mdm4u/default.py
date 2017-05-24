@@ -237,22 +237,20 @@ def l1lll11Created_By_Mucky_Duck(url,name,content,fan_art,l11l1llCreated_By_Muck
 	except:
 		pass
 	if not l11111Created_By_Mucky_Duck:
-		l1l11llCreated_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡲࠣࡩࡨࡸࡡ࠮ࠧࠩ࡝ࡡࠫࡢ࠰ࠩࠨࠤष"), str(link), re.I|re.DOTALL)[0]
-		l1l11llCreated_By_Mucky_Duck = l1l11llCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠨ࠰࠱࠳ࡦࡰࡡࡹࠩस"),l11l11Created_By_Mucky_Duck (u"ࠩ࠲ࡥ࡯ࡧࡸࠨह"))
-		l1l11llCreated_By_Mucky_Duck = l1l11llCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠪ࠲࠴ࡧࡪࡢࡺࠪऺ"),l11l11Created_By_Mucky_Duck (u"ࠫ࠴ࡧࡪࡢࡺࠪऻ"))
-		link = link.replace(l11l11Created_By_Mucky_Duck (u"़ࠬࠦࠧ"),l11l11Created_By_Mucky_Duck (u"࠭ࠧऽ"))
+                l1l11llCreated_By_Mucky_Duck = l11l11Created_By_Mucky_Duck (u"ࠧࠦࡵ࠲ࡥ࡯ࡧࡸ࠮ࡶࡲ࡯ࡪࡴ࠮ࡱࡪࡳࠫष") %l1llCreated_By_Mucky_Duck
+		link = link.replace(l11l11Created_By_Mucky_Duck (u"ࠨࠢࠪस"),l11l11Created_By_Mucky_Duck (u"ࠩࠪह"))
 		try:
-			l1l11llCreated_By_Mucky_Duck = l1llCreated_By_Mucky_Duck + l1l11llCreated_By_Mucky_Duck + re.findall(l11l11Created_By_Mucky_Duck (u"ࡲࠨ࡮࡬ࡲࡰࡃࠢࠩ࡝ࡡࠦࡢ࠰ࠩࠣࡀࡖࡩࡷࡼࡥࡳ࠲࠿࠳ࡸࡶࡡ࡯ࡀࠪा"), str(link), re.I|re.DOTALL)[0]
-			l1ll11lCreated_By_Mucky_Duck = open_url(l1l11llCreated_By_Mucky_Duck).content
-			l1ll11lCreated_By_Mucky_Duck = l1ll11lCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠨࠢࠪि"),l11l11Created_By_Mucky_Duck (u"ࠩࠪी"))
+			params = {l11l11Created_By_Mucky_Duck (u"ࠪࡸࡰ࠭ऺ"):l11l11Created_By_Mucky_Duck (u"ࠫࡲ࠺ࡵࡧࡴࡨࡩ࡮ࡹࡴࡩࡧࡥࡩࡸࡺࠧऻ"), l11l11Created_By_Mucky_Duck (u"ࠬࡼ़ࠧ"):re.findall(l11l11Created_By_Mucky_Duck (u"ࡸࠧ࡭࡫ࡱ࡯ࡂࠨࠨ࡜ࡠࠥࡡ࠯࠯ࠢ࠿ࡕࡨࡶࡻ࡫ࡲ࠱࠾࠲ࡷࡵࡧ࡮࠿ࠩऽ"), str(link), re.I|re.DOTALL)[0]}
+			l1ll11lCreated_By_Mucky_Duck = open_url(l1l11llCreated_By_Mucky_Duck, params=params).content
+			l1ll11lCreated_By_Mucky_Duck = l1ll11lCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠧࠡࠩा"),l11l11Created_By_Mucky_Duck (u"ࠨࠩि"))
 			try:
-				data = re.findall(l11l11Created_By_Mucky_Duck (u"ࡵࠫࡸࡵࡵࡳࡥࡨࡷ࠿ࡢ࡛ࠩ࠰࠭ࡃ࠮ࡢ࡝ࠨु"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
-				match = re.findall(l11l11Created_By_Mucky_Duck (u"ࡶࠬ࡬ࡩ࡭ࡧ࠱࠮ࡄࡀࠢࠩ࡝ࡡࠦࡢ࠰ࠩࠣࠩू"), str(data), re.I|re.DOTALL)
-				l1ll1llCreated_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡷ࠭࡬ࡢࡤࡨࡰࠧࡀࠨ࠯ࠬࡂ࠭࠱࠭ृ"), str(data), re.I|re.DOTALL)
+				data = re.findall(l11l11Created_By_Mucky_Duck (u"ࡴࠪࡷࡴࡻࡲࡤࡧࡶ࠾ࡡࡡࠨ࠯ࠬࡂ࠭ࡡࡣࠧी"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
+				match = re.findall(l11l11Created_By_Mucky_Duck (u"ࡵࠫ࡫࡯࡬ࡦ࠰࠭ࡃ࠿ࠨࠨ࡜ࡠࠥࡡ࠯࠯ࠢࠨु"), str(data), re.I|re.DOTALL)
+				l1ll1llCreated_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡶࠬࡲࡡࡣࡧ࡯ࠦ࠿࠮࠮ࠫࡁࠬ࠰ࠬू"), str(data), re.I|re.DOTALL)
 				for url in match:
 					l11l1Created_By_Mucky_Duck.append(url)
 				for l11ll1Created_By_Mucky_Duck in l1ll1llCreated_By_Mucky_Duck:
-					value.append(int(re.sub(l11l11Created_By_Mucky_Duck (u"࠭࡜ࡅࠩॄ"), l11l11Created_By_Mucky_Duck (u"ࠧࠨॅ"), l11ll1Created_By_Mucky_Duck)))
+					value.append(int(re.sub(l11l11Created_By_Mucky_Duck (u"ࠬࡢࡄࠨृ"), l11l11Created_By_Mucky_Duck (u"࠭ࠧॄ"), l11ll1Created_By_Mucky_Duck)))
 				try:
 					l11111Created_By_Mucky_Duck =  l11l1Created_By_Mucky_Duck[md.get_max_value_index(value)[0]]
 				except:
@@ -261,19 +259,19 @@ def l1lll11Created_By_Mucky_Duck(url,name,content,fan_art,l11l1llCreated_By_Muck
 					except:
 						l11111Created_By_Mucky_Duck = match[0]
 			except:
-				l11111Created_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡳࠩࡶࡳࡺࡸࡣࡦ࠰࠭ࡃࡸࡸࡣ࠾ࠤࠫ࡟ࡣࠨ࡝ࠬࠫࠥࠫॆ"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
+				l11111Created_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡲࠨࡵࡲࡹࡷࡩࡥ࠯ࠬࡂࡷࡷࡩ࠽ࠣࠪ࡞ࡢࠧࡣࠫࠪࠤࠪॅ"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
 		except:
-			l1l11llCreated_By_Mucky_Duck = l1llCreated_By_Mucky_Duck + l1l11llCreated_By_Mucky_Duck + re.findall(l11l11Created_By_Mucky_Duck (u"ࡴࠪࡰ࡮ࡴ࡫࠾ࠤࠫ࡟ࡣࠨ࡝ࠫࠫࠥࡂࡘ࡫ࡲࡷࡧࡵ࠴ࡁ࠵ࡳࡱࡣࡱࡂࠬे"), str(link), re.I|re.DOTALL)[0]
-			l1ll11lCreated_By_Mucky_Duck = open_url(l1l11llCreated_By_Mucky_Duck).content
-			l1ll11lCreated_By_Mucky_Duck = l1ll11lCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠪࠤࠬै"),l11l11Created_By_Mucky_Duck (u"ࠫࠬॉ"))
+			params = {l11l11Created_By_Mucky_Duck (u"ࠨࡶ࡮ࠫॆ"):l11l11Created_By_Mucky_Duck (u"ࠩࡰ࠸ࡺ࡬ࡲࡦࡧ࡬ࡷࡹ࡮ࡥࡣࡧࡶࡸࠬे"), l11l11Created_By_Mucky_Duck (u"ࠪࡺࠬै"):re.findall(l11l11Created_By_Mucky_Duck (u"ࡶࠬࡲࡩ࡯࡭ࡀࠦ࠭ࡡ࡞ࠣ࡟࠭࠭ࠧࡄࡓࡦࡴࡹࡩࡷ࠷࠼࠰ࡵࡳࡥࡳࡄࠧॉ"), str(link), re.I|re.DOTALL)[0]}
+			l1ll11lCreated_By_Mucky_Duck = open_url(l1l11llCreated_By_Mucky_Duck, params=params).content
+			l1ll11lCreated_By_Mucky_Duck = l1ll11lCreated_By_Mucky_Duck.replace(l11l11Created_By_Mucky_Duck (u"ࠬࠦࠧॊ"),l11l11Created_By_Mucky_Duck (u"࠭ࠧो"))
 			try:
-				data = re.findall(l11l11Created_By_Mucky_Duck (u"ࡷ࠭ࡳࡰࡷࡵࡧࡪࡹ࠺࡝࡝ࠫ࠲࠯ࡅࠩ࡝࡟ࠪॊ"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0].replace(l11l11Created_By_Mucky_Duck (u"࠭ࠠࠨो"),l11l11Created_By_Mucky_Duck (u"ࠧࠨौ"))
-				match = re.findall(l11l11Created_By_Mucky_Duck (u"ࡳࠩࡩ࡭ࡱ࡫ࠢ࠻ࠤࠫ࡟ࡣࠨ࡝्ࠫࠫࠥࠫ"), str(data), re.I|re.DOTALL)
-				l1ll1llCreated_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡴࠪࡰࡦࡨࡥ࡭ࠤ࠽ࠬ࠳࠰࠿ࠪ࠮ࠪॎ"), str(data), re.I|re.DOTALL)
+				data = re.findall(l11l11Created_By_Mucky_Duck (u"ࡲࠨࡵࡲࡹࡷࡩࡥࡴ࠼࡟࡟࠭࠴ࠪࡀࠫ࡟ࡡࠬौ"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0].replace(l11l11Created_By_Mucky_Duck (u"ࠨ्ࠢࠪ"),l11l11Created_By_Mucky_Duck (u"ࠩࠪॎ"))
+				match = re.findall(l11l11Created_By_Mucky_Duck (u"ࡵࠫ࡫࡯࡬ࡦࠤ࠽ࠦ࠭ࡡ࡞ࠣ࡟࠭࠭ࠧ࠭ॏ"), str(data), re.I|re.DOTALL)
+				l1ll1llCreated_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡶࠬࡲࡡࡣࡧ࡯ࠦ࠿࠮࠮ࠫࡁࠬ࠰ࠬॐ"), str(data), re.I|re.DOTALL)
 				for url in match:
 					l11l1Created_By_Mucky_Duck.append(url)
 				for l11ll1Created_By_Mucky_Duck in l1ll1llCreated_By_Mucky_Duck:
-					value.append(int(re.sub(l11l11Created_By_Mucky_Duck (u"ࠪࡠࡉ࠭ॏ"), l11l11Created_By_Mucky_Duck (u"ࠫࠬॐ"), l11ll1Created_By_Mucky_Duck)))
+					value.append(int(re.sub(l11l11Created_By_Mucky_Duck (u"ࠬࡢࡄࠨ॑"), l11l11Created_By_Mucky_Duck (u"॒࠭ࠧ"), l11ll1Created_By_Mucky_Duck)))
 				try:
 					l11111Created_By_Mucky_Duck =  l11l1Created_By_Mucky_Duck[md.get_max_value_index(value)[0]]
 				except:
@@ -282,56 +280,56 @@ def l1lll11Created_By_Mucky_Duck(url,name,content,fan_art,l11l1llCreated_By_Muck
 					except:
 						l11111Created_By_Mucky_Duck = match[0]
 			except:
-				l11111Created_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡷ࠭ࡳࡰࡷࡵࡧࡪ࠴ࠪࡀࡵࡵࡧࡂࠨࠨ࡜ࡠࠥࡡ࠰࠯ࠢࠨ॑"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
-	if l11l11Created_By_Mucky_Duck (u"࠭ࡧࡰࡱࡪࡰࡪ॒࠭") in l11111Created_By_Mucky_Duck or l11l11Created_By_Mucky_Duck (u"ࠧࡶࡵࡨࡶࡨࡪ࡮ࠨ॓") in l11111Created_By_Mucky_Duck:
+				l11111Created_By_Mucky_Duck = re.findall(l11l11Created_By_Mucky_Duck (u"ࡲࠨࡵࡲࡹࡷࡩࡥ࠯ࠬࡂࡷࡷࡩ࠽ࠣࠪ࡞ࡢࠧࡣࠫࠪࠤࠪ॓"), str(l1ll11lCreated_By_Mucky_Duck), re.I|re.DOTALL)[0]
+	if l11l11Created_By_Mucky_Duck (u"ࠨࡩࡲࡳ࡬ࡲࡥࠨ॔") in l11111Created_By_Mucky_Duck or l11l11Created_By_Mucky_Duck (u"ࠩࡸࡷࡪࡸࡣࡥࡰࠪॕ") in l11111Created_By_Mucky_Duck:
 		l11111Created_By_Mucky_Duck = l11111Created_By_Mucky_Duck
 	else:
 		if l1llCreated_By_Mucky_Duck not in l11111Created_By_Mucky_Duck:
-			l11111Created_By_Mucky_Duck = l11l11Created_By_Mucky_Duck (u"ࠨࠧࡶ࠳ࠪࡹࠧ॔") %(l1llCreated_By_Mucky_Duck,l11111Created_By_Mucky_Duck)
+			l11111Created_By_Mucky_Duck = l11l11Created_By_Mucky_Duck (u"ࠪࠩࡸ࠵ࠥࡴࠩॖ") %(l1llCreated_By_Mucky_Duck,l11111Created_By_Mucky_Duck)
 	md.resolved(l11111Created_By_Mucky_Duck, name, fan_art, l11l1llCreated_By_Mucky_Duck)
 	l11ll1lCreated_By_Mucky_Duck.end_of_directory()
 md.check_source()
-mode = md.args[l11l11Created_By_Mucky_Duck (u"ࠩࡰࡳࡩ࡫ࠧॕ")]
-url = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠪࡹࡷࡲࠧॖ"), None)
-name = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠫࡳࡧ࡭ࡦࠩॗ"), None)
-query = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠬࡷࡵࡦࡴࡼࠫक़"), None)
-title = md.args.get(l11l11Created_By_Mucky_Duck (u"࠭ࡴࡪࡶ࡯ࡩࠬख़"), None)
-l111llCreated_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠧࡴࡧࡤࡷࡴࡴࠧग़"), None)
-l11lll1Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠨࡧࡳ࡭ࡸࡵࡤࡦࠩज़") ,None)
-l11l1llCreated_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠩ࡬ࡲ࡫ࡵ࡬ࡢࡤࡨࡰࠬड़"), None)
-content = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫढ़"), None)
-l1l11Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࡡ࡬ࡨࠬफ़"), None)
-l1l1l1Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠬ࡯ࡣࡰࡰ࡬ࡱࡦ࡭ࡥࠨय़"), None)
-fan_art = md.args.get(l11l11Created_By_Mucky_Duck (u"࠭ࡦࡢࡰࡢࡥࡷࡺࠧॠ"), None)
-is_folder = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠧࡪࡵࡢࡪࡴࡲࡤࡦࡴࠪॡ"), True)
+mode = md.args[l11l11Created_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩॗ")]
+url = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩक़"), None)
+name = md.args.get(l11l11Created_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫख़"), None)
+query = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠧࡲࡷࡨࡶࡾ࠭ग़"), None)
+title = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠨࡶ࡬ࡸࡱ࡫ࠧज़"), None)
+l111llCreated_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠩࡶࡩࡦࡹ࡯࡯ࠩड़"), None)
+l11lll1Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠪࡩࡵ࡯ࡳࡰࡦࡨࠫढ़") ,None)
+l11l1llCreated_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠫ࡮ࡴࡦࡰ࡮ࡤࡦࡪࡲࠧफ़"), None)
+content = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠬࡩ࡯࡯ࡶࡨࡲࡹ࠭य़"), None)
+l1l11Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"࠭࡭ࡰࡦࡨࡣ࡮ࡪࠧॠ"), None)
+l1l1l1Created_By_Mucky_Duck = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠧࡪࡥࡲࡲ࡮ࡳࡡࡨࡧࠪॡ"), None)
+fan_art = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠨࡨࡤࡲࡤࡧࡲࡵࠩॢ"), None)
+is_folder = md.args.get(l11l11Created_By_Mucky_Duck (u"ࠩ࡬ࡷࡤ࡬࡯࡭ࡦࡨࡶࠬॣ"), True)
 if mode is None or url is None or len(url)<1:
 	l111111Created_By_Mucky_Duck()
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠨ࠳ࠪॢ"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠪ࠵ࠬ।"):
 	l111l1lCreated_By_Mucky_Duck()
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠩ࠵ࠫॣ"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠫ࠷࠭॥"):
 	l111l11Created_By_Mucky_Duck()
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠪ࠷ࠬ।"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠬ࠹ࠧ०"):
 	l1Created_By_Mucky_Duck(url,content)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠫ࠹࠭॥"):
+elif mode == l11l11Created_By_Mucky_Duck (u"࠭࠴ࠨ१"):
 	l11111lCreated_By_Mucky_Duck(url,content)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠬ࠻ࠧ०"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠧ࠶ࠩ२"):
 	l11llllCreated_By_Mucky_Duck(url,content)
-elif mode == l11l11Created_By_Mucky_Duck (u"࠭࠶ࠨ१"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠨ࠸ࠪ३"):
 	l11l11lCreated_By_Mucky_Duck(title,url,l1l1l1Created_By_Mucky_Duck,content)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠧ࠸ࠩ२"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠩ࠺ࠫ४"):
 	l1lll11Created_By_Mucky_Duck(url,name,content,fan_art,l11l1llCreated_By_Mucky_Duck)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠨࡵࡨࡥࡷࡩࡨࠨ३"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠪࡷࡪࡧࡲࡤࡪࠪ५"):
 	l1llllCreated_By_Mucky_Duck(content,query)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠩࡤࡨࡩࡵ࡮ࡠࡵࡨࡥࡷࡩࡨࠨ४"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠫࡦࡪࡤࡰࡰࡢࡷࡪࡧࡲࡤࡪࠪ६"):
 	md.addon_search(content,query,fan_art,l11l1llCreated_By_Mucky_Duck)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠪࡥࡩࡪ࡟ࡳࡧࡰࡳࡻ࡫࡟ࡧࡣࡹࠫ५"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠬࡧࡤࡥࡡࡵࡩࡲࡵࡶࡦࡡࡩࡥࡻ࠭७"):
 	md.add_remove_fav(name, url, l11l1llCreated_By_Mucky_Duck, fan_art,
 			  content, l1l11Created_By_Mucky_Duck, is_folder)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠫ࡫࡫ࡴࡤࡪࡢࡪࡦࡼࡳࠨ६"):
+elif mode == l11l11Created_By_Mucky_Duck (u"࠭ࡦࡦࡶࡦ࡬ࡤ࡬ࡡࡷࡵࠪ८"):
 	md.fetch_favs(l1llCreated_By_Mucky_Duck)
-elif mode == l11l11Created_By_Mucky_Duck (u"ࠬࡧࡤࡥࡱࡱࡣࡸ࡫ࡴࡵ࡫ࡱ࡫ࡸ࠭७"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠧࡢࡦࡧࡳࡳࡥࡳࡦࡶࡷ࡭ࡳ࡭ࡳࠨ९"):
 	l11ll1lCreated_By_Mucky_Duck.show_settings()
-elif mode == l11l11Created_By_Mucky_Duck (u"࠭࡭ࡦࡶࡤࡣࡸ࡫ࡴࡵ࡫ࡱ࡫ࡸ࠭८"):
+elif mode == l11l11Created_By_Mucky_Duck (u"ࠨ࡯ࡨࡸࡦࡥࡳࡦࡶࡷ࡭ࡳ࡭ࡳࠨ॰"):
 	import metahandler
 	metahandler.display_settings()
 l11ll1lCreated_By_Mucky_Duck.end_of_directory()

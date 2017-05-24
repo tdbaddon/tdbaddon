@@ -62,6 +62,11 @@ def JUVWIZARD():
         extract.all(lib, addonfolder, dp)
         xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
         addon_able.setall_enable()
+        try: addon_able.set_enabled("inputstream.adaptive")
+        except: pass
+        xbmc.sleep(4000)
+        try: addon_able.set_enabled("inputstream.rtmp")
+        except: pass
         try:
             os.remove(lib)
         except:
@@ -79,7 +84,11 @@ def JUVWIZARD():
         xbmc.sleep(4000)
         xbmc.executebuiltin('XBMC_UpdateLocalAddons()')
         addon_able.setall_enable()
-
+        try: addon_able.set_enabled("inputstream.adaptive")
+        except: pass
+        xbmc.sleep(4000)
+        try: addon_able.set_enabled("inputstream.rtmp")
+        except: pass
         # kodi.set_setting("wizardran",'true')
 
         dialog = xbmcgui.Dialog()

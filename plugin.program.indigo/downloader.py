@@ -1,47 +1,72 @@
+"""
+    Kodi Downloader
+    Copyright (C) 2017 Blazetamer
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
 import xbmcgui
-import urllib
+import urllib2
+import socket
+from libs import kodi
+import time
 
-def download(url, dest, dp = None):
-    if not dp:
-        dp = xbmcgui.DialogProgress()
-        dp.create("Status...","Checking Installation",' ', ' ')
-    dp.update(0)
-    urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+class MyException(Exception):
+    pass
 
-def _pbhook(numblocks, blocksize, filesize, url, dp):
+def download(url, dest, dp = None,timeout = None):
+    if timeout == None:
+        timeout = 120
+    #url = 'https://offshoregit.com/exodus/script.exodus.metadata/script.exodus.metadata-1.0.0.zip'
     try:
-        percent = min((numblocks*blocksize*100)/filesize, 100)
-        dp.update(percent)
-    except:
-        percent = 100
-        dp.update(percent)
-    if dp.iscanceled():
-        dp.close()
-        raise Exception("Canceled")
+        if not dp:
+            dp = xbmcgui.DialogProgress()
+            dp.create("Status...","Checking Installation",' ', ' ')
+        dp.update(0)
+        start_time = time.time()
+        u = urllib2.urlopen(url, timeout = timeout)
+        h = u.info()
+        totalSize = int(h["Content-Length"])
+        fp = open(dest, 'wb')
+        blockSize = 8192 #100000 # urllib.urlretrieve uses 8192
+        count = 0
+        while True:  # and (end - start < 15):
+            if time.time() - start_time > timeout:
+                kodi.message("Slow or no Download available:", 'Files could not be downloaded at this time',
+                             'Please try again later, Attempting to continue...')
+                break
+            chunk = u.read(blockSize)
+            if not chunk: break
+            fp.write(chunk)
+            count += 1
+            if totalSize > 0:
+                try:
+                    percent = int(count * blockSize * 100 / totalSize)
+                    dp.update(percent)
+                except:
+                    percent = 100
+                    dp.update(percent)
+                if dp.iscanceled():
+                    dp.close()
+                    raise Exception("Canceled")
+        timetaken =  time.time() - start_time
+        kodi.log('Duration of download was %.02f secs ' % timetaken )
+    except socket.timeout, e:
+        # For Python 2.7
+        kodi.message("There was an error: %r" % e, 'Files could not be downloaded at this time', 'Please try again later, Attempting to continue...')
+        return
+    except urllib2.HTTPError as e:
+        kodi.message("There was an error:", str(e),'Please try again later, Attempting to continue...')
+        return
 
 
 
-# def download(url, dest, dp=None):
-#     if not dp:
-#         dp = xbmcgui.DialogProgress()
-#         dp.create("Status...", "Checking Installation", ' ', ' ')
-#     dp.update(0)
-#     u = urllib.urlopen(url)
-#     with open(dest, 'wb') as f:
-#         meta = u.info()
-#         file_size = int(meta.getheaders("Content-Length")[0])
-#         file_size_dl = 0
-#         chunk_sz = 908192
-#         while True:
-#             buffer = u.read(chunk_sz)
-#             if not buffer: break
-#             file_size_dl += len(buffer)
-#             f.write(buffer)
-#             percent = min((file_size_dl * 100) / file_size, 100)
-#             status = r'%3.2f%%    %10d' % (file_size_dl * 100. / file_size, file_size_dl)
-#             dp.update(percent,'Downloading and Configuring ','Please Wait',status)
-#             if dp.iscanceled():
-#                 break
-#                 raise Exception("Canceled")
-#     dp.close()
-#     f.close()

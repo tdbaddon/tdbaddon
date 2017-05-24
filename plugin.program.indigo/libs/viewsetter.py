@@ -66,12 +66,12 @@ ALL_VIEW_CODES = {
         # 50 = List, 51 = Poster,52 = Lists, 53 = Shift, 54 = InfoWall  55 = Wide list, 500 = Wall,501= List, 502 = Fanart
     },
     'episodes': {
-        'skin.confluence': 504,  # Media Info
+        'skin.confluence': 500,  # Media Info
         'skin.aeon.nox': 518,  # Infopanel
         'skin.droid': 50,  # List
         'skin.quartz': 52,  # Media info
         'skin.re-touched': 550,  # Wide
-        'skin.estuary': 54.
+        'skin.estuary': 55.
         # 50 = List, 51 = Poster,52 = Lists,53 = Shift,54 = InfoWall  55 = Wide list, 500 = Wall,501= List, 502 = Fanart
     },
     'sets': {
@@ -80,7 +80,7 @@ ALL_VIEW_CODES = {
         'skin.droid': 50,  # List
         'skin.quartz': 50,  # List
         'skin.re-touched': 50,  # List
-        'skin.estuary': 50,
+        'skin.estuary': 55,
         # 50 = List, 51 = Poster,52 = Lists,53 = Shift,54 = InfoWall  55 = Wide list, 500 = Wall,501= List, 502 = Fanart
     },
 }

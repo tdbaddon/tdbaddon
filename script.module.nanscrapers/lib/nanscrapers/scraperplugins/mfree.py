@@ -6,6 +6,7 @@ from BeautifulSoup import BeautifulSoup
 from ..common import clean_title, random_agent
 from ..scraper import Scraper
 import xbmc
+from nanscrapers.modules import cfscrape
 
 class Mfree(Scraper):
     domains = ['m4ufree.info']
@@ -16,6 +17,7 @@ class Mfree(Scraper):
         self.include_link = '/include/autocomplete.php?q='
         self.movie_search_link = '/tag/%s'
         self.tv_search_link = '/tagtvs/%s'
+        self.scraper = cfscrape.create_scraper()
 
     def scrape_movie(self, title, year, imdb, debrid = False):
         try:
@@ -25,11 +27,11 @@ class Mfree(Scraper):
             query = urlparse.urljoin(self.base_link, self.movie_search_link % q, page)
             cleaned_title = clean_title(title)
             while True:
-                html = requests.get(query, headers=headers, timeout=30).content
+                html = self.scraper.get(query, headers=headers, timeout=30).content
                 containers = re.compile('<a class="top-item".*href="(.*?)"><cite>(.*?)</cite></a>').findall(html)
                 for href, title in containers:
                     try:
-                        parsed = re.findall('(.+?) \((\d{4})', title)
+                        parsed = re.findall('(.+?) \(?(\d{4})', title)
                         parsed_title = parsed[0][0]
                         parsed_years = parsed[0][1]
                     except:
@@ -37,11 +39,11 @@ class Mfree(Scraper):
                     if cleaned_title == clean_title(parsed_title) and year == parsed_years:
                         try:
                             headers = {'User-Agent': random_agent()}
-                            html = requests.get(href, headers=headers, timeout=30).content
+                            html = self.scraper.get(href, headers=headers, timeout=30).content
                             parsed_html = BeautifulSoup(html)
                             quality_title = parsed_html.findAll("h3", attrs={'title': re.compile("Quality of ")})[0]
                             quality = quality_title.findAll('span')[0].text
-                            match = re.search('href="([^"]+-full-movie-[^"]+)', html)
+                            match = re.search('href="([^"]+-full-movie-.*?[^"]+)', html)
                             if match:
                                 url = match.group(1)
                                 return self.sources(url, quality)
@@ -62,7 +64,7 @@ class Mfree(Scraper):
         q = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
         query = urlparse.urljoin(self.base_link, self.tv_search_link % q)
         cleaned_title = clean_title(title)
-        html = BeautifulSoup(requests.get(query, headers=headers, timeout=30).content)
+        html = BeautifulSoup(self.scraper.get(query, headers=headers, timeout=30).content)
 
         links = html.findAll('a', attrs={'class': 'top-h1'})
         show_url = None
@@ -74,7 +76,7 @@ class Mfree(Scraper):
                 break
 
         if show_url:
-            html = BeautifulSoup(requests.get(show_url, headers=headers, timeout=30).content)
+            html = BeautifulSoup(self.scraper.get(show_url, headers=headers, timeout=30).content)
             link_container = html.findAll("div", attrs={'class': 'bottom'})[-1]
             episode_links = link_container.findAll("a")
             episode_format1 = "S%02dE%02d" % (int(season), int(episode))
@@ -91,27 +93,36 @@ class Mfree(Scraper):
         try:
             headers = {'User-Agent': random_agent(),
                        'X-Requested-With': 'XMLHttpRequest',
-                       'Referer': url}
-            html = BeautifulSoup(requests.get(url, headers=headers, timeout=30).content)
+                       'Referer': url,
+                       'Host': 'm4ufree.info'
+}
+            html = BeautifulSoup(self.scraper.get(url, headers=headers, timeout=30).content)
             servers = html.findAll("span", attrs={'class': re.compile(".*?btn-eps.*?")})
             for server in servers:
                 try:
-                    server_url = '/demo.php?v=%s' % server["link"]
+                    server_url = '/ajax.php?v=%s' % server["link"]
                     server_url = urlparse.urljoin(self.base_link, server_url)
-                    server_html = requests.get(server_url, headers=headers, timeout=30).content
+                    server_html = self.scraper.get(server_url, headers=headers, timeout=30).content
+                    if '<h1> Plz visit m4ufree.info for this movie </h1>' in server_html:
+                        server_url = '/ajax-tk.php?tk=tuan&v=%s' % server["link"]
+                        server_url = urlparse.urljoin(self.base_link, server_url)
+                        server_html = self.scraper.get(server_url, headers=headers, timeout=30).content
                     links = []
                     try:
-                        links.extend(re.findall(r'sources: \[ \{file: "(.*?)"', server_html, re.I | re.DOTALL))
+                        links.extend(re.findall('.*?"file":.*?"(.*?)"', server_html, re.I | re.DOTALL))
                     except:
                         pass
+
                     try:
-                        links.extend(re.findall(r'sources:.*?\[.*?\{"file":.*?"(.*?)"', server_html, re.I | re.DOTALL))
+                        links.extend(re.findall(r'sources: \[.*?\{file: "(.*?)"', server_html, re.I | re.DOTALL))
                     except:
                         pass
+
                     try:
                         links.extend(re.findall(r'<source.*?src="(.*?)"', server_html, re.I | re.DOTALL))
                     except:
                         pass
+
                     try:
                         links.extend(re.findall(r'<iframe.*?src="(.*?)"', server_html, re.I | re.DOTALL))
                     except:
@@ -125,7 +136,7 @@ class Mfree(Scraper):
 
                             if "m4u" in link_source:
                                 try:
-                                    req = requests.head(link_source, headers=headers)
+                                    req = self.scraper.head(link_source, headers=headers)
                                     if req.headers['Location'] != "":
                                         link_source = req.headers['Location']
                                 except:
@@ -150,7 +161,7 @@ class Mfree(Scraper):
                                 source_base = str.join(".",loc.split(".")[1:-1])
                                 if "4sync" in source_base:
                                     try:
-                                        html = requests.get(link_source).content
+                                        html = self.scraper.get(link_source).content
                                         link_source = re.findall("<source src=\"(.*?)\"", html)[0]
                                         try:
                                             quality = re.findall("title: \".*?(\d+)p.*?\"", html)[0]

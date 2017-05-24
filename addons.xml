@@ -540,7 +540,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     </extension>
 </addon>
 
-<addon id="plugin.program.indigo" version="1.0.4" name="Indigo" provider-name="tvaddons.ag">
+<addon id="plugin.program.indigo" version="2.0.0" name="Indigo" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -1921,7 +1921,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="2.1.0" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.1.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -2998,7 +2998,7 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.32" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.33" provider-name="MetalKettle">
 
   <requires>
 
@@ -4987,7 +4987,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.16" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.17" provider-name="Team NaN">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>

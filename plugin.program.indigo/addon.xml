@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.indigo" version="1.0.4" name="Indigo" provider-name="tvaddons.ag">
+<addon id="plugin.program.indigo" version="2.0.0" name="Indigo" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>

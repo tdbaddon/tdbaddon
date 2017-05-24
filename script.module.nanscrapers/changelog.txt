@@ -1,3 +1,6 @@
+v0.5.17
+- updated m4ufree
+
 v0.5.16
 - removed solar
 - added cinemabox (thx ard)

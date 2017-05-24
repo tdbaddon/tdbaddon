@@ -17,7 +17,6 @@ import htmlentitydefs
 from libs import viewsetter
 import TextViewer
 import plugintools
-#import installer2
 
 addon_id=kodi.addon_id
 addon = (addon_id, sys.argv)
@@ -75,16 +74,30 @@ def main_menu():
 
     if kodi.get_setting('hasran')=='false':
         kodi.set_setting('hasran','true')
+
+    if kodi.get_setting('set_rtmp')=='false':
+        try:
+            addon_able.set_enabled("inputstream.adaptive")
+        except:
+            pass
+        time.sleep(0.5)
+        try:
+            addon_able.set_enabled("inputstream.rtmp")
+        except:
+            pass
+        time.sleep(0.5)
+        xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
+        kodi.set_setting('set_rtmp', 'true')
     try:
         if not os.path.exists(hubpath):
-            installer.HUBINSTALL('TVADDONS.AG.Repository','http://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/repository.xbmchub/repository.xbmchub-1.0.6.zip','','addon','none')
+            installer.HUBINSTALL('TVADDONSRepo', 'http://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/repository.xbmchub/','repository.xbmchub')
             xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
             addon_able.set_enabled("repository.xbmchub")
     except:
             pass
     try:
         if not os.path.exists(uploaderpath):
-            installer.HUBINSTALL('TVADDONS.AG.LogUploader','https://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/script.tvaddons.debug.log/script.tvaddons.debug.log-1.0.7.zip','','addon','none')
+            installer.HUBINSTALL('TVADDONSLogUploader', 'https://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/script.tvaddons.debug.log/','script.tvaddons.debug.log')
             xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
             addon_able.set_enabled("script.tvaddons.debug.log")
     except:
@@ -276,6 +289,8 @@ def system_info():
         if CACHE == "NULL":
             CACHE_SIZE    =  "Error reading cache"
 
+    PV = sys.version_info
+    
     kodi.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR lime]%s' % codename + " " + str(versioni) + "[/COLOR]",'',100,artwork+'icon.png',"",description=" ")
     kodi.addItem('[COLOR ghostwhite]System Time: [/COLOR][COLOR lime]' + systime + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
     kodi.addItem('[COLOR ghostwhite]Gateway: [/COLOR][COLOR blue]' + gateway + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
@@ -287,6 +302,7 @@ def system_info():
     kodi.addItem('[COLOR ghostwhite]Disc Space: [/COLOR][COLOR gold]'+str(freespace) + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
     kodi.addItem('[COLOR ghostwhite]Free Memory: [/COLOR][COLOR gold]'+str(freemem) + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
     kodi.addItem('[COLOR ghostwhite]Resolution: [/COLOR][COLOR gold]' + str(screenres) + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
+    kodi.addItem('[COLOR ghostwhite]Python Version: [/COLOR][COLOR lime]%d.%d.%d' % (PV[0],PV[1],PV[2]) + '[/COLOR]','',100,artwork+'icon.png',"",description=" ")
     if check_folders == "true":
         try:
             kodi.addItem("Cache Size: [COLOR blue]" + str(CACHE_SIZE) + '[/COLOR]','','null',artwork+'currentcache.png',description="Clear your device cache!")
@@ -495,8 +511,8 @@ elif mode=='log_view':
 elif mode=='call_maintool':
         maintool.tool_menu()
 
-elif mode=='clearcache':
-        maintool.clear_cache()
+elif mode=='clear_cache':
+        maintool.clearCache()
 
 elif mode=='debug_onoff':
 
@@ -504,11 +520,13 @@ elif mode=='debug_onoff':
         choice = xbmcgui.Dialog().yesno('Indigo', 'Please confirm that you wish to disable log debugging mode immediately')
         if choice == 1:
             xbmc.executebuiltin("ToggleDebug")
+            xbmc.executebuiltin("Container.Refresh")
         else: quit()
     else:
         choice = xbmcgui.Dialog().yesno('Indigo', 'Please confirm that you wish to enable log debugging mode immediately')
         if choice == 1:
             xbmc.executebuiltin("ToggleDebug")
+            xbmc.executebuiltin("Container.Refresh")
         else: quit()
 
 elif mode=='purgepackages':
@@ -584,7 +602,7 @@ elif mode== 'foceclosekodi':
 #####KEYMAPS###############
 
 elif mode=='install_keymap':
-        installer.install_keymap(name,url)
+        installer.install_keymap(name, url)
 
 elif mode=='uninstall_keymap':
         installer.uninstall_keymap()
@@ -625,69 +643,51 @@ elif mode=='call_installer':
         installer.MAININDEX()
 
 elif mode=='lib_installer':
-        installer.libinstaller(name,url)
-
-# elif   mode=='settings':
-#   addon.show_settings()
+        installer.libinstaller(name, url)
 
 elif mode=='EnableRTMP':
     installer.EnableRTMP()
-    
-elif mode=='autoupdate':
-    items=installer.AutoUpdate(url)
-
-elif mode=='autoupdate2':
-    installer.AutoUpdate(indigo_url+'featured-addons.php')
-    installer.AutoUpdate(indigo_url+'featured-repos.php')
 
 elif mode=='interrepolist':
     items=installer.List_Inter_Addons(url)
 
-elif mode=='interlist':
-    items=installer.INTERNATIONAL(url)
+elif mode=='interrepos':
+    items=installer.INTERNATIONAL_REPOS()
 
-elif mode=='innertabs':
-    items=installer.List_Addons_Inner_Tabs(name,url)
+elif mode=='interaddons':
+    items=installer.INTERNATIONAL_ADDONS()
+
+elif mode=='interaddonslist':
+    items=installer.INTERNATIONAL_ADDONS_LIST(url)
+
+elif mode=='interlist':
+    items=installer.INTERNATIONAL_ADDONS()
 
 elif mode=='addonlist':
     items=installer.List_Addons(url)
 
-elif mode=='worldlist':
-    items=installer.List_Indigo_WorldList(url)
+elif mode=='splitlist':
+    installer.Split_List(name,url)
 
 elif mode=='addopensub':
     installer.OPENSUBINSTALL(url)
 
-elif mode=='toprepolist':
-    items=installer.List_Repo_Top_Developers(url)
-
 elif mode=='searchaddon':
     installer.SEARCHADDON(url)
 
-elif mode=='addonindex':
-    installer.ADDONINDEX(name,url,filetype)
-
 elif mode=='getaddoninfo':
-    installer.getaddoninfo(url,description,filetype)
+    installer.getaddoninfo(url, description, filetype)
 
 elif mode=='InstallQuas':
     installer.INSTALLQUASAR(url)
 
 elif mode=='addoninstall':
     #kodi.log("TRYING MODES")
-    installer.ADDONINSTALL(name,url,description,filetype,repourl)
+    installer.ADDONINSTALL(name, url, description, filetype, repourl)
 
 elif mode=='adultlist':
     items=installer.List_Indigo_Adult(url)
 
-elif mode=='WizardTypeInstaller':
-    installer.WizardTypeInstaller(name,url)
-
-elif mode=='AddonTypeInstaller':
-    installer.AddonTypeInstaller(name,url)
-
-elif mode=='dependinstall':
-    installer.DEPENDINSTALL(name,url,description,filetype,repourl)
 
 elif mode=='BrowseUrl':
     xbmc.executebuiltin("XBMC.System.Exec(%s)" % url)
