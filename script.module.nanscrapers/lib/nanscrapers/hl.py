@@ -288,19 +288,19 @@ class HostedLink:
                 except:
                     quality = link['quality']
                 label = link["source"] + " - " + link["scraper"] + " (" + quality + ")"
-                grouping_label = link["source"] + " (" + quality + ")"
-                if not grouping_label in labels:
-                    labels[grouping_label] = []
-                labels[grouping_label].append(link)
-                #results_array.append((label, [link]))
-            for label, links in labels.iteritems():
-                if len(links) > 1:
-                    result_links = []
-                    for link in links:
-                        label2 = label.replace("(", " - " + link["scraper"] + " (")
-                        result_links.append({'label': label2, 'path': link})
-                    results_array.append((label, result_links))
-                else:
-                    label2 = label.replace("(", " - " + links[0]["scraper"] + " (")
-                    results_array.append((label2, links))
+                # grouping_label = link["source"] + " (" + quality + ")"
+                # if not grouping_label in labels:
+                #     labels[grouping_label] = []
+                # labels[grouping_label].append(link)
+                results_array.append((label, [link]))
+            # for label, links in labels.iteritems():
+            #     if len(links) > 1:
+            #         result_links = []
+            #         for link in links:
+            #             label2 = label.replace("(", " - " + link["scraper"] + " (")
+            #             result_links.append({'label': label2, 'path': link})
+            #         results_array.append((label, result_links))
+            #     else:
+            #         label2 = label.replace("(", " - " + links[0]["scraper"] + " (")
+            #         results_array.append((label2, links))
             return results_array

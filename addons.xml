@@ -976,23 +976,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.DecadoDocs" name="Decado Documentaries" version="1.0.2" provider-name="MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.disclose_tv" name="Disclose.tv" version="0.1.9" provider-name="Sphere, Spinalcracker">
   <requires>
     <import addon="xbmc.python" version="2.24.0"/>
@@ -1294,6 +1277,24 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<website>http://filmkodi.com/</website>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="plugin.video.filmcube" name="FilmCUBE" version="1.0.4" provider-name="Dandymedia">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+	<summary lang="en"></summary>
+	<description lang="en">One Click Movies and TV Shows from flenix.net[CR][CR][B][COLOR red]Source is HTTPS so requires Kodi 17 or elec 16 and above.[/COLOR][/B]</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
+	<platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.filmon.simple" name="FilmOn Simple" version="0.1.6" provider-name="mhancoc7">
@@ -1921,6 +1922,25 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
+<addon id="plugin.video.mdimperialstreams" name="Imperial Streams" version="3.0.1" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.urlresolver"  version="2.10.0"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.muckys.common"/>
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Free content From The Web</summary>
+    <description lang="en">This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml As A Source In File Manager.  Special Thanks Go Out To @McWaine For Spending The Time To Create The Icons For Each Individual Section.</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.mdm4u" name="M4U" version="2.1.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2363,26 +2383,6 @@ For DMCA Reports, please send message to our FB page.
     <description>Live HD sport streams from reddit</description>
     <platform>all</platform>
     <language>en</language>
-  </extension>
-</addon>
-
-<addon id="plugin.video.real-movies" name="[COLOR red]Real-Movies[/COLOR]" version="1.0" provider-name="Kodi Mad Man">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.module.liveresolver" version="0.1.24"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-    <import addon="plugin.video.youtube" optional="true" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Real-Movies by @kodi_mad</summary>
-    <description lang="en">Movies to watch works without real-debrid. But more reliable with real-debrid</description>
-    <platform>all</platform>
   </extension>
 </addon>
 
@@ -3147,7 +3147,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.8" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="3.9" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -3497,6 +3497,19 @@ Enjoy!</description>
 	</extension>
 </addon>
 
+<addon id="repository.dandymedia" name="Dandymedia Repository" version="1.0.1" provider-name="Dandymedia">
+    <extension point="xbmc.addon.repository" name="Dandymedia Repository">
+        <info compressed="true">https://github.com/dandy0850/dandymedia/raw/master/addons.xml</info>
+        <checksum>https://github.com/dandy0850/dandymedia/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/dandy0850/dandymedia/raw/master/repo</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Dandymedia Repository</summary>
+        <description>Dandymedia collection all addons</description>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="repository.echo" name="Echo Coder Repository" version="2.01" provider-name="Echo Coder">
     <extension point="xbmc.addon.repository" name="Echo Coder Repository">
         <dir>
@@ -3760,19 +3773,6 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.Kinkin" name="Kinkins REPO" version="1.4" provider-name="Kinkin">
-	<extension point="xbmc.addon.repository" name="Kinkin Addon Repository">
-		<info compressed="false">https://offshoregit.com/kinkin-xbmc-repository/addons.xml</info>
-		<checksum>https://offshoregit.com/kinkin-xbmc-repository/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/kinkin-xbmc-repository/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Kinkins Addons</summary>
-		<description>Install addons by Kinkin</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
     <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.1" provider-name="KodiTips.com">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
@@ -3899,21 +3899,6 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="repository.nhlstreams" name="[COLOR red]NHL Streams[/COLOR] Repo" version="1.0.0" provider-name="iCanuck">
-	<extension point="xbmc.addon.repository" name="NHL Streams Repository">
-       <info>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml</info>
-       <checksum>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml.md5</checksum>
-       <datadir zip="true">https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>NHL Streams</summary>
-		<description>NHL Streams</description>
-		<platform>all</platform>
-		<forum>https://forums.tvaddons.ag/live-sports-on-kodi/44271-nhl-streams.html#post349799</forum>
-		<website>https://www.tvaddons.ag/</website>
-	</extension>
-</addon>
-
 <addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.7" provider-name="noobsandnerds">
 	<extension point="xbmc.addon.repository" name="noobsandnerds Repository">
 		<dir>
@@ -4009,19 +3994,6 @@ Enjoy!</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
-</addon>
-
-<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.7.0" provider-name="SchisM">
-    <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
-        <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
-        <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
-        <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>SchisM TV official repo</summary>
-        <description>This is my repo... I can do whatever I like with it...</description>
-        <platform>all</platform>
-    </extension>
 </addon>
 
 <addon id="repository.shani" name="Shanis Addon Repository" version="2.9" provider-name="Shani">
@@ -4987,7 +4959,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.17" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.19" provider-name="Team NaN">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -5406,7 +5378,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.module.youtube.dl" name="youtube-dl Control" version="17.518.0" provider-name="Rick Phillips (ruuk)">
+<addon id="script.module.youtube.dl" name="youtube-dl Control" version="17.518.1" provider-name="Rick Phillips (ruuk)">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
         <import addon="script.module.addon.signals" version="0.0.1"/>

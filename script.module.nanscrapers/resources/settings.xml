@@ -44,6 +44,8 @@
 		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.ac"/>
 		<setting label="sezonlukdizi" type="lsep"/>
 		<setting id="sezonlukdizi_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="Solar" type="lsep"/>
+		<setting id="Solar_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchcartoon" type="lsep"/>
 		<setting id="watchcartoon_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="watchfree" type="lsep"/>
@@ -51,6 +53,8 @@
 		<setting id= "watchfree_baseurl" type="text" label="Base Url" default="http://www.watchfree.to"/>
 		<setting label="watchitvideos" type="lsep"/>
 		<setting id="watchitvideos_enabled" type="bool" label="Enabled" default="true"/>
+	</category>
+	<category label="Scrapers 2">
 		<setting label="xmovies" type="lsep"/>
 		<setting id="xmovies_enabled" type="bool" label="Enabled" default="true"/>
 	</category>
