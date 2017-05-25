@@ -222,6 +222,14 @@ class TestingMovies(unittest.TestCase):
         call = watchfree.source()
         self.source(call)
 
+    def test_world4u(self):
+        self.imdb = 'tt5474042'
+        self.title = 'Half Girlfriend'
+        self.year = '2017'
+        from resources.lib.sources import world4u
+        call = world4u.source()
+        self.source(call)
+
     def test_ymovies(self):
         from resources.lib.sources import ymovies
         call = ymovies.source()

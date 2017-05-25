@@ -29,9 +29,9 @@ from ashock.modules import logger
 class source:
     def __init__(self):
         self.domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
-        self.base_link = 'http://pidtv.com'
-        self.moviesearch_link = '/%s-%s-full-hd-pidtv-free.html'
-        self.moviesearch_link_2 = '/%s-%s-pidtv-free.html'
+        self.base_link = 'http://pubfilm.ac'
+        self.moviesearch_link = '/%s-%s-full-hd-pubfilm-free.html'
+        self.moviesearch_link_2 = '/%s-%s-pubfilm-free.html'
         self.tvsearch_link = '/feeds/posts/summary?alt=json&q=season&max-results=3000&callback=showResult'
 
     def movie(self, imdb, title, year):

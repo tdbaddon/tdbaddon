@@ -53,17 +53,6 @@ def request(url, resolverList=None):
     except:
         pass
 
-    try:
-        if not url == False: raise Exception()
-        logger.debug('Trying OLD URL Resolver for %s' % u, __name__)
-        hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
-        hmf = hmf.get_resolvers(validated=True)
-        hmf = [i for i in hmf if not i.isUniversal()][0]
-        host, media_id = hmf.get_host_and_id(u)
-        url = hmf.get_media_url(host, media_id)
-    except:
-        pass
-
     try: headers = url.rsplit('|', 1)[1]
     except: headers = ''
     headers = urllib.quote_plus(headers).replace('%3D', '=').replace('%26','&') if ' ' in headers else headers
@@ -86,13 +75,15 @@ def info():
     return [
         {'class': 'desiflicks', 'host': ['desiflicks.com']}
         , {'class': 'playwire', 'host': ['playwire.com']}
-        , {'class': 'vidshare', 'host': ['vidshare.us', 'idowatch.us', 'tvlogy.to',  'speedplay.pw']}
+        #, {'class': 'vidshare', 'host': ['vidshare.us', 'idowatch.us', 'tvlogy.to',  'speedplay.pw', 'speedwatch.us', 'vidwatch.me' ]}
         , {'class': 'xpressvids', 'host': ['xpressvids']}
-        , {'class': 'playu', 'host': ['playu.net']}
+        #, {'class': 'playu', 'host': ['playu.net']}
         , {'class': 'apnasave', 'host': ['apnasave.in']}
-        , {'class': 'filmywap', 'host': ['storeinusa.com']}
+        #, {'class': 'filmywap', 'host': ['storeinusa.com']}
         , {'class': 'ditto', 'host': ['dittotv.com']}
         , {'class': 'dynns', 'host': ['dynns.com']}
         , {'class': 'dailymotion', 'host': ['dailymotion.com']}
-        , {'class': 'watchify', 'host': ['watchify.net']}
+        #, {'class': 'watchify', 'host': ['watchify.net']}
+        , {'class': 'goflicker', 'host': ['goflicker.com']}
+        , {'class': 'genericresolver', 'host': ['playu.net', 'watchify.com', 'watchvideo13.us', 'vidwatch.me','vidshare.us', 'idowatch.us', 'tvlogy.to',  'speedplay.pw', 'speedwatch.us', 'embedupload.com']}
     ]

@@ -436,7 +436,10 @@ def urlRewrite(url):
                       {'host':'cloudtime.php','url':'http://www.cloudtime.to/embed/?v=%s&amp;px=1'},
                       {'host':'watchers.php','url':'http://watchers.to/embed-%s-725x410.html'},
                       {'host':'vidwatch.php','url':'http://vidwatch.me/embed-%s.html'},
-                      {'host':'speedwatch.php','url':'http://speedwatch.us/embed-%s.html'}]
+                      {'host':'speedwatch.php','url':'http://speedwatch.us/embed-%s.html'},
+                      {'host':'estream.php','url':'http://estream.to/embed-%s.html'},
+                      {'host':'goflicker.php', 'url':'http://goflicker.com/embed-%s-520x400.html'},
+                      {'host':'tune.php','url':'https://tune.video/player/embed_player.php?vid=%s'}]
     try :
         videoID = getVideoID(url)
         for i in urlReWriteDict:

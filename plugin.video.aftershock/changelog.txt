@@ -1,5 +1,12 @@
 - [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
 
+Aftershock v4.7.0
+--------------------------------
+- Added / Updated Providers
+- Updated Metadata Handling
+- Updated Resolvers
+- Added Resolvers
+
 Aftershock v4.6.7
 --------------------------------
 - Resolved issue with & TV VOD Shows

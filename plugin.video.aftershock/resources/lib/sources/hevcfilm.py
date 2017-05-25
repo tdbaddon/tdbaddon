@@ -33,7 +33,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['300mbmoviesdl.com', 'hevcbluray.com']
-        self.base_link = 'http://www.300mbmovies4u.co'
+        self.base_link = 'http://300mbmovies4u.co'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -78,22 +78,18 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')
-
-                    u = c[0].split('<h1 ')
-                    u = [i for i in u if 'Download Links' in i]
-                    u = client.parseDOM(u, 'a', ret='href')
-
-                    try: s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c[0])[0]
+                    try: s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)(?:GB|GiB|MB|MiB|mb|gb))', t)[0]
                     except: s = '0'
 
-                    items += [(t, i, s) for i in u]
+                    i = client.parseDOM(post, 'link')[0]
+
+                    items += [{'name':t, 'url':i, 'size':s}]
                 except:
                     pass
 
             for item in items:
                 try:
-                    name = item[0]
+                    name = item.get('name')
                     name = client.replaceHTMLCodes(name)
 
                     t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
@@ -122,7 +118,7 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)(?:GB|GiB|MB|MiB|mb))', item.get('size'))[-1]
                         div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
@@ -134,16 +130,22 @@ class source:
 
                     info = ' | '.join(info)
 
-                    url = item[1]
-                    if any(x in url for x in ['.rar', '.zip', '.iso']): raise Exception()
-                    url = client.replaceHTMLCodes(url)
-                    url = url.encode('utf-8')
+                    movieurl = item.get('url')
 
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    host = client.replaceHTMLCodes(host)
-                    host = host.encode('utf-8')
+                    result = client.request(movieurl)
+                    result = result.decode('iso-8859-1').encode('utf-8')
+                    result = result.replace('\n','').replace('\t','')
 
-                    sources.append({'provider':'hevcfilm','source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': True})
+                    result = client.parseDOM(result, 'div', attrs={'class':'entry'})[0]
+                    links = client.parseDOM(result, 'a',attrs={'target':'_blank'}, ret='href')
+                    for link in links:
+                        try :
+                            if link.startswith(self.base_link) or link.endswith('exe'): raise Exception()
+                            if 'http' in link:
+                                host = client.host(link)
+                                sources.append({'provider':'hevcfilm','source': host, 'quality': quality, 'language': 'en', 'url': link, 'info': info, 'direct': False, 'debridonly': True})
+                        except:
+                            pass
                 except:
                     pass
 

@@ -41,6 +41,8 @@ try :
     params =  {'action': 'desiLiveNavigator', 'url': 'all', 'name': 'ALL'}
     params = {'episode': '0', 'name': '6th March 2017', 'title': '6th March 2017', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Badho Bahu', 'date': '0', 'meta': '{"name": "6th March 2017", "title": "6th March 2017", "url": "threads/1024165-Badho-Bahu-6th-March-2017-Watch-Online?s=4c275330a949a1a2ef5ce9defce71d0e", "tvshowtitle": "Badho Bahu", "provider": "desirulez", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Badho+Bahu", "tvshowurl": "forums/4169-Badho-Bahu?s=4c275330a949a1a2ef5ce9defce71d0e"}', 'imdb': '0', 't': '20170307224121195968', 'year': '0', 'action': 'play'}
     params = {'episode': '0', 'name': '27th March 2017', 'title': '27th March 2017', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Naamkaran', 'date': '0', 'meta': '{"name": "7th March 2017", "title": "7th March 2017", "url": "threads/1024453-Naamkarann-7th-March-2017-Watch-Online?s=836a359a185d34d10e27dedbbfc0adbc", "tvshowtitle": "Naamkaran", "provider": "desirulez", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Naamkarann", "tvshowurl": "forums/4189-Naamkarann?s=836a359a185d34d10e27dedbbfc0adbc"}', 'imdb': '0', 't': '20170308003337451618', 'year': '0', 'action': 'play'}
+    params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
+    params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez'}
     select = None
 
     try:
@@ -139,6 +141,26 @@ try :
     from ashock.modules import user
 
     #movies.movies().get(url, lang=lang)
+
+    from resources.lib.indexers import tvshows
+    #tvshows.tvshows().get(url, provider=provider, network=name)
+
+    from resources.lib.resolvers import vidshare
+    url = 'http://vidwatch.me/embed-6e7dtnacfi3o.html'
+    url = 'http://speedwatch.us/embed-x5ic8dqzpcpy.html'
+    #vidshare.resolve(url)
+
+    from resources.lib.resolvers import goflicker
+    url = 'http://goflicker.com/embed-vjw5yjpgg4zk-520x400.html'
+    #goflicker.resolve(url)
+
+    from resources.lib.resolvers import genericresolver
+    #url = 'http://watchvideo13.us/embed-9fcb7y91x6yr.html'
+    url = 'http://www.embedupload123.com/?d=4WFXGGEZCO'
+    #genericresolver.resolve(url)
+
+    from resources.lib import resolvers
+    resolvers.request(url)
 
     '''
     result = '#EXTINF:-1,|VIP|HINDI:ZOOM\nhttp://live.softiptv.com:9900/live/525/525/17682.m3u8\n#EXTINF:-1,|VIP|HINDI:ZeeTv HD INddia\nhttp://live.softiptv.com:9900/live/525/525/17683.m3u8\n#EXTINF:-1,|VIP|HINDI:Zee Action\nnhttp://live.softiptv.com:9900/live/525/525/17684.m3u8'

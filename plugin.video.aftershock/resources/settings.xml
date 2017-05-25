@@ -63,6 +63,7 @@
 		<setting id="provider.tamilgun" type="bool" label="TamilGun" default="true" />
 		<setting id="provider.tamilyogi" type="bool" label="TamilYogi" default="true" />
 		<setting id="provider.watchfree" type="bool" label="WatchFree" default="true" />
+		<setting id="provider.world4u" type="bool" label="World4U" default="true" />
 		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
 		<setting id="provider.ymovies" type="bool" label="YMovies" default="true" />
 		<setting id="provider.yodesi" type="bool" label="YoDesi" default="true"/>

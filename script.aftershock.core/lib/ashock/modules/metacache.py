@@ -38,7 +38,7 @@ def fetch(items, lang):
 
     for i in range(0, len(items)):
         try:
-            dbcur.execute("SELECT * FROM meta WHERE (imdb = '%s' and lang = '%s' and not imdb = '0') or (tmdb = '%s' and lang = '%s' and not tmdb = '0') or (tvdb = '%s' and lang = '%s' and not tvdb = '0')" % (items[i]['imdb'], lang, items[i]['tmdb'], lang, items[i]['tvdb'], lang))
+            dbcur.execute("SELECT * FROM meta WHERE (imdb = '%s' and not imdb = '0') or (tmdb = '%s' and not tmdb = '0') or (tvdb = '%s' and not tvdb = '0')" % (items[i]['imdb'], items[i]['tmdb'], items[i]['tvdb']))
             match = dbcur.fetchone()
 
             t1 = int(match[5])
@@ -75,14 +75,18 @@ def insert(meta):
         for m in meta:
             try:
                 i = repr(m['item'])
-                try: dbcur.execute("DELETE * FROM meta WHERE (imdb = '%s' and lang = '%s' and not imdb = '0') or (tmdb = '%s' and lang = '%s' and not tmdb = '0') or (tvdb = '%s' and lang = '%s' and not tvdb = '0')" % (m['imdb'], m['lang'], m['tmdb'], m['lang'], m['tvdb'], m['lang']))
+                try: dbcur.execute("DELETE * FROM meta WHERE (imdb = '%s' and not imdb = '0') or (tmdb = '%s' and not tmdb = '0') or (tvdb = '%s' and and not tvdb = '0')" % (m['imdb'], m['tmdb'], m['tvdb']))
                 except: pass
                 dbcur.execute("INSERT INTO meta Values (?, ?, ?, ?, ?, ?)", (m['imdb'], m['tmdb'], m['tvdb'], m['lang'], i, t))
             except:
+                #import traceback
+                #traceback.print_exc()
                 pass
 
         dbcon.commit()
     except:
+        #import traceback
+        #traceback.print_exc()
         return
 
 def insertImdb(items):
