@@ -33,6 +33,7 @@ from resources.lib.modules import trailer
 from resources.lib.modules import workers
 from resources.lib.modules import youtube
 from resources.lib.modules import views
+from resources.lib.modules import trakt
 
 
 
@@ -279,7 +280,6 @@ class indexer:
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
 
-
     def phoenix_list(self, url, result=None):
 
         try:
@@ -306,16 +306,12 @@ class indexer:
 
             try: fanart = re.findall('<fanart>(.+?)</fanart>', info)[0]
             except: fanart = '0'
-            
-            api_data = client.request(base64.b64decode('aHR0cDovL3Bob2VuaXh0di5vZmZzaG9yZXBhc3RlYmluLmNvbS9hcGkvdG1kYi1hcGkudHh0'), timeout='5')
-            tmdb_api = re.compile('<api>(.+?)</api>').findall(api_data)[0]
 
             items = re.compile('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))', re.MULTILINE|re.DOTALL).findall(result)
         except:
             return
 
         for item in items:
-
             try:
                 regdata = re.compile('(<regex>.+?</regex>)', re.MULTILINE|re.DOTALL).findall(item)
                 regdata = ''.join(regdata)
@@ -326,135 +322,28 @@ class indexer:
                 for i in regdata: reghash.update(str(i))
                 reghash = str(reghash.hexdigest())
 
-                item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('<tmdb_data>true</tmdb_data>','<tmdb_data>all</tmdb_data>')
-
-                try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
-                except: meta = '0'
-
-                try: imdb = re.findall('<imdb>(.+?)</imdb>', meta)[0]
-                except: imdb = '0'
-
-                try: tmdb_get = re.findall('<tmdb_data>(.+?)</tmdb_data>', meta)[0]
-                except: tmdb_get = '0'
-
-                try: tvshowtitle = re.findall('<tvshowtitle>(.+?)</tvshowtitle>', item)[0]
-                except: tvshowtitle = '0'
-                            
+                item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
                 item = re.sub('<regex>.+?</regex>','', item)
                 item = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', item)
                 item = re.sub('<link></link>','', item)
 
-                try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
-                except: meta = '0'
-                
-                if any(f for f in ['all','data','images'] if f == tmdb_get.lower()):         
-                    try:
-                        url_api = 'http://api.themoviedb.org/3/movie/' + imdb + '?api_key=' + tmdb_api
-                        item_json = client.request(url_api, timeout='5')
+                name = re.sub('<meta>.+?</meta>','', item)
+                try: name = re.findall('<title>(.+?)</title>', name)[0]
+                except: name = re.findall('<name>(.+?)</name>', name)[0]
 
-                        item_json = json.loads(item_json)
-                    except: pass
-
-                    if any(f for f in ['all','data'] if f == tmdb_get.lower()):         
-                        try:
-                            if item_json['original_title'] is not None: 
-                               title = item_json['original_title']
-                               name = title
-                            else:        
-                                name = re.sub('<meta>.+?</meta>','', item)
-                                try: name = re.findall('<title>(.+?)</title>', name)[0]
-                                except: name = re.findall('<name>(.+?)</name>', name)[0]
-                                try: title = name
-                                except: title = '0'
-                                if title == '0' and not tvshowtitle == '0': title = tvshowtitle
-
-                        except:
-                            name = re.sub('<meta>.+?</meta>','', item)
-                            try: name = re.findall('<title>(.+?)</title>', name)[0]
-                            except: name = re.findall('<name>(.+?)</name>', name)[0]
-                            try: title = name
-                            except: title = '0'
-                            
-                            if title == '0' and not tvshowtitle == '0': title = tvshowtitle
-
-                        if '<title></title>' in item:
-                            item = item.replace('<title></title>','<title>'+title+'</title>')
-                                    
-                        try:
-                            if item_json['release_date'] is not None: year = item_json['release_date']; year = year.split('-')[0]; name = title + ' (' + year + ')'
-                            else: 
-                                try: year = re.findall('<year>(.+?)</year>', meta)[0]
-                                except: year = '0'
-                        except:
-                            try: year = re.findall('<year>(.+?)</year>', meta)[0]
-                            except: year = '0'
-                            
-                        if '<year></year>' in item:
-                            item = item.replace('<year></year>','<year>'+title+'</year>')
-                    else:
-                        name = re.sub('<meta>.+?</meta>','', item)
-                        try: name = re.findall('<title>(.+?)</title>', name)[0]
-                        except: name = re.findall('<name>(.+?)</name>', name)[0]
-                        try: title = name
-                        except: title = '0'
-                        if '<title></title>' in item:
-                            item = item.replace('<title></title>','<title>'+title+'</title>')
-                        try: year = re.findall('<year>(.+?)</year>', meta)[0]
-                        except: year = '0'
-                        if '<year></year>' in item:
-                            item = item.replace('<year></year>','<year>'+title+'</year>')
-                    
-                    if any(f for f in ['all','images'] if f == tmdb_get.lower()):         
-
-                        try:
-                            if item_json['backdrop_path'] is not None: fanart2 = 'http://image.tmdb.org/t/p/original/' + item_json['backdrop_path']
-                            else: 
-                                try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                                except: fanart2 = fanart
-                        except:
-                            try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                            except: fanart2 = fanart
-                            
-                        try:
-                            if item_json['poster_path'] is not None: image2 = 'http://image.tmdb.org/t/p/original/' + item_json['poster_path']
-                            else: 
-                                try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
-                                except: image2 = image
-                        except:
-                            try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
-                            except: image2 = image
-                    else:
-                        try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                        except: fanart2 = fanart
-                        try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
-                        except: image2 = image
-                else:
-
-                    name = re.sub('<meta>.+?</meta>','', item)
-                    try: name = re.findall('<title>(.+?)</title>', name)[0]
-                    except: name = re.findall('<name>(.+?)</name>', name)[0]
-                    
-                    try: title = re.findall('<title>(.+?)</title>', meta)[0]
-                    except: title = '0'
-
-                    if title == '0' and not tvshowtitle == '0': title = tvshowtitle
-
-                    try: year = re.findall('<year>(.+?)</year>', meta)[0]
-                    except: year = '0'
-
-                    try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
-                    except: image2 = image
-
-                    try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                    except: fanart2 = fanart
-                
-                
                 try: date = re.findall('<date>(.+?)</date>', item)[0]
                 except: date = ''
                 if re.search(r'\d+', date): name += ' [COLOR red] Updated %s[/COLOR]' % date
-                
+
+                try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
+                except: image2 = image
+
+                try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
+                except: fanart2 = fanart
+
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
+
                 try: url = re.findall('<link>(.+?)</link>', item)[0]
                 except: url = '0'
                 url = url.replace('>search<', '><preset>search</preset>%s<' % meta)
@@ -493,8 +382,22 @@ class indexer:
                     url = '<preset>tvtuner</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s' % (url, image2, fanart2, meta)
                     action = 'tvtuner'
 
+                try: imdb = re.findall('<imdb>(.+?)</imdb>', meta)[0]
+                except: imdb = '0'
+
                 try: tvdb = re.findall('<tvdb>(.+?)</tvdb>', meta)[0]
                 except: tvdb = '0'
+
+                try: tvshowtitle = re.findall('<tvshowtitle>(.+?)</tvshowtitle>', meta)[0]
+                except: tvshowtitle = '0'
+
+                try: title = re.findall('<title>(.+?)</title>', meta)[0]
+                except: title = '0'
+
+                if title == '0' and not tvshowtitle == '0': title = tvshowtitle
+
+                try: year = re.findall('<year>(.+?)</year>', meta)[0]
+                except: year = '0'
 
                 try: premiered = re.findall('<premiered>(.+?)</premiered>', meta)[0]
                 except: premiered = '0'
@@ -506,9 +409,8 @@ class indexer:
                 except: episode = '0'
 
                 self.list.append({'name': name, 'vip': vip, 'url': url, 'action': action, 'folder': folder, 'poster': image2, 'banner': '0', 'fanart': fanart2, 'content': content, 'imdb': imdb, 'tvdb': tvdb, 'tmdb': '0', 'title': title, 'originaltitle': title, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'season': season, 'episode': episode})
-
             except:
-                pass            
+                pass
 
         regex.insert(self.hash)
 
@@ -557,95 +459,61 @@ class indexer:
             imdb = self.list[i]['imdb']
             if imdb == '0': raise Exception()
 
-            url = self.imdb_info_link % imdb
-
-            item = client.request(url, timeout='10')
-            item = json.loads(item)
+            item = trakt.getMovieSummary(imdb)
 
             if 'Error' in item and 'incorrect imdb' in item['Error'].lower():
                 return self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'code': '0'}})
 
-            title = item['Title']
-            title = title.encode('utf-8')
-            if not title == '0': self.list[i].update({'title': title})
+            title = item.get('title')
+            title = client.replaceHTMLCodes(title)
 
-            year = item['Year']
-            year = year.encode('utf-8')
-            if not year == '0': self.list[i].update({'year': year})
+            originaltitle = title
 
-            imdb = item['imdbID']
-            if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
-            imdb = imdb.encode('utf-8')
-            if not imdb == '0': self.list[i].update({'imdb': imdb, 'code': imdb})
+            year = item.get('year', 0)
+            year = re.sub('[^0-9]', '', str(year))
 
-            premiered = item['Released']
-            if premiered == None or premiered == '' or premiered == 'N/A': premiered = '0'
-            premiered = re.findall('(\d*) (.+?) (\d*)', premiered)
-            try: premiered = '%s-%s-%s' % (premiered[0][2], {'Jan':'01', 'Feb':'02', 'Mar':'03', 'Apr':'04', 'May':'05', 'Jun':'06', 'Jul':'07', 'Aug':'08', 'Sep':'09', 'Oct':'10', 'Nov':'11', 'Dec':'12'}[premiered[0][1]], premiered[0][0])
+            imdb = item.get('ids', {}).get('imdb', '0')
+            imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+
+            tmdb = str(item.get('ids', {}).get('tmdb', 0))
+
+            premiered = item.get('released', '0')
+            try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
             except: premiered = '0'
-            premiered = premiered.encode('utf-8')
-            if not premiered == '0': self.list[i].update({'premiered': premiered})
 
-            genre = item['Genre']
-            if genre == None or genre == '' or genre == 'N/A': genre = '0'
-            genre = genre.replace(', ', ' / ')
-            genre = genre.encode('utf-8')
-            if not genre == '0': self.list[i].update({'genre': genre})
+            genre = item.get('genres', [])
+            genre = [x.title() for x in genre]
+            genre = ' / '.join(genre).strip()
+            if not genre: genre = '0'
 
-            duration = item['Runtime']
-            if duration == None or duration == '' or duration == 'N/A': duration = '0'
-            duration = re.sub('[^0-9]', '', str(duration))
-            try: duration = str(int(duration) * 60)
+            duration = str(item.get('Runtime', 0))
+
+            rating = item.get('rating', '0')
+            if not rating or rating == '0.0': rating = '0'
+
+            votes = item.get('votes', '0')
+            try: votes = str(format(int(votes), ',d'))
             except: pass
-            duration = duration.encode('utf-8')
-            if not duration == '0': self.list[i].update({'duration': duration})
 
-            rating = item['imdbRating']
-            if rating == None or rating == '' or rating == 'N/A' or rating == '0.0': rating = '0'
-            rating = rating.encode('utf-8')
-            if not rating == '0': self.list[i].update({'rating': rating})
+            mpaa = item.get('certification', '0')
+            if not mpaa: mpaa = '0'
 
-            votes = item['imdbVotes']
-            try: votes = str(format(int(votes),',d'))
-            except: pass
-            if votes == None or votes == '' or votes == 'N/A': votes = '0'
-            votes = votes.encode('utf-8')
-            if not votes == '0': self.list[i].update({'votes': votes})
+            tagline = item.get('tagline', '0')
 
-            mpaa = item['Rated']
-            if mpaa == None or mpaa == '' or mpaa == 'N/A': mpaa = '0'
-            mpaa = mpaa.encode('utf-8')
-            if not mpaa == '0': self.list[i].update({'mpaa': mpaa})
+            plot = item.get('overview', '0')
 
-            director = item['Director']
-            if director == None or director == '' or director == 'N/A': director = '0'
-            director = director.replace(', ', ' / ')
-            director = re.sub(r'\(.*?\)', '', director)
-            director = ' '.join(director.split())
-            director = director.encode('utf-8')
-            if not director == '0': self.list[i].update({'director': director})
+            people = trakt.getPeople(imdb, 'movies')
 
-            writer = item['Writer']
-            if writer == None or writer == '' or writer == 'N/A': writer = '0'
-            writer = writer.replace(', ', ' / ')
-            writer = re.sub(r'\(.*?\)', '', writer)
-            writer = ' '.join(writer.split())
-            writer = writer.encode('utf-8')
-            if not writer == '0': self.list[i].update({'writer': writer})
+            director = writer = ''
+            if 'crew' in people and 'directing' in people['crew']:
+                director = ', '.join([director['person']['name'] for director in people['crew']['directing'] if director['job'].lower() == 'director'])
+            if 'crew' in people and 'writing' in people['crew']:
+                writer = ', '.join([writer['person']['name'] for writer in people['crew']['writing'] if writer['job'].lower() in ['writer', 'screenplay', 'author']])
 
-            cast = item['Actors']
-            if cast == None or cast == '' or cast == 'N/A': cast = '0'
-            cast = [x.strip() for x in cast.split(',') if not x == '']
-            try: cast = [(x.encode('utf-8'), '') for x in cast]
-            except: cast = []
-            if cast == []: cast = '0'
-            if not cast == '0': self.list[i].update({'cast': cast})
-
-            plot = item['Plot']
-            if plot == None or plot == '' or plot == 'N/A': plot = '0'
-            plot = client.replaceHTMLCodes(plot)
-            plot = plot.encode('utf-8')
-            if not plot == '0': self.list[i].update({'plot': plot})
+            cast = []
+            for person in people.get('cast', []):
+                cast.append({'name': person['person']['name'], 'role': person['character']})
+            cast = [(person['name'], person['role']) for person in cast]
 
             self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:

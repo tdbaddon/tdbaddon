@@ -2343,7 +2343,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.3.2" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.3.3" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2368,7 +2368,7 @@ For DMCA Reports, please send message to our FB page.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Module updates - scraper changes - debrid fixes</news>
+		<news>Module updates - meta fix</news>
 	</extension>
 </addon>
 
