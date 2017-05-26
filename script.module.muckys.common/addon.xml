@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.3.1" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.3.2" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -14,6 +14,7 @@ cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape :
 incapsula-cracker v0.1.3 from https://github.com/ziplokk1/incapsula-cracker :
 Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
 jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
+jsunfuck from tknorrois s.a.l.t.s modules:
 jsunpack from urlresolver which is a modified script from jsbeautifier:
 md_request a simple script for making web requests :
 md_tools a script with common methods in the Mucky Duck addons :

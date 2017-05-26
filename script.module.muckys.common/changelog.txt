@@ -1,3 +1,7 @@
+######## v1.3.2 ########
+ 
+- Added jsunfuck from tknorrois s.a.l.t.s modules:
+
 ######## v1.3.1 ########
  
 - Another addon updated and added to duck hunt
