@@ -1,5 +1,7 @@
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,urllib,urllib2,os,re,sys,datetime,shutil,urlresolver,random,liveresolver
 from resources.libs.common_addon import Addon
+from resources.libs import dom_parser
+from resources.libs import kodi
 import base64
 from metahandler import metahandlers
 
@@ -27,7 +29,7 @@ startinfo       = 'http://pbear90.offshorepastebin.com/wweondemand/startinfo.xml
 wweschedule      = 'http://pbear90.offshorepastebin.com/wweondemand/schedule.xml'
 RUNNER          = base64.b64decode(b'aHR0cDovL3NpbXRlY2gubmV0MTYubmV0L3lvdXR1YmUucGhwP2lkPQ==')
 SEARCH_LIST     = base64.b64decode(b'aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvTlR2MEpkeDg=')
-                                                               
+
 def GetMenu():
         popup()
         xbmc.executebuiltin('Container.SetViewMode(55)')
@@ -72,13 +74,19 @@ def GetMenu():
                         hash.append({'regex': reghash, 'response': regdata})
                         url += '|regex=%s' % regdata
                     addLinkRegex(name,url,12,image2,fanart2,"")
-                if '<channel>' in item:
+                elif '<channel>' in item:
                         name=re.compile('<title>(.+?)</title>').findall(item)[0]
                         iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
                         fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                         url=re.compile('<channel>(.+?)</channel>').findall(item)[0]
                         addDir(name,url,6,iconimage,fanart)
-                if '<sportsdevil>' in item:
+                elif '<dxtv>' in item:
+                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
+                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+                        url=re.compile('<dxtv>(.+?)</dxtv>').findall(item)[0]
+                        addDir(name,url,13,iconimage,fanart)
+                elif '<sportsdevil>' in item:
                         links=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(item)
                         if len(links)==1:
                              name=re.compile('<title>(.+?)</title>').findall(item)[0]
@@ -218,6 +226,65 @@ def WWESCHEDULE():
                 showText('[B][COLORsnow]WWE SCHEDULE[/COLOR][/B]', message)
                 quit()
 
+def DXTV_MAIN(url,iconimage):
+
+    scraper_icon = 'http://pbear90.offshorepastebin.com/wweondemand/images/scraper.jpg'
+    r = open_url(url)
+    r = dom_parser.parse_dom(r, 'li', {'id': re.compile('menu-item-\d')})
+    r = [i.content for i in r if ('wwe') in i.content or ('wrestling' in i.content)]
+
+    for i in r:
+        name = re.compile('<a href=".+?"></i>(.+?)</a>').findall(i)[0].replace('.',' ').replace('&#8217;',"'").encode('utf-8')
+        url = re.compile('<a href="(.+?)">').findall(i)[0].encode('utf-8')
+        addDir(name,url,14,scraper_icon,fanarts)
+    addDir('USA Indys','http://dx-tv.com/category/usa-indys',14,scraper_icon,fanarts)
+    addDir('Puro','http://dx-tv.com/category/puro',14,scraper_icon,fanarts)
+
+def DXTV_CATS(url):
+
+    if not 'category/' in url: url = url.replace('http://dx-tv.com/','http://dx-tv.com/category/')
+    u = open_url(url)
+    r = dom_parser.parse_dom(u, 'div', {'class': re.compile('featured-thumb\scol-md-12')})
+
+    for i in r:
+        name = re.compile('title="([^"]+)').findall(i.content)[0].replace('Watch','').replace('Download','').replace('online','').replace('/','').encode('utf-8').lstrip()
+        url = re.compile('href="([^"]+)').findall(i.content)[0].encode('utf-8')
+        iconimage = re.compile('src="([^"]+)').findall(i.content)[0].encode('utf-8')
+        addLink(name,url,15,iconimage,fanarts)
+
+    try:
+        np = re.compile('<link rel="next" href="([^"]+)').findall(u)[0]
+        addDir('Next Page -->',np,14,icon,fanarts)
+    except: pass
+
+def DXTV_LINKS(name,url):
+
+    xbmc.executebuiltin("ActivateWindow(busydialog)")
+
+    r = open_url(url)
+    r = re.compile('<iframe\ssrc="([^"]+)',re.DOTALL).findall(r) + re.compile('<span style="color: #008000;"><strong>(.+?)</strong>',re.DOTALL).findall(r)
+    
+    if len(r) == 0: quit()
+    elif len(r) >= 1:
+        streamurl=[]
+        streamname=[]
+        a = 0
+        for b in r:
+            b = b.lstrip()
+            if urlresolver.HostedMediaFile(b).valid_url():
+                a += 1
+                streamurl.append(b)
+                streamname.append('Link %s' % str(a))
+        xbmc.executebuiltin("Dialog.Close(busydialog)")
+        if len(streamurl) == 1: PLAYLINK(name,streamurl[0],icon)
+        else:
+            dialog = xbmcgui.Dialog()
+            select = dialog.select(name,streamname)
+            if select < 0:
+                quit()
+            else:
+                PLAYLINK(name,streamurl[select],icon)
+    
 def YOUTUBE_CHANNEL(url):
 
     CHANNEL = RUNNER + url
@@ -390,6 +457,9 @@ def PLAYREGEX(name,url,iconimage):
 
         
 def PLAYLINK(name,url,iconimage):
+
+        xbmc.executebuiltin("ActivateWindow(busydialog)")
+
         if not'http'in url:url='http://'+url
         if 'youtube.com/playlist' in url:
                 searchterm = url.split('list=')[1]
@@ -442,19 +512,23 @@ def PLAYLINK(name,url,iconimage):
                                         addLink(name,url,2,iconimage,fanart)
 
                 
-                                     
-        if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
-        elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
-        else: stream_url=url
-        if '.ts'in stream_url:
-                stream_url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+stream_url
-        liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        if 'plugin://' not in stream_url:
-            liz.setPath(stream_url) 
-            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-
-        xbmc.Player ().play(stream_url, liz, False)
-                                                        
+        try:                  
+            if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
+            elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
+            else: stream_url=url
+            if '.ts'in stream_url:
+                    stream_url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name='+name+'&amp;url='+stream_url
+            liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+            if 'plugin://' not in stream_url:
+                liz.setPath(stream_url) 
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+            xbmc.executebuiltin("Dialog.Close(busydialog)")
+            xbmc.Player ().play(stream_url, liz, False)
+        except:
+            xbmc.executebuiltin("Dialog.Close(busydialog)")
+            kodi.notify(msg='Error Playing: %s' % url, duration=5000, sound=True)
+            pass
+            
 def PLAYVIDEO(url):
 
     xbmc.Player().play(url)
@@ -637,6 +711,8 @@ elif mode==9:SHOW_PICTURE(url)
 elif mode==10:NEW()
 elif mode==11:WWESCHEDULE()
 elif mode==12:GET_REGEX(name,url,iconimage)
-
+elif mode==13:DXTV_MAIN(url,iconimage)
+elif mode==14:DXTV_CATS(url)
+elif mode==15:DXTV_LINKS(name,url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

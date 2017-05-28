@@ -30,12 +30,12 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['myddl.org']
-        self.base_link = 'http://myddl.org'
+        self.domains = ['myddl.pw']
+        self.base_link = 'http://myddl.pw'
         self.search_link = '/search/%s/feed/rss2/'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
@@ -44,7 +44,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)

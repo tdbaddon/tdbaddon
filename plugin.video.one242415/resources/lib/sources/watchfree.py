@@ -36,7 +36,7 @@ class source:
         self.tvsearch_link = '/?keyword=%s&search_section=2'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -78,7 +78,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             query = self.tvsearch_link % urllib.quote_plus(cleantitle.query(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)

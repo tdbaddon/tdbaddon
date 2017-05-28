@@ -1,360 +1,468 @@
 # -*- coding: utf-8 -*-
 import sys
-l1ll1l1lFuck_You_Anonymous = sys.version_info [0] == 2
-l11ll11Fuck_You_Anonymous = 2048
-l1llll1lFuck_You_Anonymous = 7
-def l111Fuck_You_Anonymous (l1l11lFuck_You_Anonymous):
-    global l11lll1Fuck_You_Anonymous
-    l1111llFuck_You_Anonymous = ord (l1l11lFuck_You_Anonymous [-1])
-    l1ll1ll1Fuck_You_Anonymous = l1l11lFuck_You_Anonymous [:-1]
-    l1l1lllFuck_You_Anonymous = l1111llFuck_You_Anonymous % len (l1ll1ll1Fuck_You_Anonymous)
-    l11l1lFuck_You_Anonymous = l1ll1ll1Fuck_You_Anonymous [:l1l1lllFuck_You_Anonymous] + l1ll1ll1Fuck_You_Anonymous [l1l1lllFuck_You_Anonymous:]
-    if l1ll1l1lFuck_You_Anonymous:
-        l11l1Fuck_You_Anonymous = unicode () .join ([unichr (ord (char) - l11ll11Fuck_You_Anonymous - (l1l1Fuck_You_Anonymous + l1111llFuck_You_Anonymous) % l1llll1lFuck_You_Anonymous) for l1l1Fuck_You_Anonymous, char in enumerate (l11l1lFuck_You_Anonymous)])
+l1ll1l11Created_By_Mucky_Duck = sys.version_info [0] == 2
+l11l1llCreated_By_Mucky_Duck = 2048
+l1llll11Created_By_Mucky_Duck = 7
+def l11lCreated_By_Mucky_Duck (l1l1l1Created_By_Mucky_Duck):
+    global l11ll1lCreated_By_Mucky_Duck
+    l1111l1Created_By_Mucky_Duck = ord (l1l1l1Created_By_Mucky_Duck [-1])
+    l1ll1l1lCreated_By_Mucky_Duck = l1l1l1Created_By_Mucky_Duck [:-1]
+    l1l1lllCreated_By_Mucky_Duck = l1111l1Created_By_Mucky_Duck % len (l1ll1l1lCreated_By_Mucky_Duck)
+    l11ll1Created_By_Mucky_Duck = l1ll1l1lCreated_By_Mucky_Duck [:l1l1lllCreated_By_Mucky_Duck] + l1ll1l1lCreated_By_Mucky_Duck [l1l1lllCreated_By_Mucky_Duck:]
+    if l1ll1l11Created_By_Mucky_Duck:
+        l11llCreated_By_Mucky_Duck = unicode () .join ([unichr (ord (char) - l11l1llCreated_By_Mucky_Duck - (l1llCreated_By_Mucky_Duck + l1111l1Created_By_Mucky_Duck) % l1llll11Created_By_Mucky_Duck) for l1llCreated_By_Mucky_Duck, char in enumerate (l11ll1Created_By_Mucky_Duck)])
     else:
-        l11l1Fuck_You_Anonymous = str () .join ([chr (ord (char) - l11ll11Fuck_You_Anonymous - (l1l1Fuck_You_Anonymous + l1111llFuck_You_Anonymous) % l1llll1lFuck_You_Anonymous) for l1l1Fuck_You_Anonymous, char in enumerate (l11l1lFuck_You_Anonymous)])
-    return eval (l11l1Fuck_You_Anonymous)
+        l11llCreated_By_Mucky_Duck = str () .join ([chr (ord (char) - l11l1llCreated_By_Mucky_Duck - (l1llCreated_By_Mucky_Duck + l1111l1Created_By_Mucky_Duck) % l1llll11Created_By_Mucky_Duck) for l1llCreated_By_Mucky_Duck, char in enumerate (l11ll1Created_By_Mucky_Duck)])
+    return eval (l11llCreated_By_Mucky_Duck)
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin
 from md_request import open_url
 from md_view import setView
 from common import Addon
 from md_tools import md
-import os,re,sys,shutil,time
+import jsunfuck,os,re,sys,shutil,time
 # 123Movies By Mucky Duck (12/2015)
-l111l1lFuck_You_Anonymous = xbmcaddon.Addon().getAddonInfo(l111Fuck_You_Anonymous (u"ࠫ࡮ࡪࠧࠀ"))
-l1lllFuck_You_Anonymous = Addon(l111l1lFuck_You_Anonymous, sys.argv)
-l1l1lFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_name()
-l11111lFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_path()
-md = md(l111l1lFuck_You_Anonymous, sys.argv)
-l1l1l11Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠬࡧࡵࡵࡱࡳࡰࡦࡿࠧࠁ"))
-l111l1Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"࠭ࡥ࡯ࡣࡥࡰࡪࡥ࡭ࡦࡶࡤࠫࠂ"))
-l11l111Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠧࡦࡰࡤࡦࡱ࡫࡟ࡴࡪࡲࡻࡸ࠭ࠃ"))
-l1llllllFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠨࡧࡱࡥࡧࡲࡥࡠ࡯ࡲࡺ࡮࡫ࡳࠨࠄ"))
-l1l11llFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠩࡨࡲࡦࡨ࡬ࡦࡡࡩࡥࡻࡹࠧࠅ"))
-l1lll1Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠪࡩࡳࡧࡢ࡭ࡧࡢࡴࡷࡵࡸࡺࠩࠆ"))
-l11Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠫࡦࡪࡤࡠࡵࡨࡸࠬࠇ"))
-l1l1l111Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"ࠬ࡫࡮ࡢࡤ࡯ࡩࡤࡳࡥࡵࡣࡢࡷࡪࡺࠧࠈ"))
-l11lllFuck_You_Anonymous = md.get_art()
-l1ll1111Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_icon()
-l1l111lFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_fanart()
-l11l1l1Fuck_You_Anonymous = l1lllFuck_You_Anonymous.get_setting(l111Fuck_You_Anonymous (u"࠭ࡢࡢࡵࡨࡣࡺࡸ࡬ࠨࠉ"))
+l111l11Created_By_Mucky_Duck = xbmcaddon.Addon().getAddonInfo(l11lCreated_By_Mucky_Duck (u"ࠫ࡮ࡪࠧࠀ"))
+l111Created_By_Mucky_Duck = Addon(l111l11Created_By_Mucky_Duck, sys.argv)
+l1ll1Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_name()
+l111111Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_path()
+md = md(l111l11Created_By_Mucky_Duck, sys.argv)
+l1l1l11Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠬࡧࡵࡵࡱࡳࡰࡦࡿࠧࠁ"))
+l111llCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"࠭ࡥ࡯ࡣࡥࡰࡪࡥ࡭ࡦࡶࡤࠫࠂ"))
+l111lllCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠧࡦࡰࡤࡦࡱ࡫࡟ࡴࡪࡲࡻࡸ࠭ࠃ"))
+l1lllll1Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠨࡧࡱࡥࡧࡲࡥࡠ࡯ࡲࡺ࡮࡫ࡳࠨࠄ"))
+l1l11llCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠩࡨࡲࡦࡨ࡬ࡦࡡࡩࡥࡻࡹࠧࠅ"))
+l1llllCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠪࡩࡳࡧࡢ࡭ࡧࡢࡴࡷࡵࡸࡺࠩࠆ"))
+l1lCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠫࡦࡪࡤࡠࡵࡨࡸࠬࠇ"))
+l1l111llCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠬ࡫࡮ࡢࡤ࡯ࡩࡤࡳࡥࡵࡣࡢࡷࡪࡺࠧࠈ"))
+l1l111Created_By_Mucky_Duck = md.get_art()
+l1l1ll11Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_icon()
+l1l1111Created_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_fanart()
+if l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"࠭ࡢࡢࡵࡨࡣࡺࡸ࡬ࠨࠉ")):
+	l11l11lCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_setting(l11lCreated_By_Mucky_Duck (u"ࠧࡣࡣࡶࡩࡤࡻࡲ࡭ࠩࠊ"))
+else:
+	l11l11lCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠨࡪࡷࡸࡵࡀ࠯࠰ࡩࡲࡱࡴࡼࡩࡦࡵ࠱ࡸࡪࡩࡨࠨࠋ")
 reload(sys)
-sys.setdefaultencoding(l111Fuck_You_Anonymous (u"ࠢࡶࡶࡩ࠱࠽ࠨࠊ"))
-l1111Fuck_You_Anonymous = [l111Fuck_You_Anonymous (u"ࠨࡴࡤࡸ࡮ࡴࡧࠨࠋ"),l111Fuck_You_Anonymous (u"ࠩ࡯ࡥࡹ࡫ࡳࡵࠩࠌ"),l111Fuck_You_Anonymous (u"ࠪࡺ࡮࡫ࡷࠨࠍ"),l111Fuck_You_Anonymous (u"ࠫ࡫ࡧࡶࡰࡴ࡬ࡸࡪ࠭ࠎ"),l111Fuck_You_Anonymous (u"ࠬ࡯࡭ࡥࡤࡢࡱࡦࡸ࡫ࠨࠏ")]
-sort = [l111Fuck_You_Anonymous (u"࡛࠭ࡃ࡟࡞ࡍࡢࡡࡃࡐࡎࡒࡖࠥࡸࡥࡥ࡟ࡐࡳࡸࡺࠠࡓࡣࡷࡩࡩࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨࠐ"), l111Fuck_You_Anonymous (u"ࠧ࡜ࡄࡠ࡟ࡎࡣ࡛ࡄࡑࡏࡓࡗࠦࡲࡦࡦࡠࡖࡪࡩࡥ࡯ࡶ࡯ࡽࠥࡇࡤࡥࡧࡧ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡉ࡞࡝࠲ࡆࡢ࠭ࠑ"),
-	l111Fuck_You_Anonymous (u"ࠨ࡝ࡅࡡࡠࡏ࡝࡜ࡅࡒࡐࡔࡘࠠࡳࡧࡧࡡࡒࡵࡳࡵ࡙ࠢ࡭ࡪࡽࡥࡥ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡎࡣ࡛࠰ࡄࡠࠫࠒ"), l111Fuck_You_Anonymous (u"ࠩ࡞ࡆࡢࡡࡉ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢࡓ࡯ࡴࡶࠣࡊࡦࡼ࡯ࡶࡴ࡬ࡸࡪࡪ࡛࠰ࡅࡒࡐࡔࡘ࡝࡜࠱ࡌࡡࡠ࠵ࡂ࡞ࠩࠓ"),
-	l111Fuck_You_Anonymous (u"ࠪ࡟ࡇࡣ࡛ࡊ࡟࡞ࡇࡔࡒࡏࡓࠢࡵࡩࡩࡣࡉࡎࡆࡅࠤࡗࡧࡴࡪࡰࡪ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡉ࡞࡝࠲ࡆࡢ࠭ࠔ")]
-def l1l1l1Fuck_You_Anonymous():
-	if l1llllllFuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠫࡹࡸࡵࡦࠩࠕ"):
-		md.addDir({l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡥࡧࠪࠖ"): l111Fuck_You_Anonymous (u"࠭࠱ࠨࠗ"), l111Fuck_You_Anonymous (u"ࠧ࡯ࡣࡰࡩࠬ࠘"):l111Fuck_You_Anonymous (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡜ࡄࡠࡑࡔ࡜ࡉࡆࡕ࡞࠳ࡇࡣ࡛࠰ࡅࡒࡐࡔࡘ࡝ࠨ࠙"), l111Fuck_You_Anonymous (u"ࠩࡸࡶࡱ࠭ࠚ"):l111Fuck_You_Anonymous (u"ࠪࡹࡷࡲࠧࠛ"), l111Fuck_You_Anonymous (u"ࠫࡨࡵ࡮ࡵࡧࡱࡸࠬࠜ"):l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡷ࡫ࡨࡷࠬࠝ")})
-	if l11l111Fuck_You_Anonymous == l111Fuck_You_Anonymous (u"࠭ࡴࡳࡷࡨࠫࠞ"):
-		md.addDir({l111Fuck_You_Anonymous (u"ࠧ࡮ࡱࡧࡩࠬࠟ"): l111Fuck_You_Anonymous (u"ࠨ࠳ࠪࠠ"), l111Fuck_You_Anonymous (u"ࠩࡱࡥࡲ࡫ࠧࠡ"):l111Fuck_You_Anonymous (u"ࠪ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟࡞ࡆࡢ࡚ࡖࠡࡕࡋࡓ࡜࡙࡛࠰ࡄࡠ࡟࠴ࡉࡏࡍࡑࡕࡡࠬࠢ"), l111Fuck_You_Anonymous (u"ࠫࡺࡸ࡬ࠨࠣ"):l111Fuck_You_Anonymous (u"ࠬࡻࡲ࡭ࠩࠤ"), l111Fuck_You_Anonymous (u"࠭ࡣࡰࡰࡷࡩࡳࡺࠧࠥ"):l111Fuck_You_Anonymous (u"ࠧࡵࡸࡶ࡬ࡴࡽࡳࠨࠦ")})
-	if l1l11llFuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠨࡶࡵࡹࡪ࠭ࠧ"):
-		md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࠨ"): l111Fuck_You_Anonymous (u"ࠪࡪࡪࡺࡣࡩࡡࡩࡥࡻࡹࠧࠩ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࠪ"):l111Fuck_You_Anonymous (u"ࠬࡡࡃࡐࡎࡒࡖࠥࡽࡨࡪࡶࡨࡡࡠࡈ࡝ࡎ࡛ࠣࡊࡆ࡜ࡏࡖࡔࡌࡘࡊ࡙࡛࠰ࡄࡠ࡟࠴ࡉࡏࡍࡑࡕࡡࠬࠫ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࠬ"):l111Fuck_You_Anonymous (u"ࠧࡶࡴ࡯ࠫ࠭")})
-	if l111l1Fuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠨࡶࡵࡹࡪ࠭࠮"):
-		if l1l1l111Fuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠩࡷࡶࡺ࡫ࠧ࠯"):
-			md.addDir({l111Fuck_You_Anonymous (u"ࠪࡱࡴࡪࡥࠨ࠰"):l111Fuck_You_Anonymous (u"ࠫࡲ࡫ࡴࡢࡡࡶࡩࡹࡺࡩ࡯ࡩࡶࠫ࠱"), l111Fuck_You_Anonymous (u"ࠬࡴࡡ࡮ࡧࠪ࠲"):l111Fuck_You_Anonymous (u"࡛࠭ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࡡࡂ࡞ࡏࡈࡘࡆࠦࡓࡆࡖࡗࡍࡓࡍࡓ࡜࠱ࡅࡡࡠ࠵ࡃࡐࡎࡒࡖࡢ࠭࠳"), l111Fuck_You_Anonymous (u"ࠧࡶࡴ࡯ࠫ࠴"):l111Fuck_You_Anonymous (u"ࠨࡷࡵࡰࠬ࠵")}, is_folder=False, is_playable=False)
-	if l11Fuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠩࡷࡶࡺ࡫ࠧ࠶"):
-		md.addDir({l111Fuck_You_Anonymous (u"ࠪࡱࡴࡪࡥࠨ࠷"):l111Fuck_You_Anonymous (u"ࠫࡦࡪࡤࡰࡰࡢࡷࡪࡺࡴࡪࡰࡪࡷࠬ࠸"), l111Fuck_You_Anonymous (u"ࠬࡴࡡ࡮ࡧࠪ࠹"):l111Fuck_You_Anonymous (u"࡛࠭ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࡡࡂ࡞ࡃࡇࡈࡔࡔࠠࡔࡇࡗࡘࡎࡔࡇࡔ࡝࠲ࡆࡢࡡ࠯ࡄࡑࡏࡓࡗࡣࠧ࠺"), l111Fuck_You_Anonymous (u"ࠧࡶࡴ࡯ࠫ࠻"):l111Fuck_You_Anonymous (u"ࠨࡷࡵࡰࠬ࠼")}, is_folder=False, is_playable=False)
-	l1lllll1Fuck_You_Anonymous()
-        l1l1llFuck_You_Anonymous()
-	setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠩࡩ࡭ࡱ࡫ࡳࠨ࠽"), l111Fuck_You_Anonymous (u"ࠪࡱࡪࡴࡵ࠮ࡸ࡬ࡩࡼ࠭࠾"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1l1l1llFuck_You_Anonymous(content):
-	if l1l11llFuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠫࡹࡸࡵࡦࠩ࠿"):
-		md.addDir({l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡥࡧࠪࡀ"): l111Fuck_You_Anonymous (u"࠭ࡦࡦࡶࡦ࡬ࡤ࡬ࡡࡷࡵࠪࡁ"), l111Fuck_You_Anonymous (u"ࠧ࡯ࡣࡰࡩࠬࡂ"):l111Fuck_You_Anonymous (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡜ࡄࡠࡑ࡞ࠦࡁࡅࡆ࠰ࡓࡓࠦࡆࡂࡘࡒ࡙ࡗࡏࡔࡆࡕ࡞࠳ࡇࡣ࡛࠰ࡅࡒࡐࡔࡘ࡝ࠨࡃ"), l111Fuck_You_Anonymous (u"ࠩࡸࡶࡱ࠭ࡄ"):l111Fuck_You_Anonymous (u"ࠪࡹࡷࡲࠧࡅ")})
-	if content == l111Fuck_You_Anonymous (u"ࠫࡲࡵࡶࡪࡧࡶࠫࡆ"):
-		l111111Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡷ࡫ࡨࠫࡇ")
-	elif content == l111Fuck_You_Anonymous (u"࠭ࡴࡷࡵ࡫ࡳࡼࡹࠧࡈ"):
-		l111111Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠧࡴࡧࡵ࡭ࡪࡹࠧࡉ")
-	l1l1111Fuck_You_Anonymous = l11l1l1Fuck_You_Anonymous+l111Fuck_You_Anonymous (u"ࠨ࠱ࡰࡳࡻ࡯ࡥ࠰ࡨ࡬ࡰࡹ࡫ࡲ࠰ࠧࡶ࠳ࠪࡹ࠯ࡢ࡮࡯࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠭ࡊ")
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡋ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬࡌ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡍ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡎࡑࡖࡘࠥࡘࡅࡄࡇࡑࡘࡑ࡟ࠠࡂࡆࡇࡉࡉࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡄࡠࠫࡎ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࡏ"):l1l1111Fuck_You_Anonymous %(l111111Fuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧ࡭ࡣࡷࡩࡸࡺࠧࡐ")), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࡑ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡒ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬࡓ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡔ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡎࡑࡖࡘࠥࡌࡁࡗࡑࡘࡖࡎ࡚ࡅࡅ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧࡕ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࡖ"):l1l1111Fuck_You_Anonymous %(l111111Fuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧࡧࡣࡹࡳࡷ࡯ࡴࡦࠩࡗ")), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࡘ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫࡙ࠧ"): l111Fuck_You_Anonymous (u"ࠪ࠶࡚ࠬ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦ࡛ࠩ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡎࡑࡖࡘࠥࡘࡁࡕࡋࡑࡋࡘࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡄࡠࠫ࡜"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪ࡝"):l1l1111Fuck_You_Anonymous %(l111111Fuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧࡳࡣࡷ࡭ࡳ࡭ࠧ࡞")), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩ࡟"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡠ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬࡡ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡢ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡎࡑࡖࡘࠥ࡜ࡉࡆ࡙ࡈࡈࡠ࠵ࡃࡐࡎࡒࡖࡢࡡ࠯ࡃ࡟ࠪࡣ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࡤ"):l1l1111Fuck_You_Anonymous %(l111111Fuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧࡷ࡫ࡨࡻࠬࡥ")), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࡦ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡧ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬࡨ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡩ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡕࡑࡓࠤࡎࡓࡄࡃ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧࡪ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪ࡫"):l1l1111Fuck_You_Anonymous %(l111111Fuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧࡪ࡯ࡧࡦࡤࡳࡡࡳ࡭ࠪ࡬")), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩ࡭"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧ࡮"): l111Fuck_You_Anonymous (u"ࠪ࠺ࠬ࡯"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡰ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡄࡑࡘࡒ࡙ࡘ࡙࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ࡱ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࡲ"):l11l1l1Fuck_You_Anonymous+l111Fuck_You_Anonymous (u"ࠧ࠰࡯ࡲࡺ࡮࡫࠯ࡧ࡫࡯ࡸࡪࡸࠧࡳ"), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࡴ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡵ"): l111Fuck_You_Anonymous (u"ࠪࡷࡪࡧࡲࡤࡪࠪࡶ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡷ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡔࡇࡄࡖࡈࡎ࡛࠰ࡅࡒࡐࡔࡘ࡝࡜࠱ࡅࡡࠬࡸ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࡹ"):l111Fuck_You_Anonymous (u"ࠧࡶࡴ࡯ࠫࡺ"), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࡻ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࡼ"): l111Fuck_You_Anonymous (u"ࠪ࠸ࠬࡽ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࡾ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࡈࡇࡑࡖࡊࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡄࡠࠫࡿ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࢀ"):l11l1l1Fuck_You_Anonymous+l111Fuck_You_Anonymous (u"ࠧ࠰࡯ࡲࡺ࡮࡫࠯ࡧ࡫࡯ࡸࡪࡸࠧࢁ"), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࢂ"):content})
-	md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࢃ"): l111Fuck_You_Anonymous (u"ࠪ࠹ࠬࢄ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࢅ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡚ࡇࡄࡖࡠ࠵ࡃࡐࡎࡒࡖࡢࡡ࠯ࡃ࡟ࠪࢆ"), l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࢇ"):l11l1l1Fuck_You_Anonymous+l111Fuck_You_Anonymous (u"ࠧ࠰࡯ࡲࡺ࡮࡫࠯ࡧ࡫࡯ࡸࡪࡸࠧ࢈"), l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࢉ"):content})
-	setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠩࡩ࡭ࡱ࡫ࡳࠨࢊ"), l111Fuck_You_Anonymous (u"ࠪࡱࡪࡴࡵ࠮ࡸ࡬ࡩࡼ࠭ࢋ"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1l111Fuck_You_Anonymous(url,content):
+sys.setdefaultencoding(l11lCreated_By_Mucky_Duck (u"ࠤࡸࡸ࡫࠳࠸ࠣࠌ"))
+l111lCreated_By_Mucky_Duck = [l11lCreated_By_Mucky_Duck (u"ࠪࡶࡦࡺࡩ࡯ࡩࠪࠍ"),l11lCreated_By_Mucky_Duck (u"ࠫࡱࡧࡴࡦࡵࡷࠫࠎ"),l11lCreated_By_Mucky_Duck (u"ࠬࡼࡩࡦࡹࠪࠏ"),l11lCreated_By_Mucky_Duck (u"࠭ࡦࡢࡸࡲࡶ࡮ࡺࡥࠨࠐ"),l11lCreated_By_Mucky_Duck (u"ࠧࡪ࡯ࡧࡦࡤࡳࡡࡳ࡭ࠪࠑ")]
+sort = [l11lCreated_By_Mucky_Duck (u"ࠨ࡝ࡅࡡࡠࡏ࡝࡜ࡅࡒࡐࡔࡘࠠࡳࡧࡧࡡࡒࡵࡳࡵࠢࡕࡥࡹ࡫ࡤ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡍࡢࡡ࠯ࡃ࡟ࠪࠒ"), l11lCreated_By_Mucky_Duck (u"ࠩ࡞ࡆࡢࡡࡉ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢࡘࡥࡤࡧࡱࡸࡱࡿࠠࡂࡦࡧࡩࡩࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨࠓ"),
+	l11lCreated_By_Mucky_Duck (u"ࠪ࡟ࡇࡣ࡛ࡊ࡟࡞ࡇࡔࡒࡏࡓࠢࡵࡩࡩࡣࡍࡰࡵࡷࠤ࡛࡯ࡥࡸࡧࡧ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡉ࡞࡝࠲ࡆࡢ࠭ࠔ"), l11lCreated_By_Mucky_Duck (u"ࠫࡠࡈ࡝࡜ࡋࡠ࡟ࡈࡕࡌࡐࡔࠣࡶࡪࡪ࡝ࡎࡱࡶࡸࠥࡌࡡࡷࡱࡸࡶ࡮ࡺࡥࡥ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡎࡣ࡛࠰ࡄࡠࠫࠕ"),
+	l11lCreated_By_Mucky_Duck (u"ࠬࡡࡂ࡞࡝ࡌࡡࡠࡉࡏࡍࡑࡕࠤࡷ࡫ࡤ࡞ࡋࡐࡈࡇࠦࡒࡢࡶ࡬ࡲ࡬ࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨࠖ")]
+def l1l1llCreated_By_Mucky_Duck():
+	if l1lllll1Created_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"࠭ࡴࡳࡷࡨࠫࠗ"):
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡧࡩࠬ࠘"): l11lCreated_By_Mucky_Duck (u"ࠨ࠳ࠪ࠙"), l11lCreated_By_Mucky_Duck (u"ࠩࡱࡥࡲ࡫ࠧࠚ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟࡞ࡆࡢࡓࡏࡗࡋࡈࡗࡠ࠵ࡂ࡞࡝࠲ࡇࡔࡒࡏࡓ࡟ࠪࠛ"), l11lCreated_By_Mucky_Duck (u"ࠫࡺࡸ࡬ࠨࠜ"):l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩࠝ"), l11lCreated_By_Mucky_Duck (u"࠭ࡣࡰࡰࡷࡩࡳࡺࠧࠞ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࠧࠟ")})
+	if l111lllCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠨࡶࡵࡹࡪ࠭ࠠ"):
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠩࡰࡳࡩ࡫ࠧࠡ"): l11lCreated_By_Mucky_Duck (u"ࠪ࠵ࠬࠢ"), l11lCreated_By_Mucky_Duck (u"ࠫࡳࡧ࡭ࡦࠩࠣ"):l11lCreated_By_Mucky_Duck (u"ࠬࡡࡃࡐࡎࡒࡖࠥࡽࡨࡪࡶࡨࡡࡠࡈ࡝ࡕࡘࠣࡗࡍࡕࡗࡔ࡝࠲ࡆࡢࡡ࠯ࡄࡑࡏࡓࡗࡣࠧࠤ"), l11lCreated_By_Mucky_Duck (u"࠭ࡵࡳ࡮ࠪࠥ"):l11lCreated_By_Mucky_Duck (u"ࠧࡶࡴ࡯ࠫࠦ"), l11lCreated_By_Mucky_Duck (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࠧ"):l11lCreated_By_Mucky_Duck (u"ࠩࡷࡺࡸ࡮࡯ࡸࡵࠪࠨ")})
+	if l1l11llCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠪࡸࡷࡻࡥࠨࠩ"):
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࠪ"): l11lCreated_By_Mucky_Duck (u"ࠬ࡬ࡥࡵࡥ࡫ࡣ࡫ࡧࡶࡴࠩࠫ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࠬ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣ࡛ࡃ࡟ࡐ࡝ࠥࡌࡁࡗࡑࡘࡖࡎ࡚ࡅࡔ࡝࠲ࡆࡢࡡ࠯ࡄࡑࡏࡓࡗࡣࠧ࠭"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬ࠮"):l11lCreated_By_Mucky_Duck (u"ࠩࡸࡶࡱ࠭࠯")})
+	if l111llCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠪࡸࡷࡻࡥࠨ࠰"):
+		if l1l111llCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠫࡹࡸࡵࡦࠩ࠱"):
+			md.addDir({l11lCreated_By_Mucky_Duck (u"ࠬࡳ࡯ࡥࡧࠪ࠲"):l11lCreated_By_Mucky_Duck (u"࠭࡭ࡦࡶࡤࡣࡸ࡫ࡴࡵ࡫ࡱ࡫ࡸ࠭࠳"), l11lCreated_By_Mucky_Duck (u"ࠧ࡯ࡣࡰࡩࠬ࠴"):l11lCreated_By_Mucky_Duck (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡜ࡄࡠࡑࡊ࡚ࡁࠡࡕࡈࡘ࡙ࡏࡎࡈࡕ࡞࠳ࡇࡣ࡛࠰ࡅࡒࡐࡔࡘ࡝ࠨ࠵"), l11lCreated_By_Mucky_Duck (u"ࠩࡸࡶࡱ࠭࠶"):l11lCreated_By_Mucky_Duck (u"ࠪࡹࡷࡲࠧ࠷")}, is_folder=False, is_playable=False)
+	if l1lCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠫࡹࡸࡵࡦࠩ࠸"):
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠬࡳ࡯ࡥࡧࠪ࠹"):l11lCreated_By_Mucky_Duck (u"࠭ࡡࡥࡦࡲࡲࡤࡹࡥࡵࡶ࡬ࡲ࡬ࡹࠧ࠺"), l11lCreated_By_Mucky_Duck (u"ࠧ࡯ࡣࡰࡩࠬ࠻"):l11lCreated_By_Mucky_Duck (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡜ࡄࡠࡅࡉࡊࡏࡏࠢࡖࡉ࡙࡚ࡉࡏࡉࡖ࡟࠴ࡈ࡝࡜࠱ࡆࡓࡑࡕࡒ࡞ࠩ࠼"), l11lCreated_By_Mucky_Duck (u"ࠩࡸࡶࡱ࠭࠽"):l11lCreated_By_Mucky_Duck (u"ࠪࡹࡷࡲࠧ࠾")}, is_folder=False, is_playable=False)
+	l1llll1lCreated_By_Mucky_Duck()
+        l1ll11Created_By_Mucky_Duck()
+	setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠫ࡫࡯࡬ࡦࡵࠪ࠿"), l11lCreated_By_Mucky_Duck (u"ࠬࡳࡥ࡯ࡷ࠰ࡺ࡮࡫ࡷࠨࡀ"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1l11ll1Created_By_Mucky_Duck(content):
+	if l1l11llCreated_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"࠭ࡴࡳࡷࡨࠫࡁ"):
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡧࡩࠬࡂ"): l11lCreated_By_Mucky_Duck (u"ࠨࡨࡨࡸࡨ࡮࡟ࡧࡣࡹࡷࠬࡃ"), l11lCreated_By_Mucky_Duck (u"ࠩࡱࡥࡲ࡫ࠧࡄ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟࡞ࡆࡢࡓ࡙ࠡࡃࡇࡈ࠲ࡕࡎࠡࡈࡄ࡚ࡔ࡛ࡒࡊࡖࡈࡗࡠ࠵ࡂ࡞࡝࠲ࡇࡔࡒࡏࡓ࡟ࠪࡅ"), l11lCreated_By_Mucky_Duck (u"ࠫࡺࡸ࡬ࠨࡆ"):l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩࡇ")})
+	if content == l11lCreated_By_Mucky_Duck (u"࠭࡭ࡰࡸ࡬ࡩࡸ࠭ࡈ"):
+		l1llllllCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡹ࡭ࡪ࠭ࡉ")
+	elif content == l11lCreated_By_Mucky_Duck (u"ࠨࡶࡹࡷ࡭ࡵࡷࡴࠩࡊ"):
+		l1llllllCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠩࡶࡩࡷ࡯ࡥࡴࠩࡋ")
+	l11llllCreated_By_Mucky_Duck = l11l11lCreated_By_Mucky_Duck+l11lCreated_By_Mucky_Duck (u"ࠪ࠳ࡲࡵࡶࡪࡧ࠲ࡪ࡮ࡲࡴࡦࡴ࠲ࠩࡸ࠵ࠥࡴ࠱ࡤࡰࡱ࠵ࡡ࡭࡮࠲ࡥࡱࡲ࠯ࡢ࡮࡯࠳ࡦࡲ࡬ࠨࡌ")
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡍ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠸ࠧࡎ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࡏ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡐࡓࡘ࡚ࠠࡓࡇࡆࡉࡓ࡚ࡌ࡚ࠢࡄࡈࡉࡋࡄ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ࡐ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࡑ"):l11llllCreated_By_Mucky_Duck %(l1llllllCreated_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"ࠩ࡯ࡥࡹ࡫ࡳࡵࠩࡒ")), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࡓ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡔ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠸ࠧࡕ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࡖ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡐࡓࡘ࡚ࠠࡇࡃ࡙ࡓ࡚ࡘࡉࡕࡇࡇ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡂ࡞ࠩࡗ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࡘ"):l11llllCreated_By_Mucky_Duck %(l1llllllCreated_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"ࠩࡩࡥࡻࡵࡲࡪࡶࡨ࡙ࠫ")), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷ࡚ࠫ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦ࡛ࠩ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠸ࠧ࡜"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫ࡝"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡐࡓࡘ࡚ࠠࡓࡃࡗࡍࡓࡍࡓ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭࡞"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬ࡟"):l11llllCreated_By_Mucky_Duck %(l1llllllCreated_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"ࠩࡵࡥࡹ࡯࡮ࡨࠩࡠ")), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࡡ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡢ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠸ࠧࡣ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࡤ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡐࡓࡘ࡚ࠠࡗࡋࡈ࡛ࡊࡊ࡛࠰ࡅࡒࡐࡔࡘ࡝࡜࠱ࡅࡡࠬࡥ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࡦ"):l11llllCreated_By_Mucky_Duck %(l1llllllCreated_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"ࠩࡹ࡭ࡪࡽࠧࡧ")), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࡨ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡩ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠸ࠧࡪ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫ࡫"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡗࡓࡕࠦࡉࡎࡆࡅ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡂ࡞ࠩ࡬"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬ࡭"):l11llllCreated_By_Mucky_Duck %(l1llllllCreated_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"ࠩ࡬ࡱࡩࡨ࡟࡮ࡣࡵ࡯ࠬ࡮")), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫ࡯"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡰ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠼ࠧࡱ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࡲ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡆࡓ࡚ࡔࡔࡓ࡛࡞࠳ࡈࡕࡌࡐࡔࡠ࡟࠴ࡈ࡝ࠨࡳ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࡴ"):l11l11lCreated_By_Mucky_Duck+l11lCreated_By_Mucky_Duck (u"ࠩ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳࠩࡵ"), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࡶ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡷ"): l11lCreated_By_Mucky_Duck (u"ࠬࡹࡥࡢࡴࡦ࡬ࠬࡸ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࡹ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡖࡉࡆࡘࡃࡉ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧࡺ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࡻ"):l11lCreated_By_Mucky_Duck (u"ࠩࡸࡶࡱ࠭ࡼ"), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࡽ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࡾ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠺ࠧࡿ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࢀ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࡊࡉࡓࡘࡅ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ࢁ"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࢂ"):l11l11lCreated_By_Mucky_Duck+l11lCreated_By_Mucky_Duck (u"ࠩ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳࠩࢃ"), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࢄ"):content})
+	md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࢅ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠻ࠧࢆ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࢇ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟࡜ࡉࡆࡘ࡛࠰ࡅࡒࡐࡔࡘ࡝࡜࠱ࡅࡡࠬ࢈"), l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࢉ"):l11l11lCreated_By_Mucky_Duck+l11lCreated_By_Mucky_Duck (u"ࠩ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳࠩࢊ"), l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࢋ"):content})
+	setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠫ࡫࡯࡬ࡦࡵࠪࢌ"), l11lCreated_By_Mucky_Duck (u"ࠬࡳࡥ࡯ࡷ࠰ࡺ࡮࡫ࡷࠨࢍ"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1l11lCreated_By_Mucky_Duck(url,content):
 	link = open_url(url,verify=False).content
-	l1l11Fuck_You_Anonymous = md.regex_get_all(link, l111Fuck_You_Anonymous (u"ࠫࡨࡲࡡࡴࡵࡀࠦࡲࡲ࠭ࡪࡶࡨࡱࠧࡄࠧࢌ"), l111Fuck_You_Anonymous (u"ࠬࡂ࠯ࡩ࠴ࡁࡀ࠴ࡹࡰࡢࡰࡁࠫࢍ"))
-	items = len(l1l11Fuck_You_Anonymous)
-	for a in l1l11Fuck_You_Anonymous:
-		name = md.regex_from_to(a, l111Fuck_You_Anonymous (u"࠭ࡴࡪࡶ࡯ࡩࡂࠨࠧࢎ"), l111Fuck_You_Anonymous (u"ࠧࠣࠩ࢏"))
-		url = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠨࡪࡵࡩ࡫ࡃࠢࠨ࢐"), l111Fuck_You_Anonymous (u"ࠩࠥࠫ࢑"))
-		l1llFuck_You_Anonymous = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠪࡳࡷ࡯ࡧࡪࡰࡤࡰࡂࠨࠧ࢒"), l111Fuck_You_Anonymous (u"ࠫࠧ࠭࢓"))
-		l11l11lFuck_You_Anonymous = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠬࡳ࡬ࡪ࠯ࡴࡹࡦࡲࡩࡵࡻࠥࡂࠬ࢔"), l111Fuck_You_Anonymous (u"࠭࠼ࠨ࢕"))
-		l1l1ll1lFuck_You_Anonymous = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠧࠣ࡯࡯࡭࠲࡫ࡰࡴࠤࡁࠫ࢖"), l111Fuck_You_Anonymous (u"ࠨ࠾࠲ࠫࢗ"))
-		l1l1ll1lFuck_You_Anonymous = l1l1ll1lFuck_You_Anonymous.replace(l111Fuck_You_Anonymous (u"ࠩ࠿ࡷࡵࡧ࡮࠿ࠩ࢘"),l111Fuck_You_Anonymous (u"ࠪࠤ࢙ࠬ")).replace(l111Fuck_You_Anonymous (u"ࠫࡁ࡯࠾ࠨ࢚"),l111Fuck_You_Anonymous (u"࢛ࠬࠦࠧ"))
-		if content == l111Fuck_You_Anonymous (u"࠭࡭ࡰࡸ࡬ࡩࡸ࠭࢜"):
-			if l11l11lFuck_You_Anonymous:
-				md.addDir({l111Fuck_You_Anonymous (u"ࠧ࡮ࡱࡧࡩࠬ࢝"): l111Fuck_You_Anonymous (u"ࠨ࠹ࠪ࢞"), l111Fuck_You_Anonymous (u"ࠩࡱࡥࡲ࡫ࠧ࢟"):l111Fuck_You_Anonymous (u"ࠪ࡟ࡇࡣ࡛ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࠫࡳ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝ࡌࡡࡠࡉࡏࡍࡑࡕࠤࡷ࡫ࡤ࡞ࠪࠨࡷ࠮ࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨࢠ") %(name,l11l11lFuck_You_Anonymous),
-					   l111Fuck_You_Anonymous (u"ࠫࡺࡸ࡬ࠨࢡ"):url+l111Fuck_You_Anonymous (u"ࠬࡽࡡࡵࡥ࡫࡭ࡳ࡭࠮ࡩࡶࡰࡰࠬࢢ"), l111Fuck_You_Anonymous (u"࠭ࡩࡤࡱࡱ࡭ࡲࡧࡧࡦࠩࢣ"):l1llFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨࢤ"):content}, {l111Fuck_You_Anonymous (u"ࠨࡵࡲࡶࡹࡺࡩࡵ࡮ࡨࠫࢥ"):name},
-					  fan_art={l111Fuck_You_Anonymous (u"ࠩ࡬ࡧࡴࡴࠧࢦ"):l1llFuck_You_Anonymous}, is_folder=False, item_count=items)
-		elif content == l111Fuck_You_Anonymous (u"ࠪࡸࡻࡹࡨࡰࡹࡶࠫࢧ"):
-			if l1l1ll1lFuck_You_Anonymous:
-				data = name.split(l111Fuck_You_Anonymous (u"ࠫ࠲ࠦࡓࡦࡣࡶࡳࡳ࠭ࢨ"))
-				l1111l1Fuck_You_Anonymous = data[0].strip()
+	l1l1lCreated_By_Mucky_Duck = md.regex_get_all(link, l11lCreated_By_Mucky_Duck (u"࠭ࡣ࡭ࡣࡶࡷࡂࠨ࡭࡭࠯࡬ࡸࡪࡳࠢ࠿ࠩࢎ"), l11lCreated_By_Mucky_Duck (u"ࠧ࠽࠱࡫࠶ࡃࡂ࠯ࡴࡲࡤࡲࡃ࠭࢏"))
+	items = len(l1l1lCreated_By_Mucky_Duck)
+	for a in l1l1lCreated_By_Mucky_Duck:
+		name = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠨࡶ࡬ࡸࡱ࡫࠽ࠣࠩ࢐"), l11lCreated_By_Mucky_Duck (u"ࠩࠥࠫ࢑"))
+		name = l111Created_By_Mucky_Duck.unescape(name).replace(l11lCreated_By_Mucky_Duck (u"ࠥࡠࡡ࠭ࠢ࢒"),l11lCreated_By_Mucky_Duck (u"ࠦࠬࠨ࢓"))
+		url = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠬ࡮ࡲࡦࡨࡀࠦࠬ࢔"), l11lCreated_By_Mucky_Duck (u"࠭ࠢࠨ࢕"))
+		l11Created_By_Mucky_Duck = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠧࡰࡴ࡬࡫࡮ࡴࡡ࡭࠿ࠥࠫ࢖"), l11lCreated_By_Mucky_Duck (u"ࠨࠤࠪࢗ"))
+		l11l111Created_By_Mucky_Duck = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠩࡰࡰ࡮࠳ࡱࡶࡣ࡯࡭ࡹࡿࠢ࠿ࠩ࢘"), l11lCreated_By_Mucky_Duck (u"ࠪࡀ࢙ࠬ"))
+		l1l1l111Created_By_Mucky_Duck = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠫࠧࡳ࡬ࡪ࠯ࡨࡴࡸࠨ࠾ࠨ࢚"), l11lCreated_By_Mucky_Duck (u"ࠬࡂ࠯ࠨ࢛"))
+		l1l1l111Created_By_Mucky_Duck = l1l1l111Created_By_Mucky_Duck.replace(l11lCreated_By_Mucky_Duck (u"࠭࠼ࡴࡲࡤࡲࡃ࠭࢜"),l11lCreated_By_Mucky_Duck (u"ࠧࠡࠩ࢝")).replace(l11lCreated_By_Mucky_Duck (u"ࠨ࠾࡬ࡂࠬ࢞"),l11lCreated_By_Mucky_Duck (u"ࠩࠣࠫ࢟"))
+		if content == l11lCreated_By_Mucky_Duck (u"ࠪࡱࡴࡼࡩࡦࡵࠪࢠ"):
+			if l11l111Created_By_Mucky_Duck:
+                                title = name
+                                md.remove_punctuation(title)
+				md.addDir({l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࠩࢡ"): l11lCreated_By_Mucky_Duck (u"ࠬ࠽ࠧࢢ"), l11lCreated_By_Mucky_Duck (u"࠭࡮ࡢ࡯ࡨࠫࢣ"):l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡈࡕࡌࡐࡔࠣࡻ࡭࡯ࡴࡦ࡟ࠨࡷࡠ࠵ࡃࡐࡎࡒࡖࡢࡡࡉ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢ࠮ࠥࡴࠫ࡞࠳ࡈࡕࡌࡐࡔࡠ࡟࠴ࡏ࡝࡜࠱ࡅࡡࠬࢤ") %(name,l11l111Created_By_Mucky_Duck),
+					   l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࢥ"):url+l11lCreated_By_Mucky_Duck (u"ࠩࡺࡥࡹࡩࡨࡪࡰࡪ࠲࡭ࡺ࡭࡭ࠩࢦ"), l11lCreated_By_Mucky_Duck (u"ࠪ࡭ࡨࡵ࡮ࡪ࡯ࡤ࡫ࡪ࠭ࢧ"):l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠫࡨࡵ࡮ࡵࡧࡱࡸࠬࢨ"):content}, {l11lCreated_By_Mucky_Duck (u"ࠬࡹ࡯ࡳࡶࡷ࡭ࡹࡲࡥࠨࢩ"):title},
+					  fan_art={l11lCreated_By_Mucky_Duck (u"࠭ࡩࡤࡱࡱࠫࢪ"):l11Created_By_Mucky_Duck}, is_folder=False, item_count=items)
+		elif content == l11lCreated_By_Mucky_Duck (u"ࠧࡵࡸࡶ࡬ࡴࡽࡳࠨࢫ"):
+			if l1l1l111Created_By_Mucky_Duck:
+				data = name.split(l11lCreated_By_Mucky_Duck (u"ࠨ࠯ࠣࡗࡪࡧࡳࡰࡰࠪࢬ"))
+				l11111lCreated_By_Mucky_Duck = data[0].strip()
+				md.remove_punctuation(l11111lCreated_By_Mucky_Duck)
 				try:
-					l11l1llFuck_You_Anonymous = data[1].strip()
+					l11l1l1Created_By_Mucky_Duck = data[1].strip()
 				except:
-					l11l1llFuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠬ࠭ࢩ")
-				md.addDir({l111Fuck_You_Anonymous (u"࠭࡭ࡰࡦࡨࠫࢪ"): l111Fuck_You_Anonymous (u"ࠧ࠴ࠩࢫ"), l111Fuck_You_Anonymous (u"ࠨࡰࡤࡱࡪ࠭ࢬ"):l111Fuck_You_Anonymous (u"ࠩ࡞ࡆࡢࡡࡃࡐࡎࡒࡖࠥࡽࡨࡪࡶࡨࡡࠪࡹ࡛࠰ࡅࡒࡐࡔࡘ࡝ࠡ࡝ࡌࡡࡠࡉࡏࡍࡑࡕࠤࡷ࡫ࡤ࡞ࠧࡶ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡉ࡞࡝࠲ࡆࡢ࠭ࢭ") %(name,l1l1ll1lFuck_You_Anonymous),
-					   l111Fuck_You_Anonymous (u"ࠪࡸ࡮ࡺ࡬ࡦࠩࢮ"):l1111l1Fuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠫࡺࡸ࡬ࠨࢯ"):url+l111Fuck_You_Anonymous (u"ࠬࡽࡡࡵࡥ࡫࡭ࡳ࡭࠮ࡩࡶࡰࡰࠬࢰ"), l111Fuck_You_Anonymous (u"࠭ࡩࡤࡱࡱ࡭ࡲࡧࡧࡦࠩࢱ"):l1llFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨࢲ"):content, l111Fuck_You_Anonymous (u"ࠨࡵࡨࡥࡸࡵ࡮ࠨࢳ"):l11l1llFuck_You_Anonymous},
-					  {l111Fuck_You_Anonymous (u"ࠩࡶࡳࡷࡺࡴࡪࡶ࡯ࡩࠬࢴ"):l1111l1Fuck_You_Anonymous}, fan_art={l111Fuck_You_Anonymous (u"ࠪ࡭ࡨࡵ࡮ࠨࢵ"):l1llFuck_You_Anonymous}, item_count=items)
+					l11l1l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠩࠪࢭ")
+				md.addDir({l11lCreated_By_Mucky_Duck (u"ࠪࡱࡴࡪࡥࠨࢮ"): l11lCreated_By_Mucky_Duck (u"ࠫ࠸࠭ࢯ"), l11lCreated_By_Mucky_Duck (u"ࠬࡴࡡ࡮ࡧࠪࢰ"):l11lCreated_By_Mucky_Duck (u"࡛࠭ࡃ࡟࡞ࡇࡔࡒࡏࡓࠢࡺ࡬࡮ࡺࡥ࡞ࠧࡶ࡟࠴ࡉࡏࡍࡑࡕࡡࠥࡡࡉ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢࠫࡳ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡍࡢࡡ࠯ࡃ࡟ࠪࢱ") %(name,l1l1l111Created_By_Mucky_Duck),
+					   l11lCreated_By_Mucky_Duck (u"ࠧࡵ࡫ࡷࡰࡪ࠭ࢲ"):l11111lCreated_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠨࡷࡵࡰࠬࢳ"):url+l11lCreated_By_Mucky_Duck (u"ࠩࡺࡥࡹࡩࡨࡪࡰࡪ࠲࡭ࡺ࡭࡭ࠩࢴ"), l11lCreated_By_Mucky_Duck (u"ࠪ࡭ࡨࡵ࡮ࡪ࡯ࡤ࡫ࡪ࠭ࢵ"):l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠫࡨࡵ࡮ࡵࡧࡱࡸࠬࢶ"):content, l11lCreated_By_Mucky_Duck (u"ࠬࡹࡥࡢࡵࡲࡲࠬࢷ"):l11l1l1Created_By_Mucky_Duck},
+					  {l11lCreated_By_Mucky_Duck (u"࠭ࡳࡰࡴࡷࡸ࡮ࡺ࡬ࡦࠩࢸ"):l11111lCreated_By_Mucky_Duck}, fan_art={l11lCreated_By_Mucky_Duck (u"ࠧࡪࡥࡲࡲࠬࢹ"):l11Created_By_Mucky_Duck}, item_count=items)
 	try:
-		l11lFuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠫࡁࡲࡩࠡࡥ࡯ࡥࡸࡹ࠽ࠣࡰࡨࡼࡹࠨ࠾࠽ࡣࠣ࡬ࡷ࡫ࡦ࠾ࠤࠫ࠲࠯ࡅࠩࠣࠢࡧࡥࡹࡧ࠭ࡤ࡫࠰ࡴࡦ࡭ࡩ࡯ࡣࡷ࡭ࡴࡴ࠭ࡱࡣࡪࡩࡂࠨ࠮ࠫࡁࠥࠤࡷ࡫࡬࠾ࠤࡱࡩࡽࡺࠢ࠿ࠩࢶ")).findall(link)[0]
-		md.addDir({l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡥࡧࠪࢷ"): l111Fuck_You_Anonymous (u"࠭࠲ࠨࢸ"), l111Fuck_You_Anonymous (u"ࠧ࡯ࡣࡰࡩࠬࢹ"):l111Fuck_You_Anonymous (u"ࠨ࡝ࡅࡡࡠࡉࡏࡍࡑࡕࠤࡷ࡫ࡤ࡞ࡐࡨࡼࡹࠦࡐࡢࡩࡨࡂࡃࡄ࡛࠰ࡅࡒࡐࡔࡘ࡝࡜࠱ࡅࡡࠬࢺ"), l111Fuck_You_Anonymous (u"ࠩࡸࡶࡱ࠭ࢻ"):l11lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫࢼ"):content})
+		l1l1Created_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠨ࠾࡯࡭ࠥࡩ࡬ࡢࡵࡶࡁࠧࡴࡥࡹࡶࠥࡂࡁࡧࠠࡩࡴࡨࡪࡂࠨࠨ࠯ࠬࡂ࠭ࠧࠦࡤࡢࡶࡤ࠱ࡨ࡯࠭ࡱࡣࡪ࡭ࡳࡧࡴࡪࡱࡱ࠱ࡵࡧࡧࡦ࠿ࠥ࠲࠯ࡅࠢࠡࡴࡨࡰࡂࠨ࡮ࡦࡺࡷࠦࡃ࠭ࢺ")).findall(link)[0]
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠩࡰࡳࡩ࡫ࠧࢻ"): l11lCreated_By_Mucky_Duck (u"ࠪ࠶ࠬࢼ"), l11lCreated_By_Mucky_Duck (u"ࠫࡳࡧ࡭ࡦࠩࢽ"):l11lCreated_By_Mucky_Duck (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢࡄ࠾ࡏࡧࡻࡸࠥࡖࡡࡨࡧࡁࡂࡃࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡄࡠࠫࢾ"), l11lCreated_By_Mucky_Duck (u"࠭ࡵࡳ࡮ࠪࢿ"):l1l1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨࣀ"):content})
 	except: pass
-	if content == l111Fuck_You_Anonymous (u"ࠫࡲࡵࡶࡪࡧࡶࠫࢽ"):
-		setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠬࡳ࡯ࡷ࡫ࡨࡷࠬࢾ"), l111Fuck_You_Anonymous (u"࠭࡭ࡰࡸ࡬ࡩ࠲ࡼࡩࡦࡹࠪࢿ"))
-	elif content == l111Fuck_You_Anonymous (u"ࠧࡵࡸࡶ࡬ࡴࡽࡳࠨࣀ"):
-		setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡶࡹࡷ࡭ࡵࡷࡴࠩࣁ"), l111Fuck_You_Anonymous (u"ࠩࡶ࡬ࡴࡽ࠭ࡷ࡫ࡨࡻࠬࣂ"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l111l11Fuck_You_Anonymous(title, url, l1111lFuck_You_Anonymous, content, l11l1llFuck_You_Anonymous):
+	if content == l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡲࡺ࡮࡫ࡳࠨࣁ"):
+		setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠩࡰࡳࡻ࡯ࡥࡴࠩࣂ"), l11lCreated_By_Mucky_Duck (u"ࠪࡱࡴࡼࡩࡦ࠯ࡹ࡭ࡪࡽࠧࣃ"))
+	elif content == l11lCreated_By_Mucky_Duck (u"ࠫࡹࡼࡳࡩࡱࡺࡷࠬࣄ"):
+		setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠬࡺࡶࡴࡪࡲࡻࡸ࠭ࣅ"), l11lCreated_By_Mucky_Duck (u"࠭ࡳࡩࡱࡺ࠱ࡻ࡯ࡥࡸࠩࣆ"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1111llCreated_By_Mucky_Duck(title, url, l111l1Created_By_Mucky_Duck, content, l11l1l1Created_By_Mucky_Duck):
 	link = open_url(url,verify=False).content
-	l111lllFuck_You_Anonymous = url
-	l11ll1lFuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠪ࡭ࡩࡀࠠࠣࠪ࡞ࡢࠧࡣࠫࠪࠤࠪࣃ")).findall(link)[0]
-	request_url = l111Fuck_You_Anonymous (u"ࠫࠪࡹ࠯ࡢ࡬ࡤࡼ࠴ࡳ࡯ࡷ࡫ࡨࡣࡪࡶࡩࡴࡱࡧࡩࡸ࠵ࠥࡴࠩࣄ") %(l11l1l1Fuck_You_Anonymous,l11ll1lFuck_You_Anonymous)
-	headers = {l111Fuck_You_Anonymous (u"ࠬࡇࡣࡤࡧࡳࡸ࠲ࡋ࡮ࡤࡱࡧ࡭ࡳ࡭ࠧࣅ"):l111Fuck_You_Anonymous (u"࠭ࡧࡻ࡫ࡳ࠰ࠥࡪࡥࡧ࡮ࡤࡸࡪ࠲ࠠࡴࡦࡦ࡬࠱ࠦࡢࡳࠩࣆ"), l111Fuck_You_Anonymous (u"ࠧࡓࡧࡩࡩࡷ࡫ࡲࠨࣇ"):l111lllFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡗࡶࡩࡷ࠳ࡁࡨࡧࡱࡸࠬࣈ"):md.User_Agent()}
-	l1ll1l11Fuck_You_Anonymous = open_url(request_url, headers=headers, verify=False).json()
-	l11llllFuck_You_Anonymous = md.regex_get_all(l1ll1l11Fuck_You_Anonymous[l111Fuck_You_Anonymous (u"ࠩ࡫ࡸࡲࡲࠧࣉ")], l111Fuck_You_Anonymous (u"ࠪࡂࡘ࡫ࡲࡷࡧࡵࠤ࠶࠶࠼ࠨ࣊"), l111Fuck_You_Anonymous (u"ࠫࠧࡩ࡬ࡦࡣࡵࡪ࡮ࡾࠢࠨ࣋"))
-	l1l11Fuck_You_Anonymous = md.regex_get_all(str(l11llllFuck_You_Anonymous), l111Fuck_You_Anonymous (u"ࠬࡂࡡࠨ࣌"), l111Fuck_You_Anonymous (u"࠭࠼࠰ࡣࡁࠫ࣍"))
-	items = len(l1l11Fuck_You_Anonymous)
-	for a in l1l11Fuck_You_Anonymous:
-		name = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠧࡵ࡫ࡷࡰࡪࡃࠢࠨ࣎"), l111Fuck_You_Anonymous (u"ࠨࠤ࣏ࠪ"))
-		l1ll11l1Fuck_You_Anonymous = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠩࡧࡥࡹࡧ࠭ࡪࡦࡀ࣐ࠦࠬ"), l111Fuck_You_Anonymous (u"࣑ࠪࠦࠬ"))
-		headers = l111lllFuck_You_Anonymous + l111Fuck_You_Anonymous (u"ࠫࡡࢂ࣒ࠧ") + l1ll11l1Fuck_You_Anonymous + l111Fuck_You_Anonymous (u"ࠬࡢࡼࠨ࣓") + l11ll1lFuck_You_Anonymous
-		url =  l111Fuck_You_Anonymous (u"࠭ࠥࡴ࠱ࡤ࡮ࡦࡾ࠯࡮ࡱࡹ࡭ࡪࡥࡳࡰࡷࡵࡧࡪࡹ࠯ࠦࡵࠪࣔ") %(l11l1l1Fuck_You_Anonymous,l1ll11l1Fuck_You_Anonymous)
+	l111ll1Created_By_Mucky_Duck = url
+	l11ll11Created_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠧࡪࡦ࠽ࠤࠧ࠮࡛࡟ࠤࡠ࠯࠮ࠨࠧࣇ")).findall(link)[0]
+	request_url = l11lCreated_By_Mucky_Duck (u"ࠨࠧࡶ࠳ࡦࡰࡡࡹ࠱ࡰࡳࡻ࡯ࡥࡠࡧࡳ࡭ࡸࡵࡤࡦࡵ࠲ࠩࡸ࠭ࣈ") %(l11l11lCreated_By_Mucky_Duck,l11ll11Created_By_Mucky_Duck)
+	headers = {l11lCreated_By_Mucky_Duck (u"ࠩࡄࡧࡨ࡫ࡰࡵ࠯ࡈࡲࡨࡵࡤࡪࡰࡪࠫࣉ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡫ࡿ࡯ࡰ࠭ࠢࡧࡩ࡫ࡲࡡࡵࡧ࠯ࠤࡸࡪࡣࡩ࠮ࠣࡦࡷ࠭࣊"), l11lCreated_By_Mucky_Duck (u"ࠫࡗ࡫ࡦࡦࡴࡨࡶࠬ࣋"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"࡛ࠬࡳࡦࡴ࠰ࡅ࡬࡫࡮ࡵࠩ࣌"):md.User_Agent()}
+	l1ll11llCreated_By_Mucky_Duck = open_url(request_url, headers=headers, verify=False).json()
+	l11lll1Created_By_Mucky_Duck = md.regex_get_all(l1ll11llCreated_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"࠭ࡨࡵ࡯࡯ࠫ࣍")], l11lCreated_By_Mucky_Duck (u"ࠧ࠿ࡕࡨࡶࡻ࡫ࡲࠡ࠳࠳ࡀࠬ࣎"), l11lCreated_By_Mucky_Duck (u"ࠨࠤࡦࡰࡪࡧࡲࡧ࡫ࡻ࣏ࠦࠬ"))
+	l1l1lCreated_By_Mucky_Duck = md.regex_get_all(str(l11lll1Created_By_Mucky_Duck), l11lCreated_By_Mucky_Duck (u"ࠩ࠿ࡥ࣐ࠬ"), l11lCreated_By_Mucky_Duck (u"ࠪࡀ࠴ࡧ࠾ࠨ࣑"))
+	items = len(l1l1lCreated_By_Mucky_Duck)
+	for a in l1l1lCreated_By_Mucky_Duck:
+		name = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠫࡹ࡯ࡴ࡭ࡧࡀ࣒ࠦࠬ"), l11lCreated_By_Mucky_Duck (u"ࠬࠨ࣓ࠧ"))
+		name = l111Created_By_Mucky_Duck.unescape(name).replace(l11lCreated_By_Mucky_Duck (u"ࠨ࡜࡝ࠩࠥࣔ"),l11lCreated_By_Mucky_Duck (u"ࠢࠨࠤࣕ"))
+		l1ll111lCreated_By_Mucky_Duck = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠨࡦࡤࡸࡦ࠳ࡩࡥ࠿ࠥࠫࣖ"), l11lCreated_By_Mucky_Duck (u"ࠩࠥࠫࣗ"))
+		headers = l111ll1Created_By_Mucky_Duck + l11lCreated_By_Mucky_Duck (u"ࠪࡠࢁ࠭ࣘ") + l1ll111lCreated_By_Mucky_Duck + l11lCreated_By_Mucky_Duck (u"ࠫࡡࢂࠧࣙ") + l11ll11Created_By_Mucky_Duck
+		url =  l11lCreated_By_Mucky_Duck (u"ࠬࠫࡳ࠰ࡣ࡭ࡥࡽ࠵࡭ࡰࡸ࡬ࡩࡤࡹ࡯ࡶࡴࡦࡩࡸ࠵ࠥࡴࠩࣚ") %(l11l11lCreated_By_Mucky_Duck,l1ll111lCreated_By_Mucky_Duck)
 		try:
-			l1l1llllFuck_You_Anonymous = name.split(l111Fuck_You_Anonymous (u"ࠧࡆࡲ࡬ࡷࡴࡪࡥࠨࣕ"))[1].strip()[:2]
+			l1l1l1llCreated_By_Mucky_Duck = name.split(l11lCreated_By_Mucky_Duck (u"࠭ࡅࡱ࡫ࡶࡳࡩ࡫ࠧࣛ"))[1].strip()[:2]
 		except:pass
-		fan_art = {l111Fuck_You_Anonymous (u"ࠨ࡫ࡦࡳࡳ࠭ࣖ"):l1111lFuck_You_Anonymous}
-		md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࣗ"): l111Fuck_You_Anonymous (u"ࠪ࠻ࠬࣘ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࣙ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࠦࡵ࡞࠳ࡈࡕࡌࡐࡔࡠ࡟࠴ࡈ࡝ࠨࣚ") %name,
-			   l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࣛ"):url, l111Fuck_You_Anonymous (u"ࠧࡪࡥࡲࡲ࡮ࡳࡡࡨࡧࠪࣜ"):l1111lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡥࡲࡲࡹ࡫࡮ࡵࠩࣝ"):l111Fuck_You_Anonymous (u"ࠩࡨࡴ࡮ࡹ࡯ࡥࡧࡶࠫࣞ"), l111Fuck_You_Anonymous (u"ࠪࡵࡺ࡫ࡲࡺࠩࣟ"):headers},
-			  {l111Fuck_You_Anonymous (u"ࠫࡸࡵࡲࡵࡶ࡬ࡸࡱ࡫ࠧ࣠"):title, l111Fuck_You_Anonymous (u"ࠬࡹࡥࡢࡵࡲࡲࠬ࣡"):l11l1llFuck_You_Anonymous, l111Fuck_You_Anonymous (u"࠭ࡥࡱ࡫ࡶࡳࡩ࡫ࠧ࣢"):l1l1llllFuck_You_Anonymous},
+		fan_art = {l11lCreated_By_Mucky_Duck (u"ࠧࡪࡥࡲࡲࠬࣜ"):l111l1Created_By_Mucky_Duck}
+		md.remove_punctuation(title)
+		md.addDir({l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡲࡨࡪ࠭ࣝ"): l11lCreated_By_Mucky_Duck (u"ࠩ࠺ࠫࣞ"), l11lCreated_By_Mucky_Duck (u"ࠪࡲࡦࡳࡥࠨࣟ"):l11lCreated_By_Mucky_Duck (u"ࠫࡠࡈ࡝࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣࠥࡴ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧ࣠") %name,
+			   l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩ࣡"):url, l11lCreated_By_Mucky_Duck (u"࠭ࡩࡤࡱࡱ࡭ࡲࡧࡧࡦࠩ࣢"):l111l1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨࣣ"):l11lCreated_By_Mucky_Duck (u"ࠨࡧࡳ࡭ࡸࡵࡤࡦࡵࠪࣤ"), l11lCreated_By_Mucky_Duck (u"ࠩࡴࡹࡪࡸࡹࠨࣥ"):headers},
+			  {l11lCreated_By_Mucky_Duck (u"ࠪࡷࡴࡸࡴࡵ࡫ࡷࡰࡪࣦ࠭"):title, l11lCreated_By_Mucky_Duck (u"ࠫࡸ࡫ࡡࡴࡱࡱࠫࣧ"):l11l1l1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠬ࡫ࡰࡪࡵࡲࡨࡪ࠭ࣨ"):l1l1l1llCreated_By_Mucky_Duck},
 			  fan_art, is_folder=False, item_count=items)
-	setView(l111l1lFuck_You_Anonymous,l111Fuck_You_Anonymous (u"ࠧࡦࡲ࡬ࡷࡴࡪࡥࡴࣣࠩ"), l111Fuck_You_Anonymous (u"ࠨࡧࡳ࡭࠲ࡼࡩࡦࡹࠪࣤ"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1l1l11lFuck_You_Anonymous(url, content):
-	l11111Fuck_You_Anonymous = md.dialog_select(l111Fuck_You_Anonymous (u"ࠩࡖࡩࡱ࡫ࡣࡵࠢࡖࡳࡷࡺࠠࡎࡧࡷ࡬ࡴࡪࠧࣥ"),sort)
-	l111ll1Fuck_You_Anonymous = l1111Fuck_You_Anonymous[l11111Fuck_You_Anonymous]
+	setView(l111l11Created_By_Mucky_Duck,l11lCreated_By_Mucky_Duck (u"࠭ࡥࡱ࡫ࡶࡳࡩ࡫ࡳࠨࣩ"), l11lCreated_By_Mucky_Duck (u"ࠧࡦࡲ࡬࠱ࡻ࡯ࡥࡸࠩ࣪"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1l11l11Created_By_Mucky_Duck(url, content):
+	l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠨࡕࡨࡰࡪࡩࡴࠡࡕࡲࡶࡹࠦࡍࡦࡶ࡫ࡳࡩ࠭࣫"),sort)
+	l111l1lCreated_By_Mucky_Duck = l111lCreated_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
 	link = open_url(url,verify=False).content
-	match = re.compile(l111Fuck_You_Anonymous (u"ࠪࡀ࡮ࡴࡰࡶࡶࠣࡧࡱࡧࡳࡴ࠿ࠥ࡫ࡪࡴࡲࡦ࠯࡬ࡨࡸࠨࠠࡷࡣ࡯ࡹࡪࡃࠢࠩ࠰࠭ࡃ࠮ࠨࠠ࡯ࡣࡰࡩࡂࠨ࠮ࠫࡁࠥࡠࡳ࠴ࠪࡀࡶࡼࡴࡪࡃࠢࡤࡪࡨࡧࡰࡨ࡯ࡹࠤࠣࡂ࠭࠴ࠪࡀࠫ࠿࠳ࡱࡧࡢࡦ࡮ࡁࣦࠫ")).findall(link)
-	for l1lll1lFuck_You_Anonymous,name in match:
-		name = name.replace(l111Fuck_You_Anonymous (u"ࠫࠥ࠭ࣧ"),l111Fuck_You_Anonymous (u"ࠬ࠭ࣨ"))
-		if content == l111Fuck_You_Anonymous (u"࠭ࡴࡷࡵ࡫ࡳࡼࡹࣩࠧ"):
-			url = l111Fuck_You_Anonymous (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳ࠱ࡶࡩࡷ࡯ࡥࡴ࠱ࠨࡷ࠴ࠫࡳ࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࠪ࣪") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l1lll1lFuck_You_Anonymous)
-			md.addDir({l111Fuck_You_Anonymous (u"ࠨ࡯ࡲࡨࡪ࠭࣫"): l111Fuck_You_Anonymous (u"ࠩ࠵ࠫ࣬"), l111Fuck_You_Anonymous (u"ࠪࡲࡦࡳࡥࠨ࣭"):l111Fuck_You_Anonymous (u"ࠫࡠࡈ࡝࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣࠥࡴ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣ࣮ࠧ") %name, l111Fuck_You_Anonymous (u"ࠬࡻࡲ࡭࣯ࠩ"):url, l111Fuck_You_Anonymous (u"࠭ࡣࡰࡰࡷࡩࡳࡺࣰࠧ"):content})
-		elif content == l111Fuck_You_Anonymous (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࣱࠧ"):
-			url = l111Fuck_You_Anonymous (u"ࠨࠧࡶ࠳ࡲࡵࡶࡪࡧ࠲ࡪ࡮ࡲࡴࡦࡴ࠲ࡱࡴࡼࡩࡦ࠱ࠨࡷ࠴ࠫࡳ࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࣲࠪ") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l1lll1lFuck_You_Anonymous)
-			md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧࣳ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬࣴ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩࣵ"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࠦࡵ࡞࠳ࡈࡕࡌࡐࡔࡠ࡟࠴ࡈ࡝ࠨࣶ") %name, l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪࣷ"):url, l111Fuck_You_Anonymous (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨࣸ"):content})
-	setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡨ࡬ࡰࡪࡹࣹࠧ"), l111Fuck_You_Anonymous (u"ࠩࡰࡩࡳࡻ࠭ࡷ࡫ࡨࡻࣺࠬ"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1llllFuck_You_Anonymous(url, content):
-	l11111Fuck_You_Anonymous = md.dialog_select(l111Fuck_You_Anonymous (u"ࠪࡗࡪࡲࡥࡤࡶࠣࡗࡴࡸࡴࠡࡏࡨࡸ࡭ࡵࡤࠨࣻ"),sort)
-	l111ll1Fuck_You_Anonymous = l1111Fuck_You_Anonymous[l11111Fuck_You_Anonymous]
-	l11l11Fuck_You_Anonymous = md.numeric_select(l111Fuck_You_Anonymous (u"ࠫࡊࡴࡴࡦࡴࠣ࡝ࡪࡧࡲࠨࣼ"), l111Fuck_You_Anonymous (u"ࠬ࠸࠰࠲࠹ࠪࣽ"))
-	if content == l111Fuck_You_Anonymous (u"࠭ࡴࡷࡵ࡫ࡳࡼࡹࠧࣾ"):
-		l1l111Fuck_You_Anonymous(l111Fuck_You_Anonymous (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳ࠱ࡶࡩࡷ࡯ࡥࡴ࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࠥࡴ࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࠪࣿ") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l11l11Fuck_You_Anonymous), content)
-	elif content == l111Fuck_You_Anonymous (u"ࠨ࡯ࡲࡺ࡮࡫ࡳࠨऀ"):
-		l1l111Fuck_You_Anonymous(l111Fuck_You_Anonymous (u"ࠩࠨࡷ࠴ࡳ࡯ࡷ࡫ࡨ࠳࡫࡯࡬ࡵࡧࡵ࠳ࡲࡵࡶࡪࡧ࠲ࠩࡸ࠵ࡡ࡭࡮࠲ࡥࡱࡲ࠯ࠦࡵ࠲ࡥࡱࡲ࠯ࡢ࡮࡯ࠫँ") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l11l11Fuck_You_Anonymous), content)
-	setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠪࡪ࡮ࡲࡥࡴࠩं"), l111Fuck_You_Anonymous (u"ࠫࡲ࡫࡮ࡶ࠯ࡹ࡭ࡪࡽࠧः"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1l1llFuck_You_Anonymous():
-	link = open_url(l111Fuck_You_Anonymous (u"ࠬ࡮ࡴࡵࡲࡶ࠾࠴࠵ࡰࡢࡵࡷࡩࡧ࡯࡮࠯ࡥࡲࡱ࠴ࡸࡡࡸ࠱ࡆࡪ࠹ࡉ࠳ࡶࡊ࠴ࠫऄ")).content
-	version = re.findall(l111Fuck_You_Anonymous (u"ࡸࠧࡷࡧࡵࡷ࡮ࡵ࡮ࠡ࠿ࠣࠦ࠭ࡡ࡞ࠣ࡟࠮࠭ࠧ࠭अ"), str(link), re.I|re.DOTALL)[0]
-	with open(xbmc.translatePath(l111Fuck_You_Anonymous (u"ࠧࡴࡲࡨࡧ࡮ࡧ࡬࠻࠱࠲࡬ࡴࡳࡥ࠰ࡣࡧࡨࡴࡴࡳ࠰ࡵࡦࡶ࡮ࡶࡴ࠯࡯ࡲࡨࡺࡲࡥ࠯࡯ࡸࡧࡰࡿࡳ࠯ࡥࡲࡱࡲࡵ࡮࠰ࡣࡧࡨࡴࡴ࠮ࡹ࡯࡯ࠫआ")), l111Fuck_You_Anonymous (u"ࠨࡴ࠮ࠫइ")) as f:
-		l1lllllFuck_You_Anonymous = f.read()
-		if re.search(l111Fuck_You_Anonymous (u"ࡴࠪࡺࡪࡸࡳࡪࡱࡱࡁࠧࠫࡳࠣࠩई") %version, l1lllllFuck_You_Anonymous):
-			l1lllFuck_You_Anonymous.log(l111Fuck_You_Anonymous (u"࡚ࠪࡪࡸࡳࡪࡱࡱࠤࡈ࡮ࡥࡤ࡭ࠣࡓࡐ࠭उ"))
+	match = re.compile(l11lCreated_By_Mucky_Duck (u"ࠩ࠿࡭ࡳࡶࡵࡵࠢࡦࡰࡦࡹࡳ࠾ࠤࡪࡩࡳࡸࡥ࠮࡫ࡧࡷࠧࠦࡶࡢ࡮ࡸࡩࡂࠨࠨ࠯ࠬࡂ࠭ࠧࠦ࡮ࡢ࡯ࡨࡁࠧ࠴ࠪࡀࠤ࡟ࡲ࠳࠰࠿ࡵࡻࡳࡩࡂࠨࡣࡩࡧࡦ࡯ࡧࡵࡸࠣࠢࡁࠬ࠳࠰࠿ࠪ࠾࠲ࡰࡦࡨࡥ࡭ࡀࠪ࣬")).findall(link)
+	for l1lll1lCreated_By_Mucky_Duck,name in match:
+		name = name.replace(l11lCreated_By_Mucky_Duck (u"ࠪࠤ࣭ࠬ"),l11lCreated_By_Mucky_Duck (u"࣮ࠫࠬ"))
+		if content == l11lCreated_By_Mucky_Duck (u"ࠬࡺࡶࡴࡪࡲࡻࡸ࣯࠭"):
+			url = l11lCreated_By_Mucky_Duck (u"࠭ࠥࡴ࠱ࡰࡳࡻ࡯ࡥ࠰ࡨ࡬ࡰࡹ࡫ࡲ࠰ࡵࡨࡶ࡮࡫ࡳ࠰ࠧࡶ࠳ࠪࡹ࠯ࡢ࡮࡯࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭ࣰࠩ") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l1lll1lCreated_By_Mucky_Duck)
+			md.addDir({l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡧࡩࣱࠬ"): l11lCreated_By_Mucky_Duck (u"ࠨ࠴ࣲࠪ"), l11lCreated_By_Mucky_Duck (u"ࠩࡱࡥࡲ࡫ࠧࣳ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡟ࡇࡣ࡛ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࠫࡳ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ࣴ") %name, l11lCreated_By_Mucky_Duck (u"ࠫࡺࡸ࡬ࠨࣵ"):url, l11lCreated_By_Mucky_Duck (u"ࠬࡩ࡯࡯ࡶࡨࡲࡹࣶ࠭"):content})
+		elif content == l11lCreated_By_Mucky_Duck (u"࠭࡭ࡰࡸ࡬ࡩࡸ࠭ࣷ"):
+			url = l11lCreated_By_Mucky_Duck (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳ࠱ࡰࡳࡻ࡯ࡥ࠰ࠧࡶ࠳ࠪࡹ࠯ࡢ࡮࡯࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭ࠩࣸ") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l1lll1lCreated_By_Mucky_Duck)
+			md.addDir({l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡲࡨࡪࣹ࠭"): l11lCreated_By_Mucky_Duck (u"ࠩ࠵ࣺࠫ"), l11lCreated_By_Mucky_Duck (u"ࠪࡲࡦࡳࡥࠨࣻ"):l11lCreated_By_Mucky_Duck (u"ࠫࡠࡈ࡝࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣࠥࡴ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧࣼ") %name, l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩࣽ"):url, l11lCreated_By_Mucky_Duck (u"࠭ࡣࡰࡰࡷࡩࡳࡺࠧࣾ"):content})
+	setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡧ࡫࡯ࡩࡸ࠭ࣿ"), l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡨࡲࡺ࠳ࡶࡪࡧࡺࠫऀ"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1111Created_By_Mucky_Duck(url, content):
+	l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠩࡖࡩࡱ࡫ࡣࡵࠢࡖࡳࡷࡺࠠࡎࡧࡷ࡬ࡴࡪࠧँ"),sort)
+	l111l1lCreated_By_Mucky_Duck = l111lCreated_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
+	l11l1lCreated_By_Mucky_Duck = md.numeric_select(l11lCreated_By_Mucky_Duck (u"ࠪࡉࡳࡺࡥࡳࠢ࡜ࡩࡦࡸࠧं"), l11lCreated_By_Mucky_Duck (u"ࠫ࠷࠶࠱࠸ࠩः"))
+	if content == l11lCreated_By_Mucky_Duck (u"ࠬࡺࡶࡴࡪࡲࡻࡸ࠭ऄ"):
+		l1l11lCreated_By_Mucky_Duck(l11lCreated_By_Mucky_Duck (u"࠭ࠥࡴ࠱ࡰࡳࡻ࡯ࡥ࠰ࡨ࡬ࡰࡹ࡫ࡲ࠰ࡵࡨࡶ࡮࡫ࡳ࠰ࠧࡶ࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࠫࡳ࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭ࠩअ") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l11l1lCreated_By_Mucky_Duck), content)
+	elif content == l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࠧआ"):
+		l1l11lCreated_By_Mucky_Duck(l11lCreated_By_Mucky_Duck (u"ࠨࠧࡶ࠳ࡲࡵࡶࡪࡧ࠲ࡪ࡮ࡲࡴࡦࡴ࠲ࡱࡴࡼࡩࡦ࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࠥࡴ࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࠪइ") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l11l1lCreated_By_Mucky_Duck), content)
+	setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠩࡩ࡭ࡱ࡫ࡳࠨई"), l11lCreated_By_Mucky_Duck (u"ࠪࡱࡪࡴࡵ࠮ࡸ࡬ࡩࡼ࠭उ"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1ll11Created_By_Mucky_Duck():
+	link = open_url(l11lCreated_By_Mucky_Duck (u"ࠫ࡭ࡺࡴࡱࡵ࠽࠳࠴ࡶࡡࡴࡶࡨࡦ࡮ࡴ࠮ࡤࡱࡰ࠳ࡷࡧࡷ࠰ࡅࡩ࠸ࡈ࠹ࡵࡉ࠳ࠪऊ")).content
+	version = re.findall(l11lCreated_By_Mucky_Duck (u"ࡷ࠭ࡶࡦࡴࡶ࡭ࡴࡴࠠ࠾ࠢࠥࠬࡠࡤࠢ࡞࠭ࠬࠦࠬऋ"), str(link), re.I|re.DOTALL)[0]
+	with open(xbmc.translatePath(l11lCreated_By_Mucky_Duck (u"࠭ࡳࡱࡧࡦ࡭ࡦࡲ࠺࠰࠱࡫ࡳࡲ࡫࠯ࡢࡦࡧࡳࡳࡹ࠯ࡴࡥࡵ࡭ࡵࡺ࠮࡮ࡱࡧࡹࡱ࡫࠮࡮ࡷࡦ࡯ࡾࡹ࠮ࡤࡱࡰࡱࡴࡴ࠯ࡢࡦࡧࡳࡳ࠴ࡸ࡮࡮ࠪऌ")), l11lCreated_By_Mucky_Duck (u"ࠧࡳ࠭ࠪऍ")) as f:
+		l11111Created_By_Mucky_Duck = f.read()
+		if re.search(l11lCreated_By_Mucky_Duck (u"ࡳࠩࡹࡩࡷࡹࡩࡰࡰࡀࠦࠪࡹࠢࠨऎ") %version, l11111Created_By_Mucky_Duck):
+			l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"࡙ࠩࡩࡷࡹࡩࡰࡰࠣࡇ࡭࡫ࡣ࡬ࠢࡒࡏࠬए"))
 		else:
-			l1lFuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠦ࡜ࡸ࡯࡯ࡩ࡚ࠣࡪࡸࡳࡪࡱࡱࠤࡔ࡬ࠠࡎࡷࡦ࡯ࡾࡹࠠࡄࡱࡰࡱࡴࡴࠠࡎࡱࡧࡹࡱ࡫ࠢऊ")
-			l1lll11lFuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠧࡖ࡬ࡦࡣࡶࡩࠥࡏ࡮ࡴࡶࡤࡰࡱࠦࡃࡰࡴࡵࡩࡨࡺࠠࡗࡧࡵࡷ࡮ࡵ࡮ࠡࡈࡵࡳࡲࠦࡔࡩࡧࠣࡖࡪࡶ࡯ࠣऋ")
-			l1lll1l1Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠨࡀ࡜ࡅࡒࡐࡔࡘࠠࡳࡧࡧࡡ࡭ࡺࡴࡱ࠼࠲࠳ࡲࡻࡣ࡬ࡻࡶ࠲ࡲ࡫ࡤࡪࡣࡳࡳࡷࡺࡡ࡭࠶࡮ࡳࡩ࡯࠮࡮࡮࡞࠳ࡈࡕࡌࡐࡔࡠࠦऌ")
-			l1lllFuck_You_Anonymous.show_ok_dialog([l1lFuck_You_Anonymous, l1lll11lFuck_You_Anonymous, l1lll1l1Fuck_You_Anonymous], l1l1lFuck_You_Anonymous)
-			xbmc.executebuiltin(l111Fuck_You_Anonymous (u"࡙ࠢࡄࡐࡇ࠳ࡉ࡯࡯ࡶࡤ࡭ࡳ࡫ࡲ࠯ࡗࡳࡨࡦࡺࡥࠩࡲࡤࡸ࡭࠲ࡲࡦࡲ࡯ࡥࡨ࡫ࠩࠣऍ"))
-			xbmc.executebuiltin(l111Fuck_You_Anonymous (u"࡚ࠣࡅࡑࡈ࠴ࡁࡤࡶ࡬ࡺࡦࡺࡥࡘ࡫ࡱࡨࡴࡽࠨࡉࡱࡰࡩ࠮ࠨऎ"))
-def l11ll1Fuck_You_Anonymous(url, content):
-	l11111Fuck_You_Anonymous = md.dialog_select(l111Fuck_You_Anonymous (u"ࠩࡖࡩࡱ࡫ࡣࡵࠢࡖࡳࡷࡺࠠࡎࡧࡷ࡬ࡴࡪࠧए"),sort)
-	l111ll1Fuck_You_Anonymous = l1111Fuck_You_Anonymous[l11111Fuck_You_Anonymous]
+			l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"࡛ࠥࡷࡵ࡮ࡨ࡙ࠢࡩࡷࡹࡩࡰࡰࠣࡓ࡫ࠦࡍࡶࡥ࡮ࡽࡸࠦࡃࡰ࡯ࡰࡳࡳࠦࡍࡰࡦࡸࡰࡪࠨऐ")
+			l1lll111Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠦࡕࡲࡥࡢࡵࡨࠤࡎࡴࡳࡵࡣ࡯ࡰࠥࡉ࡯ࡳࡴࡨࡧࡹࠦࡖࡦࡴࡶ࡭ࡴࡴࠠࡇࡴࡲࡱ࡚ࠥࡨࡦࠢࡕࡩࡵࡵࠢऑ")
+			l1lll11lCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧࡆ࡛ࡄࡑࡏࡓࡗࠦࡲࡦࡦࡠ࡬ࡹࡺࡰ࠻࠱࠲ࡱࡺࡩ࡫ࡺࡵ࠱ࡱࡪࡪࡩࡢࡲࡲࡶࡹࡧ࡬࠵࡭ࡲࡨ࡮࠴࡭࡭࡝࠲ࡇࡔࡒࡏࡓ࡟ࠥऒ")
+			l111Created_By_Mucky_Duck.show_ok_dialog([l1Created_By_Mucky_Duck, l1lll111Created_By_Mucky_Duck, l1lll11lCreated_By_Mucky_Duck], l1ll1Created_By_Mucky_Duck)
+			xbmc.executebuiltin(l11lCreated_By_Mucky_Duck (u"ࠨࡘࡃࡏࡆ࠲ࡈࡵ࡮ࡵࡣ࡬ࡲࡪࡸ࠮ࡖࡲࡧࡥࡹ࡫ࠨࡱࡣࡷ࡬࠱ࡸࡥࡱ࡮ࡤࡧࡪ࠯ࠢओ"))
+			xbmc.executebuiltin(l11lCreated_By_Mucky_Duck (u"࡙ࠢࡄࡐࡇ࠳ࡇࡣࡵ࡫ࡹࡥࡹ࡫ࡗࡪࡰࡧࡳࡼ࠮ࡈࡰ࡯ࡨ࠭ࠧऔ"))
+def l11lllCreated_By_Mucky_Duck(url, content):
+	l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠨࡕࡨࡰࡪࡩࡴࠡࡕࡲࡶࡹࠦࡍࡦࡶ࡫ࡳࡩ࠭क"),sort)
+	l111l1lCreated_By_Mucky_Duck = l111lCreated_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
 	link = open_url(url,verify=False).content
-	match=re.compile(l111Fuck_You_Anonymous (u"ࠪࡀ࡮ࡴࡰࡶࡶࠣࡧࡱࡧࡳࡴ࠿ࠥࡧࡴࡻ࡮ࡵࡴࡼ࠱࡮ࡪࡳࠣࠢࡹࡥࡱࡻࡥ࠾ࠤࠫ࠲࠯ࡅࠩࠣࠢࡱࡥࡲ࡫࠽ࠣ࠰࠭ࡃࠧࡢ࡮࠯ࠬࡂࡸࡾࡶࡥ࠾ࠤࡦ࡬ࡪࡩ࡫ࡣࡱࡻࠦࠥࡄࠨ࠯ࠬࡂ࠭ࡁ࠵࡬ࡢࡤࡨࡰࡃ࠭ऐ")).findall(link)
-	for l1ll1llFuck_You_Anonymous,name in match:
-		name = name.replace(l111Fuck_You_Anonymous (u"ࠫࠥ࠭ऑ"),l111Fuck_You_Anonymous (u"ࠬ࠭ऒ"))
-		if content == l111Fuck_You_Anonymous (u"࠭ࡴࡷࡵ࡫ࡳࡼࡹࠧओ"):
-			url = l111Fuck_You_Anonymous (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳ࠱ࡶࡩࡷ࡯ࡥࡴ࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࠪऔ") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l1ll1llFuck_You_Anonymous)
-			md.addDir({l111Fuck_You_Anonymous (u"ࠨ࡯ࡲࡨࡪ࠭क"): l111Fuck_You_Anonymous (u"ࠩ࠵ࠫख"), l111Fuck_You_Anonymous (u"ࠪࡲࡦࡳࡥࠨग"):l111Fuck_You_Anonymous (u"ࠫࡠࡈ࡝࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣࠥࡴ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧघ") %name, l111Fuck_You_Anonymous (u"ࠬࡻࡲ࡭ࠩङ"):url, l111Fuck_You_Anonymous (u"࠭ࡣࡰࡰࡷࡩࡳࡺࠧच"):content})
-		elif content == l111Fuck_You_Anonymous (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࠧछ"):
-			url = l111Fuck_You_Anonymous (u"ࠨࠧࡶ࠳ࡲࡵࡶࡪࡧ࠲ࡪ࡮ࡲࡴࡦࡴ࠲ࡱࡴࡼࡩࡦ࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࠨࡷ࠴ࡧ࡬࡭࠱ࡤࡰࡱ࠵ࡡ࡭࡮ࠪज") %(l11l1l1Fuck_You_Anonymous,l111ll1Fuck_You_Anonymous,l1ll1llFuck_You_Anonymous)
-			md.addDir({l111Fuck_You_Anonymous (u"ࠩࡰࡳࡩ࡫ࠧझ"): l111Fuck_You_Anonymous (u"ࠪ࠶ࠬञ"), l111Fuck_You_Anonymous (u"ࠫࡳࡧ࡭ࡦࠩट"):l111Fuck_You_Anonymous (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝ࠦࡵ࡞࠳ࡈࡕࡌࡐࡔࡠ࡟࠴ࡈ࡝ࠨठ") %name, l111Fuck_You_Anonymous (u"࠭ࡵࡳ࡮ࠪड"):url, l111Fuck_You_Anonymous (u"ࠧࡤࡱࡱࡸࡪࡴࡴࠨढ"):content})
-	setView(l111l1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡨ࡬ࡰࡪࡹࠧण"), l111Fuck_You_Anonymous (u"ࠩࡰࡩࡳࡻ࠭ࡷ࡫ࡨࡻࠬत"))
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l111llFuck_You_Anonymous(content, query):
+	match=re.compile(l11lCreated_By_Mucky_Duck (u"ࠩ࠿࡭ࡳࡶࡵࡵࠢࡦࡰࡦࡹࡳ࠾ࠤࡦࡳࡺࡴࡴࡳࡻ࠰࡭ࡩࡹࠢࠡࡸࡤࡰࡺ࡫࠽ࠣࠪ࠱࠮ࡄ࠯ࠢࠡࡰࡤࡱࡪࡃࠢ࠯ࠬࡂࠦࡡࡴ࠮ࠫࡁࡷࡽࡵ࡫࠽ࠣࡥ࡫ࡩࡨࡱࡢࡰࡺࠥࠤࡃ࠮࠮ࠫࡁࠬࡀ࠴ࡲࡡࡣࡧ࡯ࡂࠬख")).findall(link)
+	for l1ll1llCreated_By_Mucky_Duck,name in match:
+		name = name.replace(l11lCreated_By_Mucky_Duck (u"ࠪࠤࠬग"),l11lCreated_By_Mucky_Duck (u"ࠫࠬघ"))
+		if content == l11lCreated_By_Mucky_Duck (u"ࠬࡺࡶࡴࡪࡲࡻࡸ࠭ङ"):
+			url = l11lCreated_By_Mucky_Duck (u"࠭ࠥࡴ࠱ࡰࡳࡻ࡯ࡥ࠰ࡨ࡬ࡰࡹ࡫ࡲ࠰ࡵࡨࡶ࡮࡫ࡳ࠰ࠧࡶ࠳ࡦࡲ࡬࠰ࠧࡶ࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭ࠩच") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l1ll1llCreated_By_Mucky_Duck)
+			md.addDir({l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡧࡩࠬछ"): l11lCreated_By_Mucky_Duck (u"ࠨ࠴ࠪज"), l11lCreated_By_Mucky_Duck (u"ࠩࡱࡥࡲ࡫ࠧझ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡟ࡇࡣ࡛ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࠫࡳ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ञ") %name, l11lCreated_By_Mucky_Duck (u"ࠫࡺࡸ࡬ࠨट"):url, l11lCreated_By_Mucky_Duck (u"ࠬࡩ࡯࡯ࡶࡨࡲࡹ࠭ठ"):content})
+		elif content == l11lCreated_By_Mucky_Duck (u"࠭࡭ࡰࡸ࡬ࡩࡸ࠭ड"):
+			url = l11lCreated_By_Mucky_Duck (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡩ࡭ࡱࡺࡥࡳ࠱ࡰࡳࡻ࡯ࡥ࠰ࠧࡶ࠳ࡦࡲ࡬࠰ࠧࡶ࠳ࡦࡲ࡬࠰ࡣ࡯ࡰ࠴ࡧ࡬࡭ࠩढ") %(l11l11lCreated_By_Mucky_Duck,l111l1lCreated_By_Mucky_Duck,l1ll1llCreated_By_Mucky_Duck)
+			md.addDir({l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡲࡨࡪ࠭ण"): l11lCreated_By_Mucky_Duck (u"ࠩ࠵ࠫत"), l11lCreated_By_Mucky_Duck (u"ࠪࡲࡦࡳࡥࠨथ"):l11lCreated_By_Mucky_Duck (u"ࠫࡠࡈ࡝࡜ࡅࡒࡐࡔࡘࠠࡸࡪ࡬ࡸࡪࡣࠥࡴ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣࠧद") %name, l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠩध"):url, l11lCreated_By_Mucky_Duck (u"࠭ࡣࡰࡰࡷࡩࡳࡺࠧन"):content})
+	setView(l111l11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡧ࡫࡯ࡩࡸ࠭ऩ"), l11lCreated_By_Mucky_Duck (u"ࠨ࡯ࡨࡲࡺ࠳ࡶࡪࡧࡺࠫप"))
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l11l11Created_By_Mucky_Duck(content, query):
 	try:
 		if query:
-			search = query.replace(l111Fuck_You_Anonymous (u"ࠪࠤࠬथ"),l111Fuck_You_Anonymous (u"ࠫ࠰࠭द"))
+			search = query.replace(l11lCreated_By_Mucky_Duck (u"ࠩࠣࠫफ"),l11lCreated_By_Mucky_Duck (u"ࠪ࠯ࠬब"))
 		else:
 			search = md.search()
-			if search == l111Fuck_You_Anonymous (u"ࠬ࠭ध"):
-				md.notification(l111Fuck_You_Anonymous (u"࡛࠭ࡄࡑࡏࡓࡗࠦࡧࡰ࡮ࡧࡡࡠࡈ࡝ࡆࡏࡓࡘ࡞ࠦࡑࡖࡇࡕ࡝ࡠ࠵ࡂ࡞࡝࠲ࡇࡔࡒࡏࡓ࡟࠯ࡅࡧࡵࡲࡵ࡫ࡱ࡫ࠥࡹࡥࡢࡴࡦ࡬ࠬन"),l1ll1111Fuck_You_Anonymous)
+			if search == l11lCreated_By_Mucky_Duck (u"ࠫࠬभ"):
+				md.notification(l11lCreated_By_Mucky_Duck (u"ࠬࡡࡃࡐࡎࡒࡖࠥ࡭࡯࡭ࡦࡠ࡟ࡇࡣࡅࡎࡒࡗ࡝ࠥࡗࡕࡆࡔ࡜࡟࠴ࡈ࡝࡜࠱ࡆࡓࡑࡕࡒ࡞࠮ࡄࡦࡴࡸࡴࡪࡰࡪࠤࡸ࡫ࡡࡳࡥ࡫ࠫम"),l1l1ll11Created_By_Mucky_Duck)
 				return
 			else:
 				pass
-		url = l111Fuck_You_Anonymous (u"ࠧࠦࡵ࠲ࡱࡴࡼࡩࡦ࠱ࡶࡩࡦࡸࡣࡩ࠱ࠨࡷࠬऩ") %(l11l1l1Fuck_You_Anonymous,search)
-		l1l111Fuck_You_Anonymous(url,content)
+		url = l11lCreated_By_Mucky_Duck (u"࠭ࠥࡴ࠱ࡰࡳࡻ࡯ࡥ࠰ࡵࡨࡥࡷࡩࡨ࠰ࠧࡶࠫय") %(l11l11lCreated_By_Mucky_Duck,search)
+		l1l11lCreated_By_Mucky_Duck(url,content)
 	except:
-		md.notification(l111Fuck_You_Anonymous (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡩࡲࡰࡩࡣ࡛ࡃ࡟ࡖࡳࡷࡸࡹࠡࡐࡲࠤࡗ࡫ࡳࡶ࡮ࡷࡷࡠ࠵ࡂ࡞࡝࠲ࡇࡔࡒࡏࡓ࡟ࠪप"),l1ll1111Fuck_You_Anonymous)
-def l1ll11Fuck_You_Anonymous(url,name,l1111lFuck_You_Anonymous,content,l1ll1lFuck_You_Anonymous,query):
-	if content == l111Fuck_You_Anonymous (u"ࠩࡰࡳࡻ࡯ࡥࡴࠩफ"):
-		link = open_url(url,verify=False).content
-		l111lllFuck_You_Anonymous = url
-		headers = {l111Fuck_You_Anonymous (u"࡙ࠪࡸ࡫ࡲ࠮ࡃࡪࡩࡳࡺࠧब"):md.User_Agent()}
-		link = open_url(url, headers=headers).content
-		l11ll1lFuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠫ࡮ࡪ࠺ࠡࠤࠫ࡟ࡣࠨ࡝ࠬࠫࠥࠫभ")).findall(link)[0]
-		request_url = l111Fuck_You_Anonymous (u"ࠬࠫࡳ࠰ࡣ࡭ࡥࡽ࠵࡭ࡰࡸ࡬ࡩࡤ࡫ࡰࡪࡵࡲࡨࡪࡹ࠯ࠦࡵࠪम") %(l11l1l1Fuck_You_Anonymous,l11ll1lFuck_You_Anonymous)
-		headers = {l111Fuck_You_Anonymous (u"࠭ࡁࡤࡥࡨࡴࡹ࠳ࡅ࡯ࡥࡲࡨ࡮ࡴࡧࠨय"):l111Fuck_You_Anonymous (u"ࠧࡨࡼ࡬ࡴ࠱ࠦࡤࡦࡨ࡯ࡥࡹ࡫ࠬࠡࡵࡧࡧ࡭࠲ࠠࡣࡴࠪर"), l111Fuck_You_Anonymous (u"ࠨࡔࡨࡪࡪࡸࡥࡳࠩऱ"):l111lllFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠩࡘࡷࡪࡸ࠭ࡂࡩࡨࡲࡹ࠭ल"):md.User_Agent()}
-		l1ll1l11Fuck_You_Anonymous = open_url(request_url, headers=headers, verify=False).json()
-		l1ll11l1Fuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠪࡨࡦࡺࡡ࠮࡫ࡧࡁࠧ࠮࡛࡟ࠤࡠ࠯࠮ࠨࠧळ")).findall(l1ll1l11Fuck_You_Anonymous[l111Fuck_You_Anonymous (u"ࠫ࡭ࡺ࡭࡭ࠩऴ")])[1]
-	else:
-		l1ll1lllFuck_You_Anonymous = re.split(l111Fuck_You_Anonymous (u"ࡷ࠭࡜ࡽࠩव"), str(query), re.I)
-		l111lllFuck_You_Anonymous = l1ll1lllFuck_You_Anonymous[0].replace(l111Fuck_You_Anonymous (u"࠭࡜࡝ࠩश"),l111Fuck_You_Anonymous (u"ࠧࠨष"))
-		l1ll11l1Fuck_You_Anonymous = l1ll1lllFuck_You_Anonymous[1].replace(l111Fuck_You_Anonymous (u"ࠨ࡞࡟ࠫस"),l111Fuck_You_Anonymous (u"ࠩࠪह"))
-		l11ll1lFuck_You_Anonymous = l1ll1lllFuck_You_Anonymous[2].replace(l111Fuck_You_Anonymous (u"ࠪࡠࡡ࠭ऺ"),l111Fuck_You_Anonymous (u"ࠫࠬऻ"))
-	l1lll111Fuck_You_Anonymous = int(time.time() * 10000)
-	l1lll11Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠬࠫࡳ࠰ࡣ࡭ࡥࡽ࠵࡭ࡰࡸ࡬ࡩࡤࡺ࡯࡬ࡧࡱ़ࠫ") %l11l1l1Fuck_You_Anonymous
-	params = {l111Fuck_You_Anonymous (u"࠭ࡥࡪࡦࠪऽ"):l1ll11l1Fuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠧ࡮࡫ࡧࠫा"):l11ll1lFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠨࡡࠪि"):l1lll111Fuck_You_Anonymous}
-	headers = {l111Fuck_You_Anonymous (u"ࠩࡄࡧࡨ࡫ࡰࡵࠩी"):l111Fuck_You_Anonymous (u"ࠪࡸࡪࡾࡴ࠰࡬ࡤࡺࡦࡹࡣࡳ࡫ࡳࡸ࠱ࠦࡡࡱࡲ࡯࡭ࡨࡧࡴࡪࡱࡱ࠳࡯ࡧࡶࡢࡵࡦࡶ࡮ࡶࡴ࠭ࠢࡤࡴࡵࡲࡩࡤࡣࡷ࡭ࡴࡴ࠯ࡦࡥࡰࡥࡸࡩࡲࡪࡲࡷ࠰ࠥࡧࡰࡱ࡮࡬ࡧࡦࡺࡩࡰࡰ࠲ࡼ࠲࡫ࡣ࡮ࡣࡶࡧࡷ࡯ࡰࡵ࠮ࠣ࠮࠴࠰࠻ࠡࡳࡀ࠴࠳࠶࠱ࠨु"),
-		   l111Fuck_You_Anonymous (u"ࠫࡆࡩࡣࡦࡲࡷ࠱ࡊࡴࡣࡰࡦ࡬ࡲ࡬࠭ू"):l111Fuck_You_Anonymous (u"ࠬ࡭ࡺࡪࡲ࠯ࠤࡩ࡫ࡦ࡭ࡣࡷࡩ࠱ࠦࡳࡥࡥ࡫࠰ࠥࡨࡲࠨृ"), l111Fuck_You_Anonymous (u"࠭ࡁࡤࡥࡨࡴࡹ࠳ࡌࡢࡰࡪࡹࡦ࡭ࡥࠨॄ"):l111Fuck_You_Anonymous (u"ࠧࡦࡰ࠰࡙ࡘ࠲ࡥ࡯࠽ࡴࡁ࠵࠴࠸ࠨॅ"),
-		   l111Fuck_You_Anonymous (u"ࠨࡔࡨࡪࡪࡸࡥࡳࠩॆ"):l111lllFuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠩࡘࡷࡪࡸ࠭ࡂࡩࡨࡲࡹ࠭े"):md.User_Agent(), l111Fuck_You_Anonymous (u"ࠪ࡜࠲ࡘࡥࡲࡷࡨࡷࡹ࡫ࡤ࠮࡙࡬ࡸ࡭࠭ै"):l111Fuck_You_Anonymous (u"ࠫ࡝ࡓࡌࡉࡶࡷࡴࡗ࡫ࡱࡶࡧࡶࡸࠬॉ")}
-	data = open_url(l1lll11Fuck_You_Anonymous, params=params, headers=headers, verify=False).content
-	l1l1ll1Fuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠧࡥࡸ࠾ࠩࠫ࡟ࡣ࠭࡝ࠬࠫࠪࠦॊ")).findall(data)[0]
-	l1l1l1lFuck_You_Anonymous = re.compile(l111Fuck_You_Anonymous (u"ࠨ࡟ࡺ࠿ࠪࠬࡠࡤࠧ࡞࠭ࠬࠫࠧो")).findall(data)[0]
-	l1ll111Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠧࠦࡵ࠲ࡥ࡯ࡧࡸ࠰࡯ࡲࡺ࡮࡫࡟ࡴࡱࡸࡶࡨ࡫ࡳ࠰ࠧࡶࠫौ") %(l11l1l1Fuck_You_Anonymous,l1ll11l1Fuck_You_Anonymous)
-	l1Fuck_You_Anonymous = {l111Fuck_You_Anonymous (u"ࠨࡺ्ࠪ"):l1l1ll1Fuck_You_Anonymous, l111Fuck_You_Anonymous (u"ࠩࡼࠫॎ"):l1l1l1lFuck_You_Anonymous}
-	headers = {l111Fuck_You_Anonymous (u"ࠪࡅࡨࡩࡥࡱࡶࠪॏ"):l111Fuck_You_Anonymous (u"ࠫࡦࡶࡰ࡭࡫ࡦࡥࡹ࡯࡯࡯࠱࡭ࡷࡴࡴࠬࠡࡶࡨࡼࡹ࠵ࡪࡢࡸࡤࡷࡨࡸࡩࡱࡶ࠯ࠤ࠯࠵ࠪ࠼ࠢࡴࡁ࠵࠴࠰࠲ࠩॐ"),
-		   l111Fuck_You_Anonymous (u"ࠬࡇࡣࡤࡧࡳࡸ࠲ࡋ࡮ࡤࡱࡧ࡭ࡳ࡭ࠧ॑"):l111Fuck_You_Anonymous (u"࠭ࡧࡻ࡫ࡳ࠰ࠥࡪࡥࡧ࡮ࡤࡸࡪ࠲ࠠࡴࡦࡦ࡬࠱ࠦࡢࡳ॒ࠩ"), l111Fuck_You_Anonymous (u"ࠧࡂࡥࡦࡩࡵࡺ࠭ࡍࡣࡱ࡫ࡺࡧࡧࡦࠩ॓"):l111Fuck_You_Anonymous (u"ࠨࡧࡱ࠱࡚࡙ࠬࡦࡰ࠾ࡵࡂ࠶࠮࠹ࠩ॔"),
-		   l111Fuck_You_Anonymous (u"ࠩࡕࡩ࡫࡫ࡲࡦࡴࠪॕ"):l111lllFuck_You_Anonymous, l111Fuck_You_Anonymous (u"࡙ࠪࡸ࡫ࡲ࠮ࡃࡪࡩࡳࡺࠧॖ"):md.User_Agent(), l111Fuck_You_Anonymous (u"ࠫ࡝࠳ࡒࡦࡳࡸࡩࡸࡺࡥࡥ࠯࡚࡭ࡹ࡮ࠧॗ"):l111Fuck_You_Anonymous (u"ࠬ࡞ࡍࡍࡊࡷࡸࡵࡘࡥࡲࡷࡨࡷࡹ࠭क़")}
-	final = open_url(l1ll111Fuck_You_Anonymous, params=l1Fuck_You_Anonymous, headers=headers, verify=False).json()
-	l1llll1Fuck_You_Anonymous = []
-	l1ll1l1Fuck_You_Anonymous = []
-	l1l11l1Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"࠭ࠧख़")
-	if l1l1l11Fuck_You_Anonymous == l111Fuck_You_Anonymous (u"ࠧࡵࡴࡸࡩࠬग़"):
-		url = max(final[l111Fuck_You_Anonymous (u"ࠨࡲ࡯ࡥࡾࡲࡩࡴࡶࠪज़")][0][l111Fuck_You_Anonymous (u"ࠩࡶࡳࡺࡸࡣࡦࡵࠪड़")], key=lambda l1ll11llFuck_You_Anonymous: int(re.sub(l111Fuck_You_Anonymous (u"ࠪࡠࡉ࠭ढ़"), l111Fuck_You_Anonymous (u"ࠫࠬफ़"), l1ll11llFuck_You_Anonymous[l111Fuck_You_Anonymous (u"ࠬࡲࡡࡣࡧ࡯ࠫय़")])))
-		url = url[l111Fuck_You_Anonymous (u"࠭ࡦࡪ࡮ࡨࠫॠ")]
-	else:
-		match = final[l111Fuck_You_Anonymous (u"ࠧࡱ࡮ࡤࡽࡱ࡯ࡳࡵࠩॡ")][0][l111Fuck_You_Anonymous (u"ࠨࡵࡲࡹࡷࡩࡥࡴࠩॢ")]
-		for a in match:
-			l1l11l1Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠩ࡞ࡆࡢࡡࡉ࡞࡝ࡆࡓࡑࡕࡒࠡࡴࡨࡨࡢࠫࡳ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡍࡢࡡ࠯ࡃ࡟ࠪॣ") %a[l111Fuck_You_Anonymous (u"ࠪࡰࡦࡨࡥ࡭ࠩ।")]
-			l1llll1Fuck_You_Anonymous.append(l1l11l1Fuck_You_Anonymous)
-			l1ll1l1Fuck_You_Anonymous.append(a[l111Fuck_You_Anonymous (u"ࠫ࡫࡯࡬ࡦࠩ॥")])
-		if len(match) >1:
-			l11111Fuck_You_Anonymous = md.dialog_select(l111Fuck_You_Anonymous (u"࡙ࠬࡥ࡭ࡧࡦࡸ࡙ࠥࡴࡳࡧࡤࡱࠥࡗࡵࡢ࡮࡬ࡸࡾ࠭०"),l1llll1Fuck_You_Anonymous)
-			if l11111Fuck_You_Anonymous == -1:
-				return
-			elif l11111Fuck_You_Anonymous > -1:
-				url = l1ll1l1Fuck_You_Anonymous[l11111Fuck_You_Anonymous]
-		else:
-			url = final[l111Fuck_You_Anonymous (u"࠭ࡰ࡭ࡣࡼࡰ࡮ࡹࡴࠨ१")][0][l111Fuck_You_Anonymous (u"ࠧࡴࡱࡸࡶࡨ࡫ࡳࠨ२")][0][l111Fuck_You_Anonymous (u"ࠨࡨ࡬ࡰࡪ࠭३")]
-	md.resolved(url, name, fan_art, l1ll1lFuck_You_Anonymous)
-	l1lllFuck_You_Anonymous.end_of_directory()
-def l1l1lll1Fuck_You_Anonymous(url):
-	l1ll111lFuck_You_Anonymous = []
-	l1ll1Fuck_You_Anonymous = []
+		md.notification(l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡅࡒࡐࡔࡘࠠࡨࡱ࡯ࡨࡢࡡࡂ࡞ࡕࡲࡶࡷࡿࠠࡏࡱࠣࡖࡪࡹࡵ࡭ࡶࡶ࡟࠴ࡈ࡝࡜࠱ࡆࡓࡑࡕࡒ࡞ࠩर"),l1l1ll11Created_By_Mucky_Duck)
+def __1l1lll1Created_By_Mucky_Duck(data):
+        l1l1ll1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠨࠩऱ")
+        l1l1l1lCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠩࠪल")
+        try:
+            data = l11lCreated_By_Mucky_Duck (u"ࠪࠬࠬळ") + data.split(l11lCreated_By_Mucky_Duck (u"ࠦ࠭ࡥࠤࠥࠫࠬࠤ࠭࠭࡟ࠨࠫ࠾ࠦऴ"))[0].split(l11lCreated_By_Mucky_Duck (u"ࠧ࠵ࠪࠡࡢࠧࠨࡥࠦࠪ࠰ࠤव"))[-1].strip()
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"࠭ࠨࡠࡡࠧ࠭ࡠࠪࠤࠥ࡟ࠪश"), l11lCreated_By_Mucky_Duck (u"ࠧ࡝ࠩࠥࡠࠬ࠭ष"))
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"ࠨࠪࡢࡣࠩ࠯࡛ࡠࠦࡠࠫस"), l11lCreated_By_Mucky_Duck (u"ࠩࠥࡠࡡࡢ࡜ࠣࠩह"))
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"ࠪࠬࡴࡤ࡟࡟ࡱࠬࠫऺ"), l11lCreated_By_Mucky_Duck (u"ࠫ࠸࠭ऻ"))
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"ࠬ࠮ࡣ࡟ࡡࡡࡳ࠮़࠭"), l11lCreated_By_Mucky_Duck (u"࠭࠰ࠨऽ"))
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"ࠧࠩࡡࠧࠨ࠮࠭ा"), l11lCreated_By_Mucky_Duck (u"ࠨ࠳ࠪि"))
+            data = data.replace(l11lCreated_By_Mucky_Duck (u"ࠩࠫࠨࠩࡥࠩࠨी"), l11lCreated_By_Mucky_Duck (u"ࠪ࠸ࠬु"))
+            code = l11lCreated_By_Mucky_Duck (u"ࠫࠬ࠭ࡤࡦࡨࠣࡶࡪࡺࡁࠩࠫ࠽ࠎࠥࠦࠠࠡࡥ࡯ࡥࡸࡹࠠࡊࡰࡩ࡭ࡽࡀࠊࠡࠢࠣࠤࠥࠦࠠࠡࡦࡨࡪࠥࡥ࡟ࡪࡰ࡬ࡸࡤࡥࠨࡴࡧ࡯ࡪ࠱ࠦࡦࡶࡰࡦࡸ࡮ࡵ࡮ࠪ࠼ࠍࠤࠥࠦࠠࠡࠢࠣࠤࠥࠦࠠࠡࡵࡨࡰ࡫࠴ࡦࡶࡰࡦࡸ࡮ࡵ࡮ࠡ࠿ࠣࡪࡺࡴࡣࡵ࡫ࡲࡲࠏࠦࠠࠡࠢࠣࠤࠥࠦࡤࡦࡨࠣࡣࡤࡸ࡯ࡳࡡࡢࠬࡸ࡫࡬ࡧ࠮ࠣࡳࡹ࡮ࡥࡳࠫ࠽ࠎࠥࠦࠠࠡࠢࠣࠤࠥࠦࠠࠡࠢࡵࡩࡹࡻࡲ࡯ࠢࡌࡲ࡫࡯ࡸࠩ࡮ࡤࡱࡧࡪࡡࠡࡺ࠯ࠤࡸ࡫࡬ࡧ࠿ࡶࡩࡱ࡬ࠬࠡࡱࡷ࡬ࡪࡸ࠽ࡰࡶ࡫ࡩࡷࡀࠠࡴࡧ࡯ࡪ࠳࡬ࡵ࡯ࡥࡷ࡭ࡴࡴࠨࡰࡶ࡫ࡩࡷ࠲ࠠࡹࠫࠬࠎࠥࠦࠠࠡࠢࠣࠤࠥࡪࡥࡧࠢࡢࡣࡴࡸ࡟ࡠࠪࡶࡩࡱ࡬ࠬࠡࡱࡷ࡬ࡪࡸࠩ࠻ࠌࠣࠤࠥࠦࠠࠡࠢࠣࠤࠥࠦࠠࡳࡧࡷࡹࡷࡴࠠࡴࡧ࡯ࡪ࠳࡬ࡵ࡯ࡥࡷ࡭ࡴࡴࠨࡰࡶ࡫ࡩࡷ࠯ࠊࠡࠢࠣࠤࠥࠦࠠࠡࡦࡨࡪࠥࡥ࡟ࡳ࡮ࡶ࡬࡮࡬ࡴࡠࡡࠫࡷࡪࡲࡦ࠭ࠢࡲࡸ࡭࡫ࡲࠪ࠼ࠍࠤࠥࠦࠠࠡࠢࠣࠤࠥࠦࠠࠡࡴࡨࡸࡺࡸ࡮ࠡࡋࡱࡪ࡮ࡾࠨ࡭ࡣࡰࡦࡩࡧࠠࡹ࠮ࠣࡷࡪࡲࡦ࠾ࡵࡨࡰ࡫࠲ࠠࡰࡶ࡫ࡩࡷࡃ࡯ࡵࡪࡨࡶ࠿ࠦࡳࡦ࡮ࡩ࠲࡫ࡻ࡮ࡤࡶ࡬ࡳࡳ࠮࡯ࡵࡪࡨࡶ࠱ࠦࡸࠪࠫࠍࠤࠥࠦࠠࠡࠢࠣࠤࡩ࡫ࡦࠡࡡࡢࡶࡸ࡮ࡩࡧࡶࡢࡣ࠭ࡹࡥ࡭ࡨ࠯ࠤࡴࡺࡨࡦࡴࠬ࠾ࠏࠦࠠࠡࠢࠣࠤࠥࠦࠠࠡࠢࠣࡶࡪࡺࡵࡳࡰࠣࡷࡪࡲࡦ࠯ࡨࡸࡲࡨࡺࡩࡰࡰࠫࡳࡹ࡮ࡥࡳࠫࠍࠤࠥࠦࠠࠡࠢࠣࠤࡩ࡫ࡦࠡࡡࡢࡧࡦࡲ࡬ࡠࡡࠫࡷࡪࡲࡦ࠭ࠢࡹࡥࡱࡻࡥ࠲࠮ࠣࡺࡦࡲࡵࡦ࠴ࠬ࠾ࠏࠦࠠࠡࠢࠣࠤࠥࠦࠠࠡࠢࠣࡶࡪࡺࡵࡳࡰࠣࡷࡪࡲࡦ࠯ࡨࡸࡲࡨࡺࡩࡰࡰࠫࡺࡦࡲࡵࡦ࠳࠯ࠤࡻࡧ࡬ࡶࡧ࠵࠭ࠏࠦࠠࠡࠢࡧࡩ࡫ࠦ࡭ࡺࡡࡤࡨࡩ࠮ࡸ࠭ࠢࡼ࠭࠿ࠐࠠࠡࠢࠣࠤࠥࠦࠠࡵࡴࡼ࠾ࠥࡸࡥࡵࡷࡵࡲࠥࡾࠠࠬࠢࡼࠎࠥࠦࠠࠡࠢࠣࠤࠥ࡫ࡸࡤࡧࡳࡸࠥࡋࡸࡤࡧࡳࡸ࡮ࡵ࡮࠻ࠢࡵࡩࡹࡻࡲ࡯ࠢࡶࡸࡷ࠮ࡸࠪࠢ࠮ࠤࡸࡺࡲࠩࡻࠬࠎࠥࠦࠠࠡࡺࠣࡁࠥࡏ࡮ࡧ࡫ࡻࠬࡲࡿ࡟ࡢࡦࡧ࠭ࠏࠦࠠࠡࠢࡵࡩࡹࡻࡲ࡯ࠢࠨࡷࠏࡶࡡࡳࡣࡰࠤࡂࠦࡲࡦࡶࡄࠬ࠮࠭ࠧࠨू")
+            l1l1l1l1Created_By_Mucky_Duck = {l11lCreated_By_Mucky_Duck (u"ࠧࡥ࡟ࡣࡷ࡬ࡰࡹ࡯࡮ࡴࡡࡢࠦृ"): None, l11lCreated_By_Mucky_Duck (u"࠭࡟ࡠࡰࡤࡱࡪࡥ࡟ࠨॄ"):__name__, l11lCreated_By_Mucky_Duck (u"ࠧࡴࡶࡵࠫॅ"):str, l11lCreated_By_Mucky_Duck (u"ࠨࡇࡻࡧࡪࡶࡴࡪࡱࡱࠫॆ"):Exception}
+            l1l111lCreated_By_Mucky_Duck = { l11lCreated_By_Mucky_Duck (u"ࠩࡳࡥࡷࡧ࡭ࠨे"): None }
+            exec( code % data.replace(l11lCreated_By_Mucky_Duck (u"ࠪ࠯ࠬै"),l11lCreated_By_Mucky_Duck (u"ࠫࢁࡾࡼࠨॉ")), l1l1l1l1Created_By_Mucky_Duck, l1l111lCreated_By_Mucky_Duck)
+            data = l1l111lCreated_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"ࠬࡶࡡࡳࡣࡰࠫॊ")].decode(l11lCreated_By_Mucky_Duck (u"࠭ࡳࡵࡴ࡬ࡲ࡬ࡥࡥࡴࡥࡤࡴࡪ࠭ो"))
+            data = re.compile(l11lCreated_By_Mucky_Duck (u"ࠧࠨࠩࡀ࡟ࠬࠨ࡝ࠩ࡝ࡡࠦࡣ࠭࡝ࠬࡁࠬ࡟ࠬࠨ࡝ࠨࠩࠪौ")).findall(data)
+            l1l1ll1Created_By_Mucky_Duck = data[0]
+            l1l1l1lCreated_By_Mucky_Duck = data[1]
+        except Exception as e:
+            l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"ࠨࡇࡻࡧࡪࡶࡴࡪࡱࡱࠤ࡮ࡴࠠࡹ࠱ࡼࠤࡩ࡫ࡣࡰࡦࡨࠤ࠭࠷ࠩࠨ्"))
+        return {l11lCreated_By_Mucky_Duck (u"ࠩࡻࠫॎ"): x, l11lCreated_By_Mucky_Duck (u"ࠪࡽࠬॏ"): y}
+def __1l1llllCreated_By_Mucky_Duck(script):
+        try:
+            l1lllllCreated_By_Mucky_Duck = jsunfuck.JSUnfuck(script).decode()
+            x = re.search(l11lCreated_By_Mucky_Duck (u"ࠫࠬ࠭࡟ࡹ࠿࡞ࠫࠧࡣࠨ࡜ࡠࠥࠫࡢ࠱ࠩࠨࠩࠪॐ"), l1lllllCreated_By_Mucky_Duck).group(1)
+            y = re.search(l11lCreated_By_Mucky_Duck (u"ࠬ࠭ࠧࡠࡻࡀ࡟ࠬࠨ࡝ࠩ࡝ࡡࠦࠬࡣࠫࠪࠩࠪࠫ॑"), l1lllllCreated_By_Mucky_Duck).group(1)
+            return {l11lCreated_By_Mucky_Duck (u"࠭ࡸࠨ॒"): x, l11lCreated_By_Mucky_Duck (u"ࠧࡺࠩ॓"): y}
+        except Exception as e:
+            l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"ࠨࡇࡻࡧࡪࡶࡴࡪࡱࡱࠤ࡮ࡴࠠࡹ࠱ࡼࠤࡩ࡫ࡣࡰࡦࡨࠤ࠭࠸ࠩࠨ॔"))
+def __1ll1111Created_By_Mucky_Duck(script):
+        try:
+            l1l1ll1Created_By_Mucky_Duck = re.search(l11lCreated_By_Mucky_Duck (u"ࠩࠪࠫࡤࡾ࠽࡜ࠩࠥࡡ࠭ࡡ࡞ࠣࠩࡠ࠯࠮࠭ࠧࠨॕ"), script).group(1)
+            l1l1l1lCreated_By_Mucky_Duck = re.search(l11lCreated_By_Mucky_Duck (u"ࠪࠫࠬࡥࡹ࠾࡝ࠪࠦࡢ࠮࡛࡟ࠤࠪࡡ࠰࠯ࠧࠨࠩॖ"), script).group(1)
+            return {l11lCreated_By_Mucky_Duck (u"ࠫࡽ࠭ॗ"): l1l1ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠬࡿࠧक़"): l1l1l1lCreated_By_Mucky_Duck}
+        except Exception as e:
+            l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"࠭ࡅࡹࡥࡨࡴࡹ࡯࡯࡯ࠢ࡬ࡲࠥࡾࡸ࠰ࡺࡼࠤࡩ࡫ࡣࡰࡦࡨࠤ࠭࠹ࠩࠨख़"))
+def l1ll1lCreated_By_Mucky_Duck(url,name,l111l1Created_By_Mucky_Duck,content,l1lll1Created_By_Mucky_Duck,query):
+        try:
+                if content == l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࠧग़"):
+                        link = open_url(url,verify=False).content
+                        l111ll1Created_By_Mucky_Duck = url
+                        headers = {l11lCreated_By_Mucky_Duck (u"ࠨࡗࡶࡩࡷ࠳ࡁࡨࡧࡱࡸࠬज़"):md.User_Agent()}
+                        link = open_url(url, headers=headers).content
+                        l11ll11Created_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠩ࡬ࡨ࠿ࠦࠢࠩ࡝ࡡࠦࡢ࠱ࠩࠣࠩड़")).findall(link)[0]
+                        request_url = l11lCreated_By_Mucky_Duck (u"ࠪࠩࡸ࠵ࡡ࡫ࡣࡻ࠳ࡲࡵࡶࡪࡧࡢࡩࡵ࡯ࡳࡰࡦࡨࡷ࠴ࠫࡳࠨढ़") %(l11l11lCreated_By_Mucky_Duck,l11ll11Created_By_Mucky_Duck)
+                        headers = {l11lCreated_By_Mucky_Duck (u"ࠫࡆࡩࡣࡦࡲࡷ࠱ࡊࡴࡣࡰࡦ࡬ࡲ࡬࠭फ़"):l11lCreated_By_Mucky_Duck (u"ࠬ࡭ࡺࡪࡲ࠯ࠤࡩ࡫ࡦ࡭ࡣࡷࡩ࠱ࠦࡳࡥࡥ࡫࠰ࠥࡨࡲࠨय़"), l11lCreated_By_Mucky_Duck (u"࠭ࡒࡦࡨࡨࡶࡪࡸࠧॠ"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡖࡵࡨࡶ࠲ࡇࡧࡦࡰࡷࠫॡ"):md.User_Agent()}
+                        l1ll11llCreated_By_Mucky_Duck = open_url(request_url, headers=headers, verify=False).json()
+                        l1ll111lCreated_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠨࡦࡤࡸࡦ࠳ࡩࡥ࠿ࠥࠬࡠࡤࠢ࡞࠭ࠬࠦࠬॢ")).findall(l1ll11llCreated_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"ࠩ࡫ࡸࡲࡲࠧॣ")])[1]
+                else:
+                        l1ll1ll1Created_By_Mucky_Duck = re.split(l11lCreated_By_Mucky_Duck (u"ࡵࠫࡡࢂࠧ।"), str(query), re.I)
+                        l111ll1Created_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[0].replace(l11lCreated_By_Mucky_Duck (u"ࠫࡡࡢࠧ॥"),l11lCreated_By_Mucky_Duck (u"ࠬ࠭०"))
+                        l1ll111lCreated_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[1].replace(l11lCreated_By_Mucky_Duck (u"࠭࡜࡝ࠩ१"),l11lCreated_By_Mucky_Duck (u"ࠧࠨ२"))
+                        l11ll11Created_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[2].replace(l11lCreated_By_Mucky_Duck (u"ࠨ࡞࡟ࠫ३"),l11lCreated_By_Mucky_Duck (u"ࠩࠪ४"))
+                l1ll1lllCreated_By_Mucky_Duck = int(time.time() * 10000)
+                l1lll11Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠪࠩࡸ࠵ࡡ࡫ࡣࡻ࠳ࡲࡵࡶࡪࡧࡢࡸࡴࡱࡥ࡯ࠩ५") %l11l11lCreated_By_Mucky_Duck
+                params = {l11lCreated_By_Mucky_Duck (u"ࠫࡪ࡯ࡤࠨ६"):l1ll111lCreated_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠬࡳࡩࡥࠩ७"):l11ll11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"࠭࡟ࠨ८"):l1ll1lllCreated_By_Mucky_Duck}
+                headers = {l11lCreated_By_Mucky_Duck (u"ࠧࡂࡥࡦࡩࡵࡺࠧ९"):l11lCreated_By_Mucky_Duck (u"ࠨࡶࡨࡼࡹ࠵ࡪࡢࡸࡤࡷࡨࡸࡩࡱࡶ࠯ࠤࡦࡶࡰ࡭࡫ࡦࡥࡹ࡯࡯࡯࠱࡭ࡥࡻࡧࡳࡤࡴ࡬ࡴࡹ࠲ࠠࡢࡲࡳࡰ࡮ࡩࡡࡵ࡫ࡲࡲ࠴࡫ࡣ࡮ࡣࡶࡧࡷ࡯ࡰࡵ࠮ࠣࡥࡵࡶ࡬ࡪࡥࡤࡸ࡮ࡵ࡮࠰ࡺ࠰ࡩࡨࡳࡡࡴࡥࡵ࡭ࡵࡺࠬࠡࠬ࠲࠮ࡀࠦࡱ࠾࠲࠱࠴࠶࠭॰"),
+                           l11lCreated_By_Mucky_Duck (u"ࠩࡄࡧࡨ࡫ࡰࡵ࠯ࡈࡲࡨࡵࡤࡪࡰࡪࠫॱ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡫ࡿ࡯ࡰ࠭ࠢࡧࡩ࡫ࡲࡡࡵࡧ࠯ࠤࡸࡪࡣࡩ࠮ࠣࡦࡷ࠭ॲ"), l11lCreated_By_Mucky_Duck (u"ࠫࡆࡩࡣࡦࡲࡷ࠱ࡑࡧ࡮ࡨࡷࡤ࡫ࡪ࠭ॳ"):l11lCreated_By_Mucky_Duck (u"ࠬ࡫࡮࠮ࡗࡖ࠰ࡪࡴ࠻ࡲ࠿࠳࠲࠽࠭ॴ"),
+                           l11lCreated_By_Mucky_Duck (u"࠭ࡒࡦࡨࡨࡶࡪࡸࠧॵ"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡖࡵࡨࡶ࠲ࡇࡧࡦࡰࡷࠫॶ"):md.User_Agent(), l11lCreated_By_Mucky_Duck (u"ࠨ࡚࠰ࡖࡪࡷࡵࡦࡵࡷࡩࡩ࠳ࡗࡪࡶ࡫ࠫॷ"):l11lCreated_By_Mucky_Duck (u"࡛ࠩࡑࡑࡎࡴࡵࡲࡕࡩࡶࡻࡥࡴࡶࠪॸ")}
+                data = open_url(l1lll11Created_By_Mucky_Duck, params=params, headers=headers, verify=False).content
+                if l11lCreated_By_Mucky_Duck (u"ࠪࠨࡤࠪࠧॹ") in data:
+                    params = __1l1lll1Created_By_Mucky_Duck(data)
+                elif data.startswith(l11lCreated_By_Mucky_Duck (u"ࠫࡠࡣࠧॺ")) and data.endswith(l11lCreated_By_Mucky_Duck (u"ࠬ࠮ࠩࠨॻ")):
+                    params = __1l1llllCreated_By_Mucky_Duck(data)
+                else:
+                    params = __1ll1111Created_By_Mucky_Duck(data)
+                if params is None:
+                    l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"࠭ࡕ࡯ࡴࡨࡧࡴ࡭࡮ࡪࡼࡨࡨࠥࡰࡳࠡ࡫ࡱࠤࠪࡹࠧॼ") % (l1lll11Created_By_Mucky_Duck))
+                l1ll111Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧࠦࡵ࠲ࡥ࡯ࡧࡸ࠰࡯ࡲࡺ࡮࡫࡟ࡴࡱࡸࡶࡨ࡫ࡳ࠰ࠧࡶࠫॽ") %(l11l11lCreated_By_Mucky_Duck,l1ll111lCreated_By_Mucky_Duck)
+                headers = {l11lCreated_By_Mucky_Duck (u"ࠨࡃࡦࡧࡪࡶࡴࠨॾ"):l11lCreated_By_Mucky_Duck (u"ࠩࡤࡴࡵࡲࡩࡤࡣࡷ࡭ࡴࡴ࠯࡫ࡵࡲࡲ࠱ࠦࡴࡦࡺࡷ࠳࡯ࡧࡶࡢࡵࡦࡶ࡮ࡶࡴ࠭ࠢ࠭࠳࠯ࡁࠠࡲ࠿࠳࠲࠵࠷ࠧॿ"),
+                           l11lCreated_By_Mucky_Duck (u"ࠪࡅࡨࡩࡥࡱࡶ࠰ࡉࡳࡩ࡯ࡥ࡫ࡱ࡫ࠬঀ"):l11lCreated_By_Mucky_Duck (u"ࠫ࡬ࢀࡩࡱ࠮ࠣࡨࡪ࡬࡬ࡢࡶࡨ࠰ࠥࡹࡤࡤࡪ࠯ࠤࡧࡸࠧঁ"), l11lCreated_By_Mucky_Duck (u"ࠬࡇࡣࡤࡧࡳࡸ࠲ࡒࡡ࡯ࡩࡸࡥ࡬࡫ࠧং"):l11lCreated_By_Mucky_Duck (u"࠭ࡥ࡯࠯ࡘࡗ࠱࡫࡮࠼ࡳࡀ࠴࠳࠾ࠧঃ"),
+                           l11lCreated_By_Mucky_Duck (u"ࠧࡓࡧࡩࡩࡷ࡫ࡲࠨ঄"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠨࡗࡶࡩࡷ࠳ࡁࡨࡧࡱࡸࠬঅ"):md.User_Agent(), l11lCreated_By_Mucky_Duck (u"࡛ࠩ࠱ࡗ࡫ࡱࡶࡧࡶࡸࡪࡪ࠭ࡘ࡫ࡷ࡬ࠬআ"):l11lCreated_By_Mucky_Duck (u"ࠪ࡜ࡒࡒࡈࡵࡶࡳࡖࡪࡷࡵࡦࡵࡷࠫই")}
+                final = open_url(l1ll111Created_By_Mucky_Duck, params=params, headers=headers, verify=False).json()
+                l1llll1Created_By_Mucky_Duck = []
+                l1ll1l1Created_By_Mucky_Duck = []
+                l1l11l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠫࠬঈ")
+                if l1l1l11Created_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠬࡺࡲࡶࡧࠪউ"):
+                        url = max(final[l11lCreated_By_Mucky_Duck (u"࠭ࡰ࡭ࡣࡼࡰ࡮ࡹࡴࠨঊ")][0][l11lCreated_By_Mucky_Duck (u"ࠧࡴࡱࡸࡶࡨ࡫ࡳࠨঋ")], key=lambda l1ll11l1Created_By_Mucky_Duck: int(re.sub(l11lCreated_By_Mucky_Duck (u"ࠨ࡞ࡇࠫঌ"), l11lCreated_By_Mucky_Duck (u"ࠩࠪ঍"), l1ll11l1Created_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"ࠪࡰࡦࡨࡥ࡭ࠩ঎")])))
+                        url = url[l11lCreated_By_Mucky_Duck (u"ࠫ࡫࡯࡬ࡦࠩএ")]
+                else:
+                        match = final[l11lCreated_By_Mucky_Duck (u"ࠬࡶ࡬ࡢࡻ࡯࡭ࡸࡺࠧঐ")][0][l11lCreated_By_Mucky_Duck (u"࠭ࡳࡰࡷࡵࡧࡪࡹࠧ঑")]
+                        for a in match:
+                                l1l11l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡎࡣ࡛ࡄࡑࡏࡓࡗࠦࡲࡦࡦࡠࠩࡸࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨ঒") %a[l11lCreated_By_Mucky_Duck (u"ࠨ࡮ࡤࡦࡪࡲࠧও")]
+                                l1llll1Created_By_Mucky_Duck.append(l1l11l1Created_By_Mucky_Duck)
+                                l1ll1l1Created_By_Mucky_Duck.append(a[l11lCreated_By_Mucky_Duck (u"ࠩࡩ࡭ࡱ࡫ࠧঔ")])
+                        if len(match) >1:
+                                l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠪࡗࡪࡲࡥࡤࡶࠣࡗࡹࡸࡥࡢ࡯ࠣࡕࡺࡧ࡬ࡪࡶࡼࠫক"),l1llll1Created_By_Mucky_Duck)
+                                if l1111lCreated_By_Mucky_Duck == -1:
+                                        return
+                                elif l1111lCreated_By_Mucky_Duck > -1:
+                                        url = l1ll1l1Created_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
+                        else:
+                                url = final[l11lCreated_By_Mucky_Duck (u"ࠫࡵࡲࡡࡺ࡮࡬ࡷࡹ࠭খ")][0][l11lCreated_By_Mucky_Duck (u"ࠬࡹ࡯ࡶࡴࡦࡩࡸ࠭গ")][0][l11lCreated_By_Mucky_Duck (u"࠭ࡦࡪ࡮ࡨࠫঘ")]
+        except:
+                if content == l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡱࡹ࡭ࡪࡹࠧঙ"):
+                        link = open_url(url,verify=False).content
+                        l111ll1Created_By_Mucky_Duck = url
+                        headers = {l11lCreated_By_Mucky_Duck (u"ࠨࡗࡶࡩࡷ࠳ࡁࡨࡧࡱࡸࠬচ"):md.User_Agent()}
+                        link = open_url(url, headers=headers).content
+                        l11ll11Created_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠩ࡬ࡨ࠿ࠦࠢࠩ࡝ࡡࠦࡢ࠱ࠩࠣࠩছ")).findall(link)[0]
+                        request_url = l11lCreated_By_Mucky_Duck (u"ࠪࠩࡸ࠵ࡡ࡫ࡣࡻ࠳ࡲࡵࡶࡪࡧࡢࡩࡵ࡯ࡳࡰࡦࡨࡷ࠴ࠫࡳࠨজ") %(l11l11lCreated_By_Mucky_Duck,l11ll11Created_By_Mucky_Duck)
+                        headers = {l11lCreated_By_Mucky_Duck (u"ࠫࡆࡩࡣࡦࡲࡷ࠱ࡊࡴࡣࡰࡦ࡬ࡲ࡬࠭ঝ"):l11lCreated_By_Mucky_Duck (u"ࠬ࡭ࡺࡪࡲ࠯ࠤࡩ࡫ࡦ࡭ࡣࡷࡩ࠱ࠦࡳࡥࡥ࡫࠰ࠥࡨࡲࠨঞ"), l11lCreated_By_Mucky_Duck (u"࠭ࡒࡦࡨࡨࡶࡪࡸࠧট"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡖࡵࡨࡶ࠲ࡇࡧࡦࡰࡷࠫঠ"):md.User_Agent()}
+                        l1ll11llCreated_By_Mucky_Duck = open_url(request_url, headers=headers, verify=False).json()
+                        l1ll111lCreated_By_Mucky_Duck = re.compile(l11lCreated_By_Mucky_Duck (u"ࠨࡦࡤࡸࡦ࠳ࡩࡥ࠿ࠥࠬࡠࡤࠢ࡞࠭ࠬࠦࠬড")).findall(l1ll11llCreated_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"ࠩ࡫ࡸࡲࡲࠧঢ")])[3]
+                else:
+                        l1ll1ll1Created_By_Mucky_Duck = re.split(l11lCreated_By_Mucky_Duck (u"ࡵࠫࡡࢂࠧণ"), str(query), re.I)
+                        l111ll1Created_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[0].replace(l11lCreated_By_Mucky_Duck (u"ࠫࡡࡢࠧত"),l11lCreated_By_Mucky_Duck (u"ࠬ࠭থ"))
+                        l1ll111lCreated_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[1].replace(l11lCreated_By_Mucky_Duck (u"࠭࡜࡝ࠩদ"),l11lCreated_By_Mucky_Duck (u"ࠧࠨধ"))
+                        l11ll11Created_By_Mucky_Duck = l1ll1ll1Created_By_Mucky_Duck[2].replace(l11lCreated_By_Mucky_Duck (u"ࠨ࡞࡟ࠫন"),l11lCreated_By_Mucky_Duck (u"ࠩࠪ঩"))
+                l1ll1lllCreated_By_Mucky_Duck = int(time.time() * 10000)
+                l1lll11Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠪࠩࡸ࠵ࡡ࡫ࡣࡻ࠳ࡲࡵࡶࡪࡧࡢࡸࡴࡱࡥ࡯ࠩপ") %l11l11lCreated_By_Mucky_Duck
+                params = {l11lCreated_By_Mucky_Duck (u"ࠫࡪ࡯ࡤࠨফ"):l1ll111lCreated_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠬࡳࡩࡥࠩব"):l11ll11Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"࠭࡟ࠨভ"):l1ll1lllCreated_By_Mucky_Duck}
+                headers = {l11lCreated_By_Mucky_Duck (u"ࠧࡂࡥࡦࡩࡵࡺࠧম"):l11lCreated_By_Mucky_Duck (u"ࠨࡶࡨࡼࡹ࠵ࡪࡢࡸࡤࡷࡨࡸࡩࡱࡶ࠯ࠤࡦࡶࡰ࡭࡫ࡦࡥࡹ࡯࡯࡯࠱࡭ࡥࡻࡧࡳࡤࡴ࡬ࡴࡹ࠲ࠠࡢࡲࡳࡰ࡮ࡩࡡࡵ࡫ࡲࡲ࠴࡫ࡣ࡮ࡣࡶࡧࡷ࡯ࡰࡵ࠮ࠣࡥࡵࡶ࡬ࡪࡥࡤࡸ࡮ࡵ࡮࠰ࡺ࠰ࡩࡨࡳࡡࡴࡥࡵ࡭ࡵࡺࠬࠡࠬ࠲࠮ࡀࠦࡱ࠾࠲࠱࠴࠶࠭য"),
+                           l11lCreated_By_Mucky_Duck (u"ࠩࡄࡧࡨ࡫ࡰࡵ࠯ࡈࡲࡨࡵࡤࡪࡰࡪࠫর"):l11lCreated_By_Mucky_Duck (u"ࠪ࡫ࡿ࡯ࡰ࠭ࠢࡧࡩ࡫ࡲࡡࡵࡧ࠯ࠤࡸࡪࡣࡩ࠮ࠣࡦࡷ࠭঱"), l11lCreated_By_Mucky_Duck (u"ࠫࡆࡩࡣࡦࡲࡷ࠱ࡑࡧ࡮ࡨࡷࡤ࡫ࡪ࠭ল"):l11lCreated_By_Mucky_Duck (u"ࠬ࡫࡮࠮ࡗࡖ࠰ࡪࡴ࠻ࡲ࠿࠳࠲࠽࠭঳"),
+                           l11lCreated_By_Mucky_Duck (u"࠭ࡒࡦࡨࡨࡶࡪࡸࠧ঴"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠧࡖࡵࡨࡶ࠲ࡇࡧࡦࡰࡷࠫ঵"):md.User_Agent(), l11lCreated_By_Mucky_Duck (u"ࠨ࡚࠰ࡖࡪࡷࡵࡦࡵࡷࡩࡩ࠳ࡗࡪࡶ࡫ࠫশ"):l11lCreated_By_Mucky_Duck (u"࡛ࠩࡑࡑࡎࡴࡵࡲࡕࡩࡶࡻࡥࡴࡶࠪষ")}
+                data = open_url(l1lll11Created_By_Mucky_Duck, params=params, headers=headers, verify=False).content
+                if l11lCreated_By_Mucky_Duck (u"ࠪࠨࡤࠪࠧস") in data:
+                    params = __1l1lll1Created_By_Mucky_Duck(data)
+                elif data.startswith(l11lCreated_By_Mucky_Duck (u"ࠫࡠࡣࠧহ")) and data.endswith(l11lCreated_By_Mucky_Duck (u"ࠬ࠮ࠩࠨ঺")):
+                    params = __1l1llllCreated_By_Mucky_Duck(data)
+                else:
+                    params = __1ll1111Created_By_Mucky_Duck(data)
+                if params is None:
+                    l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"࠭ࡕ࡯ࡴࡨࡧࡴ࡭࡮ࡪࡼࡨࡨࠥࡰࡳࠡ࡫ࡱࠤࠪࡹࠧ঻") % (l1lll11Created_By_Mucky_Duck))
+                l1ll111Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧࠦࡵ࠲ࡥ࡯ࡧࡸ࠰࡯ࡲࡺ࡮࡫࡟ࡴࡱࡸࡶࡨ࡫ࡳ࠰ࠧࡶ়ࠫ") %(l11l11lCreated_By_Mucky_Duck,l1ll111lCreated_By_Mucky_Duck)
+                headers = {l11lCreated_By_Mucky_Duck (u"ࠨࡃࡦࡧࡪࡶࡴࠨঽ"):l11lCreated_By_Mucky_Duck (u"ࠩࡤࡴࡵࡲࡩࡤࡣࡷ࡭ࡴࡴ࠯࡫ࡵࡲࡲ࠱ࠦࡴࡦࡺࡷ࠳࡯ࡧࡶࡢࡵࡦࡶ࡮ࡶࡴ࠭ࠢ࠭࠳࠯ࡁࠠࡲ࠿࠳࠲࠵࠷ࠧা"),
+                           l11lCreated_By_Mucky_Duck (u"ࠪࡅࡨࡩࡥࡱࡶ࠰ࡉࡳࡩ࡯ࡥ࡫ࡱ࡫ࠬি"):l11lCreated_By_Mucky_Duck (u"ࠫ࡬ࢀࡩࡱ࠮ࠣࡨࡪ࡬࡬ࡢࡶࡨ࠰ࠥࡹࡤࡤࡪ࠯ࠤࡧࡸࠧী"), l11lCreated_By_Mucky_Duck (u"ࠬࡇࡣࡤࡧࡳࡸ࠲ࡒࡡ࡯ࡩࡸࡥ࡬࡫ࠧু"):l11lCreated_By_Mucky_Duck (u"࠭ࡥ࡯࠯ࡘࡗ࠱࡫࡮࠼ࡳࡀ࠴࠳࠾ࠧূ"),
+                           l11lCreated_By_Mucky_Duck (u"ࠧࡓࡧࡩࡩࡷ࡫ࡲࠨৃ"):l111ll1Created_By_Mucky_Duck, l11lCreated_By_Mucky_Duck (u"ࠨࡗࡶࡩࡷ࠳ࡁࡨࡧࡱࡸࠬৄ"):md.User_Agent(), l11lCreated_By_Mucky_Duck (u"࡛ࠩ࠱ࡗ࡫ࡱࡶࡧࡶࡸࡪࡪ࠭ࡘ࡫ࡷ࡬ࠬ৅"):l11lCreated_By_Mucky_Duck (u"ࠪ࡜ࡒࡒࡈࡵࡶࡳࡖࡪࡷࡵࡦࡵࡷࠫ৆")}
+                final = open_url(l1ll111Created_By_Mucky_Duck, params=params, headers=headers, verify=False).json()
+                l1llll1Created_By_Mucky_Duck = []
+                l1ll1l1Created_By_Mucky_Duck = []
+                l1l11l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠫࠬে")
+                if l1l1l11Created_By_Mucky_Duck == l11lCreated_By_Mucky_Duck (u"ࠬࡺࡲࡶࡧࠪৈ"):
+                        url = max(final[l11lCreated_By_Mucky_Duck (u"࠭ࡰ࡭ࡣࡼࡰ࡮ࡹࡴࠨ৉")][0][l11lCreated_By_Mucky_Duck (u"ࠧࡴࡱࡸࡶࡨ࡫ࡳࠨ৊")], key=lambda l1ll11l1Created_By_Mucky_Duck: int(re.sub(l11lCreated_By_Mucky_Duck (u"ࠨ࡞ࡇࠫো"), l11lCreated_By_Mucky_Duck (u"ࠩࠪৌ"), l1ll11l1Created_By_Mucky_Duck[l11lCreated_By_Mucky_Duck (u"ࠪࡰࡦࡨࡥ࡭্ࠩ")])))
+                        url = url[l11lCreated_By_Mucky_Duck (u"ࠫ࡫࡯࡬ࡦࠩৎ")]
+                else:
+                        match = final[l11lCreated_By_Mucky_Duck (u"ࠬࡶ࡬ࡢࡻ࡯࡭ࡸࡺࠧ৏")][0][l11lCreated_By_Mucky_Duck (u"࠭ࡳࡰࡷࡵࡧࡪࡹࠧ৐")]
+                        for a in match:
+                                l1l11l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧ࡜ࡄࡠ࡟ࡎࡣ࡛ࡄࡑࡏࡓࡗࠦࡲࡦࡦࡠࠩࡸࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛࠰ࡋࡠ࡟࠴ࡈ࡝ࠨ৑") %a[l11lCreated_By_Mucky_Duck (u"ࠨ࡮ࡤࡦࡪࡲࠧ৒")]
+                                l1llll1Created_By_Mucky_Duck.append(l1l11l1Created_By_Mucky_Duck)
+                                l1ll1l1Created_By_Mucky_Duck.append(a[l11lCreated_By_Mucky_Duck (u"ࠩࡩ࡭ࡱ࡫ࠧ৓")])
+                        if len(match) >1:
+                                l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠪࡗࡪࡲࡥࡤࡶࠣࡗࡹࡸࡥࡢ࡯ࠣࡕࡺࡧ࡬ࡪࡶࡼࠫ৔"),l1llll1Created_By_Mucky_Duck)
+                                if l1111lCreated_By_Mucky_Duck == -1:
+                                        return
+                                elif l1111lCreated_By_Mucky_Duck > -1:
+                                        url = l1ll1l1Created_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
+                        else:
+                                url = final[l11lCreated_By_Mucky_Duck (u"ࠫࡵࡲࡡࡺ࡮࡬ࡷࡹ࠭৕")][0][l11lCreated_By_Mucky_Duck (u"ࠬࡹ࡯ࡶࡴࡦࡩࡸ࠭৖")][0][l11lCreated_By_Mucky_Duck (u"࠭ࡦࡪ࡮ࡨࠫৗ")]
+	md.resolved(url, name, fan_art, l1lll1Created_By_Mucky_Duck)
+	l111Created_By_Mucky_Duck.end_of_directory()
+def l1l1l11lCreated_By_Mucky_Duck(url):
+	l1l1ll1lCreated_By_Mucky_Duck = []
+	l1lllCreated_By_Mucky_Duck = []
 	link = open_url(url).content
-	l1l11Fuck_You_Anonymous = md.regex_get_all(link, l111Fuck_You_Anonymous (u"ࠩࡳࡰ࠲࡯ࡴࡦ࡯ࠪ४"), l111Fuck_You_Anonymous (u"ࠪࡀ࠴ࡺࡲ࠿ࠩ५"))
-	for a in l1l11Fuck_You_Anonymous:
-		name = md.regex_from_to(a, l111Fuck_You_Anonymous (u"ࠫࡹ࡯ࡴ࡭ࡧࡀࠦࠬ६"), l111Fuck_You_Anonymous (u"ࠬࠨࠧ७"))
-		url = md.regex_from_to(a, l111Fuck_You_Anonymous (u"࠭ࡨࡳࡧࡩࡁࠧ࠭८"), l111Fuck_You_Anonymous (u"ࠧࠣࠩ९"))
-		l1ll111lFuck_You_Anonymous.append(l111Fuck_You_Anonymous (u"ࠨ࡝ࡆࡓࡑࡕࡒࠡࡹ࡫࡭ࡹ࡫࡝࡜ࡄࡠࠩࡸࡡ࠯ࡃ࡟࡞࠳ࡈࡕࡌࡐࡔࡠࠫ॰") %name)
-		l1ll1Fuck_You_Anonymous.append(url)
-	if len(l1l11Fuck_You_Anonymous) >1:
-		l11111Fuck_You_Anonymous = md.dialog_select(l111Fuck_You_Anonymous (u"ࠩࡖࡩࡱ࡫ࡣࡵࠢࡓࡶࡴࡾࡹࠡࡃࡧࡨࡷ࡫ࡳࡴࠩॱ"), l1ll111lFuck_You_Anonymous)
-		if l11111Fuck_You_Anonymous == -1:
+	l1l1lCreated_By_Mucky_Duck = md.regex_get_all(link, l11lCreated_By_Mucky_Duck (u"ࠧࡱ࡮࠰࡭ࡹ࡫࡭ࠨ৘"), l11lCreated_By_Mucky_Duck (u"ࠨ࠾࠲ࡸࡷࡄࠧ৙"))
+	for a in l1l1lCreated_By_Mucky_Duck:
+		name = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠩࡷ࡭ࡹࡲࡥ࠾ࠤࠪ৚"), l11lCreated_By_Mucky_Duck (u"ࠪࠦࠬ৛"))
+		url = md.regex_from_to(a, l11lCreated_By_Mucky_Duck (u"ࠫ࡭ࡸࡥࡧ࠿ࠥࠫড়"), l11lCreated_By_Mucky_Duck (u"ࠬࠨࠧঢ়"))
+		l1l1ll1lCreated_By_Mucky_Duck.append(l11lCreated_By_Mucky_Duck (u"࡛࠭ࡄࡑࡏࡓࡗࠦࡷࡩ࡫ࡷࡩࡢࡡࡂ࡞ࠧࡶ࡟࠴ࡈ࡝࡜࠱ࡆࡓࡑࡕࡒ࡞ࠩ৞") %name)
+		l1lllCreated_By_Mucky_Duck.append(url)
+	if len(l1l1lCreated_By_Mucky_Duck) >1:
+		l1111lCreated_By_Mucky_Duck = md.dialog_select(l11lCreated_By_Mucky_Duck (u"ࠧࡔࡧ࡯ࡩࡨࡺࠠࡑࡴࡲࡼࡾࠦࡁࡥࡦࡵࡩࡸࡹࠧয়"), l1l1ll1lCreated_By_Mucky_Duck)
+		if l1111lCreated_By_Mucky_Duck == -1:
 			return
-		elif l11111Fuck_You_Anonymous > -1:
-			url = l1ll1Fuck_You_Anonymous[l11111Fuck_You_Anonymous]
+		elif l1111lCreated_By_Mucky_Duck > -1:
+			url = l1lllCreated_By_Mucky_Duck[l1111lCreated_By_Mucky_Duck]
 		else:
-			url = l1ll1Fuck_You_Anonymous[0]
+			url = l1lllCreated_By_Mucky_Duck[0]
 	headers = open_url(url, redirects=False).headers
-	if l111Fuck_You_Anonymous (u"ࠪࡰࡴࡩࡡࡵ࡫ࡲࡲࠬॲ") in headers:
-		url = headers[l111Fuck_You_Anonymous (u"ࠫࡱࡵࡣࡢࡶ࡬ࡳࡳ࠭ॳ")]
-	if url[-1] == l111Fuck_You_Anonymous (u"ࠬ࠵ࠧॴ"):
+	if l11lCreated_By_Mucky_Duck (u"ࠨ࡮ࡲࡧࡦࡺࡩࡰࡰࠪৠ") in headers:
+		url = headers[l11lCreated_By_Mucky_Duck (u"ࠩ࡯ࡳࡨࡧࡴࡪࡱࡱࠫৡ")]
+	if url[-1] == l11lCreated_By_Mucky_Duck (u"ࠪ࠳ࠬৢ"):
 		url = url[:-1]
-	l1lllFuck_You_Anonymous.set_setting(l111Fuck_You_Anonymous (u"࠭ࡢࡢࡵࡨࡣࡺࡸ࡬ࠨॵ"), url)
-	md.notification(l111Fuck_You_Anonymous (u"ࠧࡶࡴ࡯ࠤࡦࡪࡤࡦࡦࠣࡸࡴࠦࡳࡦࡶࡷ࡭ࡳ࡭ࡳࠡࡵࡸࡧࡨ࡫ࡳࡴࡨࡸࡰࡱࡿࠧॶ"),l1ll1111Fuck_You_Anonymous)
+	l111Created_By_Mucky_Duck.set_setting(l11lCreated_By_Mucky_Duck (u"ࠫࡧࡧࡳࡦࡡࡸࡶࡱ࠭ৣ"), url)
+	md.notification(l11lCreated_By_Mucky_Duck (u"ࠬࡻࡲ࡭ࠢࡤࡨࡩ࡫ࡤࠡࡶࡲࠤࡸ࡫ࡴࡵ࡫ࡱ࡫ࡸࠦࡳࡶࡥࡦࡩࡸࡹࡦࡶ࡮࡯ࡽࠬ৤"),l1l1ll11Created_By_Mucky_Duck)
 	return
-l1l1l1l1Fuck_You_Anonymous = xbmc.translatePath(l111Fuck_You_Anonymous (u"ࠨࡵࡳࡩࡨ࡯ࡡ࡭࠼࠲࠳࡭ࡵ࡭ࡦ࠱ࡤࡨࡩࡵ࡮ࡴ࠱ࡳࡰࡺ࡭ࡩ࡯࠰ࡹ࡭ࡩ࡫࡯࠯࡯ࡧ࠵࠷࠹࡭ࡰࡸ࡬ࡩࡸࡥ࡯ࡱࡻࠪॷ"))
-if os.path.exists(l1l1l1l1Fuck_You_Anonymous):
-        shutil.rmtree(l1l1l1l1Fuck_You_Anonymous, ignore_errors=True)
-def l1lllll1Fuck_You_Anonymous():
-        l111lFuck_You_Anonymous = xbmc.translatePath(l111Fuck_You_Anonymous (u"ࠩࡶࡴࡪࡩࡩࡢ࡮࠽࠳࠴࡮࡯࡮ࡧ࠲ࡥࡩࡪ࡯࡯ࡵ࠲ࡶࡪࡶ࡯ࡴ࡫ࡷࡳࡷࡿ࠮࡮ࡣࡩࠫॸ"))
-        l11llFuck_You_Anonymous = xbmc.translatePath(l111Fuck_You_Anonymous (u"ࠪࡷࡵ࡫ࡣࡪࡣ࡯࠾࠴࠵ࡨࡰ࡯ࡨ࠳ࡦࡪࡤࡰࡰࡶ࠳ࡵࡲࡵࡨ࡫ࡱ࠲ࡵࡸ࡯ࡨࡴࡤࡱ࠳ࡶ࡬ࡶࡩ࡬ࡲ࠳ࡶࡲࡰࡩࡵࡥࡲ࠴࡭ࡢࡨࡺ࡭ࡿࡧࡲࡥࠩॹ"))
-        l1l1ll11Fuck_You_Anonymous = xbmc.translatePath(l111Fuck_You_Anonymous (u"ࠫࡸࡶࡥࡤ࡫ࡤࡰ࠿࠵࠯ࡩࡱࡰࡩ࠴ࡧࡤࡥࡱࡱࡷ࠴ࡶ࡬ࡶࡩ࡬ࡲ࠳ࡼࡩࡥࡧࡲ࠲ࡰࡸࡡࡵࡱࡶࠫॺ"))
-        if os.path.exists(l111lFuck_You_Anonymous):
-                l1lFuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠬ࡟࡯ࡶࠢࡋࡥࡻ࡫ࠠࡊࡰࡶࡸࡦࡲ࡬ࡦࡦࠣࡊࡷࡵ࡭ࠡࡃࡱࠫॻ")
-                l1lll11lFuck_You_Anonymous = l111Fuck_You_Anonymous (u"࠭ࡕ࡯ࡱࡩࡪ࡮ࡩࡩࡢ࡮ࠣࡗࡴࡻࡲࡤࡧࠣࠪࠥ࡝ࡩ࡭࡮ࠣࡒࡴࡽࠠࡅࡧ࡯ࡩࡹ࡫ࠠࡑ࡮ࡨࡥࡸ࡫ࠧॼ")
-                l1lll1l1Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠧࡊࡰࡶࡸࡦࡲ࡬ࠡࡂ࡞ࡇࡔࡒࡏࡓࠢࡵࡩࡩࡣࡨࡵࡶࡳ࠾࠴࠵࡭ࡶࡥ࡮ࡽࡸ࠴࡭ࡦࡦ࡬ࡥࡵࡵࡲࡵࡣ࡯࠸ࡰࡵࡤࡪ࠰ࡰࡰࡠ࠵ࡃࡐࡎࡒࡖࡢ࠭ॽ")
-                l1lll1llFuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠨࡔࡨࡱࡴࡼࡥࡥࠢࡄࡲࡴࡴࡹ࡮ࡱࡸࡷࠥࡘࡥࡱࡱࠣࡅࡳࡪࠠࡂࡦࡧࡳࡳࡹࠧॾ")
-                l1llll11Fuck_You_Anonymous = l111Fuck_You_Anonymous (u"ࠩࡖࡹࡨࡩࡥࡴࡵࡩࡹࡱࡲࡹࠡࡒ࡯ࡩࡦࡹࡥࠡࡆࡲࡲࡹࠦࡓࡶࡲࡳࡳࡷࡺࠠࡊࡦ࡬ࡳࡹࡹࠧॿ")
-                l1lllFuck_You_Anonymous.show_ok_dialog([l1lFuck_You_Anonymous, l1lll11lFuck_You_Anonymous, l1lll1l1Fuck_You_Anonymous], l1l1lFuck_You_Anonymous)
-                llFuck_You_Anonymous = l1lllFuck_You_Anonymous.get_path()
-                shutil.rmtree(llFuck_You_Anonymous, ignore_errors=True)
-                shutil.rmtree(l111lFuck_You_Anonymous, ignore_errors=True)
-                shutil.rmtree(l11llFuck_You_Anonymous, ignore_errors=True)
-                shutil.rmtree(l1l1ll11Fuck_You_Anonymous, ignore_errors=True)
-                l1lllFuck_You_Anonymous.log(l111Fuck_You_Anonymous (u"ࠪࡁࡂࡃࡄࡆࡎࡈࡘࡎࡔࡇ࠾࠿ࡀࡅࡓࡕࡎ࡚ࡏࡒ࡙ࡘࡃ࠽࠾ࡃࡇࡈࡔࡔࡓ࠾࠿ࡀ࠯ࡂࡃ࠽ࡓࡇࡓࡓࡂࡃ࠽ࠨঀ"))
-                l1lllFuck_You_Anonymous.show_ok_dialog([l1lll1llFuck_You_Anonymous, l1llll11Fuck_You_Anonymous], l1l1lFuck_You_Anonymous)
+l1l11l1lCreated_By_Mucky_Duck = xbmc.translatePath(l11lCreated_By_Mucky_Duck (u"࠭ࡳࡱࡧࡦ࡭ࡦࡲ࠺࠰࠱࡫ࡳࡲ࡫࠯ࡢࡦࡧࡳࡳࡹ࠯ࡱ࡮ࡸ࡫࡮ࡴ࠮ࡷ࡫ࡧࡩࡴ࠴࡭ࡥ࠳࠵࠷ࡲࡵࡶࡪࡧࡶࡣࡴࡶࡹࠨ৥"))
+if os.path.exists(l1l11l1lCreated_By_Mucky_Duck):
+        shutil.rmtree(l1l11l1lCreated_By_Mucky_Duck, ignore_errors=True)
+def l1llll1lCreated_By_Mucky_Duck():
+        l11l1Created_By_Mucky_Duck = xbmc.translatePath(l11lCreated_By_Mucky_Duck (u"ࠧࡴࡲࡨࡧ࡮ࡧ࡬࠻࠱࠲࡬ࡴࡳࡥ࠰ࡣࡧࡨࡴࡴࡳ࠰ࡴࡨࡴࡴࡹࡩࡵࡱࡵࡽ࠳ࡳࡡࡧࠩ০"))
+        l1l11Created_By_Mucky_Duck = xbmc.translatePath(l11lCreated_By_Mucky_Duck (u"ࠨࡵࡳࡩࡨ࡯ࡡ࡭࠼࠲࠳࡭ࡵ࡭ࡦ࠱ࡤࡨࡩࡵ࡮ࡴ࠱ࡳࡰࡺ࡭ࡩ࡯࠰ࡳࡶࡴ࡭ࡲࡢ࡯࠱ࡴࡱࡻࡧࡪࡰ࠱ࡴࡷࡵࡧࡳࡣࡰ࠲ࡲࡧࡦࡸ࡫ࡽࡥࡷࡪࠧ১"))
+        l1l11lllCreated_By_Mucky_Duck = xbmc.translatePath(l11lCreated_By_Mucky_Duck (u"ࠩࡶࡴࡪࡩࡩࡢ࡮࠽࠳࠴࡮࡯࡮ࡧ࠲ࡥࡩࡪ࡯࡯ࡵ࠲ࡴࡱࡻࡧࡪࡰ࠱ࡺ࡮ࡪࡥࡰ࠰࡮ࡶࡦࡺ࡯ࡴࠩ২"))
+        if os.path.exists(l11l1Created_By_Mucky_Duck):
+                l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠪ࡝ࡴࡻࠠࡉࡣࡹࡩࠥࡏ࡮ࡴࡶࡤࡰࡱ࡫ࡤࠡࡈࡵࡳࡲࠦࡁ࡯ࠩ৩")
+                l1lll111Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"࡚ࠫࡴ࡯ࡧࡨ࡬ࡧ࡮ࡧ࡬ࠡࡕࡲࡹࡷࡩࡥࠡࠨ࡛ࠣ࡮ࡲ࡬ࠡࡐࡲࡻࠥࡊࡥ࡭ࡧࡷࡩࠥࡖ࡬ࡦࡣࡶࡩࠬ৪")
+                l1lll11lCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠬࡏ࡮ࡴࡶࡤࡰࡱࠦࡀ࡜ࡅࡒࡐࡔࡘࠠࡳࡧࡧࡡ࡭ࡺࡴࡱ࠼࠲࠳ࡲࡻࡣ࡬ࡻࡶ࠲ࡲ࡫ࡤࡪࡣࡳࡳࡷࡺࡡ࡭࠶࡮ࡳࡩ࡯࠮࡮࡮࡞࠳ࡈࡕࡌࡐࡔࡠࠫ৫")
+                l1lll1l1Created_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"࠭ࡒࡦ࡯ࡲࡺࡪࡪࠠࡂࡰࡲࡲࡾࡳ࡯ࡶࡵࠣࡖࡪࡶ࡯ࠡࡃࡱࡨࠥࡇࡤࡥࡱࡱࡷࠬ৬")
+                l1lll1llCreated_By_Mucky_Duck = l11lCreated_By_Mucky_Duck (u"ࠧࡔࡷࡦࡧࡪࡹࡳࡧࡷ࡯ࡰࡾࠦࡐ࡭ࡧࡤࡷࡪࠦࡄࡰࡰࡷࠤࡘࡻࡰࡱࡱࡵࡸࠥࡏࡤࡪࡱࡷࡷࠬ৭")
+                l111Created_By_Mucky_Duck.show_ok_dialog([l1Created_By_Mucky_Duck, l1lll111Created_By_Mucky_Duck, l1lll11lCreated_By_Mucky_Duck], l1ll1Created_By_Mucky_Duck)
+                llCreated_By_Mucky_Duck = l111Created_By_Mucky_Duck.get_path()
+                shutil.rmtree(llCreated_By_Mucky_Duck, ignore_errors=True)
+                shutil.rmtree(l11l1Created_By_Mucky_Duck, ignore_errors=True)
+                shutil.rmtree(l1l11Created_By_Mucky_Duck, ignore_errors=True)
+                shutil.rmtree(l1l11lllCreated_By_Mucky_Duck, ignore_errors=True)
+                l111Created_By_Mucky_Duck.log(l11lCreated_By_Mucky_Duck (u"ࠨ࠿ࡀࡁࡉࡋࡌࡆࡖࡌࡒࡌࡃ࠽࠾ࡃࡑࡓࡓ࡟ࡍࡐࡗࡖࡁࡂࡃࡁࡅࡆࡒࡒࡘࡃ࠽࠾࠭ࡀࡁࡂࡘࡅࡑࡑࡀࡁࡂ࠭৮"))
+                l111Created_By_Mucky_Duck.show_ok_dialog([l1lll1l1Created_By_Mucky_Duck, l1lll1llCreated_By_Mucky_Duck], l1ll1Created_By_Mucky_Duck)
                 time.sleep(2)
                 os._exit(0)
 md.check_source()
-mode = md.args[l111Fuck_You_Anonymous (u"ࠫࡲࡵࡤࡦࠩঁ")]
-url = md.args.get(l111Fuck_You_Anonymous (u"ࠬࡻࡲ࡭ࠩং"), None)
-name = md.args.get(l111Fuck_You_Anonymous (u"࠭࡮ࡢ࡯ࡨࠫঃ"), None)
-query = md.args.get(l111Fuck_You_Anonymous (u"ࠧࡲࡷࡨࡶࡾ࠭঄"), None)
-title = md.args.get(l111Fuck_You_Anonymous (u"ࠨࡶ࡬ࡸࡱ࡫ࠧঅ"), None)
-l11l1llFuck_You_Anonymous = md.args.get(l111Fuck_You_Anonymous (u"ࠩࡶࡩࡦࡹ࡯࡯ࠩআ"), None)
-l1l1llllFuck_You_Anonymous = md.args.get(l111Fuck_You_Anonymous (u"ࠪࡩࡵ࡯ࡳࡰࡦࡨࠫই") ,None)
-l1ll1lFuck_You_Anonymous = md.args.get(l111Fuck_You_Anonymous (u"ࠫ࡮ࡴࡦࡰ࡮ࡤࡦࡪࡲࡳࠨঈ"), None)
-content = md.args.get(l111Fuck_You_Anonymous (u"ࠬࡩ࡯࡯ࡶࡨࡲࡹ࠭উ"), None)
-l1ll11lFuck_You_Anonymous = md.args.get(l111Fuck_You_Anonymous (u"࠭࡭ࡰࡦࡨࡣ࡮ࡪࠧঊ"), None)
-l1111lFuck_You_Anonymous = md.args.get(l111Fuck_You_Anonymous (u"ࠧࡪࡥࡲࡲ࡮ࡳࡡࡨࡧࠪঋ"), None)
-fan_art = md.args.get(l111Fuck_You_Anonymous (u"ࠨࡨࡤࡲࡤࡧࡲࡵࠩঌ"), None)
-is_folder = md.args.get(l111Fuck_You_Anonymous (u"ࠩ࡬ࡷࡤ࡬࡯࡭ࡦࡨࡶࠬ঍"), True)
+mode = md.args[l11lCreated_By_Mucky_Duck (u"ࠩࡰࡳࡩ࡫ࠧ৯")]
+url = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠪࡹࡷࡲࠧৰ"), None)
+name = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠫࡳࡧ࡭ࡦࠩৱ"), None)
+query = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠬࡷࡵࡦࡴࡼࠫ৲"), None)
+title = md.args.get(l11lCreated_By_Mucky_Duck (u"࠭ࡴࡪࡶ࡯ࡩࠬ৳"), None)
+l11l1l1Created_By_Mucky_Duck = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠧࡴࡧࡤࡷࡴࡴࠧ৴"), None)
+l1l1l1llCreated_By_Mucky_Duck = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠨࡧࡳ࡭ࡸࡵࡤࡦࠩ৵") ,None)
+l1lll1Created_By_Mucky_Duck = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠩ࡬ࡲ࡫ࡵ࡬ࡢࡤࡨࡰࡸ࠭৶"), None)
+content = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠪࡧࡴࡴࡴࡦࡰࡷࠫ৷"), None)
+l1ll11lCreated_By_Mucky_Duck = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠫࡲࡵࡤࡦࡡ࡬ࡨࠬ৸"), None)
+l111l1Created_By_Mucky_Duck = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠬ࡯ࡣࡰࡰ࡬ࡱࡦ࡭ࡥࠨ৹"), None)
+fan_art = md.args.get(l11lCreated_By_Mucky_Duck (u"࠭ࡦࡢࡰࡢࡥࡷࡺࠧ৺"), None)
+is_folder = md.args.get(l11lCreated_By_Mucky_Duck (u"ࠧࡪࡵࡢࡪࡴࡲࡤࡦࡴࠪ৻"), True)
 if mode is None or url is None or len(url)<1:
-	l1l1l1Fuck_You_Anonymous()
-elif mode == l111Fuck_You_Anonymous (u"ࠪ࠵ࠬ঎"):
-	l1l1l1llFuck_You_Anonymous(content)
-elif mode == l111Fuck_You_Anonymous (u"ࠫ࠷࠭এ"):
-	l1l111Fuck_You_Anonymous(url,content)
-elif mode == l111Fuck_You_Anonymous (u"ࠬ࠹ࠧঐ"):
-	l111l11Fuck_You_Anonymous(title, url, l1111lFuck_You_Anonymous, content, l11l1llFuck_You_Anonymous)
-elif mode == l111Fuck_You_Anonymous (u"࠭࠴ࠨ঑"):
-	l1l1l11lFuck_You_Anonymous(url, content)
-elif mode == l111Fuck_You_Anonymous (u"ࠧ࠶ࠩ঒"):
-	l1llllFuck_You_Anonymous(url, content)
-elif mode == l111Fuck_You_Anonymous (u"ࠨ࠸ࠪও"):
-	l11ll1Fuck_You_Anonymous(url, content)
-elif mode == l111Fuck_You_Anonymous (u"ࠩ࠺ࠫঔ"):
-	l1ll11Fuck_You_Anonymous(url,name,l1111lFuck_You_Anonymous,content,l1ll1lFuck_You_Anonymous,query)
-elif mode == l111Fuck_You_Anonymous (u"ࠪࡷࡪࡧࡲࡤࡪࠪক"):
-	l111llFuck_You_Anonymous(content,query)
-elif mode == l111Fuck_You_Anonymous (u"ࠫࡦࡪࡤࡰࡰࡢࡷࡪࡧࡲࡤࡪࠪখ"):
-	md.addon_search(content,query,fan_art,l1ll1lFuck_You_Anonymous)
-elif mode == l111Fuck_You_Anonymous (u"ࠬ࡭ࡥࡵࡡࡳࡶࡴࡾࡹࠨগ"):
-	l1l1lll1Fuck_You_Anonymous(url)
-elif mode == l111Fuck_You_Anonymous (u"࠭ࡡࡥࡦࡢࡶࡪࡳ࡯ࡷࡧࡢࡪࡦࡼࠧঘ"):
-	md.add_remove_fav(name, url, l1ll1lFuck_You_Anonymous, fan_art,
-			  content, l1ll11lFuck_You_Anonymous, is_folder)
-elif mode == l111Fuck_You_Anonymous (u"ࠧࡧࡧࡷࡧ࡭ࡥࡦࡢࡸࡶࠫঙ"):
-	md.fetch_favs(l11l1l1Fuck_You_Anonymous)
-elif mode == l111Fuck_You_Anonymous (u"ࠨࡣࡧࡨࡴࡴ࡟ࡴࡧࡷࡸ࡮ࡴࡧࡴࠩচ"):
-	l1lllFuck_You_Anonymous.show_settings()
-elif mode == l111Fuck_You_Anonymous (u"ࠩࡰࡩࡹࡧ࡟ࡴࡧࡷࡸ࡮ࡴࡧࡴࠩছ"):
+	l1l1llCreated_By_Mucky_Duck()
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠨ࠳ࠪৼ"):
+	l1l11ll1Created_By_Mucky_Duck(content)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠩ࠵ࠫ৽"):
+	l1l11lCreated_By_Mucky_Duck(url,content)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠪ࠷ࠬ৾"):
+	l1111llCreated_By_Mucky_Duck(title, url, l111l1Created_By_Mucky_Duck, content, l11l1l1Created_By_Mucky_Duck)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠫ࠹࠭৿"):
+	l1l11l11Created_By_Mucky_Duck(url, content)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠬ࠻ࠧ਀"):
+	l1111Created_By_Mucky_Duck(url, content)
+elif mode == l11lCreated_By_Mucky_Duck (u"࠭࠶ࠨਁ"):
+	l11lllCreated_By_Mucky_Duck(url, content)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠧ࠸ࠩਂ"):
+	l1ll1lCreated_By_Mucky_Duck(url,name,l111l1Created_By_Mucky_Duck,content,l1lll1Created_By_Mucky_Duck,query)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠨࡵࡨࡥࡷࡩࡨࠨਃ"):
+	l11l11Created_By_Mucky_Duck(content,query)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠩࡤࡨࡩࡵ࡮ࡠࡵࡨࡥࡷࡩࡨࠨ਄"):
+	md.addon_search(content,query,fan_art,l1lll1Created_By_Mucky_Duck)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠪ࡫ࡪࡺ࡟ࡱࡴࡲࡼࡾ࠭ਅ"):
+	l1l1l11lCreated_By_Mucky_Duck(url)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠫࡦࡪࡤࡠࡴࡨࡱࡴࡼࡥࡠࡨࡤࡺࠬਆ"):
+	md.add_remove_fav(name, url, l1lll1Created_By_Mucky_Duck, fan_art,
+			  content, l1ll11lCreated_By_Mucky_Duck, is_folder)
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠬ࡬ࡥࡵࡥ࡫ࡣ࡫ࡧࡶࡴࠩਇ"):
+	md.fetch_favs(l11l11lCreated_By_Mucky_Duck)
+elif mode == l11lCreated_By_Mucky_Duck (u"࠭ࡡࡥࡦࡲࡲࡤࡹࡥࡵࡶ࡬ࡲ࡬ࡹࠧਈ"):
+	l111Created_By_Mucky_Duck.show_settings()
+elif mode == l11lCreated_By_Mucky_Duck (u"ࠧ࡮ࡧࡷࡥࡤࡹࡥࡵࡶ࡬ࡲ࡬ࡹࠧਉ"):
 	import metahandler
 	metahandler.display_settings()
-l1lllFuck_You_Anonymous.end_of_directory()
+l111Created_By_Mucky_Duck.end_of_directory()

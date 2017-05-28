@@ -53,7 +53,8 @@ def categories():
     link = html.encode('ascii', 'ignore')
     match=re.compile('<li class="group-item">.+?<a href="(.+?)">.+?"logo" src="(.+?)" title="(.+?)"',re.DOTALL).findall(link)
     for url, iconimage , name in match:
-        if name != "PAY TV - CHANNELS":
+        if name == "ENTERTAINMENT" or name == "MUSIC" or name == "COMEDY" or name == "KIDS" or name == "BUSINESS TV" or name == "DOCUMENTARY" or name == "NEWS TV" or name == "EXTREME SPORTS" or name == "URBAN" or name == "PARTY TV" or name == "LIFESTYLE" or name == "BODY &amp; SOUL" or name == "FILMON EXCLUSIVE" or name == "FASHION" or name == "SCIENCE &amp; TECHNOLOGY TV" or name == "GERMAN TV" or name == "RUSSIAN TV" or name == "INDIAN TV" or name == "ITALIAN TV" or name == "MIDDLE EASTERN TV" or name == "SWISS TV" or name == "HUNGARIAN TV" or name == "LATINO TV" or name == "CLASSIC TV" or name == "SHORT FILMS" or name == "OUTDOORS" or name == "TRAVEL" or name == "SOMALI TV" or name == "GREEK LIVE TV" or name == "RELIGION" or name == "CELEBRITY TV" or name == "FOOD AND WINE" or name == "CARS &amp; AUTO" or name == "EDUCATION" or name == "SHOPPING TV" or name == "CARIBBEAN CHANNELS" or name == "ASIAN TV" or name == "AFRICAN TV" or name == "KAZAKH TV":
+            xbmcplugin.addSortMethod(int(sys.argv[1]), 1)
             addDir(name.title().replace('Tv','TV').replace('Uk','UK').replace('Uk','UK').replace('&Amp;','&'),url,3,iconimage,'',name)
                 
 def channels(url,name,group):
@@ -62,8 +63,9 @@ def channels(url,name,group):
     html = open_url('http://www.filmon.com'+url)
     match=re.compile(r,re.DOTALL).findall(html)
     for id , iconimage , name in match:
-        addDir(name.replace(' New','New'),'http://www.filmon.com'+url.replace('channel','tv').replace('tvs','channels'),2,iconimage,id,group)
-    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_TITLE)
+        if id != '1240' and id != '1078' and id != '1426' and id != '2146'and id != '2230' and id != '2236' and id != '2206' and id != '2233' and id != '4463' and id != '4931' and id != '2188' and id != '2152' and id != '2170' and id != '1426' and id != '1367' and id != '1310' and id != '1325' and id != '1336' and id != '1114' and id != '1111' and id != '1108' and id != '1099' and id != '1198' and id != '1102' and id != '1285' and id != '1287' and id != '3191' and id != '29' and id != '1289' and id != '1282' and id != '1286' and id != '1281' and id != '1172' and id != '2786' and id != '5672' and id != '93' and id != '1759' and id != '2218' and id != '1483' and id != '1254' and id != '1487' and id != '1345' and id != '1358' and id != '5366' and id != '1753' and id != '1536' and id != '1248' and id != '1266' and id != '1255' and id != '1258' and id != '1271' and id != '1256' and id != '2086' and id != '1272' and id != '1257' and id != '1262' and id != '1976' and id != '2044' and id != '2119' and id != '2128' and id != '2134' and id != '1129' and id != '1535' and id != '1507' and id != '1429' and id != '1524' and id != '1410' and id != '1526' and id != '1500' and id != '1505' and id != '1424' and id != '2245' and id != '1546' and id != '1506' and id != '2756' and id != '1738' and id != '1981' and id != '1735' and id != '1741' and id != '1744' and id != '3704' and id != '445' and id != '379' and id != '1778' and id != '1781' and id != '1796' and id != '1775' and id != '1772' and id != '79' and id != '1565' and id != '1558' and id != '1559' and id != '1561' and id != '1563' and id != '1562' and id != '1732' and id != '1213' and id != '1212' and id != '1217' and id != '1218' and id != '1219' and id != '1179' and id != '1238' and id != '1221' and id != '1237' and id != '1239' and id != '1233' and id != '1232' and id != '1222' and id != '1223' and id != '1224' and id != '1225' and id != '1226' and id != '1419' and id != '2242' and id != '1459' and id != '1461' and id != '1451' and id != '1793':
+            addDir(name.replace(' New','New'),'http://www.filmon.com'+url.replace('channel','tv').replace('tvs','channels'),2,iconimage,id,group)
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_TITLE)
                 
 def regex_from_to(text, from_string, to_string, excluding=True):
     if excluding:

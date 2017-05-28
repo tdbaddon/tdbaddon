@@ -1,3 +1,7 @@
+[B]Version 0.1.7[/B]
+- Updated to support only the free channels from FilmOn (this has only been tested from within the US)
+- updated language to use strings.po instead of strings.xml
+
 [B]Version 0.1.6[/B]
 - Update TV ADDONS graphics
 

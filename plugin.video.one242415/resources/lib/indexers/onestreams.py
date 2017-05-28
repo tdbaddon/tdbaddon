@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    One242415 Add-on
+    one242415 Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 
 import os,re,sys,hashlib,urllib,urlparse,json,base64,random,datetime
-import xbmc, xbmcgui
+import xbmc
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -33,11 +33,9 @@ from resources.lib.modules import trailer
 from resources.lib.modules import workers
 from resources.lib.modules import youtube
 from resources.lib.modules import views
+from resources.lib.modules import trakt
 
-addon_id            = 'plugin.video.one242415'
-AddonTitle          = 'one242415'
-PARENTAL_FOLDER     = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'parental'))
-PARENTAL_FILE       = xbmc.translatePath(os.path.join(PARENTAL_FOLDER , 'control.txt'))
+
 
 class indexer:
     def __init__(self):
@@ -48,7 +46,7 @@ class indexer:
         try:
             regex.clear()
             url = 'http://one242415.offshorepastebin.com/maindir/mainA.xml'
-            self.list = self.One242415_list(url)
+            self.list = self.one242415_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -58,7 +56,7 @@ class indexer:
 
     def get(self, url):
         try:
-            self.list = self.One242415_list(url)
+            self.list = self.one242415_list(url)
             self.worker()
             self.addDirectory(self.list)
             return self.list
@@ -68,7 +66,7 @@ class indexer:
 
     def getq(self, url):
         try:
-            self.list = self.One242415_list(url)
+            self.list = self.one242415_list(url)
             self.worker()
             self.addDirectory(self.list, queue=True)
             return self.list
@@ -82,7 +80,7 @@ class indexer:
             x = regex.fetch(x)
             r += urllib.unquote_plus(x)
             url = regex.resolve(r)
-            self.list = self.One242415_list('', result=url)
+            self.list = self.one242415_list('', result=url)
             self.addDirectory(self.list)
             return self.list
         except:
@@ -93,76 +91,14 @@ class indexer:
         try:
             url = os.path.join(control.dataPath, 'testings.xml')
             f = control.openFile(url) ; result = f.read() ; f.close()
-            self.list = self.One242415_list('', result=result)
+            self.list = self.one242415_list('', result=result)
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
             return self.list
         except:
             pass
 
-    def parental_controls(self):
-        
-        dialog = xbmcgui.Dialog()
-        
-        if os.path.isfile(PARENTAL_FILE):
-            choice = dialog.yesno(AddonTitle,'Would you like to disable parental controls?')
-            if choice:
-                vq = client._get_keyboard( heading="Please Enter Your Password" )
-                if ( not vq ): 
-                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
-                    quit()
-                pass_one = hashlib.sha256(vq).hexdigest()
 
-                remove_me = 0
-                vers = open(PARENTAL_FILE, "r")
-                regex = re.compile(r'<password>(.+?)</password>')
-                for line in vers:
-                    file = regex.findall(line)
-                    for password in file:
-                        if not password == pass_one:
-                            dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
-                            quit()
-                        else:
-                            remove_me = 1
-                            dialog.ok(AddonTitle,"Parental controls have been disabled.")
-                            
-                if remove_me == 1:
-                    vers.close()
-                    os.remove(PARENTAL_FILE)
-
-            else: quit()
-
-        else:
-            choice = dialog.yesno(AddonTitle,'To use the ADULT section you must set a password.','Would you like to set a password now?')
-            if choice:
-                vq = client._get_keyboard( heading="Please Set Password" )
-                if ( not vq ):
-                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
-                    quit()
-                pass_one = vq
-
-                vq = client._get_keyboard( heading="Please Confirm Your Password" )
-                if ( not vq ):
-                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
-                    quit()
-                pass_two = vq
-                    
-                if not os.path.exists(PARENTAL_FILE):
-                    if not os.path.exists(PARENTAL_FOLDER):
-                        os.makedirs(PARENTAL_FOLDER)
-                    open(PARENTAL_FILE, 'w')
-
-                if pass_one == pass_two:
-                    writeme = hashlib.sha256(pass_one).hexdigest()
-                    f = open(PARENTAL_FILE,'w')
-                    f.write('<password>'+str(writeme)+'</password>')
-                    f.close()
-                    dialog.ok(AddonTitle,'Your password has been set and parental controls have been enabled.')
-                    xbmc.executebuiltin("Container.Refresh")
-                else:
-                    dialog.ok(AddonTitle,'The passwords do not match, please try again.')
-                    quit()
-    
     def youtube(self, url, action):
         try:
             key = trailer.trailer().key_link.split('=', 1)[-1]
@@ -223,7 +159,7 @@ class indexer:
             if preset == 'tvtuner':
                 result = result.replace('<sublink>searchsd</sublink>', '')
 
-            self.list = self.One242415_list('', result=result)
+            self.list = self.one242415_list('', result=result)
 
             if preset == 'tvtuner':
                 self.addDirectory(self.list, queue=True)
@@ -233,19 +169,32 @@ class indexer:
         except:
             pass
 
-
-    def search(self):
+    def search(self, url):
         try:
-            self.list = [{'name': 30702, 'action': 'addSearch'}]
-            self.list += [{'name': 30703, 'action': 'delSearch'}]
+            mark = False
+            if (url == None or url == ''):
+                self.list = [{'name': 30702, 'action': 'addSearch'}]
+                self.list += [{'name': 30703, 'action': 'delSearch'}]
+            else:
+                if '|SECTION|' in url: mark = url.split('|SECTION|')[0]
+                self.list = [{'name': 30702, 'url': url, 'action': 'addSearch'}]
+                self.list += [{'name': 30703, 'action': 'delSearch'}]
 
             try:
                 def search(): return
                 query = cache.get(search, 600000000, table='rel_srch')
 
                 for url in query:
-                    try: self.list += [{'name': '%s...' % url, 'url': url, 'action': 'addSearch'}]
-                    except: pass
+                    
+                    if mark != False:
+                        if mark in url:
+                            name = url.split('|SPLITER|')[0]
+                            try: self.list += [{'name': '%s...' % name, 'url': url, 'action': 'addSearch'}]
+                            except: pass
+                    else:
+                        if not '|SPLITER|' in url:
+                            try: self.list += [{'name': '%s...' % url, 'url': url, 'action': 'addSearch'}]
+                            except: pass
             except:
                 pass
 
@@ -263,37 +212,66 @@ class indexer:
             pass
 
 
-    def addSearch(self, url=None):
-        try:
-            link = 'http://one242415.offshorepastebin.com/maindir/SearchA.xml'
+    def addSearch(self, url):
+    
+            try:
+                skip = 0
+                if '|SPLITER|' in url:
+                    keep = url
+                    url,matcher = url.split('|SPLITER|')
+                    skip = 1
+                    section = 1
+                elif '|SECTION|' in url:
+                    matcher = url.replace('|SECTION|','')
+                    section = 1
+                else: 
+                    section = 0
+            except: section = 0
 
-            if (url == None or url == ''):
-                keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
-                keyboard.doModal()
-                if not (keyboard.isConfirmed()): return
-                url = keyboard.getText()
+            link = 'http://one242415tv.offshorepastebin.com/main/search.xml'
+
+            if skip == 0:
+                if section == 1:
+                    keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
+                    keyboard.doModal()
+                    if not (keyboard.isConfirmed()): return
+                    url = keyboard.getText()
+                    keep = url + '|SPLITER|' + matcher
+                else:
+                    if (url == None or url == ''):
+                        keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
+                        keyboard.doModal()
+                        if not (keyboard.isConfirmed()): return
+                        url = keyboard.getText()
 
             if (url == None or url == ''): return
 
-            def search(): return [url]
+            if section == 1:
+                input = keep
+            else: 
+                input = url
+            def search(): return [input]
             query = cache.get(search, 600000000, table='rel_srch')
-            def search(): return [x for y,x in enumerate((query + [url])) if x not in (query + [url])[:y]]
+
+            def search(): return [x for y,x in enumerate((query + [input])) if x not in (query + [input])[:y]]
             cache.get(search, 0, table='rel_srch')
 
             links = client.request(link)
             links = re.findall('<link>(.+?)</link>', links)
-            links = [i for i in links if str(i).startswith('http')]
-
+            if section == 0: links = [i for i in links if str(i).startswith('http')]
+            else: links = [i for i in links if str(i).startswith('http') and matcher.lower() in str(i).lower()]
+            
             self.list = [] ; threads = [] 
-            for link in links: threads.append(workers.Thread(self.One242415_list, link))
+            for link in links: threads.append(workers.Thread(self.one242415_list, link))
             [i.start() for i in threads] ; [i.join() for i in threads]
 
+            
             self.list = [i for i in self.list if url.lower() in i['name'].lower()]
 
             for i in self.list:
                 try:
                     name = ''
-                    if not i['vip'] in ['One242415 TV']: name += '[B]%s[/B] | ' % i['vip'].upper()
+                    if not i['vip'] in ['one242415 TV']: name += '[B]%s[/B] | ' % i['vip'].upper()
                     name += i['name']
                     i.update({'name' : name})
                 except:
@@ -301,37 +279,10 @@ class indexer:
 
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
-        except:
-            pass
 
-
-    def One242415_list(self, url, result=None):
-    
-        if 'Axxx' in url:
-            dialog = xbmcgui.Dialog()
-            if not os.path.isfile(PARENTAL_FILE):
-                self.parental_controls()
-                quit()
-            else:
-                vq = client._get_keyboard( heading="Please Enter Your Password" )
-
-                if ( not vq ): 
-                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
-                    quit()
-            
-                pass_one = hashlib.sha256(vq).hexdigest()
-
-                vers = open(PARENTAL_FILE, "r")
-                regex2 = re.compile(r'<password>(.+?)</password>')
-                for line in vers:
-                    file = regex2.findall(line)
-                    for password in file:
-                        if not password == pass_one:
-                            dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
-                            quit()
+    def one242415_list(self, url, result=None):
 
         try:
-       
             if result == None: result = cache.get(client.request, 0, url)
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
@@ -465,7 +416,6 @@ class indexer:
 
         return self.list
 
-
     def worker(self):
         if not control.setting('metadata') == 'true': return
 
@@ -509,95 +459,61 @@ class indexer:
             imdb = self.list[i]['imdb']
             if imdb == '0': raise Exception()
 
-            url = self.imdb_info_link % imdb
-
-            item = client.request(url, timeout='10')
-            item = json.loads(item)
+            item = trakt.getMovieSummary(imdb)
 
             if 'Error' in item and 'incorrect imdb' in item['Error'].lower():
                 return self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'code': '0'}})
 
-            title = item['Title']
-            title = title.encode('utf-8')
-            if not title == '0': self.list[i].update({'title': title})
+            title = item.get('title')
+            title = client.replaceHTMLCodes(title)
 
-            year = item['Year']
-            year = year.encode('utf-8')
-            if not year == '0': self.list[i].update({'year': year})
+            originaltitle = title
 
-            imdb = item['imdbID']
-            if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
-            imdb = imdb.encode('utf-8')
-            if not imdb == '0': self.list[i].update({'imdb': imdb, 'code': imdb})
+            year = item.get('year', 0)
+            year = re.sub('[^0-9]', '', str(year))
 
-            premiered = item['Released']
-            if premiered == None or premiered == '' or premiered == 'N/A': premiered = '0'
-            premiered = re.findall('(\d*) (.+?) (\d*)', premiered)
-            try: premiered = '%s-%s-%s' % (premiered[0][2], {'Jan':'01', 'Feb':'02', 'Mar':'03', 'Apr':'04', 'May':'05', 'Jun':'06', 'Jul':'07', 'Aug':'08', 'Sep':'09', 'Oct':'10', 'Nov':'11', 'Dec':'12'}[premiered[0][1]], premiered[0][0])
+            imdb = item.get('ids', {}).get('imdb', '0')
+            imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+
+            tmdb = str(item.get('ids', {}).get('tmdb', 0))
+
+            premiered = item.get('released', '0')
+            try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
             except: premiered = '0'
-            premiered = premiered.encode('utf-8')
-            if not premiered == '0': self.list[i].update({'premiered': premiered})
 
-            genre = item['Genre']
-            if genre == None or genre == '' or genre == 'N/A': genre = '0'
-            genre = genre.replace(', ', ' / ')
-            genre = genre.encode('utf-8')
-            if not genre == '0': self.list[i].update({'genre': genre})
+            genre = item.get('genres', [])
+            genre = [x.title() for x in genre]
+            genre = ' / '.join(genre).strip()
+            if not genre: genre = '0'
 
-            duration = item['Runtime']
-            if duration == None or duration == '' or duration == 'N/A': duration = '0'
-            duration = re.sub('[^0-9]', '', str(duration))
-            try: duration = str(int(duration) * 60)
+            duration = str(item.get('Runtime', 0))
+
+            rating = item.get('rating', '0')
+            if not rating or rating == '0.0': rating = '0'
+
+            votes = item.get('votes', '0')
+            try: votes = str(format(int(votes), ',d'))
             except: pass
-            duration = duration.encode('utf-8')
-            if not duration == '0': self.list[i].update({'duration': duration})
 
-            rating = item['imdbRating']
-            if rating == None or rating == '' or rating == 'N/A' or rating == '0.0': rating = '0'
-            rating = rating.encode('utf-8')
-            if not rating == '0': self.list[i].update({'rating': rating})
+            mpaa = item.get('certification', '0')
+            if not mpaa: mpaa = '0'
 
-            votes = item['imdbVotes']
-            try: votes = str(format(int(votes),',d'))
-            except: pass
-            if votes == None or votes == '' or votes == 'N/A': votes = '0'
-            votes = votes.encode('utf-8')
-            if not votes == '0': self.list[i].update({'votes': votes})
+            tagline = item.get('tagline', '0')
 
-            mpaa = item['Rated']
-            if mpaa == None or mpaa == '' or mpaa == 'N/A': mpaa = '0'
-            mpaa = mpaa.encode('utf-8')
-            if not mpaa == '0': self.list[i].update({'mpaa': mpaa})
+            plot = item.get('overview', '0')
 
-            director = item['Director']
-            if director == None or director == '' or director == 'N/A': director = '0'
-            director = director.replace(', ', ' / ')
-            director = re.sub(r'\(.*?\)', '', director)
-            director = ' '.join(director.split())
-            director = director.encode('utf-8')
-            if not director == '0': self.list[i].update({'director': director})
+            people = trakt.getPeople(imdb, 'movies')
 
-            writer = item['Writer']
-            if writer == None or writer == '' or writer == 'N/A': writer = '0'
-            writer = writer.replace(', ', ' / ')
-            writer = re.sub(r'\(.*?\)', '', writer)
-            writer = ' '.join(writer.split())
-            writer = writer.encode('utf-8')
-            if not writer == '0': self.list[i].update({'writer': writer})
+            director = writer = ''
+            if 'crew' in people and 'directing' in people['crew']:
+                director = ', '.join([director['person']['name'] for director in people['crew']['directing'] if director['job'].lower() == 'director'])
+            if 'crew' in people and 'writing' in people['crew']:
+                writer = ', '.join([writer['person']['name'] for writer in people['crew']['writing'] if writer['job'].lower() in ['writer', 'screenplay', 'author']])
 
-            cast = item['Actors']
-            if cast == None or cast == '' or cast == 'N/A': cast = '0'
-            cast = [x.strip() for x in cast.split(',') if not x == '']
-            try: cast = [(x.encode('utf-8'), '') for x in cast]
-            except: cast = []
-            if cast == []: cast = '0'
-            if not cast == '0': self.list[i].update({'cast': cast})
-
-            plot = item['Plot']
-            if plot == None or plot == '' or plot == 'N/A': plot = '0'
-            plot = client.replaceHTMLCodes(plot)
-            plot = plot.encode('utf-8')
-            if not plot == '0': self.list[i].update({'plot': plot})
+            cast = []
+            for person in people.get('cast', []):
+                cast.append({'name': person['person']['name'], 'role': person['character']})
+            cast = [(person['name'], person['role']) for person in cast]
 
             self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:
@@ -696,6 +612,7 @@ class indexer:
 
         for i in items:
             try:
+                
                 try: name = control.lang(int(i['name'])).encode('utf-8')
                 except: name = i['name']
                 
@@ -852,9 +769,10 @@ class resolver:
 
     def f4m(self, url, name):
             try:
-                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
+                if not any(i in url for i in ['.f4m', '.ts', '.m3u8']): raise Exception()
                 ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-                if not ext in ['f4m', 'ts']: raise Exception()
+                if not ext: ext = url
+                if not ext in ['f4m', 'ts', 'm3u8']: raise Exception()
 
                 params = urlparse.parse_qs(url)
 
@@ -873,8 +791,13 @@ class resolver:
                 try: auth_string = params['auth'][0]
                 except: auth_string = ''
 
-                try: streamtype = params['streamtype'][0]
-                except: streamtype = 'TSDOWNLOADER' if ext == 'ts' else 'HDS'
+
+                try:
+                   streamtype = params['streamtype'][0]
+                except:
+                   if ext =='ts': streamtype = 'TSDOWNLOADER'
+                   elif ext =='m3u8': streamtype = 'HLS'
+                   else: streamtype = 'HDS'
 
                 try: swf = params['swf'][0]
                 except: swf = None
@@ -1128,5 +1051,4 @@ class bookmarks:
             dbcon.commit()
         except:
             pass
-
 

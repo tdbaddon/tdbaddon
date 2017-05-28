@@ -39,7 +39,7 @@ class source:
         self.mv_link = '/v/%s'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             query = self.search_mv_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -58,7 +58,7 @@ class source:
             return
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             query = self.search_tv_link % (urllib.quote_plus(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
@@ -147,7 +147,7 @@ class source:
             if not url == None:
 
                 def dialog(url):
-                    try: self.disableScraper = control.yesnoDialog('To watch this video visit from any device', '[COLOR skyblue]%s[/COLOR]' % url, '', 'Torba', 'Cancel', 'Settings')
+                    try: self.disableScraper = control.yesnoDialog('Torba requires you visit, on any device, the following url to watch this video:', '[COLOR skyblue]%s[/COLOR]' % url, '', 'Torba', 'Cancel', 'Settings')
                     except: pass
 
                 workers.Thread(dialog, url).start()

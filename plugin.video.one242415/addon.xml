@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.one242415" name="One242415" version="1.0.6" provider-name="tvaddons.ag">
+<addon id="plugin.video.one242415" name="one242415" version="1.0.7" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -12,9 +12,10 @@
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">One242415</summary>
-		<description lang="en">Discover Great Streaming Playlists from The One, Please visit www.tvaddons.ag for help and support!</description>
+		<summary lang="en">one242415</summary>
+		<description lang="en">Discover Great Streaming Playlists, Please visit www.tvaddons.ag for help and support!</description>
 		<platform>all</platform>
+		<forum>http://forums.tvaddons.ag/forums/220-one242415-LIVE-STREAMS</forum>
 		<website>http://www.tvaddons.ag/</website>
 		<assets>
 			<icon>icon.png</icon>
@@ -23,6 +24,6 @@
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Version update</news>
+		<news>Module updates - meta fix</news>
 	</extension>
 </addon>

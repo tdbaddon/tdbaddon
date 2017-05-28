@@ -36,7 +36,7 @@ class source:
         self.search_link_2 = '/movies/search-form/?free=%s'
 
 
-    def movie(self, imdb, title, localtitle, year):
+    def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = self.search_link % (cleantitle.geturl(title), year)
 

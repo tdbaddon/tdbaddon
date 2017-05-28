@@ -26,6 +26,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import workers
+from resources.lib.modules import trakt
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -46,6 +47,10 @@ class sources:
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality='HD', timeout=20):
         u = None
 
+        progressDialog = control.progressDialog
+        progressDialog.create(control.addonInfo('name'), '')
+        progressDialog.update(0)
+        
         self.prepareSources()
 
         sourceDict = self.sourceDict
@@ -66,33 +71,44 @@ class sources:
 
         if content == 'movie':
             title = self.getTitle(title)
-            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, title, year, imdb, i[0], i[1]))
+            aliases = self.getAliasTitles(imdb, '', content)
+            for i in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, title, aliases, year, imdb, i[0], i[1]))
         else:
             tvshowtitle = self.getTitle(tvshowtitle)
-            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, tvshowtitle, premiered, i[0], i[1]))
+            aliases = self.getAliasTitles(imdb, '', content)
+            for i in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, tvshowtitle, aliases, premiered, i[0], i[1]))
 
 
         s = [i[0] + (i[1],) for i in zip(sourceDict, threads)]
         s = [(i[3].getName(), i[0], i[2]) for i in s]
 
         mainsourceDict = [i[0] for i in s if i[2] == 0]
+        sourcelabelDict = dict([(i[0], i[1].upper()) for i in s])
 
         [i.start() for i in threads]
 
-        progressDialog = control.progressDialog
-        progressDialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
-        progressDialog.update(0)
-
-        progressDialog.update(0, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        string1 = control.lang(32404).encode('utf-8')
+        string2 = control.lang(32405).encode('utf-8')
+        string3 = control.lang(32406).encode('utf-8')
 
         for i in range(0, (timeout * 2) + 60):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
 
+                try: info = [sourcelabelDict[x.getName()] for x in threads if x.is_alive() == True]
+                except: info = []
+
                 timerange = int(i * 0.5)
 
                 try:
                     if progressDialog.iscanceled(): break
+                except:
+                    pass
+                try:
+                    string4 = string1 % str(timerange)
+                    if len(info) > 5: string5 = string3 % str(len(info))
+                    else: string5 = string3 % str(info).translate(None, "[]'")
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
                 except:
                     pass
 
@@ -107,7 +123,7 @@ class sources:
             except:
                 pass
 
-        progressDialog.update(50, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
 
         items = self.sourcesFilter()
 
@@ -202,7 +218,7 @@ class sources:
             pass
 
 
-    def getMovieSource(self, title, localtitle, year, imdb, source, call):
+    def getMovieSource(self, title, localtitle, aliases, year, imdb, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -231,7 +247,7 @@ class sources:
             pass
 
         try:
-            if url == None: url = call.movie(imdb, title, localtitle, year)
+            if url == None: url = call.movie(imdb, title, localtitle, aliases, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
@@ -252,7 +268,7 @@ class sources:
             pass
 
 
-    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, premiered, source, call):
+    def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, localtvshowtitle, aliases, premiered, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -281,7 +297,7 @@ class sources:
             pass
 
         try:
-            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, localtvshowtitle, year)
+            if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year)
             if url == None: raise Exception()
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', repr(url)))
@@ -342,7 +358,10 @@ class sources:
         self.sources = filter
 
         filter = []
-        for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
+        for d in debrid.debrid_resolvers:
+            valid_hoster = set([i['source'] for i in self.sources])
+            valid_hoster = [i for i in valid_hoster if d.valid_url('', i)]
+            filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if i['source'] in valid_hoster]
         filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] == False]
         self.sources = filter
 
@@ -431,27 +450,29 @@ class sources:
             u = url = item['url']
 
             d = item['debrid'] ; direct = item['direct']
+            local = item.get('local', False)
 
             provider = item['provider']
             call = [i[1] for i in self.sourceDict if i[0] == provider][0]
             u = url = call.resolve(url)
 
-            if url == None or not '://' in str(url): raise Exception()
+            if url == None or (not '://' in str(url) and not local): raise Exception()
 
-            url = url[8:] if url.startswith('stack:') else url
+            if not local:
+                url = url[8:] if url.startswith('stack:') else url
 
-            urls = []
-            for part in url.split(' , '):
-                u = part
-                if not d == '':
-                    part = debrid.resolver(part, d)
+                urls = []
+                for part in url.split(' , '):
+                    u = part
+                    if not d == '':
+                        part = debrid.resolver(part, d)
 
-                elif not direct == True:
-                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
-                    if hmf.valid_url() == True: part = hmf.resolve()
-                urls.append(part)
+                    elif not direct == True:
+                        hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
+                        if hmf.valid_url() == True: part = hmf.resolve()
+                    urls.append(part)
 
-            url = 'stack://' + ' , '.join(urls) if len(urls) > 1 else urls[0]
+                url = 'stack://' + ' , '.join(urls) if len(urls) > 1 else urls[0]
 
             if url == False or url == None: raise Exception()
 
@@ -479,6 +500,13 @@ class sources:
             if info == True: self.errorForSources()
             return
 
+    def getAliasTitles(self, imdb, localtitle, content):
+        try:
+            t = trakt.getMovieAliases(imdb) if content == 'movie' else trakt.getTVShowAliases(imdb)
+            t = [i for i in t if i.get('country', '').lower() in ['', 'us'] and i.get('title', '').lower() != localtitle.lower()]
+            return t
+        except:
+            return []
 
     def errorForSources(self):
         return
@@ -506,8 +534,6 @@ class sources:
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
         self.hostblockDict = []
-
-        self.debridDict = debrid.debridDict()
 
 
 

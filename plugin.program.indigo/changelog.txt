@@ -1,5 +1,8 @@
 Official Indigo addon For Kodi
 
+V2.0.1
+Unicode fix for Descriptions in new API
+
 V2.0.0
 Natively Install Dependencies
 Timeouts for bad servers

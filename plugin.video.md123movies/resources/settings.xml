@@ -24,7 +24,7 @@
 	</category>
 	
 	<category label="Site-Url">
-		<setting id="base_url" type="text" label="BaseUrl" default="http://gomovies.to" visible="true"/>
+		<setting id="base_url" type="text" label="BaseUrl" default="" visible="true"/>
 	</category>
 	
 	<category label="Metadata">

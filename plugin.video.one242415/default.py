@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    One242415 Add-on
+    one242415 Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,10 +43,6 @@ elif action == 'directory':
     from resources.lib.indexers import onestreams
     onestreams.indexer().get(url)
 
-elif action == 'parental':
-    from resources.lib.indexers import onestreams
-    onestreams.indexer().parental_controls()
-
 elif action == 'qdirectory':
     from resources.lib.indexers import onestreams
     onestreams.indexer().getq(url)
@@ -77,7 +73,7 @@ elif action == 'browser':
 
 elif action == 'search':
     from resources.lib.indexers import onestreams
-    onestreams.indexer().search()
+    onestreams.indexer().search(url=None)
 
 elif action == 'addSearch':
     from resources.lib.indexers import onestreams
@@ -139,4 +135,70 @@ elif action == 'clearCache':
     from resources.lib.modules import cache
     cache.clear()
 
+elif action == 'radios':
+    from resources.lib.indexers import phradios
+    phradios.radios()
 
+elif action == 'radioResolve':
+    from resources.lib.indexers import phradios
+    phradios.radioResolve(url)
+
+elif action == 'radio1fm':
+    from resources.lib.indexers import phradios
+    phradios.radio1fm()
+
+elif action == 'radio181fm':
+    from resources.lib.indexers import phradios
+    phradios.radio181fm()
+
+elif action == 'radiocast':
+    from resources.lib.indexers import phradios
+    phradios.kickinradio()
+
+elif action == 'kickinradiocats':
+    from resources.lib.indexers import phradios
+    phradios.kickinradiocats(url)
+
+elif action == 'phtoons.root' or action == 'cartoon':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().root()
+
+elif action == 'phtoons.cartoons':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().cartoons(url)
+
+elif action == 'phtoons.cartoongenres':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().cartoongenres()
+
+elif action == 'phtoons.cartoonstreams':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().cartoonstreams(url, image, fanart)
+
+elif action == 'phtoons.cartoonplay':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().cartoonplay(url)
+
+elif action == 'phtoons.anime':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().anime(url)
+
+elif action == 'phtoons.animegenres':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().animegenres()
+
+elif action == 'phtoons.animestreams':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().animestreams(url, image, fanart)
+
+elif action == 'phtoons.animeplay':
+    from resources.lib.indexers import phtoons
+    phtoons.indexer().animeplay(url)
+
+else:
+    if 'search' in action:
+        url = action.split('search=')[1]
+        url = url + '|SECTION|'
+        from resources.lib.indexers import onestreams
+        onestreams.indexer().search(url)
+    else: quit()

@@ -1,9 +1,9 @@
-# Addon Name: One242415
-# Addon id: plugin.video.one242415
-# Addon Provider: One242415
+# Addon Name: one242415
+# Addon id: plugin.video.onestreams
+# Addon Provider: one242415
 msgid ""
 msgstr ""
-"Project-Id-Version: One242415\n"
+"Project-Id-Version: one242415\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: English\n"
@@ -136,6 +136,18 @@ msgstr ""
 
 msgctxt "#30500"
 msgid "[I]Next Page[/I]"
+msgstr ""
+
+msgctxt "#32404"
+msgid "Time elapsed: %s seconds"
+msgstr ""
+
+msgctxt "#32405"
+msgid "%s seconds"
+msgstr ""
+
+msgctxt "#32406"
+msgid "Remaining providers: %s"
 msgstr ""
 
 msgctxt "#32501"

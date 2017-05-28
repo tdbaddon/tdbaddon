@@ -1,2 +1,2 @@
-[B]1.0.6[/B]
-Version update
+[B]1.0.7[/B]
+Module updates - meta fix

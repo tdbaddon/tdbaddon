@@ -103,23 +103,25 @@ def SEARCHADDON(url): #Start Search Function
 	vq=_get_keyboard(heading="Search add-ons")
 	if (not vq):
 		return False,0
-	title=urllib.quote_plus(vq)
+	title=vq
 	Get_search_results(title)
 
 
 def Get_search_results(title):
 	link = api.search_addons(title)
-	for e in link:
+	my_list = sorted(link, key=lambda k: k['name'].upper())
+	for e in my_list:
 		name = e['name']
 		repourl = e['repodlpath']
 		path = e['addon_zip_path']
 		description = e['description']
+
 		icon = path.rsplit('/', 1)[0] + '/icon.png'
 		fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
 
 		if e['extension_point'] != 'xbmc.addon.repository':
 			try:
-				addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon',repourl, '', '', CMi, contextreplace=False)
+				addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon',repourl, '', '', CMi, contextreplace=False)
 			except:
 				pass
 viewsetter.set_view("sets")
@@ -141,7 +143,7 @@ def INTERNATIONAL_REPOS():
 				icon = path.rsplit('/', 1)[0] + '/icon.png'
 				fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
 				try:
-					addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
+					addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
 							   contextreplace=False)
 				except:
 					pass
@@ -149,59 +151,85 @@ def INTERNATIONAL_REPOS():
 
 def INTERNATIONAL_ADDONS():
 	imurl = 'https://www.tvaddons.ag/kodi-addons/images/categories/international/'
-	link = api.get_langs()
-	if link:
-		for e in link:
-			#name=e['languages']
-			#kodi.log(name)
-			l_vert = {"af": "African",
-					  "ar": "Arabic",
-					  "cn": "Chinese",
-					  "cs": "Czech",
-					  "da": "Danish",
-					  "nl": "Dutch",
-					  "ph": "Filipino",
-					  "fi": "Finnish",
-					  "fr": "French",
-					  "de": "German",
-					  "el": "Greek",
-					  "iw": "Hebrew",
-					  "hu": "Hungarian",
-					  "is": "Icelandic",
-					  "hi": "Indian",
-					  "ga": "Irish",
-					  "it": "Italian",
-					  "ja": "Japanese",
-					  "ko": "Korean",
-					  "mn": "Mongolian",
-					  "ne": "Nepali",
-					  "no": "Norwegian",
-					  "ur": "Pakistani",
-					  "pl": "Polish",
-					  "pt": "Portuguese",
-					  "ro": "Romanian",
-					  "ru": "Russian",
-					  "ms": "Singapore",
-					  "es": "Spanish",
-					  "sv": "Swedish",
-					  "ta": "Tamil",
-					  "th": "Thai",
-					  "tr": "Turkish",
-					  "vi": "Vietnamese"}
-			for key in l_vert:
-				if e['languages'] == key:
-					full_name = l_vert[key]
-					name = e['languages']
-					try:
-						kodi.addDir(full_name, name, 'interaddonslist',imurl+full_name.lower()+'.png', description="Foreign language addons from across the globe!")
-					except:
-						pass
-					viewsetter.set_view("sets")
+	
+	kodi.addDir('African', 'af', 'interaddonslist', imurl + 'African'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Arabic', 'ar', 'interaddonslist', imurl + 'Arabic'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	# kodi.addDir('Chinese', 'cn', 'interaddonslist', imurl + 'Chinese'.lower() + '.png',
+	# 			description='Foreign language addons from across the globe!')
+	kodi.addDir('Chinese', 'zh', 'interaddonslist', imurl + 'Chinese'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Czech', 'cs', 'interaddonslist', imurl + 'Czech'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Danish', 'da', 'interaddonslist', imurl + 'Danish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Dutch', 'nl', 'interaddonslist', imurl + 'Dutch'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Filipino', 'ph', 'interaddonslist', imurl + 'Filipino'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Finnish', 'fi', 'interaddonslist', imurl + 'Finnish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('French', 'fr', 'interaddonslist', imurl + 'French'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('German', 'de', 'interaddonslist', imurl + 'German'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Greek', 'el', 'interaddonslist', imurl + 'Greek'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Hebrew', 'he', 'interaddonslist', imurl + 'Hebrew'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	# kodi.addDir('Hebrew', 'iw', 'interaddonslist', imurl + 'Hebrew'.lower() + '.png',
+	# 			description='Foreign language addons from across the globe!')
+	kodi.addDir('Hungarian', 'hu', 'interaddonslist', imurl + 'Hungarian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Icelandic', 'is', 'interaddonslist', imurl + 'Icelandic'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Indian', 'hi', 'interaddonslist', imurl + 'Indian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Irish', 'ga', 'interaddonslist', imurl + 'Irish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Italian', 'it', 'interaddonslist', imurl + 'Italian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Japanese', 'ja', 'interaddonslist', imurl + 'Japanese'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Korean', 'ko', 'interaddonslist', imurl + 'Korean'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Mongolian', 'mn', 'interaddonslist', imurl + 'Mongolian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Nepali', 'ne', 'interaddonslist', imurl + 'Nepali'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Norwegian', 'no', 'interaddonslist', imurl + 'Norwegian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Pakistani',  'ur', 'interaddonslist', imurl + 'Pakistani'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Polish', 'pl', 'interaddonslist', imurl + 'Polish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Portuguese', 'pt', 'interaddonslist', imurl + 'Portuguese'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Romanian', 'ro', 'interaddonslist', imurl + 'Romanian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Russian', 'ru', 'interaddonslist', imurl + 'Russian'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Singapore',  'ta', 'interaddonslist', imurl + 'Singapore'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Spanish', 'es', 'interaddonslist', imurl + 'Spanish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Swedish', 'sv', 'interaddonslist', imurl + 'Swedish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Tamil', 'ta', 'interaddonslist', imurl + 'Tamil'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Thai', 'th', 'interaddonslist', imurl + 'Thai'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Turkish', 'tr', 'interaddonslist', imurl + 'Turkish'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	kodi.addDir('Vietnamese', 'vi', 'interaddonslist', imurl + 'Vietnamese'.lower() + '.png',
+				description='Foreign language addons from across the globe!')
+	viewsetter.set_view("sets")
 
 
 def INTERNATIONAL_ADDONS_LIST(url):
 	link = api.get_all_addons()
-	my_list = sorted(link, key=lambda k: k['name'])
+	my_list = sorted(link, key=lambda k: k['name'].upper())
 	for e in my_list:
 		if url in e['languages']:
 			name = e['name']
@@ -210,11 +238,12 @@ def INTERNATIONAL_ADDONS_LIST(url):
 			description = e['description']
 			icon = path.rsplit('/', 1)[0] + '/icon.png'
 			fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
-			try:
-				addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
-						   contextreplace=False)
-			except:
-				pass
+			if e['extension_point'] != 'xbmc.addon.repository':
+				try:
+					addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
+							   contextreplace=False)
+				except:
+					pass
 
 
 def List_Addons(url):
@@ -225,7 +254,7 @@ def List_Addons(url):
 		query = url
 		link = api.get_all_addons()
 		feat = api.special_addons(query)
-		my_list = sorted(link, key=lambda k: k['name'])
+		my_list = sorted(link, key=lambda k: k['name'].upper())
 		for e in my_list:
 			if e['id'] in feat:
 				name =  e['name']
@@ -235,14 +264,14 @@ def List_Addons(url):
 				icon = path.rsplit('/', 1)[0] + '/icon.png'
 				fanart =  path.rsplit('/', 1)[0] + '/fanart.jpg'
 				try:
-					addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
+					addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
 							   contextreplace=False)
 				except:
 					pass
 
 	if url in easyreg:
 		link = api.get_types(url)
-		my_list = sorted(link, key=lambda k: k['name'])
+		my_list = sorted(link, key=lambda k: k['name'].upper())
 		for e in my_list:
 			name = e['name']
 			repourl = e['repodlpath']
@@ -251,7 +280,7 @@ def List_Addons(url):
 			icon = path.rsplit('/', 1)[0] + '/icon.png'
 			fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
 			try:
-				addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
+				addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
 						   contextreplace=False)
 			except:
 				pass
@@ -275,13 +304,13 @@ def List_Addons(url):
 			icon = path.rsplit('/', 1)[0] + '/icon.png'
 			fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
 			try:
-				addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', 'None', '', '', CMi,
+				addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', 'None', '', '', CMi,
 						   contextreplace=False)
 			except:
 				pass
 	if url == 'skins':
 		link = api.get_all_addons()
-		my_list = sorted(link, key=lambda k: k['name'])
+		my_list = sorted(link, key=lambda k: k['name'].upper())
 		for e in my_list:
 			if e['extension_point'] == 'xbmc.gui.skin':
 				name = e['name']
@@ -291,7 +320,7 @@ def List_Addons(url):
 				icon = path.rsplit('/', 1)[0] + '/icon.png'
 				fanart = path.rsplit('/', 1)[0] + '/fanart.jpg'
 				try:
-					addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', 'None', '', '', CMi,
+					addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', 'None', '', '', CMi,
 							   contextreplace=False)
 				except:
 					pass
@@ -303,7 +332,7 @@ def Split_List(name,url):
 	letter = name
 	if url in regulars:
 		link =api.get_types(url)
-		my_list = sorted(link, key=lambda k: k['name'])
+		my_list = sorted(link, key=lambda k: k['name'].upper())
 		for e in my_list:
 			name = e['name']
 			repourl = e['repodlpath']
@@ -315,14 +344,14 @@ def Split_List(name,url):
 				ALPHA = string.ascii_letters
 				if name.startswith(tuple(ALPHA)) == False:
 					try:
-						addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
+						addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
 								   contextreplace=False)
 					except:
 						pass
 			else:
-				if name.lower().startswith(letter) or name.upper().startswith(letter) :
+				if name.startswith(letter) :
 					try:
-						addHELPDir(name, path, 'addoninstall', icon, fanart, description, 'addon', repourl, '', '', CMi,
+						addHELPDir(name, path, 'addoninstall', icon, fanart,description, 'addon', repourl, '', '', CMi,
 								   contextreplace=False)
 					except:
 						pass
@@ -479,7 +508,7 @@ def INSTALLQUASAR(url):
 				addon_able.set_enabled("plugin.video.quasar")
 				time.sleep(0.5)
 				xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
-				dialog.ok("Installation Complete!", "Kodi must now quit to refresh the Quasar providers. Press OK to quit kodi!",
+				dialog.ok("Installation Complete!", "Quasar is now installed. Kodi must restart before this addon may be used.",
 					"    Brought To You By %s " % siteTitle)
 				xbmc.executebuiltin("XBMC.Quit()")
 			except:
@@ -491,16 +520,27 @@ def INSTALLQUASAR(url):
 #****************************************************************
 
 def OPENSUBINSTALL(url):
-		filetype = 'addon'
+		name = 'OpenSubtitles'
+		script = 'service.subtitles.opensubtitles_by_opensubtitles'
+		url = "https://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/service.subtitles.opensubtitles_by_opensubtitles/"
+		aList = []
+		script_url = url
+		link = OPEN_URL(script_url)
+		matcher = script + '-(.+?).zip'
+		match = re.compile(matcher).findall(link)
+		for version in match:
+			aList.append(version);
+		aList.sort(cmp=ver_cmp, reverse=True)
+		newest_v_url = script_url + script + '-' + aList[0] + '.zip'
+		kodi.log("Looking for : " + newest_v_url)
 		path=xbmc.translatePath(os.path.join('special://home','addons','packages'))
 		dp=xbmcgui.DialogProgress();
 		dp.create("Please Wait"," ",'','Installing Official OpenSubtitles Addon')
-		lib=os.path.join(path,'opensubtitlesOfficial.zip')
+		lib = os.path.join(path, name + '.zip')
 		try: os.remove(lib)
 		except: pass
-		downloader.download(url,lib,dp,timeout = 120)
-		if filetype=='addon':
-			addonfolder=xbmc.translatePath(os.path.join('special://','home','addons'))
+		downloader.download(newest_v_url, lib, dp, timeout=120)
+		addonfolder=xbmc.translatePath(os.path.join('special://','home','addons'))
 		time.sleep(2)
 		try:
 			extract.all(lib,addonfolder,'')
@@ -521,15 +561,9 @@ def set_content(content):
 
 
 # HELPDIR**************************************************************
-def addDir(name,url,mode,thumb):
-		u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name); ok=True;
-		liz=xbmcgui.ListItem(name,iconImage=iconart,thumbnailImage=thumb);
-		#liz.setInfo(type="Video",infoLabels={"title":name,"Plot":description})
-		try: liz.setProperty("fanart_image",fanart)
-		except: pass
-		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True); return ok
+
 def addHELPDir(name,url,mode,iconimage,fanart,description,filetype,repourl,version,author,contextmenuitems=[],contextreplace=False):
-		u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)+"&filetype="+urllib.quote_plus(filetype)+"&repourl="+urllib.quote_plus(repourl)+"&author="+urllib.quote_plus(author)+"&version="+urllib.quote_plus(version);  ok=True;
+		u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib2.unquote(name.encode('utf8'))+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib2.unquote(description.encode('utf8'))+"&filetype="+urllib.quote_plus(filetype)+"&repourl="+urllib.quote_plus(repourl)+"&author="+urllib.quote_plus(author)+"&version="+urllib.quote_plus(version);  ok=True;
 		liz=xbmcgui.ListItem(name,iconImage=iconart,thumbnailImage=iconimage); #"DefaultFolder.png"
 		#if len(contextmenuitems) > 0:
 		liz.addContextMenuItems(contextmenuitems,replaceItems=contextreplace)
@@ -945,19 +979,19 @@ def ADDONINSTALL(name,url,description,filetype,repourl,Auto=False,v='',vO=''):
 				xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
 				xbmc.executebuiltin("XBMC.UpdateAddonRepos()")
 				dialog.ok("Installation Complete!", "    We hope you enjoy your Kodi addon experience!",
-						"    Brought To You By %s " % siteTitle, "")
+						"    Brought To You By %s " % siteTitle, "Please note that some addons may require a restart of Kodi.")
 			else:
 				addon_able.set_enabled(addonname)
 				xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
 				xbmc.executebuiltin("XBMC.UpdateAddonRepos()")
 				dialog.ok("Installation Complete!", "     We hope you enjoy your Kodi addon experience!",
-							"    Brought To You By %s " % siteTitle,"")
+							"    Brought To You By %s " % siteTitle,"Please note that some addons may require a restart of Kodi.")
 		else:
 			addon_able.set_enabled(addonname)
 			xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
 			xbmc.executebuiltin("XBMC.UpdateAddonRepos()")
 			dialog.ok("Installation Complete!", "     We hope you enjoy your Kodi addon experience!",
-						"    Brought To You By %s " % siteTitle,"")
+						"    Brought To You By %s " % siteTitle,"Please note that some addons may require a restart of Kodi.")
         #
 
 	else: return
