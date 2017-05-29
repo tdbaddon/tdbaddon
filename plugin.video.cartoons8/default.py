@@ -103,22 +103,26 @@ def ANIMEXDLATESTEPISODES(url):
         except:pass
 
 def ANIMEXDPLAYLINK(name,url,iconimage):
+        print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         referer=url
         link = net.http_GET(url).content.replace('\r','').replace('\n','').replace('\t','').replace('  ','')
         link = cleanHex(link)
+        try:
+                if 'file:'in link:
+                        try:url=re.compile("file: '(.+?)'").findall(link)[0]
+                        except:url=re.compile('file: "(.+?)"').findall(link)[0]
+                        print url
+                        ok=True
+                        liz=xbmcgui.ListItem(cleanHex(name), iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+                        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+                        xbmc.Player ().play(url)#+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0', liz, False)
+                        quit()
+        except:pass
         if 'safeupload' in link:
                 url=re.compile('src="(.+?)" width=').findall(link)
                 link = net.http_GET(url).content
                 link = cleanHex(link)
-        if 'file:'in link:
-                try:url=re.compile("file: '(.+?)'").findall(link)[0]
-                except:url=re.compile('file: "(.+?)"').findall(link)[0]
-                ok=True
-                liz=xbmcgui.ListItem(cleanHex(name), iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-                xbmc.Player ().play(url+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0', liz, False)
-                quit()
-        else:
+        elif 'epCheck' in link:
                 match=re.compile('<div class="epCheck ">(.+?)</li>',re.DOTALL).findall(link)
                 match=list(reversed(match))
                 if 'checkk' in str(match):
@@ -134,6 +138,7 @@ def ANIMEXDPLAYLINK(name,url,iconimage):
                                 for url,name in match:
                                         name = cleanHex(name.replace('&amp;','&'))
                                         addDir(name,url,20,iconimage,fanart)
+       
 #########################################################################################   ANIMEXD END
 
 #########################################################################################   SUPERCARTOONS START
@@ -166,9 +171,9 @@ def GETSUPER(url):
 
 def GETSUPERLINK(referer):
         link = net.http_GET(url).content
+        access = net.http_GET('http://www.supercartoons.net/ad-preroll.html')
         playurl=re.compile("file: '(.+?)'").findall(link)[0]
         playurl=playurl+'&pu='+playurl+'|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36&Referer='+referer
-        print playurl
         PLAYLINK(name,playurl,iconimage)
         quit()
 #########################################################################################   SUPERCARTOONS END
@@ -319,11 +324,14 @@ def AZ(url,name):
 def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
         referer=url
-        holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)[0]
-        link = open_url(holderpage)
+        holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)
+        for hlink in holderpage:
+                if 'http://player' in hlink:
+                        link = open_url(hlink)
         if 'googlevideo.com' in link:#GOOGLE
                 urls=re.compile('Right Click and Save Link as(.+?)pausePlayer',re.DOTALL).findall(link)[0]
-                url=re.compile('<a href="(.+?)"').findall(link)[-1]        
+                url=re.compile('<a href="(.+?)"').findall(link)[-1]
+                print 'xxxxxxx' + url
                 PLAYLINK(name,url,iconimage)
                 quit()
         elif '/rd.php' in link:#OWN HOST
