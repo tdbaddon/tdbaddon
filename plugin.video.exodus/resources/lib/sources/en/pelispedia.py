@@ -181,7 +181,7 @@ class source:
                     post = re.findall('gkpluginsphp.*?link\s*:\s*"([^"]+)', result)[0]
                     post = urllib.urlencode({'link': post})
 
-                    url = urlparse.urljoin(self.base_link, '/Pe_flsh/plugins/gkpluginsphp.php')
+                    url = urlparse.urljoin(self.base_link, '/gkphp_flv/plugins/gkpluginsphp.php')
                     url = client.request(url, post=post, XHR=True, referer=u, timeout='10')
                     url = json.loads(url)['link']
 

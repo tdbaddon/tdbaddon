@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="3.1.13" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.14" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -32,6 +32,8 @@
 		</assets>
 		<news>- Updated existing providers
 - Added and Updated German providers
-- Removed omdbapi dependence</news>
+- Added Russian providers
+- Fixed issue with Trakt lists
+- Fixed issue with GoogleDoc-Links</news>
 	</extension>
 </addon>

@@ -81,8 +81,8 @@ def getTraktAsJson(url, post=None):
     try:
         r, res_headers = __getTrakt(url, post)
         r = utils.json_loads_as_str(r)
-        if 'x-sort-by' in res_headers and 'x-sort-how' in res_headers:
-            r = sort_list(res_headers['x-sort-by'], res_headers['x-sort-how'], r)
+        if 'X-Sort-By' in res_headers and 'X-Sort-How' in res_headers:
+            r = sort_list(res_headers['X-Sort-By'], res_headers['X-Sort-How'], r)
         return r
     except:
         pass
@@ -455,6 +455,12 @@ def SearchTVShow(title, year, full=True):
     except:
         return
 
+def IdLookup(content, type, type_id):
+    try:
+        r = getTraktAsJson('/search/%s/%s?type=%s' % (type, type_id, content))
+        return r[0].get(content, {}).get('ids', [])
+    except:
+        return {}
 
 def getGenre(content, type, type_id):
     try:

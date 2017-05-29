@@ -1,0 +1,15 @@
+3.0.2 (11-01-2017)
+- Further improvements in regex pattern
+- Cachetodisc True for all cases
+
+3.0.1 (11-01-2017)
+- Cache clear function
+- Setsetting to "ALL" group if the user changes list and selected group not in groups of the new list
+
+3.0.0 (10-01-2017)
+- Ability to load youtube playlist urls
+- Bug fixes
+- Changed addon name to (Play)List Runner (id = "plugin.video.listrunner")
+- Improved regex patterns
+- Reverted to old method of resolver installation
+- Code cosmetics

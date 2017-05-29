@@ -8,7 +8,7 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
-		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English|Polish|Polish+English|Korean|Korean+English" default="English" />
+		<setting id="providers.lang" type="select" label="32360" values="English|German|German+English|French|French+English|Polish|Polish+English|Korean|Korean+English|Russian|Russian+English" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
@@ -109,6 +109,7 @@
 		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
 		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
 		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />
+		<setting id="provider.kinow" type="bool" label="KINOW" default="true" />
 		<setting id="provider.kinox" type="bool" label="KINOX" default="true" />
 		<setting id="provider.meinkino" type="bool" label="MEINKINO" default="true" />
 		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
@@ -147,6 +148,11 @@
 		<setting id="provider.ikshow" type="bool" label="IKSHOW" default="true" />
 		<setting id="provider.kdramacool" type="bool" label="KDRAMACOOL" default="true" />
 		<setting id="provider.myasiantv" type="bool" label="MYASIANTV" default="true" />
+		<setting label="Russian" type="lsep" />
+		<setting id="provider.exfs" type="bool" label="EXFS" default="true" />
+		<setting id="provider.filmix" type="bool" label="FILMIX" default="true" />
+		<setting id="provider.kinoxax" type="bool" label="KINOXAX" default="true" />
+		<setting id="provider.newkino" type="bool" label="NEWKINO" default="true" />
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

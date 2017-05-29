@@ -59,6 +59,23 @@ def get_release_quality(release_name):
     except:
         return 'SD', []
 
+def label_to_quality(label):
+    try:
+        try: label = int(re.search('(\d+)', label).group(1))
+        except: label = 0
+
+        if label >= 2160:
+            return '4K'
+        elif label >= 1440:
+            return '1440p'
+        elif label >= 1080:
+            return '1080p'
+        elif 720 <= label < 1080:
+            return 'HD'
+        elif label < 720:
+            return 'SD'
+    except:
+        return 'SD'
 
 def strip_domain(url):
     try:
@@ -77,6 +94,8 @@ def is_host_valid(url, domains):
         hosts = [domain.lower() for domain in domains if host and host in domain.lower()]
         if hosts and '.' not in host:
             host = hosts[0]
+        if hosts and 'google.com' in host:
+            host = 'gvideo'
         return any(hosts), host
     except:
         return False, ''

@@ -94,14 +94,9 @@ class source:
             r = [(id.attrs['id'], dom_parser.parse_dom(content, 'div', attrs={'id': id.attrs['id']})) for content, ids in r for id in ids]
             r = [(re.findall('hd(\d{3,4})', i[0]), dom_parser.parse_dom(i[1], 'a', req='href')) for i in r if i[1]]
             r = [(i[0][0] if i[0] else '0', [x.attrs['href'] for x in i[1]]) for i in r if i[1]]
+            r = [(source_utils.label_to_quality(i[0]), i[1]) for i in r]
 
-            links = [(x[1], '4K') for x in r if int(x[0]) >= 2160]
-            links += [(x[1], '1440p') for x in r if int(x[0]) >= 1440]
-            links += [(x[1], '1080p') for x in r if int(x[0]) >= 1080]
-            links += [(x[1], 'HD') for x in r if 720 <= int(x[0]) < 1080]
-            links += [(x[1], 'SD') for x in r if int(x[0]) < 720]
-
-            for urls, quality in links:
+            for quality, urls in r:
                 for link in urls:
                     try:
                         data = urlparse.parse_qs(urlparse.urlparse(link).query, keep_blank_values=True)

@@ -28,7 +28,7 @@ from resources.lib.modules import cleantitle
 class source:
     def __init__(self):
         self.priority = 1
-        self.language = ['en', 'de', 'fr', 'ko', 'pl', 'pt']
+        self.language = ['en', 'de', 'fr', 'ko', 'pl', 'pt', 'ru']
         self.domains = []
 
     def movie(self, imdb, title, localtitle, aliases, year):

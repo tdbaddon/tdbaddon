@@ -120,7 +120,7 @@ class movies:
 
             elif u in self.trakt_link:
                 self.list = cache.get(self.trakt_list, 24, url, self.trakt_user)
-                if idx == True: self.worker() ; self.list = [i for i in self.list if not i['poster'] == '0']
+                if idx == True: self.worker()
 
 
             elif u in self.imdb_link and ('/user/' in url or '/list/' in url):
@@ -129,7 +129,7 @@ class movies:
 
             elif u in self.imdb_link:
                 self.list = cache.get(self.imdb_list, 24, url)
-                if idx == True: self.worker() ; self.list = [i for i in self.list if not i['poster'] == '0']
+                if idx == True: self.worker()
 
 
             if idx == True and create_directory == True: self.movieDirectory(self.list)
@@ -871,6 +871,10 @@ class movies:
                 try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
                 except: pass
 
+                poster = [i[x] for x in ['poster3', 'poster', 'poster2'] if i.get(x, '0') != '0']
+                poster = poster[0] if poster else addonPoster
+                meta.update({'poster': poster})
+
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
                 url = '%s?action=play&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, systitle, year, imdb, sysmeta, self.systime)
@@ -906,15 +910,7 @@ class movies:
                 item = control.item(label=label)
 
                 art = {}
-
-                if 'poster3' in i and not i['poster3'] == '0':
-                    art.update({'icon': i['poster3'], 'thumb': i['poster3'], 'poster': i['poster3']})
-                elif 'poster' in i and not i['poster'] == '0':
-                    art.update({'icon': i['poster'], 'thumb': i['poster'], 'poster': i['poster']})
-                elif 'poster2' in i and not i['poster2'] == '0':
-                    art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
-                else:
-                    art.update({'icon': addonPoster, 'thumb': addonPoster, 'poster': addonPoster})
+                art.update({'icon': poster, 'thumb': poster, 'poster': poster})
 
                 if 'banner' in i and not i['banner'] == '0':
                     art.update({'banner': i['banner']})

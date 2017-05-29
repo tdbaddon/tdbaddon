@@ -116,16 +116,13 @@ class source:
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: continue
 
-                    result = [(match[0], match[1]) for match in re.findall('''["']?label\s*["']?\s*[:=]\s*["']?(?P<label>[^"',]+)["']?(?:[^}\]]+)["']?\s*file\s*["']?\s*[:=,]?\s*["'](?P<url>[^"']+)''', result, re.DOTALL | re.I)]
-                    result = [(re.sub('[^\d]+', '', x[0]), x[1].replace('\/', '/')) for x in result]
+                    matches = [(match[0], match[1]) for match in re.findall('''["']?label\s*["']?\s*[:=]\s*["']?(?P<label>[^"',]+)["']?(?:[^}\]]+)["']?\s*file\s*["']?\s*[:=,]?\s*["'](?P<url>[^"']+)''', result, re.DOTALL | re.I)]
+                    matches += [(match[1], match[0]) for match in re.findall('''["']?\s*file\s*["']?\s*[:=,]?\s*["'](?P<url>[^"']+)(?:[^}>\]]+)["']?\s*label\s*["']?\s*[:=]\s*["']?(?P<label>[^"',]+)''', result, re.DOTALL | re.I)]
 
-                    links = [(x[1], '4K') for x in result if int(x[0]) >= 2160]
-                    links += [(x[1], '1440p') for x in result if int(x[0]) >= 1440]
-                    links += [(x[1], '1080p') for x in result if int(x[0]) >= 1080]
-                    links += [(x[1], 'HD') for x in result if 720 <= int(x[0]) < 1080]
-                    links += [(x[1], 'SD') for x in result if int(x[0]) < 720]
+                    result = [(source_utils.label_to_quality(x[0]), x[1].replace('\/', '/')) for x in matches]
+                    result = [(i[0], i[1]) for i in result if not i[1].endswith('.vtt')]
 
-                    for url, quality in links: sources.append({'source': 'gvideo', 'quality': quality, 'language': 'en', 'url': url, 'direct': True, 'debridonly': False})
+                    for quality, url in result: sources.append({'source': 'gvideo', 'quality': quality, 'language': 'en', 'url': url, 'direct': True, 'debridonly': False})
                 except:
                     pass
 
@@ -134,6 +131,11 @@ class source:
             return sources
 
     def resolve(self, url):
-        return url
+        try:
+            if url.startswith('//'): url = 'http:' + url
+            if url.startswith('/'): url = urlparse.urljoin(self.base_link, url)
+            return url
+        except:
+            pass
 
 

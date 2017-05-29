@@ -94,15 +94,9 @@ class source:
                 rel = [(i[0][0].content, [x for x in i[1] if 'fa-desktop' in x.content]) for i in rel if i[0] and i[1]]
                 rel = [(i[0], dom_parser.parse_dom(i[1][0].content, 'td')) for i in rel if i[1]]
                 rel = [(i[0], re.findall('\d{3,4}x(\d{3,4})$', i[1][0].content)) for i in rel if i[1]]
-                rel = [(i[0], i[1][0],) for i in rel if len(i[1]) > 0]
+                rel = [(i[0], source_utils.label_to_quality(i[1][0])) for i in rel if len(i[1]) > 0]
 
-                links = [(x[0], '4K') for x in rel if int(x[1]) >= 2160]
-                links += [(x[0], '1440p') for x in rel if int(x[1]) >= 1440]
-                links += [(x[0], '1080p') for x in rel if int(x[1]) >= 1080]
-                links += [(x[0], 'HD') for x in rel if 720 <= int(x[1]) < 1080]
-                links += [(x[0], 'SD') for x in rel if int(x[1]) < 720]
-
-                for html, quality in links:
+                for html, quality in rel:
                     try:
                         s = dom_parser.parse_dom(html, 'a', attrs={'href': re.compile('#streams_episodes_%s_\d+' % id)})
                         s = [(dom_parser.parse_dom(i, 'div', attrs={'data-loop': re.compile('\d+')}, req='data-loop'), dom_parser.parse_dom(i, 'span')) for i in s]

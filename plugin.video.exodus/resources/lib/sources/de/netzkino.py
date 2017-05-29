@@ -57,14 +57,9 @@ class source:
             r = client.request(r + '%s.mp4/master.m3u8' % url, XHR=True)
 
             r = re.findall('RESOLUTION\s*=\s*\d+x(\d+).*?\n(http.*?)(?:\n|$)', r, re.IGNORECASE)
+            r = [(source_utils.label_to_quality(i[0]), i[1]) for i in r]
 
-            links = [(x[1], '4K') for x in r if int(x[0]) >= 2160]
-            links += [(x[1], '1440p') for x in r if int(x[0]) >= 1440]
-            links += [(x[1], '1080p') for x in r if int(x[0]) >= 1080]
-            links += [(x[1], 'HD') for x in r if 720 <= int(x[0]) < 1080]
-            links += [(x[1], 'SD') for x in r if int(x[0]) < 720]
-
-            for link, quality in links:
+            for quality, link in r:
                 sources.append({'source': 'CDN', 'quality': quality, 'language': 'de', 'url': link, 'direct': True, 'debridonly': False})
 
             return sources

@@ -206,7 +206,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             result = _basic_request(url, headers=headers, post=post, timeout=timeout, limit=limit)
 
         if output == 'extended':
-            try: response_headers = dict(response.info().items())
+            try: response_headers = dict([(item[0].title(), item[1]) for item in response.info().items()])
             except: response_headers = response.headers
             response_code = str(response.code)
             try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])

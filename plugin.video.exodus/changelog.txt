@@ -1,3 +1,10 @@
+[B]3.1.14[/B]
+- Updated existing providers
+- Added and Updated German providers
+- Added Russian providers
+- Fixed issue with Trakt lists
+- Fixed issue with GoogleDoc-Links
+
 [B]3.1.13[/B]
 - Updated existing providers
 - Added and Updated German providers

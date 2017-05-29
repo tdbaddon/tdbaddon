@@ -1,0 +1,13 @@
+<settings>
+<category label="General">
+     <setting id="Username" type="text" label="Username" default=""/>
+     <setting id="Password" type="text" option="hidden" label="Password" default=""/>
+	 <setting id="extend" type="select" label="Player Format" values="ts|m3u8|rtmp" default="ts" />
+	 <setting id="showxxx" type="bool" label="Show Adult Content" default="false"/>
+	 <setting id="vanemalukk" type="bool" label="Enable Parental-Lock" default="true" visible="false"/>
+	 <setting id="vanemakood" type="text" option="hidden" label="Parental Code" default="1234" visible="false"/>
+	 <setting label="Set Parental Code (Default: 1234)" type="action" action="RunScript($CWD/kappa.py)" visible='eq(-3,true)'/>
+	 <setting label="Hit Defaults if you forgot code" type="lsep" visible='eq(-4,true)'/>
+	 <setting id="note" type="text" label="Note:" default="Click ok then click clear cache"/>
+</category>
+</settings>

@@ -96,6 +96,11 @@ class source:
             url = client.request(urlparse.urljoin(self.base_link, url), output='geturl')
             if self.base_link not in url:
                 return url
+
+            r = client.request(url)
+
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'container'})
+            return dom_parser.parse_dom(r, 'iframe', req='src')[0].attrs['src']
         except:
             return
 

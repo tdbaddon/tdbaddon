@@ -863,7 +863,7 @@ class sources:
 
 
     def getLanguage(self):
-        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['en', 'pt'], 'Polish': ['pl'], 'Polish+English': ['en', 'pl'], 'Korean': ['ko'], 'Korean+English': ['en', 'ko']}
+        langDict = {'English': ['en'], 'German': ['de'], 'German+English': ['en', 'de'], 'French': ['fr'], 'French+English': ['en', 'fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['en', 'pt'], 'Polish': ['pl'], 'Polish+English': ['en', 'pl'], 'Korean': ['ko'], 'Korean+English': ['en', 'ko'], 'Russian': ['ru'], 'Russian+English': ['en', 'ru']}
         name = control.setting('providers.lang')
         return langDict.get(name, ['en'])
 
@@ -892,7 +892,7 @@ class sources:
             return []
 
     def _getPrimaryLang(self):
-        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko'}
+        langDict = {'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko', 'Russian': 'ru', 'Russian+English': 'ru'}
         name = control.setting('providers.lang')
         lang = langDict.get(name)
         return lang
@@ -923,7 +923,7 @@ class sources:
 
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
-        self.hosthqDict = ['openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com', 'raptu.com', 'filez.tv']
+        self.hosthqDict = ['gvideo', 'google.com', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com', 'raptu.com', 'filez.tv', 'uptobox.com', 'uptobox.com', 'uptostream.com', 'xvidstage.com', 'streamango.com']
 
         self.hostblockDict = []
 

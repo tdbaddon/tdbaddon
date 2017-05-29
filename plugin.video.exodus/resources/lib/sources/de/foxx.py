@@ -122,16 +122,10 @@ class source:
                             try: i += jsunpack.unpack(x)
                             except: pass
 
-                        i = [(match[1], match[0]) for match in re.findall('''['"]?file['"]?\s*:\s*['"]([^'"]+)['"][^}]*['"]?label['"]?\s*:\s*['"]([^'"]*)''', i, re.DOTALL)]
-                        i = [(re.sub('[^\d]+', '', x[0]), x[1].replace('\/', '/')) for x in i]
+                        i = [(match[0], match[1]) for match in re.findall('''['"]?file['"]?\s*:\s*['"]([^'"]+)['"][^}]*['"]?label['"]?\s*:\s*['"]([^'"]*)''', i, re.DOTALL)]
+                        i = [(x[0].replace('\/', '/'), source_utils.label_to_quality(x[1])) for x in i]
 
-                        links = [(x[1], '4K') for x in i if int(x[0]) >= 2160]
-                        links += [(x[1], '1440p') for x in i if int(x[0]) >= 1440]
-                        links += [(x[1], '1080p') for x in i if int(x[0]) >= 1080]
-                        links += [(x[1], 'HD') for x in i if 720 <= int(x[0]) < 1080]
-                        links += [(x[1], 'SD') for x in i if int(x[0]) < 720]
-
-                        for url, quality in links:
+                        for url, quality in i:
                             sources.append({'source': 'gvideo', 'quality': quality, 'language': 'de', 'url': url, 'direct': True, 'debridonly': False})
                     else:
                         try:
