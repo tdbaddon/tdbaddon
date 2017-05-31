@@ -6118,12 +6118,15 @@ def getiptvmac():
     return maccode,base64.b64decode("aHR0cDovL213MS5pcHR2NjYudHY=")
 #    return maccode,base64.b64decode("aHR0cDovL3BvcnRhbC5pcHR2cHJpdmF0ZXNlcnZlci50dg==")
 
-def playipbox(finalUrl):
+def playipbox(finalUrl,hlsredir=False):
     print 'finalUrl',finalUrl
     if '.ts' in finalUrl or '.mpegts' in finalUrl:
         finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=TSDOWNLOADER'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
     elif '.m3u8' in finalUrl:
-        finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=HLSRETRY'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
+        if hlsredir:
+            finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=HLSREDIR'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
+        else:
+            finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=HLSRETRY'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
         
 #    finalUrl='plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(finalUrl))
     xbmc.executebuiltin('XBMC.RunPlugin('+finalUrl+')') 
@@ -7301,8 +7304,8 @@ def PlayShowLink ( url, redirect=True ):
         html=getUrl(newurl,headers=headers)
         stream_url= re.findall( '(http.*)',html)[-1].split('#')[0]
         stream_url=stream_url+'|Origin=http://www.dailymotion.com&Referer=http://www.dailymotion.com/embed/video/&User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
-        if linkType.upper() in ["DMASLIVE"]:
-            return playipbox(stream_url)#you stingy mf
+        if linkType.upper() in ["DMASLIVE"] or iszem:
+            return playipbox(stream_url,True)#you stingy mf
         print stream_url
         playlist.add(stream_url,listitem)
         xbmcPlayer = xbmc.Player()

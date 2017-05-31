@@ -1,5 +1,0 @@
-[COLOR lime]2.01: 06th April 2017[/COLOR]
-	[COLOR white][B]- Image update[/B][/COLOR]
-
-[COLOR lime]2.00: 19th March 2017[/COLOR]
-	[COLOR white][B]- Initial[/B][/COLOR]

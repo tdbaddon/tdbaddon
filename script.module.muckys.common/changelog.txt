@@ -1,6 +1,10 @@
+######## v1.3.3 ########
+ 
+- Updated md_request as was failing on some sites that use cloudflare
+
 ######## v1.3.2 ########
  
-- Added jsunfuck from tknorrois s.a.l.t.s modules:
+- Added jsunfuck from tknorrois s.a.l.t.s modules
 
 ######## v1.3.1 ########
  

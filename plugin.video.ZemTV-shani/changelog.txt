@@ -1,3 +1,5 @@
+[B]Version 6.7.1[/B]
+now zemtv videos will be played with f4mproxy by default
 [B]Version 6.7.0[/B]
 testfolder update
 

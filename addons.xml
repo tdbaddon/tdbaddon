@@ -927,7 +927,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.colombiatv"
        name="ColombiaTV"
-       version="1.4.2"
+       version="1.4.3"
        provider-name="Wiiego">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -2016,7 +2016,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="2.1.1" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="2.1.3" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -2053,7 +2053,7 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
-<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="2.0.0" provider-name="Mucky Duck">
+<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="2.0.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
@@ -3303,7 +3303,7 @@ Enjoy!</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.7.0"
+       version="6.7.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3608,7 +3608,7 @@ Enjoy!</description>
     </extension>
 </addon>
 
-<addon id="repository.echo" name="Echo Coder Repository" version="2.01" provider-name="Echo Coder">
+<addon id="repository.echo" name="Echo Coder Repository" version="2.02" provider-name="Echo Coder">
     <extension point="xbmc.addon.repository" name="Echo Coder Repository">
         <dir>
             <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -3626,8 +3626,25 @@ Enjoy!</description>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>The official Echo Coder Repository.</summary>
-        <description>Support available at https://www.tvaddons.ag</description>
+        <description>Addons in this repository include:
+Sportie
+Echo TV Guide
+Echo Docs
+Echo Streams
+NJM Soccer
+Wrestling On Demand
+MMA Finest
+Motor Sport Replays
+and more.......</description>
+        <disclaimer>Support available at https://www.tvaddons.ag</disclaimer>
         <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <screenshot>screenshots/screenshot-01.png</screenshot>
+            <screenshot>screenshots/screenshot-02.png</screenshot>
+            <screenshot>screenshots/screenshot-03.png</screenshot>
+        </assets>
     </extension>
 </addon>
 
@@ -5001,7 +5018,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.3.2" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.3.3" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

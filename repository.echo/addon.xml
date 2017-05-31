@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.echo" name="Echo Coder Repository" version="2.01" provider-name="Echo Coder">
+<addon id="repository.echo" name="Echo Coder Repository" version="2.02" provider-name="Echo Coder">
     <extension point="xbmc.addon.repository" name="Echo Coder Repository">
         <dir>
             <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -17,7 +17,24 @@
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>The official Echo Coder Repository.</summary>
-        <description>Support available at https://www.tvaddons.ag</description>
+        <description>Addons in this repository include:
+Sportie
+Echo TV Guide
+Echo Docs
+Echo Streams
+NJM Soccer
+Wrestling On Demand
+MMA Finest
+Motor Sport Replays
+and more.......</description>
+        <disclaimer>Support available at https://www.tvaddons.ag</disclaimer>
         <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <screenshot>screenshots/screenshot-01.png</screenshot>
+            <screenshot>screenshots/screenshot-02.png</screenshot>
+            <screenshot>screenshots/screenshot-03.png</screenshot>
+        </assets>
     </extension>
 </addon>
