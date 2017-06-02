@@ -1,2 +1,2 @@
-[B]1.0.7[/B]
-Module updates - meta fix
+[B]1.0.8[/B]
+search fixed and adult lock

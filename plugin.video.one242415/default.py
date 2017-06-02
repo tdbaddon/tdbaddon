@@ -43,6 +43,11 @@ elif action == 'directory':
     from resources.lib.indexers import onestreams
     onestreams.indexer().get(url)
 
+elif action == 'parental':
+    from resources.lib.indexers import onestreams
+    onestreams.indexer().parental_controls()
+    
+
 elif action == 'qdirectory':
     from resources.lib.indexers import onestreams
     onestreams.indexer().getq(url)

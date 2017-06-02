@@ -19,7 +19,7 @@
 
 
 import os,re,sys,hashlib,urllib,urlparse,json,base64,random,datetime
-import xbmc
+import xbmc,xbmcgui
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -35,7 +35,10 @@ from resources.lib.modules import youtube
 from resources.lib.modules import views
 from resources.lib.modules import trakt
 
-
+addon_id            = 'plugin.video.one242415'
+AddonTitle          = 'one242415'
+PARENTAL_FOLDER     = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'parental'))
+PARENTAL_FILE       = xbmc.translatePath(os.path.join(PARENTAL_FOLDER , 'control.txt'))
 
 class indexer:
     def __init__(self):
@@ -97,7 +100,69 @@ class indexer:
             return self.list
         except:
             pass
+            
+    def parental_controls(self):
+        
+        dialog = xbmcgui.Dialog()
+        
+        if os.path.isfile(PARENTAL_FILE):
+            choice = dialog.yesno(AddonTitle,'Would you like to disable parental controls?')
+            if choice:
+                vq = client._get_keyboard( heading="Please Enter Your Password" )
+                if ( not vq ): 
+                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
+                    quit()
+                pass_one = hashlib.sha256(vq).hexdigest()
 
+                remove_me = 0
+                vers = open(PARENTAL_FILE, "r")
+                regex = re.compile(r'<password>(.+?)</password>')
+                for line in vers:
+                    file = regex.findall(line)
+                    for password in file:
+                        if not password == pass_one:
+                            dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
+                            quit()
+                        else:
+                            remove_me = 1
+                            dialog.ok(AddonTitle,"Parental controls have been disabled.")
+                            
+                if remove_me == 1:
+                    vers.close()
+                    os.remove(PARENTAL_FILE)
+
+            else: quit()
+
+        else:
+            choice = dialog.yesno(AddonTitle,'To use the ADULT section you must set a password.','Would you like to set a password now?')
+            if choice:
+                vq = client._get_keyboard( heading="Please Set Password" )
+                if ( not vq ):
+                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
+                    quit()
+                pass_one = vq
+
+                vq = client._get_keyboard( heading="Please Confirm Your Password" )
+                if ( not vq ):
+                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
+                    quit()
+                pass_two = vq
+                    
+                if not os.path.exists(PARENTAL_FILE):
+                    if not os.path.exists(PARENTAL_FOLDER):
+                        os.makedirs(PARENTAL_FOLDER)
+                    open(PARENTAL_FILE, 'w')
+
+                if pass_one == pass_two:
+                    writeme = hashlib.sha256(pass_one).hexdigest()
+                    f = open(PARENTAL_FILE,'w')
+                    f.write('<password>'+str(writeme)+'</password>')
+                    f.close()
+                    dialog.ok(AddonTitle,'Your password has been set and parental controls have been enabled.')
+                    xbmc.executebuiltin("Container.Refresh")
+                else:
+                    dialog.ok(AddonTitle,'The passwords do not match, please try again.')
+                    quit()
 
     def youtube(self, url, action):
         try:
@@ -228,7 +293,7 @@ class indexer:
                     section = 0
             except: section = 0
 
-            link = 'http://one242415tv.offshorepastebin.com/main/search.xml'
+            link = 'http://one242415.offshorepastebin.com/maindir/SearchA.xml'
 
             if skip == 0:
                 if section == 1:
@@ -282,6 +347,29 @@ class indexer:
 
     def one242415_list(self, url, result=None):
 
+    
+        if 'Axxx' in url:
+            dialog = xbmcgui.Dialog()
+            if not os.path.isfile(PARENTAL_FILE):
+                self.parental_controls()
+                quit()
+            else:
+                vq = client._get_keyboard( heading="Please Enter Your Password" )
+
+                if ( not vq ): 
+                    dialog.ok(AddonTitle,"Sorry, no password was entered.")
+                    quit()
+            
+                pass_one = hashlib.sha256(vq).hexdigest()
+
+                vers = open(PARENTAL_FILE, "r")
+                regex2 = re.compile(r'<password>(.+?)</password>')
+                for line in vers:
+                    file = regex2.findall(line)
+                    for password in file:
+                        if not password == pass_one:
+                            dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
+                            quit()
         try:
             if result == None: result = cache.get(client.request, 0, url)
 

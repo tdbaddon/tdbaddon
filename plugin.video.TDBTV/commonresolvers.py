@@ -2,7 +2,7 @@
 
 '''
     Genesis Add-on
-    Copyright (C) 2014 lambda
+    Copyright (C) 2015 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import urllib,urllib2,re,os,xbmc,xbmcgui,xbmcaddon,xbmcvfs
+import urllib,urllib2,urlparse,re,os,sys,xbmcaddon
 
 try:
     import CommonFunctions as common
@@ -30,87 +30,93 @@ except:
     import simplejson as json
 
 
-def get(url):
-    print url
-    pz = premiumize(url)
-    if not pz == None: return pz
-    rd = realdebrid(url)
-    if not rd == None: return rd
+class get(object):
+    def __init__(self, url):
+        self.result = self.worker(url)
 
-    try:
-        u = None
-        import urlparse
-        u = urlparse.urlparse(url).netloc
-        u = u.replace('www.', '')
-        print 'common resolver',u
-    except:
-        pass
-
-    if u == 'vk.com': url = vk(url)
-    elif u == 'docs.google.com': url = googledocs(url)
-    elif u == 'youtube.com': url = youtube(url)
-    elif u == 'videomega.tv': url = videomega(url)
-    elif u == 'movreel.com': url = movreel(url)
-    elif u == 'billionuploads.com': url = billionuploads(url)
-    elif u == 'v-vids.com': url = v_vids(url)
-    elif u == 'vidbull.com': url = vidbull(url)
-    elif u == '180upload.com': url = _180upload(url)
-    elif u == 'hugefiles.net': url = hugefiles(url)
-    elif u == 'filecloud.io': url = filecloud(url)
-    elif u == 'uploadrocket.net': url = uploadrocket(url)
-    elif u == 'kingfiles.net': url = kingfiles(url)
-    elif u == 'streamin.to': url = streamin(url)
-    elif u == 'grifthost.com': url = grifthost(url)
-    elif u == 'ishared.eu': url = ishared(url)
-    elif u == 'cloudyvideos.com': url = cloudyvideos(url)
-    elif u == 'mrfile.me': url = mrfile(url)
-    elif u == 'datemule.com': url = datemule(url)
-    elif u == 'vimeo.com': url = vimeo(url)
-    elif u == 'odnoklassniki.ru': url = odnoklassniki(url)
-    elif u == 'videoapi.my.mail.ru': url = mailru(url)
-    elif u == 'my.mail.ru': url = mailru(url)
-    elif u == 'mail.ru': url = mailru(url)
-
-    else:
+    def worker(self, url):
         try:
-            import urlresolver
-            host = urlresolver.HostedMediaFile(url)
-            if host: resolver = urlresolver.resolve(url)
-            else: return url
-            if not resolver.startswith('http://'): return
-            if not resolver == url: return resolver
-        except:
-            pass
+            pz = premiumize().resolve(url)
+            if not pz == None: return pz
+            rd = realdebrid().resolve(url)
+            if not rd == None: return rd
 
-    return url
+            if url.startswith('rtmp'):
+                if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
+                return url
+
+            u = urlparse.urlparse(url).netloc
+            u = u.replace('www.', '').replace('embed.', '')
+            u = u.lower()
+
+            import sys, inspect
+            r = inspect.getmembers(sys.modules[__name__], inspect.isclass)
+            r = [i for i in r if hasattr(i[1], 'info') and u in eval(i[0])().info()['netloc']][0][0]
+            r = eval(r)().resolve(url)
+
+            if r == None: return r
+            elif type(r) == list: return r
+            elif not r.startswith('http'): return r
+
+            try: h = dict(urlparse.parse_qsl(r.rsplit('|', 1)[1]))
+            except: h = dict('')
+            h.update({'Referer': url, 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:34.0) Gecko/20100101 Firefox/34.0'})
+
+            r = '%s|%s' % (r.split('|')[0], urllib.urlencode(h))
+            return r
+        except:
+            return url
 
 
 class getUrl(object):
-    def __init__(self, url, close=True, proxy=None, post=None, mobile=False, referer=None, cookie=None, output='', timeout='10'):
+    def __init__(self, url, close=True, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='15'):
+        handlers = []
         if not proxy == None:
-            proxy_handler = urllib2.ProxyHandler({'http':'%s' % (proxy)})
-            opener = urllib2.build_opener(proxy_handler, urllib2.HTTPHandler)
+            handlers += [urllib2.ProxyHandler({'http':'%s' % (proxy)}), urllib2.HTTPHandler]
+            opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
         if output == 'cookie' or not close == True:
             import cookielib
-            cookie_handler = urllib2.HTTPCookieProcessor(cookielib.LWPCookieJar())
-            opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+            cookies = cookielib.LWPCookieJar()
+            handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
+            opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
-        if not post == None:
-            request = urllib2.Request(url, post)
+        try:
+            if sys.version_info < (2, 7, 9): raise Exception()
+            import ssl; ssl_context = ssl.create_default_context()
+            ssl_context.check_hostname = False
+            ssl_context.verify_mode = ssl.CERT_NONE
+            handlers += [urllib2.HTTPSHandler(context=ssl_context)]
+            opener = urllib2.build_opener(*handlers)
+            opener = urllib2.install_opener(opener)
+        except:
+            pass
+        try: headers.update(headers)
+        except: headers = {}
+        if 'User-Agent' in headers:
+            pass
+        elif not mobile == True:
+            headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.1; rv:34.0) Gecko/20100101 Firefox/34.0'
         else:
-            request = urllib2.Request(url,None)
-        if mobile == True:
-            request.add_header('User-Agent', 'Mozilla/5.0 (iPhone; CPU; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7')
+            headers['User-Agent'] = 'Apple-iPhone/701.341'
+        if 'referer' in headers:
+            pass
+        elif referer == None:
+            headers['referer'] = url
         else:
-            request.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0')
-        if not referer == None:
-            request.add_header('Referer', referer)
-        if not cookie == None:
-            request.add_header('cookie', cookie)
+            headers['referer'] = referer
+        if not 'Accept-Language' in headers:
+            headers['Accept-Language'] = 'en-US'
+        if 'cookie' in headers:
+            pass
+        elif not cookie == None:
+            headers['cookie'] = cookie
+        request = urllib2.Request(url, data=post, headers=headers)
         response = urllib2.urlopen(request, timeout=int(timeout))
         if output == 'cookie':
-            result = str(response.headers.get('Set-Cookie'))
+            result = []
+            for c in cookies: result.append('%s=%s' % (c.name, c.value))
+            result = "; ".join(result)
         elif output == 'geturl':
             result = response.geturl()
         else:
@@ -119,756 +125,1892 @@ class getUrl(object):
             response.close()
         self.result = result
 
-def cloudflare(url):
-    try:
-        import urlparse,cookielib
 
-        class NoRedirection(urllib2.HTTPErrorProcessor):    
-            def http_response(self, request, response):
-                return response
+class captcha:
+    def worker(self, data):
+        self.captcha = {}
 
-        def parseJSString(s):
-            try:
-                offset=1 if s[0]=='+' else 0
-                val = int(eval(s.replace('!+[]','1').replace('!![]','1').replace('[]','0').replace('(','str(')[offset:]))
-                return val
-            except:
-                pass
+        self.solvemedia(data)
+        if not self.type == None: return self.captcha
 
-        agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'
-        cj = cookielib.CookieJar()
+        self.recaptcha(data)
+        if not self.type == None: return self.captcha
 
-        opener = urllib2.build_opener(NoRedirection, urllib2.HTTPCookieProcessor(cj))
-        opener.addheaders = [('User-Agent', agent)]
-        response = opener.open(url)
-        result = response.read()
+        self.capimage(data)
+        if not self.type == None: return self.captcha
 
-        jschl = re.compile('name="jschl_vc" value="(.+?)"/>').findall(result)[0]
+        self.numeric(data)
+        if not self.type == None: return self.captcha
 
-        init = re.compile('setTimeout\(function\(\){\s*.*?.*:(.*?)};').findall(result)[0]
-        builder = re.compile(r"challenge-form\'\);\s*(.*)a.v").findall(result)[0]
-        decryptVal = parseJSString(init)
-        lines = builder.split(';')
+    def solvemedia(self, data):
+        try:
+            url = common.parseDOM(data, "iframe", ret="src")
+            url = [i for i in url if 'api.solvemedia.com' in i]
 
-        for line in lines:
-            if len(line)>0 and '=' in line:
-                sections=line.split('=')
+            if len(url) > 0: self.type = 'solvemedia'
+            else: self.type = None ; return
 
-                line_val = parseJSString(sections[1])
-                decryptVal = int(eval(str(decryptVal)+sections[0][-1]+str(line_val)))
+            result = getUrl(url[0], referer='').result
 
-        answer = decryptVal + len(urlparse.urlparse(url).netloc)
+            response = common.parseDOM(result, "iframe", ret="src")
+            response += common.parseDOM(result, "img", ret="src")
+            response = [i for i in response if '/papi/media' in i][0]
+            response = 'http://api.solvemedia.com' + response
+            response = self.keyboard(response)
 
-        query = '%s/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s' % (url, jschl, answer)
+            post = {}
+            f = common.parseDOM(result, "form", attrs = { "action": "verify.noscript" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'adcopy_response': response})
 
-        opener = urllib2.build_opener(NoRedirection, urllib2.HTTPCookieProcessor(cj))
-        opener.addheaders = [('User-Agent', agent)]
-        response = opener.open(query)
-        cookie = str(response.headers.get('Set-Cookie'))
-        response.close()
+            getUrl('http://api.solvemedia.com/papi/verify.noscript', post=urllib.urlencode(post)).result
 
-        return cookie
-    except:
-        return
+            self.captcha.update({'adcopy_challenge': post['adcopy_challenge'], 'adcopy_response': 'manual_challenge'})
+        except:
+            pass
 
-def jsunpack(script):
-    def __itoa(num, radix):
+    def recaptcha(self, data):
+        try:
+            url = []
+            if data.startswith('http://www.google.com'): url += [data]
+            url += common.parseDOM(data, "script", ret="src", attrs = { "type": "text/javascript" })
+            url = [i for i in url if 'http://www.google.com' in i]
+
+            if len(url) > 0: self.type = 'recaptcha'
+            else: self.type = None ; return
+
+            result = getUrl(url[0]).result
+            challenge = re.compile("challenge\s+:\s+'(.+?)'").findall(result)[0]
+            response = 'http://www.google.com/recaptcha/api/image?c=' + challenge
+            response = self.keyboard(response)
+
+            self.captcha.update({'recaptcha_challenge_field': challenge, 'recaptcha_challenge': challenge, 'recaptcha_response_field': response, 'recaptcha_response': response})
+        except:
+            pass
+
+    def capimage(self, data):
+        try:
+            url = common.parseDOM(data, "img", ret="src")
+            url = [i for i in url if 'captcha' in i]
+
+            if len(url) > 0: self.type = 'capimage'
+            else: self.type = None ; return
+
+            response = self.keyboard(url[0])
+            self.captcha.update({'code': response})
+        except:
+            pass
+
+    def numeric(self, data):
+        try:
+            url = re.compile("left:(\d+)px;padding-top:\d+px;'>&#(.+?);<").findall(data)
+
+            if len(url) > 0: self.type = 'numeric'
+            else: self.type = None ; return
+
+            result = sorted(url, key=lambda ltr: int(ltr[0]))
+            response = ''.join(str(int(num[1])-48) for num in result)
+
+            self.captcha.update({'code': response})
+        except:
+            pass
+
+    def keyboard(self, response):
+        try:
+            import os,xbmc,xbmcgui,xbmcaddon,xbmcvfs
+            dataPath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo("profile"))
+            i = os.path.join(dataPath.decode("utf-8"),'img')
+            f = xbmcvfs.File(i, 'w')
+            f.write(getUrl(response).result)
+            f.close()
+            f = xbmcgui.ControlImage(450,5,375,115, i)
+            d = xbmcgui.WindowDialog()
+            d.addControl(f)
+            xbmcvfs.delete(i)
+            d.show()
+            xbmc.sleep(3000)
+            t = 'Type the letters in the image'
+            c = common.getUserInput(t, '')
+            d.close()
+            return c
+        except:
+            return
+
+class unwise:
+    def worker(self, str_eval):
+        page_value=""
+        try:        
+            ss="w,i,s,e=("+str_eval+')' 
+            exec (ss)
+            page_value=self.__unwise(w,i,s,e)
+        except: return
+        return page_value
+
+    def __unwise(self,  w, i, s, e):
+        lIll = 0;
+        ll1I = 0;
+        Il1l = 0;
+        ll1l = [];
+        l1lI = [];
+        while True:
+            if (lIll < 5):
+                l1lI.append(w[lIll])
+            elif (lIll < len(w)):
+                ll1l.append(w[lIll]);
+            lIll+=1;
+            if (ll1I < 5):
+                l1lI.append(i[ll1I])
+            elif (ll1I < len(i)):
+                ll1l.append(i[ll1I])
+            ll1I+=1;
+            if (Il1l < 5):
+                l1lI.append(s[Il1l])
+            elif (Il1l < len(s)):
+                ll1l.append(s[Il1l]);
+            Il1l+=1;
+            if (len(w) + len(i) + len(s) + len(e) == len(ll1l) + len(l1lI) + len(e)):
+                break;
+            
+        lI1l = ''.join(ll1l)
+        I1lI = ''.join(l1lI)
+        ll1I = 0;
+        l1ll = [];
+        for lIll in range(0,len(ll1l),2):
+            ll11 = -1;
+            if ( ord(I1lI[ll1I]) % 2):
+                ll11 = 1;
+            l1ll.append(chr(    int(lI1l[lIll: lIll+2], 36) - ll11));
+            ll1I+=1;
+            if (ll1I >= len(l1lI)):
+                ll1I = 0;
+        ret=''.join(l1ll)
+        if 'eval(function(w,i,s,e)' in ret:
+            ret=re.compile('eval\(function\(w,i,s,e\).*}\((.*?)\)').findall(ret)[0] 
+            return self.worker(ret)
+        else:
+            return ret
+
+class js:
+    def worker(self, script):
+        aSplit = script.split(";',")
+        p = str(aSplit[0])
+        aSplit = aSplit[1].split(",")
+        a = int(aSplit[0])
+        c = int(aSplit[1])
+        k = aSplit[2].split(".")[0].replace("'", '').split('|')
+        e = ''
+        d = ''
+
+        sUnpacked = str(self.__unpack(p, a, c, k, e, d))
+        sUnpacked = sUnpacked.replace('\\', '')
+
+        url = self.__parse(sUnpacked)
+        return url
+
+    def __unpack(self, p, a, c, k, e, d):
+        while (c > 1):
+            c = c -1
+            if (k[c]):
+                p = re.sub('\\b' + str(self.__itoa(c, a)) +'\\b', k[c], p)
+        return p
+
+    def __itoa(self, num, radix):
         result = ""
         while num > 0:
             result = "0123456789abcdefghijklmnopqrstuvwxyz"[num % radix] + result
             num /= radix
         return result
 
-    def __unpack(p, a, c, k, e, d):
-        while (c > 1):
-            c = c -1
-            if (k[c]):
-                p = re.sub('\\b' + str(__itoa(c, a)) +'\\b', k[c], p)
-        return p
+    def __parse(self, sUnpacked):
+        url = re.compile("'file' *, *'(.+?)'").findall(sUnpacked)
+        url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(sUnpacked)
+        url += re.compile("playlist=(.+?)&").findall(sUnpacked)
+        url += common.parseDOM(sUnpacked, "embed", ret="src")
 
-    aSplit = script.split(";',")
-    p = str(aSplit[0])
-    aSplit = aSplit[1].split(",")
-    a = int(aSplit[0])
-    c = int(aSplit[1])
-    k = aSplit[2].split(".")[0].replace("'", '').split('|')
-    e = ''
-    d = ''
-    sUnpacked = str(__unpack(p, a, c, k, e, d))
-    return sUnpacked.replace('\\', '')
+        url = [i for i in url if not i.endswith('.srt')]
 
-def captcha(data):
-    try:
-        captcha = {}
-
-        def get_response(response):
-            try:
-                dataPath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo("profile"))
-                i = os.path.join(dataPath.decode("utf-8"),'img')
-                f = xbmcvfs.File(i, 'w')
-                f.write(getUrl(response).result)
-                f.close()
-                f = xbmcgui.ControlImage(450,5,375,115, i)
-                d = xbmcgui.WindowDialog()
-                d.addControl(f)
-                xbmcvfs.delete(i)
-                d.show()
-                xbmc.sleep(3000)
-                t = 'Type the letters in the image'
-                c = common.getUserInput(t, '')
-                d.close()
-                return c
-            except:
-                return
-
-        solvemedia = common.parseDOM(data, "iframe", ret="src")
-        solvemedia = [i for i in solvemedia if 'api.solvemedia.com' in i]
-
-        if len(solvemedia) > 0:
-            url = solvemedia[0]
-            result = getUrl(url).result
-            challenge = common.parseDOM(result, "input", ret="value", attrs = { "id": "adcopy_challenge" })[0]
-            response = common.parseDOM(result, "iframe", ret="src")
-            response += common.parseDOM(result, "img", ret="src")
-            response = [i for i in response if '/papi/media' in i][0]
-            response = 'http://api.solvemedia.com' + response
-            response = get_response(response)
-            captcha.update({'adcopy_challenge': challenge, 'adcopy_response': response})
-            return captcha
-
-        recaptcha = []
-        if data.startswith('http://www.google.com'): recaptcha += [data]
-        recaptcha += common.parseDOM(data, "script", ret="src", attrs = { "type": "text/javascript" })
-        recaptcha = [i for i in recaptcha if 'http://www.google.com' in i]
-
-        if len(recaptcha) > 0:
-            url = recaptcha[0]
-            result = getUrl(url).result
-            challenge = re.compile("challenge\s+:\s+'(.+?)'").findall(result)[0]
-            response = 'http://www.google.com/recaptcha/api/image?c=' + challenge
-            response = get_response(response)
-            captcha.update({'recaptcha_challenge_field': challenge, 'recaptcha_challenge': challenge, 'recaptcha_response_field': response, 'recaptcha_response': response})
-            return captcha
-
-        numeric = re.compile("left:(\d+)px;padding-top:\d+px;'>&#(.+?);<").findall(data)
-
-        if len(numeric) > 0:
-            result = sorted(numeric, key=lambda ltr: int(ltr[0]))
-            response = ''.join(str(int(num[1])-48) for num in result)
-            captcha.update({'code': response})
-            return captcha
-
-    except:
-        return captcha
-
-
-def vk(url):
-    try:
-        url = url.replace('http://', 'https://')
-        result = getUrl(url).result
-
-        u = re.compile('url(720|540|480)=(.+?)&').findall(result)
-
-        url = []
-        try: url += [[{'quality': 'HD', 'url': i[1]} for i in u if i[0] == '720'][0]]
-        except: pass
-        try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '540'][0]]
-        except: pass
-        try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '480'][0]]
-        except: pass
-
-        if url == []: return
+        url = 'http://' + url[-1].split('://', 1)[-1]
         return url
-    except:
-        return
 
-def google(url):
-    try:
-        if any(x in url for x in ['&itag=37&', '&itag=137&', '&itag=299&', '&itag=96&', '&itag=248&', '&itag=303&', '&itag=46&']): quality = '1080p'
-        elif any(x in url for x in ['&itag=22&', '&itag=84&', '&itag=136&', '&itag=298&', '&itag=120&', '&itag=95&', '&itag=247&', '&itag=302&', '&itag=45&', '&itag=102&']): quality = 'HD'
-        else: raise Exception()
 
-        url = [{'quality': quality, 'url': url}]
-        return url
-    except:
-        return
+class premiumize:
+    def __init__(self):
+        self.user = xbmcaddon.Addon().getSetting("premiumize_user")
+        self.password = xbmcaddon.Addon().getSetting("premiumize_password")
 
-def googledocs(url):
-    try:
-        url = url.split('/preview', 1)[0]
+    def info(self):
+        return {
+            'netloc': ['bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net'],
+            'host': ['Bitshare', 'Filefactory', 'K2S', 'Oboom', 'Rapidgator', 'Uploaded'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': True
+        }
 
-        result = getUrl(url).result
-        result = re.compile('"fmt_stream_map",(".+?")').findall(result)[0]
-        result = json.loads(result)
+    def status(self):
+        if (self.user == '' or self.password == ''): return False
+        else: return True
 
-        u = [i.split('|')[-1] for i in result.split(',')]
-
-        url = []
-        try: url += [[{'quality': '1080p', 'url': i} for i in u if any(x in i for x in ['&itag=37&', '&itag=137&', '&itag=299&', '&itag=96&', '&itag=248&', '&itag=303&', '&itag=46&'])][0]]
-        except: pass
-        try: url += [[{'quality': 'HD', 'url': i} for i in u if any(x in i for x in ['&itag=22&', '&itag=84&', '&itag=136&', '&itag=298&', '&itag=120&', '&itag=95&', '&itag=247&', '&itag=302&', '&itag=45&', '&itag=102&'])][0]]
-        except: pass
-
-        if url == []: return
-        return url
-    except:
-        return
-
-def youtube(url):
-    try:
-        id = url.split("?v=")[-1].split("/")[-1].split("?")[0].split("&")[0]
-        result = getUrl('http://gdata.youtube.com/feeds/api/videos/%s?v=2' % id).result
-
-        state, reason = None, None
-        try: state = common.parseDOM(result, "yt:state", ret="name")[0]
-        except: pass
-        try: reason = common.parseDOM(result, "yt:state", ret="reasonCode")[0]
-        except: pass
-        if state == 'deleted' or state == 'rejected' or state == 'failed' or reason == 'requesterRegion' : return
-
-        url = 'plugin://plugin.video.youtube/?action=play_video&videoid=%s' % id
-        return url
-    except:
-        return
-
-def premiumize(url):
-    try:
-        user = xbmcaddon.Addon().getSetting("premiumize_user")
-        password = xbmcaddon.Addon().getSetting("premiumize_password")
-
-        if (user == '' or password == ''): raise Exception()
-
-        url = 'https://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, url)
-
-        result = getUrl(url, close=False).result
-        url = json.loads(result)['result']['location']
-        return url
-    except:
-        return
-
-def premiumize_hosts():
-    try:
-        user = xbmcaddon.Addon().getSetting("premiumize_user")
-        password = xbmcaddon.Addon().getSetting("premiumize_password")
-
-        if (user == '' or password == ''): raise Exception()
-
-        pz = getUrl('https://api.premiumize.me/pm-api/v1.php?method=hosterlist&params[login]=%s&params[pass]=%s' % (user, password)).result
-        pz = json.loads(pz)['result']['hosterlist']
-        pz = [i.rsplit('.' ,1)[0].lower() for i in pz]
-        return pz
-    except:
-        return
-
-def realdebrid(url):
-    try:
-        user = xbmcaddon.Addon().getSetting("realdedrid_user")
-        password = xbmcaddon.Addon().getSetting("realdedrid_password")
-
-        if (user == '' or password == ''): raise Exception()
-
-        login_data = urllib.urlencode({'user' : user, 'pass' : password})
-        login_link = 'https://real-debrid.com/ajax/login.php?%s' % login_data
-        result = getUrl(login_link, close=False).result
-        result = json.loads(result)
-        error = result['error']
-        if not error == 0: raise Exception()
-
-        url = 'https://real-debrid.com/ajax/unrestrict.php?link=%s' % url
-        url = url.replace('filefactory.com/stream/', 'filefactory.com/file/')
-        result = getUrl(url).result
-        result = json.loads(result)
-        url = result['generated_links'][0][-1]
-        return url
-    except:
-        return
-
-def realdebrid_hosts():
-    try:
-        rd = getUrl('https://real-debrid.com/api/hosters.php').result
-        rd = json.loads('[%s]' % rd)
-        rd = [i.rsplit('.' ,1)[0].lower() for i in rd]
-        return rd
-    except:
-        return
-
-def videomega(url):
-    try:
-        url = url.replace('/?ref=', '/iframe.php?ref=')
-        result = getUrl(url).result
-        url = re.compile('document.write.unescape."(.+?)"').findall(result)[0]
-        url = urllib.unquote_plus(url)
-        url = re.compile('file: "(.+?)"').findall(url)[0]
-        return url
-    except:
-        return
-
-def movreel(url):
-    try:
-        user = xbmcaddon.Addon().getSetting("movreel_user")
-        password = xbmcaddon.Addon().getSetting("movreel_password")
-
-        login = 'http://movreel.com/login.html'
-        post = {'op': 'login', 'login': user, 'password': password, 'redirect': url}
-        post = urllib.urlencode(post)
-        result = getUrl(url, close=False).result
-        result += getUrl(login, post=post, close=False).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': '', 'method_premium': ''})
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        url = re.compile('(<a .+?</a>)').findall(result)
-        url = [i for i in url if 'Download Link' in i][-1]
-        url = common.parseDOM(url, "a", ret="href")[0]
-        return url
-    except:
-        return
-
-def billionuploads(url):
-    try:
-        import cookielib
-        cj = cookielib.CookieJar()
-
-        agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'
-        base = 'http://billionuploads.com'
-
-        class NoRedirection(urllib2.HTTPErrorProcessor):
-            def http_response(self, request, response):
-                return response
-
-        opener = urllib2.build_opener(NoRedirection, urllib2.HTTPCookieProcessor(cj))
-        opener.addheaders = [('User-Agent', agent)]
-        response = opener.open(base)
-        response = opener.open(base)
-        result = response.read()
-
-        z = []
-        decoded = re.compile('(?i)var z="";var b="([^"]+?)"').findall(result)[0]
-        for i in range(len(decoded)/2): z.append(int(decoded[i*2:i*2+2],16))
-        decoded = ''.join(map(unichr, z))
-
-        incapurl = re.compile('(?i)"GET","(/_Incapsula_Resource[^"]+?)"').findall(decoded)[0]
-        incapurl = base + incapurl
-
-        response = opener.open(incapurl)
-        response = opener.open(url)
-        result = response.read()
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
-
-        enc_input = re.compile('decodeURIComponent\("(.+?)"\)').findall(result)
-        if enc_input: f += urllib2.unquote(enc_input[0])
-
-        extra = re.compile("append\(\$\(document.createElement\('input'\)\).attr\('type','hidden'\).attr\('name','(.*?)'\).val\((.*?)\)").findall(result)
-        for i, k in extra:
-            try:
-                k = re.compile('<textarea[^>]*?source="self"[^>]*?>([^<]*?)<').findall(result)[0].strip("'")
-                post.update({i: k})
-            except:
-                pass
-
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-
-        post.update({'submit_btn': ''})
-
-        k = re.findall('\'input\[name="([^"]+?)"\]\'\)\.remove\(\)', result)
-        for i in k: del post[i]
-
-        post = urllib.urlencode(post)
-
-        response = opener.open(url, post)
-        result = response.read()
-        response.close()
-
-        def custom_range(start, end, step):
-            while start <= end:
-                yield start
-                start += step
-
-        def checkwmv(e):
-            s = ""
-            i=[]
-            u=[[65,91],[97,123],[48,58],[43,44],[47,48]]
-            for z in range(0, len(u)):
-                for n in range(u[z][0],u[z][1]):
-                    i.append(chr(n))
-            t = {}
-            for n in range(0, 64): t[i[n]]=n
-            for n in custom_range(0, len(e), 72):
-                a=0
-                h=e[n:n+72]
-                c=0
-                for l in range(0, len(h)):            
-                    f = t.get(h[l], 'undefined')
-                    if f == 'undefined': continue
-                    a = (a<<6) + f
-                    c = c + 6
-                    while c >= 8:
-                        c = c - 8
-                        s = s + chr( (a >> c) % 256 )
-            return s
-
+    def hosts(self):
         try:
-            url = common.parseDOM(result, "input", ret="value", attrs = { "id": "dl" })[0]
-            url = url.split('GvaZu')[1]
-            url = checkwmv(url)
-            url = checkwmv(url)
+            if self.status() == False: raise Exception()
+
+            url = 'http://api.premiumize.me/pm-api/v1.php?method=hosterlist&params[login]=%s&params[pass]=%s' % (self.user, self.password)
+
+            result = getUrl(url).result
+
+            pz = json.loads(result)['result']['hosterlist']
+            pz = [i.rsplit('.' ,1)[0].lower() for i in pz]
+            return pz
+        except:
+            return
+
+    def resolve(self, url):
+        try:
+            if self.status() == False: raise Exception()
+
+            url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (self.user, self.password, urllib.quote_plus(url))
+
+            result = getUrl(url, close=False).result
+
+            url = json.loads(result)['result']['location']
             return url
         except:
-            pass
+            return
 
+class realdebrid:
+    def __init__(self):
+        self.user = xbmcaddon.Addon().getSetting("realdedrid_user")
+        self.password = xbmcaddon.Addon().getSetting("realdedrid_password")
+
+    def info(self):
+        return {
+            'netloc': ['bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net'],
+            'host': ['Bitshare', 'Filefactory', 'K2S', 'Oboom', 'Rapidgator', 'Uploaded'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': True
+        }
+
+    def status(self):
+        if (self.user == '' or self.password == ''): return False
+        else: return True
+
+    def hosts(self):
         try:
-            url = common.parseDOM(result, "source", ret="src")[0]
+            if self.status() == False: raise Exception()
+
+            url = 'http://real-debrid.com/api/hosters.php'
+
+            result = getUrl(url).result
+
+            rd = json.loads('[%s]' % result)
+            rd = [i.rsplit('.' ,1)[0].lower() for i in rd]
+            return rd
+        except:
+            return
+
+    def resolve(self, url):
+        try:
+            if self.status() == False: raise Exception()
+
+            login_data = urllib.urlencode({'user' : self.user, 'pass' : self.password})
+            login_link = 'http://real-debrid.com/ajax/login.php?%s' % login_data
+            result = getUrl(login_link, close=False).result
+            result = json.loads(result)
+            error = result['error']
+            if not error == 0: raise Exception()
+
+            url = 'http://real-debrid.com/ajax/unrestrict.php?link=%s' % url
+            url = url.replace('filefactory.com/stream/', 'filefactory.com/file/')
+            result = getUrl(url).result
+            result = json.loads(result)
+            url = result['generated_links'][0][-1]
             return url
         except:
-            pass
-    except:
-        return
+            return
 
-def v_vids(url):
-    try:
-        result = getUrl(url).result
 
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': '', 'method_premium': ''})
-        post = urllib.urlencode(post)
+class _180upload:
+    def info(self):
+        return {
+            'netloc': ['180upload.com'],
+            'host': ['180upload'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
 
-        result = getUrl(url, post=post).result
-
-        url = common.parseDOM(result, "a", ret="href", attrs = { "id": "downloadbutton" })[0]
-        return url
-    except:
-        return
-
-def vidbull(url):
-    try:
-        result = getUrl(url, mobile=True).result
-        url = common.parseDOM(result, "source", ret="src", attrs = { "type": "video.+?" })[0]
-        return url
-    except:
-        return
-
-def _180upload(url):
-    try:
-        u = re.compile('//.+?/([\w]+)').findall(url)[0]
-        u = 'http://180upload.com/embed-%s.html' % u
-
-        result = getUrl(u).result
-
-        post = {}
-        f = common.parseDOM(result, "form", attrs = { "id": "captchaForm" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post = urllib.urlencode(post)
-
-        result = getUrl(u, post=post).result
-
-        result = re.compile('id="player_code".*?(eval.*?\)\)\))').findall(result)[0]
-        result = jsunpack(result)
-
-        u = re.compile('name="src"0="([^"]+)"/>').findall(result)[0]
-        return u
-    except:
-        pass
-
-    try:
-        result = getUrl(url).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update(captcha(result))
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        url = common.parseDOM(result, "a", ret="href", attrs = { "id": "lnk_download" })[0]
-        return url
-    except:
-        return
-
-def hugefiles(url):
-    try:
-        result = getUrl(url).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "action": "" })
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': 'Free Download'})
-        post.update(captcha(result))
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "action": "" })
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': 'Free Download'})
-        post = urllib.urlencode(post)
-
-        u = getUrl(url, output='geturl', post=post).result
-        if not url == u: return u
-    except:
-        return
-
-def filecloud(url):
-    try:
-        result = getUrl(url, close=False).result
-        result = getUrl('http://filecloud.io/download.html').result
-
-        url = re.compile("__requestUrl\s+=\s+'(.+?)'").findall(result)[0]
-
-        ukey = re.compile("'ukey'\s+:\s+'(.+?)'").findall(result)[0]
-        __ab1 = re.compile("__ab1\s+=\s+(\d+);").findall(result)[0]
-        ctype = re.compile("'ctype'\s+:\s+'(.+?)'").findall(result)[0]
-
-        challenge = re.compile("__recaptcha_public\s+=\s+'(.+?)'").findall(result)[0]
-        challenge = 'http://www.google.com/recaptcha/api/challenge?k=' + challenge
-
-        post = {'ukey': ukey, '__ab1': str(__ab1), 'ctype': ctype}
-        post.update(captcha(challenge))
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-        result = getUrl('http://filecloud.io/download.html').result
-
-        url = common.parseDOM(result, "a", ret="href", attrs = { "id": "downloadBtn" })[0]
-        return url
-    except:
-        return
-
-def uploadrocket(url):
-    try:
-        result = getUrl(url).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "freeorpremium" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': 'Free Download'})
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update(captcha(result))
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        url = common.parseDOM(result, "a", ret="href", attrs = { "onclick": "window[.]open.+?" })[0]
-        return url
-    except:
-        return
-
-def kingfiles(url):
-    try:
-        result = getUrl(url).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "action": "" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': ' '})
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "action": "" })[0]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': ' '})
-        post.update(captcha(result))
-        post = urllib.urlencode(post)
-
-        result = getUrl(url, post=post).result
-
-        url = re.compile("var download_url = '(.+?)'").findall(result)[0]
-        return url
-    except:
-        return
-
-def streamin(url):
-    try:
-        url = url.replace('streamin.to/', 'streamin.to/embed-')
-        if not url.endswith('.html'): url = url + '.html'
-        result = getUrl(url, mobile=True).result
-        url = re.compile("file:'(.+?)'").findall(result)[0]
-        return url
-    except:
-        return
-
-def grifthost(url):
-    try:
-        url = url.replace('/embed-', '/').split('-')[0]
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://grifthost.com/embed-%s.html' % url
-
-        result = getUrl(url).result
-
+    def resolve(self, url):
         try:
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://180upload.com/embed-%s.html' % url
+
+            result = getUrl(url).result
+
             post = {}
-            f = common.parseDOM(result, "Form", attrs = { "method": "POST" })[0]
-            f = f.replace('"submit"', '"hidden"')
+            f = common.parseDOM(result, "form", attrs = { "id": "captchaForm" })[0]
             k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
             for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
             post = urllib.urlencode(post)
+
             result = getUrl(url, post=post).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
         except:
-            pass
+            return
 
-        result = re.compile('(eval.*?\)\)\))').findall(result)[0]
-        result = jsunpack(result)
+class allmyvideos:
+    def info(self):
+        return {
+            'netloc': ['allmyvideos.net'],
+            'host': ['Allmyvideos'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
 
-        url = re.compile("file:'(.+?)'").findall(result)[0]
-        return url
-    except:
-        return
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://allmyvideos.net/embed-%s.html' % url
 
-def ishared(url):
-    try:
-        result = getUrl(url).result
-        url = re.compile('path:"(.+?)"').findall(result)[0]
-        return url
-    except:
-        return
+            result = getUrl(url, mobile=True).result
+            url = re.compile('"file" *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
 
-def cloudyvideos(url):
-    try:
-        result = getUrl(url).result
+class bestreams:
+    def info(self):
+        return {
+            'netloc': ['bestreams.net'],
+            'host': ['Bestreams'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
 
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': '', 'method_premium': ''})
-        post = urllib.urlencode(post)
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://bestreams.net/embed-%s.html' % url
 
-        import time
-        request = urllib2.Request(url, post)
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
 
-        for i in range(0, 4):
-            try:
-                response = urllib2.urlopen(request, timeout=5)
-                result = response.read()
-                response.close()
-                btn = common.parseDOM(result, "input", ret="value", attrs = { "class": "graybt.+?" })[0]
-                url = re.compile('href=[\'|\"](.+?)[\'|\"]><input.+?class=[\'|\"]graybt.+?[\'|\"]').findall(result)[0]
+class clicknupload:
+    def info(self):
+        return {
+            'netloc': ['clicknupload.com'],
+            'host': ['Clicknupload'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': 'Free Download'})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': 'Free Download'})
+            try: post.update(captcha().worker(result))
+            except: pass
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            url = common.parseDOM(result, "a", ret="onClick")
+            url = [i for i in url if i.startswith('window.open')][0]
+            url = re.compile('[\'|\"](.+?)[\'|\"]').findall(url)[0]
+            return url
+        except:
+            return
+
+class cloudzilla:
+    def info(self):
+        return {
+            'netloc': ['cloudzilla.to'],
+            'host': ['Cloudzilla'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/share/file/', '/embed/')
+            result = getUrl(url).result
+            url = re.compile('var\s+vurl *= *"(http.+?)"').findall(result)[0]
+            return url
+        except:
+            return
+
+class coolcdn:
+    def info(self):
+        return {
+            'netloc': ['movshare.net', 'novamov.com', 'nowvideo.eu', 'nowvideo.sx', 'videoweed.es'],
+            'host': ['Movshare', 'Novamov', 'Nowvideo', 'Videoweed'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            netloc = urlparse.urlparse(url).netloc
+            netloc = netloc.replace('www.', '').replace('embed.', '')
+            netloc = netloc.lower()
+
+            id = re.compile('//.+?/.+?/([\w]+)').findall(url)
+            id += re.compile('//.+?/.+?v=([\w]+)').findall(url)
+            id = id[0]
+
+            url = 'http://embed.%s/embed.php?v=%s' % (netloc, id)
+
+            result = getUrl(url).result
+
+            key = re.compile('flashvars.filekey=(.+?);').findall(result)[-1]
+            try: key = re.compile('\s+%s="(.+?)"' % key).findall(result)[-1]
+            except: pass
+
+            url = 'http://www.%s/api/player.api.php?key=%s&file=%s' % (netloc, key, id)
+            result = getUrl(url).result
+
+            url = re.compile('url=(.+?)&').findall(result)[0]
+            return url
+        except:
+            return
+
+class daclips:
+    def info(self):
+        return {
+            'netloc': ['daclips.in'],
+            'host': ['Daclips'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class dailymotion:
+    def info(self):
+        return {
+            'netloc': ['dailymotion.com']
+        }
+
+    def resolve(self, url):
+        try:
+            id = re.compile('/video/([\w]+)').findall(url)[0]
+
+            u = 'http://www.dailymotion.com/sequence/full/%s' % id
+            result = getUrl(u).result
+            result = urllib.unquote(result).replace('\\/', '/').replace('\n', '').replace('\'', '"').replace(' ', '')
+
+            content = re.compile('"content_type":"(.+?)"').findall(result)[0]
+
+            if content == 'live':
+                url = re.compile('"autoURL":"(.+?)"').findall(result)[0]
+                protocol = urlparse.parse_qs(urlparse.urlparse(url).query)['protocol'][0]
+                url = url.replace('protocol=%s' % protocol, 'protocol=hls')
+                url += '&redirect=0'
+
+                url = getUrl(url).result
                 return url
+
+            else:
+                u = 'http://www.dailymotion.com/embed/video/%s' % id
+                result = getUrl(u).result
+                result = urllib.unquote(result).replace('\\/', '/').replace('\n', '').replace('\'', '"').replace(' ', '')
+
+                url = []
+                try: url += [{'quality': 'HD', 'url': getUrl(re.compile('"stream_h264_ld_url":"(.+?)"').findall(result)[0], output='geturl').result}]
+                except: pass
+                try: url += [{'quality': 'SD', 'url': getUrl(re.compile('"stream_h264_hq_url":"(.+?)"').findall(result)[0], output='geturl').result}]
+                except: pass
+                if not url == []: return url
+                try: url += [{'quality': 'SD', 'url': getUrl(re.compile('"stream_h264_url":"(.+?)"').findall(result)[0], output='geturl').result}]
+                except: pass
+                if not url == []: return url
+                try: url += [{'quality': 'SD', 'url': getUrl(re.compile('"stream_h264_ld_url":"(.+?)"').findall(result)[0], output='geturl').result}]
+                except: pass
+
+                if url == []: return
+                return url
+        except:
+            return
+
+class datemule:
+    def info(self):
+        return {
+            'netloc': ['datemule.com']
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[0]
+            return url
+        except:
+            return
+
+class fastvideo:
+    def info(self):
+        return {
+            'netloc': ['fastvideo.in', 'faststream.in'],
+            'host': ['Fastvideo', 'Faststream'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://fastvideo.in/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class filehoot:
+    def info(self):
+        return {
+            'netloc': ['filehoot.com'],
+            'host': ['Filehoot'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://filehoot.com/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[0]
+            return url
+        except:
+            return
+
+class filenuke:
+    def info(self):
+        return {
+            'netloc': ['filenuke.com', 'sharesix.com'],
+            'host': ['Filenuke', 'Sharesix'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+            post = {}
+            try: f = common.parseDOM(result, "form", attrs = { "method": "POST" })[0]
+            except: f = ''
+            k = common.parseDOM(f, "input", ret="name")
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            url = re.compile("var\s+lnk\d* *= *'(http.+?)'").findall(result)[0]
+            return url
+        except:
+            return
+
+class googledocs:
+    def info(self):
+        return {
+            'netloc': ['docs.google.com', 'drive.google.com']
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.split('/preview', 1)[0]
+            url = url.replace('drive.google.com', 'docs.google.com')
+
+            result = getUrl(url).result
+            result = re.compile('"fmt_stream_map",(".+?")').findall(result)[0]
+
+            u = json.loads(result)
+            u = [i.split('|')[-1] for i in u.split(',')]
+            u = sum([self.tag(i) for i in u], [])
+
+            url = []
+            try: url += [[i for i in u if i['quality'] == '1080p'][0]]
+            except: pass
+            try: url += [[i for i in u if i['quality'] == 'HD'][0]]
+            except: pass
+            try: url += [[i for i in u if i['quality'] == 'SD'][0]]
+            except: pass
+
+            if url == []: return
+            return url
+        except:
+            return
+
+    def tag(self, url):
+        quality = re.compile('itag=(\d*)').findall(url)
+        quality += re.compile('=m(\d*)$').findall(url)
+        try: quality = quality[0]
+        except: return []
+
+        if quality in ['37', '137', '299', '96', '248', '303', '46']:
+            return [{'quality': '1080p', 'url': url}]
+        elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
+            return [{'quality': 'HD', 'url': url}]
+        elif quality in ['35', '44', '135', '244', '94']:
+            return [{'quality': 'SD', 'url': url}]
+        elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
+            return [{'quality': 'SD', 'url': url}]
+        elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
+            return [{'quality': 'SD', 'url': url}]
+        else:
+            return []
+
+class googleplus:
+    def info(self):
+        return {
+            'netloc': ['plus.google.com', 'picasaweb.google.com']
+        }
+
+    def resolve(self, url):
+        try:
+            if 'picasaweb' in url.lower():
+                result = getUrl(url).result
+                aid = re.compile('aid=(\d*)').findall(result)[0]
+
+                pid = urlparse.urlparse(url).fragment
+                oid = re.compile('/(\d*)/').findall(urlparse.urlparse(url).path)[0]
+                key = urlparse.parse_qs(urlparse.urlparse(url).query)['authkey'][0]
+
+                url = 'http://plus.google.com/photos/%s/albums/%s/%s?authkey=%s' % (oid, aid, pid, key)
+
+            result = getUrl(url, mobile=True).result
+
+            u = re.compile('"(http[s]*://.+?videoplayback[?].+?)"').findall(result)[::-1]
+            u = [i.replace('\\u003d','=').replace('\\u0026','&') for i in u]
+            u = sum([self.tag(i) for i in u], [])
+
+            url = []
+            try: url += [[i for i in u if i['quality'] == '1080p'][0]]
+            except: pass
+            try: url += [[i for i in u if i['quality'] == 'HD'][0]]
+            except: pass
+            try: url += [[i for i in u if i['quality'] == 'SD'][0]]
+            except: pass
+
+            if url == []: return
+            return url
+        except:
+            return
+
+    def tag(self, url):
+        quality = re.compile('itag=(\d*)').findall(url)
+        quality += re.compile('=m(\d*)$').findall(url)
+        try: quality = quality[0]
+        except: return []
+
+        if quality in ['37', '137', '299', '96', '248', '303', '46']:
+            return [{'quality': '1080p', 'url': url}]
+        elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
+            return [{'quality': 'HD', 'url': url}]
+        elif quality in ['35', '44', '135', '244', '94']:
+            return [{'quality': 'SD', 'url': url}]
+        elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
+            return [{'quality': 'SD', 'url': url}]
+        elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
+            return [{'quality': 'SD', 'url': url}]
+        else:
+            return []
+
+class gorillavid:
+    def info(self):
+        return {
+            'netloc': ['gorillavid.com', 'gorillavid.in'],
+            'host': ['Gorillavid'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://gorillavid.in/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+
+            request = urllib2.Request(url)
+            response = urllib2.urlopen(request, timeout=30)
+            response.close()
+
+            type = str(response.info()["Content-Type"])
+            if type == 'text/html': raise Exception()
+
+            return url
+        except:
+            return
+
+class grifthost:
+    def info(self):
+        return {
+            'netloc': ['grifthost.com'],
+            'host': ['Grifthost'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://grifthost.com/embed-%s.html' % url
+
+            result = getUrl(url).result
+
+            try:
+                post = {}
+                f = common.parseDOM(result, "Form", attrs = { "method": "POST" })[0]
+                f = f.replace('"submit"', '"hidden"')
+                k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+                for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+                post = urllib.urlencode(post)
+                result = getUrl(url, post=post).result
             except:
-                time.sleep(1)
-    except:
-        return
+                pass
 
-def mrfile(url):
-    try:
-        result = getUrl(url).result
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
 
-        post = {}
-        f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
-        k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
-        for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': '', 'method_premium': ''})
-        post = urllib.urlencode(post)
+class hugefiles:
+    def info(self):
+        return {
+            'netloc': ['hugefiles.net'],
+            'host': ['Hugefiles'],
+            'quality': 'High',
+            'captcha': True,
+            'a/c': False
+        }
 
-        result = getUrl(url, post=post).result
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
 
-        url = re.compile('(<a\s+href=.+?>Download\s+.+?</a>)').findall(result)[-1]
-        url = common.parseDOM(url, "a", ret="href")[0]
-        return url
-    except:
-        return
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })
+            f += common.parseDOM(result, "form", attrs = { "action": "" })
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': 'Free Download'})
+            post.update(captcha().worker(result))
+            post = urllib.urlencode(post)
 
-def datemule(url):
-    try:
-        url += '&mode=html5'
-        result = getUrl(url).result
-        url = re.compile('file:\s+"(.+?)"').findall(result)[0]
-        return url
-    except:
-        return
+            result = getUrl(url, post=post).result
 
-def vimeo(url):
-    try:
-        url = [i for i in url.split('/') if i.isdigit()][-1]
-        url = 'http://player.vimeo.com/video/%s/config' % url
+            url = re.compile('fileUrl\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
+            return url
+        except:
+            return
 
-        result = getUrl(url).result
-        result = json.loads(result)
-        u = result['request']['files']['h264']
+class ipithos:
+    def info(self):
+        return {
+            'netloc': ['ipithos.to'],
+            'host': ['Ipithos'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
 
-        url = None
-        try: url = u['hd']['url']
-        except: pass
-        try: url = u['sd']['url']
-        except: pass
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://ipithos.to/embed-%s.html' % url
 
-        return url
-    except:
-        return
+            result = getUrl(url, mobile=True).result
 
-def odnoklassniki(url):
-    try:
-        url = [i for i in url.split('/') if i.isdigit()][-1]
-        url = 'http://www.odnoklassniki.ru/dk?cmd=videoPlayerMetadata&mid=%s' % url
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
 
-        result = getUrl(url).result
-        result = json.loads(result)
+class ishared:
+    def info(self):
+        return {
+            'netloc': ['ishared.eu'],
+            'host': ['iShared'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
 
-        a = "&start=0|User-Agent=%s" % urllib.quote_plus('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36')
-        u = result['videos']
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+            url = re.compile('path *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
 
-        url = []
-        try: url += [[{'quality': 'HD', 'url': i['url'] + a} for i in u if i['name'] == 'hd'][0]]
-        except: pass
-        try: url += [[{'quality': 'SD', 'url': i['url'] + a} for i in u if i['name'] == 'sd'][0]]
-        except: pass
+class kingfiles:
+    def info(self):
+        return {
+            'netloc': ['kingfiles.net'],
+            'host': ['Kingfiles'],
+            'quality': 'High',
+            'captcha': True,
+            'a/c': False
+        }
 
-        if url == []: return
-        return url
-    except:
-        return
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
 
-def mailru(url):
-    try:
-        url = url.replace('/my.mail.ru/video/', '/api.video.mail.ru/videos/embed/')
-        url = url.replace('/videoapi.my.mail.ru/', '/api.video.mail.ru/')
-        result = getUrl(url).result
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': ' '})
+            post = urllib.urlencode(post)
 
-        url = re.compile('metadataUrl":"(.+?)"').findall(result)[0]
-        cookie = getUrl(url, output='cookie').result
-        h = "|Cookie=%s" % urllib.quote(cookie)
+            result = getUrl(url, post=post).result
 
-        result = getUrl(url).result
-        result = json.loads(result)
-        result = result['videos']
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': ' '})
+            post.update(captcha().worker(result))
+            post = urllib.urlencode(post)
 
-        url = []
-        url += [{'quality': '1080p', 'url': i['url'] + h} for i in result if i['key'] == '1080p']
-        url += [{'quality': 'HD', 'url': i['url'] + h} for i in result if i['key'] == '720p']
-        url += [{'quality': 'SD', 'url': i['url'] + h} for i in result if not (i['key'] == '1080p' or i ['key'] == '720p')]
+            result = getUrl(url, post=post).result
 
-        if url == []: return
-        return url
-    except:
-        return
+            url = re.compile("var\s+download_url *= *'(.+?)'").findall(result)[0]
+            return url
+        except:
+            return
+
+class mailru:
+    def info(self):
+        return {
+            'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru']
+        }
+
+    def resolve(self, url):
+        try:
+            usr = re.compile('/mail/(.+?)/').findall(url)[0]
+            vid = re.compile('(\d*)[.]html').findall(url)[0]
+            url = 'http://videoapi.my.mail.ru/videos/mail/%s/_myvideo/%s.json?ver=0.2.60' % (usr, vid)
+
+            import requests
+            result = requests.get(url).content
+            cookie = requests.get(url).headers['Set-Cookie']
+
+            u = json.loads(result)['videos']
+            h = "|Cookie=%s" % urllib.quote(cookie)
+
+            url = []
+            try: url += [[{'quality': '1080p', 'url': i['url'] + h} for i in u if i['key'] == '1080p'][0]]
+            except: pass
+            try: url += [[{'quality': 'HD', 'url': i['url'] + h} for i in u if i['key'] == '720p'][0]]
+            except: pass
+            try: url += [[{'quality': 'SD', 'url': i['url'] + h} for i in u if not (i['key'] == '1080p' or i ['key'] == '720p')][0]]
+            except: pass
+
+            if url == []: return
+            return url
+        except:
+            return
+
+class mightyupload:
+    def info(self):
+        return {
+            'netloc': ['mightyupload.com'],
+            'host': ['Mightyupload'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://www.mightyupload.com/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+
+            url = re.compile("file *: *'(.+?)'").findall(result)
+            if len(url) > 0: return url[0]
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class mooshare:
+    def info(self):
+        return {
+            'netloc': ['mooshare.biz'],
+            'host': ['Mooshare'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://mooshare.biz/embed-%s.html?play=1&confirm=Close+Ad+and+Watch+as+Free+User' % url
+
+            result = getUrl(url).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class movdivx:
+    def info(self):
+        return {
+            'netloc': ['movdivx.com'],
+            'host': ['Movdivx'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://www.movdivx.com/%s' % url
+     
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': 'Free Download'})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class movpod:
+    def info(self):
+        return {
+            'netloc': ['movpod.net', 'movpod.in'],
+            'host': ['Movpod'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = url.replace('/vid/', '/')
+
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://movpod.in/embed-%s.html' % url
+
+            result = getUrl(url).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+
+            request = urllib2.Request(url)
+            response = urllib2.urlopen(request, timeout=30)
+            response.close()
+
+            type = str(response.info()["Content-Type"])
+
+            if type == 'text/html': raise Exception()
+            return url
+        except:
+            return
+
+class movreel:
+    def info(self):
+        return {
+            'netloc': ['movreel.com'],
+            'host': ['Movreel'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            user = xbmcaddon.Addon().getSetting("movreel_user")
+            password = xbmcaddon.Addon().getSetting("movreel_password")
+
+            login = 'http://movreel.com/login.html'
+            post = {'op': 'login', 'login': user, 'password': password, 'redirect': url}
+            post = urllib.urlencode(post)
+            result = getUrl(url, close=False).result
+            result += getUrl(login, post=post, close=False).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': '', 'method_premium': ''})
+            post = urllib.urlencode(post)
+
+            import time
+            request = urllib2.Request(url, post)
+
+            for i in range(0, 3):
+                try:
+                    response = urllib2.urlopen(request, timeout=10)
+                    result = response.read()
+                    response.close()
+                    url = re.compile('(<a .+?</a>)').findall(result)
+                    url = [i for i in url if 'Download Link' in i][-1]
+                    url = common.parseDOM(url, "a", ret="href")[0]
+                    return url
+                except:
+                    time.sleep(1)
+        except:
+            return
+
+class mrfile:
+    def info(self):
+        return {
+            'netloc': ['mrfile.me'],
+            'host': ['Mrfile'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': '', 'method_premium': ''})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            url = re.compile('(<a\s+href=.+?>Download\s+.+?</a>)').findall(result)[-1]
+            url = common.parseDOM(url, "a", ret="href")[0]
+            return url
+        except:
+            return
+
+class mybeststream:
+    def info(self):
+        return {
+            'netloc': ['mybeststream.xyz']
+        }
+
+    def resolve(self, url):
+        try:
+            referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+            page = url.replace(referer, '').replace('&referer=', '').replace('referer=', '')
+
+            result = getUrl(url, referer=referer).result
+            result = re.compile("}[(]('.+?' *, *'.+?' *, *'.+?' *, *'.+?')[)]").findall(result)[-1]
+            result = unwise().worker(result)
+
+            strm = re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
+            strm = [i for i in strm if i.startswith('rtmp')][0]
+            url = '%s pageUrl=%s live=1 timeout=10' % (strm, page)
+            return url
+        except:
+            return
+
+class nosvideo:
+    def info(self):
+        return {
+            'netloc': ['nosvideo.com'],
+            'host': ['Nosvideo'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "method": "POST" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': 'Free Download'})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[0]
+            url = js().worker(result)
+
+            result = getUrl(url).result
+            url = common.parseDOM(result, "file")[0]
+            return url
+        except:
+            return
+
+class openload:
+    def info(self):
+        return {
+            'netloc': ['openload.io'],
+            'host': ['Openload'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            url = common.parseDOM(result, "span", attrs = { "id": "realdownload" })[0]
+            url = common.parseDOM(url, "a", ret="href")[0]
+            return url
+        except:
+            return
+
+class played:
+    def info(self):
+        return {
+            'netloc': ['played.to'],
+            'host': ['Played'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = url.replace('//', '/')
+            url = re.compile('/.+?/([\w]+)').findall(url)[0]
+            url = 'http://played.to/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class primeshare:
+    def info(self):
+        return {
+            'netloc': ['primeshare.tv'],
+            'host': ['Primeshare'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, mobile=True).result
+
+            url = common.parseDOM(result, "video")[0]
+            url = common.parseDOM(url, "source", ret="src", attrs = { "type": ".+?" })[0]
+            return url
+        except:
+            return
+
+class sharerepo:
+    def info(self):
+        return {
+            'netloc': ['sharerepo.com'],
+            'host': ['Sharerepo'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+            url = re.compile("file *: *'(http.+?)'").findall(result)[-1]
+            return url
+        except:
+            return
+
+class stagevu:
+    def info(self):
+        return {
+            'netloc': ['stagevu.com'],
+            'host': ['StageVu'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            url = common.parseDOM(result, "embed", ret="src", attrs = { "type": "video.+?" })[0]
+            return url
+        except:
+            return
+
+class streamcloud:
+    def info(self):
+        return {
+            'netloc': ['streamcloud.eu'],
+            'host': ['Streamcloud'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://streamcloud.eu/%s' % url
+     
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "form", attrs = { "class": "proform" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post = urllib.urlencode(post)
+            post = post.replace('op=download1', 'op=download2')
+
+            result = getUrl(url, post=post).result
+
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class streamin:
+    def info(self):
+        return {
+            'netloc': ['streamin.to'],
+            'host': ['Streamin'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://streamin.to/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile("file *: *[\'|\"](http.+?)[\'|\"]").findall(result)[-1]
+            return url
+        except:
+            return
+
+class thefile:
+    def info(self):
+        return {
+            'netloc': ['thefile.me'],
+            'host': ['Thefile'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://thefile.me/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+
+            url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+            return url
+        except:
+            return
+
+class thevideo:
+    def info(self):
+        return {
+            'netloc': ['thevideo.me'],
+            'host': ['Thevideo'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://thevideo.me/embed-%s.html' % url
+
+            result = getUrl(url).result
+            result = result.replace('\n','')
+
+            import ast
+            url = re.compile("'sources' *: *(\[.+?\])").findall(result)[-1]
+            url = ast.literal_eval(url)
+            url = url[-1]['file']
+            return url
+        except:
+            return
+
+class tusfiles:
+    def info(self):
+        return {
+            'netloc': ['tusfiles.net'],
+            'host': ['Tusfiles'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class uploadc:
+    def info(self):
+        return {
+            'netloc': ['uploadc.com', 'zalaa.com'],
+            'host': ['Uploadc', 'Zalaa'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://uploadc.com/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+
+            url = re.compile("'file' *, *'(.+?)'").findall(result)
+            if len(url) > 0: return url[0]
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class uploadrocket:
+    def info(self):
+        return {
+            'netloc': ['uploadrocket.net'],
+            'host': ['Uploadrocket'],
+            'quality': 'High',
+            'captcha': True,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+            result = result.decode('iso-8859-1').encode('utf-8')
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "name": "freeorpremium" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_isfree': 'Click for Free Download'})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+            result = result.decode('iso-8859-1').encode('utf-8')
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update(captcha().worker(result))
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+            result = result.decode('iso-8859-1').encode('utf-8')
+
+            url = common.parseDOM(result, "a", ret="href", attrs = { "onclick": "DL.+?" })[0]
+            return url
+        except:
+            return
+
+class uptobox:
+    def info(self):
+        return {
+            'netloc': ['uptobox.com'],
+            'host': ['Uptobox'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "form", attrs = { "name": "F1" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            url = common.parseDOM(result, "div", attrs = { "align": ".+?" })
+            url = [i for i in url if 'button_upload' in i][0]
+            url = common.parseDOM(url, "a", ret="href")[0]
+            url = ['http' + i for i in url.split('http') if 'uptobox.com' in i][0]
+            return url
+        except:
+            return
+
+class v_vids:
+    def info(self):
+        return {
+            'netloc': ['v-vids.com'],
+            'host': ['V-vids'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "name": "F1" })[0]
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update({'method_free': '', 'method_premium': ''})
+            post = urllib.urlencode(post)
+
+            result = getUrl(url, post=post).result
+
+            url = common.parseDOM(result, "a", ret="href", attrs = { "id": "downloadbutton" })[0]
+            return url
+        except:
+            return
+
+class veehd:
+    def info(self):
+        return {
+            'netloc': ['veehd.com'],
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, close=False).result
+            result = result.replace('\n','')
+
+            url = re.compile('function\s*load_download.+?src\s*:\s*"(.+?)"').findall(result)[0]
+            url = urlparse.urljoin('http://veehd.com', url)
+
+            result = getUrl(url, close=False).result
+
+            i = common.parseDOM(result, "iframe", ret="src")
+            if len(i) > 0:
+                i = urlparse.urljoin('http://veehd.com', i[0])
+                getUrl(i, close=False).result
+                result = getUrl(url).result
+
+            url = re.compile('href *= *"([^"]+(?:mkv|mp4|avi))"').findall(result)
+            url += re.compile('src *= *"([^"]+(?:divx|avi))"').findall(result)
+            url += re.compile('"url" *: *"(.+?)"').findall(result)
+            url = urllib.unquote(url[0])
+            return url
+        except:
+            return
+
+class vidbull:
+    def info(self):
+        return {
+            'netloc': ['vidbull.com'],
+            'host': ['Vidbull'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, mobile=True).result
+            url = common.parseDOM(result, "source", ret="src", attrs = { "type": "video.+?" })[0]
+            return url
+        except:
+            return
+
+class videomega:
+    def info(self):
+        return {
+            'netloc': ['videomega.tv']
+        }
+
+    def resolve(self, url):
+        try:
+            url = urlparse.urlparse(url).query
+            url = urlparse.parse_qsl(url)[0][1]
+            url = 'http://videomega.tv/cdn.php?ref=%s' % url
+
+            result = getUrl(url, mobile=True).result
+
+            url = common.parseDOM(result, "source", ret="src", attrs = { "type": "video.+?" })[0]
+            return url
+        except:
+            return
+
+class vidplay:
+    def info(self):
+        return {
+            'netloc': ['vidplay.net'],
+            'host': ['Vidplay'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            u = 'http://vidplay.net/vidembed-%s' % url
+
+            url = getUrl(u, output='geturl').result
+            if u == url: raise Exception()
+            return url
+        except:
+            return
+
+class vidspot:
+    def info(self):
+        return {
+            'netloc': ['vidspot.net'],
+            'host': ['Vidspot'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://vidspot.net/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+            url = re.compile('"file" *: *"(http.+?)"').findall(result)[-1]
+
+            query = urlparse.urlparse(url).query
+            url = url[:url.find('?')]
+            url = '%s?%s&direct=false' % (url, query)
+            return url
+        except:
+            return
+
+class vidto:
+    def info(self):
+        return {
+            'netloc': ['vidto.me'],
+            'host': ['Vidto'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://vidto.me/embed-%s.html' % url
+
+            result = getUrl(url).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            result = re.sub(r'(\',\d*,\d*,)', r';\1', result)
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class vidzi:
+    def info(self):
+        return {
+            'netloc': ['vidzi.tv'],
+            'host': ['Vidzi'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, mobile=True).result
+            result = result.replace('\n','')
+            result = re.compile('sources *: *\[.+?\]').findall(result)[-1]
+            result = re.compile('file *: *"(http.+?)"').findall(result)
+
+            url = [i for i in result if '.m3u8' in i]
+            if len(url) > 0: return url[0]
+            url = [i for i in result if not '.m3u8' in i]
+            if len(url) > 0: return url[0]
+        except:
+            return
+
+class vimeo:
+    def info(self):
+        return {
+            'netloc': ['vimeo.com']
+        }
+
+    def resolve(self, url):
+        try:
+            url = [i for i in url.split('/') if i.isdigit()][-1]
+            url = 'http://player.vimeo.com/video/%s/config' % url
+
+            result = getUrl(url).result
+            result = json.loads(result)
+            u = result['request']['files']['h264']
+
+            url = None
+            try: url = u['hd']['url']
+            except: pass
+            try: url = u['sd']['url']
+            except: pass
+
+            return url
+        except:
+            return
+
+class vk:
+    def info(self):
+        return {
+            'netloc': ['vk.com']
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('https://', 'http://')
+            result = getUrl(url).result
+
+            u = re.compile('url(720|540|480|360|240)=(.+?)&').findall(result)
+
+            url = []
+            try: url += [[{'quality': 'HD', 'url': i[1]} for i in u if i[0] == '720'][0]]
+            except: pass
+            try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '540'][0]]
+            except: pass
+            try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '480'][0]]
+            except: pass
+            if not url == []: return url
+            try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '360'][0]]
+            except: pass
+            if not url == []: return url
+            try: url += [[{'quality': 'SD', 'url': i[1]} for i in u if i[0] == '240'][0]]
+            except: pass
+
+            if url == []: return
+            return url
+        except:
+            return
+
+class vodlocker:
+    def info(self):
+        return {
+            'netloc': ['vodlocker.com'],
+            'host': ['Vodlocker'],
+            'quality': 'Low',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://vodlocker.com/embed-%s.html' % url
+
+            result = getUrl(url).result
+
+            url = re.compile('[\'|\"](http.+?[\w]+)[\'|\"]').findall(result)
+            url = [i for i in url if i.endswith(('.mp4', '.mkv', '.flv', '.avi'))][0]
+            return url
+        except:
+            return
+
+class xfileload:
+    def info(self):
+        return {
+            'netloc': ['xfileload.com'],
+            'host': ['Xfileload'],
+            'quality': 'High',
+            'captcha': True,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            result = getUrl(url, close=False).result
+
+            post = {}
+            f = common.parseDOM(result, "Form", attrs = { "action": "" })
+            k = common.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+            for i in k: post.update({i: common.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+            post.update(captcha().worker(result))
+            post = urllib.urlencode(post)
+
+            import time
+            request = urllib2.Request(url, post)
+
+            for i in range(0, 5):
+                try:
+                    response = urllib2.urlopen(request, timeout=10)
+                    result = response.read()
+                    response.close()
+                    if 'download2' in result: raise Exception()
+                    url = common.parseDOM(result, "a", ret="href", attrs = { "target": "" })[0]
+                    return url
+                except:
+                    time.sleep(1)
+        except:
+            return
+
+class xvidstage:
+    def info(self):
+        return {
+            'netloc': ['xvidstage.com'],
+            'host': ['Xvidstage'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://xvidstage.com/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
+
+class youtube:
+    def info(self):
+        return {
+            'netloc': ['youtube.com'],
+            'host': ['Youtube'],
+            'quality': 'Medium',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            id = url.split("?v=")[-1].split("/")[-1].split("?")[0].split("&")[0]
+            result = getUrl('http://www.youtube.com/watch?v=%s' % id).result
+
+            message = common.parseDOM(result, "div", attrs = { "id": "unavailable-submessage" })
+            message = ''.join(message)
+
+            alert = common.parseDOM(result, "div", attrs = { "id": "watch7-notification-area" })
+
+            if len(alert) > 0: raise Exception()
+            if re.search('[a-zA-Z]', message): raise Exception()
+
+            url = 'plugin://plugin.video.youtube/play/?video_id=%s' % id
+            return url
+        except:
+            return
+
+class zettahost:
+    def info(self):
+        return {
+            'netloc': ['zettahost.tv'],
+            'host': ['Zettahost'],
+            'quality': 'High',
+            'captcha': False,
+            'a/c': False
+        }
+
+    def resolve(self, url):
+        try:
+            url = url.replace('/embed-', '/')
+            url = re.compile('//.+?/([\w]+)').findall(url)[0]
+            url = 'http://zettahost.tv/embed-%s.html' % url
+
+            result = getUrl(url, mobile=True).result
+
+            result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            url = js().worker(result)
+            return url
+        except:
+            return
 
 

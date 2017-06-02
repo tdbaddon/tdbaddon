@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.one242415" name="one242415" version="1.0.7" provider-name="tvaddons.ag">
+<addon id="plugin.video.one242415" name="one242415" version="1.0.8" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -24,6 +24,6 @@
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Module updates - meta fix</news>
+		<news>search fixed and adult lock</news>
 	</extension>
 </addon>

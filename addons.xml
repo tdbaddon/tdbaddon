@@ -1660,7 +1660,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.hgtv"
        name="HGTV"
-       version="3.0.7"
+       version="3.0.8"
        provider-name="t1m">
   <requires>
     <import addon="xbmc.python" version="2.20.0"/>
@@ -1766,23 +1766,25 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.KGROUP"
        name="KGROUP"
-       version="1001"
+       version="1002"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
+	<import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
+
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -1932,23 +1934,25 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.MartyMusic"
        name="MARTY MUSIC"
-       version="1007"
+       version="1008"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
+	<import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
+
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -2302,7 +2306,7 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.one242415" name="one242415" version="1.0.7" provider-name="tvaddons.ag">
+<addon id="plugin.video.one242415" name="one242415" version="1.0.8" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2327,7 +2331,7 @@ For DMCA Reports, please send message to our FB page.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>Module updates - meta fix</news>
+		<news>search fixed and adult lock</news>
 	</extension>
 </addon>
 
@@ -2715,7 +2719,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.TDBM3U"
        name="TDB M3U"
-       version="1005"
+       version="1006"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2748,7 +2752,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1006"
+       version="1007"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2812,23 +2816,25 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="1001"
+       version="1002"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
+	<import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
+
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -4657,7 +4663,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   <extension library="lib" point="xbmc.python.module" />
 </addon>
 
-<addon id="script.exodus.artwork" version="1.0.4" name="Exodus Artwork" provider-name="Exodus">
+<addon id="script.exodus.artwork" version="1.0.5" name="Exodus Artwork" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>

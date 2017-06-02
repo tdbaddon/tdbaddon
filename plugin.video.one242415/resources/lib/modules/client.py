@@ -19,7 +19,7 @@
 '''
 
 
-import re,sys,cookielib,urllib,urllib2,urlparse,gzip,StringIO,HTMLParser,time,random,base64
+import xbmc,re,sys,cookielib,urllib,urllib2,urlparse,gzip,StringIO,HTMLParser,time,random,base64
 
 from resources.lib.modules import cache
 from resources.lib.modules import workers
@@ -280,6 +280,15 @@ def parseDOM(html, name='', attrs=None, ret=False):
     return results
 
 
+def _get_keyboard( default="", heading="", hidden=False ):
+    """ shows a keyboard and returns a value """
+    keyboard = xbmc.Keyboard( default, heading, hidden )
+    keyboard.doModal()
+    if ( keyboard.isConfirmed() ):
+        return unicode( keyboard.getText(), "utf-8" )
+    return default
+   
+ 
 def replaceHTMLCodes(txt):
     txt = re.sub("(&#[0-9]+)([^;^0-9]+)", "\\1;\\2", txt)
     txt = HTMLParser.HTMLParser().unescape(txt)
