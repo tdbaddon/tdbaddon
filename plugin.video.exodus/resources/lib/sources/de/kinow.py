@@ -24,6 +24,7 @@ import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import control
 from resources.lib.modules import source_utils
 from resources.lib.modules import dom_parser
 
@@ -135,6 +136,8 @@ class source:
 
     def resolve(self, url):
         try:
+            control.sleep(5000)
+
             url = urlparse.urljoin(self.base_link, url)
             url = client.request(url, output='geturl')
             if self.base_link not in url:

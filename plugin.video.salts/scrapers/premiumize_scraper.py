@@ -254,11 +254,8 @@ class Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=48)
         match_year = ''
         norm_title = scraper_utils.normalize_title(title)
-        for _attrs, item in dom_parser2.parse_dom(html, 'td', {'class': 'forum_thread_post'}):
-            match = dom_parser2.parse_dom(item, 'a', req='href')
-            if not match: continue
-            
-            match_url, match_title = match[0].attrs['href'], match[0].content
+        for attrs, match_title in dom_parser2.parse_dom(html, 'a', {'class': 'thread_link'}, req='href'):
+            match_url = attrs['href']
             if match_title.upper().endswith(', THE'):
                 match_title = 'The ' + match_title[:-5]
     

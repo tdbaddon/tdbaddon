@@ -419,6 +419,7 @@ class seasons:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
 
         for i in items:
             try:
@@ -467,6 +468,7 @@ class seasons:
                 if isOld == True:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
+                cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systitle, year, imdb, tvdb)))
 
                 item = control.item(label=label)
 
@@ -1371,6 +1373,7 @@ class episodes:
 
         tvshowBrowserMenu = control.lang(32071).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
 
         for i in items:
             try:
@@ -1442,6 +1445,7 @@ class episodes:
                 if isOld == True:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
+                cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
                 item = control.item(label=label)
 

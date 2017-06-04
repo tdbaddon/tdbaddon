@@ -26,7 +26,8 @@ from salts_lib.constants import VIDEO_TYPES
 from salts_lib.constants import QUALITIES
 import scraper
 
-BASE_URL = 'https://seriesonline.io'
+logger = log_utils.Logger.get_logger(__name__)
+BASE_URL = 'https://seriesonline.is'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD-720P': QUALITIES.HD720}
 
 class Scraper(scraper.Scraper):
@@ -91,8 +92,7 @@ class Scraper(scraper.Scraper):
         return sources
     
     def __episode_match(self, video, label):
-        try: return int(label) == int(video.episode)
-        except: return False
+        return re.search('(episode)?\s*0*%s' (video.episode), label, re.I) is not None
     
     def _get_episode_url(self, season_url, video):
         season_url = scraper_utils.urljoin(self.base_url, season_url)

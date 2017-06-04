@@ -1,3 +1,6 @@
+[B]Version 0.0.23[/B]
+- dom_parser2 improvements
+
 [B]Version 0.0.22[/B]
 - Create logger class
 

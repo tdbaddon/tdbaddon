@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
+import urlparse
 import log_utils  # @UnusedImport
 import kodi
 import dom_parser2
@@ -26,11 +27,11 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'http://toptvseries.co'
 QUALITY_MAP = {'SD-XVID': QUALITIES.MEDIUM, 'DVD9': QUALITIES.HIGH, 'SD-X264': QUALITIES.HIGH,
                'HD-720P': QUALITIES.HD720, 'HD-1080P': QUALITIES.HD1080, '720P': QUALITIES.HD720, 'XVID': QUALITIES.MEDIUM,
                'X264': QUALITIES.HIGH, '1080P': QUALITIES.HD1080}
-HEADER_MAP = {'ul.png': 'uploaded.net', 'tb.png': 'turbobit.net', 'utb.png': 'uptobox.com'}
 
 class Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -50,7 +51,7 @@ class Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         if 'protect-links' in link:
-            html = self._http_get(link, require_debrid=True, cache_limit=0)
+            html = self._http_get(link, require_debrid=True, cache_limit=.25)
             item = dom_parser2.parse_dom(html, 'li')
             if item:
                 stream_url = dom_parser2.parse_dom(item[0].content, 'a', req='href')
@@ -68,16 +69,18 @@ class Scraper(scraper.Scraper):
         hosters = []
         url = scraper_utils.urljoin(self.base_url, season_url)
         html = self._http_get(url, require_debrid=True, cache_limit=.5)
+        match = dom_parser2.parse_dom(html, 'link', {'rel': 'canonical'}, req='href')
+        if match: url = match[0].attrs['href']
         _part, quality = self.__get_quality(url)
-        pattern = '<img[^>]+src="([^"]+)[^>]+alt="[^"]+Download Links"[^>]*>(.*?)(?=<img|</div>)'
-        for match in re.finditer(pattern, html, re.I | re.DOTALL):
-            image, fragment = match.groups()
-            image = image.split('/')[-1]
-            host = HEADER_MAP.get(image)
-            if not host: continue
-            ep_pattern = 'href="([^"]+)[^>]*>\s*Episode\s+0*%s<' % (video.episode)
-            for match in re.finditer(ep_pattern, fragment):
-                stream_url = match.group(1)
+        for _attrs, fragment in dom_parser2.parse_dom(html, 'span', {'class': 'downloads'}):
+            host = None
+            for attrs, content in dom_parser2.parse_dom(fragment, 'a', req='href'):
+                if not re.search('episode\s*0*%s' % (video.episode), content, re.I): continue
+                stream_url = attrs['href']
+                if host is None:
+                    stream_url = self.resolve_link(stream_url)
+                    host = urlparse.urlparse(stream_url).hostname
+                    
                 hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
                 hosters.append(hoster)
                 
@@ -98,6 +101,7 @@ class Scraper(scraper.Scraper):
         except: season = 0
         
         results = self.__list(title)
+        results = []
         if not results:
             results = self.__search(title, season)
 
@@ -114,8 +118,8 @@ class Scraper(scraper.Scraper):
 
     def __list(self, title):
         results = []
-        params = {'do': 'charmap', 'name': 'tv-series-list', 'args': '/' + title[0]}
         search_url = scraper_utils.urljoin(self.base_url, 'index.php')
+        params = {'do': 'charmap', 'name': 'series-list', 'args': '/' + title[0]}
         html = self._http_get(search_url, params=params, require_debrid=True, cache_limit=48)
         
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'downpara-list'})
@@ -136,18 +140,23 @@ class Scraper(scraper.Scraper):
         results = []
         query = '%s season %s' % (title, season)
         data = {'story': query, 'do': 'search', 'subaction': 'search'}
-        html = self._http_get(self.base_url + '/', data=data, require_debrid=True, cache_limit=8)
-        for _attrs, div in dom_parser2.parse_dom(html, 'div', {'class': 'cover_infos_title'}):
-            for attrs, content in dom_parser2.parse_dom(div, 'a', req='href'):
-                match_url = attrs['href']
-                if '/tv-pack/' in match_url: continue
-                match_title, match_season, q_str, is_pack = self.__get_title_parts(content)
-                if is_pack: continue
-                q_str2, quality = self.__get_quality(match_url)
-                if q_str2: q_str = q_str2
-                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '',
-                          'quality': quality, 'season': match_season, 'q_str': q_str}
-                results.append(result)
+        html = self._http_get(self.base_url + '/?q=', data=data, require_debrid=True, cache_limit=8)
+        for attrs, content in dom_parser2.parse_dom(html, 'a', {'class': 'short-poster'}, req='href'):
+            match_url = attrs['href']
+            match_title = dom_parser2.parse_dom(content, 'div', {'class': 'short-title'})
+            if not match_title: continue
+            if '/tv-pack/' in match_url: continue
+            match_title = match_title[0].content
+            match = re.search('(.*?)\s*-\s*season\s*(\d+)', match_title, re.I)
+            if match:
+                match_title, match_season = match.groups()
+            else:
+                match_season = -1
+            
+            q_str, quality = self.__get_quality(match_url)
+            result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': '',
+                      'quality': quality, 'season': match_season, 'q_str': q_str}
+            results.append(result)
         
         return results
 
@@ -158,7 +167,7 @@ class Scraper(scraper.Scraper):
                 return part, QUALITY_MAP[part]
         
         return '', QUALITIES.HIGH
-    
+
     def __get_title_parts(self, title):
         title = re.sub('</?[^>]*>', '', title)
         title = title.replace('&nbsp;', ' ')

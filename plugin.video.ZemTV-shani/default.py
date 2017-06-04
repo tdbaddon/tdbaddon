@@ -7669,7 +7669,7 @@ def playtvplayer(url):
             token=re.findall('data-token="(.*?)"' ,watchHtml)[0]
         except: pass
         
-        contextjs=getUrl("https://tvplayer.com/watch/context?resource=%s&nonce=%s"%(channelid,token), cookieJar=cj)   
+        contextjs=getUrl("https://tvplayer.com/watch/context?resource=%s&gen=%s"%(channelid,token), cookieJar=cj)   
         contextjs=json.loads(contextjs)
         validate=contextjs["validate"]
         #cj = cookielib.LWPCookieJar()

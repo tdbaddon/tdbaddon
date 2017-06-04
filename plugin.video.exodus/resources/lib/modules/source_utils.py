@@ -94,7 +94,7 @@ def is_host_valid(url, domains):
         hosts = [domain.lower() for domain in domains if host and host in domain.lower()]
         if hosts and '.' not in host:
             host = hosts[0]
-        if hosts and 'google.com' in host:
+        if hosts and any([h for h in ['google', 'picasa', 'blogspot'] if h in host]):
             host = 'gvideo'
         return any(hosts), host
     except:

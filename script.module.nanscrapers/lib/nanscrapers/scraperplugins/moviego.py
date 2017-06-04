@@ -45,6 +45,7 @@ class Moviego(Scraper):
         sources = []
         alt_links = []
         play_links = []
+        play_links_other = []
         try:
 
             if url == None: return sources
@@ -87,6 +88,9 @@ class Moviego(Scraper):
                     if "google" in link_url:
                         link_url = link_url.replace(' ', '')
                         play_links.append(link_url)
+                    else:
+                        link_url = link_url.replace(' ', '')
+                        play_links_other.append(link_url)
 
         except:
             pass
@@ -108,6 +112,9 @@ class Moviego(Scraper):
                         if "google" in link_url:
                             link_url = link_url.replace(' ', '')
                             play_links.append(link_url)
+                        else:
+                            link_url = link_url.replace(' ', '')
+                            play_links_other.append(link_url)
 
         except:
             pass
@@ -122,6 +129,15 @@ class Moviego(Scraper):
                     url = url.encode('utf-8')
                     sources.append({'source': 'google video', 'quality': quality, 'scraper': self.name, 'url': url,
                                     'direct': True})
+
+            for url in play_links_other:
+                if not url in dupes:
+                    dupes.append(url)
+                    loc = urlparse.urlparse(url).netloc # get base host (ex. www.google.com)
+                    source_base = str.join(".",loc.split(".")[1:-1])
+                    url = url.encode('utf-8')
+                    sources.append({'source': source_base, 'quality': quality, 'scraper': self.name, 'url': url,
+                                    'direct': False})
 
         except:
             pass

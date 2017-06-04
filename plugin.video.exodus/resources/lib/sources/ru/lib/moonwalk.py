@@ -73,8 +73,8 @@ def __get_moonwalk(url, ref, info=''):
         r = r[0]
 
         csrf = re.findall('name="csrf-token" content="(.*?)"', r)[0]
-        story = re.findall('''["']X-User-Story["']\s*:\s*["'](\w+)["']''', r)[0]
-        headers.update({'X-CSRF-Token': csrf, 'X-User-Story': story})
+        story = re.findall('''["']X-CSRF-Token["']\s*:\s*[^,]+,\s*["']([\w\-]+)["']\s*:\s*["'](\w+)["']''', r)[0]
+        headers.update({'X-CSRF-Token': csrf, story[0]: story[1]})
 
         varname = re.findall('''var\s*(\w+)\s*=\s*'/sessions/new_session'\s*;''', r)[0]
         jsid = re.findall('''\.post\(\s*%s\s*,\s*(\w+)''' % varname, r)[0]
@@ -88,7 +88,7 @@ def __get_moonwalk(url, ref, info=''):
         jsdata = json.loads(jsdata)
 
         mw_key = re.findall('''var\s*mw_key\s*=\s*["'](\w+)["']''', r)[0]
-        newatt = re.findall('''f33f2ea23c8b8030b2454792b013a550\[["'](\w+)["']\]\s*=\s*["'](\w+)["']''', r)[0]
+        newatt = re.findall('''%s\[["'](\w+)["']\]\s*=\s*["'](\w+)["']''' % jsid, r)[0]
 
         jsdata.update({'mw_key': mw_key, newatt[0]: newatt[1]})
 

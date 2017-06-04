@@ -65,7 +65,6 @@ class Scraper(scraper.Scraper):
                 hosters.append(hoster)
             except Exception as e:
                 logger.log('Exception during tvonline source: %s - |%s|' % (e, button), log_utils.LOGDEBUG)
-                raise
     
         return hosters
 

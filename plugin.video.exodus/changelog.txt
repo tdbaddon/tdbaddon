@@ -1,3 +1,11 @@
+[B]3.1.15[/B]
+- Updated existing providers
+- Added and Updated German providers
+- Removed dead providers
+- Fixed Russian providers
+- Added library integration
+- Fixed trakt watch/unwatched on seasons
+
 [B]3.1.14[/B]
 - Updated existing providers
 - Added and Updated German providers

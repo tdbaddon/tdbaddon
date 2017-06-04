@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-08 18:36+0000\n"
+"PO-Revision-Date: 2017-05-30 13:23+0000\n"
 "Last-Translator: Viper2k4\n"
 "Language-Team: German (http://www.transifex.com/tv-addons/exodus/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -704,4 +704,106 @@ msgstr "Konfiguriere Debrid-Dienste in den URLResolver-Einstellungen."
 msgctxt "#32540"
 msgid "URLResolver Settings"
 msgstr "URLResolver-Einstellungen"
+
+msgctxt "#32541"
+msgid "Library"
+msgstr "Bibliothek"
+
+msgctxt "#32542"
+msgid ""
+"Exodus folders will be imported to library if they are added to media "
+"sources."
+msgstr "Exodus-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#32544"
+msgid "TV"
+msgstr "TV-Serien"
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr "TV-Serien automatisch aktualisieren"
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr "Benachrichtigungen während des Updates zeigen"
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr "Bibliothek nach dem Hinzufügen von Inhalten aktualisieren"
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr "Doppelte Einträge vermeiden"
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr "Film vor dem hinzufügen prüfen"
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr "Erste Episode der Staffel vor dem hinzufügen prüfen"
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr "Zur Bibliothek hinzufügen"
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr "Hinzufügen zur Bibliothek..."
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr "Aktualisiere TV-Serien..."
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr "Vorgang abgeschlossen"
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+msgctxt "#32556"
+msgid "[B]EXODUS[/B] : Library"
+msgstr "[B]EXODUS[/B] : Bibliothek"
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr "[B]BIBLIOTHEK[/B] : Einstellungen"
+
+msgctxt "#32558"
+msgid "[B]EXODUS[/B] : Update library..."
+msgstr "[B]EXODUS[/B] : Bibliothek updaten..."
+
+msgctxt "#32559"
+msgid "[B]EXODUS[/B] : Movie folder..."
+msgstr "[B]EXODUS[/B] : Film-Ordner..."
+
+msgctxt "#32560"
+msgid "[B]EXODUS[/B] : TV folder..."
+msgstr "[B]EXODUS[/B] : TV-Serien-Ordner..."
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr "[B]TRAKT[/B] : Sammlung importieren..."
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr "[B]TRAKT[/B] : Merkliste importieren..."
+
+msgctxt "#32563"
+msgid "[B]TRAKT[/B] : Import TV Collection..."
+msgstr "[B]TRAKT[/B] : TV Sammlung importieren..."
+
+msgctxt "#32564"
+msgid "[B]TRAKT[/B] : Import TV Watchlist..."
+msgstr "[B]TRAKT[/B] : TV Merkliste importieren..."
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr "Episoden mit unbekanntem Ausstrahlungsdatum einbeziehen"
 

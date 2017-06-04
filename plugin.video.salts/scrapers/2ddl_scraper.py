@@ -29,7 +29,8 @@ from salts_lib.constants import SHORT_MONS
 from salts_lib.constants import VIDEO_TYPES
 import scraper
 
-BASE_URL = 'http://best2ddl.net'
+logger = log_utils.Logger.get_logger(__name__)
+BASE_URL = 'http://2ddl.download'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
 EXCLUDE_LINKS = ['adf.ly', urlparse.urlparse(BASE_URL).hostname]
 
@@ -167,15 +168,17 @@ class Scraper(scraper.Scraper):
             match = dom_parser2.parse_dom(html, 'a', {'rel': 'nofollow'}, req='href')
             if match:
                 html = super(self.__class__, self)._http_get(match[0].attrs['href'], require_debrid=True, cache_limit=24)
-                match = dom_parser2.parse_dom(html, 'link', {'rel': 'canonical'}, req='href')
-                if match:
-                    new_base = match[0].attrs['href']
-                    if new_base.endswith('/'):
-                        new_base = new_base[:-1]
                         
-                    self.base_url = new_base
-                    kodi.set_setting('%s-base_url' % (self.get_name()), new_base)
-                    return True
+        match = dom_parser2.parse_dom(html, 'link', {'rel': 'canonical'}, req='href')
+        if match:
+            new_base = match[0].attrs['href']
+            parts = urlparse.urlparse(new_base)
+            new_base = parts.scheme + '://' + parts.hostname
+            if new_base not in self.base_url:
+                logger.log('Updating 2DDL Base Url from: %s to %s' % (self.base_url, new_base))
+                self.base_url = new_base
+                kodi.set_setting('%s-base_url' % (self.get_name()), new_base)
+                return True
         
         return False
     

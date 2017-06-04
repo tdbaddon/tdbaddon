@@ -30,7 +30,7 @@ import scraper
 
 logger = log_utils.Logger.get_logger()
 
-BASE_URL = 'http://pubfilm.io'
+BASE_URL = 'http://pubfilm.is'
 GK_URL = 'http://player.pubfilm.io/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
 
 class Scraper(scraper.Scraper):

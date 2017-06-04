@@ -1045,6 +1045,7 @@ class tvshows:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
 
         for i in items:
             try:
@@ -1095,6 +1096,7 @@ class tvshows:
                 if isOld == True:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
+                cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systitle, year, imdb, tvdb)))
 
                 item = control.item(label=label)
 
@@ -1174,6 +1176,8 @@ class tvshows:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -1192,6 +1196,9 @@ class tvshows:
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+
+                try: cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowsToLibrary&url=%s)' % (sysaddon, urllib.quote_plus(i['context']))))
+                except: pass
 
                 item = control.item(label=name)
 

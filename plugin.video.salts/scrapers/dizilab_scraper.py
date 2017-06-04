@@ -161,12 +161,13 @@ class Scraper(scraper.Scraper):
         return hosters
     
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'class="episode"\s+href="([^"]+/sezon-%s/bolum-%s)"' % (video.season, video.episode)
+        episode_pattern = 'class="episode"[^>]+href="([^"]+/sezon-%s/bolum-%s(?!\d)[^"]*)' % (video.season, video.episode)
         title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)">\s*(?P<title>[^<]+)'
         show_url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, cache_limit=2)
-        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
-        return self._default_get_episode_url(fragment or html, video, episode_pattern, title_pattern)
+        episodes = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
+        episodes = '\n'.join([ep.content for ep in episodes])
+        return self._default_get_episode_url(episodes, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

@@ -12,17 +12,17 @@ __all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'watchseries_scrap
            'filmovizjia_scraper', 'icefilms_scraper', 'viooz_scraper', 'mvl_proxy', 'streamdor_scraper', 'goojara_proxy',
            'filmikz_scraper', 'vidnow4k_proxy', 'downloadtube_scraper', 'iwatch_scraper', 'ororotv_scraper', 'vidics_scraper',
            'losmovies_scraper', 'movie4k_scraper', 'easynews_scraper', 'noobroom_scraper', 'seriesonline_scraper',
-           'directdl_scraper', 'afdah_scraper', 'dizibox_scraper', 'torba_scraper', 'yesmovies_scraper', 'iomovies_scraper',
+           'directdl_scraper', 'afdah_scraper', 'dizibox_scraper', 'yesmovies_scraper', 'iomovies_scraper',
            'streamtv_scraper', 'wmo_scraper', 'wso_scraper', 'watchfree_scraper', 'streamlord_scraper', 'yify_proxy',
            'pftv_scraper', 'flixanity_scraper', 'cmz_scraper', 'movienight_scraper', 'alluc_scraper', 'watchonline_scraper',
-           'xmovies8_scraper', 'moviexk_scraper', 'mintmovies_scraper', 'pubfilm_scraper', 'rlssource_scraper',
+           'xmovies8_scraper', 'moviexk_scraper', 'mintmovies_scraper', 'pubfilm_scraper', 'rlssource_scraper', 'mehliz_scraper',
            'couchtunerv1_scraper', 'ddlvalley_scraper', 'pelispedia_scraper', 'spacemov_scraper', 'putmv_scraper',
            'watch8now_scraper', 'dizilab_scraper', 'dizimag_scraper', 'moviehut_scraper', 'serieswatch_scraper', 'dizist_scraper',
            'dizigold_scraper', 'onlinemoviespro_scraper', 'emoviespro_scraper', 'one23movies_proxy', 'rlsbb_scraper',
-           'sezonlukdizi_scraper', 'movietube_scraper', 'putlocker_scraper', 'diziay_scraper', 'scenehdtv_scraper',
+           'sezonlukdizi_scraper', 'movietube_scraper', 'putlocker_scraper', 'diziay_scraper', 'scenehdtv_scraper', 'pubfilmto_scraper',
            'furk_scraper', 'hevcbluray_scraper', 'ninemovies_proxy', 'miradetodo_scraper', 'dizipas_scraper', 'xmovies8v2_scraper',
            'moviesplanet_scraper', 'premiumize_scraper', 'tvonline_scraper', 'watchitvideos_scraper', 'movieblast_scraper',
-           'ddlseries_scraper', 'fmovie_scraper', 'seriescoco_scraper', 'veocube_scraper', 'solar_scraper', 'piratejunkies_scraper',
+           'ddlseries_scraper', 'fmovie_scraper', 'seriescoco_scraper', 'veocube_scraper', 'piratejunkies_scraper', 'sit2play_scraper',
            'watch5s_scraper', 'moviesub_scraper', 'watchepisodes_scraper', 'heydl_scraper', 'vkflix_scraper', 'bestmoviez_scraper',
            'm4ufree_scraper', 'moviewatcher_scraper', 'vivoto_scraper', '2ddl_scraper', 'onlinedizi_scraper', 'moviehubs_scraper',
            'premiumizev2_scraper', 'cinemamkv_scraper', 'dayt_scraper', 'moviego_scraper', 'treasureen_scraper', 'movieocean_proxy',
@@ -133,21 +133,21 @@ def update_scraper(filename, scraper_url):
         exists = os.path.exists(py_path)
         scraper_password = kodi.get_setting('scraper_password')
         if scraper_url and scraper_password:
-            old_etag = ''
+            old_lm = None
             old_py = ''
             if exists:
                 with open(py_path, 'r') as f:
                     old_py = f.read()
-                    match = re.search('^#\s+Etag:\s*(.*)', old_py)
+                    match = re.search('^#\s+Last-Modified:\s*(.*)', old_py)
                     if match:
-                        old_etag = match.group(1).strip()
+                        old_lm = match.group(1).strip()
 
-            new_etag, new_py = utils2.get_and_decrypt(scraper_url, scraper_password, old_etag)
+            new_lm, new_py = utils2.get_and_decrypt(scraper_url, scraper_password, old_lm)
             if new_py:
                 logger.log('%s path: %s, new_py: %s, match: %s' % (filename, py_path, bool(new_py), new_py == old_py), log_utils.LOGDEBUG)
                 if old_py != new_py:
                     with open(py_path, 'w') as f:
-                        f.write('# Etag: %s\n' % (new_etag))
+                        f.write('# Last-Modified: %s\n' % (new_lm))
                         f.write(new_py)
                     kodi.notify(msg=utils2.i18n('scraper_updated') + filename)
                         

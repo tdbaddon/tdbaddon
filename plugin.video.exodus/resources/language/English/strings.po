@@ -698,3 +698,103 @@ msgstr ""
 msgctxt "#32540"
 msgid "URLResolver Settings"
 msgstr ""
+
+msgctxt "#32541"
+msgid "Library"
+msgstr ""
+
+msgctxt "#32542"
+msgid "Exodus folders will be imported to library if they are added to media sources."
+msgstr ""
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr ""
+
+msgctxt "#32544"
+msgid "TV"
+msgstr ""
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr ""
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr ""
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr ""
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr ""
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr ""
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr ""
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr ""
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr ""
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr ""
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr ""
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "#32556"
+msgid "[B]EXODUS[/B] : Library"
+msgstr ""
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr ""
+
+msgctxt "#32558"
+msgid "[B]EXODUS[/B] : Update library..."
+msgstr ""
+
+msgctxt "#32559"
+msgid "[B]EXODUS[/B] : Movie folder..."
+msgstr ""
+
+msgctxt "#32560"
+msgid "[B]EXODUS[/B] : TV folder..."
+msgstr ""
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr ""
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr ""
+
+msgctxt "#32563"
+msgid "[B]TRAKT[/B] : Import TV Collection..."
+msgstr ""
+
+msgctxt "#32564"
+msgid "[B]TRAKT[/B] : Import TV Watchlist..."
+msgstr ""
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr ""

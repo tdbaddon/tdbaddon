@@ -26,10 +26,10 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
-        self.priority = 1
+        self.priority = 0
         self.language = ['fr']
-        self.domains = ['streaming-series.cc']
-        self.base_link = 'http://www.streaming-series.cc'
+        self.domains = ['streaming-series.cx']
+        self.base_link = 'http://www.streaming-series.cx'
         self.search_link = '/?s=%s'
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
@@ -50,6 +50,8 @@ class source:
             url = self.__search(data['tvshowtitle'], season)
             if not url and data['tvshowtitle'] is not data['localtvshowtitle']: url = self.__search(data['localtvshowtitle'], season)
             if not url: return
+
+            print urlparse.urljoin(self.base_link, url)
 
             r = client.request(urlparse.urljoin(self.base_link, url))
 
@@ -75,6 +77,8 @@ class source:
             hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
             locDict = [i[0] for i in hostDict]
 
+            print urlparse.urljoin(self.base_link, url)
+
             r = client.request(urlparse.urljoin(self.base_link, url))
 
             r = client.parseDOM(r, 'div', attrs={'class': 'filmicerik'})
@@ -86,7 +90,7 @@ class source:
 
             for links, lang in r:
                 for link, host in links.iteritems():
-                    sources.append({'source': host, 'quality': 'SD', 'language': 'FR', 'info': lang, 'url': link, 'direct': False, 'debridonly': False})
+                    sources.append({'source': host, 'quality': 'SD', 'language': 'fr', 'info': lang, 'url': link, 'direct': False, 'debridonly': False})
 
             return sources
         except:

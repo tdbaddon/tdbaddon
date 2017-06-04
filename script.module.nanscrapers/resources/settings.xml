@@ -41,7 +41,7 @@
 		<setting id= "primewire_baseurl" type="text" label="Base Url" default="http://www.primewire.ag"/>
 		<setting label="pubfilm" type="lsep"/>
 		<setting id="pubfilm_enabled" type="bool" label="Enabled" default="true"/>
-		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.ac"/>
+		<setting id= "pubfilm_baseurl" type="text" label="Base Url" default="http://pubfilm.is"/>
 		<setting label="sezonlukdizi" type="lsep"/>
 		<setting id="sezonlukdizi_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="Solar" type="lsep"/>

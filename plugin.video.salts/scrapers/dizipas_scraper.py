@@ -37,7 +37,7 @@ except ImportError:
     class ParseError(Exception): pass
 
 logger = log_utils.Logger.get_logger()
-BASE_URL = 'http://dizipas.com'
+BASE_URL = 'http://dizipas.net'
 AJAX_URL = 'http://dizipas.org/player/ajax.php'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
@@ -160,8 +160,9 @@ class Scraper(scraper.Scraper):
         title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)">(?P<title>[^<]+)'
         show_url = scraper_utils.urljoin(self.base_url, show_url)
         html = self._http_get(show_url, cache_limit=2)
-        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
-        return self._default_get_episode_url(fragment or html, video, episode_pattern, title_pattern)
+        episodes = dom_parser2.parse_dom(html, 'div', {'class': 'tv-series-episodes'})
+        episodes = '\n'.join([ep.content for ep in episodes])
+        return self._default_get_episode_url(episodes, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
         results = []

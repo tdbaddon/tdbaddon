@@ -38,18 +38,15 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = self.__search(localtvshowtitle, year)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
-            for t in source_utils.aliases_to_array(aliases):
-                if url: break
-                url = self.__search(t, year)
+            url = self.__search([localtvshowtitle] + source_utils.aliases_to_array(aliases), year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search([tvshowtitle] + source_utils.aliases_to_array(aliases), year)
             return url
         except:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
+            if not url: return
             return url + "%s/%s" % (season, episode)
         except:
             return
@@ -58,7 +55,7 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             j = self.__get_json(url)
@@ -88,17 +85,17 @@ class source:
         except:
             return
 
-    def __search(self, title, year):
+    def __search(self, titles, year):
         try:
-            t = cleantitle.get(title)
+            t = [cleantitle.get(i) for i in set(titles) if i]
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = cache.get(self.__get_json, 12, "series")
             r = [(i.get('id'), i.get('series')) for i in r]
-            r = [(i[0], i[1], re.findall('(.+?) \((\d{4})\)?', i[1])) for i in r if t == cleantitle.get(i[1])]
+            r = [(i[0], i[1], re.findall('(.+?) \((\d{4})\)?', i[1])) for i in r if cleantitle.get(i[1]) in t]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
             r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
+            r = [i[0] for i in r if i[2] in y][0]
 
             return 'series/%s/' % r
         except:

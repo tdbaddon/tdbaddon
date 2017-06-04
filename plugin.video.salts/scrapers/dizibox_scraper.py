@@ -78,8 +78,9 @@ class Scraper(scraper.Scraper):
                     html = self._http_get(iframe_url, cache_limit=.5)
                     hosters += self.__get_embed_links(html)
                     flashvars = dom_parser2.parse_dom(html, 'param', {'name': 'flashvars'}, req='value')
-                    if flashvars:
-                        hosters += self.__get_ok(flashvars[0].attrs['value'])
+                    embed = dom_parser2.parse_dom(html, 'object', req='data')
+                    if embed and flashvars:
+                        hosters += self.__get_ok(embed, flashvars)
         return hosters
         
     def __get_king_links(self, iframe_url):
@@ -120,12 +121,14 @@ class Scraper(scraper.Scraper):
             hosters.append(hoster)
         return hosters
         
-    def __get_ok(self, link):
+    def __get_ok(self, embed, flashvars):
         hosters = []
+        link = flashvars[0].attrs['value']
         match = re.search('metadataUrl=([^"]+)', link)
         if match:
-            ok_url = urllib.unquote(match.group(1))
-            html = self._http_get(ok_url, cache_limit=1)
+            referer = scraper_utils.cleanse_title(urllib.unquote(embed[0].attrs['data']))
+            ok_url = scraper_utils.cleanse_title(urllib.unquote(match.group(1)))
+            html = self._http_get(ok_url, data='ok', headers={'Referer': referer}, cache_limit=.25)
             js_data = scraper_utils.parse_json(html, ok_url)
             stream_url = js_data.get('movie', {}).get('url')
             if stream_url is not None:

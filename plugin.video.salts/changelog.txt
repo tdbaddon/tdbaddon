@@ -1,3 +1,27 @@
+[B]Version 2.0.194[/B]
+- Add sit2play
+- Add pubfilm.to
+- Add Mehliz
+- Improve 2DDL
+- Improve xmovies8.v2
+- Improve filmovizjia
+- Improve Dizimag
+- Improve Mehliz
+- Fix Dizigold
+- Fix Dizilab
+- Fix Dizipas
+- Fix Dizibox
+- Fix tvonline
+- Fix SeriesCoco
+- Fix pubfilm
+- Fix Flixanity
+- Fix DDLSeries
+- Fix RLSSource
+- Remove SolarMovie
+- Remove Torba
+- Fix episode thumbnail caching
+- Improve premiumize scraper
+
 [B]Version 2.0.187[/B]
 - Make episode detection faster across all scrapers
 - Fix m4ufree

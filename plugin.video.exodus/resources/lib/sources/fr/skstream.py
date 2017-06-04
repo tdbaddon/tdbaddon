@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,285 +16,127 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, base64, json, unicodedata, os, sys
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import proxy
-from resources.lib.modules import trakt
-from resources.lib.modules import tvmaze
+from resources.lib.modules import dom_parser
+from resources.lib.modules import source_utils
 
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['fr']
-        self.domains = ['skstream.org']
-        self.base_link = 'http://www.skstream.org'
-        self.key_link = '/recherche?'
-        self.moviesearch_link = '/recherche/films?s=%s'
-        self.tvsearch_link = '/recherche/series?r_serie=%s'
+        self.domains = ['skstream.co']
+        self.base_link = 'http://www.skstream.co'
+        self.search_link = 'recherche?s=%s'
+        self.protect_domain = 'dl-protect.co'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'localtitle': localtitle, 'year': year}
-            url = urllib.urlencode(url)
-            print 'MOVIE    url = %s' % url
+            url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(title, year)
             return url
         except:
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
+            url = self.__search(localtvshowtitle, year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(tvshowtitle, year)
             return url
         except:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
+            if not url:
+                return
 
-            url = urlparse.parse_qs(url)
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urllib.urlencode(url)
-            return url
+            url = urlparse.urljoin(self.base_link, url)
+            r = client.request(url)
+            r = dom_parser.parse_dom(r, 'a', attrs={'class': 'episode-block', 'href': re.compile('.*/saison-%s/episode-%s/.*' % (season, episode))}, req='href')
+            r = [i.attrs['href'] for i in r][0]  # maybe also get the VF/VOSTFR to get the VF first
+
+            return source_utils.strip_domain(r)
         except:
             return
 
     def sources(self, url, hostDict, hostprDict):
+        sources = []
+        myList = []
+        myLinks = []
+
+
         try:
-            print '-------------------------------    -------------------------------'
-            sources = []
+            if not url:
+                return sources
 
-            data = urlparse.parse_qs(url)
-            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-            print data
-
-
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-            year = data['year'] if 'year' in data else data['year']
-            season = data['season'] if 'season' in data else False
-            episode = data['episode'] if 'episode' in data else False
-            localtitle =  data['localtitle'] if 'localtitle' in data else False
-
-            if season and episode:
-                aTitle = tvmaze.tvMaze().getTVShowTranslation(data['tvdb'], 'fr')
-            else:
-                aTitle = trakt.getMovieTranslation(data['imdb'], 'fr')
-
-                if not aTitle == None:
-                    print ''
-                else :
-                    aTitle = title
-
-            if season and episode:
-                query = 'http://www.skstream.org/recherche/?s=' + urllib.quote_plus(aTitle)
-                query = urlparse.urljoin(self.base_link, query)
-            else:
-                query = self.key_link + 's=' + urllib.quote_plus(aTitle)
-                query = urlparse.urljoin(self.base_link, query)
-
-            print query
-
-
-            r = client.request(query)
-
-            try:
-                r0 = re.compile('<center><h3>(.+?)</h3></center>').findall(r)[0]
-
-                if 'Aucun film à afficher.' in r0:
-                    aTitle = re.sub(':', '-', aTitle)
-                    query = self.key_link + 'r_film=' + urllib.quote_plus(aTitle)
-                    query = urlparse.urljoin(self.base_link, query)
-
-                    r = client.request(query)
-            except:
-                pass
-
-            print query
-
-            aTitle = cleantitle.get(cleantitle.normalize(aTitle))
-            t = cleantitle.get(cleantitle.normalize(aTitle))
-
-            r = client.parseDOM(r, 'div', attrs={'class': 'panel-body'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'col-xs-3 col-sm-3 col-md-3 col-lg-3  movie_single'})
-            r = [(client.parseDOM(client.parseDOM(i, 'div', attrs={'class': 'text-center'}), 'a', ret='href'), client.parseDOM(i, 'img', attrs={'class': 'img-responsive img-thumbnail'}, ret='title')) for i in r]
-            r = [(i[0][0], i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-
-            try:
-                r = [i[0] for i in r if t + year == cleantitle.get(i[1])][0]
-            except:
-                for i in r:
-                    print 't = %s, i[1] = %s' % (t, cleantitle.normalize(cleantitle.get(i[1])))
-                    if t == cleantitle.normalize(cleantitle.get(i[1])):
-                        r = i[0]
-
-            if season and episode:
-                url = '%s%s' % (self.base_link , r)
-            else:
-                url = '%s/%s' % (self.base_link, r)
-
-            url = client.replaceHTMLCodes(url)
-            #url = url.encode('utf-8')
-
-            url = urlparse.urljoin('http://www.skstream.org', url)
+            url = urlparse.urljoin(self.base_link, url)
 
             print url
 
             r = client.request(url)
 
-            if season and episode:
-                r = client.request(url)
-                r = r.replace(' = ', '=')
+            r0 = client.parseDOM(r, 'tr', attrs={'class': 'changeplayer sks'})
+            r1 = client.parseDOM(r, 'tr', attrs={'class': 'changeplayer sks'}, ret='data-basicurl')
+            r2 = client.parseDOM(r, 'tr', attrs={'class': 'changeplayer sks'}, ret='data-idvideo')
+            r3 = client.parseDOM(r, 'tr', attrs={'class': 'changeplayer sks'}, ret='data-embedlien')
+            r4 = re.compile('class=\"server player-(.+?)\"').findall(r)
+            r5 = client.parseDOM(r0, 'span', attrs={'class': 'badge'})
 
-                unChunk = client.parseDOM(r, 'div', attrs={'class': 'jumbotron'})
-                desSaisons = client.parseDOM(r, 'i', attrs={'class': 'fa fa-television'}, ret='id')
-                desLiens = client.parseDOM(r, 'div', attrs={'class': 'btn-group'})
-                desLiens = client.parseDOM(desLiens, 'a',ret='href')
-
-                for unLienTV in desLiens:
-                    tempSaisonEpisode = '/saison-%s/episode-%s/' % (season, episode)
-                    if '/series/' in unLienTV and tempSaisonEpisode in unLienTV:
-                        urlTV = 'http://www.skstream.org/%s' % unLienTV
-                        break
-
-                print urlTV
-
-                s = client.request(urlTV)
-                urlLoop = urlTV
-
-                s = client.parseDOM(s, 'table', attrs={'class': 'players table table-striped table-hover'})
-            else:
-                s = client.request(url)
-                urlLoop = url
-
-                s = client.parseDOM(r, 'table', attrs={'class': 'players table table-striped table-hover'})
+            for i in range(0, len(r1)):
+                myList.append((r1[i], r2[i], r3[i], r4[i], r5[i], url))
 
 
-            leVideo = client.parseDOM(s, 'input', attrs={'name': 'levideo'}, ret='value')
-            leHost = re.compile('&nbsp;(.+?)</a></form>').findall(s[0])
-            #uneLangue = client.parseDOM(s, 'span', attrs={'class': 'badge'})
-            #uneQualite = re.compile('</span></td>\n\s+<td>(.+?)</td>', re.MULTILINE | re.DOTALL).findall(s)
+            for refer, videoid, link, hoster, language, theurl in myList:
+                #valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                #if not valid: continue
 
-            leHost = [x.lower() for x in leHost]
-            #uneLangue = [x.lower() for x in uneLangue]
-            #uneQualite = [x.lower() for x in uneQualite]
+                myLinks.append((link, refer, videoid, theurl))
 
-            counter = 0
-            for unVideo in leVideo:
+                info = language
 
-                if season and episode:
-                    url = urlLoop + '***' + unVideo + '***' + 'TV'
-                else:
-                    url = urlLoop + '***' + unVideo + '***' + 'Movie'
-
-                url = url.encode('utf-8')
-
-                try:
-                    if leHost[counter] == 'openload':
-                        host = filter(lambda s: leHost[counter] in str(s), hostDict)[1]
-                    else:
-                        host = filter(lambda s: leHost[counter] in str(s), hostDict)[0]
-                except:
-                    counter = counter + 1
-                    continue
-
-                host = host.encode('utf-8')
-
-                #langue = uneLangue[counter]
-
-                #quality2 = uneQualite[counter]
-                #quality2 = re.sub('-', '', quality2)
-                quality2 = ''
-
-                if '1080p' in quality2:
-                    quality = '1080p'
-                elif '720p' in quality2 or 'bdrip' in quality2 or 'hdrip' in quality2:
-                    quality = 'HD'
-                else:
-                    quality = 'SD'
-
-                if 'dvdscr' in quality2 or 'r5' in quality2 or 'r6' in quality2:
-                    quality2 = 'SCR'
-                elif 'camrip' in quality2 or 'tsrip' in quality2 or 'hdcam' in quality2 or 'hdts' in quality2 or 'dvdcam' in quality2 or 'dvdts' in quality2 or 'cam' in quality2 or 'telesync' in quality2 or 'ts' in quality2:
-                    quality2 = 'CAM'
-
-                sources.append({'source': host, 'quality': quality, 'language': 'FR', 'url': url, 'info': '', 'direct': False, 'debridonly': False})
-
-                counter = counter + 1
-
-            print sources
+                sources.append({'source': hoster, 'quality': 'SD', 'language': 'fr', 'url': myLinks, 'info': info, 'direct': False, 'debridonly': False})
+                myLinks = []
 
             return sources
-        except Exception as e:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-
-            print(exc_type, fname, exc_tb.tb_lineno)
-
+        except:
             return sources
-
 
     def resolve(self, url):
-
-        url2 = url
-        print url2
-
-        parts = url.split('***')
-        url = parts[0]
-        unVideo = parts[1]
-
-        print url, unVideo
-
-        post = 'levideo=%s' % unVideo
-        result3 = client.request(url, post=post)
-
-        if parts[2] == 'TV':
-            u1 = client.parseDOM(result3, 'a', attrs={'class': 'btn btn-primary'}, ret='href')[0]
-        else:
-            u = client.parseDOM(result3, 'div', attrs={'class': 'tab-content'})[0]
-            u1 = client.parseDOM(u, 'iframe', ret='src')[0]
-
-        url = client.request(u1, referer='http://www.skstream.org', output='geturl')
-
-        if 'coo5shaine' in url:
-            url = re.sub('http://coo5shaine.com', 'http://allvid.ch', url)
-
-        if 'oogh8ot0el' in url:
-            url = re.sub('http://oogh8ot0el.com', 'http://youwatch.org', url)
-
-        if 'ohbuegh3ev' in url:
-            url = re.sub('http://ohbuegh3ev.com', 'http://exashare.com', url)
-
-        print url
-
-        url = url.encode('utf-8')
-
-        # if url != None:
-        #    print url
-
-        if 'http://www.skstream.org' in url:
-            result5 = client.request(url)
-            url = re.compile('<a href=\"(.+?)\" style=\"', re.MULTILINE | re.DOTALL).findall(result5)[0]
+        try:
             print url
 
-        return url
+            if self.protect_domain in url[0][0]:
+                #post={'data-idvideo': '%s' % i}
+                url = client.request(url[0][0], post={'data-idvideo': url[0][2]}, referer=url[0][3], output='geturl')
 
+            return url
+        except:
+            return url
 
-    def clean2(title):
-        if title == None: return
+    def __search(self, title, year):
+        try:
+            query = self.search_link % (urllib.quote_plus(cleantitle.query(title)))
+            query = urlparse.urljoin(self.base_link, query)
 
-        title = re.sub('&#(\d+);', '', title)
-        title = re.sub('(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
-        title = title.replace('&quot;', '\"').replace('&amp;', '&')
-        title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+            t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
-        try: title = title.encode('utf-8')
-        except: pass
-        return title
+            r = client.request(query)
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'movie_single'})
+            r = dom_parser.parse_dom(r, 'a', attrs={'class': 'unfilm'}, req='href')
+            r = [(i.attrs['href'], dom_parser.parse_dom(r, 'div', attrs={'class': 'title'}), dom_parser.parse_dom(r, 'span', attrs={'class': 'post-year'})) for i in r]
+            r = [(i[0], re.sub('<.+?>|</.+?>', '', i[1][0].content), i[2][0].content if i[2] else '0') for i in r if i[1]]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
+
+            return source_utils.strip_domain(r)
+        except:
+            return

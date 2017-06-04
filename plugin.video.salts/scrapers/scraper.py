@@ -299,6 +299,11 @@ class Scraper(object):
         if params:
             if url == base_url and not url.endswith('/'):
                 url += '/'
+            
+            parts = urlparse.urlparse(url)
+            if parts.query:
+                params.update(scraper_utils.parse_query(url))
+                url = urlparse.urlunparse((parts.scheme, parts.netloc, parts.path, parts.params, '', parts.fragment))
                 
             url += '?' + urllib.urlencode(params)
         logger.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers), log_utils.LOGDEBUG)

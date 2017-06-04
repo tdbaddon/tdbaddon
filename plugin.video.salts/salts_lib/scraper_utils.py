@@ -35,7 +35,7 @@ from salts_lib import utils2
 from salts_lib.constants import *  # @UnusedWildImport
 
 logger = log_utils.Logger.get_logger(__name__)
-logger.disable()
+# logger.disable()
 
 cleanse_title = utils2.cleanse_title
 to_datetime = utils2.to_datetime
@@ -167,29 +167,29 @@ def height_get_quality(height):
 
 def gv_get_quality(stream_url):
     stream_url = urllib.unquote(stream_url)
-    if 'itag=18' in stream_url or '=m18' in stream_url:
+    if 'itag=18' in stream_url or '=m18' in stream_url or '/m18' in stream_url:
         return QUALITIES.MEDIUM
-    elif 'itag=22' in stream_url or '=m22' in stream_url:
+    elif 'itag=22' in stream_url or '=m22' in stream_url or '/m22' in stream_url:
         return QUALITIES.HD720
-    elif 'itag=15' in stream_url or '=m15' in stream_url:
+    elif 'itag=15' in stream_url or '=m15' in stream_url or '/m15' in stream_url:
         return QUALITIES.HD720
-    elif 'itag=45' in stream_url or '=m45' in stream_url:
+    elif 'itag=45' in stream_url or '=m45' in stream_url or '/m45' in stream_url:
         return QUALITIES.HD720
-    elif 'itag=34' in stream_url or '=m34' in stream_url:
+    elif 'itag=34' in stream_url or '=m34' in stream_url or '/m34' in stream_url:
         return QUALITIES.MEDIUM
-    elif 'itag=35' in stream_url or '=m35' in stream_url:
+    elif 'itag=35' in stream_url or '=m35' in stream_url or '/m35' in stream_url:
         return QUALITIES.HIGH
-    elif 'itag=59' in stream_url or '=m59' in stream_url:
+    elif 'itag=59' in stream_url or '=m59' in stream_url or '/m59' in stream_url:
         return QUALITIES.HIGH
-    elif 'itag=44' in stream_url or '=m44' in stream_url:
+    elif 'itag=44' in stream_url or '=m44' in stream_url or '/m44' in stream_url:
         return QUALITIES.HIGH
-    elif 'itag=37' in stream_url or '=m37' in stream_url:
+    elif 'itag=37' in stream_url or '=m37' in stream_url or '/m37' in stream_url:
         return QUALITIES.HD1080
-    elif 'itag=38' in stream_url or '=m38' in stream_url:
+    elif 'itag=38' in stream_url or '=m38' in stream_url or '/m38' in stream_url:
         return QUALITIES.HD1080
-    elif 'itag=46' in stream_url or '=m46' in stream_url:
+    elif 'itag=46' in stream_url or '=m46' in stream_url or '/m46' in stream_url:
         return QUALITIES.HD1080
-    elif 'itag=43' in stream_url or '=m43' in stream_url:
+    elif 'itag=43' in stream_url or '=m43' in stream_url or '/m43' in stream_url:
         return QUALITIES.MEDIUM
     else:
         return QUALITIES.HIGH
@@ -703,15 +703,31 @@ def parse_gdocs(scraper, link):
     for match in re.finditer('\[\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\]', html):
         key, value = match.groups()
         if key != 'fmt_stream_map': continue
-        for item in value.split(','):
-            _source_fmt, source_url = item.split('|')
-            source_url = source_url.replace('\\u003d', '=').replace('\\u0026', '&')
-            source_url = urllib.unquote(source_url)
-            source_url += '|Cookie=%s' % (scraper._get_stream_cookies())
-            urls.append(source_url)
+        urls += parse_stream_map(scraper, value)
+    
+    if not urls:
+        match = re.search("'id'\s*:\s*'([^']+)", html)
+        if match:
+            info_url = 'https://drive.google.com/get_video_info'
+            html = scraper._http_get(info_url, params={'docid': match.group(1)}, headers={'Referer': link}, cache_limit=.5)
+            if 'status=ok' not in html:
+                html = base64.b64decode(html)
+            query = parse_query(html)
+            urls += parse_stream_map(scraper, query.get('fmt_stream_map', ''))
                 
     return urls
 
+def parse_stream_map(scraper, value):
+    urls = []
+    for item in value.split(','):
+        _source_fmt, source_url = item.split('|')
+        source_url = source_url.replace('\\u003d', '=').replace('\\u0026', '&')
+        source_url = urllib.unquote(source_url)
+        if scraper is not None:
+            source_url += '|Cookie=%s' % (scraper._get_stream_cookies())
+        urls.append(source_url)
+    return urls
+    
 def do_recaptcha(scraper, key, tries=None, max_tries=None):
     challenge_url = CAPTCHA_BASE_URL + '/challenge?k=%s' % (key)
     html = scraper._cached_http_get(challenge_url, CAPTCHA_BASE_URL, timeout=DEFAULT_TIMEOUT, cache_limit=0)

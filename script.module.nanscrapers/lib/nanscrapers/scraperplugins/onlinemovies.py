@@ -42,7 +42,6 @@ class Onlinemovies(Scraper):
             if len(episode) == 1:
                 episode = '0'+str(episode)
             start_url = self.base_link+'episode/'+title.replace(' ','-')+'-s'+season+'e'+episode+'/'
-            print(start_url)
             html = requests.get(start_url).text
             match = re.compile('<iframe.+?src="(.+?)"').findall(html)
             for url in match:

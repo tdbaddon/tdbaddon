@@ -94,6 +94,7 @@
 		<setting id="provider.watchhd" type="bool" label="WATCHHD" default="true" />
 		<setting id="provider.watchseries" type="bool" label="WATCHSERIES" default="true" />
 		<setting id="provider.wrzcraft" type="bool" label="WRZCRAFT" default="true" />
+		<setting id="provider.videoscraper" type="bool" label="VIDEOSCRAPER" default="true" />
 		<setting id="provider.xmovies" type="bool" label="XMOVIES" default="true" />
 		<setting id="provider.ymovies" type="bool" label="YMOVIES" default="true" />
 		<setting label="German" type="lsep" />
@@ -107,6 +108,7 @@
 		<setting id="provider.filmpalast" type="bool" label="FILMPALAST" default="true" />
 		<setting id="provider.foxx" type="bool" label="FOXX" default="true" />
 		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
+		<setting id="provider.horrorkino" type="bool" label="HORRORKINO" default="true" />
 		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
 		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />
 		<setting id="provider.kinow" type="bool" label="KINOW" default="true" />
@@ -118,7 +120,6 @@
 		<setting id="provider.pureanime" type="bool" label="PUREANIME" default="true" />
 		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
 		<setting id="provider.seriesever" type="bool" label="SERIESEVER" default="true" />
-		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
 		<setting id="provider.streamflix" type="bool" label="STREAMFLIX" default="true" />
 		<setting id="provider.streamit" type="bool" label="STREAMIT" default="true" />
 		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
@@ -190,6 +191,21 @@
 		<setting type="lsep" label="Seriesever.net" />
 		<setting id="seriesever.user" type="text" label="32303" default="" />
 		<setting id="seriesever.pass" type="text" option="hidden" label="32307" default="" />
+	</category>
+	<category label="32541">
+		<setting id="library.movie" type="folder" label="32543" default="special://userdata/addon_data/plugin.video.exodus/Movies" />
+		<setting id="library.tv" type="folder" label="32544" default="special://userdata/addon_data/plugin.video.exodus/TVShows" />
+		<setting type="lsep" label="32542" />
+		<setting type="sep" />
+		<setting id="library.service.update" type="bool" label="32545" default="true" />
+		<setting id="library.service.notification" type="bool" label="32546" default="true" />
+		<setting type="sep" />
+		<setting id="library.update" type="bool" label="32547" default="true" />
+		<setting id="library.check" type="bool" label="32548" default="true" />
+		<setting type="sep" />
+		<setting id="library.check_movie" type="bool" label="32549" default="false" />
+		<setting id="library.check_episode" type="bool" label="32550" default="false" />
+		<setting id="library.include_unknown" type="bool" label="32565" default="true" />
 	</category>
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />

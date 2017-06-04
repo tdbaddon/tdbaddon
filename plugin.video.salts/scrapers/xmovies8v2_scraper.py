@@ -28,6 +28,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'https://xmovies8.ru'
 PLAYER_URL = '/ajax/movie/load_player_v3'
 
@@ -108,9 +109,11 @@ class Scraper(scraper.Scraper):
         
     def _get_episode_url(self, season_url, video):
         season_url = scraper_utils.urljoin(self.base_url, season_url)
-        html = self._http_get(season_url, cache_limit=.5)
+        html = self._http_get(season_url, cache_limit=0)
+        logger.log(html)
         fragment = dom_parser2.parse_dom(html, 'div', {'class': 'ep_link'})
         if not fragment: return
+        logger.log(fragment)
         
         episode_pattern = 'href="([^"]+)[^>]+>(?:Episode)?\s*0*%s<' % (video.episode)
         match = re.search(episode_pattern, fragment[0].content)
@@ -128,7 +131,7 @@ class Scraper(scraper.Scraper):
             
             match_title_year = match[0].attrs['title']
             match_url = match[0].attrs['href']
-            is_season = re.search('Season\s+(\d+)', match_title_year, re.I)
+            is_season = re.search('S(?:eason\s+)?(\d+)', match_title_year, re.I)
             match_vt = video_type == (VIDEO_TYPES.MOVIE and not is_season) or (video_type == VIDEO_TYPES.SEASON and is_season)
             match_year = ''
             if video_type == VIDEO_TYPES.SEASON:

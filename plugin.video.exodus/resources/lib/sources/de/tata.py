@@ -83,14 +83,30 @@ class source:
 
             ref = urlparse.urljoin(self.base_link, url)
             url = urlparse.urljoin(self.base_link, self.ajax_link % re.findall('-([\w\d]+)$', ref)[0])
-            result = client.request(url, referer=ref)
+
+            headers = {}
+            headers.update({'Referer': ref, 'User-Agent': client.randomagent()})
+
+            result = client.request(url, headers=headers)
             result = base64.decodestring(result)
             result = json.loads(result).get('playinfo', [])
-            result = [i.get('link_mp4') for i in result]
-            result = [i for i in result if i]
-            for i in result:
-                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
-                except: pass
+
+            if isinstance(result, basestring):
+                result = result.replace('embed.html', 'index.m3u8')
+
+                base_url = re.sub('index.m3u8?token=[\d-]', '', result)
+
+                r = client.request(result, headers=headers)
+                r = [(i[0], i[1]) for i in re.findall('#EXT-X-STREAM-INF:.*?RESOLUTION=\d+x(\d+)[^\n]+\n([^\n]+)', r, re.DOTALL) if i]
+                r = [(source_utils.label_to_quality(i[0]), i[1] + '|%s' % urllib.urlencode(headers)) for i in r]
+                r = [{'quality': i[0], 'url': base_url+i[1]} for i in r]
+                for i in r: sources.append({'source': 'CDN', 'quality': i['quality'], 'language': 'de', 'url': i['url'], 'direct': True, 'debridonly': False})
+            else:
+                result = [i.get('link_mp4') for i in result]
+                result = [i for i in result if i]
+                for i in result:
+                    try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
+                    except: pass
 
             return sources
         except:

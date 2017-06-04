@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import urlparse
 import re
 import kodi
 import log_utils  # @UnusedImport
@@ -91,7 +92,10 @@ class Scraper(scraper.Scraper):
                 result = self._http_get(url, data=data, headers=headers, cache_limit=.5)
                 js_data = scraper_utils.parse_json(result, url)
                 if 'iframe' in js_data:
-                    hosters += self.__get_iframe_sources(js_data['iframe'], page_url)
+                    if self.base_url in js_data['iframe']:
+                        hosters += self.__get_iframe_sources(js_data['iframe'], page_url)
+                    else:
+                        hosters.append(self.__create_source(js_data['iframe'], 720, page_url, direct=False))
                 else:
                     hosters += self.__get_js_sources(js_data, page_url)
                     pass
@@ -121,25 +125,30 @@ class Scraper(scraper.Scraper):
                     hosters.append(self.__create_source(stream_url, 480, page_url))
         return hosters
         
-    def __create_source(self, stream_url, height, page_url, subs=False):
-        stream_url = stream_url.replace('\\/', '/')
-        if self.get_name().lower() in stream_url:
-            headers = {'Referer': page_url}
-            redir_url = self._http_get(stream_url, headers=headers, method='HEAD', allow_redirect=False, cache_limit=.25)
-            if redir_url.startswith('http'):
-                stream_url = redir_url
-                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+    def __create_source(self, stream_url, height, page_url, subs=False, direct=True):
+        if direct:
+            stream_url = stream_url.replace('\\/', '/')
+            if self.get_name().lower() in stream_url:
+                headers = {'Referer': page_url}
+                redir_url = self._http_get(stream_url, headers=headers, method='HEAD', allow_redirect=False, cache_limit=.25)
+                if redir_url.startswith('http'):
+                    stream_url = redir_url
+                    stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua()})
+                else:
+                    stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url, 'Cookie': self._get_stream_cookies()})
             else:
-                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url, 'Cookie': self._get_stream_cookies()})
-        else:
-            stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
+                stream_url += scraper_utils.append_headers({'User-Agent': scraper_utils.get_ua(), 'Referer': page_url})
 
-        host = scraper_utils.get_direct_hostname(self, stream_url)
+            host = scraper_utils.get_direct_hostname(self, stream_url)
+        else:
+            host = urlparse.urlparse(stream_url).hostname
+
         if host == 'gvideo':
             quality = scraper_utils.gv_get_quality(stream_url)
         else:
             quality = scraper_utils.height_get_quality(height)
-        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+            
+        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': direct}
         if subs: hoster['subs'] = 'Turkish Subtitles'
         return hoster
         

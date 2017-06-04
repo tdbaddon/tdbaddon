@@ -28,6 +28,7 @@ from salts_lib.constants import QUALITIES
 from salts_lib.constants import XHR
 import scraper
 
+logger = log_utils.Logger.get_logger(__name__)
 BASE_URL = 'http://www.filmovizija.ws'
 EP_URL = '/episode.php?vid=%s'
 LINK_URL = '/morgan.php'
@@ -122,22 +123,18 @@ class Scraper(scraper.Scraper):
             return EP_URL % (best_id)
 
     def search(self, video_type, title, year, season=''):  # @UnusedVariable
-        if video_type == VIDEO_TYPES.MOVIE:
-            results = self.__movie_search(title, year)
-        else:
-            results = self.__tv_search(title, year)
-        return results
-
-    def __movie_search(self, title, year):
         results = []
         search_url = scraper_utils.urljoin(self.base_url, '/search.php')
-        params = {'all': 'all', 'searchin': 'mov', 'subtitles': '', 'imdbfrom': '', 'yearrange': '', 'keywords': title}
+        if video_type == VIDEO_TYPES.MOVIE:
+            params = {'all': 'all', 'searchin': 'mov', 'subtitles': '', 'imdbfrom': '', 'yearrange': '', 'keywords': title}
+        else:
+            params = {'all': 'all', 'vselect': 'ser', 'keywords': title}
         html = self._http_get(search_url, params=params, cache_limit=8)
         fragment = dom_parser2.parse_dom(html, 'ul', {'class': 'cbp-rfgrid'})
         if not fragment: return results
         
-        for _attr, item in dom_parser2.parse_dom(fragment[0].content, 'li'):
-            match = dom_parser2.parse_dom(item, 'a', req=['href', 'title'])
+        for item in dom_parser2.parse_dom(fragment, 'li'):
+            match = dom_parser2.parse_dom(item, 'a', req=['title', 'href'])
             if not match: continue
             
             match_url = match[0].attrs['href']
@@ -147,19 +144,4 @@ class Scraper(scraper.Scraper):
                 result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                 results.append(result)
 
-        return results
-    
-    def __tv_search(self, title, year):  # @UnusedVariable
-        results = []
-        url = scraper_utils.urljoin(self.base_url, '/tvshows.html')
-        html = self._http_get(url, cache_limit=48)
-        fragment = dom_parser2.parse_dom(html, 'div', {'class': 'series-top'})
-        if not fragment: return results
-        
-        norm_title = scraper_utils.normalize_title(title)
-        for match in dom_parser2.parse_dom(fragment[0].content, 'a', req=['href']):
-            match_url, match_title, match_year = match.attrs['href'], match.content, ''
-            if norm_title in scraper_utils.normalize_title(match_title):
-                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
-                results.append(result)
         return results

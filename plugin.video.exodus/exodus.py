@@ -35,6 +35,8 @@ imdb = params.get('imdb')
 
 tvdb = params.get('tvdb')
 
+tmdb = params.get('tmdb')
+
 season = params.get('season')
 
 episode = params.get('episode')
@@ -97,6 +99,10 @@ elif action == 'mytvliteNavigator':
 elif action == 'downloadNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().downloads()
+
+elif action == 'libraryNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().library()
 
 elif action == 'toolNavigator':
     from resources.lib.indexers import navigator
@@ -347,3 +353,27 @@ elif action == 'random':
         control.execute('RunPlugin(%s)' % r)
     except:
         control.infoDialog(control.lang(32537).encode('utf-8'), time=8000)
+
+elif action == 'movieToLibrary':
+    from resources.lib.modules import libtools
+    libtools.libmovies().add(name, title, year, imdb, tmdb)
+
+elif action == 'moviesToLibrary':
+    from resources.lib.modules import libtools
+    libtools.libmovies().range(url)
+
+elif action == 'tvshowToLibrary':
+    from resources.lib.modules import libtools
+    libtools.libtvshows().add(tvshowtitle, year, imdb, tvdb)
+
+elif action == 'tvshowsToLibrary':
+    from resources.lib.modules import libtools
+    libtools.libtvshows().range(url)
+
+elif action == 'updateLibrary':
+    from resources.lib.modules import libtools
+    libtools.libepisodes().update(query)
+
+elif action == 'service':
+    from resources.lib.modules import libtools
+    libtools.libepisodes().service()

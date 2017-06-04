@@ -3,7 +3,7 @@ import gzip
 import re
 import urlparse
 from BeautifulSoup import BeautifulSoup
-from ..common import random_agent, replaceHTMLCodes
+from ..common import random_agent, replaceHTMLCodes, clean_title
 from ..scraper import Scraper
 from nanscrapers.modules import cfscrape
 import xbmcaddon
@@ -11,7 +11,7 @@ import urllib
 import xbmc
 
 class Pubfilm(Scraper):
-    domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
+    domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com', 'pubfilm.is']
     name = "pubfilm"
 
     def __init__(self):
@@ -23,49 +23,41 @@ class Pubfilm(Scraper):
 
     def scrape_movie(self, title, year, imdb, debrid = False):
         try:
-            title = title.translate(None, '\/:*?"\'<>|!,').replace(' ', '-').replace('--', '-').lower()
-            headers = {'User-Agent': random_agent()}
-            search_url = urlparse.urljoin(self.base_link, self.moviesearch_hd_link % (title, year))
-            html = None
-            try:
-                prehtml = self.scraper.get(search_url, headers=headers, timeout=30)
-                if prehtml.status_code != 404:
-                    html = BeautifulSoup(prehtml.content)
-            except:
-                pass
-
-            if html == None:
-                search_url = urlparse.urljoin(self.base_link, self.moviesearch_sd_link % (title, year))
-
-                html = BeautifulSoup(self.scraper.get(search_url, headers=headers, timeout=30).content)
-            if html == None:
-                raise Exception()
-            return self.sources(search_url)
+            cleanmovie = clean_title(title) 
+            headers = {'User-Agent': random_agent(), 'X-Requested-With':'XMLHttpRequest', 'Referer': "http://pubfilm.is/"}
+            search_url = urlparse.urljoin(self.base_link, '/wp-content/plugins/ajax-search-pro/ajax_search.php')
+            data = {'action': 'ajaxsearchpro_search', 'aspp': title, 'asid' : '1', 'asp_inst_id': '1_1', 'options': 'current_page_id=29697&qtranslate_lang=0&set_intitle=None&customset%5B%5D=post'}
+            moviesearch = self.scraper.post(search_url, headers=headers, data=data)
+            moviesearch = moviesearch.content
+            match = re.compile('<a class="asp_res_url" href=\'(.+?)\'.*?>(.+?)<span class=\'overlap\'></span>.*?</a>', flags=re.DOTALL).findall(moviesearch)
+            for href, movietitle in match:
+                movietitle = movietitle.replace('\n', '').strip()
+                if year in movietitle and cleanmovie in clean_title(movietitle):
+                    url = href.encode('utf-8')
+                    if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+                    return self.sources(url)
         except:
             pass
         return []
 
     def scrape_episode(self, title, show_year, year, season, episode, imdb, tvdb, debrid = False):
         try:
-            for try_year in [str(year), str(int(year) - 1)]:
-                xbmc.log("test2", xbmc.LOGNOTICE)
-                #headers = {'User-Agent': random_agent()}
-
-                url = urlparse.urljoin(self.base_link, self.tvsearch_link % urllib.quote_plus(title.lower()))
-                html = BeautifulSoup(self.scraper.get(url, timeout=30).content)
-                links = html.findAll('a')
-                show_url = None
-                for link in links:
-                    href = link["href"]
-                    link_tvshowtitle = re.findall('(.+?: Season \d+)', link.contents[0].strip())[0]
-                    if title.lower() in link_tvshowtitle.lower() and str(season) in link_tvshowtitle:
-                        if try_year in link_tvshowtitle:
-                            show_url = href
-                            break
-                if show_url is None:
-                    continue
-                episode_url = show_url + '?episode=%01d' % int(episode)
-                return self.sources(episode_url)
+            cleantitle = clean_title(title) 
+            headers = {'User-Agent': random_agent(), 'X-Requested-With':'XMLHttpRequest', 'Referer': "http://pubfilm.is/"}
+            search_url = urlparse.urljoin(self.base_link, '/wp-content/plugins/ajax-search-pro/ajax_search.php')
+            data = {'action': 'ajaxsearchpro_search', 'aspp': title, 'asid' : '1', 'asp_inst_id': '1_1', 'options': 'current_page_id=29697&qtranslate_lang=0&set_intitle=None&customset%5B%5D=post'}
+            tvsearch = self.scraper.post(search_url, headers=headers, data=data)
+            tvsearch = tvsearch.content
+            match = re.compile('<a class="asp_res_url" href=\'(.+?)\'.*?>(.+?)<span class=\'overlap\'></span>.*?</a>', flags=re.DOTALL).findall(tvsearch)
+            for href, linktitle in match:
+                linktitle = linktitle.replace('\n', '').strip()
+                for try_year in [str(year), str(int(year) - 1), str(int(year) + 1)]:
+                    clean_link_title = clean_title(linktitle)
+                    if (try_year in linktitle or show_year in linktitle) and cleantitle in clean_link_title and "season" + season in clean_link_title:
+                        url = href.encode('utf-8')
+                        if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+                        episode_url = url + '?episode=%01d' % int(episode)
+                        return self.sources(episode_url)
         except:
             pass
         return []
@@ -115,7 +107,7 @@ class Pubfilm(Scraper):
                 source = re.findall('sources\s*:\s*\[(.+?)\]', html)[0]
                 files = re.findall('"file"\s*:\s*"(.+?)".+?"label"\s*:\s*"(.+?)"', source)
                 if files:
-                    quality_url_pairs = [{'url': file[0], 'quality': file[1][:-1]} for file in files]
+                    quality_url_pairs = [{'url': file[0], 'quality': file[1]} for file in files]
                 else:
                     files = re.findall('"file"\s*:\s*"(.+?)".+?}', source)
                     quality_url_pairs = [{'url': file, 'quality': "SD"} for file in files]
@@ -133,6 +125,7 @@ class Pubfilm(Scraper):
     def get_settings_xml(clas):
         xml = [
             '<setting id="%s_enabled" ''type="bool" label="Enabled" default="true"/>' % (clas.name),
-            '<setting id= "%s_baseurl" type="text" label="Base Url" default="http://pubfilm.ac"/>' % (clas.name)
+            '<setting id= "%s_baseurl" type="text" label="Base Url" default="http://pubfilm.is"/>' % (clas.name)
         ]
         return xml
+

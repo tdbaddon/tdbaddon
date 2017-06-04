@@ -34,10 +34,8 @@ class source:
         self.domains = ['watch5s.to', 'cmovieshd.com', 'pmovies.to', 'watch5s.is']
         self.base_link = 'https://pmovies.to'
         self.search_link = '/search?q=%s'
-        self.token_link = 'https://redirector-googlevideo.streamdor.co/token.php'
-        self.grabber_link = 'https://redirector-googlevideo.streamdor.co/grabber-api-v2/episode/%s?hash=%s&token=%s&_=%s'
-        self.backup_token_link = 'https://redirector-googlevideo.streamdor.co/embed/go?type=token&eid=%s&mid=%s&_=%s'
-        self.backup_link = 'https://redirector-googlevideo.streamdor.co/embed/go?type=sources&eid=%s&x=%s&y=%s'
+        self.token_link = 'https://embed.streamdor.co/token.php?episode=%s'
+        self.source_link = 'https://embed.streamdor.co/api/video/%s'
 
     def matchAlias(self, title, aliases):
         try:
@@ -161,19 +159,17 @@ class source:
             for u in r:
                 try:
                     p = client.request(u, headers=headers, referer=referer, timeout='10')
-
-                    t = re.findall('player_type\s*:\s*"(.+?)"', p)[0]
-                    if t == 'embed': raise Exception()
-
-                    episodeId = re.findall('episode\s*:\s*"(.+?)"', p)[0]
-                    r = client.request(self.token_link,post=urllib.urlencode({'id': episodeId}), referer=referer, timeout='10')
-                    js = json.loads(r)
-                    hash = js['hash']
-                    token = js['token']
-                    _ = js['_']
-                    url = self.grabber_link % (episodeId, hash, token, _)
-                    u = client.request(url, referer=referer, timeout='10')
-                    js = json.loads(u)
+                    src = client.parseDOM(p, 'iframe', attrs= {'id': 'iframe-embed'}, ret='src')[0]
+                    if src.startswith('//'):
+                        src = 'http:' + src
+                    if not 'streamdor.co' in src: raise Exception()
+                    episodeId = re.findall('streamdor.co.*/video/(.+?)"', p)[0]
+                    p = client.request(self.token_link % episodeId, referer=src)
+                    script = self.aadecode(p)
+                    token = re.search('''token\s*:\s*['"]([^"']+)''', script).group(1).encode('utf-8')
+                    post = {'type': 'sources', 'token': token, 'ref': ''}
+                    p = client.request(self.source_link % episodeId, post=post, referer=src, XHR=True)
+                    js = json.loads(p)
 
                     try:
                         u = js['playlist'][0]['sources']
@@ -185,32 +181,6 @@ class source:
                                                 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
                             except:
                                 pass
-                    except:
-                        pass
-
-                    try:
-                        u = js['backup']
-                        u = urlparse.parse_qs(urlparse.urlsplit(u).query)
-                        u = dict([(i, u[i][0]) if u[i] else (i, '') for i in u])
-                        eid = u['eid']
-                        mid = u['mid']
-                        p = client.request(self.backup_token_link % (eid, mid, _), XHR=True, referer=referer, timeout='10')
-                        x = re.search('''_x=['"]([^"']+)''', p).group(1)
-                        y = re.search('''_y=['"]([^"']+)''', p).group(1)
-                        u = client.request(self.backup_link % (eid, x, y), referer=referer, XHR=True, timeout='10')
-                        js = json.loads(u)
-                        try:
-                            u = js['playlist'][0]['sources']
-                            u = [i['file'] for i in u if 'file' in i]
-
-                            for i in u:
-                                try:
-                                    sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'],
-                                                    'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                                except:
-                                    pass
-                        except:
-                            pass
                     except:
                         pass
                 except:
@@ -225,3 +195,39 @@ class source:
         return directstream.googlepass(url)
 
 
+    def aadecode(self, text):
+        text = re.sub(r"\s+|/\*.*?\*/", "", text)
+        data = text.split("+(ﾟДﾟ)[ﾟoﾟ]")[1]
+        chars = data.split("+(ﾟДﾟ)[ﾟεﾟ]+")[1:]
+
+        txt = ""
+        for char in chars:
+            char = char \
+                .replace("(oﾟｰﾟo)", "u") \
+                .replace("c", "0") \
+                .replace("(ﾟДﾟ)['0']", "c") \
+                .replace("ﾟΘﾟ", "1") \
+                .replace("!+[]", "1") \
+                .replace("-~", "1+") \
+                .replace("o", "3") \
+                .replace("_", "3") \
+                .replace("ﾟｰﾟ", "4") \
+                .replace("(+", "(")
+            char = re.sub(r'\((\d)\)', r'\1', char)
+
+            c = ""
+            subchar = ""
+            for v in char:
+                c += v
+                try:
+                    x = c
+                    subchar += str(eval(x))
+                    c = ""
+                except:
+                    pass
+            if subchar != '': txt += subchar + "|"
+        txt = txt[:-1].replace('+', '')
+
+        txt_result = "".join([chr(int(n, 8)) for n in txt.split('|')])
+
+        return txt_result

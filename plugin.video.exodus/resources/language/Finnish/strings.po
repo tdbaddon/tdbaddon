@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-08 19:01+0000\n"
+"PO-Revision-Date: 2017-05-30 15:46+0000\n"
 "Last-Translator: teemue\n"
 "Language-Team: Finnish (http://www.transifex.com/tv-addons/exodus/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -701,4 +701,106 @@ msgstr "Määritä Debrid-palvelut URLResolver-asetuksissa."
 msgctxt "#32540"
 msgid "URLResolver Settings"
 msgstr "URLResolver-asetukset"
+
+msgctxt "#32541"
+msgid "Library"
+msgstr "Kirjasto"
+
+msgctxt "#32542"
+msgid ""
+"Exodus folders will be imported to library if they are added to media "
+"sources."
+msgstr "Lisää ylläolevat Exoduksen kansiot medialähteisiin"
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr "Elokuvat"
+
+msgctxt "#32544"
+msgid "TV"
+msgstr "TV"
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr "Päivitä TV-sarjat automaattisesti"
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr "Näytä ilmoitukset päivityksen aikana"
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr "Päivitä kirjasto sisällön lisäämisen jälkeen"
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr "Vältä kaksoiskappaleiden luonti"
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr "Tarkista elokuva ennen lisäämistä"
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr "Tarkista kauden ensimmäinen jakso ennen lisäämistä"
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr "Lisää kirjastoon"
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr "Lisätään kirjastoon..."
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr "Päivitetään TV-sarjoja..."
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr "Valmis"
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr "Oletko varma?"
+
+msgctxt "#32556"
+msgid "[B]EXODUS[/B] : Library"
+msgstr "[B]EXODUS[/B]: Kirjasto"
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr "[B]KIRJASTO[/B]: Asetukset"
+
+msgctxt "#32558"
+msgid "[B]EXODUS[/B] : Update library..."
+msgstr "[B]EXODUS[/B]: Päivitä kirjasto..."
+
+msgctxt "#32559"
+msgid "[B]EXODUS[/B] : Movie folder..."
+msgstr "[B]EXODUS[/B]: Elokuvakansio..."
+
+msgctxt "#32560"
+msgid "[B]EXODUS[/B] : TV folder..."
+msgstr "[B]EXODUS[/B]: TV-sarjojen kansio..."
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr "[B]TRAKT[/B]: Tuo elokuvakokoelma..."
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr "[B]TRAKT[/B]: Tuo katsottavien elokuvien lista..."
+
+msgctxt "#32563"
+msgid "[B]TRAKT[/B] : Import TV Collection..."
+msgstr "[B]TRAKT[/B]: Tuo TV-sarjakokoelma..."
+
+msgctxt "#32564"
+msgid "[B]TRAKT[/B] : Import TV Watchlist..."
+msgstr "[B]TRAKT[/B]: Tuo katsottavien TV-sarjojen lista..."
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr "Näytä jaksot, joiden lähetysaika on tuntematon"
 

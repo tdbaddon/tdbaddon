@@ -21,12 +21,13 @@
 # Almir V, 2017
 # Bojan Bugarin, 2017
 # Jaroslav Balaz, 2017
+# Предраг Љубеновић, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-24 18:18+0000\n"
-"Last-Translator: Bojan Bugarin\n"
+"PO-Revision-Date: 2017-05-30 17:04+0000\n"
+"Last-Translator: Предраг Љубеновић\n"
 "Language-Team: Serbian (http://www.transifex.com/tv-addons/exodus/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,4 +703,106 @@ msgstr "Подесите Дебрид услуге у подешавањима �
 msgctxt "#32540"
 msgid "URLResolver Settings"
 msgstr "Подешавања додатка URLResolver."
+
+msgctxt "#32541"
+msgid "Library"
+msgstr "Библиотека"
+
+msgctxt "#32542"
+msgid ""
+"Exodus folders will be imported to library if they are added to media "
+"sources."
+msgstr "Директоријуми Exodusа ће бити увезени у библиотеку ако су додати као извор садржаја."
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr "Филмови"
+
+msgctxt "#32544"
+msgid "TV"
+msgstr "Серије"
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr "Аутоматски ажурирај ТВ серије"
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr "Прикажи обавештења приликом ажурирања"
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr "Ажурирај библиотеку после додавања садржаја"
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr "Избегавај прављење дуплог садржаја"
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr "Провери филм пре додавања"
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr "Провери прву епизоду сезоне пре додавања"
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr "Додај у библиотеку"
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr "Додајем у библиотеку..."
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr "Ажурирам ТВ серије..."
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr "Поступак завршен"
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr "Да ли сте сигурни?"
+
+msgctxt "#32556"
+msgid "[B]EXODUS[/B] : Library"
+msgstr "[B]EXODUS[/B] : Библиотека"
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr "[B]БИБЛИОТЕКА[/B] : Подешавања"
+
+msgctxt "#32558"
+msgid "[B]EXODUS[/B] : Update library..."
+msgstr "[B]EXODUS[/B] : Ажурирај библиотеку..."
+
+msgctxt "#32559"
+msgid "[B]EXODUS[/B] : Movie folder..."
+msgstr "[B]EXODUS[/B] : Директоријум са филмовима..."
+
+msgctxt "#32560"
+msgid "[B]EXODUS[/B] : TV folder..."
+msgstr "[B]EXODUS[/B] : Директоријум са ТВ серијама.."
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr "[B]TRAKT[/B] : Увези колекцију..."
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr "[B]TRAKT[/B] : Увези списак филмова за погледати..."
+
+msgctxt "#32563"
+msgid "[B]TRAKT[/B] : Import TV Collection..."
+msgstr "[B]TRAKT[/B] : Увези ТВ колекцију..."
+
+msgctxt "#32564"
+msgid "[B]TRAKT[/B] : Import TV Watchlist..."
+msgstr "[B]TRAKT[/B] : Увези списак серија за погледати..."
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr "Укључи и епизоде за које је непознато време емитовања"
 

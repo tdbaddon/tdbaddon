@@ -410,11 +410,11 @@ class TVDBScraper(Scraper):
             tvdb = ids['tvdb']
             season = int(season)
             episode = int(episode)
-            if tvdb not in TVDBScraper.EP_CACHE:
-                self.__build_ep_cache(tvdb, season)
+            try: TVDBScraper.EP_CACHE[tvdb][season]
+            except KeyError: self.__build_ep_cache(tvdb, season)
 
-            if season in TVDBScraper.EP_CACHE[tvdb] and episode in TVDBScraper.EP_CACHE[tvdb][season]:
-                ep_art['thumb'] = self.image_base + TVDBScraper.EP_CACHE[tvdb][season][episode]
+            try: ep_art['thumb'] = self.image_base + TVDBScraper.EP_CACHE[tvdb][season][episode]
+            except KeyError: pass
                 
         return ep_art
         
@@ -442,10 +442,9 @@ class TVDBScraper(Scraper):
         return time.time() - created < ZIP_CACHE * 60 * 60
         
     def __build_ep_cache(self, tvdb, season=None):
-        if tvdb not in TVDBScraper.EP_CACHE:
-            TVDBScraper.EP_CACHE[tvdb] = {}
-            
+        show_dict = TVDBScraper.EP_CACHE.setdefault(tvdb, {})
         xml = self.__get_xml(tvdb, 'en.xml')
+        
         # can't use predicates yet because ET 1.3 is Python 2.7
         for item in ET.fromstring(xml).findall('.//Episode'):
             try: item_season = int(item.findtext('SeasonNumber', -1))
@@ -454,8 +453,8 @@ class TVDBScraper(Scraper):
             except: continue
             thumb = item.findtext('filename')
             if (season is None or int(season) == item_season) and thumb:
-                TVDBScraper.EP_CACHE[tvdb].setdefault(item_season, {})
-                TVDBScraper.EP_CACHE[tvdb][item_season][item_episode] = thumb
+                season_dict = show_dict.setdefault(item_season, {})
+                season_dict[item_episode] = thumb
     
     def __get_xml(self, tvdb, file_name):
         xml = '<xml/>'

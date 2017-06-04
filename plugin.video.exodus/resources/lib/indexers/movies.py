@@ -271,7 +271,7 @@ class movies:
     def years(self):
         year = (self.datetime.strftime('%Y'))
 
-        for i in range(int(year)-0, int(year)-50, -1): self.list.append({'name': str(i), 'url': self.year_link % (str(i), str(i)), 'image': 'years.png', 'action': 'movies'})
+        for i in range(int(year)-0, 1900, -1): self.list.append({'name': str(i), 'url': self.year_link % (str(i), str(i)), 'image': 'years.png', 'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
 
@@ -850,6 +850,7 @@ class movies:
 
         nextMenu = control.lang(32053).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
 
         for i in items:
             try:
@@ -906,6 +907,7 @@ class movies:
                 if isOld == True:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
+                cm.append((addToLibrary, 'RunPlugin(%s?action=movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
 
                 item = control.item(label=label)
 
@@ -977,6 +979,8 @@ class movies:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -995,6 +999,9 @@ class movies:
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+
+                try: cm.append((addToLibrary, 'RunPlugin(%s?action=moviesToLibrary&url=%s)' % (sysaddon, urllib.quote_plus(i['context']))))
+                except: pass
 
                 item = control.item(label=name)
 

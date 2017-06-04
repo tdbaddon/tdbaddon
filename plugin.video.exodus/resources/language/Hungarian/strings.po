@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-09 00:38+0000\n"
+"PO-Revision-Date: 2017-05-30 12:02+0000\n"
 "Last-Translator: plasticfighter\n"
 "Language-Team: Hungarian (http://www.transifex.com/tv-addons/exodus/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -704,4 +704,106 @@ msgstr "Debrid szolgáltatások konfigurálása az URLResolver beállíásokban"
 msgctxt "#32540"
 msgid "URLResolver Settings"
 msgstr "URLResolver beállítások"
+
+msgctxt "#32541"
+msgid "Library"
+msgstr "Médiatár"
+
+msgctxt "#32542"
+msgid ""
+"Exodus folders will be imported to library if they are added to media "
+"sources."
+msgstr "Az Exodus mappák bekerülnek a médiatárba, ha hozzá vannak adva a forrásokhoz."
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr "Filmek"
+
+msgctxt "#32544"
+msgid "TV"
+msgstr "Sorozatok"
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr "Sorozatok automatikus frissítése"
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr "Értesítések megjelenítése frissítés közben"
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr "Médiatár frissítése tartalom hozzáadása után"
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr "Duplikált tartalom létrehozásának elkerülése"
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr "Film leellenőrzése hozzáadás előtt"
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr "Sorozat első epizódjának leellenőrzése hozzáadás előtt"
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr "Hozzáadás a Médiatárhoz"
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr "Médiatárhoz adás..."
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr "Sorozatok frissítése..."
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr "A folyamat befejeződött"
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr "Biztos benne?"
+
+msgctxt "#32556"
+msgid "[B]EXODUS[/B] : Library"
+msgstr "[B]EXODUS[/B] : Médiatár"
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr "[B]MÉDIATÁR[/B] : Beállítások"
+
+msgctxt "#32558"
+msgid "[B]EXODUS[/B] : Update library..."
+msgstr "[B]EXODUS[/B] : Médiatár frissítése..."
+
+msgctxt "#32559"
+msgid "[B]EXODUS[/B] : Movie folder..."
+msgstr "[B]EXODUS[/B] : Filmek mappa..."
+
+msgctxt "#32560"
+msgid "[B]EXODUS[/B] : TV folder..."
+msgstr "[B]EXODUS[/B] : Sorozatok mappa..."
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr "[B]TRAKT[/B] : Gyűjtemény importálása..."
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr "[B]TRAKT[/B] : Figyelőlista importálása..."
+
+msgctxt "#32563"
+msgid "[B]TRAKT[/B] : Import TV Collection..."
+msgstr "[B]TRAKT[/B] : TV Gyűjtemény importálása..."
+
+msgctxt "#32564"
+msgid "[B]TRAKT[/B] : Import TV Watchlist..."
+msgstr "[B]TRAKT[/B] : TV figyelőlista importálása..."
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr "Megjelenési időpont nélküli epizódok importálása"
 

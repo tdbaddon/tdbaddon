@@ -35,8 +35,8 @@ from salts_lib.utils2 import i18n
 import scraper
 
 logger = log_utils.Logger.get_logger(__name__)
-BASE_URL = 'https://istream.is'
-API_BASE_URL = 'https://api.istream.is'
+BASE_URL = 'https://flixanity.online'
+API_BASE_URL = 'https://api.flixanity.online'
 EMBED_URL = '/ajax/jne.php'
 SEARCH_URL = '/api/v1/cautare/upd'
 KEY = 'MEE2cnUzNXl5aTV5bjRUSFlwSnF5MFg4MnRFOTVidA=='
@@ -180,7 +180,7 @@ class Scraper(scraper.Scraper):
         html = super(self.__class__, self)._http_get(self.base_url, cache_limit=24)
         for attrs, _content in dom_parser2.parse_dom(html, 'script', {'type': 'text/javascript'}, req='src'):
             script = attrs['src']
-            if 'istream' not in script: continue
+            if 'flixanity' not in script: continue
             html = super(self.__class__, self)._http_get(script, cache_limit=24)
             if 'autocomplete' not in html: continue
             

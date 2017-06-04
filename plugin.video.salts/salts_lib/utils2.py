@@ -507,20 +507,19 @@ def reset_base_url():
                     logger.log('Resetting: %s -> %s' % (setting.get('id'), setting.get('default')), log_utils.LOGDEBUG)
                     kodi.set_setting(setting.get('id'), setting.get('default'))
 
-def get_and_decrypt(url, password, old_etag=None):
+def get_and_decrypt(url, password, old_lm=None):
     try:
         plain_text = ''
-        new_etag = ''
+        new_lm = ''
 
-        # only do the HEAD request if there's an old_etag to compare to
-        if old_etag is not None:
+        # only do the HEAD request if there's an old_lm to compare to
+        if old_lm is not None:
             req = urllib2.Request(url)
             req.get_method = lambda: 'HEAD'
             res = urllib2.urlopen(req)
-            new_etag = res.info().getheader('Etag')
+            new_lm = res.info().getheader('Last-Modified')
 
-        logger.log('url: %s, old_etag: |%s|, new_etag: |%s|, etag_match: %s' % (url, old_etag, new_etag, old_etag == new_etag), log_utils.LOGDEBUG)
-        if old_etag is None or new_etag != old_etag:
+        if old_lm is None or new_lm != old_lm:
             res = urllib2.urlopen(url)
             cipher_text = res.read()
             if cipher_text:
@@ -529,10 +528,14 @@ def get_and_decrypt(url, password, old_etag=None):
                 decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(scraper_key, IV))
                 plain_text = decrypter.feed(cipher_text)
                 plain_text += decrypter.feed()
+                new_lm = res.info().getheader('Last-Modified')
+
+        logger.log('url: %s, old_lm: |%s|, new_lm: |%s|, lm_match: %s' % (url, old_lm, new_lm, old_lm == new_lm), log_utils.LOGDEBUG)
+                
     except Exception as e:
         logger.log('Failure during getting: %s (%s)' % (url, e), log_utils.LOGWARNING)
     
-    return new_etag, plain_text
+    return new_lm, plain_text
 
 def get_force_title_list():
     return __get_list('force_title_match')

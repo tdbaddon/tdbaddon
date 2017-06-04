@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="3.1.14" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.15" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -11,6 +11,7 @@
 	<extension point="xbmc.python.pluginsource" library="exodus.py">
 		<provides>video</provides>
 	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Exodus</summary>
 		<description lang="en">Please visit [COLOR blue]www.tvaddons.ag[/COLOR] for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
@@ -32,8 +33,9 @@
 		</assets>
 		<news>- Updated existing providers
 - Added and Updated German providers
-- Added Russian providers
-- Fixed issue with Trakt lists
-- Fixed issue with GoogleDoc-Links</news>
+- Removed dead providers
+- Fixed Russian providers
+- Added library integration
+- Fixed trakt watch/unwatched on seasons</news>
 	</extension>
 </addon>

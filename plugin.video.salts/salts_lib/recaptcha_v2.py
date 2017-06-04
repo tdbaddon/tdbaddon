@@ -26,6 +26,7 @@ import os
 import xbmcgui
 import log_utils
 import kodi
+import dom_parser2
 import scraper_utils
 
 logger = log_utils.Logger.get_logger(__name__)
@@ -33,10 +34,11 @@ logger.disable()
 
 class cInputWindow(xbmcgui.WindowDialog):
     def __init__(self, *args, **kwargs):  # @UnusedVariable
-        bg_image = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media', 'DialogBack2.png')
-        check_image = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media', 'checked.png')
-        button_fo = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media', 'button-fo.png')
-        button_nofo = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media', 'button-nofo.png')
+        media_path = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media')
+        bg_image = os.path.join(media_path, 'DialogBack2.png')
+        check_image = os.path.join(media_path, 'checked.png')
+        button_fo = os.path.join(media_path, 'button-fo.png')
+        button_nofo = os.path.join(media_path, 'button-nofo.png')
         self.cancelled = False
         self.chk = [0] * 9
         self.chkbutton = [0] * 9
@@ -118,6 +120,7 @@ class cInputWindow(xbmcgui.WindowDialog):
             return [i for i in xrange(9) if self.chkstate[i]]
 
     def onControl(self, control):
+        # logger.log('control: %s' % (control), log_utils.LOGDEBUG)
         if control == self.okbutton and any(self.chkstate):
             self.close()
 
@@ -132,6 +135,7 @@ class cInputWindow(xbmcgui.WindowDialog):
                 self.chk[index].setVisible(self.chkstate[index])
 
     def onAction(self, action):
+        # logger.log('action: %s' % (action), log_utils.LOGDEBUG)
         if action == 10:
             self.cancelled = True
             self.close()
@@ -144,25 +148,34 @@ class UnCaptchaReCaptcha:
         token = ''
         iteration = 0
         while True:
-            payload = re.findall('"(/recaptcha/api2/payload[^"]+)', html)
+            payload = dom_parser2.parse_dom(html, 'img', {'class': 'fbc-imageselect-payload'}, req='src')
             iteration += 1
-            message = re.findall('<label[^>]+class="fbc-imageselect-message-text"[^>]*>(.*?)</label>', html)
+            message = dom_parser2.parse_dom(html, 'label', {'class': 'fbc-imageselect-message-text'})
             if not message:
-                message = re.findall('<div[^>]+class="fbc-imageselect-message-error">(.*?)</div>', html)
-            if not message:
-                token = re.findall('"this\.select\(\)">(.*?)</textarea>', html)[0]
+                message = dom_parser2.parse_dom(html, 'div', {'class': 'fbc-imageselect-message-error'})
+                
+            if message and payload:
+                message = message[0].content
+                payload = payload[0].attrs['src']
+            else:
+                token = dom_parser2.parse_dom(html, 'div', {'class': 'fbc-verification-token'})
                 if token:
+                    token = dom_parser2.parse_dom(token[0].content, 'textarea')[0].content
                     logger.log('Captcha Success: %s' % (token), log_utils.LOGDEBUG)
                 else:
                     logger.log('Captcha Failed', log_utils.LOGDEBUG)
                 break
-            else:
-                message = message[0]
-                payload = payload[0]
 
-            cval = re.findall('name="c"\s+value="([^"]+)', html)[0]
-            captcha_imgurl = 'https://www.google.com%s' % (payload.replace('&amp;', '&'))
-            message = re.sub('</?(div|strong)[^>]*>', '', message)
+            cval = dom_parser2.parse_dom(html, 'input', {'name': 'c'}, req='value')
+            if not cval: break
+            
+            cval = cval[0].attrs['value']
+            captcha_imgurl = scraper_utils.urljoin('https://www.google.com', scraper_utils.cleanse_title(payload))
+            message = message.replace('<strong>', '[B]').replace('</strong>', '[/B]')
+            message = re.sub(re.compile('</?(div|strong)[^>]*>', re.I), '', message)
+            if any(c for c in ['<', '>'] if c in message):
+                logger.log('Suspicious Captcha Prompt: %s' % (message), log_utils.LOGWARNING)
+                
             oSolver = cInputWindow(captcha=captcha_imgurl, msg=message, iteration=iteration, name=name)
             captcha_response = oSolver.get()
             if not captcha_response:

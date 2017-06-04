@@ -44,8 +44,9 @@ class Mfree(Scraper):
                             quality_title = parsed_html.findAll("h3", attrs={'title': re.compile("Quality of ")})[0]
                             quality = quality_title.findAll('span')[0].text
                             match = re.search('href="([^"]+-full-movie-.*?[^"]+)', html)
-                            url = match.group(1)
-                            return self.sources(url, quality)
+                            if match:
+                                url = match.group(1)
+                                return self.sources(url, quality)
                         except:
                             pass
                 page_numbers = re.findall("http://m4ufree.info/tag/%s/(.*)\"" % q, html)
@@ -99,13 +100,9 @@ class Mfree(Scraper):
             servers = html.findAll("span", attrs={'class': re.compile(".*?btn-eps.*?")})
             for server in servers:
                 try:
-                    server_url = '/ajax-token.php?tk=m4ufreeisthebest&v=%s' % server["link"]
+                    server_url = '/ajax-token-2.php?token=m4ufreeisthebest1&v=%s' % server["link"]
                     server_url = urlparse.urljoin(self.base_link, server_url)
                     server_html = self.scraper.get(server_url, headers=headers, timeout=30).content
-                    if '<h1> Plz visit m4ufree.info for this movie </h1>' in server_html:
-                        server_url = '/ajax.php?v=%s' % server["link"]
-                        server_url = urlparse.urljoin(self.base_link, server_url)
-                        server_html = self.scraper.get(server_url, headers=headers, timeout=30).content
                     if '<h1> Plz visit m4ufree.info for this movie </h1>' in server_html:
                         server_url = '/ajax-tk.php?tk=tuan&v=%s' % server["link"]
                         server_url = urlparse.urljoin(self.base_link, server_url)
@@ -184,6 +181,7 @@ class Mfree(Scraper):
         except:
             pass
         return sources
+
 
 def googletag(url):
     quality = re.compile('itag=(\d*)').findall(url)

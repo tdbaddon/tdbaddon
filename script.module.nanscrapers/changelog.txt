@@ -1,3 +1,7 @@
+v0.5.20
+- updated m4ufree
+- updated pubfilm
+
 v0.5.19
 - corrected indent
 - removed misplaced file

@@ -52,16 +52,16 @@ def perform_auto_conf(responses):
             kodi.set_setting('sort6_field', '4')
     
         if responses[10]:
-            tiers = ['Local', 'Premiumize.V2', 'Premiumize.me', 'Furk.net', 'EasyNews', 'DD.tv', 'NoobRoom',
-                     ['yify.tv', 'torba.se', 'MoviesPlanet', 'goojara', '123Movies', '9Movies', 'DayT.se', 'mvgee', 'niter.tv', 'YesMovies', 'ororo.tv', 'MovieOcean'],
-                     ['StreamLord', 'MovieFlix', 'CyberReel', 'm4ufree', 'tunemovie', 'fmovie.co', 'xmovies8', 'xmovies8.v2', 'KiwiHD', 'HDMovieFree'],
-                     ['OLMovies', 'MovieGo', 'MovieXK', 'PelisPedia', 'PutMV', 'PirateJunkies', 'SeriesWatch', 'VidNow4K', 'VeoCube', 'Quikr', 'MovieBlast'],
+            tiers = ['Local', 'Premiumize.V2', 'Premiumize.me', 'Furk.net', 'EasyNews', 'DD.tv', 'NoobRoom', 'Sit2Play',
+                     ['yify.tv', 'MoviesPlanet', 'goojara', '123Movies', '9Movies', 'DayT.se', 'mvgee', 'niter.tv', 'YesMovies', 'ororo.tv', 'MovieOcean'],
+                     ['StreamLord', 'MovieFlix', 'CyberReel', 'm4ufree', 'tunemovie', 'fmovie.co', 'xmovies8', 'xmovies8.v2', 'KiwiHD', 'HDMovieFree', 'Mehliz'],
+                     ['OLMovies', 'MovieGo', 'MovieXK', 'PelisPedia', 'PutMV', 'PirateJunkies', 'SeriesWatch', 'VidNow4K', 'VeoCube', 'Quikr', 'MovieBlast', 'Pubfilm.to'],
                      ['IOMovies', 'RealMovies', 'HeyDL', 'HEVCBluRay', 'SezonLukDizi', 'Dizimag', 'Dizilab', 'Dizigold', 'Dizibox', 'Diziay', 'Dizipas', 'OnlineDizi'],
-                     ['SeriesOnline', 'MovyTvy', 'Dizist', 'DownloadTube', 'scene-rls', 'DDLValley', '2DDL', 'MyDDL', 'DDLSeries', 'SceneDown', 'CinemaMKV', 'TVShow.me'],
+                     ['SeriesOnline', 'MovyTvy', 'Dizist', 'DownloadTube', 'scene-rls', 'DDLValley', '2DDL', 'MyDDL', 'DDLSeries', 'SceneDown', 'CinemaMKV'],
                      ['RMZ', 'BestMoviez', 'SceneHDTV', 'Vumoo', 'TVHD', 'RLSHD', 'rls-movies', 'ReleaseBB', 'MyVideoLinks.eu', 'RLSSource.net', 'SeeHD'],
-                     ['vivo.to', 'IceFilms', 'Flixanity', 'Watch5s', 'WatchEpisodes', 'WatchItVideos', 'PrimeWire', 'alluc.com', 'tvonline', 'SolarMovie', 'SantaSeries'],
-                     ['WatchOnline', 'StreamDor', 'Vebup', 'WatchSeries', 'Putlocker', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'Movie4K'],
-                     ['MovieZone', 'MovieHubs', 'tvrush', 'afdah', 'MiraDeTodo', 'Filmovizija', 'wso.ch', 'MovieSub', 'MovieHut', 'CouchTunerV1', 'Watch8Now', 'SnagFilms'],
+                     ['TVShow.me', 'vivo.to', 'IceFilms', 'Flixanity', 'Watch5s', 'WatchEpisodes', 'WatchItVideos', 'PrimeWire', 'alluc.com', 'tvonline', 'SantaSeries'],
+                     ['WatchOnline', 'StreamDor', 'Vebup', 'WatchSeries', 'Putlocker', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'Movie4K', 'MovieZone'],
+                     ['MovieHubs', 'tvrush', 'afdah', 'MiraDeTodo', 'Filmovizija', 'wso.ch', 'MovieSub', 'MovieHut', 'CouchTunerV1', 'Watch8Now', 'SnagFilms'],
                      ['treasureen', 'MoviePool', 'iWatchOnline', 'vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac'],
                      ['SpaceMov', 'LosMovies', 'wmo.ch', 'stream-tv.co', 'MintMovies', 'MovieNight', 'cmz', 'SeriesCoco', 'filmikz.ch', 'clickplay.to'],
                      ['MovieTube']]
