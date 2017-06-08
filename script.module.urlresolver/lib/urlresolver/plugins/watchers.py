@@ -18,11 +18,13 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
 import re
 from lib import jsunpack
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError
+
+logger = common.log_utils.Logger.get_logger(__name__)
+logger.disable()
 
 class WatchersResolver(UrlResolver):
     name = "watchers"
@@ -49,13 +51,13 @@ class WatchersResolver(UrlResolver):
             link = re.search('([^"]*.m3u8)', js)
             if link:
                 video_url = link.group(1)
-                common.log_utils.log_debug('watchers.to Link Found: %s' % video_url)
+                logger.log_debug('watchers.to Link Found: %s' % video_url)
 
             if not video_url:
                 link = re.search('([^"]*.mp4)', js)
                 if link:
                     video_url = link.group(1)
-                    common.log_utils.log_debug('watchers.to Link Found: %s' % video_url)
+                    logger.log_debug('watchers.to Link Found: %s' % video_url)
 
             if video_url:
                 return video_url

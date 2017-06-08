@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+
 import random
 import re
 from lib import helpers
@@ -32,19 +33,24 @@ class RapidVideoResolver(UrlResolver):
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'User-Agent': common.FF_USER_AGENT}
+        headers = {'User-Agent': common.RAND_UA}
         html = self.net.http_GET(web_url, headers=headers).content
+        
         data = helpers.get_hidden(html)
         data['confirm.y'] = random.randint(0, 120)
         data['confirm.x'] = random.randint(0, 120)
         headers['Referer'] = web_url
         post_url = web_url + '#'
         html = self.net.http_POST(post_url, form_data=data, headers=headers).content.encode('utf-8')
+
         sources = helpers.parse_sources_list(html)
-        sources = [(re.sub('[^\d]+', '', i[0]), i[1]) for i in sources]
-        try: sources.sort(key=lambda x: int(x[0]), reverse=True)
-        except: pass
-        return helpers.pick_source(sources)
+
+        if sources:
+            try: sources.sort(key=lambda x: int(re.sub('[^\d]+', '', x[0])), reverse=True)
+            except: pass
+            return helpers.pick_source(sources)
+
+        raise ResolverError('File Not Found or removed')
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://rapidvideo.com/embed/{media_id}')
+        return self._default_get_url(host, media_id, template='https://{host}/embed/{media_id}')

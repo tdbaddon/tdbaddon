@@ -5,11 +5,14 @@ import re
 import urllib
 import urlparse
 import requests
+
 import socket
 import time
 from cookielib import LWPCookieJar
 from HTMLParser import HTMLParser
 from fileUtils import fileExists, setFileContent, getFileContent
+
+import lib.common
 
 #------------------------------------------------------------------------------
 socket.setdefaulttimeout(30)
@@ -22,6 +25,8 @@ def getAddrInfoWrapper(host, port, family=0, socktype=0, proto=0, flags=0):
 
 # replace the original socket.getaddrinfo by our version
 socket.getaddrinfo = getAddrInfoWrapper
+
+
 #------------------------------------------------------------------------------
 
 '''
@@ -36,10 +41,29 @@ class BaseRequest(object):
         self.s.cookies = LWPCookieJar(self.cookie_file)
         if fileExists(self.cookie_file):
             self.s.cookies.load(ignore_discard=True)
-        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'})
+        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
         self.s.headers.update({'Accept-Language' : 'en-US,en;q=0.5'})
-        self.url = ''
 
+        self.url = ''
+    
+    # def save_cookies_lwp(self, cookiejar, filename):
+    #     lwp_cookiejar = cookielib.LWPCookieJar()
+    #     for c in cookiejar:
+    #         args = dict(vars(c).items())
+    #         args['rest'] = args['_rest']
+    #         del args['_rest']
+    #         c = cookielib.Cookie(**args)
+    #         lwp_cookiejar.set_cookie(c)
+    #     lwp_cookiejar.save(filename, ignore_discard=True)
+
+    # def load_cookies_from_lwp(self, filename):
+    #     lwp_cookiejar = cookielib.LWPCookieJar()
+    #     try:
+    #         lwp_cookiejar.load(filename, ignore_discard=True)
+    #     except:
+    #         pass
+    #     return lwp_cookiejar
+    
     def fixurl(self, url):
         #url is unicode (quoted or unquoted)
         try:
@@ -70,7 +94,8 @@ class BaseRequest(object):
             
         if xml:
             headers['X-Requested-With'] = 'XMLHttpRequest'
-
+            
+              
         if 'cndhlsstream.pw' in urlparse.urlsplit(url).netloc:
             del self.s.headers['Accept-Encoding']
         if 'skstream.tv' in urlparse.urlsplit(url).netloc:
@@ -88,11 +113,30 @@ class BaseRequest(object):
         
         if 'streamlive.to' in urlparse.urlsplit(url).netloc:
             self.s.verify = False
+
+        if 'vipleague' in url or 'strikeout' in url or 'homerun' in url:
+            self.s.verify = False
+            
+        if 'dinostream.pw' in urlparse.urlsplit(url).netloc:
+            self.s.headers.update({'Upgrade-Insecure-Requests': '1'})
+            self.s.headers.update({'Host': 'wwww.dinostream.pw'})
+            self.s.headers.update({'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'})
+            self.s.headers.update({'Accept-Language' : 'en-US,en;q=0.8,de;q=0.6,es;q=0.4'})
+            self.s.headers.update({'Accept-Encoding': 'gzip, deflate, sdch'})
         
+
         if form_data:
             #zo**tv
-            if 'uagent' in form_data[0]:
-                form_data[0] = ('uagent',self.s.headers['User-Agent'])
+            #if 'uagent' in form_data[0]:
+               #form_data[0] = ('uagent',urllib.quote(self.s.headers['User-Agent']))
+                #if len(form_data) > 4 and 'Cookie' in form_data[4]:
+                    #headers['Cookie'] = form_data[4][1]
+                    #del form_data[4]
+                   
+                #headers['Content-Type'] = 'application/x-www-form-urlencoded'
+                #headers['User-Agent'] = self.s.headers['User-Agent']
+                #lib.common.log("JairoX10:" + form_data[0][1])
+               
 
             r = self.s.post(url, headers=headers, data=form_data, timeout=20)
         else:
@@ -112,9 +156,11 @@ class BaseRequest(object):
             r.encoding = 'utf-8'
         if 'lfootball.ws' in urlparse.urlsplit(url).netloc:
             r.encoding = 'windows-1251'
-
+            
         response  = r.text
+                
 
+        
         if 'beget=begetok' in response: # av
             _cookie = requests.cookies.create_cookie('beget','begetok',domain=urlparse.urlsplit(url).netloc,path='/')
             self.s.cookies.set_cookie(_cookie)
@@ -129,7 +175,7 @@ class BaseRequest(object):
             self.s.cookies.set_cookie(sucuri_cookie)
             r = self.s.get(url, headers=headers, timeout=20)
             response  = r.text
-
+        
         if len(response) > 10:
             self.s.cookies.save(ignore_discard=True)
 

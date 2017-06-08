@@ -3,11 +3,11 @@ item_info_build=nohead
 
 item_info_name=url64
 item_info_from=@PARAM1@
-item_info_convert=startLivestreamerProxy
+#item_info_convert=startLivestreamerProxy
 item_info_convert=onetv
 item_info_convert=encodeBase64
 item_info_build=%s
 
 item_info_name=url
-item_info_from=http://127.0.0.1:19000/livestreamer/'+url64+'
+item_info_from=http://127.1.2.3:45678/livestreamer/'+url64+'
 item_info_build=%s

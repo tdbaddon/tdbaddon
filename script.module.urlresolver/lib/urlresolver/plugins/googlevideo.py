@@ -43,10 +43,15 @@ class GoogleResolver(UrlResolver):
                          '245': '480', '246': '480', '247': '720', '248': '1080', '271': '1440', '272': '2160',
                          '302': '2160', '303': '1080', '308': '1440', '313': '2160', '315': '2160', '59': '480'}
 
+    def __key(self, item):
+        try: return int(re.search('(\d+)', item[0]).group(1))
+        except: return 0
+        
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
         response, video_urls = self._parse_google(web_url)
         if video_urls:
+            video_urls.sort(key=self.__key, reverse=True)
             video = helpers.pick_source(video_urls)
         else:
             video = None

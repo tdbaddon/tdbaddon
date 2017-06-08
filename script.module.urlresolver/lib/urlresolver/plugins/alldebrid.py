@@ -25,6 +25,9 @@ from urlresolver import common
 from urlresolver.common import i18n
 from urlresolver.resolver import UrlResolver, ResolverError
 
+logger = common.log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 class AllDebridResolver(UrlResolver):
     name = "AllDebrid"
     domains = ['*']
@@ -42,7 +45,7 @@ class AllDebridResolver(UrlResolver):
 
     def get_media_url(self, host, media_id):
         source = None
-        common.log_utils.log('in get_media_url %s : %s' % (host, media_id))
+        logger.log('in get_media_url %s : %s' % (host, media_id))
         url = 'http://www.alldebrid.com/service.php?link=%s' % (media_id)
         html = self.net.http_GET(url).content
         if html == 'login':
@@ -84,7 +87,7 @@ class AllDebridResolver(UrlResolver):
         if self.hosts is None:
             self.hosts = self.get_all_hosters()
             
-        common.log_utils.log_debug('in valid_url %s : %s' % (url, host))
+        logger.log_debug('in valid_url %s : %s' % (url, host))
         if url:
             match = re.search('//(.*?)/', url)
             if match:

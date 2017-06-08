@@ -41,8 +41,6 @@ class sources:
     def getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30,
                    progress=True, preset="search", dialog=None, exclude=None, scraper_title=False, queueing=False):
 
-        xbmc.log("hello?", xbmc.LOGNOTICE)
-
         year = str(year)
         content = 'movie' if tvshowtitle == None else 'episode'
         allow_debrid = control.setting('allow_debrid') == "true"
@@ -59,8 +57,6 @@ class sources:
                                                        timeout=timeout, exclude=exclude, enable_debrid=allow_debrid)
         else:
             return
-
-        xbmc.log("hello2", xbmc.LOGNOTICE)
 
         if not queueing and control.setting('use_link_dialog') == 'true':
             if control.setting('check_url') == "true":
@@ -444,14 +440,13 @@ class sources:
             quality = item[1][0]["quality"]
         else:
             quality = item[1][0]["path"]["quality"]
-        if quality == "1080": quality = "HDa"
-        if quality == "720": quality = "HDb"
-        if quality == "560": quality = "HDc"
+        if quality.startswith("1080"): quality = "HDa"
+        if quality.startswith("720"): quality = "HDb"
+        if quality.startswith("560"): quality = "HDc"
         if quality == "HD": quality = "HDd"
-        if quality == "480": quality = "SDa"
-        if quality == "360": quality = "SDb"
-        if quality == "SD": quality = "SDc"
-
+        if quality.startswith("480"): quality = "SDa"
+        if quality.startswith("360"): quality = "SDb"
+        if quality.startswith("SD"): quality = "SDc"
         return quality
 
     @staticmethod

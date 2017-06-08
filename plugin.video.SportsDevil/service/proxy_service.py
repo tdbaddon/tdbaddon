@@ -1,4 +1,4 @@
-"""
+﻿"""
 XBMCLocalProxy 0.1
 Copyright 2011 Torben Gerkensmeyer
 
@@ -233,6 +233,7 @@ PORT_NUMBER = 45678
 if __name__ == '__main__':
     sys.stderr = sys.stdout
     server_class = ThreadedHTTPServer
+    server_class.allow_reuse_address = True
     httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)
     while not xbmc.abortRequested:
         httpd.handle_request()

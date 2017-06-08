@@ -1,21 +1,24 @@
 item_info_name=title
 item_info_build=nohead
 
-item_info_name=p0z
+item_info_name=p0z_
 item_info_from=@PARAM1@
-item_info_convert=getInfo('%s','.*src="(http://www3.sawlive.tv/embe\w+/[^"]+)"></script>','@REFERER@')
-item_info_convert=quote(%s)
-item_info_convert=replace('%s','%27%29%29%3B%0D%0Adocument.write%28%27','')
-item_info_convert=unquote(%s)
+item_info_convert=getInfo('%s','.*src="(http:\/\/www3?.sawlive.tv\/embe\w+\/).*?(\w+)"','@REFERER@','u1|u2')
+#item_info_convert=startLivestreamerProxy
+item_info_build=%s
+
+item_info_name=p0z
+item_info_from=u1+u2
+#item_info_convert=debug
 item_info_build=%s
 
 item_info_name=p0
 item_info_from=p0z || @PARAM1@
-item_info_convert=getInfo('%s','.*src="(http://\w+.sawlive.tv/embedm/[^"]+)"','@REFERER@')
+item_info_convert=getInfo('%s','.*src="(http://\w+.sawlive.tv/embed\w+/[^"]+)"','@REFERER@')
 item_info_build=%s
 
 item_info_name=ref
-item_info_from=p0
+item_info_from=p0 
 item_info_convert=quote(%s)
 item_info_build=%s
 
@@ -26,24 +29,42 @@ item_info_convert=ifEmpty('%s','','hls://%s|Referer=___&User-Agent=Mozilla/5.0 (
 item_info_convert=replace('%s','___','@ref@')
 item_info_convert=encodeBase64
 item_info_convert=ifEmpty('%s','','http://127.1.2.3:45678/livestreamer/%s')
+#item_info_convert=ifEmpty('%s','','http://127.0.0.1:19000/livestreamer/%s')
+item_info_build=%s
+
+#item_info_name=p1
+#item_info_from=p0z || @PARAM1@
+#item_info_convert=getInfo('%s','.*\W([\w\\]{328})\W','@REFERER@')
+#item_info_convert=unicode_escape
+#item_info_build=%s
+
+#item_info_name=p2
+#item_info_from=p0z || @PARAM1@
+#item_info_convert=getInfo('%s','.*?\W\w{66}\W*.*?\W\w{66}\W*.*?\W\w{66}\W*.*?\W(\w{66})\W','@REFERER@')
+#item_info_build=%s
+
+#item_info_name=p2
+#item_info_from=p0z || @PARAM1@
+#item_info_convert=getInfo('%s','.*?\W([\w\\]{264})\W','@REFERER@')
+#item_info_convert=unicode_escape
+#item_info_build=%s
+
+item_info_name=p_
+item_info_from=p0z || @PARAM1@
+item_info_convert=getInfo('%s','.*?\["([^"]+)"\s*,\s*"([^"]+)','@REFERER@','p2_|p1_')
+#item_info_convert=unicode_escape
 item_info_build=%s
 
 item_info_name=p1
-item_info_from=p0z || @PARAM1@
-item_info_convert=getInfo('%s','.*[\'"]([\w\\]{296,328})[\'"]','@REFERER@')
+item_info_from=p1_
 item_info_convert=unicode_escape
 item_info_build=%s
 
 item_info_name=p2
-item_info_from=p0z || @PARAM1@
-item_info_convert=getInfo('%s','.*?\W\w{66}\W*.*?\W\w{66}\W*.*?\W\w{66}\W*.*?\W(\w{66})\W','@REFERER@')
-item_info_build=%s
-
-item_info_name=p2
-item_info_from=p0z || @PARAM1@
-item_info_convert=getInfo('%s','.*?\W([\w\\]{264})\W','@REFERER@')
+item_info_from=p2_
 item_info_convert=unicode_escape
 item_info_build=%s
+
 
 item_info_name=tmpUrl
 item_info_from=http://www3.sawlive.tv/embed/watch/'+p1+'/'+p2+'
@@ -51,10 +72,10 @@ item_info_build=%s
 
 item_info_name=tmp
 item_info_from=tmpUrl
-item_info_convert=getInfo('%s','.*?(http[^']+swf)'.*?["'=]([12]\d{4}).*?(MT[^'"&]+)','@REFERER@','swf|file|t')
+item_info_convert=getInfo('%s','.*?SWFObject\('([^']+)'.*?["'=]([12]\d{4}).*?(MT[^'"&]+)','@REFERER@','swf1|f1|t')
 item_info_build=%s
 
-item_info_name=rtmp
+item_info_name=rtmp1
 item_info_from=tmpUrl
 item_info_convert=getInfo('%s','.*?["'/](\d{1,3}\.\d{1,3}\.\d{1,3}\.[^"'/]+)["'/]','@REFERER@')
 item_info_build=%s
@@ -64,8 +85,45 @@ item_info_from=tmpUrl
 item_info_convert=getInfo('%s','.*\s*=\s*["'](%[^"']+)["']','@REFERER@')
 item_info_build=%s
 
+item_info_name=file1_
+item_info_from=f1
+item_info_convert=ifEmpty('%s','','%s?')
+item_info_build=%s
+
+item_info_name=file1
+item_info_from=file1_+t+sp2
+item_info_build=%s
+
+item_info_name=tmp2
+item_info_from=tmpUrl
+item_info_convert=getInfo('%s','.*?id="jwplayer.*?object.*?"(http.*swf)".*?file=([^&]+)&streamer=([^&]+)','@REFERER@','swf2|file2|rtmp2')
+item_info_build=%s
+
+item_info_name=tmp3
+item_info_from=tmpUrl
+item_info_convert=getInfo('%s','.*?SWFObject\('([^']+)'.*?script.*?src="(.*?js[^"]+)','@REFERER@','swf3|jsUrl')
+item_info_build=%s
+
+item_info_name=tmp4
+item_info_from=jsUrl
+item_info_convert=getInfo('%s','.*?file'\s*,\s*'([^']+).*?rtmp:\/\/([\d\.:]+)','@REFERER@','file3|rtmp3')
+item_info_build=%s
+
+item_info_name=file
+item_info_from=file1 || file2 || file3
+item_info_build=%s
+
+item_info_name=swf
+item_info_from=swf1 || swf2 || swf3
+item_info_build=%s
+
+item_info_name=rtmp
+item_info_from=rtmp1 || rtmp2 || rtmp3
+item_info_build=%s
+
 item_info_name=rtmp_url
-item_info_from=rtmp://'+rtmp+'/flash playpath=' + file + '?'+t+sp2+' swfVfy=1 flashver=WIN\2024,0,0,221 timeout=25 swfUrl=' + swf + ' live=true pageUrl='+tmpUrl
+#75.126.73.24
+item_info_from=rtmp://' + rtmp + '/flash playpath=' + file + ' swfVfy=1 flashver=WIN\2024,0,0,221 timeout=25 swfUrl=' + swf + ' live=true pageUrl='+tmpUrl
 item_info_build=%s
 
 item_info_name=url

@@ -58,5 +58,6 @@ STRINGS = {
     'cancel': 33038,
     'ok': 33039,
     'stream_auth_header': 33040,
-    'no_ip_authorization': 33041
+    'no_ip_authorization': 33041,
+    'client_id': 33042
 }

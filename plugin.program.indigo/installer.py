@@ -50,12 +50,12 @@ def MAININDEX():
 	if settings.getSetting('featured') == 'true':
 		kodi.addDir('Featured Addons','featured', 'addonlist', artwork + 'featured.png',
 					description="The most popular Kodi addons!")
-	if settings.getSetting('livetv') == 'true':
-		kodi.addDir('Live TV Addons', 'live', 'addonlist', artwork + 'livetv.png',
-					description="The most popular live TV addons!")
-	if settings.getSetting('sports') == 'true':
-		kodi.addDir('Sports Addons', 'sports', 'addonlist', artwork + 'sports.png',
-					description="The most popular sports addons!")
+	# if settings.getSetting('livetv') == 'true':
+	# 	kodi.addDir('Live TV Addons', 'live', 'addonlist', artwork + 'livetv.png',
+	# 				description="The most popular live TV addons!")
+	# if settings.getSetting('sports') == 'true':
+	# 	kodi.addDir('Sports Addons', 'sports', 'addonlist', artwork + 'sports.png',
+	# 				description="The most popular sports addons!")
 	if settings.getSetting('video') == 'true':
 		kodi.addDir('Video Addons', 'video', 'addonlist', artwork + 'video.png',
 					description="Every video addon in existence!")
@@ -65,9 +65,9 @@ def MAININDEX():
 	if settings.getSetting('program') == 'true':
 		kodi.addDir('Program Addons', 'executable', 'addonlist', artwork + 'program.png',
 					description="Every program addon you can imagine!")
-	if settings.getSetting('playlist') == 'true':
-		kodi.addDir('Playlist Addons','playlists', 'addonlist', artwork + 'playlists.png',
-					description="The most popular playlist addons!")
+	# if settings.getSetting('playlist') == 'true':
+	# 	kodi.addDir('Playlist Addons','playlists', 'addonlist', artwork + 'playlists.png',
+	# 				description="The most popular playlist addons!")
 	if settings.getSetting('services')=='true':
 		kodi.addDir('Service Addons','service','addonlist',artwork+'service.png')
 	if settings.getSetting('skincat') == 'true':

@@ -179,7 +179,7 @@ class UrlResolver(object):
         try:
             if self.get_setting('auto_update') == 'true' and py_source:
                 headers = self.net.http_HEAD(py_source).get_headers(as_dict=True)
-                common.log_utils.log(headers)
+                common.logger.log(headers)
                 old_etag = self.get_setting('etag')
                 new_etag = headers.get('Etag', '')
                 old_len = common.file_length(py_path, key)
@@ -187,7 +187,7 @@ class UrlResolver(object):
                 py_name = os.path.basename(py_path)
                 
                 if old_etag != new_etag or old_len != new_len:
-                    common.log_utils.log('Updating %s: |%s|%s|%s|%s|' % (py_name, old_etag, new_etag, old_len, new_len))
+                    common.logger.log('Updating %s: |%s|%s|%s|%s|' % (py_name, old_etag, new_etag, old_len, new_len))
                     self.set_setting('etag', new_etag)
                     new_py = self.net.http_GET(py_source).content
                     if new_py:
@@ -199,7 +199,7 @@ class UrlResolver(object):
                                 f.write(new_py)
                             common.kodi.notify('%s %s' % (self.name, common.i18n('resolver_updated')))
                 else:
-                    common.log_utils.log('Reusing existing %s: |%s|%s|%s|%s|' % (py_name, old_etag, new_etag, old_len, new_len))
+                    common.logger.log('Reusing existing %s: |%s|%s|%s|%s|' % (py_name, old_etag, new_etag, old_len, new_len))
                 common.log_file_hash(py_path)
         except Exception as e:
-            common.log_utils.log_warning('Exception during %s Auto-Update code retrieve: %s' % (self.name, e))
+            common.logger.log_warning('Exception during %s Auto-Update code retrieve: %s' % (self.name, e))

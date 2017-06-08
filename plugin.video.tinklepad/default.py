@@ -52,7 +52,7 @@ favData             = os.path.join(dataPath,'favourites.cfg')
 exodusName          = 'plugin.video.exodus'
 tmdb_api_key        = re.sub(r'[^a-zA-Z0-9]', '', getSetting("tmdb_api_key"))
 if not tmdb_api_key == "": metaget = metahandlers.MetaData(preparezip=False, tmdb_api_key=tmdb_api_key)
-else: metaget = metahandlers.MetaData(preparezip=False)
+else: metaget = metahandlers.MetaData(preparezip=False, tmdb_api_key='f7f51775877e0bb6703520952b3c7840')
 
 
 class main:

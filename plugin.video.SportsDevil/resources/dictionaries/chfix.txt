@@ -2,27 +2,22 @@ Sky Sports 1
   Skysports 1
   SkySports1
   sss1
-  skysport1
 Sky Sports 2
   Skysports 2
   SkySports2
   skyyy2
-  skysport2
 Sky Sports 3
   Skysports 3
   SkySports3
   ss3
-  skysport3
 Sky Sports 4
   Skysports 4
   SkySports4
   ss4
-  skysport4
 Sky Sports 5
   Skysports 5
   SkySports5
   sss5
-  skysport5
 Sky Sports News
   Sky News
   SkySportsNews
@@ -106,7 +101,6 @@ BT Sport ESPN
   Espn Uk
   Bt Sport Espn
   btsportespn
-  btespn
 ESPN2
   Espn2
   Espn 2
@@ -171,12 +165,8 @@ Sport TV5 Portugal
   sporttv5
 BeIN Sports 1 France
   bein1
-  beinfr1
 BeIN Sports 2 France
   bein2
-  beinfr2
-BeIN Sports 3 France
-  beinfr3
 NBCSN
   Nbcsn Ing
 Chelsea TV

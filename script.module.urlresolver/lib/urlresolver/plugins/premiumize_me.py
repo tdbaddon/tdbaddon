@@ -23,6 +23,9 @@ from urlresolver import common
 from urlresolver.common import i18n
 from urlresolver.resolver import UrlResolver, ResolverError
 
+logger = common.log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 class PremiumizeMeResolver(UrlResolver):
     name = "Premiumize.me"
     domains = ["*"]
@@ -50,7 +53,7 @@ class PremiumizeMeResolver(UrlResolver):
         else:
             raise ResolverError('Unexpected Response Received')
 
-        common.log_utils.log_debug('Premiumize.me: Resolved to %s' % link)
+        logger.log_debug('Premiumize.me: Resolved to %s' % link)
         return link
 
     def get_url(self, host, media_id):
@@ -76,11 +79,11 @@ class PremiumizeMeResolver(UrlResolver):
                 for regex in patterns:
                     try: regex_list.append(re.compile(regex))
                     except:
-                        common.log_utils.log_warning('Throwing out bad Premiumize regex: %s' % (regex))
-                common.log_utils.log_debug('Premiumize.me patterns: %s (%d) regex: (%d) hosts: %s' % (patterns, len(patterns), len(regex_list), tldlist))
+                        common.logger.log_warning('Throwing out bad Premiumize regex: %s' % (regex))
+                logger.log_debug('Premiumize.me patterns: %s (%d) regex: (%d) hosts: %s' % (patterns, len(patterns), len(regex_list), tldlist))
                 return tldlist, regex_list
         except Exception as e:
-            common.log_utils.log_error('Error getting Premiumize hosts: %s' % (e))
+            logger.log_error('Error getting Premiumize hosts: %s' % (e))
         return [], []
 
     def valid_url(self, url, host):

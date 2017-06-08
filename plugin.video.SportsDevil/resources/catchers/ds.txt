@@ -8,8 +8,8 @@ item_info_from=@PARAM1@
 item_info_convert=getInfo('http://%s','.*src="([^"]+)".*','@REFERER@')
 item_info_build=%s
 
-item_info_name=key
-item_info_build=5e5858405046757e4631775f33414141514e3133393973315775336c34695a5a
+#item_info_name=key
+#item_info_build=5e5858405046757e4631775f33414141514e3133393973315775336c34695a5a
 
 item_info_name=_1
 item_info_from=pageUrl
@@ -21,7 +21,7 @@ item_info_from=tk
 item_info_convert=decodeBase64
 item_info_convert=decodeBase64
 item_info_convert=decodeBase64
-item_info_convert=m3u8AesDec(key)
+#item_info_convert=m3u8AesDec(key)
 item_info_build=%s
 
 item_info_name=ref

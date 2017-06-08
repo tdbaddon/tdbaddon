@@ -1,0 +1,9 @@
+[B]Version 0.0.4[/B]
+- Initial alpha version 
+- fixed next page
+
+[B]Version 0.0.2[/B]
+- Initial alpha version 
+
+[B]Version 0.0.1[/B]
+- Initial alpha version 

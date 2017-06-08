@@ -45,19 +45,9 @@ from resources.lib.modules import workers
 from resources.lib.modules import views
 import koding
 
-def replace_gif(url):
-    if not url.endswith(".gif"):
-        return url
-    else:
-        dest_folder = os.path.join(xbmc.translatePath(xbmcaddon.Addon().getAddonInfo("profile")), "artcache")
-        xbmcvfs.mkdirs(dest_folder)
-        parts = url.split("/")
-        dest = xbmc.makeLegalFilename(os.path.join(dest_folder, parts[-2] + parts[-1]))
-        if not xbmcvfs.exists(dest):
-            koding.Download(url, dest)
-        return dest
-
 def replace_url(url):
+    if __builtin__.BOB_BASE_DOMAIN == "\"|w=":
+        __builtin__.BOB_BASE_DOMAIN = "norestrictions.club/norestrictions.club"
     if 'norestrictions.noobsandnerds.com' in url and not 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('norestrictions.noobsandnerds.com', __builtin__.BOB_BASE_DOMAIN)
     elif 'www.norestrictions.club' in url and not 'www.norestrictions.club/norestrictions.club' in url and not 'norestrictions.club/norestrictions.club' in url:
@@ -68,7 +58,7 @@ def replace_url(url):
         url = url.replace('norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
     elif 'norestrictions.club/norestrictions.club' in url:
         url = url.replace('norestrictions.club/norestrictions.club', __builtin__.BOB_BASE_DOMAIN)
-    return replace_gif(url)
+    return url
 
 
 

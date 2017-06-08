@@ -23,6 +23,9 @@ from urlresolver import common
 from urlresolver.common import i18n
 from urlresolver.resolver import UrlResolver, ResolverError
 
+logger = common.log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 API_BASE_URL = 'https://api.openload.co/1'
 INFO_URL = API_BASE_URL + '/streaming/info'
 GET_URL = API_BASE_URL + '/streaming/get?file={media_id}'
@@ -43,7 +46,7 @@ class OpenLoadResolver(UrlResolver):
             reload(ol_gmu)
             return ol_gmu.get_media_url(self.get_url(host, media_id))  # @UndefinedVariable
         except Exception as e:
-            common.log_utils.log_debug('Exception during openload resolve parse: %s' % (e))
+            logger.log_debug('Exception during openload resolve parse: %s' % (e))
             try:
                 if not self.__file_exists(media_id):
                     raise ResolverError('File Not Available')
@@ -92,7 +95,7 @@ class OpenLoadResolver(UrlResolver):
     
     def __get_json(self, url):
         result = self.net.http_GET(url).content
-        common.log_utils.log(result)
+        common.logger.log(result)
         js_result = json.loads(result)
         if js_result['status'] != 200:
             raise ResolverError(js_result['status'], js_result['msg'])

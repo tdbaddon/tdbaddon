@@ -184,3 +184,6 @@ msgctxt "#33041"
 msgid "No IP Authorization"
 msgstr "No IP Authorization"
 
+msgctxt "#33042"
+msgid "Client ID"
+msgstr "Client ID"

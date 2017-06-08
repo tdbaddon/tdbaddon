@@ -62,7 +62,7 @@ class VidUpMeResolver(UrlResolver):
             return cd.start(self.__check_auth, [media_id])
         
     def __check_auth(self, media_id):
-        common.log_utils.log('Checking Auth: %s' % (media_id))
+        common.logger.log('Checking Auth: %s' % (media_id))
         url = 'https://vidup.me/pair?file_code=%s&check' % (media_id)
         try: js_result = json.loads(self.net.http_GET(url, headers=self.headers).content)
         except ValueError:
@@ -73,7 +73,7 @@ class VidUpMeResolver(UrlResolver):
             else:
                 raise
             
-        common.log_utils.log('Auth Result: %s' % (js_result))
+        common.logger.log('Auth Result: %s' % (js_result))
         if js_result.get('status'):
             return js_result.get('response', {}).get('vt')
         else:

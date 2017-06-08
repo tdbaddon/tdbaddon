@@ -21,7 +21,6 @@
 
 import re
 import json
-import urllib
 from lib import helpers
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError

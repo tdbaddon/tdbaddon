@@ -33,7 +33,7 @@ class TheVidResolver(UrlResolver):
         web_url = self.get_url(host, media_id)
         self.headers['Referer'] = web_url
         html = self.net.http_GET(web_url, headers=self.headers).content
-        html = helpers.add_packed_data(html)
+        html += helpers.get_packed_data(html)
         match = re.search('vurl_\d+="([^"]+)', html)
         if match:
             self.headers.update({'Referer': web_url})
