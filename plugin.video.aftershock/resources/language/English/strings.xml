@@ -4,21 +4,21 @@
     <string id="30203">Auto-play</string>
     <string id="30204">Play using...</string>
     <string id="30205">Movie information</string>
-    <string id="30206">Mark as watched</string>
-    <string id="30207">Mark as unwatched</string>
-    <string id="30212">Set Movies view</string>
+    <string id="30207">Watched in Aftershock</string>
+    <string id="30206">Unwatched in Aftershock</string>
+    <string id="30212">Set as Default View</string>
     <string id="30213">[I]Next Page[/I]</string>
     <string id="30214">Watch Trailer</string>
     <string id="30232">Queue item</string>
     <string id="30233">TV show information</string>
     <string id="30234">Mark as watched</string>
     <string id="30235">Mark as unwatched</string>
-    <string id="30240">Set TV Shows view</string>
+    <string id="30240">Set as Default View</string>
     <string id="30261">Queue item</string>
     <string id="30262">TV show Information</string>
-    <string id="30263">Mark as watched</string>
-    <string id="30264">Mark as unwatched</string>
-    <string id="30269">Set Seasons view</string>
+    <string id="30263">Watched in Aftershock</string>
+    <string id="30264">Unwatched in Aftershock</string>
+    <string id="30269">Set as Default View</string>
     <string id="30270">Auto-play</string>
     <string id="30271">Play using...</string>
     <string id="30272">Episode Information</string>
@@ -36,8 +36,6 @@
 
     <string id="30401">Clear Cache?</string>
     <string id="30402">Process Complete</string>
-    <string id="30403">Mark as unwatched</string>
-    <string id="30404">Mark as watched</string>
     <string id="30412">Movie information</string>
     <string id="30413">TV show information</string>
     <string id="30461">Resume from</string>

@@ -67,7 +67,7 @@ class tvshows:
             if idx == True: self.tvshowDirectory(self.list)
             return self.list
         except Exception as e:
-            logger.error(e.message)
+            logger.error(e, __name__)
             pass
 
     def shows(self, url, provider=None, network=None):
@@ -80,7 +80,7 @@ class tvshows:
                 self.worker()
             return self.list
         except Exception as e:
-            logger.error(e.message)
+            logger.error(e, __name__)
             pass
 
     def worker(self):
@@ -212,11 +212,11 @@ class tvshows:
             imdb = cleantitle.tv(title)
             tvdb = banner = fanart = studio = duration = rating = votes = mpaa = '0'
             self.meta.append({'year': year, 'imdb': imdb, 'tvdb': tvdb, 'lang': self.info_lang, 'item': {'code': imdb, 'imdb': imdb, 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot}})
-        except Exception as e :
-            logger.error(e)
+        except Exception as e:
+            logger.error(e, __name__)
             pass
 
-    def tvshowDirectory(self, items, confViewMode='list', estViewMode='biglist'):
+    def tvshowDirectory(self, items, confViewMode='list', estViewMode='widelist'):
         if items == None or len(items) == 0: return
 
         isFolder = True if control.setting('host_select') == '1' else False
@@ -255,9 +255,8 @@ class tvshows:
 
                 cm.append((control.lang(30233).encode('utf-8'), 'Action(Info)'))
 
-                if not action == 'tvSearch':
-                    cm.append((control.lang(30234).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, year, imdb, tvdb)))
-                    cm.append((control.lang(30235).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, year, imdb, tvdb)))
+                cm.append((control.lang(30234).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, year, imdb, tvdb)))
+                cm.append((control.lang(30235).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, year, imdb, tvdb)))
 
                 cm.append((control.lang(30240).encode('utf-8'), 'RunPlugin(%s?action=addView&content=tvshows)' % sysaddon))
 
@@ -278,14 +277,14 @@ class tvshows:
                 item.addContextMenuItems(cm)
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except Exception as e:
-                logger.error(e)
+                logger.error(e, __name__)
                 pass
 
-        control.content(syshandle, 'tvshows')
-        viewMode = 'mediainfo1'
-        views.setView('tvshows', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
-            control.viewMode['esturary'][estViewMode]})
+        content = 'tvshows'
+        control.content(syshandle, content)
         control.directory(syshandle, cacheToDisc=True)
+        views.setView(content, {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
+            control.viewMode['esturary'][estViewMode]})
 
     def getTVShowPosterFromGoogle(self, showName, retry):
         if retry == 0:
@@ -344,7 +343,8 @@ class tvshows:
                 item.addContextMenuItems(cm)
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
-            except:
+            except Exception as e:
+                logger.error(e, __name__)
                 pass
 
         viewMode = 'mediainfo1'

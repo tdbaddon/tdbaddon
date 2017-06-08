@@ -1,21 +1,6 @@
-[B]1.3.2[/B]
-- Added Changelog icon
+AftershockCore v1.0.3
+--------------------------------
+- Updated supported hosts
+- Updated Metadata Handling
 
-[B]1.3.0[/B]
-- Added Live Logos
-- Added Genre Icons
-
-[B]1.2.1[/B]
-- Added VOD Logos
-
-[B]1.2.0[/B]
-- Added Genre / Year Icons
-
-[B]1.1.0[/B]
-- Added VOD Logos
-
-[B]1.0.1[/B]
-- Added Live Logos
-
-[B]1.0.0[/B]
-- Initial version
+Initial Version

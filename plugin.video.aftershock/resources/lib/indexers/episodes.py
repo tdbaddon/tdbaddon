@@ -34,6 +34,7 @@ from ashock.modules import control
 from ashock.modules import logger
 from ashock.modules import views
 from ashock.modules import cache
+from ashock.modules import playcount
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
@@ -545,6 +546,7 @@ class episodes:
                     self.list = self.super_info(self.list)
 
                 self.episodeDirectory(self.list, provider)
+
                 return self.list
         except Exception as e:
             logger.error(e.message)
@@ -561,7 +563,7 @@ class episodes:
         except:
             pass
 
-    def episodeDirectory(self, items, provider=None, confViewMode='list', estViewMode='biglist'):
+    def episodeDirectory(self, items, provider=None, confViewMode='list', estViewMode='widelist'):
         if items == None or len(items) == 0: return
 
         isFolder = True if control.setting('host_select') == '1' else False
@@ -573,6 +575,8 @@ class episodes:
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
+
+        indicators = playcount.getTVShowIndicators(refresh=True)
 
         try: multi = [i['tvshowtitle'] for i in items]
         except: multi = []
@@ -632,11 +636,20 @@ class episodes:
 
                 cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
 
-                cm.append((control.lang(30263).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=7)' % (sysaddon, imdb, tvdb, season, episode)))
-                cm.append((control.lang(30264).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=6)' % (sysaddon, imdb, tvdb, season, episode)))
-
-
-                cm.append((control.lang(30273).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
+                '''
+                try:
+                    overlay = int(playcount.getEpisodeOverlay(indicators, systitle, episode, season))
+                    if overlay == 7:
+                        cm.append((control.lang(30264).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&tvshowtitle=%s&episode=%s&season=%s&query=6&name=%s)' % (sysaddon, systitle, episode, season, episodename)))
+                        meta.update({'playcount': 1, 'overlay': 7})
+                    else:
+                        cm.append((control.lang(30263).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&tvshowtitle=%s&episode=%s&season=%s&query=7&name=%s)' % (sysaddon, systitle, episode, season, episodename)))
+                        meta.update({'playcount': 0, 'overlay': 6})
+                except Exception as e:
+                    logger.error(e, __name__)
+                    pass
+                '''
+                #cm.append((control.lang(30273).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
 
                 item = control.item(label=label, iconImage=thumb, thumbnailImage=thumb)
 
@@ -671,9 +684,11 @@ class episodes:
         except:
             pass
 
-        control.content(syshandle, 'episodes')
+
+        content = 'episodes'
+        control.content(syshandle, content)
         control.directory(syshandle, cacheToDisc=cacheToDisc)
-        views.setView('episodes', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
+        views.setView(content, {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
             control.viewMode['esturary'][estViewMode]})
 
     def addDirectory(self, items):

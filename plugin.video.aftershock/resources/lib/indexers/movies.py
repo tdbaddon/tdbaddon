@@ -38,6 +38,7 @@ from ashock.modules import metacache
 from ashock.modules import workers
 from ashock.modules import views
 from ashock.modules import logger
+from ashock.modules import playcount
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
@@ -96,7 +97,7 @@ class movies:
             if idx == True: self.movieDirectory(self.list, lang=lang)
             return self.list
         except Exception as e:
-            logger.error(e.message)
+            logger.error(e, __name__)
             pass
     def imdb_list(self, url):
         try:
@@ -363,31 +364,12 @@ class movies:
             duration = duration.encode('utf-8')
             if not duration == '0': self.list[i].update({'duration': duration})
 
-            #rating = item['imdbRating']
-            #if rating == None or rating == '' or rating == 'N/A' or rating == '0.0': rating = '0'
-            #rating = rating.encode('utf-8')
-            #if not rating == '0': self.list[i].update({'rating': rating})
-
-            #votes = item['imdbVotes']
-            #try: votes = str(format(int(votes),',d'))
-            #except: pass
-            #if votes == None or votes == '' or votes == 'N/A': votes = '0'
-            #votes = votes.encode('utf-8')
-            #if not votes == '0': self.list[i].update({'votes': votes})
-
-            #mpaa = item['Rated']
-            #if mpaa == None or mpaa == '' or mpaa == 'N/A': mpaa = '0'
-            #mpaa = mpaa.encode('utf-8')
-            #if not mpaa == '0': self.list[i].update({'mpaa': mpaa})
-
             rating = votes = mpaa = '0'
 
-            #director = item['Director']
             crew = item.get('credits').get('crew')
             director = [x.get('name') for x in crew if x.get('job') == 'Director']
             director = " / ".join(director)
             if director == None or director == '' or director == 'N/A': director = '0'
-            #director = director.replace(', ', ' / ')
             director = re.sub(r'\(.*?\)', '', director)
             director = ' '.join(director.split())
             director = director.encode('utf-8')
@@ -403,11 +385,7 @@ class movies:
 
             cast = item.get('credits').get('cast')
             cast = [(x.get('name'), x.get('character')) for x in cast]
-            if cast == None or cast == '' or cast == 'N/A': cast = '0'
-            #cast = [x.strip() for x in cast.split(',') if not x == '']
-            #try: cast = [(x.encode('utf-8'), '') for x in cast]
-            #except: cast = []
-            if cast == []: cast = '0'
+            if cast == None or cast == '' or cast == 'N/A' or cast == []: cast = '0'
             if not cast == '0': self.list[i].update({'cast': cast})
 
             plot = item.get('overview')
@@ -446,7 +424,6 @@ class movies:
                 found_trailer = next((x for x in trailer if x['type'] == 'Trailer'), None)
                 if found_trailer:
                     trailer = found_trailer['source']
-                    trailer = 'plugin://plugin.video.youtube/play/?video_id=%s' % trailer
                     self.list[i].update({'trailer': trailer})
                 else:
                     trailer = '0'
@@ -484,8 +461,11 @@ class movies:
                 fanart = fanart.encode('utf-8')
                 if not fanart == '0': self.list[i].update({'fanart': fanart})
 
+            # add code for watched overlay
+
             self.meta.append({'imdb': imdb, 'tmdb':tmdb, 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'trailer':trailer}})
-        except:
+        except Exception as e:
+            logger.error(e, __name__)
             pass
 
     def super_info_omdb(self, i):
@@ -647,6 +627,8 @@ class movies:
             control.infoDialog(control.lang(30518).encode('utf-8'))
             return
 
+        indicators = playcount.getMovieIndicators()
+
         isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
 
         playbackMenu = control.lang(30204).encode('utf-8') if control.setting('host_select') == '2' else control.lang(30203).encode('utf-8')
@@ -656,11 +638,11 @@ class movies:
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
-        try:
-            from metahandler import metahandlers
-            metaget = metahandlers.MetaData(tmdb_api_key=self.tmdb_key, preparezip=False)
-        except:
-            pass
+        #try:
+        #    from metahandler import metahandlers
+        #    metaget = metahandlers.MetaData(tmdb_api_key=self.tmdb_key, preparezip=False)
+        #except:
+        #    pass
 
 
         for i in items:
@@ -677,8 +659,7 @@ class movies:
 
                 #logger.debug('Title : %s poster : %s banner : %s fanart : %s' % (i['title'], poster, banner, fanart), __name__)
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
-                if trailer == None or trailer == '0' :
-                    meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'trailer': '%s?action=trailer&name=%s&url=%s' % (sysaddon, sysname, trailer)})
                 if i['duration'] == '0': meta.update({'duration': '120'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
                 except: pass
@@ -688,28 +669,35 @@ class movies:
                 url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&meta=%s&t=%s' % (sysaddon, sysname, systitle, year, imdb, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
-                try:
-                    playcount = metaget._get_watched('movie', imdb, '', '')
-                    if playcount == 7: meta.update({'playcount': 1, 'overlay': 7})
-                    else: meta.update({'playcount': 0, 'overlay': 6})
-                except:
-                    pass
+                #try:
+                #    playcount = metaget._get_watched('movie', imdb, '', '')
+                #    if playcount == 7: meta.update({'playcount': 1, 'overlay': 7})
+                #    else: meta.update({'playcount': 0, 'overlay': 6})
+                #except:
+                #    pass
 
                 cm = []
 
-                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta))) # AUTOPLAY
 
-                #if trailer == '0':
-                cm.append((control.lang(30214).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-                #else:
-                #    cm.append((control.lang(30214).encode('utf-8'), 'RunPlugin(%s)' % (trailer)))
-                cm.append((control.lang(30205).encode('utf-8'), 'Action(Info)'))
+                cm.append((control.lang(30214).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sysaddon, sysname, trailer))) # TRAILER
+                cm.append((control.lang(30205).encode('utf-8'), 'Action(Info)')) # MOVIEINFORMATION
 
-                if not action == 'movieSearch':
-                    cm.append((control.lang(30206).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&title=%s&year=%s&imdb=%s&query=7)' % (sysaddon, systitle, year, imdb)))
-                    cm.append((control.lang(30207).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&title=%s&year=%s&imdb=%s&query=6)' % (sysaddon, systitle, year, imdb)))#
+                cm.append((control.lang(30212).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon)) # SET MOVIES VIEW
 
-                cm.append((control.lang(30212).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
+
+                try:
+                    overlay = int(playcount.getMovieOverlay(indicators, imdb))
+                    logger.debug('imdb : %s Overlay : %s' % (imdb, overlay), __name__)
+                    if overlay == 7:
+                        cm.append((control.lang(30206).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=6)' % (sysaddon, imdb)))
+                        meta.update({'playcount': 1, 'overlay': 7})
+                    else:
+                        cm.append((control.lang(30207).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=7)' % (sysaddon, imdb)))
+                        meta.update({'playcount': 0, 'overlay': 6})
+                except Exception as e:
+                    logger.error(e, __name__)
+                    #pass
 
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
 
@@ -726,7 +714,8 @@ class movies:
                 item.setProperty('IsPlayable', isPlayable)
                 item.addContextMenuItems(cm)
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
-            except:
+            except Exception as e:
+                logger.error(e, __name__)
                 pass
         try:
             url = items[0]['next']
@@ -737,14 +726,16 @@ class movies:
             item.addContextMenuItems([])
             if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
             control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
-        except:
+        except Exception as e:
+            logger.error(e, __name__)
             pass
 
-
-        control.content(syshandle, 'movies')
-        views.setView('movies', {'skin.confluence': control.viewMode['confluence']['thumbnails'], 'skin.estuary':
-            control.viewMode['esturary']['biglist']})
+        content = 'movies'
+        control.content(syshandle, content)
         control.directory(syshandle, cacheToDisc=cacheToDisc)
+        views.setView(content, {'skin.confluence': control.viewMode['confluence']['thumbnails'], 'skin.estuary':
+            control.viewMode['esturary']['list']})
+
 
     def addDirectory(self, items, estViewMode='biglist', confViewMode='list'):
         if items == None or len(items) == 0: return
@@ -771,8 +762,7 @@ class movies:
                 item.addContextMenuItems(cm)
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
-            except:
+            except Exception as e:
+                logger.error(e, __name__)
                 pass
-        views.setView('movies', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
-            control.viewMode['esturary'][estViewMode]})
         control.directory(syshandle, cacheToDisc=True)

@@ -147,19 +147,9 @@ elif action == 'desiTVNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().desiTV()
 
-elif action == 'desiLiveNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().desiLiveTV(url)
-    analytics.sendAnalytics('%s-LIVE' % action)
-
 elif action == 'artwork':
     from ashock.modules import control
     control.artwork()
-
-elif action == 'liveEPGNavigator':
-    from ashock.modules import control
-    analytics.sendAnalytics('%s-EPG' % action)
-    xbmc.executebuiltin("RunAddon(script.aftershocknow.guide)")
 
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows
@@ -193,10 +183,6 @@ elif action == 'play':
 elif action == 'playItem':
     from resources.lib.sources import sources
     sources().playItem(content, title, source)
-
-elif action == 'trailer':
-    from ashock.modules import trailer
-    trailer.trailer().play(name, url)
 
 elif action == 'addView':
     from ashock.modules import views
@@ -245,22 +231,3 @@ elif action == 'clearCache':
 elif action == 'changelog':
     from ashock.modules import changelog
     changelog.get('1')
-
-elif action == 'startLiveProxy':
-    try :
-        import os
-        from ashock.modules import control
-
-        libPath = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'modules')
-        serverPath = os.path.join(libPath, 'localproxy.py')
-        try:
-            import requests
-            requests.get('http://127.0.0.1:29000/version')
-            proxyIsRunning = True
-        except:
-            proxyIsRunning = False
-        if not proxyIsRunning:
-            xbmc.executebuiltin('RunScript(' + serverPath + ')')
-    except:
-        import traceback
-        traceback.print_exc()

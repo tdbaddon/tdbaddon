@@ -43,8 +43,8 @@ class navigator:
     def root(self):
 
         self.addDirectoryItem(30860, 'movieLangNavigator', 'movies.png','DefaultMovies.png')
-        self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
-        self.addDirectoryItem(90115, 'liveEPGNavigator', 'tv-epg.png','DefaultMovies.png')
+        #self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
+        #self.addDirectoryItem(90115, 'liveEPGNavigator', 'tv-epg.png','DefaultMovies.png')
         self.addDirectoryItem(30861, 'desiTVNavigator', 'tv-vod.png','DefaultMovies.png')
 
         self.addDirectoryItem(90116, 'openSettings&query=0.0', 'settings.png', 'DefaultMovies.png')
@@ -61,7 +61,7 @@ class navigator:
         self.endDirectory()
 
     def donation(self, version):
-        control.okDialog("Donations for this addon [Aftershock v%s] gracefully accepted at" % version, "", "http://paypal.me/aftershockpy/10USD")
+        control.okDialog("Aftershock Offline", "", "In light of recent events i have decided to no maintaine or support Aftershock addon.")
         return 1
 
     def clearCache(self, url=None):
@@ -71,7 +71,7 @@ class navigator:
             self.addDirectoryItem(90126, 'clearCache&url=live', 'clearcache.png','DefaultMovies.png')
             self.addDirectoryItem(90127, 'clearCache&url=meta', 'clearcache.png','DefaultMovies.png')
 
-            self.endDirectory(confViewMode='list')
+            self.endDirectory()
         elif url == 'main':
             from ashock.modules import cache
             cache.clear()
@@ -96,7 +96,7 @@ class navigator:
             for genre in genres:
                 self.addDirectoryItem(genre.upper(), 'desiLiveNavigator&url=%s' % genre, 'tv-live.png','DefaultMovies.png')
             self.addDirectoryItem('OTHERS', 'desiLiveNavigator&url=others', 'tv-live.png','DefaultMovies.png')
-            self.endDirectory(confViewMode='list')
+            self.endDirectory()
         else:
             livetv.channels().get(url)
 
@@ -148,8 +148,6 @@ class navigator:
         if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
         control.addItem(handle=syshandle, url=url, listitem=item, isFolder=isFolder)
 
-    def endDirectory(self, cacheToDisc=False, estViewMode='biglist', confViewMode='thumbnails'):
-        control.content(syshandle, 'addons')
-        views.setView('addons', {'skin.confluence': control.viewMode['confluence'][confViewMode], 'skin.estuary':
-            control.viewMode['esturary'][estViewMode]})
+    def endDirectory(self, cacheToDisc=False):
+        #control.content(syshandle, 'Addons')
         control.directory(syshandle, cacheToDisc=cacheToDisc)

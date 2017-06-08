@@ -1,4 +1,8 @@
-- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- [COLOR orange]NOTE: In light of recent events i have decided to no longer maintain or support Aftershock Addon[/COLOR]
+
+Aftershock v4.7.1
+--------------------------------
+- Bug Fixes
 
 Aftershock v4.7.0
 --------------------------------

@@ -122,11 +122,12 @@ class channels:
                 item.setProperty("IsPlayable", "true")
                 item.addContextMenuItems([])
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
-            except:
+            except Exception as e:
+                logger.error(e, __name__)
                 pass
 
         #control.content(syshandle, 'video')
-        viewMode = 'list'
-        views.setView('movies', {'skin.confluence': control.viewMode['confluence'][viewMode], 'skin.estuary':
-            control.viewMode['esturary'][viewMode]})
+        #viewMode = 'list'
+        #views.setView('movies', {'skin.confluence': control.viewMode['confluence'][viewMode], 'skin.estuary':
+        #    control.viewMode['esturary'][viewMode]})
         control.directory(syshandle, cacheToDisc=False)
