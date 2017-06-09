@@ -1,20 +1,7 @@
-CURRENT STATUS: [COLORyellow]Minor Issues[/COLOR]
+CURRENT STATUS: [COLORylime]Good[/COLOR]
 
-One of the host is still down. 
-We are currently adding additional links for these.
+Sorry about the recent downtime and messing about moving again to a new repo, TV Addons no longer wanted to host addons like mine so took a few days to sort a new home and server.  Special Thanks to Ares for allowing this addon.  
 
-Sections down:
-
-x Some Of The Archives
-x Most of WWE Network Collections
-x Certain Shows
-
-If there is something you wish to see thats giving an error let us know.
-
-Check The 'Whats New' to see what has been fixed and added. 
-
-××× NOTE: WE HAVE JUST MOVED SERVER SO WE MAY HAVE MISSED A FEW THINGS SO GIVE US A DAY OR TWO TO ENSURE WE HAVE EVERYTHING UPTO DATE. 
-
-Thanks.
+Thanks for all your support and you can now enjoy using the addon again! 
 
 |===== ALWAYS CLEAR CACHE AND PURGE PACKAGES =====|

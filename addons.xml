@@ -2191,6 +2191,26 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
+<addon id="plugin.video.motorreplays" name="[B][COLORorange]Motor Replays[/COLOR][/B]" version="2.3" provider-name="@Aleighty80">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.43"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">[B][COLOR orange]Motor Replays[/COLOR][/B]</summary>
+    <description lang="en">The Official Home of MOTOR REPLAYS by @Aleighty80, If you like Motorsports of any typr this is the addon for you</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
        version="2017.04.18.1"
@@ -3161,6 +3181,49 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
+
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.33" provider-name="MetalKettle">
+
+  <requires>
+
+    <import addon="script.module.simplejson" version="3.3.0"/>
+
+    <import addon="xbmc.python" version="2.1.0"/>
+
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+    <import addon="script.video.F4mProxy" version="2.5.3"/>
+
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+
+  </requires>
+
+  <extension point="xbmc.python.pluginsource" library="default.py">
+
+        <provides>video</provides>
+
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+
+    <summary lang="en">Free Playlists courtesy of @uk_turk</summary>
+
+    <description lang="en">Free Playlists courtesy of @uk_turk</description>
+
+    <platform>all</platform>
+
+  </extension>
+
+</addon>
+
     <addon id="plugin.video.velocity" version="1.1.2" name="Velocity" provider-name="Blazetamer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -3252,7 +3315,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="4.01" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="4.03" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -3261,14 +3324,13 @@ Enjoy!</description>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="plugin.video.youtube" />
-    <import addon="plugin.video.SportsDevil" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">The Home Of Wrestling On Demand</summary>
-    <description lang="en">The Offical Home Of Wrestling On Demand</description>
+    <description lang="en">The Offical Home Of Wrestling On Demand | Huge Thanks To EchoCoder for making updates to the addon to my requirements. Thanks to Ares for hosting this addon.</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -3479,6 +3541,37 @@ Enjoy!</description>
 		<summary>Install AJ ADD-ONs with new look and fastest of all.</summary>
 		<description>Enjoy access to Indian media sources like desirulez.net, sominaltvtheatre.com and more. All add-ons provide access to website like a normal browser.</description>
 		<disclaimer>The video add-ons hosted by my XBMC add-ons repository(aj add-ons) makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, video add-ons don't warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on the Internet web site where from data is retrieved or otherwise relating to such materials or on any sites linked to this addon. Videos are streamed directly from video-hosting websites that are having full rights to remove such access to video if required. These add-ons access website contents like a normal web browser and show content to users.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.aresproject" name="[COLOR blue]A[/COLOR][COLOR white]res Project[/COLOR]" version="0.0.6" provider-name="Ares Team">
+	<extension point="xbmc.addon.repository" name="AresRepo">
+		<info compressed="false">http://repo.ares-project.com/plugins/addons.xml</info>
+		<checksum>http://repo.ares-project.com/plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.ares-project.com/plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>AresProject.</summary>
+		<description>Ares-Project Addons Source. Visit Us At https://ares-project.uk</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.BES-IPTV" name="BES-IPTV Repository" version="1.0.2" provider-name="SaydinX,SimpleKodi">
+	<extension point="xbmc.addon.repository" name="BES-IPTV Repository">
+	<dir>
+		<info compressed="false">http://ipbestv.net16.net/Addons/addons.xml</info>
+		<checksum>http://ipbestv.net16.net/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://ipbestv.net16.net/Addons/</datadir>
+	</dir>
+		<info compressed="false">http://ipbestv.net16.net/Addons/addons.xml</info>
+		<checksum>http://ipbestv.net16.net/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://ipbestv.net16.net/Addons/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>BES-IPTV, Albanian IPTV!</summary>
+		<description>BES-IPTV Repository by SimpleKodi,SaydinX</description>
 		<platform>all</platform>
 	</extension>
 </addon>
