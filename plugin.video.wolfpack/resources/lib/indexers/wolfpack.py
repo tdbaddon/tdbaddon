@@ -18,7 +18,7 @@ class indexer :#line:20
     def root (OO00O00O0O00000O0 ):#line:25
         try :#line:26
             OO0OO0O0000OOO0OO .clear ()#line:27
-            O0000O00000O0OOO0 ='http://beaub.srve.io/wolfpackdata/wolfpack%20main%20index.xml'#line:28
+            O0000O00000O0OOO0 ='http://midian.srve.io/wolfpackdata/wolfpack%20main%20index.xml'#line:28
             OO00O00O0O00000O0 .list =OO00O00O0O00000O0 .wolfpack_list (O0000O00000O0OOO0 )#line:29
             for O0000O0O0OO000000 in OO00O00O0O00000O0 .list :O0000O0O0OO000000 .update ({'content':'addons'})#line:30
             OO00O00O0O00000O0 .addDirectory (OO00O00O0O00000O0 .list )#line:31
@@ -140,7 +140,7 @@ class indexer :#line:20
             pass #line:179
     def addSearch (O000O0O0O0000O0OO ,url =None ):#line:182
         try :#line:183
-            OO00O00O0000000OO ='http://brettusbuilds.com/.wolf%20pack/wolfpack%20search.xml'#line:184
+            OO00O00O0000000OO ='http://midian.srve.io/.wolf%20pack/wolfpack%20search.xml'#line:184
             if (url ==None or url ==''):#line:186
                 OOO0O00O0OOO000OO =O0OOOO0OOO00OO0OO .keyboard ('',O0OOOO0OOO00OO0OO .lang (30702 ).encode ('utf-8'))#line:187
                 OOO0O00O0OOO000OO .doModal ()#line:188
