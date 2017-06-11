@@ -594,3 +594,49 @@ def googlepass(url):
         return url
     except:
         return
+
+def parse_dom(html, name='', attrs=None, req=False, exclude_comments=False):
+    if attrs is None: attrs = {}
+    name = name.strip()
+    if isinstance(html, unicode) or isinstance(html, DomMatch):
+        html = [html]
+    elif isinstance(html, str):
+        try:
+            html = [html.decode("utf-8")]  # Replace with chardet thingy
+        except:
+            try:
+                html = [html.decode("utf-8", "replace")]
+            except:
+                html = [html]
+    elif not isinstance(html, list):
+        return ''
+
+    if not name:
+        return ''
+
+    if not isinstance(attrs, dict):
+        return ''
+
+    if req:
+        if not isinstance(req, list):
+            req = [req]
+        req = set([key.lower() for key in req])
+
+    all_results = []
+    for item in html:
+        if isinstance(item, DomMatch):
+            item = item.content
+
+        if exclude_comments:
+            item = re.sub(re.compile('<!--.*?-->', re.DOTALL), '', item)
+
+        results = []
+        for element in __get_dom_elements(item, name, attrs):
+            attribs = __get_attribs(element)
+            if req and not req <= set(attribs.keys()): continue
+            temp = __get_dom_content(item, name, element).strip()
+            results.append(DomMatch(attribs, temp))
+            item = item[item.find(temp, item.find(element)):]
+        all_results += results
+
+    return all_results

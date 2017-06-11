@@ -34,13 +34,13 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'https://flixanity.watch'
-        self.base_link = 'https://istream.is'
+        #self.base_link = 'https://flixanity.watch'
+        self.base_link = 'https://flixanity.online'
         self.sitemap = '/sitemap.xml'
 
         self.social_lock = '0A6ru35yevokjaqbb8'
 
-        self.search_link = 'https://api.istream.is/api/v1/'+ self.social_lock
+        self.search_link = 'https://api.flixanity.online/api/v1/'+ self.social_lock
         #https://api.flixanity.watch/api/v1/0A6ru35yevokjaqbb8
 
 

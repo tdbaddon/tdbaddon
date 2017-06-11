@@ -8,3 +8,5 @@ v1.0.3
 Fixed resolve
 v1.0.4
 Removed TV shows added meta
+v1.0.5
+Meta Fix

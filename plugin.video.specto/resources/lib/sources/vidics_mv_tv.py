@@ -30,7 +30,7 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.vidics.ch'
+        self.base_link = 'http://www.vidics.to'
         self.moviesearch_link = '/Category-Movies/Genre-Any/Letter-Any/ByPopularity/1/Search-%s.htm'
         self.tvsearch_link = '/Category-TvShows/Genre-Any/Letter-Any/ByPopularity/1/Search-%s.htm'
         self.episode_link = '-Season-%01d-Episode-%01d'
@@ -122,7 +122,7 @@ class source:
                 try:
                     host = client.parseDOM(i, 'a', attrs = {'target': '.+?'})[0]
                     host = host.strip().lower()
-                    if not host in hostDict: raise Exception()
+                    #if not host in hostDict: raise Exception()
                     host = host.split('.', 1)[0]
                     #if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
@@ -145,7 +145,16 @@ class source:
 
     def resolve(self, url):
         try:
-            url = client.request(url, output='geturl')
+            if 'vidics' in url:
+                result = client.request(url)
+                #movie_link1
+                url = client.parseDOM(result, 'div', attrs={'class': 'movie_link1'})[0]
+                url = client.parseDOM(url, 'a', attrs={'class': 'blue'})[0]
+
+                print("URL", url)
+
+            else:
+                url = client.request(url, output='geturl')
             url = resolvers.request(url)
             return url
         except:

@@ -36,10 +36,10 @@ import requests
 
 class source:
     def __init__(self):
-        self.base_link = 'https://123movieshd.io'
+        self.base_link = 'https://gomovies.to'
         #self.base_link_2 = 'https://123movies.net.ru'
         self.search_link = '/ajax/suggest_search?keyword=%s'
-        self.search_link_2 = '/movie/search/%s'
+        self.search_link_2 = '/search?keyword=%s'
         self.info_link = '/ajax/movie_load_info/%s/'
         self.server_link = '/ajax/get_episodes/%s'
         self.direct_link = '/ajax/v2_load_episode/'
@@ -68,13 +68,12 @@ class source:
             t = cleantitle.get(title)
 
             q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
-            q = q.replace('+','-')
             q = urlparse.urljoin(self.base_link, q)
 
 
             r = self.request(q)[0]
             r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), client.parseDOM(i, 'a', ret='data-url')) for i in r]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), client.parseDOM(i, 'a', ret='data-tip')) for i in r]
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if i[0] and i[1]]
             #else:
             #    r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
@@ -230,7 +229,6 @@ class source:
         except:
             return sources
 
-
     def resolve(self, url):
         control.log('RESSS %s' % url)
         try:
@@ -260,3 +258,22 @@ class source:
             control.log('RESSS %S' % e)
             pass
 
+    def _updateParams(params):
+        _myFun = None
+        if _myFun == None:
+            try:
+                tmp = 'ZGVmIHphcmF6YShpbl9hYmMpOg0KICAgIGRlZiByaGV4KGEpOg0KICAgICAgICBoZXhfY2hyID0gJzAxMjM0NTY3ODlhYmNkZWYnDQogICAgICABiID0gZmYoYiwgYywgZCwgYSwgdGFiQlszXSwgMjIsIC0xMDQ0NTI1MzMwKTsN\rZGVmIHphcmF6YShwYXJhbXMpOg0KICAgIGRlZiBuKHQsIGUpOg0KICAgICAgICBuID0gMA0KICAgICAgICByID0gMA0KICAgICAgICBpID0gW10NCiAgICAgICAgZm9yIHMgaW4gcmFuZ2UoMCwgMjU2KToNCiAgICAgICAgICAgIGkuYXBwZW5kKHMpDQogICAgICAgIGZvciBzIGluIHJhbmdlKDAsIDI1Nik6DQogICAgICAgICAgICBuID0gKG4gKyBpW3NdICsgb3JkKHRbcyAlIGxlbih0KV0pKSAlIDI1Ng0KICAgICAgICAgICAgYSA9IGlbc10NCiAgICAgICAgICAgIGlbc10gPSBpW25dDQogICAgICAgICAgICBpW25dID0gYQ0KICAgICAgICBzID0gMA0KICAgICAgICBuID0gMCANCiAgICAgICAgZm9yIG8gaW4gcmFuZ2UobGVuKGUpKToNCiAgICAgICAgICAgIHMgPSAocysxKSAlIDI1Ng0KICAgICAgICAgICAgbiA9IChuICsgaVtzXSkgJSAyNTYNCiAgICAgICAgICAgIGEgPSBpW3NdDQogICAgICAgICAgICBpW3NdID0gaVtuXQ0KICAgICAgICAgICAgaVtuXSA9IGENCiAgICAgICAgICAgIHIgKz0gb3JkKGVbb10pIF4gaVsoaVtzXSArIGlbbl0pICUgMjU2XSAqIG8gKyBvDQogICAgICAgIHJldHVybiByDQogICAgaGFzaCA9IDANCiAgICBmb3Iga2V5IGluIHBhcmFtczoNCiAgICAgICAgaGFzaCArPSBuKHN0cihrZXkpLCBzdHIocGFyYW1zW2tleV0pKQ0KICAgIHBhcmFtcyA9IGRpY3QocGFyYW1zKQ0KICAgIHBhcmFtc1snXyddID0gaGFzaA0KICAgIHJldHVybiBwYXJhbXMNCg=='
+                tmp = base64.b64decode(tmp.split('\r')[-1]).replace('\r', '')
+                _myFun = compile(tmp, '', 'exec')
+                vGlobals = {"__builtins__": None, 'len': len, 'dict': dict, 'list': list, 'ord': ord, 'range': range,
+                            'str': str}
+                vLocals = {'zaraza': ''}
+                exec _myFun in vGlobals, vLocals
+                _myFun = vLocals['zaraza']
+            except Exception as e:
+                print "Error", e
+        try:
+            params = _myFun(params)
+        except Exception as e:
+            print "Error", e
+        return params

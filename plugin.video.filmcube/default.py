@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib2, urllib, xbmcgui, xbmcplugin, xbmc, re, sys, dandy,xbmcaddon
+import urllib2, urllib, xbmcgui, xbmcplugin, xbmc, re, sys, dandy,xbmcaddon,base64
 import requests
 from addon.common.addon import Addon
 from metahandler import metahandlers
@@ -139,7 +139,8 @@ def addDir2(name,url,mode,iconimage,itemcount):
             simpleyear=splitName[2].partition(')')
         if len(simpleyear)>0:
             simpleyear=simpleyear[0]
-        meta = metaget.get_meta('movie',simplename,simpleyear)
+	    mg = eval(base64.b64decode('bWV0YWhhbmRsZXJzLk1ldGFEYXRhKHRtZGJfYXBpX2tleT0iZDk1NWQ4ZjAyYTNmMjQ4MGE1MTg4MWZlNGM5NmYxMGUiKQ=='))
+	    meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
         if meta['cover_url']=='':
             try:
                 meta['cover_url']=iconimage

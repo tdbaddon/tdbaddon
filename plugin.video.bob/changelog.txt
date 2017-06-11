@@ -2,6 +2,9 @@ Visit WWW.NOOBSANDNERDS.COM for your all Kodi needs.
 No fighting, no censorship, no agenda.
 We just concentrate on exciting new features.
 
+v1.3.15
+- accounted for noobsandnerds server being offline
+
 v1.3.13
 - no changes, just versionbump to get rid of all traces of a bad zip
 

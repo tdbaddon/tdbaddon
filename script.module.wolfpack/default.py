@@ -265,8 +265,8 @@ def passpopup(url):
  kb.doModal()
  if (kb.isConfirmed()):
     text = kb.getText()
-    if 'wolfbox' in text:
-       text = str(text).replace('wolfbox','/tags')
+    if 'tammyaba' in text:
+       text = str(text).replace('tammyaba','/tags')
        return (str(xxxurl+text)).replace('%3a','').replace('%2f','')
     else:
         Msg="                                   Incorrect Password\n\n                            Password is available from\n                                [COLOR ghostwhite]https://www.facebook.com/groups/kodiwolfpack//[/COLOR]"

@@ -24,7 +24,7 @@ import xbmcgui
 import xbmcvfs
 import koding
 
-koding.User_Info()
+#koding.User_Info()
 
 ADDON_ID = 'plugin.video.bob'
 HOME = xbmc.translatePath('special://home')
@@ -98,7 +98,8 @@ import sys
 import urlparse
 import __builtin__
 
-__builtin__.BOB_BASE_DOMAIN = str(koding.Check_Cookie('base'))
+#__builtin__.BOB_BASE_DOMAIN = str(koding.Check_Cookie('base'))
+__builtin__.BOB_BASE_DOMAIN = "\"|w="
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?', '')))
 try:

@@ -24,30 +24,38 @@ from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib.libraries import cache
 from resources.lib.libraries import control
+from resources.lib.libraries import source_utils
+from resources.lib.libraries import dom_parser
 
 
 
 class source:
     def __init__(self):
-        self.base_link = 'http://sezonlukdizi.com'
-        self.search_link = '/js/dizi2.js'
+        self.base_link = 'http://sezonlukdizi.net'
+        self.search_link = '/js/dizi10.js'
         self.video_link = '/ajax/dataEmbed.asp'
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            result = cache.get(self.sezonlukdizi_tvcache, 120)
+            #result = cache.get(self.sezonlukdizi_tvcache, 120)
+            result = self.sezonlukdizi_tvcache()
 
             tvshowtitle = cleantitle.get(tvshowtitle)
 
-            result = [i[0] for i in result if tvshowtitle == i[1]][0]
+            for i in result:
+                print("I",i)
+
+            result = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1])]
+
             print result
-            url = urlparse.urljoin(self.base_link, result)
+            url = urlparse.urljoin(self.base_link, result[0])
             url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = urlparse.urljoin('/diziler',url)
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            print("Error",e)
             return
 
 
@@ -55,87 +63,80 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            result =  client.source(url)
-            result = re.compile('{(.+?)}').findall(result)
+            result = client.request(url, redirect=False)
 
-            result = [(re.findall('u\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i), re.findall('d\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i)) for i in result]
+            if not result:
+                r = client.request(self.base_link)
+                r = dom_parser.parse_dom(r, 'script', attrs={'type': 'text/javascript', 'src': re.compile('.*/js/dizi.*')}, req='src')[0]
+                url = urlparse.urljoin(self.base_link, r.attrs['src'])
+                result = client.request(url)
+
+            result = re.compile('{(.+?)}').findall(result)
+            result = [(re.findall('u\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i), re.findall('d\s*:\s*(?:\'|\")(.+?)(?:\',|\")', i)) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [(re.compile('/diziler(/.+?)(?://|\.|$)').findall(i[0]), re.sub('&#\d*;','', i[1])) for i in result]
-            result = [(i[0][0] + '/', cleantitle.get(i[1])) for i in result if len(i[0]) > 0]
+            result = [(re.compile('/diziler(/.+?)(?://|\.|$)').findall(i[0]), re.sub('&#\d*;', '', i[1])) for i in result]
+            result = [(i[0][0] + '/', cleantitle.query(i[1])) for i in result if len(i[0]) > 0]
 
             return result
         except:
-            return
+            return []
 
 
     def get_episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        if url == None: return
-        url = '%s%01d-sezon-%01d-bolum.html' % (url.replace('.html', ''), int(season), int(episode))
-        url = client.replaceHTMLCodes(url)
-        url = url.encode('utf-8')
-        return url
+        try:
+            if not url:
+                return
+
+            url = '%s%01d-sezon-%01d-bolum.html' % (url.replace('.html', ''), int(season), int(episode))
+            return source_utils.strip_domain(url)
+        except:
+            return []
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        try:
-            sources = []
+        #{'source': host, 'quality': i[1], 'provider': 'Sezonlukdizi', 'url': i[0]})
+        sources = []
 
-            if url == None: return sources
+        try:
+            if not url:
+                return sources
 
             url = urlparse.urljoin(self.base_link, url)
 
-            for i in range(3):
-                result = client.request(url)
-                if not result == None: break
-
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+', ' ', result)
 
-            pages = []
-
-            r = client.parseDOM(result, 'div', attrs={'id': 'embed'})[0]
-            pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
+            pages = dom_parser.parse_dom(result, 'div', attrs={'class': 'item'}, req='data-id')
+            pages = [i.attrs['data-id'] for i in pages]
 
             for page in pages:
                 try:
-                    if not page.startswith('http'):
-                        page = 'http:' + page
+                    url = urlparse.urljoin(self.base_link, self.video_link)
 
-                    for i in range(3):
-                        result = client.request(page)
-                        if not result == None: break
+                    result = client.request(url, post={'id': page})
+                    if not result: continue
+
+                    url = dom_parser.parse_dom(result, 'iframe', req='src')[0].attrs['src']
+                    if url.startswith('//'): url = 'http:' + url
+                    if url.startswith('/'): url = urlparse.urljoin(self.base_link, url)
+
+                    valid, host = source_utils.is_host_valid(url, hostDict)
+                    if valid: sources.append({'source': host, 'quality': 'HD', 'url': url,'provider': 'Sezonlukdizi'})
+
+                    if '.asp' not in url: continue
+
+                    result = client.request(url)
 
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
-                    if not captions: raise Exception()
+                    if not captions: continue
 
-                    try:
-                        r = re.findall('url\s*:\s*\'(http(?:s|)://api.pcloud.com/.+?)\'', result)[0]
-                        r = client.request(r)
-                        r = json.loads(r)['variants']
-                        r = [(i['hosts'], i['path'], i['height']) for i in r if
-                             'hosts' in i and 'path' in i and 'height' in i]
-                        r = [('%s%s' % (i[0][0], i[1]), str(i[2])) for i in r if len(i[0]) > 0]
-                        r = [(i[0] if i[0].startswith('http') else 'http://%s' % i[0], i[1]) for i in r]
-                        host = 'cdn';
-                        direct = False;
-                        l = r
-                    except:
-                        pass
+                    matches = [(match[0], match[1]) for match in re.findall('''["']?label\s*["']?\s*[:=]\s*["']?(?P<label>[^"',]+)["']?(?:[^}\]]+)["']?\s*file\s*["']?\s*[:=,]?\s*["'](?P<url>[^"']+)''', result, re.DOTALL | re.I)]
+                    matches += [(match[1], match[0]) for match in re.findall('''["']?\s*file\s*["']?\s*[:=,]?\s*["'](?P<url>[^"']+)(?:[^}>\]]+)["']?\s*label\s*["']?\s*[:=]\s*["']?(?P<label>[^"',]+)''', result, re.DOTALL | re.I)]
 
-                    try:
-                        r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', result)
-                        if not r: raise Exception()
-                        host = 'gvideo';
-                        direct = True;
-                        l = r
-                    except:
-                        pass
+                    result = [(source_utils.label_to_quality(x[0]), x[1].replace('\/', '/')) for x in matches]
+                    result = [(i[0], i[1]) for i in result if not i[1].endswith('.vtt')]
 
-                    links = [(i[0], '1080p') for i in l if int(i[1]) >= 1080]
-                    links += [(i[0], 'HD') for i in l if 720 <= int(i[1]) < 1080]
-                    links += [(i[0], 'SD') for i in l if 480 <= int(i[1]) < 720]
-
-                    for i in links: sources.append(
-                        {'source': host, 'quality': i[1],'provider': 'Sezonlukdizi', 'url': i[0]})
+                    for quality, url in result: sources.append({'source': 'gvideo', 'quality': quality, 'url': url, 'provider': 'Sezonlukdizi'})
                 except:
                     pass
 

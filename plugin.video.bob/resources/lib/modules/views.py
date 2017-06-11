@@ -44,8 +44,11 @@ def addView(content):
         file.close()
         views = re.compile('<views>(.+?)</views>').findall(read)[0]
         views = [int(x) for x in views.split(',')]
+        import xbmc
+        xbmc.log("views :" + repr(views),xbmc.LOGNOTICE)
         for view in views:
             label = control.infoLabel('Control.GetLabel(%s)' % (view))
+            xbmc.log("label :" + repr(label),xbmc.LOGNOTICE)
             if not (label == '' or label == None): break
         record = (skin, content, str(view))
         control.makeFile(control.dataPath)

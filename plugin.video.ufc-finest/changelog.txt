@@ -1,0 +1,42 @@
+v2.8-
+Minor fixes/Ares Move
+
+v2.7-
+Minor fixes/Tvaddons Move
+
+v2.6-
+Openload Links Scraper
+
+v2.5-
+What's New Fix
+
+v2.4 -
+Minor Fixs
+
+v2.3 -
+Revamp/Name Change (MMA Planet)
+
+v2.3 -
+Revamp/Name Change (MMA Planet)
+
+v2.2 -
+UFC Callander Scraper Added
+
+v2.0 -
+Minor fixes/Tvaddons Move
+
+v1.4 -
+MamaHD Scraper added (Works On UFC Nights)
+
+v1.3 -
+Sportsdevil Fix
+Moved Whats New To Main Menu Rather Than Pop-up
+
+v1.1 - 
+Added:
+Search Function
+Information Notification Pop-up 
+
+
+v1.0 - 
+Initial Release

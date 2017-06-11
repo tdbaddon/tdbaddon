@@ -91,17 +91,21 @@ class source:
                 else:
                     url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title).replace('+','-'))
 
-                result = client.request(url, limit='5')
+                r = client.request(url, limit='10', output='extended')
+                result = r[0]
 
                 if result == None and not 'tvshowtitle' in data:
                     url += '-%s' % year
-                    result = client.request(url, limit='5')
+                    r = client.request(url, limit='10', output='extended')
+                    result = r[0]
 
-                result = client.parseDOM(result, 'title')[0]
+                cookie = r[4]
+                headers = r[3]
 
-                if '%TITLE%' in result: raise Exception()
+                result2 = client.parseDOM(result, 'title')[0]
 
-                r = client.request(url, output='extended')
+                if '%TITLE%' in result2: raise Exception()
+
 
                 if not imdb in r[0]: raise Exception()
 
@@ -110,10 +114,11 @@ class source:
                 url = urlparse.urljoin(self.base_link, url)
 
                 r = client.request(url, output='extended')
+                cookie = r[4]
+                headers = r[3]
+                result = r[0]
 
-            cookie = r[4];
-            headers = r[3];
-            result = r[0]
+
 
             try:
                 auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
