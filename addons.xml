@@ -2382,35 +2382,6 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.one242415" name="one242415" version="1.0.8" provider-name="tvaddons.ag">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="script.video.F4mProxy" version="2.2.3"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">one242415</summary>
-		<description lang="en">Discover Great Streaming Playlists, Please visit www.tvaddons.ag for help and support!</description>
-		<platform>all</platform>
-		<forum>http://forums.tvaddons.ag/forums/220-one242415-LIVE-STREAMS</forum>
-		<website>http://www.tvaddons.ag/</website>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news>search fixed and adult lock</news>
-	</extension>
-</addon>
-
 <addon id="plugin.video.outofthisworld"
 	name="Out of this World"
 	version="1.1.0"
@@ -2465,35 +2436,6 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.3.3" provider-name="tvaddons.ag">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="script.video.F4mProxy" version="2.2.3"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Phoenix</summary>
-		<description lang="en">Discover Great Streaming Playlists, Please visit www.tvaddons.ag for help and support!</description>
-		<platform>all</platform>
-		<forum>http://forums.tvaddons.ag/forums/220-PHOENIX-LIVE-STREAMS</forum>
-		<website>http://www.tvaddons.ag/</website>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news>Module updates - meta fix</news>
-	</extension>
-</addon>
-
 <addon id="plugin.video.playklub"
        name="[COLOR gold].THE PLAYERS KLUB BETA[/COLOR]"
        version="2.0"
@@ -2527,6 +2469,27 @@ For DMCA Reports, please send message to our FB page.
     <description>Live HD sport streams from reddit</description>
     <platform>all</platform>
     <language>en</language>
+  </extension>
+</addon>
+
+<addon id="plugin.video.real-movies" name="[COLOR red]Real-Movies[/COLOR]" version="2.1" provider-name="K-M-M">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Real-Movies</summary>
+    <description lang="en">Movies To Watch For Non Real-Debrid Users.And It Works Even Better For Real Debrid Users. </description>
+    <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -3192,6 +3155,27 @@ For DMCA Reports, please send message to our FB page.
                 Added News to Info Pane
                 Added New Providers</news>
     </extension>
+</addon>
+
+<addon id="plugin.video.Vortex"
+       name="Vortex"
+       version="2.0.4"
+       provider-name="Rockcrusher">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.requests" version="2.12.4"/>
+	<import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+			library="default.py">
+			<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Music and Video</summary>
+    <description lang="en">Music and Video Playlists.</description>
+    <language>en</language>
+	<platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.white.devil" version="3.5.9" name="[COLOR dodgerblue].White Devil Streams[/COLOR]" provider-name="WDS Brettus And Ozzy">
@@ -4068,6 +4052,21 @@ and more.......</description>
 	</extension>
 </addon>
 
+<addon id="repository.Rockcrusher" name="Rockcrusher Repository" version="1.2" provider-name="Rockcrusher">
+	<extension point="xbmc.addon.repository" name="Rockcrusher Repository">
+        <info compressed="false">http://streamaddons.com/Devs/RockCrusher/xmls/addons.xml</info>
+        <checksum>http://streamaddons.com/Devs/RockCrusher/xmls/addons.xml.md5</checksum>
+        <datadir zip="true">http://streamaddons.com/Devs/RockCrusher/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Install Rockcrusher Addons</summary>
+        <description>Rockcrusher Repository</description>
+        <disclaimer lang="en">Author does not host or distribute any of the content displayed by this addon. Author does not have any affiliation with the content provider.
+        </disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="repository.shani" name="Shanis Addon Repository" version="2.9" provider-name="Shani">
 	<extension point="xbmc.addon.repository" name="Shanis Addon Repository">
         <dir>
@@ -4132,6 +4131,19 @@ and more.......</description>
 	<extension point="xbmc.addon.metadata">
 		<summary>Repository Of Slim From Team Evolve</summary>
 		<description>Slims Addons</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.StreamArmy" name="[COLOR crimson]S[COLOR silver]tream Army Repo[/COLOR]" version="5.1" provider-name="@Nemzzy668 / @_Manc_">
+	<extension point="xbmc.addon.repository" name="Stream Army">
+		<info compressed="false">https://raw.githubusercontent.com/nemesis668/repository.streamarmy/master/addons.xml</info>
+        <checksum>http://raw.githubusercontent.com/nemesis668/repository.streamarmy/master/addons.xml.md5</checksum>
+        <datadir zip="true">http://raw.githubusercontent.com/nemesis668/repository.streamarmy/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Stream Army Repo</summary>
+		<description>Repo For Stream Army, Bought to you by @Nemzzy668 /  @_MANC_</description>
 		<platform>all</platform>
 	</extension>
 </addon>

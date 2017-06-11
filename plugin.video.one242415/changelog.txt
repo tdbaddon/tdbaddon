@@ -1,2 +1,0 @@
-[B]1.0.8[/B]
-search fixed and adult lock

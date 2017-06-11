@@ -1,0 +1,10 @@
+<settings>
+	
+	<category label="[COLOR gold]Kodi Update[/COLOR]">
+		<setting type="lsep" label="[COLOR red]Click bellow to Check For Updates[/COLOR]"/>
+		<setting type="lsep" label="[COLOR red]Automaticaly Updates all Add-ons and repos[/COLOR]"/>
+		<setting type="lsep" label="[COLOR red]If Update is avalible.[/COLOR]"/>
+		<setting label="  [COLOR gold]Click Here To Check For Updates For All Your Addons & Repos[/COLOR]" type="action" action="UpdateAddonRepos"/>
+	</category>
+	
+</settings>
