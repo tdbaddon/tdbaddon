@@ -633,7 +633,7 @@ def parse_google(scraper, link):
         vid_id = match.group(1)
         sources = parse_gplus(vid_id, html, link)
     else:
-        if 'drive.google' in link or 'docs.google' in link:
+        if 'drive.google' in link or 'docs.google' in link or 'youtube.googleapis' in link:
             sources = parse_gdocs(scraper, link)
         if 'picasaweb' in link:
             i = link.rfind('#')
@@ -706,10 +706,17 @@ def parse_gdocs(scraper, link):
         urls += parse_stream_map(scraper, value)
     
     if not urls:
-        match = re.search("'id'\s*:\s*'([^']+)", html)
-        if match:
+        doc_id = ''
+        query = parse_query(link)
+        if 'docid' in query:
+            doc_id = query['docid']
+        elif '/view' in link:
+            match = re.search("'id'\s*:\s*'([^']+)", html)
+            if match: doc_id = match.group(1)
+                
+        if doc_id:
             info_url = 'https://drive.google.com/get_video_info'
-            html = scraper._http_get(info_url, params={'docid': match.group(1)}, headers={'Referer': link}, cache_limit=.5)
+            html = scraper._http_get(info_url, params={'docid': doc_id}, headers={'Referer': link}, cache_limit=.5)
             if 'status=ok' not in html:
                 html = base64.b64decode(html)
             query = parse_query(html)

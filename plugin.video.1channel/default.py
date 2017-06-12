@@ -475,7 +475,7 @@ def PlaySource(url, title, video_type, primewire_url, resume, imdbnum='', year='
 
 @pw_dispatcher.register(MODES.CH_WATCH, ['video_type', 'title', 'primewire_url', 'watched'], ['imdbnum', 'season', 'episode', 'year', 'dbid'])
 def change_watched(video_type, title, primewire_url, watched, imdbnum='', season='', episode='', year='', dbid=None):
-    if watched == True:
+    if watched:
         overlay = 7
         whattodo = 'add'
     else:
@@ -489,7 +489,7 @@ def change_watched(video_type, title, primewire_url, watched, imdbnum='', season
             cmd = cmd % (dbid)
             result = json.loads(xbmc.executeJSONRPC(cmd))
             cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.SetEpisodeDetails", "params": {"episodeid": %s, "playcount": %s}, "id": 1}'
-            playcount = int(result['result']['episodedetails']['playcount']) + 1 if watched == True else 0
+            playcount = int(result['result']['episodedetails']['playcount']) + 1 if watched else 0
             cmd = cmd % (dbid, playcount)
             result = xbmc.executeJSONRPC(cmd)
             xbmc.log('PrimeWire: Marking episode .strm as watched: %s' % result)
@@ -498,7 +498,7 @@ def change_watched(video_type, title, primewire_url, watched, imdbnum='', season
             cmd = cmd % (dbid)
             result = json.loads(xbmc.executeJSONRPC(cmd))
             cmd = '{"jsonrpc": "2.0", "method": "VideoLibrary.SetMovieDetails", "params": {"movieid": %s, "playcount": %s}, "id": 1}'
-            playcount = int(result['result']['moviedetails']['playcount']) + 1 if watched == True else 0
+            playcount = int(result['result']['moviedetails']['playcount']) + 1 if watched else 0
             cmd = cmd % (dbid, playcount)
             result = xbmc.executeJSONRPC(cmd)
             xbmc.log('PrimeWire: Marking movie .strm as watched: %s' % result)
@@ -597,7 +597,7 @@ def Search(mode, section, query='', page=None):
         elif mode == MODES.SEARCH_ADV:
             criteria = utils.unpack_query(query)
             results = pw_scraper.search_advanced(section, criteria['title'], criteria['tag'], False, criteria['country'], criteria['genre'],
-                                               criteria['actor'], criteria['director'], criteria['year'], criteria['month'], criteria['decade'], page=page, paginate=paginate)
+                                                 criteria['actor'], criteria['director'], criteria['year'], criteria['month'], criteria['decade'], page=page, paginate=paginate)
     except PW_Error:
         utils.notify(i18n('site_blocked'), duration=10000)
         return
@@ -639,9 +639,9 @@ def fix_urls():
     for table in tables:
         # remove any possible dupes
         while True:
-            rows = db_connection.execute_sql("SELECT url from %s GROUP BY REPLACE(url,'-online-free','') HAVING COUNT(*)>1" % (table))
+            rows = db_connection.execute_sql("SELECT REPLACE(url,'-online-free','') from %s GROUP BY REPLACE(url,'-online-free','') HAVING COUNT(*)>1" % (table))
             if rows:
-                db_connection.execute_sql("DELETE FROM %s WHERE url in (SELECT * FROM (SELECT url from %s GROUP BY REPLACE(url,'-online-free','') HAVING COUNT(*)>1) as t)" % (table, table))
+                db_connection.execute_sql("DELETE FROM %s WHERE url in (SELECT * FROM (SELECT REPLACE(url,'-online-free','') as url from %s GROUP BY REPLACE(url,'-online-free','') HAVING COUNT(*)>1) as t)" % (table, table))
             else:
                 break
 
@@ -654,6 +654,10 @@ def AddonMenu():  # homescreen
     db_connection.init_database()
     fix_urls()
     if utils.has_upgraded():
+        utils.log('Showing update popup', xbmc.LOGDEBUG)
+        if _1CH.get_setting('show_splash') == 'true':
+            msg = (i18n('popup_msg_line1') + '\n\n' + i18n('popup_msg_line2') + '\n\n' + i18n('popup_msg_line3'))
+            gui_utils.do_My_TextSplash(msg, HowLong=20, TxtColor='0xFF00FF00', BorderWidth=45)
         adn = xbmcaddon.Addon('plugin.video.1channel')
         adn.setSetting('domain', 'http://www.primewire.ag')
         adn.setSetting('old_version', _1CH.get_version())
@@ -687,9 +691,9 @@ def AddonMenu():  # homescreen
 @pw_dispatcher.register(MODES.INSTALL_THEMES)
 def install_themes():
     addon = 'plugin://plugin.program.addoninstaller'
-    query = {'mode': 'addoninstall', 'name': '1Channel.thempak', \
-           'url': 'https://offshoregit.com/tknorris/tknorris-release-repo/raw/master/zips/script.1channel.themepak/script.1channel.themepak-0.0.3.zip', \
-           'description': 'none', 'filetype': 'addon', 'repourl': 'none'}
+    query = {'mode': 'addoninstall', 'name': '1Channel.thempak',
+             'url': 'https://github.com/k3l3vra1/k3l3vra.testing.repo/blob/master/zips/script.1channel.themepak/script.1channel.themepak-0.0.8.zip?raw=true',
+             'description': 'none', 'filetype': 'addon', 'repourl': 'none'}
     run = 'RunPlugin(%s)' % (addon + '?' + urllib.urlencode(query))
     xbmc.executebuiltin(run)
 
@@ -1109,7 +1113,7 @@ def GetFilteredResults(section, genre='', letter='', sort='alphabet', page=None,
                 win.setProperty('1ch.movie.%d.thumb' % count, result['img'])
                 # Needs dialog=1 to show dialog instead of going to window
                 queries = {'mode': section_params['nextmode'], 'url': result['url'], 'title': result['title'],
-                            'img': result['img'], 'dialog': 1, 'video_type': section_params['video_type']}
+                           'img': result['img'], 'dialog': 1, 'video_type': section_params['video_type']}
                 win.setProperty('1ch.movie.%d.path' % count, _1CH.build_plugin_url(queries))
                 count = count + 1
 
@@ -1132,7 +1136,7 @@ def GetFilteredResults(section, genre='', letter='', sort='alphabet', page=None,
         menu_items = [(label, command)]
         meta = {'title': i18n('next_page') + ' >>'}
         _1CH.add_directory({'mode': MODES.FILTER_RESULTS, 'section': section, 'genre': genre, 'letter': letter, 'sort': sort, 'page': next_page},
-            meta, contextmenu_items=menu_items, context_replace=True, img=art('nextpage.png'), fanart=art('fanart.png'), is_folder=True)
+                           meta, contextmenu_items=menu_items, context_replace=True, img=art('nextpage.png'), fanart=art('fanart.png'), is_folder=True)
 
     utils.set_view(section_params['content'], '%s-view' % (section_params['content']))
     xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=_1CH.get_setting('dir-cache') == 'true')
@@ -1355,9 +1359,9 @@ def browse_watched_website(section, page=None):
 
     # TODO: Extend fav2Library
     # if section=='tv':
-        # label='Add Watched TV Shows to Library'
+    # label='Add Watched TV Shows to Library'
     # else:
-        # label='Add Watched Movies to Library'
+    # label='Add Watched Movies to Library'
 
     # liz = xbmcgui.ListItem(label=label)
     # liz_url = _1CH.build_plugin_url({'mode': MODES.FAV2LIB, 'section': section})
