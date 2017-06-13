@@ -123,7 +123,7 @@ class channels:
 
     def items_list(self, i):
         try:
-            item = trakt.SearchAll(urllib.quote_plus(i[0]), i[1], True)[0]
+            item = trakt.SearchAll(i[0], i[1], True)[0]
 
             content = item.get('movie')
             if not content: content = item.get('show')

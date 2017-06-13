@@ -465,7 +465,9 @@ class libepisodes:
                 ep = [x['title'].encode('utf-8') for x in lib if str(x['imdbnumber']) in id or (x['title'].encode('utf-8') == item['tvshowtitle'] and str(x['year']) == item['year'])][0]
                 ep = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"filter":{"and": [{"field": "tvshow", "operator": "is", "value": "%s"}]}, "properties": ["season", "episode"]}, "id": 1}' % ep)
                 ep = unicode(ep, 'utf-8', errors='ignore')
-                ep = json.loads(ep)['result']['episodes'][-1]
+                ep = json.loads(ep).get('result', {}).get('episodes', {})
+                ep = [{'season': int(i['season']), 'episode': int(i['episode'])} for i in ep]
+                ep = sorted(ep, key=lambda x: (x['season'], x['episode']))[-1]
 
                 num = [x for x,y in enumerate(it) if str(y['season']) == str(ep['season']) and str(y['episode']) == str(ep['episode'])][-1]
                 it = [y for x,y in enumerate(it) if x > num]

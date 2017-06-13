@@ -86,7 +86,7 @@ SERIALE_ONLINE_TABLE = {
                #8100: ["Zobaczto.tv Seriale","zobacztoseriale"],
                #8200: ["Tvseriesonline.pl    [dziala 70% stron z linkami]", "tvseriesonlinepl"],
                8300: ["Alltube.tv Seriale","alltubeseriale"],
-               8500: ["Cdax.tv Seriale","cdaxseriale"],
+               #8500: ["Cdax.tv Seriale","cdaxseriale"],
                8400: ["eFilmy.tv Seriale","efilmyseriale"],
 }
 
@@ -95,8 +95,8 @@ FILM_ONLINE_TABLE = {
             7400 : ["Cda.pl", 'cdapl'],
             7700: ["EFilmy.tv","efilmy"],
             7550: ["Filmy.to [32% zrobione]", 'filmyto'],
-             7600: ["Segos.se","segos"],
-             7300: ["Cdax.tv","cdaxfilmy"],
+             #7600: ["Segos.se","segos"],
+             #7300: ["Cdax.tv","cdaxfilmy"],
              #7100: ["Filmbox Movie","filmboxmoovie"],
              7500: ["Zalukaj.tv","zalukaj"],
              #7900: ["Vod.tvpl.pl [testy]","tvppl"],

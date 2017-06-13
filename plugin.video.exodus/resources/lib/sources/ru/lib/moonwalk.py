@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    Copyright (C) 2016 Viper2k4
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -76,10 +76,13 @@ def __get_moonwalk(url, ref, info=''):
         story = re.findall('''["']X-CSRF-Token["']\s*:\s*[^,]+,\s*["']([\w\-]+)["']\s*:\s*["'](\w+)["']''', r)[0]
         headers.update({'X-CSRF-Token': csrf, story[0]: story[1]})
 
-        varname = re.findall('''var\s*(\w+)\s*=\s*'/sessions/new_session'\s*;''', r)[0]
-        jsid = re.findall('''\.post\(\s*%s\s*,\s*(\w+)''' % varname, r)[0]
+        for i in re.findall('window\[(.*?)\]', r):
+            r = r.replace(i, re.sub('''["']\s*\+\s*["']''', '', i))
 
-        jsdata = re.findall('var\s*%s\s*=\s*({.*?})' % jsid, r, re.DOTALL)[0]
+        varname = re.findall('''var\s*(\w+)\s*=\s*'/sessions/new_session'\s*;''', r)[0]
+        jsid = re.findall('''\.post\(\s*%s\s*,\s*([^(\);)]+)''' % varname, r)[0]
+
+        jsdata = re.findall('(?:var\s*)?%s\s*=\s*({.*?})' % re.escape(jsid), r, re.DOTALL)[0]
         jsdata = re.sub(r'([\{\s,])(\w+)(:)', r'\1"\2"\3', jsdata)
         jsdata = re.sub(r'''(?<=:)\s*\'''', ' "', jsdata)
         jsdata = re.sub(r'''(?<=\w)\'''', '"', jsdata)
@@ -88,7 +91,8 @@ def __get_moonwalk(url, ref, info=''):
         jsdata = json.loads(jsdata)
 
         mw_key = re.findall('''var\s*mw_key\s*=\s*["'](\w+)["']''', r)[0]
-        newatt = re.findall('''%s\[["'](\w+)["']\]\s*=\s*["'](\w+)["']''' % jsid, r)[0]
+        newatt = re.findall('''%s\[["']([^=]+)["']\]\s*=\s*["']([^;]+)["']''' % re.escape(jsid), r)[0]
+        newatt = [re.sub('''["']\s*\+\s*["']''', '', i) for i in newatt]
 
         jsdata.update({'mw_key': mw_key, newatt[0]: newatt[1]})
 

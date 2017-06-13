@@ -38,6 +38,9 @@ class VshareResolver(UrlResolver):
         if sources:
             print "S",sources[-1][0].replace('\\','')
             return sources[-1][0].replace('\\','')
+        sources = helpers.parse_html5_source_list(html)
+        print sources
+
         return helpers.pick_source(sources) + helpers.append_headers(headers)
 
     def get_url(self, host, media_id):

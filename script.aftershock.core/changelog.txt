@@ -1,6 +1,0 @@
-AftershockCore v1.0.3
---------------------------------
-- Updated supported hosts
-- Updated Metadata Handling
-
-Initial Version

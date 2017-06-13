@@ -35,6 +35,7 @@ def log(msg, level=LOGDEBUG):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
         xbmc.log('%s: %s' % (name, msg), level)
+        print('%s: %s' % (name, msg))
     except Exception as e:
         try: xbmc.log('Logging Failure: %s' % (e), level)
         except: pass  # just give up

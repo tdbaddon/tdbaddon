@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="3.1.15" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.16" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -33,9 +33,8 @@
 		</assets>
 		<news>- Updated existing providers
 - Added and Updated German providers
-- Removed dead providers
+- Updated Korean providers
 - Fixed Russian providers
-- Added library integration
-- Fixed trakt watch/unwatched on seasons</news>
+- Fixed library update in some cases</news>
 	</extension>
 </addon>

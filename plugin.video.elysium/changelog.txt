@@ -1,0 +1,82 @@
+[B]2017.06.10[/B]
+- Official release of rebranded addon
+
+[B]2017.06.08[/B]
+- Rebrand from Zen to Elysium
+- Disabled Cinemabox
+
+[B]2017.05.05[/B]
+- Update Providers
+- Fixed Local Watched Marks
+- Fix broken caching in episodes
+- Improved some call method
+
+[B]2017.05.02[/B]
+- Update Providers
+
+[B]2017.04.30[/B]
+- Update Providers
+
+[B]2017.04.27.02[/B]
+- Update Providers - Add/Delete Providers
+- Menu Cleanups
+- Added Local Watchmarks for Tv Shows/Seasons/Episodes
+
+[B]2017.04.09[/B]
+- Update Providers
+- Easter Break fixes
+
+[B]2017.04.07[/B]
+- Update Providers
+- Added support for 4k in skins dialogs
+- code improvements
+
+[B]2017.03.31[/B]
+- Added "People also liked" option from the contextmenu... suggestions based on imdb
+
+[B]2017.03.30[/B]
+- Update Providers - New Providers
+- Tweaked caching and results
+- Added checks and filters for unplayables streams and archives
+- tweaked missing headers for auto web requests
+
+[B]2017.03.21[/B]
+- Update Providers 
+- Added Ability to Display only watchlisted Shows in TV Calendar
+- new Free and Debrid Providers
+- Cleaned up resources and scraping methods
+
+[B]2017.03.08[/B]
+- Update Providers
+- Improved results
+- Added setting to disable hosts with captcha (i.e. openload etc)
+- Max quality for sources extended to 4k
+- Code tweaks
+
+[B]2017.03.05[/B]
+- Added Library Feature (you need Metalliq addon)
+- Improved results and searches
+- Added a "Browse Series" in the episodes context menu to jump to the main series page
+- Added a scraper for local library
+
+[B]2017.02.28[/B]
+- Hotfixes
+- Improved Sources Caching
+- Code cleanup and improvements
+
+[B]2017.02.25.2[/B]
+- Update Providers - Improved title matches for episodes and movies
+- New In Progress Tab, Netflix Style Progress tracking
+- Hotfixes to skins and dialogs
+
+[B]2017.02.24[/B]
+- Update Providers - Added Providers - Deleted Old Providers
+- More infos on Progress Windows - Now Showing Total Counts and Counts for each quality
+- Now Including a Real Time Mode and a Skinned Dialog Mode for Results
+- Major rework on codebase and improved caching and overall calls
+- Tweaked Proxies
+- Thanks to Q and Midraal for the help on the metate original code
+
+[B]2017.02.09[/B]
+- Update Providers
+- Elysium Now is included in NaN Repo

@@ -35,7 +35,7 @@ class VidtoResolver(UrlResolver):
             headers = {'User-Agent': common.FF_USER_AGENT}
             html = self.net.http_GET(web_url, headers=headers).content
             html = helpers.add_packed_data(html)
-            print html
+            #print html
             sources = []
 
             for match in re.finditer('file:\s*"([^"]+)"\s*,\s*label:\s*"([^"]+)', html):

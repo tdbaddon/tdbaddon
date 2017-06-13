@@ -245,6 +245,11 @@ class GenericHost():
 
     def urlresolve(self,url):
         linkVideo=''
+        if not 'http' in url:
+            url = 'http:' + url
+
+        self.control.log('2 PLAYYYYYYERRRRRRRRRRRR %s ' % url)
+
         hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
         if hmf.valid_url() == True:
             linkVideo = hmf.resolve()

@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    Copyright (C) 2016 Viper2k4
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -82,26 +82,25 @@ class source:
                 return sources
 
             ref = urlparse.urljoin(self.base_link, url)
-            url = urlparse.urljoin(self.base_link, self.ajax_link % re.findall('-([\w\d]+)$', ref)[0])
+            url = urlparse.urljoin(self.base_link, self.ajax_link % re.findall('-(\w+)$', ref)[0])
 
-            headers = {}
-            headers.update({'Referer': ref, 'User-Agent': client.randomagent()})
+            headers = {'Referer': ref, 'User-Agent': client.randomagent()}
 
-            result = client.request(url, headers=headers)
+            result = client.request(url, headers=headers, post='')
             result = base64.decodestring(result)
             result = json.loads(result).get('playinfo', [])
 
             if isinstance(result, basestring):
                 result = result.replace('embed.html', 'index.m3u8')
 
-                base_url = re.sub('index.m3u8?token=[\d-]', '', result)
+                base_url = re.sub('index\.m3u8\?token=[\w\-]+', '', result)
 
                 r = client.request(result, headers=headers)
                 r = [(i[0], i[1]) for i in re.findall('#EXT-X-STREAM-INF:.*?RESOLUTION=\d+x(\d+)[^\n]+\n([^\n]+)', r, re.DOTALL) if i]
-                r = [(source_utils.label_to_quality(i[0]), i[1] + '|%s' % urllib.urlencode(headers)) for i in r]
+                r = [(source_utils.label_to_quality(i[0]), i[1] + source_utils.append_headers(headers)) for i in r]
                 r = [{'quality': i[0], 'url': base_url+i[1]} for i in r]
                 for i in r: sources.append({'source': 'CDN', 'quality': i['quality'], 'language': 'de', 'url': i['url'], 'direct': True, 'debridonly': False})
-            else:
+            elif result:
                 result = [i.get('link_mp4') for i in result]
                 result = [i for i in result if i]
                 for i in result:
@@ -131,10 +130,7 @@ class source:
             r = sorted(r, key=lambda i: int(i[1]), reverse=True)  # with year > no year
             r = [i[0] for i in r if i[1] in y][0]
 
-            url = urlparse.urlparse(r).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return
 

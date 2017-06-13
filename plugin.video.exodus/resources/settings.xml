@@ -108,6 +108,7 @@
 		<setting id="provider.filmpalast" type="bool" label="FILMPALAST" default="true" />
 		<setting id="provider.foxx" type="bool" label="FOXX" default="true" />
 		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
+		<setting id="provider.hdstreams" type="bool" label="HDSTREAMS" default="true" />
 		<setting id="provider.horrorkino" type="bool" label="HORRORKINO" default="true" />
 		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
 		<setting id="provider.kinodogs" type="bool" label="KINODOGS" default="true" />

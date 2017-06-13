@@ -25,10 +25,14 @@ from resources.lib.modules import cache
 from resources.lib.modules import workers
 from resources.lib.modules import dom_parser
 from resources.lib.modules import log_utils
+from resources.lib.modules import utils
 
 
 def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, XHR=False, limit=None, referer=None, cookie=None, compression=True, output='', timeout='30'):
     try:
+        if not url:
+            return
+
         handlers = []
 
         if not proxy == None:
@@ -56,33 +60,34 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
         if url.startswith('//'): url = 'http:' + url
 
-        try: headers.update(headers)
-        except: headers = {}
-        if 'User-Agent' in headers:
+        _headers ={}
+        try: _headers.update(headers)
+        except: pass
+        if 'User-Agent' in _headers:
             pass
         elif not mobile == True:
             #headers['User-Agent'] = agent()
-            headers['User-Agent'] = cache.get(randomagent, 1)
+            _headers['User-Agent'] = cache.get(randomagent, 1)
         else:
-            headers['User-Agent'] = 'Apple-iPhone/701.341'
-        if 'Referer' in headers:
+            _headers['User-Agent'] = 'Apple-iPhone/701.341'
+        if 'Referer' in _headers:
             pass
         elif referer is not None:
-            headers['Referer'] = referer
-        if not 'Accept-Language' in headers:
-            headers['Accept-Language'] = 'en-US'
-        if 'X-Requested-With' in headers:
+            _headers['Referer'] = referer
+        if not 'Accept-Language' in _headers:
+            _headers['Accept-Language'] = 'en-US'
+        if 'X-Requested-With' in _headers:
             pass
         elif XHR == True:
-            headers['X-Requested-With'] = 'XMLHttpRequest'
-        if 'Cookie' in headers:
+            _headers['X-Requested-With'] = 'XMLHttpRequest'
+        if 'Cookie' in _headers:
             pass
         elif not cookie == None:
-            headers['Cookie'] = cookie
-        if 'Accept-Encoding' in headers:
+            _headers['Cookie'] = cookie
+        if 'Accept-Encoding' in _headers:
             pass
         elif compression and limit is None:
-            headers['Accept-Encoding'] = 'gzip'
+            _headers['Accept-Encoding'] = 'gzip'
 
 
         if redirect == False:
@@ -93,14 +98,17 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.build_opener(NoRedirection)
             opener = urllib2.install_opener(opener)
 
-            try: del headers['Referer']
+            try: del _headers['Referer']
             except: pass
 
         if isinstance(post, dict):
+            post = utils.byteify(post)
             post = urllib.urlencode(post)
 
+        url = utils.byteify(url)
+
         request = urllib2.Request(url, data=post)
-        _add_request_header(request, headers)
+        _add_request_header(request, _headers)
 
 
         try:
@@ -118,14 +126,14 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
                     netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
 
-                    ua = headers['User-Agent']
+                    ua = _headers['User-Agent']
 
                     cf = cache.get(cfcookie().get, 168, netloc, ua, timeout)
 
-                    headers['Cookie'] = cf
+                    _headers['Cookie'] = cf
 
                     request = urllib2.Request(url, data=post)
-                    _add_request_header(request, headers)
+                    _add_request_header(request, _headers)
 
                     response = urllib2.urlopen(request, timeout=int(timeout))
                 else:
@@ -179,10 +187,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         if 'sucuri_cloudproxy_js' in result:
             su = sucuri().get(result)
 
-            headers['Cookie'] = su
+            _headers['Cookie'] = su
 
             request = urllib2.Request(url, data=post)
-            _add_request_header(request, headers)
+            _add_request_header(request, _headers)
 
             response = urllib2.urlopen(request, timeout=int(timeout))
 
@@ -200,10 +208,10 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
         if 'Blazingfast.io' in result and 'xhr.open' in result:
             netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-            ua = headers['User-Agent']
-            headers['Cookie'] = cache.get(bfcookie().get, 168, netloc, ua, timeout)
+            ua = _headers['User-Agent']
+            _headers['Cookie'] = cache.get(bfcookie().get, 168, netloc, ua, timeout)
 
-            result = _basic_request(url, headers=headers, post=post, timeout=timeout, limit=limit)
+            result = _basic_request(url, headers=_headers, post=post, timeout=timeout, limit=limit)
 
         if output == 'extended':
             try: response_headers = dict([(item[0].title(), item[1]) for item in response.info().items()])
@@ -214,7 +222,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             try: cookie = cf
             except: pass
             if close == True: response.close()
-            return (result, response_code, response_headers, headers, cookie)
+            return (result, response_code, response_headers, _headers, cookie)
         else:
             if close == True: response.close()
             return result

@@ -498,7 +498,9 @@ class sources:
             dbcur.execute("DELETE FROM rel_url WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_url Values (?, ?, ?, ?, ?)", (source, imdb, '', '', url))
             dbcon.commit()
-        except:
+        except Exception as e:
+            control.log('getMovieSource3 url:%s, ERROR:%s' % (source,e))
+
             pass
 
         try:
@@ -510,7 +512,8 @@ class sources:
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
-        except:
+        except Exception as e:
+            control.log('getMovieSource4 url:%s, ERROR:%s' % (source,e))
             pass
 
 

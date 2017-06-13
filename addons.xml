@@ -818,27 +818,27 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.7.1" provider-name="AftershockPY">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.8.0" provider-name="...">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
-        <import addon="repository.aftershock" version="2.0.1"/>
-        <import addon="script.aftershock.artwork" version="1.3.0"/>
+        <import addon="repository.aftershock" version="2.0.4"/>
+        <import addon="script.aftershock.artwork" version="1.3.1"/>
         <import addon="script.module.urlresolver"  version="3.0.21"/>
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
-        <import addon="script.aftershock.core" version="1.1.1"/>
-        <import addon="script.aftershocknow.guide" version="1.0.0"/>
+        <import addon="script.aftershock.core" version="1.1.2"/>
+        <import addon="script.aftershocknow.guide" version="1.0.1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="aftershock.py">
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
-        <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
-        <disclaimer lang="en">The content provided in this application is available free on public domain. We do not host any content. We are just providing the way to stream and all content is the copyright of their owner. The author does not have any affiliation with the content providers.</disclaimer>
+        <description lang="en"></description>
+        <disclaimer lang="en"></disclaimer>
         <platform>all</platform>
-        <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
-	    <website>http://www.facebook.com/aftershockpy</website>
+        <forum></forum>
+	    <website></website>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
@@ -846,10 +846,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
             <screenshot>resources/screenshots/screenshot-02.png</screenshot>
             <screenshot>resources/screenshots/screenshot-03.png</screenshot>
         </assets>
-        <news>- Added / Updated Providers [CR]
-            - Updated Metadata Handling [CR]
-            - Updated Resolvers [CR]
-            - Added Resolvers</news>
+        <news></news>
   </extension>
 </addon>
 
@@ -1304,6 +1301,36 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
+<addon id="plugin.video.elysium" version="2017.06.10" name="Elysium" provider-name="Elysium">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+		<import addon="script.elysium.artwork"/>
+		<import addon="script.module.urlresolver"/>
+		<import addon="script.module.metahandler"/>
+		<import addon="script.module.requests"/>
+		<import addon="script.module.beautifulsoup"/>
+		<import addon="script.module.schism.common"/>
+		<import addon="script.module.futures"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="elysium.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Elysium movies and TV shows</summary>
+		<description lang="en">Watch movies and TV shows in high quality! Please note that this addon is not an official part of the Kodi media player, and therefore not to be mentioned within official support channels. This addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host or share any content, nor is heaffiliated with any of the content providers.</disclaimer>
+		<platform>all</platform>
+		<news>Rebrand from Zen to Elysium / Disabled cinemabox</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/01.jpg</screenshot>
+			<screenshot>resources/screenshots/02.jpg</screenshot>
+			<screenshot>resources/screenshots/03.jpg</screenshot>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="plugin.video.et.canada"
        name="ET Canada"
        version="3.0.3"
@@ -1393,7 +1420,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.15" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.16" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1427,10 +1454,9 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		</assets>
 		<news>- Updated existing providers
 - Added and Updated German providers
-- Removed dead providers
+- Updated Korean providers
 - Fixed Russian providers
-- Added library integration
-- Fixed trakt watch/unwatched on seasons</news>
+- Fixed library update in some cases</news>
 	</extension>
 </addon>
 
@@ -2343,7 +2369,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
-       version="2017.04.18.1"
+       version="2017.06.12.2"
        provider-name="mrknow">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2790,7 +2816,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.06.10.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.06.11.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -2874,6 +2900,22 @@ For DMCA Reports, please send message to our FB page.
     <description lang="en">supremacy</description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.sylvr" name="Sylvr" version="1.5.0" provider-name="ImReallyShiny">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.liveresolver"  version="0.1.28"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Plays US and UK Live TV Channels from various reliable sources</summary>
+		<description lang="en">Plays US and UK Live TV Channels from various reliable sources</description>
+		<disclaimer lang="en">ImReallyShiny and this Addon is not affiliated with any TV Stations shown. I have no ownership or responsiblity over said video streams.</disclaimer>
+    </extension>
 </addon>
 
 <addon id="plugin.video.TDBBACKUP" name="TDB BACKUP" version="1014" provider-name="TDB">
@@ -3280,7 +3322,7 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="4.0.2" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="4.0.5" provider-name="MetalKettle">
 
   <requires>
 
@@ -3633,7 +3675,7 @@ Enjoy!</description>
 </extension>
 </addon>
 
-<addon id="repository.aftershock" name="Aftershock addons" version="2.0.3" provider-name="AftershockPY">
+<addon id="repository.aftershock" name="Aftershock addons" version="2.0.4" provider-name="..">
 	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -3646,8 +3688,8 @@ Enjoy!</description>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install video addons from Aftershock</summary>
-		<description>Download and install video addons from Aftershock Adddon repository.</description>
-		<disclaimer>The video add-ons hosted by add-ons repository(Aftershock add-ons) makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, video add-ons don't warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on the Internet web site where from data is retrieved or otherwise relating to such materials or on any sites linked to this addon. Videos are streamed directly from video-hosting websites that are having full rights to remove such access to video if required.</disclaimer>
+		<description>Adddon repository.</description>
+		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3825,6 +3867,30 @@ and more.......</description>
 	</extension>
 </addon>
 
+<addon id="repository.elysium" version="2017.06.10" name="Elysium repository" provider-name="Elysium">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+	</requires>
+	<extension point="xbmc.addon.repository" name="Elysium repository">
+		<dir minversion="14.0.0">
+			<info compressed="false">https://github.com/OpenELEQ/repository.elysium/raw/master/elysium.xml</info>
+			<checksum>https://github.com/OpenELEQ/repository.elysium/raw/master/elysium.xml.md5</checksum>
+			<datadir zip="true">https://raw.github.com/OpenELEQ/repository.elysium/master/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Elysium repository</summary>
+		<description lang="en">This repository contains Elysium and required dependencies.</description>
+		<disclaimer lang="en">The Author does not host or share any content, nor is he affiliated with any of the content providers.</disclaimer>
+		<platform>all</platform>
+		<news>Rebrand from Zen to Elysium / Disabled Cinemabox</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.5" provider-name="Mr Entertainment">
 	<extension point="xbmc.addon.repository" name="Entertainment Addons Repository">
         <dir>
@@ -3980,11 +4046,11 @@ and more.......</description>
 	</extension>
 </addon>
 
-<addon id="repository.icanuck" name="[COLOR FF005de5]iCanuck's [/COLOR]Kodi Repository" version="3.1.0" provider-name="iCanuck">
+<addon id="repository.icanuck" name="[COLOR FF005de5]iCanuck's [/COLOR]Kodi Repository" version="3.2.0" provider-name="iCanuck">
 	<extension point="xbmc.addon.repository" name="iCanuck's Kodi Repository">
-       <info>http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/addons.xml</info>
-       <checksum>http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/addons.xml.md5</checksum>
-       <datadir zip="true">http://offshoregit.com/iCanuck/iCanuck-Repo/raw/master/</datadir>
+	   <info compressed="true">http://svn.code.sf.net/p/icanuckxbmcrepo/repo/addons.xml</info>
+	   <checksum>http://svn.code.sf.net/p/icanuckxbmcrepo/repo/addons.xml.md5</checksum>
+	   <datadir zip="true">http://svn.code.sf.net/p/icanuckxbmcrepo/repo/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install iCanuck's Kodi Skins/Addons</summary>
@@ -4049,13 +4115,13 @@ and more.......</description>
 	</extension>
 </addon>
 
-<addon id="repository.k3l3vra" name="K3l3vra's Repository" version="1.0.0" provider-name="k3l3vra">
+<addon id="repository.k3l3vra" name="K3l3vra's Repository" version="1.0.1" provider-name="k3l3vra">
     <extension point="xbmc.addon.repository" name="K3l3vra's Repository">
-	    <dir>
-	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	    </dir>
+        <dir>
+	        <info compressed="false">https://github.com/zqfaen/tva-common/raw/master/addons.xml</info>
+	        <checksum>https://github.com/zqfaen/tva-common/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://github.com/zqfaen/tva-common/raw/master/zips/</datadir>
+        </dir>
         <info compressed="false">http://github.com/k3l3vra1/k3l3vra.repo/raw/master/addons.xml</info>
         <checksum>http://github.com/k3l3vra1/k3l3vra.repo/raw/master/addons.xml.md5</checksum>
         <datadir zip="true">http://github.com/k3l3vra1/k3l3vra.repo/raw/master/zips/</datadir>
@@ -4444,35 +4510,25 @@ and more.......</description>
         </extension>
     </addon>
 
-<addon id="repository.tknorris.beta" name="tknorris Beta Testing Repository" version="1.0.5" provider-name="tknorris">
-    <extension point="xbmc.addon.repository" name="tknorris beta testing repository">
-	    <dir>
-	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	    </dir>
+<addon id="repository.tknorris.beta" name="tknorris's Repository" version="1.0.6" provider-name="tknorris">
+    <extension point="xbmc.addon.repository" name="tknorris's repository">
         <dir>
-            <info compressed="false">http://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml</info>
-            <checksum>http://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
-            <datadir zip="true">http://github.com/norris-addons/tknorris-beta-repo/raw/master/zips/</datadir>
+            <info compressed="false">https://github.com/zqfaen/tva-common/raw/master/addons.xml</info>
+            <checksum>https://github.com/zqfaen/tva-common/raw/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://github.com/zqfaen/tva-common/raw/master/zips/</datadir>
         </dir>
-        <info compressed="false">http://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml</info>
-        <checksum>http://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
-        <datadir zip="true">http://github.com/tknorris/tknorris-beta-repo/raw/master/zips/</datadir>
+        <dir>
+            <info compressed="false">https://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml</info>
+            <checksum>https://github.com/norris-addons/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://github.com/norris-addons/tknorris-beta-repo/raw/master/zips/</datadir>
+        </dir>
+        <info compressed="false">https://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml</info>
+        <checksum>https://github.com/tknorris/tknorris-beta-repo/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/tknorris/tknorris-beta-repo/raw/master/zips/</datadir>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>This is used ONLY for beta testing</summary>
-        <description>Beta testing only!!!
-DO NOT INSTALL UNLESS YOU WISH TO PARTICIPATE IN BETA TESTING
-
-Addons Included
-    - 1Channel (Beta)
-    - 1Channel Thempak
-    - SALTS (Beta)
-    - SALTS Themepak
-    - Trakt (Beta)
-    - Trakt List Manager (Alpha)
-        </description>
+        <description>tknorris's repository</description>
         <platform>all</platform>
     </extension>
 </addon>
@@ -4494,11 +4550,18 @@ Addons Included
     </extension>
 </addon>
 
-<addon id="repository.ukturk" name="UKTurk Addon Repository" version="1.0.1" provider-name="UKTurk">
-	<extension point="xbmc.addon.repository" name="UKTurk Addon Repository">
-		<info compressed="false">https://raw.githubusercontent.com/tdelight/chocolate/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/tdelight/chocolate/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/tdelight/chocolate/master/zips/</datadir>
+<addon id="repository.ukturk" name="UKTurk Addon Repository" version="1.0.3" provider-name="UKTurk">
+	<extension point="xbmc.addon.repository" name="UKTurk Addon Repository">
+	<dir>
+		<info compressed="false">https://raw.githubusercontent.com/MetalKettle/UKT/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/MetalKettle/UKT/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/MetalKettle/UKT/master/zips/</datadir>
+	</dir>
+	<dir>
+		<info compressed="false">https://github.com/zqfaen/tva-common/raw/master/addons.xml</info>
+        	<checksum>https://github.com/zqfaen/tva-common/raw/master/addons.xml.md5</checksum>
+        	<datadir zip="true">https://github.com/zqfaen/tva-common/raw/master/zips/</datadir>
+	</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install UKTurk</summary>
@@ -4768,7 +4831,19 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="script.aftershock.core" name="aftershock-core" version="1.1.1" provider-name="AftershockPY">
+<addon id="script.aftershock.artwork" version="1.3.3" name="Aftershock Artwork" provider-name="IDev">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Aftershock Addon</summary>
+		<description>Themes for Aftershock are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.aftershock.core" name="aftershock-core" version="1.1.2" provider-name="AftershockPY">
   <requires>
     <import addon="xbmc.python" version="2.19.0"/>
   </requires>
@@ -4783,22 +4858,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
   </extension>
 </addon>
 
-<addon id="script.aftershock.core" name="aftershock-core" version="1.1.0" provider-name="AftershockPY">
-  <requires>
-    <import addon="xbmc.python" version="2.19.0"/>
-  </requires>
-  <extension point="xbmc.python.module" library="lib"/>
-  <extension point="xbmc.addon.metadata">
-    <summary></summary>
-    <description></description>
-    <platform>all</platform>
-    <license>Simplified BSD</license>
-    <source></source>
-    <website></website>
-  </extension>
-</addon>
-
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.1" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.2" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
@@ -4832,6 +4892,20 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     <summary lang="en">Common caching api for xbmc plugins.</summary>
   </extension>
   <extension library="lib" point="xbmc.python.module" />
+</addon>
+
+<addon id="script.elysium.artwork" version="2017.06.08" name="Elysium Artwork" provider-name="Elysium">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Elysium Addon</summary>
+		<description></description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="script.exodus.artwork" version="1.0.5" name="Exodus Artwork" provider-name="Exodus">
@@ -5708,7 +5782,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.04.06.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.06.11.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.six" />

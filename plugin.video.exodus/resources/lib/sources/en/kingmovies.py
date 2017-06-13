@@ -33,13 +33,8 @@ class source:
         self.domains = ['kingmovies.to']
         self.base_link = 'https://kingmovies.to'
         self.search_link = '/search?q=%s'
-        self.token_link = 'https://play.kingmovies.to/token.php'
-        self.token_v2_link = 'https://play.kingmovies.to/token_v2.php?&eid=%s&mid=%s&_=%s'
-        self.grabber_link = 'https://play.kingmovies.to/grabber-api-v2/episode/%s?hash=%s&token=%s&_=%s'
-        self.backup_token_link = 'https://play.kingmovies.to/embed/go?type=token&eid=%s&mid=%s&_=%s'
-        self.backup_link = 'https://play.kingmovies.to/embed/go?type=sources&eid=%s&x=%s&y=%s'
-        self.backup_token_link_v2 = 'https://embed.streamdor.co/?type=token&eid=%s&mid=%s&_=%s'
-        self.backup_link_v2 = 'https://embed.streamdor.co/?type=sources&eid=%s&x=%s&y=%s'
+        self.token_link = 'https://embed.streamdor.co/token.php?episode=%s'
+        self.source_link = 'https://embed.streamdor.co/api/video/%s'
 
     def matchAlias(self, title, aliases):
         try:
@@ -158,40 +153,17 @@ class source:
 
             for u in r:
                 try:
-                    p = client.request(u, referer=referer, timeout='10')
-                    t = re.findall('player_type\s*:\s*"(.+?)"', p)[0]
-                    if t == 'embed': raise Exception()
-                    headers = {'Origin': self.base_link}
-                    eid = client.parseDOM(p, 'input', ret='value', attrs = {'name': 'episodeID'})[0].encode('utf-8')
-                    r = client.request(self.token_link, post=urllib.urlencode({'id': eid}), headers=headers, referer=referer, timeout='10', XHR=True)
-                    isV2 = False
-
-                    try:
-                        js = json.loads(r)
-                        hash = js['hash']
-                        token = js['token']
-                        _ = js['_']
-                        url = self.grabber_link % (eid, hash, token, _)
-                        u = client.request(url, headers=headers, referer=referer, timeout='10', XHR=True)
-                        js = json.loads(u)
-                    except:
-                        isV2 = True
-                        pass
-
-                    if isV2:
-                        mid = re.compile('.?id:\s+"(\d+)"').findall(p)[0].encode('utf-8')
-                        timestamp = str(int(time.time() * 1000))
-                        url = self.token_v2_link % (eid, mid, timestamp)
-                        script = client.request(url, headers=headers, referer=referer, timeout='10', XHR=True)
-                        script = self.aadecode(script)
-                        if 'hash' in script and 'token' in script:
-                            hash = re.search('''hash\s+=\s+['"]([^"']+)''', script).group(1).encode('utf-8')
-                            token = re.search('''token\s+=\s+['"]([^"']+)''', script).group(1).encode('utf-8')
-                            _ = re.search('''_\s+=\s+['"]([^"']+)''', script).group(1).encode('utf-8')
-                            url = self.grabber_link % (eid, hash, token, _)
-                            u = client.request(url, headers=headers, referer=referer, timeout='10', XHR=True)
-                            js = json.loads(u)
-
+                    p = client.request(u, headers=headers, referer=referer, timeout='10')
+                    src = re.findall('src\s*=\s*"(.*streamdor.co/video/\d+)"', p)[0]
+                    if src.startswith('//'):
+                        src = 'http:'+src
+                    episodeId = re.findall('.*streamdor.co/video/(\d+)', src)[0]
+                    p = client.request(self.token_link % episodeId, referer=src)
+                    script = self.aadecode(p)
+                    token = re.search('''token\s*:\s*['"]([^"']+)''', script).group(1).encode('utf-8')
+                    post = {'type': 'sources', 'token': token, 'ref': ''}
+                    p = client.request(self.source_link % episodeId, post=post, referer=src, XHR=True)
+                    js = json.loads(p)
 
                     try:
                         u = js['playlist'][0]['sources']
@@ -200,38 +172,6 @@ class source:
                         for i in u:
                             try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
                             except: pass
-                    except:
-                        pass
-
-                    try:
-                        u = js['backup']
-                        u = urlparse.parse_qs(urlparse.urlsplit(u).query)
-                        u = dict([(i, u[i][0]) if u[i] else (i, '') for i in u])
-                        eid = u['eid']
-                        mid = u['mid']
-
-                        if isV2:
-                            p = client.request(self.backup_token_link_v2 % (eid, mid, _), XHR=True, referer=referer, timeout='10')
-                            x = re.search('''_x=['"]([^"']+)''', p).group(1)
-                            y = re.search('''_y=['"]([^"']+)''', p).group(1)
-                            u = client.request(self.backup_link_v2 % (eid, x, y), referer=referer, XHR=True, timeout='10')
-                            js = json.loads(u)
-                        else:
-                            p = client.request(self.backup_token_link % (eid, mid, _), XHR=True, referer=referer, timeout='10')
-                            x = re.search('''_x=['"]([^"']+)''', p).group(1)
-                            y = re.search('''_y=['"]([^"']+)''', p).group(1)
-                            u = client.request(self.backup_link % (eid, x, y), referer=referer, XHR=True, timeout='10')
-                            js = json.loads(u)
-
-                        try:
-                            u = js['playlist'][0]['sources']
-                            u = [i['file'] for i in u if 'file' in i]
-
-                            for i in u:
-                                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
-                                except: pass
-                        except:
-                            pass
                     except:
                         pass
                 except:

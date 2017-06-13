@@ -1,3 +1,6 @@
+v.3.2.0
+* Changed Host to SF
+
 v.3.1.0
 * Changed Host to Offshoregit
 

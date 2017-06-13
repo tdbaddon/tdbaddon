@@ -107,6 +107,7 @@ def parse_smil_source_list(smil):
     return sources
 
 def scrape_sources(html, result_blacklist=None, scheme='http'):
+    patterns = []
     def __parse_to_list(_html, regex):
         _blacklist = ['.jpg', '.jpeg', '.gif', '.png', '.js', '.css', '.htm', '.html', '.php', '.srt', '.sub', '.xml', '.swf', '.vtt']
         _blacklist = set(_blacklist + result_blacklist)

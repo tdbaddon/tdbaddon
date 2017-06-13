@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,7 +16,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 from resources.lib.modules import control
-control.execute('RunPlugin(plugin://plugin.video.exodus/?action=service)')
+control.execute('RunPlugin(plugin://%s)' % control.get_plugin_url({'action': 'service'}))

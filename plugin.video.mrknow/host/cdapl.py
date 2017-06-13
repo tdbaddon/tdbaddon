@@ -149,30 +149,36 @@ class cdapl(object):
         linki_ost1 = soup.find('div', {"id": "dodane_video"})
         linki_all1 = linki_ost1.findAll('label') if linki_ost1 else ()
         for mylink in linki_all1:
-            log.info('AA %s' % mylink.a)
-            mytext = ''
-            hd = mylink.find('span', {'class': 'hd-ico-elem hd-elem-pos'})
-            prem = mylink.find('span', {'class': 'flag-video-premium'})
-            if hd:
-                log.info('cda.pl %s' % hd.text)
-                if hd.text == '1080p':
-                    mytext = '[[COLOR yellow]' + hd.text + '[/COLOR]] - '
-                elif hd.text == '720p':
-                    mytext = '[[COLOR green]' + hd.text + '[/COLOR]] - '
-                else:
-                    mytext = '[' + hd.text + '] - '
-            if prem:
-                mytext = mytext + '[COLOR yellow]PREMIUM[/COLOR] '
+            try:
+                #log.info('A1 %s' % mylink.a)
+                log.info('A2 %s' % mylink.a.img)
 
-                if self.premium:
-                    self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], mylink.a.img['src'],
-                             mainUrlb + mylink.a['href'], folder=False, isPlayable=False)
+                #log.info('AA2 %s %s' % mylink.a.img['alt'], mylink.a.img['src'])
+                mytext = ''
+                hd = mylink.find('span', {'class': 'hd-ico-elem hd-elem-pos'})
+                prem = mylink.find('span', {'class': 'flag-video-premium'})
+                if hd:
+                    log.info('cda.pl %s' % hd.text)
+                    if hd.text == '1080p':
+                        mytext = '[[COLOR yellow]' + hd.text + '[/COLOR]] - '
+                    elif hd.text == '720p':
+                        mytext = '[[COLOR green]' + hd.text + '[/COLOR]] - '
+                    else:
+                        mytext = '[' + hd.text + '] - '
+                if prem:
+                    mytext = mytext + '[COLOR yellow]PREMIUM[/COLOR] '
+
+                    if self.premium:
+                        self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], 'http:'+ mylink.a.img['src'],
+                                 mainUrlb + mylink.a['href'], folder=False, isPlayable=False)
+                    else:
+                        self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], 'http:'+ mylink.a.img['src'],
+                                 folder=False, isPlayable=False)
                 else:
-                    self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], mylink.a.img['src'],
-                             folder=False, isPlayable=False)
-            else:
-                self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], mylink.a.img['src'],
-                         mainUrlb + mylink.a['href'], folder=False, isPlayable=False)
+                    self.add('playSelectedMovie', None, mytext + mylink.a.img['alt'], 'http:'+ mylink.a.img['src'],
+                             mainUrlb + mylink.a['href'], folder=False, isPlayable=False)
+            except:
+                pass
 
         match10 = re.compile(
             '<span class="next-wrapper"><a class="sbmBigNext btn-my btn-large fiximg" href="(.*?)" onclick="(.*?)">\n<span class="hide-loader btn-loader-lft">',

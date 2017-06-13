@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,13 +16,19 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 
-import urlparse,os,sys
+import os
+import sys
+import urllib
+import urlparse
 
-import xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
-
+import xbmc
+import xbmcaddon
+import xbmcgui
+import xbmcplugin
+import xbmcvfs
 
 integer = 1000
 
@@ -150,6 +156,27 @@ def addonNext():
     theme = appearance() ; art = artPath()
     if not (art == None and theme in ['-', '']): return os.path.join(art, 'next.png')
     return 'DefaultVideo.png'
+
+
+def addonId():
+    return addonInfo('id')
+
+
+def addonName():
+    return addonInfo('name')
+
+
+def get_plugin_url(queries):
+    try:
+        query = urllib.urlencode(queries)
+    except UnicodeEncodeError:
+        for k in queries:
+            if isinstance(queries[k], unicode):
+                queries[k] = queries[k].encode('utf-8')
+        query = urllib.urlencode(queries)
+    addon_id = sys.argv[0]
+    if not addon_id: addon_id = addonId()
+    return addon_id + '?' + query
 
 
 def artPath():

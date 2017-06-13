@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.aftershock" name="Aftershock addons" version="2.0.3" provider-name="AftershockPY">
+<addon id="repository.aftershock" name="Aftershock addons" version="2.0.4" provider-name="..">
 	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -12,8 +12,8 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install video addons from Aftershock</summary>
-		<description>Download and install video addons from Aftershock Adddon repository.</description>
-		<disclaimer>The video add-ons hosted by add-ons repository(Aftershock add-ons) makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, video add-ons don't warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on the Internet web site where from data is retrieved or otherwise relating to such materials or on any sites linked to this addon. Videos are streamed directly from video-hosting websites that are having full rights to remove such access to video if required.</disclaimer>
+		<description>Adddon repository.</description>
+		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>

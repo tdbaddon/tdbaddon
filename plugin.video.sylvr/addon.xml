@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.sylvr" name="Sylvr" version="1.5.0" provider-name="ImReallyShiny">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.liveresolver"  version="0.1.28"/> 
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Plays US and UK Live TV Channels from various reliable sources</summary>
+		<description lang="en">Plays US and UK Live TV Channels from various reliable sources</description>
+		<disclaimer lang="en">ImReallyShiny and this Addon is not affiliated with any TV Stations shown. I have no ownership or responsiblity over said video streams.</disclaimer>
+    </extension>
+</addon>

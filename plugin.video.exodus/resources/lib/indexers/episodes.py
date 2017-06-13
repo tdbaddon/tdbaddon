@@ -72,7 +72,7 @@ class seasons:
         try:
             if imdb == '0':
                 try:
-                    imdb = trakt.SearchTVShow(urllib.quote_plus(tvshowtitle), year, full=False)[0]
+                    imdb = trakt.SearchTVShow(tvshowtitle, year, full=False)[0]
                     imdb = imdb.get('show', '0')
                     imdb = imdb.get('ids', {}).get('imdb', '0')
                     imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))

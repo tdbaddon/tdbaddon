@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,17 +16,21 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 
-import re,json,urlparse,time
+import json
+import re
+import time
+import urllib
+import urlparse
 
 from resources.lib.modules import cache
-from resources.lib.modules import control
 from resources.lib.modules import cleandate
 from resources.lib.modules import client
-from resources.lib.modules import utils
+from resources.lib.modules import control
 from resources.lib.modules import log_utils
+from resources.lib.modules import utils
 
 BASE_URL = 'http://api.trakt.tv'
 V2_API_KEY = 'c029c80fd3d3a5284ee820ba1cf7f0221da8976b8ee5e6c4af714c22fc4f46fa'
@@ -437,7 +441,7 @@ def SearchAll(title, year, full=True):
 
 def SearchMovie(title, year, full=True):
     try:
-        url = '/search/movie?query=%s' % title
+        url = '/search/movie?query=%s' % urllib.quote_plus(title)
 
         if year: url += '&year=%s' % year
         if full: url += '&extended=full'
@@ -447,7 +451,7 @@ def SearchMovie(title, year, full=True):
 
 def SearchTVShow(title, year, full=True):
     try:
-        url = '/search/show?query=%s' % title
+        url = '/search/show?query=%s' % urllib.quote_plus(title)
 
         if year: url += '&year=%s' % year
         if full: url += '&extended=full'

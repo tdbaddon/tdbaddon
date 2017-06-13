@@ -31,6 +31,7 @@ class abstractclassmethod(classmethod):
         super(abstractclassmethod, self).__init__(callable)
 
 class ResolverError(Exception):
+    print('ResolverError: %s' % Exception)
     pass
 
 class UrlResolver(object):

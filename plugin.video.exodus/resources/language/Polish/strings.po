@@ -23,7 +23,7 @@
 # Ghuthek, 2016-2017
 # lambda81, 2016
 # lambda81, 2016
-# Tomasz Kondrat, 2017
+# Tomek Kondrat, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Exodus\n"

@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    Copyright (C) 2016 Viper2k4
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -92,17 +92,28 @@ class source:
 
             r = re.findall('(\d+)-stream(?:\?episode=(\d+))?', url)
             r = [(i[0], i[1] if i[1] else '1') for i in r][0]
-            r = client.request(urlparse.urljoin(self.base_link, self.get_link % r))
+
+            r = client.request(urlparse.urljoin(self.base_link, self.get_link % r), output='extended')
+
+            headers = r[3]
+            headers.update({'Cookie': r[2].get('Set-Cookie'), 'Referer': self.base_link})
+            r = r[0]
+
             r += '=' * (-len(r) % 4)
             r = base64.b64decode(r)
-            r = re.findall('file"?\s*:\s*"(.+?)"', r)
 
-            for i in r:
+            i = [(match[1], match[0]) for match in re.findall('''["']?label\s*["']?\s*[:=]\s*["']?([^"',]+)["']?(?:[^}\]]+)["']?\s*file\s*["']?\s*[:=,]?\s*["']([^"']+)''', r, re.DOTALL)]
+            i += [(match[0], match[1]) for match in re.findall('''["']?\s*file\s*["']?\s*[:=,]?\s*["']([^"']+)(?:[^}>\]]+)["']?\s*label\s*["']?\s*[:=]\s*["']?([^"',]+)''', r, re.DOTALL)]
+            r = [(x[0].replace('\/', '/'), source_utils.label_to_quality(x[1])) for x in i]
+
+            for u, q in r:
                 try:
-                    i = i.replace('\/', '/')
-                    i = client.replaceHTMLCodes(i).encode('utf-8')
+                    tag = directstream.googletag(u)
 
-                    sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'de', 'url': i, 'direct': True, 'debridonly': False})
+                    if tag:
+                        sources.append({'source': 'gvideo', 'quality': tag[0].get('quality', 'SD'), 'language': 'de', 'url': u, 'direct': True, 'debridonly': False})
+                    else:
+                        sources.append({'source': 'CDN', 'quality': q, 'language': 'de', 'url': u + '|%s' % urllib.urlencode(headers), 'direct': True, 'debridonly': False})
                 except:
                     pass
 

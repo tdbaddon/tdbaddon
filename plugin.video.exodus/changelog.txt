@@ -1,3 +1,10 @@
+[B]3.1.16[/B]
+- Updated existing providers
+- Added and Updated German providers
+- Updated Korean providers
+- Fixed Russian providers
+- Fixed library update in some cases
+
 [B]3.1.15[/B]
 - Updated existing providers
 - Added and Updated German providers
