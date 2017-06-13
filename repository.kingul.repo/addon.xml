@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.kingul.repo" name="Kingul's Addons" version="1.0.5" provider-name="kingul">
+	<extension point="xbmc.addon.repository" name="Kingul's Addons">
+                <dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+                <dir>
+                        <info compressed="false">http://kodi.filmkodi.com/addons.xml</info>
+                        <checksum>http://kodi.filmkodi.com/addons.xml.md5</checksum>
+                        <datadir zip="true">http://kodi.filmkodi.com/</datadir>
+                </dir>
+                <dir>
+                    <info compressed="false">http://api.bitbucket.org/1.0/repositories/DiMartino/myshows.me-kodi-repo/raw/default/addons.xml</info>
+                    <checksum>http://api.bitbucket.org/1.0/repositories/DiMartino/myshows.me-kodi-repo/raw/default/addons.xml.md5</checksum>
+                    <datadir zip="true">http://api.bitbucket.org/1.0/repositories/DiMartino/myshows.me-kodi-repo/raw/default/repo/</datadir>
+                </dir>
+		<info compressed="false">https://raw.githubusercontent.com/viorel-m/kingul-repo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/viorel-m/kingul-repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/viorel-m/kingul-repo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Addons from https://github.com/viorel-m/kingul-repo</summary>
+		<description>Download and install addons for Kodi.</description>
+                <disclaimer>Kingul</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
