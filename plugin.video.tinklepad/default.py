@@ -26,6 +26,7 @@ from resources.lib.modules import client,control,cache
 
 
 action              = None
+type                = 'movie'
 #metaget             = metahandlers.MetaData(preparezip=False)
 language            = xbmcaddon.Addon().getLocalizedString
 setSetting          = xbmcaddon.Addon().setSetting
@@ -49,6 +50,7 @@ dataPath            = xbmc.translatePath('special://profile/addon_data/%s' % (ad
 viewData            = os.path.join(dataPath,'views.cfg')
 offData             = os.path.join(dataPath,'offset.cfg')
 favData             = os.path.join(dataPath,'favourites.cfg')
+favData2            = os.path.join(dataPath,'favourites2.cfg')
 exodusName          = 'plugin.video.exodus'
 tmdb_api_key        = re.sub(r'[^a-zA-Z0-9]', '', getSetting("tmdb_api_key"))
 if not tmdb_api_key == "": metaget = metahandlers.MetaData(preparezip=False, tmdb_api_key=tmdb_api_key)
@@ -57,7 +59,7 @@ else: metaget = metahandlers.MetaData(preparezip=False, tmdb_api_key='f7f5177587
 
 class main:
     def __init__(self):
-        global action
+        global action, favData
         index().container_data()
         params = {}
         splitparams = sys.argv[2][sys.argv[2].find('?') + 1:].split('&')
@@ -87,62 +89,69 @@ class main:
         except:     year = None
         try:        imdb = urllib.unquote_plus(params["imdb"])
         except:     imdb = None
+        try:        type = urllib.unquote_plus(params["type"])
+        except:     type = 'movie'
+        
 
-        if action is None:                          root().get()
-        elif action == 'root_movies':               root().getMovies()
-        elif action == 'root_tvshows':              root().getShows()
-        elif action == 'item_play':                 contextMenu().item_play()
-        elif action == 'item_random_play':          contextMenu().item_random_play()
-        elif action == 'item_queue':                contextMenu().item_queue()
-        elif action == 'favourite_add':             contextMenu().favourite_add(favData, name, url, image, imdb)
-        elif action == 'favourite_from_search':     contextMenu().favourite_from_search(favData, name, url, image, imdb)
-        elif action == 'favourite_delete':          contextMenu().favourite_delete(favData, name, url)
-        elif action == 'favourite_moveUp':          contextMenu().favourite_moveUp(favData, name, url)
-        elif action == 'favourite_moveDown':        contextMenu().favourite_moveDown(favData, name, url)
-        elif action == 'playlist_open':             contextMenu().playlist_open()
-        elif action == 'settings_open':             contextMenu().settings_open()
-        elif action == 'addon_home':                contextMenu().addon_home()
-        elif action == 'view_movies':               contextMenu().view('movies')
-        elif action == 'metadata_movies':           contextMenu().metadata('movie', name, url, imdb, '', '')
-        elif action == 'metadata_movies2':          contextMenu().metadata2('movie', name, url, imdb, '', '')
-        elif action == 'playcount_movies':          contextMenu().playcount('movie', imdb, '', '')
-        elif action == 'library_add':               contextMenu().library_add(name, url)
-        elif action == 'download':                  contextMenu().download(name, url)
-        elif action == 'trailer':                   contextMenu().trailer(name, url)
-        elif action == 'movies':                    movies().get(url, hd)
-        elif action == 'tvshows':                   movies().get(url, 0)
-        elif action == 'episodes':                  episodes().get(url)
-        elif action == 'seasons':                   seasons().get(url)
-        elif action == 'movies_hd':                 movies().hd_movies()
-        elif action == 'movies_ts':                 movies().ts_movies()
-        elif action == 'titles_movies':             titles().get()
-        elif action == 'movies_release':            movies().release()
-        elif action == 'movies_imdb':               movies().imdb()
-        elif action == 'movies_added':              movies().added()
-        elif action == 'movies_rating':             movies().rating()
-        elif action == 'movies_views':              movies().views()
-        elif action == 'movies_featured':           movies().featured()
-        elif action == 'movies_views_today':        movies().views_today()
-        elif action == 'movies_search':             movies().search(query)
-        elif action == 'movies_favourites':         favourites().movies()
-        elif action == 'genres_movies':             genres().get()
-        elif action == 'years_movies':              years().get()
-        elif action == 'people_movies':             people().root()
-        elif action == 'people_male':               people().get("male")
-        elif action == 'people_female':             people().get("female")
-        elif action == 'people_search':             people().search(query)
-        elif action == 'languages_movies':          languages().get()
-        elif action == 'titles_tvshows':            titles().get()
-        elif action == 'tvshows_added':             movies().added()
-        elif action == 'tvshows_views':             movies().views()
-        elif action == 'tvshows_views_today':       movies().views_today()
-        elif action == 'tvshows_search':            movies().search(query)
-        elif action == 'tvshows_favourites':        favourites().movies()
-        elif action == 'genres_tvshows':            genres().get()
-        elif action == 'play':                      resolver().run(url, name)
-        elif action == 'urlresolverSettings':       control.openSettings(id='script.module.urlresolver')
+        if action is None: root().get()
+        else:
+            if action.startswith("tvshows") or action.endswith("tvshows") or type == 'tvshow': favData = favData2
+            if action == 'root_movies':                 root().getMovies()
+            elif action == 'root_tvshows':              root().getShows()
+            elif action == 'item_play':                 contextMenu().item_play()
+            elif action == 'item_random_play':          contextMenu().item_random_play()
+            elif action == 'item_queue':                contextMenu().item_queue()
+            elif action == 'favourite_add':             contextMenu().favourite_add(favData, name, url, image, imdb)
+            elif action == 'favourite_from_search':     contextMenu().favourite_from_search(favData, name, url, image, imdb)
+            elif action == 'favourite_delete':          contextMenu().favourite_delete(favData, name, url)
+            elif action == 'favourite_moveUp':          contextMenu().favourite_moveUp(favData, name, url)
+            elif action == 'favourite_moveDown':        contextMenu().favourite_moveDown(favData, name, url)
+            elif action == 'playlist_open':             contextMenu().playlist_open()
+            elif action == 'settings_open':             contextMenu().settings_open()
+            elif action == 'addon_home':                contextMenu().addon_home()
+            elif action == 'view_movies':               contextMenu().view('movies')
+            elif action == 'metadata_movies':           contextMenu().metadata(type, name, url, imdb, '', '')
+            elif action == 'metadata_movies2':          contextMenu().metadata2(type, name, url, imdb, '', '')
+            elif action == 'playcount_movies':          contextMenu().playcount(type, imdb, '', '')
+            elif action == 'library_add':               contextMenu().library_add(name, url, type)
+            elif action == 'download':                  contextMenu().download(name, url, type)
+            elif action == 'trailer':                   contextMenu().trailer(name, url)
+            elif action == 'movies':                    movies().get(url, hd)
+            elif action == 'tvshows':                   movies().get(url, 0)
+            elif action == 'episodes':                  episodes().get(url)
+            elif action == 'seasons':                   seasons().get(url)
+            elif action == 'movies_hd':                 movies().hd_movies()
+            elif action == 'movies_ts':                 movies().ts_movies()
+            elif action == 'titles_movies':             titles().get()
+            elif action == 'movies_release':            movies().release()
+            elif action == 'movies_imdb':               movies().imdb()
+            elif action == 'movies_added':              movies().added()
+            elif action == 'movies_rating':             movies().rating()
+            elif action == 'movies_views':              movies().views()
+            elif action == 'movies_featured':           movies().featured()
+            elif action == 'movies_views_today':        movies().views_today()
+            elif action == 'movies_search':             movies().search(query)
+            elif action == 'movies_favourites':         favourites().movies()
+            elif action == 'genres_movies':             genres().get()
+            elif action == 'years_movies':              years().get()
+            elif action == 'people_movies':             people().root()
+            elif action == 'people_male':               people().get("male")
+            elif action == 'people_female':             people().get("female")
+            elif action == 'people_search':             people().search(query)
+            elif action == 'languages_movies':          languages().get()
+            elif action == 'titles_tvshows':            titles().get()
+            elif action == 'tvshows_added':             movies().added()
+            elif action == 'tvshows_views':             movies().views()
+            elif action == 'tvshows_views_today':       movies().views_today()
+            elif action == 'tvshows_search':            movies().search(query)
+            elif action == 'tvshows_favourites':        favourites().movies()
+            elif action == 'genres_tvshows':            genres().get()
+            elif action == 'play':                      resolver().run(url, name)
+            elif action == 'urlresolverSettings':       control.openSettings(id='script.module.urlresolver')
 
         if action is None:
+            pass
+        elif action.startswith("tvshows") or action.endswith("tvshows"):
             pass
         elif action.startswith('movies'):
             pass
@@ -424,6 +433,10 @@ class index:
             file = xbmcvfs.File(favData, 'w')
             file.write('')
             file.close()
+        if not xbmcvfs.exists(favData2):
+            file = xbmcvfs.File(favData2, 'w')
+            file.write('')
+            file.close()
         if not xbmcvfs.exists(viewData):
             file = xbmcvfs.File(viewData, 'w')
             file.write('')
@@ -587,33 +600,43 @@ class index:
                     u = '%s?action=play&name=%s&url=%s&t=%s' % (sys.argv[0], sysname, sysurl, datetime.datetime.now().strftime("%Y%m%d%H%M%S%f"))
 
                 cm = []
-                cm.append((language(30405).encode("utf-8"), 'RunPlugin(%s?action=item_queue)' % (sys.argv[0])))
-                cm.append((language(30406).encode("utf-8"), 'RunPlugin(%s?action=download&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                cm.append((language(30412).encode("utf-8"), 'Action(Info)'))
-                if action == 'movies_favourites':
-                    if not getSetting("fav_sort") == '2': cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
-                    if getmeta == 'true': cm.append((language(30415).encode("utf-8"), 'RunPlugin(%s?action=metadata_movies&name=%s&url=%s&imdb=%s)' % (sys.argv[0], systitle, sysurl, metaimdb)))
-                    if getmeta == 'true': cm.append((playcountMenu, 'RunPlugin(%s?action=playcount_movies&imdb=%s)' % (sys.argv[0], metaimdb)))
-                    cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
-                    if getSetting("fav_sort") == '2': cm.append((language(30419).encode("utf-8"), 'RunPlugin(%s?action=favourite_moveUp&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    if getSetting("fav_sort") == '2': cm.append((language(30420).encode("utf-8"), 'RunPlugin(%s?action=favourite_moveDown&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    cm.append((language(30421).encode("utf-8"), 'RunPlugin(%s?action=favourite_delete&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                elif action == 'movies_search':
-                    cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
-                    cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    cm.append((language(30417).encode("utf-8"), 'RunPlugin(%s?action=favourite_from_search&name=%s&imdb=%s&url=%s&image=%s)' % (sys.argv[0], sysname, sysimdb, sysurl, sysimage)))
-                    cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
-                    cm.append((language(30409).encode("utf-8"), 'RunPlugin(%s?action=settings_open)' % (sys.argv[0])))
-                    cm.append((language(30410).encode("utf-8"), 'RunPlugin(%s?action=playlist_open)' % (sys.argv[0])))
-                    cm.append((language(30411).encode("utf-8"), 'RunPlugin(%s?action=addon_home)' % (sys.argv[0])))
+                if not action == 'episodes' and not action == 'seasons':
+                    type = 'tvshow'
+                    if not action.startswith("tvshows") and not action.endswith("tvshows"):
+                        type = 'movie'
+                        cm.append((language(30405).encode("utf-8"), 'RunPlugin(%s?action=item_queue)' % (sys.argv[0])))
+                        cm.append((language(30406).encode("utf-8"), 'RunPlugin(%s?action=download&name=%s&url=%s&type=movie)' % (sys.argv[0], sysname, sysurl)))
+                    cm.append((language(30412).encode("utf-8"), 'Action(Info)'))
+                    if action == 'movies_favourites':
+                        if not getSetting("fav_sort") == '2': cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
+                        if getmeta == 'true': cm.append((language(30415).encode("utf-8"), 'RunPlugin(%s?action=metadata_movies&name=%s&url=%s&imdb=%s&type=%s)' % (sys.argv[0], systitle, sysurl, metaimdb, type)))
+                        if getmeta == 'true': cm.append((playcountMenu, 'RunPlugin(%s?action=playcount_movies&imdb=%s&type=%s)' % (sys.argv[0], metaimdb, type)))
+                        cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
+                        if getSetting("fav_sort") == '2': cm.append((language(30419).encode("utf-8"), 'RunPlugin(%s?action=favourite_moveUp&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        if getSetting("fav_sort") == '2': cm.append((language(30420).encode("utf-8"), 'RunPlugin(%s?action=favourite_moveDown&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        cm.append((language(30421).encode("utf-8"), 'RunPlugin(%s?action=favourite_delete&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                    elif action == 'movies_search':
+                        cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
+                        cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        cm.append((language(30417).encode("utf-8"), 'RunPlugin(%s?action=favourite_from_search&name=%s&imdb=%s&url=%s&image=%s&type=%s)' % (sys.argv[0], sysname, sysimdb, sysurl, sysimage, type)))
+                        cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
+                        cm.append((language(30409).encode("utf-8"), 'RunPlugin(%s?action=settings_open)' % (sys.argv[0])))
+                        cm.append((language(30410).encode("utf-8"), 'RunPlugin(%s?action=playlist_open)' % (sys.argv[0])))
+                        cm.append((language(30411).encode("utf-8"), 'RunPlugin(%s?action=addon_home)' % (sys.argv[0])))
+                    else:
+                        cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
+                        if getmeta == 'true': cm.append((language(30415).encode("utf-8"), 'RunPlugin(%s?action=metadata_movies2&name=%s&url=%s&imdb=%s&type=%s)' % (sys.argv[0], systitle, sysurl, metaimdb, type)))
+                        cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        if not '"%s"' % url in favRead: cm.append((language(30417).encode("utf-8"), 'RunPlugin(%s?action=favourite_add&name=%s&imdb=%s&url=%s&image=%s&type=%s)' % (sys.argv[0], sysname, sysimdb, sysurl, sysimage, type)))
+                        else: cm.append((language(30418).encode("utf-8"), 'RunPlugin(%s?action=favourite_delete&name=%s&url=%s&type=%s)' % (sys.argv[0], sysname, sysurl, type)))
+                        cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
+                        cm.append((language(30410).encode("utf-8"), 'RunPlugin(%s?action=playlist_open)' % (sys.argv[0])))
+                        cm.append((language(30411).encode("utf-8"), 'RunPlugin(%s?action=addon_home)' % (sys.argv[0])))
                 else:
-                    cm.append((language(30416).encode("utf-8"), 'RunPlugin(%s?action=trailer&name=%s&url=%s)' % (sys.argv[0], sysname, trailer)))
-                    if getmeta == 'true': cm.append((language(30415).encode("utf-8"), 'RunPlugin(%s?action=metadata_movies2&name=%s&url=%s&imdb=%s)' % (sys.argv[0], systitle, sysurl, metaimdb)))
-                    cm.append((language(30422).encode("utf-8"), 'RunPlugin(%s?action=library_add&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    if not '"%s"' % url in favRead: cm.append((language(30417).encode("utf-8"), 'RunPlugin(%s?action=favourite_add&name=%s&imdb=%s&url=%s&image=%s)' % (sys.argv[0], sysname, sysimdb, sysurl, sysimage)))
-                    else: cm.append((language(30418).encode("utf-8"), 'RunPlugin(%s?action=favourite_delete&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)))
-                    cm.append((language(30428).encode("utf-8"), 'RunPlugin(%s?action=view_movies)' % (sys.argv[0])))
+                    if action == 'episodes':
+                        cm.append((language(30405).encode("utf-8"), 'RunPlugin(%s?action=item_queue)' % (sys.argv[0])))
+                        cm.append((language(30406).encode("utf-8"), 'RunPlugin(%s?action=download&name=%s&url=%s&type=tvshow)' % (sys.argv[0], sysname, sysurl)))
                     cm.append((language(30410).encode("utf-8"), 'RunPlugin(%s?action=playlist_open)' % (sys.argv[0])))
                     cm.append((language(30411).encode("utf-8"), 'RunPlugin(%s?action=addon_home)' % (sys.argv[0])))
 
@@ -851,9 +874,9 @@ class contextMenu:
         except:
             return
 
-    def library_add(self, name, url, update=True, silent=False):
+    def library_add(self, name, url, type, update=True, silent=False):
         try:
-            self.library(name, url)
+            self.library(name, url, type)
 
             if silent == False:
                 index().container_refresh()
@@ -863,11 +886,18 @@ class contextMenu:
         except:
             return
 
-    def library(self, name, url):
+    def library(self, name, url, type):
         try:
-            library = xbmc.translatePath(getSetting("movie_library"))
             sysname, sysurl = urllib.quote_plus(name), urllib.quote_plus(url)
-            content = '%s?action=play&name=%s&url=%s' % (sys.argv[0], sysname, sysurl)
+            if type == 'tvshow':
+                typePath = 'tvshow_library'
+                content = '%s?action=seasons&url=%s' % (sys.argv[0], sysurl)
+            else:
+                typePath = 'movie_library'
+                content = '%s?action=play&name=%s&url=%s' % (sys.argv[0], sysname, sysurl)
+            library = xbmc.translatePath(getSetting(typePath))
+            #sysname, sysurl = urllib.quote_plus(name), urllib.quote_plus(url)
+            #content = '%s?action=play&name=%s&url=%s' % (sys.argv[0], sysname, sysurl)
             enc_name = name.translate(None, '\/:*?"<>|')
             folder = os.path.join(library, enc_name)
             stream = os.path.join(folder, enc_name + '.strm')
@@ -880,10 +910,12 @@ class contextMenu:
         except:
             return
 
-    def download(self, name, url):
+    def download(self, name, url, type):
         try:
             property = (addonName+name)+'download'
-            download = xbmc.translatePath(getSetting("downloads"))
+            if type == 'tvshow': typePath = 'tvshow_downloads'
+            else: typePath = 'movie_downloads'
+            download = xbmc.translatePath(getSetting(typePath))
             enc_name = name.translate(None, '\/:*?"<>|')
             if getSetting("save2dir") == 'true': download = download + os.path.splitext(os.path.basename(enc_name))[0]
             xbmcvfs.mkdir(dataPath)
@@ -1447,15 +1479,23 @@ class movies:
                 #print image
 
                 try:
-                    genre = client.parseDOM(movie, "div", attrs = { "class": "movie_about_genre" })[0]
+                    genre = client.parseDOM(movie, "div", attrs = { "class": "ml-data-genre" })[0]
+                    try:
+                        content = client.parseDOM(genre, "a", ret="href")[0]
+                        content = urlparse.urlparse(content).path
+                        content = content.split("/")[1]
+                        #print ":::c", content
+                    except:
+                        content = ''
                     genre = re.sub('<.*?>', '', genre)
                     genre = [i.strip() for i in genre.split('|')]
                     genre = " / ".join(genre)
                     genre = client.replaceHTMLCodes(genre)
                     genre = genre.encode('utf-8')
-                    #print genre
+                    #print ":::g", genre
                 except:
                     genre = ''
+                    content = ''
 
                 '''try:
                     plot = client.parseDOM(movie, "div", attrs = { "class": "plot" })[0]
@@ -1464,9 +1504,9 @@ class movies:
                     print ":::plot:::", plot
                 except:
                     plot = '''
-                plot = ''
 
-                self.list.append({'name': name, 'url': url, 'image': image, 'title': title, 'year': year, 'imdb': '0', 'genre': genre, 'plot': plot, 'next': next})
+                if (link().tinkle_base.endswith("tv") and content == "tv") or (not link().tinkle_base.endswith("tv") and not content == "tv"):
+                    self.list.append({'name': name, 'url': url, 'image': image, 'title': title, 'year': year, 'imdb': '0', 'genre': genre, 'plot': '', 'next': next})
             except:
                 pass
 
@@ -1857,6 +1897,9 @@ class resolver:
             
                 player().run(name, url)
                 return url
+            elif totalSrcs == 0:
+                index().infoDialog(language(30320).encode("utf-8"))
+                return
             else:
                 #url = HostedMediaFile(url=srcs[0][1]).resolve()
                 url = self.source(srcs[0][1])

@@ -12,7 +12,7 @@
 	<string id="30008">Resume Playback</string>
     <string id="30009">TMDB API Key</string>
 	<string id="30040">Library</string>
-	<string id="30041">Don't forget to add this folder to media sources.</string>
+	<string id="30041">Don't forget to add these folders to media sources.</string>
 	<string id="30042">Movies Folder</string>
     <string id="30043">TV Shows Folder</string>
 	<string id="30080">Subtitles</string>
@@ -41,6 +41,7 @@
 	<string id="30317">No subtitles available</string>
 	<string id="30318">Failed to load stream please try again</string>
 	<string id="30319">Loaded in</string>
+    <string id="30320">No available sources to stream from</string>
 	<!-- OK -->
 	<string id="30321">YouTube addon is not installed.</string>
 	<string id="30322">This stream requires it.</string>
