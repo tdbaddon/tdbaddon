@@ -1397,29 +1397,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="2.0.7" provider-name="Team Evolve">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.simplejson" version="0.0.1"/>
-    <import addon="script.module.urlresolver"  version="0.0.1"/>
-    <import addon="script.module.liveresolver" version="0.0.1"/>
-    <import addon="script.module.nanscrapers" version="0.5"/>
-    <import addon="script.common.plugin.cache" version="0.0.1"/>
-    <import addon="repository.metalkettle" version="0.0.1"/>
-    <import addon="script.module.metahandler" version="0.0.1"/>
-    <import addon="plugin.video.youtube" optional="true" />
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">The Home Of Evolve Add-on Where You Can Discover Great Playlists</summary>
-    <description lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.exodus" version="3.1.16" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
@@ -2369,7 +2346,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mrknow"
        name="Filmy Online - mrknow.pl"
-       version="2017.06.12.2"
+       version="2017.06.14.2"
        provider-name="mrknow">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2623,8 +2600,8 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 <addon id="plugin.video.playklub"
-       name="[COLOR gold].THE PLAYERS KLUB BETA[/COLOR]"
-       version="2.0"
+       name="[COLOR gold]THE PLAYERS KLUB[/COLOR]"
+       version="2.2"
        provider-name="players">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3183,7 +3160,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.tinklepad" name="TinklePad" version="1.2.6" provider-name="jsergio">
+<addon id="plugin.video.tinklepad" name="TinklePad" version="2.0.0a" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.metahandler" version="1.0.0"/>
@@ -3194,7 +3171,7 @@ For DMCA Reports, please send message to our FB page.
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Watch a wide selection of movies from 5movies.to</summary>
+		<summary lang="en">Watch a wide selection of movies and tv shows from 5movies.to</summary>
 		<description lang="en">Big thanks to Lambda for his foundation code and use of Exodus for the Latest HD section and Jokstergfx for the artwork!</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
@@ -5811,7 +5788,7 @@ level.</description>
     </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.06.11.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.06.14.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.six" />

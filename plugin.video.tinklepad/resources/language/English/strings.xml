@@ -14,6 +14,7 @@
 	<string id="30040">Library</string>
 	<string id="30041">Don't forget to add this folder to media sources.</string>
 	<string id="30042">Movies Folder</string>
+    <string id="30043">TV Shows Folder</string>
 	<string id="30080">Subtitles</string>
 	<string id="30081">Subtitles could be unavailable or out of sync.</string>
 	<string id="30082">In that case use your own subtitles.</string>
@@ -100,7 +101,7 @@
 	<string id="30432">Sources</string>
 	<string id="30433">Auto-play</string>
 	<!-- Description -->
-	<string id="30450">Watch a wide selection of movies from 5movies.to</string>
+	<string id="30450">Watch a wide selection of movies and tv shows from 5movies.to</string>
 	<!-- Labels -->
 	<string id="30500">Latest HD</string>
 	<string id="30501">Title</string>
@@ -114,7 +115,7 @@
 	<string id="30509">Languages</string>
 	<string id="30510">Favourites</string>
 	<string id="30511">Search</string>
-	<string id="30512">Save file in folder matching movie title</string>
+	<string id="30512">Save file in folder matching movie/show title</string>
     <string id="30513">Choose your source to stream from</string>
 	<string id="30514">Use Exodus for Latest HD if available</string>
     <string id="30515">Featured</string>
@@ -123,4 +124,10 @@
     <string id="30518">Male</string>
 	<string id="30519">Female</string>
     <string id="30520">Latest TS</string>
+    <string id="30521">Movies</string>
+	<string id="30522">TV Shows</string>
+    <string id="30523">Allow sources that use Popups</string>
+    <string id="30524">URLResolver</string>
+    <string id="30525">Settings</string>
+    <string id="30526">Resolver</string>
 </strings>

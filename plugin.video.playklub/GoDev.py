@@ -33,7 +33,7 @@ except:
 def Add_Directory_Item(handle, url, listitem, isFolder):
     xbmcplugin.addDirectoryItem(handle, url, listitem, isFolder)
 def Fix_Special(url):
-    dialogprocess.create("OTTTV","Renaming paths...",'', 'Please Wait')
+    dialogprocess.create("playklub","Renaming paths...",'', 'Please Wait')
     for root, dirs, files in os.walk(url):  #Search all xml files and replace physical with special
         for file in files:
             if file.endswith(".xml"):
@@ -83,7 +83,7 @@ def Archive_File(sourcefile, destfile):
     rootlen = len(sourcefile)
     for_progress = []
     ITEM =[]
-    dialogprocess.create("OTTTV","Archiving...",'', 'Please Wait')
+    dialogprocess.create("playklub","Archiving...",'', 'Please Wait')
     for base, dirs, files in os.walk(sourcefile):
         for file in files:
             ITEM.append(file)
@@ -267,7 +267,7 @@ def Wipe_Cache():
     except:
         pass
 def Destroy_Path(path):
-    dialogprocess.create("OTTTV ","Cleaning...",'', 'Please Wait')
+    dialogprocess.create("playklub ","Cleaning...",'', 'Please Wait')
     shutil.rmtree(path, ignore_errors=True)
 def Remove_Textures():
     textures   =  xbmc.translatePath('special://home/userdata/Database/Textures13.db')
@@ -336,7 +336,7 @@ def Read_Zip(url):
             f.close()  			
 def Check_Path():
     if zip=='':
-     if dialog.yesno("OTTTV Wizard", "You Have Not Set Your Storage Path", 'Set The Storage Path Now ?',''):
+     if dialog.yesno("playklub Wizard", "You Have Not Set Your Storage Path", 'Set The Storage Path Now ?',''):
         ADDON.openSettings()
         print '######### ZIP DIRECTORY #########'
         for filename in os.listdir(USB):
@@ -345,12 +345,12 @@ def RestoreIt():
     import time
     dialog = xbmcgui.Dialog()
     if zip == '':
-        dialog.ok('OTTTV Wizard','You have not set your ZIP Folder.\nPlease update the addon settings and try again.','','')
+        dialog.ok('playklub Wizard','You have not set your ZIP Folder.\nPlease update the addon settings and try again.','','')
         ADDON.openSettings(sys.argv[0])
-    dialogprocess.create("OTTTV Wizard","Restoring",'', 'Please Wait')   
+    dialogprocess.create("playklub Wizard","Restoring",'', 'Please Wait')   
     lib=xbmc.translatePath(os.path.join(zip,'backup.zip'))
     Read_Zip(lib)
-    dialogprocess.create("OTTTV Wizard","Checking ",'', 'Please Wait')
+    dialogprocess.create("playklub Wizard","Checking ",'', 'Please Wait')
     HOME = xbmc.translatePath(os.path.join('special://','home'))
     dialogprocess.update(0,"", "Extracting Zip Please Wait")
     extract.all(lib,HOME,dialogprocess)
@@ -362,17 +362,17 @@ def RestoreIt():
     xbmc.executebuiltin('ReloadSkin()')    
     xbmc.executebuiltin("Loadialogprocessrofile(Master user)")
     dialogprocess.close()
-    dialog.ok("OTTTV Wizard", "All Done, DONT PRESS OK", "Wait a 5 minutes and pull the Power","")	
+    dialog.ok("playklub Wizard", "All Done, DONT PRESS OK", "Wait a 5 minutes and pull the Power","")	
 def Backupzip():  
     if zip == '':
-        dialog.ok('OTTTV Wizard','You have not set your ZIP Folder.\nPlease update the addon settings and try again.','','')
+        dialog.ok('playklub Wizard','You have not set your ZIP Folder.\nPlease update the addon settings and try again.','','')
         ADDON.openSettings(sys.argv[0])
     to_backup = xbmc.translatePath(os.path.join('special://','home'))
     backup_zip = xbmc.translatePath(os.path.join(USB,'backup.zip'))
     Delete_Packages()    
     import zipfile
     
-    dialogprocess.create("OTTTV Wizard","Backing Up",'', 'Please Wait')
+    dialogprocess.create("playklub Wizard","Backing Up",'', 'Please Wait')
     zipobj = zipfile.ZipFile(backup_zip , 'w', zipfile.ZIP_DEFLATED)
     rootlen = len(to_backup)
     for_progress = []
@@ -396,5 +396,5 @@ def Backupzip():
                        zipobj.write(fn, fn[rootlen:])  
     zipobj.close()
     dialogprocess.close()
-    dialog.ok("OTTTV Wizard", "You Are Now Backed Up", '','')
+    dialog.ok("playklub Wizard", "You Are Now Backed Up", '','')
 	

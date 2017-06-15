@@ -11,13 +11,19 @@
 		<setting type="sep"/>
 		<setting id="downloads" type="folder" label="30007" default=""/>
 		<setting id="save2dir" type="bool" label="30512" default="true"/>
+    </category>
+    
+    <category label="30526">
         <setting id="autoplay" type="bool" label="30513" default="false"/>
+        <setting id="popups" type="bool" label="30523" default="true"/>
         <setting id="useExodus" type="bool" label="30514" default="true"/>
+        <setting type="lsep" label="30524" />
+		<setting label="30525" type="action" option="close" action="RunPlugin(plugin://plugin.video.tinklepad/?action=urlresolverSettings)" />
 	</category>
 
 	<category label="30040">
 		<setting id="movie_library" type="folder" label="30042" default="special://userdata/addon_data/plugin.video.tinklepad/Movies"/>
-		<setting type="lsep" label="[CR]"/>
+        <setting id="tvshow_library" type="folder" label="30043" default="special://userdata/addon_data/plugin.video.tinklepad/TVShows"/>
 		<setting type="lsep" label="30041"/>
 	</category>
 

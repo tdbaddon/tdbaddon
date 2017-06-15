@@ -103,7 +103,7 @@ def read(url): _log("read "+url); f=urllib2.urlopen(url); data=f.read(); f.close
 def read_body_and_headers(url,post=None,headers=[],follow_redirects=False,timeout=None):
     _log("read_body_and_headers "+url)
     if post is not None: _log("read_body_and_headers post="+post)
-    if len(headers)==0: headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"])
+    if len(headers)==0: headers.append(["User-Agent","Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 (KHTML, like Gecko) MAG200 stbapp ver: 4 rev: 1812 Mobile Safari/533.3"])
     # Start cookie lib
     ficherocookies=os.path.join(get_data_path(),'cookies.dat'); _log("read_body_and_headers cookies_file="+ficherocookies); cj=None; ClientCookie=None; cookielib=None
     try: _log("read_body_and_headers importing cookielib"); import cookielib # Let's see if cookielib is available

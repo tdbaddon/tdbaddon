@@ -1,4 +1,24 @@
 ------------------------
+TinklePad v2.0.0a (13 June-17)
+
+- Alpha
+
+------------------------
+TinklePad v1.2.7c (12 June-17)
+
+- Fixed Sources
+
+------------------------
+TinklePad v1.2.7b (11 June-17)
+
+- Added TV Shows
+
+------------------------
+TinklePad v1.2.6 (09 June-17)
+
+- Fix for metadata
+
+------------------------
 TinklePad v1.2.5 (21 May-17)
 
 - Update for site changes

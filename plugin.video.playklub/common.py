@@ -13,7 +13,7 @@ def OpenURL(url, headers={}, user_data={}, justCookie=False):
 	else:
 		req = urllib2.Request(url)
 	
-	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0')
+	req.add_header('User-Agent', 'Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 (KHTML, like Gecko) MAG200 stbapp ver: 4 rev: 1812 Mobile Safari/533.3')
 	for k, v in headers.items():
 		req.add_header(k, v)
 	

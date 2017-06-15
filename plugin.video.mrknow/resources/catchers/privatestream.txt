@@ -13,22 +13,29 @@ item_info_build=http://privatestream.tv/player?streamname=%s&width=630&height=51
 
 item_info_name=tmp
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*var a =\s*([^;]+).*var b =\s*([^;]+).*var c =\s*([^;]+).*var d =\s*([^;]+).*var f =\s*([^;]+).*var v_part =\s*'([^']+).*','@REFERER@','a|b|c|d|f|v')
+#item_info_convert=getInfo('%s','.*var a =\s*([^;]+).*var b =\s*([^;]+).*var c =\s*([^;]+).*var d =\s*([^;]+).*var f =\s*([^;]+).*var v_part =\s*'([^']+).*','@REFERER@','a|b|c|d|f|v')
+item_info_convert=getInfo('%s','.*var v_part =\s*([^;]+).*var v_part_m =\s*([^;]+).*var addr_part =\s*([^;]+).*','@REFERER@','a|b|c')
 item_info_build=%s
 
 item_info_name=ip1
 item_info_from=a
-item_info_convert=divide(%s, @f@)
+item_info_convert=debug
+item_info_convert=quote('%s')
+item_info_convert=replace('%s','%27','')
+item_info_convert=unquote('%s')
 item_info_build=%s
 
 item_info_name=ip2
-item_info_from=b
-item_info_convert=divide(%s, @f@)
+item_info_from=ip1
+item_info_convert=replace('%s','/privatestream/','')
 item_info_build=%s
 
 item_info_name=ip3
 item_info_from=c
-item_info_convert=divide(%s, @f@)
+item_info_convert=debug
+item_info_convert=quote('%s')
+item_info_convert=replace('%s','%27','')
+item_info_convert=unquote('%s')
 item_info_build=%s
 
 item_info_name=ip4
@@ -46,5 +53,5 @@ item_info_convert=unquote('%s')
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp://' + ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4 + v1 + ' swfUrl=http://privatestream.tv/js/jwplayer.flash.swf live=1 timeout=15 swfVfy=1 pageUrl=' + pageUrl
+item_info_from=rtmp://' + ip3 + ':1935/privatestream app=privatestream playpath=' + ip2 + ' swfUrl=http://privatestream.tv/clappr/RTMP.swf live=1 timeout=15 swfVfy=1 pageUrl=' + pageUrl
 item_info_build=%s
