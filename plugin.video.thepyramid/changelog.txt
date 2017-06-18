@@ -1,0 +1,4 @@
+V1.33. Updated Security and Dependencies
+V1.34. URL Resolver Issues Fixed, Dependencies update
+V1.41 Added Mamahd Scrapers
+V2.41 Re Added Movie Search function - Searches New Releases BoxSets And A-Z Movies In Under A Second - Thanks Origin
