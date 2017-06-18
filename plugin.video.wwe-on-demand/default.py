@@ -130,6 +130,7 @@ def GetMenu():
             except:pass
             view(link)
         addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)        
+        addItem('[B][COLOR lime]'+'Real Debrid Login'+'[/COLOR]''[/B]','url',16,icon,fanarts)
 
 def popup():
         message=open_url2(startinfo)
@@ -211,6 +212,10 @@ def GetContent(name,url,iconimage,fanart):
                                         addLink(name,url2,8,iconimage,fanart)
             except:pass
             view(link)
+
+def resolver_settings():
+    urlresolver.display_settings()
+
 
 def NEW():
         message=open_url2(messagetext)
@@ -714,5 +719,6 @@ elif mode==12:GET_REGEX(name,url,iconimage)
 elif mode==13:DXTV_MAIN(url,iconimage)
 elif mode==14:DXTV_CATS(url)
 elif mode==15:DXTV_LINKS(name,url)
+elif mode==16:resolver_settings()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

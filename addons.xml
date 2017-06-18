@@ -3280,7 +3280,7 @@ For DMCA Reports, please send message to our FB page.
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="4.0.5" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="4.0.6" provider-name="MetalKettle">
 
   <requires>
 
@@ -3436,7 +3436,7 @@ Enjoy!</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="4.03" provider-name="@PBear90 and @jdth77">
+<addon id="plugin.video.wwe-on-demand" name="Wrestling On Demand" version="4.04" provider-name="@PBear90 and @jdth77">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -4235,12 +4235,17 @@ and more.......</description>
 	</extension>
 </addon>
 
-<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.8" provider-name="noobsandnerds">
+<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.9" provider-name="noobsandnerds">
 	<extension point="xbmc.addon.repository" name="noobsandnerds Repository">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/</datadir>
+		</dir>
+		<dir>
+	        <info compressed="true">https://github.com/dandy0850/dandymedia/raw/master/addons.xml</info>
+	        <checksum>https://github.com/dandy0850/dandymedia/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://github.com/dandy0850/dandymedia/raw/master/repo</datadir>
 		</dir>
 		<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml.md5</checksum>

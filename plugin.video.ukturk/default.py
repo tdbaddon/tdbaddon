@@ -25,7 +25,7 @@ Oooo000o = int ( O0O0OO0O0O0 . getSetting ( 'count' ) )
 IiIi11iIIi1Ii = O0O0OO0O0O0 . getSetting ( 'enable_meta' )
 Oo0O = xbmc . translatePath ( 'special://home/userdata/addon_data/' + OO0o )
 IiI = xbmc . translatePath ( os . path . join ( 'special://home/userdata/Database' , 'UKTurk.db' ) )
-ooOo = 'http://matsbuilds.uk/turk/ukturk2.jpg'
+ooOo = 'http://sparkysrepo.com/ukturk2.jpg'
 Oo = 'https://www.googleapis.com/youtube/v3/search?q='
 o0O = '&regionCode=US&part=snippet&hl=en_US&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA&type=video&maxResults=50'
 IiiIII111iI = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
@@ -60,8 +60,8 @@ def Ooo0OO0oOO ( ) :
    if oO00oOo == 'true' :
     if OOOo0 <> '' :
      i1 ( o00 , Oo0oO0ooo , 1 , o0oOoO00o , O00ooooo00 )
- i1 ( 'Favourites' , IiI , 15 , 'http://matsbuilds.uk/turk/UKTurk/thumbs/new/Uk%20turk%20thumbnails%20favourites.jpg' , O00ooooo00 )
- i1 ( 'Search' , 'url' , 5 , 'http://matsbuilds.uk/turk/UKTurk/thumbs/new/Uk%20turk%20thumbnails%20search.jpg' , O00ooooo00 )
+ i1 ( 'Favourites' , IiI , 15 , 'http://sparkysrepo.com/UKTurk/thumbs/new/Uk%20turk%20thumbnails%20favourites.jpg' , O00ooooo00 )
+ i1 ( 'Search' , 'url' , 5 , 'http://sparkysrepo.com/UKTurk/thumbs/new/Uk%20turk%20thumbnails%20search.jpg' , O00ooooo00 )
  xbmc . executebuiltin ( 'Container.SetViewMode(500)' )
  if 98 - 98: I1111 * o0o0Oo0oooo0 / I1I1i1 * oO0 / IIIi1i1I
 def OOoOoo00oo ( url ) :
@@ -134,7 +134,7 @@ def o0 ( name , url , iconimage , fanart ) :
 def I1IIIii ( ) :
  O0O0OO0O0O0 . setSetting ( 'fav' , 'no' )
  Oo0oO0ooo = 'https://watchseries-online.pl/last-350-episodes'
- i1 ( 'New Episodes of TV Shows' , Oo0oO0ooo , 23 , 'http://matsbuilds.uk/turk/UKTurk/tv%20shows/Uk turk thumbnails new episodes tv shows1.jpg' , O00ooooo00 , description = '' )
+ i1 ( 'New Episodes of TV Shows' , Oo0oO0ooo , 23 , 'http://sparkysrepo.com/UKTurk/tv%20shows/Uk turk thumbnails new episodes tv shows1.jpg' , O00ooooo00 , description = '' )
  if 56 - 56: OoO0O0o0Ooo
 def o0OO00oO ( url ) :
  O0O0OO0O0O0 . setSetting ( 'fav' , 'no' )
