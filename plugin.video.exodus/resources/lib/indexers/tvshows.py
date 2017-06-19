@@ -966,21 +966,21 @@ class tvshows:
 
             try:
                 poster2 = art['tvposter']
-                poster2 = [x for x in poster2 if x.get('lang') == 'en'][::-1] + [x for x in poster2 if x.get('lang') == '00'][::-1]
+                poster2 = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in poster2 if x.get('lang') == 'en'][::-1] + [x for x in poster2 if x.get('lang') in ['00', '']][::-1]
                 poster2 = poster2[0]['url'].encode('utf-8')
             except:
                 poster2 = '0'
 
             try:
                 fanart2 = art['showbackground']
-                fanart2 = [x for x in fanart2 if x.get('lang') == 'en'][::-1] + [x for x in fanart2 if x.get('lang') == '00'][::-1]
+                fanart2 = [x for x in fanart2 if x.get('lang') == self.lang][::-1] + [x for x in fanart2 if x.get('lang') == 'en'][::-1] + [x for x in fanart2 if x.get('lang') in ['00', '']][::-1]
                 fanart2 = fanart2[0]['url'].encode('utf-8')
             except:
                 fanart2 = '0'
 
             try:
                 banner2 = art['tvbanner']
-                banner2 = [x for x in banner2 if x.get('lang') == 'en'][::-1] + [x for x in banner2 if x.get('lang') == '00'][::-1]
+                banner2 = [x for x in banner2 if x.get('lang') == self.lang][::-1] + [x for x in banner2 if x.get('lang') == 'en'][::-1] + [x for x in banner2 if x.get('lang') in ['00', '']][::-1]
                 banner2 = banner2[0]['url'].encode('utf-8')
             except:
                 banner2 = '0'
@@ -988,7 +988,7 @@ class tvshows:
             try:
                 if 'hdtvlogo' in art: clearlogo = art['hdtvlogo']
                 else: clearlogo = art['clearlogo']
-                clearlogo = [x for x in clearlogo if x.get('lang') == 'en'][::-1] + [x for x in clearlogo if x.get('lang') == '00'][::-1]
+                clearlogo = [x for x in clearlogo if x.get('lang') == self.lang][::-1] + [x for x in clearlogo if x.get('lang') == 'en'][::-1] + [x for x in clearlogo if x.get('lang') in ['00', '']][::-1]
                 clearlogo = clearlogo[0]['url'].encode('utf-8')
             except:
                 clearlogo = '0'
@@ -996,7 +996,7 @@ class tvshows:
             try:
                 if 'hdclearart' in art: clearart = art['hdclearart']
                 else: clearart = art['clearart']
-                clearart = [x for x in clearart if x.get('lang') == 'en'][::-1] + [x for x in clearart if x.get('lang') == '00'][::-1]
+                clearart = [x for x in clearart if x.get('lang') == self.lang][::-1] + [x for x in clearart if x.get('lang') == 'en'][::-1] + [x for x in clearart if x.get('lang') in ['00', '']][::-1]
                 clearart = clearart[0]['url'].encode('utf-8')
             except:
                 clearart = '0'

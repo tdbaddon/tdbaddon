@@ -101,8 +101,8 @@ class source:
             r = [dom_parser.parse_dom(r, 'div', attrs={'id': i}) for i in rels]
 
             links = re.findall('''(?:link|file)["']?\s*:\s*["'](.+?)["']''', ''.join([i[0].content for i in r]))
-            links += [l.attrs['src'] for l in dom_parser.parse_dom(i, 'iframe', attrs={'class': 'metaframe'}, req='src') for i in r]
-            links += [l.attrs['src'] for l in dom_parser.parse_dom(i, 'source', req='src') for i in r]
+            links += [l.attrs['src'] for i in r for l in dom_parser.parse_dom(i, 'iframe', attrs={'class': 'metaframe'}, req='src')]
+            links += [l.attrs['src'] for i in r for l in dom_parser.parse_dom(i, 'source', req='src')]
 
             for i in links:
                 try:
@@ -123,7 +123,7 @@ class source:
                             except: pass
 
                         i = [(match[0], match[1]) for match in re.findall('''['"]?file['"]?\s*:\s*['"]([^'"]+)['"][^}]*['"]?label['"]?\s*:\s*['"]([^'"]*)''', i, re.DOTALL)]
-                        i = [(x[0].replace('\/', '/'), source_utils.label_to_quality(x[1])) for x in i]
+                        i = [(x[0].replace('\/', '/'), source_utils.label_to_quality(x[1])) for x in i if '/no-video.mp4' not in x[0]]
 
                         for url, quality in i:
                             sources.append({'source': 'gvideo', 'quality': quality, 'language': 'de', 'url': url, 'direct': True, 'debridonly': False})

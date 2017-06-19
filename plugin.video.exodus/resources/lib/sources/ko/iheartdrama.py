@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Exodus
 
@@ -16,13 +16,18 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re,urllib,urlparse
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import dom_parser
+from resources.lib.modules import source_utils
+from resources.lib.modules import tvmaze
 
 
 class source:
@@ -31,79 +36,72 @@ class source:
         self.language = ['ko']
         self.domains = ['iheartdrama.tv']
         self.base_link = 'http://iheartdrama.tv'
-
+        self.search_link = '/?s=%s'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
+            url = self.__search([localtitle] + source_utils.aliases_to_array(aliases))
+            if not url and title != localtitle: url = self.__search([title] + source_utils.aliases_to_array(aliases))
             return url
         except:
             return
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
+            url = self.__search([localtvshowtitle] + source_utils.aliases_to_array(aliases))
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search([tvshowtitle] + source_utils.aliases_to_array(aliases))
             return url
         except:
             return
-
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
-            url = urlparse.parse_qs(url)
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urllib.urlencode(url)
-            return url
+            if not url:
+                return
+
+            url = urlparse.urljoin(self.base_link, url)
+
+            episode = tvmaze.tvMaze().episodeAbsoluteNumber(tvdb, int(season), int(episode))
+
+            r = client.request(url)
+
+            r = dom_parser.parse_dom(r, 'article')
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'entry-content'})
+            r = dom_parser.parse_dom(r, 'li')
+            r = dom_parser.parse_dom(r, 'a', attrs={'href': re.compile('.*-episode-%s-.*' % episode)}, req='href')[0].attrs['href']
+
+            return source_utils.strip_domain(r)
         except:
             return
 
-
     def sources(self, url, hostDict, hostprDict):
+        sources = []
+
         try:
-            sources = []
+            if not url:
+                return sources
 
-            if url == None: return sources
+            r = client.request(urlparse.urljoin(self.base_link, url))
+            r = dom_parser.parse_dom(r, 'article')
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': 'entry-content'})
 
-            if not str(url).startswith('http'):
-
-                data = urlparse.parse_qs(url)
-                data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-                if 'tvshowtitle' in data:
-                    url = '%s/%s-episode-%01d-english-sub/' % (self.base_link, cleantitle.geturl(data['tvshowtitle']), int(data['episode']))
-                else:
-                    url = '%s/%s/' % (self.base_link, cleantitle.geturl(data['title']))
-
-                url = client.request(url, timeout='10', output='geturl')
-                if url == None: raise Exception()
-
-            else:
-                url = urlparse.urljoin(self.base_link, url)
-                r = client.request(url, timeout='10')
-
-            r = client.request(url, timeout='10')
-            r = client.parseDOM(r, 'div', attrs = {'class': 'entry-content'})
-            links = client.parseDOM(r, 'iframe', ret = 'src')
-            r = client.parseDOM(r, 'source', ret = 'src')
-            for i in r:
-                links.append(i)
+            links = re.findall('''(?:link|file)["']?\s*:\s*["'](.+?)["']''', ''.join([i.content for i in r]))
+            links += [l.attrs['src'] for i in r for l in dom_parser.parse_dom(i, 'iframe', req='src')]
+            links += [l.attrs['src'] for i in r for l in dom_parser.parse_dom(i, 'source', req='src')]
 
             for i in links:
                 try:
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
-                    if not host in hostDict: raise Exception()
-                    host = client.replaceHTMLCodes(host)
-                    host = host.encode('utf-8')
-                    url = i.encode('utf-8')
-                    if 'google' in host:
-                        host = 'gvideo'
+                    valid, hoster = source_utils.is_host_valid(i, hostDict)
+                    if not valid: continue
 
-                    sources.append({'source': host, 'quality': 'SD', 'language': 'ko', 'url': url, 'direct': False, 'debridonly': False})
+                    urls = []
+                    if 'google' in i: host = 'gvideo'; direct = True; urls = directstream.google(i);
+                    if 'google' in i and not urls and directstream.googletag(i): host = 'gvideo'; direct = True; urls = [{'quality': directstream.googletag(i)[0]['quality'], 'url': i}]
+                    elif 'ok.ru' in i: host = 'vk'; direct = True; urls = directstream.odnoklassniki(i)
+                    elif 'vk.com' in i: host = 'vk'; direct = True; urls = directstream.vk(i)
+                    else: host = hoster; direct = False; urls = [{'quality': 'SD', 'url': i}]
+
+                    for x in urls: sources.append({'source': host, 'quality': x['quality'], 'language': 'ko', 'url': x['url'], 'direct': direct, 'debridonly': False})
                 except:
                     pass
 
@@ -111,8 +109,24 @@ class source:
         except:
             return sources
 
-
     def resolve(self, url):
         return url
 
+    def __search(self, titles):
+        try:
+            query = self.search_link % urllib.quote_plus(cleantitle.query(titles[0]))
+            query = urlparse.urljoin(self.base_link, query)
 
+            t = [cleantitle.get(i) for i in set(titles) if i]
+
+            r = client.request(query)
+
+            r = dom_parser.parse_dom(r, 'article')
+            r = dom_parser.parse_dom(r, 'h2', attrs={'class': 'entry-title'})
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [(i.attrs['href'], i.content) for i in r]
+            r = [(i[0]) for i in r if cleantitle.get(i[1]) in t][0]
+
+            return source_utils.strip_domain(r)
+        except:
+            return

@@ -19,5 +19,5 @@ from __generic_resolver__ import GenericResolver
 
 class FastplayResolver(GenericResolver):
     name = 'fastplay.sx'
-    domains = ['fastplay.sx', 'fastplay.cc']
-    pattern = '(?://|\.)(fastplay\.(?:sx|cc))/(?:flash-|embed-)?([0-9a-zA-Z]+)'
+    domains = ['fastplay.sx', 'fastplay.cc', 'fastplay.to']
+    pattern = '(?://|\.)(fastplay\.(?:sx|cc|to))/(?:flash-|embed-)?([0-9a-zA-Z]+)'

@@ -79,7 +79,7 @@ def __get_moonwalk(url, ref, info=''):
         for i in re.findall('window\[(.*?)\]', r):
             r = r.replace(i, re.sub('''["']\s*\+\s*["']''', '', i))
 
-        varname = re.findall('''var\s*(\w+)\s*=\s*'/sessions/new_session'\s*;''', r)[0]
+        varname, post_url = re.findall('''var\s*(\w+)\s*=\s*["'](.*?/all/?)["']\s*;''', r)[0]
         jsid = re.findall('''\.post\(\s*%s\s*,\s*([^(\);)]+)''' % varname, r)[0]
 
         jsdata = re.findall('(?:var\s*)?%s\s*=\s*({.*?})' % re.escape(jsid), r, re.DOTALL)[0]
@@ -96,7 +96,7 @@ def __get_moonwalk(url, ref, info=''):
 
         jsdata.update({'mw_key': mw_key, newatt[0]: newatt[1]})
 
-        r = client.request(urlparse.urljoin(host, '/sessions/new_session'), post=jsdata, headers=headers, XHR=True)
+        r = client.request(urlparse.urljoin(host, post_url), post=jsdata, headers=headers, XHR=True)
         r = json.loads(r).get('mans', {}).get('manifest_m3u8')
 
         r = client.request(r, headers=headers)

@@ -132,10 +132,7 @@ class tvMaze:
     def episodeAbsoluteNumber(self, thetvdb, season, episode):
         try:
             url = 'http://thetvdb.com/api/%s/series/%s/default/%01d/%01d' % ('MUQ2MkYyRjkwMDMwQzQ0NA=='.decode('base64'), thetvdb, int(season), int(episode))
-            r = client.request(url)
-            episode = client.parseDOM(r, 'absolute_number')[0]
-
-            return int( episode )
+            return int(client.parseDOM(client.request(url), 'absolute_number')[0])
         except:
             pass
 

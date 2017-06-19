@@ -305,7 +305,7 @@ def add_section_lists(section):
                 add_list_item(section, user_list)
         else:
             other_list = other_dict.get(list_str, list(reversed(list_str.split('@'))))
-            add_other_list_item(MODES.BROWSE, section, other_list)
+            #add_other_list_item(MODES.BROWSE, section, other_list)
 
 def add_refresh_item(queries, label, thumb, fanart):
     refresh_queries = {'mode': MODES.FORCE_REFRESH, 'refresh_mode': queries['mode']}

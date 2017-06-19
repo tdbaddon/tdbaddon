@@ -32,7 +32,8 @@ class VidMeResolver(UrlResolver):
         web_url = self.get_url(host, media_id)
         html = self.net.http_GET(web_url).content
 
-        r = re.search('\<meta property.*og:video:url.*\s*content="([^"]+.mp4[^"]+)', html)
+        #r = re.search('\<meta property.*og:video:url.*\s*content="([^"]+.mp4[^"]+)', html)
+        r = re.search('\<source src="([^"]+.mp4[^"]+)', html)
         if r:
             return r.group(1).replace('&amp;', '&')
 

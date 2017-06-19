@@ -37,6 +37,7 @@ class source:
         self.domains = ['filmix.me']
         self.base_link = 'https://filmix.me'
         self.search_link = '/engine/ajax/sphinx_search.php'
+        self.search_old = '/search/%s'
         self.player_link = '/api/movies/player_data'
 
     def movie(self, imdb, title, localtitle, aliases, year):
@@ -135,6 +136,12 @@ class source:
 
             post = {'story': titles[0], 'years_ot': str(int(year) - 1), 'years_do': str(int(year) + 1)}
             r = client.request(url, post=post, XHR=True)
+
+            if len(r) < 1000:
+                url = urlparse.urljoin(self.base_link, self.search_old % urllib.quote_plus(titles[0]))
+                r = client.request(url)
+
+            r = r.decode('cp1251').encode('utf-8')
 
             r = dom_parser.parse_dom(r, 'article')
             r = dom_parser.parse_dom(r, 'div', attrs={'class': 'full'})

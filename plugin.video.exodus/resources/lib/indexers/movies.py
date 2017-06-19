@@ -749,14 +749,14 @@ class movies:
             try:
                 if 'moviebackground' in art: fanart = art['moviebackground']
                 else: fanart = art['moviethumb']
-                fanart = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in fanart if x.get('lang') == 'en'][::-1] + [x for x in fanart if x.get('lang') in ['00', '']][::-1]
+                fanart = [x for x in fanart if x.get('lang') == self.lang][::-1] + [x for x in fanart if x.get('lang') == 'en'][::-1] + [x for x in fanart if x.get('lang') in ['00', '']][::-1]
                 fanart = fanart[0]['url'].encode('utf-8')
             except:
                 fanart = '0'
 
             try:
                 banner = art['moviebanner']
-                banner = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in banner if x.get('lang') == 'en'][::-1] + [x for x in banner if x.get('lang') in ['00', '']][::-1]
+                banner = [x for x in banner if x.get('lang') == self.lang][::-1] + [x for x in banner if x.get('lang') == 'en'][::-1] + [x for x in banner if x.get('lang') in ['00', '']][::-1]
                 banner = banner[0]['url'].encode('utf-8')
             except:
                 banner = '0'
@@ -764,7 +764,7 @@ class movies:
             try:
                 if 'hdmovielogo' in art: clearlogo = art['hdmovielogo']
                 else: clearlogo = art['clearlogo']
-                clearlogo = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in clearlogo if x.get('lang') == 'en'][::-1] + [x for x in clearlogo if x.get('lang') in ['00', '']][::-1]
+                clearlogo = [x for x in clearlogo if x.get('lang') == self.lang][::-1] + [x for x in clearlogo if x.get('lang') == 'en'][::-1] + [x for x in clearlogo if x.get('lang') in ['00', '']][::-1]
                 clearlogo = clearlogo[0]['url'].encode('utf-8')
             except:
                 clearlogo = '0'
@@ -772,7 +772,7 @@ class movies:
             try:
                 if 'hdmovieclearart' in art: clearart = art['hdmovieclearart']
                 else: clearart = art['clearart']
-                clearart = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in clearart if x.get('lang') == 'en'][::-1] + [x for x in clearart if x.get('lang') in ['00', '']][::-1]
+                clearart = [x for x in clearart if x.get('lang') == self.lang][::-1] + [x for x in clearart if x.get('lang') == 'en'][::-1] + [x for x in clearart if x.get('lang') in ['00', '']][::-1]
                 clearart = clearart[0]['url'].encode('utf-8')
             except:
                 clearart = '0'

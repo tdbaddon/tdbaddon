@@ -446,6 +446,7 @@ class sources:
             sources = []
             sources = call.sources(url, self.hostDict, self.hostprDict)
             if sources == None or sources == []: raise Exception()
+            sources = [json.loads(t) for t in {json.dumps(d, sort_keys=True) for d in sources}]
             for i in sources: i.update({'provider': source})
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
@@ -514,6 +515,7 @@ class sources:
             sources = []
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
             if sources == None or sources == []: raise Exception()
+            sources = [json.loads(t) for t in {json.dumps(d, sort_keys=True) for d in sources}]
             for i in sources: i.update({'provider': source})
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))

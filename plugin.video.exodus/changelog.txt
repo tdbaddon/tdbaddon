@@ -1,3 +1,9 @@
+[B]3.1.17[/B]
+- Updated German providers
+- Updated Korean providers
+- Tweaked localized trailers
+- Fixed trakt support
+
 [B]3.1.16[/B]
 - Updated existing providers
 - Added and Updated German providers

@@ -28,8 +28,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['fr']
-        self.domains = ['streamay.bz']
-        self.base_link = 'http://streamay.bz'
+        self.domains = ['streamay.ws']
+        self.base_link = 'http://streamay.ws'
         self.search_link = '/search'
 
     def movie(self, imdb, title, localtitle, aliases, year):
@@ -105,7 +105,7 @@ class source:
             query = urlparse.urljoin(self.base_link, self.search_link)
 
             post = urllib.urlencode({'k': "%s"}) % tq
-            r = client.request('https://streamay.bz/search', post=post)
+            r = client.request(query, post=post)
             r = json.loads(r)
 
             r = [i.get('result') for i in r if i.get('type', '').encode('utf-8') == content_type]

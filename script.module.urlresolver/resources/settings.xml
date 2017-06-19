@@ -59,6 +59,12 @@
 		<setting id="SimplyDebridResolver_login" type="bool" label="login" default="false"/>
 		<setting id="SimplyDebridResolver_username" enable="eq(-1,true)" type="text" label="Username" default=""/>
 		<setting id="SimplyDebridResolver_password" enable="eq(-2,true)" type="text" label="Password" option="hidden" default=""/>
+		<setting label="SMOOZED" type="lsep"/>
+		<setting id="SmoozedResolver_priority" type="number" label="Priority" default="100"/>
+		<setting id="SmoozedResolver_enabled" type="bool" label="Enabled" default="true"/>
+		<setting id="SmoozedResolver_email" visible="true" type="text" default=""/>
+		<setting id="SmoozedResolver_password" visible="true" type="text" default=""/>
+		<setting id="SmoozedResolver_session_key" visible="false" type="text" default=""/>
 		<setting label="Zevera" type="lsep"/>
 		<setting id="ZeveraResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="ZeveraResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -73,9 +79,6 @@
 		<setting label="aliez" type="lsep"/>
 		<setting id="AliezResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="AliezResolver_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="allvid" type="lsep"/>
-		<setting id="AllVidResolver_priority" type="number" label="Priority" default="100"/>
-		<setting id="AllVidResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="ani-stream" type="lsep"/>
 		<setting id="AniStreamResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="AniStreamResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -115,6 +118,9 @@
 		<setting label="dailymotion" type="lsep"/>
 		<setting id="DailymotionResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="DailymotionResolver_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="datemule" type="lsep"/>
+		<setting id="DateMuleResolver_priority" type="number" label="Priority" default="100"/>
+		<setting id="DateMuleResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="datoporn" type="lsep"/>
 		<setting id="DatoPornResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="DatoPornResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -136,18 +142,15 @@
 		<setting label="everplay.watchpass.net" type="lsep"/>
 		<setting id="WatchpassResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="WatchpassResolver_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="exashare" type="lsep"/>
-		<setting id="ExashareResolver_priority" type="number" label="Priority" default="100"/>
-		<setting id="ExashareResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="facebook" type="lsep"/>
 		<setting id="FacebookResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="FacebookResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="Video Quality" id="FacebookResolver_quality" type="enum" values="High|Standard" default="0" />
-	</category>
-	<category label="Resolvers 2">
 		<setting label="fastplay.sx" type="lsep"/>
 		<setting id="FastplayResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="FastplayResolver_enabled" type="bool" label="Enabled" default="true"/>
+	</category>
+	<category label="Resolvers 2">
 		<setting label="filepup" type="lsep"/>
 		<setting id="FilePupResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="FilePupResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -180,6 +183,9 @@
 		<setting label="grifthost" type="lsep"/>
 		<setting id="GrifthostResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="GrifthostResolver_enabled" type="bool" label="Enabled" default="true"/>
+		<setting label="h265.se" type="lsep"/>
+		<setting id="H265Resolver_priority" type="number" label="Priority" default="100"/>
+		<setting id="H265Resolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="hugefiles" type="lsep"/>
 		<setting id="HugefilesResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="HugefilesResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -224,6 +230,9 @@
 		<setting id="Mp4uploadResolver_enabled" type="bool" label="Enabled" default="true"/>
 	</category>
 	<category label="Resolvers 3">
+		<setting label="mycloud" type="lsep"/>
+		<setting id="MycloudResolver_priority" type="number" label="Priority" default="100"/>
+		<setting id="MycloudResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="mystream" type="lsep"/>
 		<setting id="MystreamResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="MystreamResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -299,11 +308,11 @@
 		<setting label="speedvideo" type="lsep"/>
 		<setting id="SpeedVideoResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="SpeedVideoResolver_enabled" type="bool" label="Enabled" default="true"/>
+	</category>
+	<category label="Resolvers 4">
 		<setting label="speedwatch" type="lsep"/>
 		<setting id="SpeedWatchResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="SpeedWatchResolver_enabled" type="bool" label="Enabled" default="true"/>
-	</category>
-	<category label="Resolvers 4">
 		<setting label="spruto" type="lsep"/>
 		<setting id="SprutoResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="SprutoResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -371,10 +380,6 @@
 		<setting label="twitch" type="lsep"/>
 		<setting id="TwitchResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="TwitchResolver_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="This plugin calls the Twitch Add-on, change settings there." type="lsep" />
-		<setting label="twitch" type="lsep"/>
-		<setting id="TwitchResolver_priority" type="number" label="Priority" default="100"/>
-		<setting id="TwitchResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting id="TwitchResolver_client_id" type="text" label="Client ID" default="am6l6dn0x3bxrdgc557p1qeg1ma3bto"/>
 		<setting label="upload.af" type="lsep"/>
 		<setting id="UploadAfResolver_priority" type="number" label="Priority" default="100"/>
@@ -396,9 +401,6 @@
 		<setting label="UsersFiles" type="lsep"/>
 		<setting id="UsersFilesResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="UsersFilesResolver_enabled" type="bool" label="Enabled" default="true"/>
-		<setting label="ustream.tv" type="lsep"/>
-		<setting id="UstreamResolver_priority" type="number" label="Priority" default="100"/>
-		<setting id="UstreamResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="VeeHD" type="lsep"/>
 		<setting id="VeeHDResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="VeeHDResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -462,11 +464,11 @@
 		<setting label="vidtodo" type="lsep"/>
 		<setting id="VidToDoResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="VidToDoResolver_enabled" type="bool" label="Enabled" default="true"/>
-	</category>
-	<category label="Resolvers 6">
 		<setting label="vidup.me" type="lsep"/>
 		<setting id="VidUpMeResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="VidUpMeResolver_enabled" type="bool" label="Enabled" default="true"/>
+	</category>
+	<category label="Resolvers 6">
 		<setting label="vidup.org" type="lsep"/>
 		<setting id="VidUpResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="VidUpResolver_enabled" type="bool" label="Enabled" default="true"/>
@@ -516,9 +518,6 @@
 		<setting id="YoutubeResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="YoutubeResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="This plugin calls the youtube addon -change settings there." type="lsep" />
-		<setting label="youwatch" type="lsep"/>
-		<setting id="YouWatchResolver_priority" type="number" label="Priority" default="100"/>
-		<setting id="YouWatchResolver_enabled" type="bool" label="Enabled" default="true"/>
 		<setting label="zstream.to" type="lsep"/>
 		<setting id="ZstreamResolver_priority" type="number" label="Priority" default="100"/>
 		<setting id="ZstreamResolver_enabled" type="bool" label="Enabled" default="true"/>

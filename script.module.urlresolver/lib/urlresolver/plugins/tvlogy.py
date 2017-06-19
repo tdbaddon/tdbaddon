@@ -40,7 +40,7 @@ class TVLogyResolver(UrlResolver):
         if 'Video is processing' in html:
             raise ResolverError('File still being processed')
 
-        sources = helpers.scrape_sources(html)
+        sources = helpers.scrape_sources(html, patterns=[',\s*src\s*:\s*"(?P<url>[^"]+)'])
         strurl = helpers.pick_source(sources)
         if 'dailymotion.com' in strurl:
             strurl = 'plugin://plugin.video.f4mTester/?streamtype=HLS&url=' + strurl
