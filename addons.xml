@@ -1578,7 +1578,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.17" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.18" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -3217,39 +3217,6 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.TDBSPANISHTV"
-       name="TDB SPANISH TV"
-       version="1001"
-       provider-name="TDB">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-	<import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
-	<import addon="script.module.urlresolver" optional="true"/>
-	<import addon="script.module.simplejson" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="plugin.video.f4mTester" optional="true"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
        version="1002"
@@ -4784,17 +4751,22 @@ and more.......</description>
     </extension>
 </addon>
 
-<addon id="repository.ukturk" name="UKTurk Addon Repository" version="1.0.3" provider-name="UKTurk">
+<addon id="repository.ukturk" name="UKTurk Addon Repository" version="1.0.4" provider-name="UKTurk">
 	<extension point="xbmc.addon.repository" name="UKTurk Addon Repository">
 	<dir>
-		<info compressed="false">https://raw.githubusercontent.com/MetalKettle/UKT/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/MetalKettle/UKT/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/MetalKettle/UKT/master/zips/</datadir>
+		<info compressed="false">https://raw.githubusercontent.com/restbite/UKT/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/restbite/UKT/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/restbite/UKT/master/zips/</datadir>
 	</dir>
 	<dir>
 		<info compressed="false">https://github.com/zqfaen/tva-common/raw/master/addons.xml</info>
         	<checksum>https://github.com/zqfaen/tva-common/raw/master/addons.xml.md5</checksum>
         	<datadir zip="true">https://github.com/zqfaen/tva-common/raw/master/zips/</datadir>
+	</dir>
+	<dir>
+		<info compressed="false">https://github.com/lewblack125/tva-common/raw/master/addons.xml</info>
+        	<checksum>https://github.com/lewblack125/tva-common/raw/master/addons.xml.md5</checksum>
+        	<datadir zip="true">https://github.com/lewblack125/tva-common/raw/master/zips/</datadir>
 	</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
@@ -5894,7 +5866,7 @@ level.</description>
   </extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="3.0.33" provider-name="tvaddons.ag, Eldorado">
+<addon id="script.module.urlresolver" name="URLResolver" version="3.0.33.01" provider-name="tvaddons.ag, Eldorado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />
