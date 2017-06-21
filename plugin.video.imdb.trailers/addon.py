@@ -30,6 +30,8 @@ import sys
 import urlparse
 import urllib
 import urllib2
+import HTMLParser
+
 if sys.version_info >= (2, 7):
   import json as _json
 else:
@@ -69,6 +71,7 @@ CONTENT_URL = 'http://www.imdb.com/video/trailers/data/_ajax/adapter/shoveler?li
 OLD_DETAILS_PAGE = "http://www.imdb.com/video/imdb/%s/html5?format=%s"
 DETAILS_PAGE = "http://www.imdb.com/video/imdb/%s/imdbvideo?format=%s"
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17'
+h = HTMLParser.HTMLParser()
 
 # disable fanarts for speed on raspberry
 try:
@@ -176,15 +179,15 @@ class Main:
       if FANART:
         listitem.setArt({'fanart': _fanart})
       listitem.setInfo(type='video',
-                       infoLabels={'title': title,
-                                   'plot': plot,
+                       infoLabels={'title': h.unescape(title).encode('utf-8'),
+                                   'plot': h.unescape(plot).encode('utf-8'),
                                    'genre': genres,
                                    'year': int(year),
                                    'rating': float(rating),
                                    'mpaa': mpaa,
                                    # 'duration': str(duration),
-                                   'director': directors.encode('utf-8', 'ignore'),
-                                   'cast': stars})
+                                   'director': h.unescape(directors).encode('utf-8'),
+                                   'cast': [h.unescape(item).encode('utf8') for item in stars]})
       # dummy context menu variable
       contextmenu = []
       if _settings('couchpotato') == 'true':

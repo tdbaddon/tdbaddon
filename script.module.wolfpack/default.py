@@ -13,28 +13,15 @@ art        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id
 icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 User_Agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
-afdah      = 'http://afdah.org'
-ccurl      = 'http://cartooncrazy.me'
 s          = requests.session()
 net        = Net()
-ccurl      = 'http://cartooncrazy.me'
 xxxurl     ='http://www.xvideos.com'
-kidsurl    = base64.b64decode ('aHR0cDovL21rb2RpLmNvLnVrL21lZGlhaHViL2xpc3RzL0tpZHMva2lkc2Nvcm5lci54bWw=')
-docurl     = 'http://documentaryheaven.com'
 
+# ALL CODE IS DONE BY SAM CLARKE, THANKS GOES OUT TO HIM 
 
 def CAT():
 	addDir('XXX SECTION','URL',31,icon,fanart,'')
 	
-	
-def MovieCAT():
-	addDir('RECENT MOVIES',afdah+'/recent_movies',19,icon,fanart,'')
-	addDir('COMEDY MOVIES',afdah+'/comedy_movies',19,icon,fanart,'')
-	addDir('CRIME MOVIES',afdah+'/crime_movies',19,icon,fanart,'')
-	addDir('WAR MOVIES',afdah+'/war_movies',19,icon,fanart,'')
-	addDir('ROMANCE MOVIES',afdah+'/romance_movies',19,icon,fanart,'')
-	addDir('MUSICAL MOVIES',afdah+'/musical_movies',19,icon,fanart,'')
-	addDir('SPORT MOVIES',afdah+'/sport_movies',19,icon,fanart,'')
 
 	
 def xxxCAT():
@@ -143,64 +130,7 @@ def Open_Url(url):
     return link
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 	
-def OPEN_URLafdah(url):
-        headers = {}
-        headers['User-Agent'] = User_Agent
-        link = requests.get(url, headers=headers, allow_redirects=False).text
-        link = link.encode('ascii', 'ignore').decode('ascii')
-        return link
-		
-def addDirafdah(name,url,mode,iconimage,fanart,description):
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
-        liz.setProperty('fanart_image', fanart)
-        if mode==3 or mode ==15:
-            liz.setProperty("IsPlayable","true")
-            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-        else:
-            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
-        return ok
-	
-def afdahread(url):
-        url = url.replace('https','http')
-        link = OPEN_URLafdah(url)
-        all_videos = regex_get_all(link, 'cell_container', '<div><b>')
-        items = len(all_videos)
-        for a in all_videos:
-                name = regex_from_to(a, 'a title="', '\(')
-                name = addon.unescape(name)
-                url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
-                thumb = regex_from_to(a, 'src="', '"')
-                addDirafdah(name,afdah+url,15,'http://'+thumb,fanart,'')
-        try:
-                match = re.compile('<a href="(.*?)\?page\=(.*?)">').findall(link)
-                for url, pn in match:
-                        url = afdah+url+'?page='+pn
-                        addDirafdah('[I][B][COLOR red]Page %s [/COLOR][/B][/I]' %pn,url,19,icon,fanart,'')
-        except: pass
-        setView('movies', 'movie-view')
-		
-def afdahplay(url):
-        url = re.split(r'#', url, re.I)[0]
-        request_url = afdah+'/video_info/iframe'
-        link = OPEN_URLafdah(url)
-        form_data={'v': re.search(r'v\=(.*?)$',url,re.I).group(1)}
-        headers = {'origin':'https://afdah.org', 'referer': url,
-                   'user-agent':User_Agent,'x-requested-with':'XMLHttpRequest'}
-        r = requests.post(request_url, data=form_data, headers=headers, allow_redirects=False)
-        try:
-                url = re.findall(r'url\=(.*?)"', str(r.text), re.I|re.DOTALL)[-1]
-        except:
-                url = re.findall(r'url\=(.*?)"', str(r.text), re.I|re.DOTALL)[0]
-        url = url.replace("&amp;","&").replace('%3A',':').replace('%3D','=').replace('%2F','/')
-        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setInfo(type='Video', infoLabels={'Title':description})
-        liz.setProperty("IsPlayable","true")
-        liz.setPath(str(url))
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-		
+
 def xxx(url):
         link = OPEN_URL(url)
         xxxadd_next_button(link)
@@ -313,7 +243,7 @@ def opencartooncrazy(url):
 		addDir(name,ccurl+url,30,'','','')
 		
 def CartooncrazyList():
-    OPEN = Open_Url('http://mkodi.co.uk/streamhub/lists/cartooncrazy.xml')
+    OPEN = Open_Url('http://')
     Regex = re.compile('<title>(.+?)</title>.+?url>(.+?)</url>.+?thumb>(.+?)</thumb>',re.DOTALL).findall(OPEN)
     for name,url,icon in Regex:
 		fanart='http://'
@@ -327,39 +257,6 @@ def CartooncrazysubList(url):
 		fanart='http://'
 		addDir(name,url,26,icon,fanart,'') 
     xbmc.executebuiltin('Container.SetViewMode(50)')'''
-def documentary(url):
-	OPEN = OPEN_URL(url)
-	regex = regex_get_all(OPEN,'<h2><a href','alt="')
-	for a in regex:
-		url = regex_from_to(a,'="','"')
-		title = regex_from_to(a,'">','<').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'").replace('&#8211;',' - ').replace('&#8217;',"'").replace('&#8216;',"'").replace('&#038;','&').replace('&acirc;','')
-		thumb = regex_from_to(a,'img src="','"')
-		vids = regex_from_to(a,'</a> (',')</h2>').replace('(','').replace(')','')
-		if vids == "":
-			addDir(title,url,36,thumb,fanart,'')
-		else:
-			addDir(title,docurl+url,35,thumb,fanart,'')
-	try:
-		link = re.compile('<li class="next-btn"><a href="(.+?)"').findall(OPEN)
-		link = str(link).replace('[','').replace(']','').replace("'","")
-		xbmc.log(str(link))
-		if link == "":
-			return False
-		else:
-			addDir('[B][COLOR red]NEXT PAGE[/COLOR][/B]',link,35,thumb,fanart,'')
-	except:pass
-def resolvedoc(url):
-	open = OPEN_URL(url)
-	xbmc.log(str(open))
-	url = regex_from_to(open,'height=".*?" src="','"')
-	link = urlresolver.HostedMediaFile(url).resolve()
-	liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-	liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': description})
-	liz.setProperty('IsPlayable','true')
-	liz.setPath(str(link))
-	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-
-	
 
 def setView(content, viewType):
     ''' Why recode whats allready written and works well,
@@ -484,12 +381,6 @@ elif mode==12:
 elif mode==13:
 	resolve(name,url,iconimage,description)
 	
-elif mode==19:
-	afdahread(url)
-	
-elif mode==15:
-	afdahplay(url)
-	
 elif mode==16:
 	toonlist(url)
 	
@@ -528,12 +419,6 @@ elif mode==33:
 	
 elif mode==34:
 	CartooncrazysubList(url)
-	
-elif mode==35:
-	documentary(url)
-	
-elif mode==36:
-	resolvedoc(url)
 	
 elif mode==98:
 	xxxstars(url)

@@ -1,8 +1,11 @@
 plugin.video.imdb.trailers:
 ---------------------------
+v2.1.1 (14.06.2017)
+-display non English European characters corectly
+
 v2.1.0 (19.11.2016)
 -removed tempfile library and used common plugin cache
-- fix bug when no release year for the movie
+-fix bug when no release year for the movie
 
 v2.0.7 (30.03.2013)
 -removed couchpotato V1 support

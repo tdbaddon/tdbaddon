@@ -45,7 +45,31 @@ if xbmc_version:
     xbmc_version = int(xbmc_version.group(1))
 else:
     xbmc_version = 1
-print xbmc_version
+
+
+if xbmc_version >= 16.9:
+        dependencies = ['repository.istream','script.module.requests','script.module.elementtree','script.common.plugin.cache','script.istream.dialogs', 'script.module.addon.common', 'script.module.beautifulsoup', 'script.module.dnspython', 'script.module.f4mproxy', 'script.module.feedparser', 'script.module.metahandler', 'script.module.myconnpy', 'script.module.parsedom', 'script.module.pyamf', 'script.module.simple.downloader', 'script.module.socksipy', 'script.module.t0mm0.common', 'script.module.unidecode', 'script.module.universal', 'script.module.urlresolver']
+        
+        import glob
+
+
+        folder = xbmc.translatePath('special://home/addons/')
+
+        for DEPEND in glob.glob(folder+'script.icechannel*'):
+            try:dependencies.append(DEPEND.rsplit('\\', 1)[1])
+            except:dependencies.append(DEPEND.rsplit('/', 1)[1])
+
+
+        for THEPLUGIN in dependencies:
+            xbmc.log(str(THEPLUGIN))
+            query = '{"jsonrpc":"2.0", "method":"Addons.SetAddonEnabled","params":{"addonid":"%s","enabled":true}, "id":1}' % (THEPLUGIN)
+         
+            xbmc.executeJSONRPC(query)
+    
+
+
+
+
 if xbmc_version >= 13.9:
     addon_id = 'script.module.universal'
     lib_addon_dir_name = "lib"

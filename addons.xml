@@ -999,38 +999,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.8.0" provider-name="...">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
-        <import addon="repository.aftershock" version="2.0.4"/>
-        <import addon="script.aftershock.artwork" version="1.3.1"/>
-        <import addon="script.module.urlresolver"  version="3.0.21"/>
-		<import addon="script.module.metahandler"  version="1.0.0"/>
-		<import addon="script.module.beautifulsoup" version="3.2.1"/>
-        <import addon="script.aftershock.core" version="1.1.2"/>
-        <import addon="script.aftershocknow.guide" version="1.0.1"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="aftershock.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
-        <description lang="en"></description>
-        <disclaimer lang="en"></disclaimer>
-        <platform>all</platform>
-        <forum></forum>
-	    <website></website>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/screenshot-01.png</screenshot>
-            <screenshot>resources/screenshots/screenshot-02.png</screenshot>
-            <screenshot>resources/screenshots/screenshot-03.png</screenshot>
-        </assets>
-        <news></news>
-  </extension>
-</addon>
-
 <addon id="plugin.video.AtTheFlix" name="[COLOR red]At The Flix[/COLOR]" version="1.7" provider-name="Maverick">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -1247,38 +1215,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.cerberus" name="[COLOR limegreen][I]Cerberus[/I][/COLOR]" version="1.5" provider-name="[COLOR darkseagreen]Shaytan Lykos[/COLOR]">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.urlresolver"  version="3.0.0"/>
-	<import addon="script.module.addon.common" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-	<summary lang="en">[COLOR limegreen]Cerberus[/COLOR] [COLOR lawngreen]v1.5[/COLOR]</summary>
-	<description lang="en">[COLOR chocolate]Cerberus[/COLOR]</description>
-    <disclaimer lang="en">[COLOR orangered]The author neither hosts or stores any content, the author has no affiliation with content hosts[/COLOR]</disclaimer>
-    <language></language>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://band.us/@cerberus</forum>
-    <website></website>
-    <email></email>
-    <source></source>
-    <news>v1.5 (2017-04-15) Fixed a couple of things; </news>
-    <assets>
-        <icon>resources/art/icon.png</icon>
-        <fanart>resources/art/fanart.jpg</fanart>
-        <screenshot>resources/screenshot-01.jpg</screenshot>
-        <screenshot>resources/screenshot-02.jpg</screenshot>
-        <screenshot>resources/screenshot-03.jpg</screenshot>
-        <screenshot>resources/screenshot-04.jpg</screenshot>
-    </assets>
-  </extension>
-</addon>
-
 <addon id="plugin.video.colombiatv"
        name="ColombiaTV"
        version="1.4.3"
@@ -1349,6 +1285,42 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <description lang="en"></description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.deccandelight"
+version="1.2.3"
+name="Deccan Delight"
+provider-name="Gujal">
+<requires>
+  <import addon="xbmc.python" version="2.20.0"/>
+  <import addon="script.module.requests" version="2.4.3"/>
+  <import addon="script.module.beautifulsoup" version="3.2.1"/>
+  <import addon="script.common.plugin.cache" version="2.5.5"/>
+  <import addon="script.module.urlresolver" version="3.0.0"/>
+  <import addon="script.module.urlresolver" version="3.0.0"/>
+  <import addon="plugin.video.f4mTester" version="2.2.3"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+	<summary>Entertainment from the Deccan region of India</summary>
+	<description>This addon provides access to entertainment in various Deccan languages such as Tamil, Telugu, Malayalam, Kannada, and Hindi</description>
+	<platform>all</platform>
+	<website>https://forums.tvaddons.ag/addon-releases/49105-deccan-delight-indian-entertainment.html</website>
+	<disclaimer>This addon scrapes content from various websites around the Internet and is not liable for any content hosted on those sites</disclaimer>
+	<news>[B]Updated 28 May 2017[/B]
+- Tamilgun Domain change
+- Tamilrasigan Fix
+	</news>
+	<assets>
+		<icon>icon.png</icon>
+		<fanart>fanart.jpg</fanart>
+		<screenshot>resources/images/screenshot-01.jpg</screenshot>
+		<screenshot>resources/images/screenshot-02.jpg</screenshot>
+		<screenshot>resources/images/screenshot-03.jpg</screenshot>
+	</assets>
+</extension>
 </addon>
 
 <addon id="plugin.video.disclose_tv" name="Disclose.tv" version="0.1.9" provider-name="Sphere, Spinalcracker">
@@ -1578,7 +1550,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.18" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.19" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1756,35 +1728,26 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
-<addon id="plugin.video.FTFA"
-       name="FTFA TV"
-       version="1.0"
-       provider-name="FTFA">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Simple Tv From FTFA</summary>
-    <description lang="en">General disclaimer: FTFA tv takes no responsibility for the content or reliability of the feeds. FTFA TV [B]Does Not[/B] host any of the feeds or Streams.  Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991.</description>
-    <platform>all</platform>
-  </extension>
+<addon id="plugin.video.FTFA" version="3.3.9" name="[COLOR lime]FTFA[/COLOR]" provider-name="WDS Brettus">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.simplejson" version="3.3.0"/>
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">ftfa addon</summary>
+		<description lang="en">ftfa addon</description>
+		<platform>all</platform>
+		<forum></forum>
+		<website></website>
+	</extension>
 </addon>
 
 <addon id="plugin.video.FutureMusic"
@@ -2049,7 +2012,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon
   id="plugin.video.imdb.trailers"
-  version="2.1.0"
+  version="2.1.1"
   name="IMDb Trailers"
   provider-name="queeup, gujal">
   <requires>
@@ -3636,7 +3599,7 @@ For DMCA Reports, please send message to our FB page.
 	</extension>
 </addon>
 
-<addon id="plugin.video.wolfpack" version="2.0" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
+<addon id="plugin.video.wolfpack" version="2.3" name="[B][COLOR ghostwhite]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR ghostwhite]K[/COLOR][/B]" provider-name="Wolfpack">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -3644,7 +3607,6 @@ For DMCA Reports, please send message to our FB page.
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.liveresolver" version="0.1.24"/>
 		<import addon="script.video.F4mProxy" version="2.2.3"/>
-		<import addon="script.module.wolfpack" version="1.6"/>
 		<import addon="repository.crt" version="1.0"/>
 
 	</requires>
@@ -3862,25 +3824,6 @@ Enjoy!</description>
 </extension>
 </addon>
 
-<addon id="repository.aftershock" name="Aftershock addons" version="2.0.4" provider-name="..">
-	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
-		<dir>
-			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-		</dir>
-		<info compressed="false">https://offshoregit.com/vineegu/aftershock-repo/addons.xml</info>
-		<checksum>https://offshoregit.com/vineegu/aftershock-repo/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/vineegu/aftershock-repo/releases</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install video addons from Aftershock</summary>
-		<description>Adddon repository.</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.aj-addons" name="aj add-ons" version="2.1.0" provider-name="ajdeveloped">
 	<extension point="xbmc.addon.repository" name="AJ ADD-ONs">
 		<info compressed="false">https://offshoregit.com/ajaddons/prod/repo/addons.xml</info>
@@ -3906,27 +3849,6 @@ Enjoy!</description>
 		<description>Ares-Project Addons Source. Visit Us At https://ares-project.uk</description>
 		<platform>all</platform>
 	</extension>
-</addon>
-
-<addon id="repository.BlazeRepo" name="Blazetamer's Repository" version="3.2" provider-name="Blazetamer">
-<extension point="xbmc.addon.repository" name="Blaztamer's Addon Repository">
-    <dir>
-	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-    </dir>
-    <dir>
-            <info compressed="false">https://offshoregit.com/Blazetamer/repo/raw/master/addons.xml</info>
-            <checksum>https://offshoregit.com/Blazetamer/repo/raw/master/addons.xml.md5</checksum>
-            <datadir zip="true">https://offshoregit.com/Blazetamer/repo/raw/master/zips</datadir>
-    </dir>
-
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>Install all of Blazetamer's Addons</summary>
-<description>Download and install addons from Blazetamer.......For Official Support Visit TVADDONS.AG</description>
-<platform>all</platform>
-</extension>
 </addon>
 
 <addon id="repository.Brettusrepo" name="Brettus Builds repository" version="1.0" provider-name="Brettus">
@@ -4178,7 +4100,23 @@ and more.......</description>
 	</extension>
 </addon>
 
-<addon id="repository.goodfellas" name="GoodFellas" version="1.5" provider-name="GoodFellas">
+<addon id="repository.gfservers" name="GFservers" version="1.0" provider-name="GF">
+	<extension point="xbmc.addon.repository" name="GFservers">
+		<info compressed="false">http://www.gfservers.com/plugins/addons.xml</info>
+		<checksum>http://www.gfservers.com/plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.gfservers.com/plugins</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>GFSERVERS</summary>
+		<description>The Best Live Tv and Movies addon</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.goodfellas" name="GoodFellas" version="1.6" provider-name="GoodFellas">
+	<requires>
+		<import addon="repository.gfservers" />
+	</requires>
 	<extension point="xbmc.addon.repository" name="Good Fellas">
 		<info compressed="false">http://www.goodfellasteam.com/Plugins/addons.xml</info>
 		<checksum>http://www.goodfellasteam.com/Plugins/addons.xml.md5</checksum>
@@ -4187,6 +4125,24 @@ and more.......</description>
 	<extension point="xbmc.addon.metadata">
 		<summary>Welcome to the GoodFellas Repository where you will find all the Live Tv, Movies, and Documentaries</summary>
 		<description>The Best Live Tv and Movies addon</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.gujal" name="Gujal Addon Repository" version="1.4" provider-name="Gujal">
+	<extension point="xbmc.addon.repository" name="Gujal Addons Repository">
+	<dir>
+		<info compressed="false">https://github.com/zqfaen/tva-common/raw/master/addons.xml</info>
+		<checksum>https://github.com/zqfaen/tva-common/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/zqfaen/tva-common/raw/master/zips/</datadir>
+	</dir>
+        <info compressed="false">https://raw.github.com/Gujal00/GujalKodiWork/master/addons.xml</info>
+        <checksum>https://raw.github.com/Gujal00/GujalKodiWork/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.github.com/Gujal00/GujalKodiWork/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Third party Addons for Kodi</summary>
+		<description>Gujal Addons Repository</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4254,6 +4210,19 @@ and more.......</description>
             <source>https://raw.github.com/luftreich/imaxpo.xbmc/master/repository.imaxpo</source>
 		</extension>
 	</addon>
+
+<addon id="repository.istream" name="iSTREAM XBMC Addons Repository" version="10.4" provider-name="iSTREAM">
+	<extension point="xbmc.addon.repository" name="iSTREAM">
+		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/istream/master/repo/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/mucky-duck/istream/master/repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/mucky-duck/istream/master/repo/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>iSTREAM XBMC Addons and Extensions</summary>
+		<description>iSTREAM XBMC Addons and Extensions</description>
+		<platform>all</platform>
+	</extension>
+</addon>
 
 <addon id="repository.jesusboxtv" name="Jesusbox Repository" version="1.0.0" provider-name="Playonmonkey">
 	<extension point="xbmc.addon.repository" name="Jesusbox Repository">
@@ -4333,21 +4302,15 @@ and more.......</description>
 	</extension>
 </addon>
 
-    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.1" provider-name="KodiTips.com">
+    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.2" provider-name="KodiTips.com">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="KodiTips.com Repository">
             <dir>
-   <info compressed="false">
-    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml
-   </info>
-   <checksum>
-    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5
-   </checksum>
-   <datadir zip="true">
-    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/
-   </datadir>
+   <info compressed="false">https://github.com/lewblack125/tva-common/raw/master/addons.xml</info>
+        <checksum>https://github.com/lewblack125/tva-common/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/lewblack125/tva-common/raw/master/zips/</datadir>
   </dir>
             <info compressed="false">http://raw.github.com/koditips/repo/master/_repo/addons.xml</info>
             <checksum>http://raw.github.com/koditips/repo/master/_repo/addons.xml.md5</checksum>
@@ -4889,7 +4852,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.5" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.6" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
 	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
 		<info compressed="false">http://xtyrepo.me/xunitytalk/addons/addons.xml</info>
 		<checksum>http://xtyrepo.me/xunitytalk/addons/addons.xml.md5</checksum>
@@ -4900,7 +4863,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
 		<platform>all</platform>
 	</extension>
-  <extension point="xbmc.service" library="service.py" start="login" />
+<extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
 <addon id="repository.ytplugin" name="Youtube Addon Repo" version="1.0" provider-name="Jeffrey Frasure">
@@ -5035,56 +4998,6 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
         <description>Themes for 1Channel are maintained separately to make distribution of the the addon itself easier/faster.</description>
         <platform>all</platform>
     </extension>
-</addon>
-
-<addon id="script.aftershock.artwork" version="1.3.3" name="Aftershock Artwork" provider-name="IDev">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the Aftershock Addon</summary>
-		<description>Themes for Aftershock are maintained separately to make distribution of the the addon itself easier/faster.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="script.aftershock.core" name="aftershock-core" version="1.1.2" provider-name="AftershockPY">
-  <requires>
-    <import addon="xbmc.python" version="2.19.0"/>
-  </requires>
-  <extension point="xbmc.python.module" library="lib"/>
-  <extension point="xbmc.addon.metadata">
-    <summary></summary>
-    <description></description>
-    <platform>all</platform>
-    <license>Simplified BSD</license>
-    <source></source>
-    <website></website>
-  </extension>
-</addon>
-
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.2" provider-name="IDev">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-		<import addon="script.module.simplejson" version="3.3.0"/>
-		<!--<import addon="plugin.video.aftershock" version="4.2.4" optional="true"/>-->
-	</requires>
-	<extension point="xbmc.python.script" library="addon.py">
-            <provides>executable</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-
-		<description lang="en">The AftershockNow Guide provides an EPG for the AftershockNow addon.</description>
-
-		<disclaimer lang="en">The AftershockNow Guide is based on the FTV Guide by rayw1986 and bluezed which is based on the original TV Guide addon by twinther.</disclaimer>
-		<language></language>
-		<platform>all</platform>
-		<license>GPLv2</license>
-        <forum></forum>
-        <website>http://www.facebook.com/aftershockpy</website>
-		<email>aftershockpy@gmail.com</email>
-	</extension>
 </addon>
 
 <addon id="script.common.plugin.cache" name="Common plugin cache" provider-name="TheCollective" version="2.5.8">
@@ -5846,7 +5759,7 @@ level.</description>
 	</extension>
 </addon>
 
-<addon id="script.module.universal" name="Universal - An Addons Toolkit" version="2.0.1" provider-name="the-one">
+<addon id="script.module.universal" name="Universal - An Addons Toolkit" version="2.0.2" provider-name="the-one">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.t0mm0.common" version="0.0.1"/>
@@ -5905,7 +5818,7 @@ level.</description>
 
 <addon id="script.module.wolfpack"
        name="[B][COLOR white]W[/COLOR][COLOR red]OLFPAC[/COLOR][COLOR white]K[/COLOR][/B]"
-	   version="1.6"
+	   version="1.7"
 	   provider-name="[B][COLOR red]wolfpack[/COLOR][/B]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

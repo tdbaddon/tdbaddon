@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+    <category label="Tamil Scrapers">
+        <setting id="tamiltv" type="bool" label="APK Land" default="true"/>
+		<setting id="rajt" type="bool" label="Raj Tamil" default="true"/>
+		<setting id="runt" type="bool" label="Run Tamil" default="true"/>
+		<setting id="tgun" type="bool" label="Tamil Gun" default="true"/>
+		<setting id="rasigan" type="bool" label="Tamil Rasigan" default="true"/>
+        <setting id="ttvs" type="bool" label="Tamil TV Shows" default="true"/>
+		<setting id="tyogi" type="bool" label="Tamil Yogi" default="true"/>
+    </category>
+    <category label="Telugu Scrapers">
+        <setting id="awatch" type="bool" label="Andhra Watch" default="true"/>
+    </category> 
+    <category label="Malayalam Scrapers">
+        <setting id="abcm" type="bool" label="ABC Malayalam" default="true"/>
+        <setting id="lmtv" type="bool" label="Live Malayalam" default="true"/>
+		<setting id="mserial" type="bool" label="Malayalam Serials" default="true"/>
+		<setting id="olangal" type="bool" label="Olangal" default="true"/>
+    </category> 
+    <category label="Hindi Scrapers">
+		<setting id="desit" type="bool" label="Desi Tashan" default="true"/>
+        <setting id="hlinks" type="bool" label="Hindi Links 4 U [COLOR magenta](Needs TLS1.2)[/COLOR]" default="false"/>
+		<setting id="gmala" type="bool" label="Hindi Geetmala" default="true"/>
+		<setting id="yodesi" type="bool" label="Yo Desi" default="true"/>
+    </category>
+    <category label="Multi Language Scrapers">
+		<setting id="mhdtv" type="bool" label="MHDTV Live" default="true"/>
+		<setting id="aindia" type="bool" label="Abroad India" default="true"/>
+		<setting id="apnav" type="bool" label="Apna View" default="true"/>
+		<setting id="flinks" type="bool" label="Film Links 4 U" default="true"/>
+		<setting id="i4movie" type="bool" label="India 4 Movie" default="true"/>
+		<setting id="mersal" type="bool" label="Mersalaayitten" default="true"/>
+		<setting id="mersalhd" type="bool" label="        Play HD if available" visible="eq(-1,true)" enable="!eq(-1,)" default="true"/>
+		<setting id="mfish" type="bool" label="Movie Fisher" default="true"/>
+		<setting id="moviefk" type="bool" label="Movie FK" default="true"/>
+		<setting id="mrulz" type="bool" label="Movie Rulez" default="true"/>
+		<setting id="ozee" type="bool" label="OZee" default="true"/>
+		<setting id="redm" type="bool" label="Red Movies" default="true"/>
+		<setting id="ttwist" type="bool" label="Tamil Twists" default="true"/>
+        <setting id="tvcd" type="bool" label="Thiruttu VCD" default="true"/>
+        <setting id="tvcds" type="bool" label="Thiruttu VCDs" default="true"/>
+    </category>
+    <category label="Miscellaneous">
+        <setting label="Cache Timeout in hours" type="number" id="timeout" default="12"/> 
+        <setting label="Mature Content" type="lsep"/>
+        <setting label="Enable Adult content" type="bool" id="adult" default="false"/>
+    </category>    
+</settings>

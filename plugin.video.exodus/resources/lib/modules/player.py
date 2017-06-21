@@ -20,7 +20,8 @@
 
 
 import re,sys,json,time,xbmc
-import hashlib,urllib,os,zlib,base64,codecs,xmlrpclib
+import hashlib,urllib,os,base64,codecs,xmlrpclib
+import gzip, StringIO
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -326,7 +327,7 @@ class subtitles:
             content = [filter[0]['IDSubtitleFile'],]
             content = server.DownloadSubtitles(token, content)
             content = base64.b64decode(content['data'][0]['data'])
-            content = str(zlib.decompressobj(16+zlib.MAX_WBITS).decompress(content))
+            content = gzip.GzipFile(fileobj=StringIO.StringIO(content)).read()
 
             subtitle = xbmc.translatePath('special://temp/')
             subtitle = os.path.join(subtitle, 'TemporarySubs.%s.srt' % lang)

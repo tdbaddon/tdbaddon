@@ -140,7 +140,7 @@ class indexer :#line:20
             pass #line:179
     def addSearch (O000O0O0O0000O0OO ,url =None ):#line:182
         try :#line:183
-            OO00O00O0000000OO ='http://wolfpackcrew.co.uk/seeddata/.wolf%20pack/wolfpack%20search.xml'#line:184
+            OO00O00O0000000OO ='http://wolfpackcrew.co.uk/seeddata/wolfpackdata/wolfpack%20search.xml'#line:184
             if (url ==None or url ==''):#line:186
                 OOO0O00O0OOO000OO =O0OOOO0OOO00OO0OO .keyboard ('',O0OOOO0OOO00OO0OO .lang (30702 ).encode ('utf-8'))#line:187
                 OOO0O00O0OOO000OO .doModal ()#line:188
