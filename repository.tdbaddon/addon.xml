@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <addon id="repository.TDBADDON" name="TDB REPO" version="1002" provider-name="TDB">
+    <addon id="repository.tdbaddon" name="TDB REPO" version="1003" provider-name="TDB">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
@@ -15,4 +15,3 @@
             <platform>all</platform>
     </extension>
 </addon>
-
