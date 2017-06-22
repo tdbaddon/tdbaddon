@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.module.python.koding.aio"
    name="Python Koding AIO"
-   version="0.9"
+   version="0.9.5.1"
    provider-name="TotalRevolution, noobsandnerds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -18,7 +18,7 @@
     <license>Creative Commons 4.0-NC-ND</license>
     <forum>http://noobsandnerds.com/support/showthread.php?tid=17614</forum>
     <website>http://totalrevolution.tv</website>
-    <news>Added exception in Get_ID - the function is not available on every platform</news>
+    <news>Added Delete_Cookies and fixed Addon_Settings so can now set to a blank string</news>
     <source>https://github.com/totalrevolution/totalrevolution/tree/master/script.module.python.koding.aio</source>
   </extension>  
 </addon>

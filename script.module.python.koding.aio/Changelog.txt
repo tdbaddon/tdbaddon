@@ -1,3 +1,31 @@
+v.0.9.5:
+- Fixed bug in sleep_if_function_active, was closing dialog busy
+
+v.0.9.4:
+- Added new Adult_Toggle function
+- Improved Adult_Genre so it can take a custom url, no longer NaN dependant.
+
+v.0.9.3.1:
+- Fixed indentation error in database module
+
+v.0.9.3:
+- fixed a bug with remove_from_table
+- added reset_db function to use when running into threading error with sqlite
+- Added exceptions for built-in python libraries, no need to attempt enabling those
+- Fixed Main() commands which had broken due to cleaning of newlines and tabs
+- Fixed 
+
+v.0.9.2:
+- Added Select_Dialog function to allow user to select from multiple values.
+- Fixed the Open_URL function so it works correctly with User_Info again.
+- Changed Open_URL to return False in case of failed attempt (was returning a test string). Will also print details of the bad url to log if addon debugging mode enabled.
+
+v.0.9.1:
+- Added option to send through params in Open_URL (see README for full info)
+- Added Delete_Cookies function
+- Fixed bug in Addon_Settings where it wasn't possible to set a blank string
+- Added an optional error message if Extract fails
+
 v.0.9:
 - Fixed db query example, wasn't working on pre-Krypton
 - Added exception for Get_ID, only works on certain platforms so returns False if not supported on current os.

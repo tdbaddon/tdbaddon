@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="1.9" provider-name="noobsandnerds">
+<addon id="repository.noobsandnerds" name="noobsandnerds Repository" version="2.0" provider-name="noobsandnerds">
 	<extension point="xbmc.addon.repository" name="noobsandnerds Repository">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/modules4all/master/zips/addons.xml</info>
@@ -10,6 +10,11 @@
 	        <info compressed="true">https://github.com/dandy0850/dandymedia/raw/master/addons.xml</info>
 	        <checksum>https://github.com/dandy0850/dandymedia/raw/master/addons.xml.md5</checksum>
 	        <datadir zip="true">https://github.com/dandy0850/dandymedia/raw/master/repo</datadir>
+		</dir>
+		<dir>
+	        <info compressed="true">https://raw.githubusercontent.com/catchup4kodi/catchup4kodi/master/zips/addons.xml</info>
+	        <checksum>https://raw.githubusercontent.com/catchup4kodi/catchup4kodi/master/zips/addons.xml.md5</checksum>
+	        <datadir zip="true">https://raw.githubusercontent.com/catchup4kodi/catchup4kodi/master/zips/</datadir>
 		</dir>
 		<info compressed="false">https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/zips/addons.xml.md5</checksum>

@@ -41,6 +41,7 @@ except:
     pass
 
 dbcur, dbcon     = None, None
+dialog = xbmcgui.Dialog()
 #----------------------------------------------------------------
 def _connect_to_db():
     """ internal command ~"""
@@ -127,6 +128,56 @@ os.remove(addon_db_path)
                 dbcon.rollback()
                 raise Exception()
             continue
+    dbcon.commit()
+#----------------------------------------------------------------
+# TUTORIAL #
+def Add_Multiple_To_Table(table, keys=[], values=[]):
+    """
+This will allow you to add multiple rows to a table in one big (fast) bulk command
+The db file is: /userdata/addon_data/<your_addon_id>/database.db
+
+CODE:  Add_To_Table(table, spec)
+
+AVAILABLE PARAMS:
+
+    (*) table  -  The table name you want to query
+
+    (*) keys   -  Send through a list of keys you want to add to
+
+    (*) values -  A list of values you want to add, this needs to be
+    a list of lists (see example below)
+
+EXAMPLE CODE:
+create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+koding.Create_Table("test_table", create_specs)
+dialog.ok('ADD TO TABLE','Lets add the details of 3 add-ons to "test_table" in our database.')
+mykeys = ["name","id"]
+myvalues = [("YouTube","plugin.video.youtube"), ("vimeo","plugin.video.vimeo"), ("test2","plugin.video.test2")]
+koding.Add_Multiple_To_Table(table="test_table", keys=mykeys, values=myvalues)
+results = koding.Get_All_From_Table("test_table")
+final_results = ''
+for item in results:
+    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+koding.Text_Box('DB RESULTS', 'Below are details of the items pulled from our db:\n\n%s'%final_results)
+os.remove(addon_db_path)
+~"""
+    dbcur, dbcon = _connect_to_db()
+    sql_string = "INSERT INTO %s (" % table
+    sql_2  = ''
+    if type(keys) != list:
+        keys = [keys]
+    if type(values) != list:
+        values = [values]
+    for item in keys:
+        if not item.startswith('`'):
+            item = r'`'+item
+        if not item.endswith('`'):
+            item = item+r'`'
+        xbmc.log('ITEM: %s'%item,2)
+        sql_string += "%s, " % item
+        sql_2 += "?,"
+    sql_string = "%s) VALUES (%s)"%(sql_string[:-2], sql_2[:-1])
+    dbcur.executemany(sql_string, values)
     dbcon.commit()
 #----------------------------------------------------------------
 # TUTORIAL #
@@ -372,7 +423,7 @@ os.remove(addon_db_path)
             else:
                 value = item[key]
                 column_compare_operator = default_compare_operator
-            sql_string += "%s %s \"%s\" AND" % (key, column_compare_operator, value)
+            sql_string += "%s %s \"%s\" AND " % (key, column_compare_operator, value)
         sql_string = sql_string[:-4]
         try:
             _execute_db_string(sql_string, commit=False)
@@ -402,3 +453,6 @@ koding.Remove_Table('my_test_table')
     sql_string = "DROP TABLE IF EXISTS %s;" % table
     _execute_db_string(sql_string)
 #----------------------------------------------------------------
+def reset_db():
+    global dbcon, dbcur
+    dbcur, dbcon     = None, None

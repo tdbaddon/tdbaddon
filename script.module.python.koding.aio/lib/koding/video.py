@@ -237,25 +237,14 @@ else:
     if showbusy:
         Show_Busy()
 
-# Play from a db entry - untested
-    if video.isdigit():
-        dolog('### Video is digit, presuming it\'s a db item')
-        command = ('{"jsonrpc": "2.0", "id":"1", "method": "Player.Open","params":{"item":{"channelid":%s}}}' % url)
-        xbmc.executeJSONRPC(command)
-        playback = Check_Playback(ignore_dp,timeout)
-        is_in_progress = True
-        progress_count = 0
-        while is_in_progress:
-            xbmc.sleep(1000)
-            progress_count += 1
-            dolog('Progress check is active, sleeping %s'%progress_count)
-            is_in_progress = os.path.exists(check_started)
 
 # if a plugin path is sent we try activate window
-    elif video.startswith('plugin://'):
+    if video.startswith('plugin://'):
         try:
-            dolog('Attempting to play via XBMC.ActivateWindow(10025, ...) method')
-            xbmc.executebuiltin('XBMC.ActivateWindow(10025,%s)' % video)
+            dolog('Attempting to play via xbmc.Player().play() method')
+            xbmc.Player().play(video)
+            # dolog('Attempting to play via XBMC.ActivateWindow(10025, ...) method')
+            # xbmc.executebuiltin('XBMC.ActivateWindow(10025,%s)' % video)
             playback = Check_Playback(ignore_dp,timeout)
             is_in_progress = True
             progress_count = 0
@@ -321,6 +310,20 @@ else:
             except:
                 dolog(Last_Error())
 
+# Play from a db entry - untested
+    elif video.isdigit():
+        dolog('### Video is digit, presuming it\'s a db item')
+        command = ('{"jsonrpc": "2.0", "id":"1", "method": "Player.Open","params":{"item":{"channelid":%s}}}' % url)
+        xbmc.executeJSONRPC(command)
+        playback = Check_Playback(ignore_dp,timeout)
+        is_in_progress = True
+        progress_count = 0
+        while is_in_progress:
+            xbmc.sleep(1000)
+            progress_count += 1
+            dolog('Progress check is active, sleeping %s'%progress_count)
+            is_in_progress = os.path.exists(check_started)
+            
     else:
 # Attempt to resolve via urlresolver
         try:

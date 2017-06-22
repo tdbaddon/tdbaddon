@@ -18,8 +18,10 @@
 # as any other add-ons which use this code. Thank you for your cooperation.
 
 import os
+import sys
 import xbmc
 import xbmcgui
+from systemtools import Last_Error
 
 dialog = xbmcgui.Dialog()
 #----------------------------------------------------------------    
@@ -151,11 +153,11 @@ else:
         return True        
 #----------------------------------------------------------------    
 # TUTORIAL #
-def Keyboard(heading='', default='', hidden=False):
+def Keyboard(heading='',default='',hidden=False,return_false=False,autoclose=False,kb_type='alphanum'):
     """
 Show an on-screen keyboard and return the string
 
-CODE: koding.Keyboard([default, heading, hidden])
+CODE: koding.Keyboard([default, heading, hidden, return_false, autoclose, kb_type])
 
 AVAILABLE PARAMS:
 
@@ -165,15 +167,59 @@ AVAILABLE PARAMS:
 
     hidden   -  Boolean, if set to True the text will appear as hidden (starred out)
 
+    return_false - By default this is set to False and when escaping out of the keyboard
+    the default text is returned (or an empty string if not set). If set to True then
+    you'll receive a return of False.
+
+    autoclose - By default this is set to False but if you want the keyboard to auto-close
+    after a period of time you can send through an integer. The value sent through needs to
+    be milliseconds, so for example if you want it to close after 3 seconds you'd send through
+    3000. The autoclose function only works with standard alphanumeric keyboard types.
+
+    kb_type  -  This is the type of keyboard you want to show, by default it's set to alphanum.
+    A list of available values are listed below:
+
+        'alphanum'  - A standard on-screen keyboard containing alphanumeric characters.
+        'numeric'   - An on-screen numerical pad.
+        'date'      - An on-screen numerical pad formatted only for a date.
+        'time'      - An on-screen numerical pad formatted only for a time.
+        'ipaddress' - An on-screen numerical pad formatted only for an IP Address.
+        'password'  - A standard keyboard but returns value as md5 hash. When typing
+        the text is starred out, once you've entered the password you'll get another
+        keyboard pop up asking you to verify. If the 2 match then your md5 has is returned.
+
+
 EXAMPLE CODE:
-mytext = koding.Keyboard(heading='Type in the text you want returned', default='test text')
+mytext = koding.Keyboard(heading='Type in the text you want returned',default='test text')
 dialog.ok('TEXT RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+dialog.ok('AUTOCLOSE ENABLED','This following example we\'ve set the autoclose to 3000. That\'s milliseconds which converts to 3 seconds.')
+mytext = koding.Keyboard(heading='Type in the text you want returned',default='this will close in 3s',autoclose=3000)
+dialog.ok('TEXT RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+mytext = koding.Keyboard(heading='Enter a number',kb_type='numeric')
+dialog.ok('NUMBER RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+dialog.ok('RETURN FALSE ENABLED','All of the following examples have "return_false" enabled. This means if you escape out of the keyboard the return will be False.')
+mytext = koding.Keyboard(heading='Enter a date',return_false=True,kb_type='date')
+dialog.ok('DATE RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+mytext = koding.Keyboard(heading='Enter a time',return_false=True,kb_type='time')
+dialog.ok('TIME RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+mytext = koding.Keyboard(heading='IP Address',return_false=True,kb_type='ipaddress',autoclose=5)
+dialog.ok('IP RETURNED','You typed in:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
+mytext = koding.Keyboard(heading='Password',kb_type='password')
+dialog.ok('MD5 RETURN','The md5 for this password is:', '', '[COLOR=dodgerblue]%s[/COLOR]'%mytext)
 ~"""
-    keyboard = xbmc.Keyboard(default, heading, hidden)
-    keyboard.doModal()
-    if (keyboard.isConfirmed()):
-        return unicode(keyboard.getText(), "utf-8")
-    return default
+    kb_type = eval( 'xbmcgui.INPUT_%s'%kb_type.upper() )
+    if hidden:
+        hidden = eval( 'xbmcgui.%s_HIDE_INPUT'%kb_type.upper() )
+    keyboard = dialog.input(heading,default,kb_type,hidden,autoclose)
+
+    if keyboard != '':
+        return unicode(keyboard, "utf-8")
+    
+    elif not return_false:
+        return default
+    
+    else:
+        return False
 #----------------------------------------------------------------    
 # TUTORIAL #
 def Notify(title, message, duration=2000, icon='special://home/addons/script.module.python.koding.aio/resources/update.png'):
@@ -214,6 +260,38 @@ EXAMPLE CODE:
 koding.OK_Dialog(title='TEST DIALOG',message='This is a test dialog ok box. Click OK to quit.')
 ~"""
     dialog.ok(title,message)
+#----------------------------------------------------------------
+# TUTORIAL #
+def Select_Dialog(title,options,key=True):
+    """
+This will bring up a selection of options to choose from. The options are
+sent through as a list and only one can be selected - this is not a multi-select dialog.
+
+CODE: Select_Dialog(title,options,[key])
+
+AVAILABLE PARAMS:
+
+    (*) title  -  This is title which appears in the header of the window.
+
+    (*) options  -  This is a list of the options you want the user to be able to choose from.
+
+    key  -  By default this is set to True so you'll get a return of the item number. For example
+    if the user picks "option 2" and that is the second item in the list you'll receive a return of
+    1 (0 would be the first item in list and 1 is the second). If set to False you'll recieve a return
+    of the actual string associated with that key, in this example the return would be "option 2".
+
+EXAMPLE CODE:
+my_options = ['Option 1','Option 2','Option 3','Option 4','Option 5']
+mychoice = koding.Select_Dialog(title='TEST DIALOG',options=my_options,key=False)
+koding.OK_Dialog(title='SELECTED ITEM',message='You selected: [COLOR=dodgerblue]%s[/COLOR]\nNow let\'s try again - this time we will return a key...'%mychoice)
+mychoice = koding.Select_Dialog(title='TEST DIALOG',options=my_options,key=True)
+koding.OK_Dialog(title='SELECTED ITEM',message='The item you selected was position number [COLOR=dodgerblue]%s[/COLOR] in the list'%mychoice)
+~"""
+    mychoice = dialog.select(title,options)
+    if key:
+        return mychoice
+    else:
+        return options[mychoice]
 #----------------------------------------------------------------
 # TUTORIAL #
 def Show_Busy(status=True, sleep=0):

@@ -29,14 +29,18 @@ import filetools
 
 #----------------------------------------------------------------
 # TUTORIAL #
-def Addon_Genre(genre='adult'):
+def Addon_Genre(genre='adult',custom_url=''):
     """
 [COLOR=gold]PREMIUM FEATURE FOR ADDONS EXCLUSIVELY SUPPORTED AT NOOBSANDNERDS[/COLOR]
 If you'd like to hook into this please take a look at the README.
 
+Please Note: Although this hooks into the NaN framework to pull genres you can use this without
+having to hook into their framework if you have a custom url which returns results in the same format.
+Your url must return a dictionary of items in this format: {"addon_name":"addon_id","addon_name_2":"addon_id_2"}
+
 Return a dictionary of add-ons which match a specific genre.
 
-CODE: Addon_Genre([genre])
+CODE: Addon_Genre([genre, custom_url])
 
 AVAILABLE PARAMS:
     
@@ -48,6 +52,9 @@ AVAILABLE PARAMS:
     "Dev Tools" you'll see the url shows as 'devtools' and that's what you'd
     send through to this function if you only wanted those to show.
     http://noobsandnerds.com/addons/category/genres/
+
+    custom_url  -  If you have your own custom url which returns genres
+    you can enter it here and use that rather than rely on NaN categorisation.
 
 EXAMPLE CODE:
 space_addons = koding.Addon_Genre(genre='space')
@@ -64,27 +71,50 @@ if space_addons:
     from __init__       import Main
     from filetools      import Text_File
     from systemtools    import Timestamp
+    from web            import Open_URL
     
-    xbmc.log('ADDON GENRE: %s'%genre)
-    dialog = xbmcgui.Dialog()
-    local_path = binascii.hexlify(genre)
-    final_path = xbmc.translatePath('special://profile/addon_data/script.module.python.koding.aio/cookies/%s'%local_path)
+    dialog      = xbmcgui.Dialog()
+    local_path  = binascii.hexlify(genre)
+    cookie_path = xbmc.translatePath("special://profile/addon_data/script.module.python.koding.aio/cookies/")
+    final_path  = os.path.join(cookie_path,local_path)
+    if not os.path.exists(cookie_path):
+        os.makedirs(cookie_path)
+
     if os.path.exists(final_path):
         modified = os.path.getmtime(final_path)
         old = int(modified)
         now = int(Timestamp('epoch'))
 # Add a 24hr wait so we don't kill server
         if now > (modified+86400):
-            Main('addon_list|g:%s'%genre)
+            if custom_url == '':
+                Main('addon_list|g:%s'%genre)
+            else:
+                addon_list = Open_URL(custom_url)
+                try:
+                    addon_list = eval(addon_list)
+                    Text_File(final_path,"w",binascii.hexlify(str(addon_list)) )
+                except:
+                    pass
 
 # Create new file if it doesn't exist
     else:
-        Main('addon_list|g:%s'%genre)
+        if custom_url == '':
+            Main('addon_list|g:%s'%genre)
+        else:
+            addon_list = Open_URL(custom_url)
+            try:
+                addon_list = eval(addon_list)
+                Text_File(final_path,"w",binascii.hexlify(str(addon_list)) )
+            except:
+                pass
 
-    try:
-        addon_list = eval(binascii.unhexlify(Text_File(final_path, 'r')))
-        return addon_list
-    except:
+    if os.path.exists(final_path):
+        try:
+            addon_list = eval(binascii.unhexlify(Text_File(final_path, 'r')))
+            return addon_list
+        except:
+            return False
+    else:
         return False
 #----------------------------------------------------------------
 # TUTORIAL #
@@ -257,7 +287,7 @@ Text_Box('ADDON STATUS',my_return)
         return disabled_list
 #----------------------------------------------------------------
 # TUTORIAL #
-def Addon_Setting(setting='',value='',addon_id=''):
+def Addon_Setting(setting='',value='return_default',addon_id=''):
     """
 Change or retrieve an add-on setting.
 
@@ -287,11 +317,61 @@ else:
     if addon_id == '':
         addon_id = Caller()
     ADDON = xbmcaddon.Addon(id=addon_id)
-    if value == '':
+    if value == 'return_default':
         mysetting = ADDON.getSetting(setting)
         return mysetting
     else:
         ADDON.setSetting(id=setting, value=value)
+#----------------------------------------------------------------
+# TUTORIAL #
+def Adult_Toggle(adult_list=[],disable=True):
+    """
+Remove/Enable a list of add-ons, these are put into a containment area until enabled again.
+
+CODE: Adult_Toggle(adult_list, [disable])
+
+AVAILABLE PARAMS:
+            
+    (*) adult_list  -  A list containing all the add-ons you want to be disabled.
+
+    disable  -  By default this is set to true so any add-ons in the list sent
+    through will be disabled. Set to False if you want to enable the hidden add-ons.
+~"""
+    from filetools   import Move_Tree
+    from systemtools import End_Path
+
+    adult_store = xbmc.translatePath("special://profile/addon_data/script.module.python.koding.aio/adult_store")
+    if not os.path.exists(adult_store):
+        os.makedirs(adult_store)
+    my_addons = Installed_Addons()
+    if disable:
+        for item in my_addons:
+            if item != None:
+                item = item["addonid"]
+                if item in adult_list:
+                    try:
+                        addon_path = xbmcaddon.Addon(id=item).getAddonInfo("path")
+                    except:
+                        addon_path = os.path.join(addon_dir,item)
+                    Toggle_Addons(addon=item, enable=False, safe_mode=False, refresh=True)
+                    path_id = End_Path(addon_path)
+                    if os.path.exists(addon_path):
+                        Move_Tree(addon_path,os.path.join(adult_store,path_id))
+    else:
+        KODI_VER    = int(float(xbmc.getInfoLabel("System.BuildVersion")[:2]))
+        ADDONS      = xbmc.translatePath('special://home/addons')
+        addon_vault = []
+        if os.path.exists(adult_store):
+            for item in os.listdir(adult_store):
+                store_dir = os.path.join(adult_store,item)
+                addon_dir = os.path.join(ADDONS, item)
+                if os.path.isdir(store_dir):
+                    Move_Tree(store_dir,addon_dir)
+                    addon_vault.append(item)
+        if KODI_VER >= 16:
+            Toggle_Addons(addon=addon_vault, safe_mode=True, refresh=True)
+        else:
+            Refresh(['addons','repos'])
 #----------------------------------------------------------------
 # TUTORIAL #
 def Caller(my_return='addon'):
@@ -364,11 +444,12 @@ koding.Text_Box('ADD-ON LIST', path_list)
 def Check_Deps(addon_path, depfiles = []):
     import re
     from filetools import Text_File
+    exclude_list = ['xbmc.gui','script.module.metahandler','kodi.resource','xbmc.core','xbmc.metadata','xbmc.addon','xbmc.json','xbmc.python']
     try:
         readxml = Text_File(os.path.join(addon_path,'addon.xml'),'r')
         dmatch   = re.compile('import addon="(.+?)"').findall(readxml)
         for requires in dmatch:
-            if not 'xbmc.python' in requires and not requires in depfiles:
+            if not requires in exclude_list and not requires in depfiles:
                 depfiles.append(requires)
     except:
         pass
@@ -459,8 +540,8 @@ koding.Text_Box('Modules required for %s'%current_id,clean_text)
     import xbmcaddon
     import re
     from filetools import Text_File
-    ADDONS = xbmc.translatePath('special://home/addons')
-    depfiles = []
+    ADDONS       = xbmc.translatePath('special://home/addons')
+    depfiles     = []
 
     if addon_id == 'all':
         for name in os.listdir(ADDONS):

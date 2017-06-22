@@ -825,7 +825,8 @@ dialog.ok('FUNCTION COMPLETE','Of course we cannot read that file in just 10 sec
         thread_alive = my_thread.isAlive()
         xbmc.log('%s thread alive for %s seconds' % (function, counter))
         counter += 1
-    Show_Busy(False)
+    if show_busy:
+        Show_Busy(False)
     return thread_alive
 #----------------------------------------------------------------    
 # TUTORIAL #

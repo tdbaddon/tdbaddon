@@ -29,7 +29,11 @@ Return a dictionary of add-ons which match a specific genre.
 If you'd like to hook into this please take a look at the following URL:
 https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/repository.nanaddons/README.txt
 
-	CODE: Addon_Genre([genre])
+Please Note: Although this hooks into the NaN framework to pull genres you can use this without
+having to hook into their framework if you have a custom url which returns results in the same format.
+Your url must return a dictionary of items in this format: {"addon_name":"addon_id","addon_name_2":"addon_id_2"}
+
+	CODE: Addon_Genre([genre,custom_url])
 
 	AVAILABLE PARAMS:
 	    
@@ -41,6 +45,9 @@ https://raw.githubusercontent.com/noobsandnerds/noobsandnerds/master/repository.
 	    "Dev Tools" you'll see the url shows as 'devtools' and that's what you'd
 	    send through to this function if you only wanted those to show.
 	    http://noobsandnerds.com/addons/category/genres/
+
+	    custom_url  -  If you have your own custom url which returns genres
+    	you can enter it here and use that rather than rely on NaN categorisation.
 
 	EXAMPLE CODE:
 		space_addons = Addon_Genre(genre='space')
@@ -247,6 +254,20 @@ By default this will open the current add-on settings but if you pass through an
 
 ------------------------------------------------------------------------------------------
 
+ADULT TOGGLE:
+Remove/Enable a list of add-ons, these are put into a containment area until enabled again.
+
+CODE: Adult_Toggle(adult_list, [disable])
+
+AVAILABLE PARAMS:
+            
+    (*) adult_list  -  A list containing all the add-ons you want to be disabled.
+
+    disable  -  By default this is set to true so any add-ons in the list sent
+    through will be disabled. Set to False if you want to enable the hidden add-ons.
+
+------------------------------------------------------------------------------------------
+
 CALLER(S) OF FUNCTION:
 Return the add-on id or path of the script which originally called your function. If it's been called through
 a number of add-ons/scripts you can grab a list of paths that have been called.
@@ -314,21 +335,39 @@ the setting as blank it will return a dictionary of all default settings.
 
 ------------------------------------------------------------------------------------------
 
+DELETE COOKIES:
+This will delete your cookies file.
+
+	CODE: Delete_Cookies([filename])
+
+	AVAILABLE PARAMS:
+
+	    filename - By default this is set to the filename 'cookiejar'.
+	    This is the default cookie filename which is created by the Open_URL
+	    function but you can use any name you want and this function will
+	    return True or False on whether or not it's successfully been removed.
+
+	EXAMPLE CODE:
+		Open_URL(url='http://google.com',cookiejar='google')
+		dialog.ok('GOOGLE COOKIES CREATED','We have just opened a page to google.com, if you check your addon_data folder for your add-on you should see a cookies folder and in there should be a cookie called "google". When you press OK this will be removed.')
+
+------------------------------------------------------------------------------------------
+
 DEPENDENCY CHECK:
 This will return a list of all dependencies required by an add-on.
 This information is grabbed directly from the currently installed addon.xml for that id.
 
-CODE:  Dependency_Check([addon_id, recursive])
+	CODE:  Dependency_Check([addon_id, recursive])
 
-AVAILABLE PARAMS:
+	AVAILABLE PARAMS:
 
-    addon_id  -  This is optional, if not set it will return a list of every
-    dependency required from all installed add-ons. If you only want to
-    return results of one particular add-on then send through the id.
+	    addon_id  -  This is optional, if not set it will return a list of every
+	    dependency required from all installed add-ons. If you only want to
+	    return results of one particular add-on then send through the id.
 
-    recursive  -  By default this is set to False but if set to true and you
-    also send through an individual addon_id it will return all dependencies
-    required for that addon id AND the dependencies of the dependencies.
+	    recursive  -  By default this is set to False but if set to true and you
+	    also send through an individual addon_id it will return all dependencies
+	    required for that addon id AND the dependencies of the dependencies.
 
 	EXAMPLE CODE:
 		current_id = xbmcaddon.Addon().getAddonInfo('id')
@@ -532,6 +571,37 @@ Add a row to the table in /userdata/addon_data/<your_addon_id>/database.db
 		for item in results:
 		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
 		koding.Text_Box('DB RESULTS', final_results)
+		os.remove(addon_db_path)
+
+------------------------------------------------------------------------------------------
+
+ADD MULTIPLE ROWS TO TABLE:
+This will allow you to add multiple rows to a table in one big (fast) bulk command
+The db file is: /userdata/addon_data/<your_addon_id>/database.db
+
+	CODE:  Add_To_Table(table, spec)
+
+	AVAILABLE PARAMS:
+
+	    (*) table  -  The table name you want to query
+
+	    (*) keys   -  Send through a list of keys you want to add to
+
+	    (*) values -  A list of values you want to add, this needs to be
+	    a list of lists (see example below)
+
+	EXAMPLE CODE:
+		create_specs = {"columns":{"name":"TEXT", "id":"TEXT"}}
+		koding.Create_Table("test_table", create_specs)
+		dialog.ok('ADD TO TABLE','Lets add the details of 3 add-ons to "test_table" in our database.')
+		mykeys = ["name","id"]
+		myvalues = [("YouTube","plugin.video.youtube"), ("vimeo","plugin.video.vimeo"), ("test2","plugin.video.test2")]
+		koding.Add_Multiple_To_Table(table="test_table", keys=mykeys, values=myvalues)
+		results = koding.Get_All_From_Table("test_table")
+		final_results = ''
+		for item in results:
+		    final_results += 'ID: %s | Name: %s\n'%(item["id"], item["name"])
+		koding.Text_Box('DB RESULTS', 'Below are details of the items pulled from our db:\n\n%s'%final_results)
 		os.remove(addon_db_path)
 
 ------------------------------------------------------------------------------------------
@@ -785,6 +855,31 @@ This will show/hide a "working" symbol.
 		koding.Show_Busy(status=True)
 		xbmc.sleep(5000)
 		koding.Show_Busy(status=False)
+
+------------------------------------------------------------------------------------------
+SELECTION DIALOG
+This will bring up a selection of options to choose from. The options are
+sent through as a list and only one can be selected - this is not a multi-select dialog.
+
+	CODE: Select_Dialog(title,options,[key])
+
+	AVAILABLE PARAMS:
+
+	    (*) title  -  This is title which appears in the header of the window.
+
+	    (*) options  -  This is a list of the options you want the user to be able to choose from.
+
+	    key  -  By default this is set to True so you'll get a return of the item number. For example
+	    if the user picks "option 2" and that is the second item in the list you'll receive a return of
+	    1 (0 would be the first item in list and 1 is the second). If set to False you'll recieve a return
+	    of the actual string associated with that key, in this example the return would be "option 2".
+
+	EXAMPLE CODE:
+		my_options = ['Option 1','Option 2','Option 3','Option 4','Option 5']
+		mychoice = koding.Select_Dialog(title='TEST DIALOG',options=my_options,key=False)
+		koding.OK_Dialog(title='SELECTED ITEM',message='You selected: [COLOR=dodgerblue]%s[/COLOR]\nNow let\'s try again - this time we will return a key...'%mychoice)
+		mychoice = koding.Select_Dialog(title='TEST DIALOG',options=my_options,key=True)
+		koding.OK_Dialog(title='SELECTED ITEM',message='The item you selected was position number [COLOR=dodgerblue]%s[/COLOR] in the list'%mychoice)
 
 ------------------------------------------------------------------------------------------
 
@@ -2085,16 +2180,28 @@ Return the extension of any given url
 PULL CONTENTS FROM A WEB PAGE:
 If you need to pull the contents of a webpage it's very simple to do so by using this function.
 
-	CODE:   koding.Open_URL(url,[post_type,headers,cookies,auth,timeout,cookiejar])
+IMPORTANT: This function is designed to convert a query string into a post.
+If you want to send through a post which contains ampersands or question
+marks you MUST send the params through as a dictionary. By default this function
+presumes the url only contains one question mark and it splits at that point and
+will then split the params at every instance of an ampersand.
+
+	CODE:   koding.Open_URL(url,[post_type,payload,headers,cookies,auth,timeout,cookiejar])
 
 	AVAILABLE PARAMS:
 
-	    (*) url  -  This is the main url you want to send through. Send it through
+	    url  -  This is the main url you want to send through. Send it through
 	    as a query string format even if it's a post.
 
 	    post_type  -  By default this is set to 'get' but this can be set to 'post',
 	    if set to post the query string will be split up into a post format automatically.
 	    
+	    payload - By default this is not used but if you just want a standard
+	    basic Open_URL function you can add a dictionary of params here. If you
+	    don't enter anything in here the function will just split up your url
+	    accordingly. Make sure you read the important information at the top
+	    of this tutorial text.
+
 	    headers -  Optionally send through headers in form of a dictionary.
 
 	    cookies  -  If set to true your request will send through and store cookies.
@@ -2110,7 +2217,6 @@ If you need to pull the contents of a webpage it's very simple to do so by using
 	EXAMPLE CODE:
 		url_contents = koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get')
 		koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
-				koding.Open_URL('http://testpage.com?query1=value1&query2=value2', post_type='get').
 
 ------------------------------------------------------------------------------------------
 

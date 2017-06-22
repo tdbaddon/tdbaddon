@@ -51,6 +51,35 @@ dialog.ok('CLEANUP URL', 'Orig: %s'%raw_url,'Clean: %s'%clean_url)
     return HTMLParser().unescape(url)
 #----------------------------------------------------------------    
 # TUTORIAL #
+def Delete_Cookies(filename='cookiejar'):
+    """
+This will delete your cookies file.
+
+CODE: koding.Delete_Cookies([filename])
+
+AVAILABLE PARAMS:
+
+    filename - By default this is set to the filename 'cookiejar'.
+    This is the default cookie filename which is created by the Open_URL
+    function but you can use any name you want and this function will
+    return True or False on whether or not it's successfully been removed.
+
+EXAMPLE CODE:
+Open_URL(url='http://google.com',cookiejar='google')
+dialog.ok('GOOGLE COOKIES CREATED','We have just opened a page to google.com, if you check your addon_data folder for your add-on you should see a cookies folder and in there should be a cookie called "google". When you press OK this will be removed.')
+~"""
+    from addons     import Addon_Info
+    Addon_Version = Addon_Info(id='version')
+    Addon_Profile = xbmc.translatePath(Addon_Info(id='profile'))
+    Cookie_File   = os.path.join(Addon_Profile,'cookies',filename)
+    try:
+        if os.path.exists(Cookie_File):
+            os.remove(Cookie_File)
+        return True
+    except:
+        return False
+#----------------------------------------------------------------    
+# TUTORIAL #
 def Download(url, dest, dp = None):
     """
 This will download a file, currently this has to be a standard download link which doesn't require cookies/login.
@@ -71,8 +100,8 @@ src = 'http://noobsandnerds.com/python_koding/my_first_addon.zip'
 dst = xbmc.translatePath('special://home/my_first_addon.zip')
 dp = xbmcgui.DialogProgress()
 dp.create('Downloading File','Please Wait')
-koding.Download(src,dst,dp)~"""
-
+koding.Download(src,dst,dp)
+~"""
     start_time=time.time()
     urllib.urlretrieve(url, dest, lambda nb, bs, fs: Download_Progress(nb, bs, fs, dp, start_time))
 #----------------------------------------------------------------    
@@ -118,7 +147,8 @@ AVAILABLE PARAMS:
 
 EXAMPLE CODE:
 url_extension = koding.Get_Extension('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4')
-dialog.ok('FILE EXTENSION','The file extension of this Big Buck Bunny sample is:','','[COLOR=dodgerblue]%s[/COLOR]'%url_extension)~"""
+dialog.ok('FILE EXTENSION','The file extension of this Big Buck Bunny sample is:','','[COLOR=dodgerblue]%s[/COLOR]'%url_extension)
+~"""
     
     import os
     import urlparse
@@ -128,11 +158,17 @@ dialog.ok('FILE EXTENSION','The file extension of this Big Buck Bunny sample is:
     return ext
 #----------------------------------------------------------------
 # TUTORIAL #
-def Open_URL(url='',post_type='get',headers=None,cookies=True,auth=None,timeout=None,cookiejar=None):
+def Open_URL(url='',post_type='get',payload={},headers={'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'},cookies=True,auth=None,timeout=None,cookiejar=None):
     """
 If you need to pull the contents of a webpage it's very simple to do so by using this function.
 
-CODE:   koding.Open_URL(url,[post_type,headers,cookies,auth,timeout,cookiejar])
+IMPORTANT: This function is designed to convert a query string into a post.
+If you want to send through a post which contains ampersands or question
+marks you MUST send the params through as a dictionary. By default this function
+presumes the url only contains one question mark and it splits at that point and
+will then split the params at every instance of an ampersand.
+
+CODE:   koding.Open_URL(url,[post_type,payload,headers,cookies,auth,timeout,cookiejar])
 
 AVAILABLE PARAMS:
 
@@ -142,6 +178,12 @@ AVAILABLE PARAMS:
     post_type  -  By default this is set to 'get' but this can be set to 'post',
     if set to post the query string will be split up into a post format automatically.
     
+    payload - By default this is not used but if you just want a standard
+    basic Open_URL function you can add a dictionary of params here. If you
+    don't enter anything in here the function will just split up your url
+    accordingly. Make sure you read the important information at the top
+    of this tutorial text.
+
     headers -  Optionally send through headers in form of a dictionary.
 
     cookies  -  If set to true your request will send through and store cookies.
@@ -168,7 +210,8 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
     from __init__   import converthex, dolog, Encryption, ADDON_ID, LOGIN, FORUM, USERNAME, PASSWORD, KODI_VER
     from addons     import Addon_Info
     from filetools  import Text_File
-
+    dolog('POST TYPE: %s'%post_type)
+    dolog('url: %s'%url)
     Addon_Version = Addon_Info(id='version')
     Addon_Profile = xbmc.translatePath(Addon_Info(id='profile'))
     Cookie_Folder = os.path.join(Addon_Profile,'cookies')
@@ -189,32 +232,38 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
             except:
                 my_cookies = None
 
-    payload      = {}
+# If the payload is empty we split the params
+    if len(payload) == 0:
+        dolog('###### QUERY STRING CONVERSION MODE')
 
 # If the url sent through is not http then we presume it's hitting the NaN page
-    if not url.startswith(converthex('68747470')):
-        NaN_URL = True
-        args = url
-        post_type = 'post'
-        url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f74657374696e672e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, Addon_Version, KODI_VER, args)
-    else:
-        NaN_URL = False
-    if '?' in url:
-        url, args = url.split('?')
-        args = args.split('&')
-        for item in args:
-            var, data = item.split('=')
-            if NaN_URL:
-                payload[var] = Encryption('e', data)
-            else:
-                payload[var] = data
+        if not url.startswith(converthex('68747470')):
+            NaN_URL = True
+            args = url
+            post_type = 'post'
+            url = converthex('687474703a2f2f6e6f6f6273616e646e657264732e636f6d2f43505f53747566662f6c6f67696e5f74657374696e672e7068703f753d257326703d257326663d257326613d257326763d2573266b3d257326653d2573') % (USERNAME, PASSWORD, FORUM, ADDON_ID, Addon_Version, KODI_VER, args)
+        else:
+            NaN_URL = False
+        if '?' in url:
+            url, args = url.split('?')
+            args = args.split('&')
+            for item in args:
+                var, data = item.split('=')
+                if NaN_URL:
+                    payload[var] = Encryption('e', data)
+                else:
+                    payload[var] = data
+
+    dolog('PAYLOAD: %s'%payload)
+
     try:
         if post_type == 'post':
             r = requests.post(url, payload, headers=headers, cookies=my_cookies, auth=auth, timeout=timeout)
         else:
             r = requests.get(url, payload, headers=headers, cookies=my_cookies, auth=auth, timeout=timeout)
     except:
-        return 'This url could not be opened: %s'%url
+        dolog('Failed to pull content for %s'%url)
+        return False
     dolog('### CODE: %s   |   REASON: %s' % (r.status_code, r.reason))
     if r.status_code >= 200 and r.status_code < 400:
         content = r.text.encode('utf-8')
@@ -224,7 +273,8 @@ koding.Text_Box('CONTENTS OF WEB PAGE',url_contents)
                 pickle.dump(r.cookies, f)
         return content
     else:
-        return 'This url could not be opened: %s'%url
+        dolog('Failed to pull content for %s'%url)
+        return False
 #----------------------------------------------------------------
 # TUTORIAL #
 def Validate_Link(url=''):

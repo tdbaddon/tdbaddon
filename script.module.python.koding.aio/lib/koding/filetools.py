@@ -483,7 +483,7 @@ os.remove(dummy)
     f.close()
 #----------------------------------------------------------------
 # TUTORIAL #
-def Extract(_in, _out, dp=None):
+def Extract(_in, _out, dp=None, show_error=False):
     """
 This function will extract a zip or tar file and return true or false so unlike the
 builtin xbmc function "Extract" this one will pause code until it's completed the action.
@@ -506,19 +506,25 @@ AVAILABLE PARAMS:
     this paramater then you'll just get a busy spinning circle icon until it's completed.
     See the example below for a dp example.
 
+    show_error - By default this is set to False, if set to True an error dialog 
+    will appear showing details of the file which failed to extract.
+
 EXAMPLE CODE:
 dp = xbmcgui.DialogProgress()
 dp.create('Extracting Zip','Please Wait')
-if koding.Extract(src,dst,dp):
+if koding.Extract(_in=src,_out=dst,dp=dp,show_error=True):
     dialog.ok('YAY IT WORKED!','Successful extraction complete')
 else:
     dialog.ok('BAD NEWS!','UH OH SOMETHING WENT HORRIBLY WRONG')
 ~"""
-    import zipfile
     import tarfile
+    import xbmcaddon
+    import zipfile
 
-    nFiles = 0
-    count  = 0
+    module_id   = 'script.module.python.koding.aio'
+    this_module = xbmcaddon.Addon(id=module_id)
+    nFiles      = 0
+    count       = 0
 
     if os.path.exists(_in):
         if zipfile.is_zipfile(_in):
@@ -554,10 +560,10 @@ else:
                     return False
         
         else:
-            xbmc.log('NOT A VALID ZIP OR TAR FILE: %s' % _in)
+            xbmc.log('NOT A VALID ZIP OR TAR FILE: %s' % _in,2)
     else:
-        dialog.ok(this_module.getLocalizedString(30965),this_module.getLocalizedString(30815) % _in)
-
+        if show_error:
+            dialog.ok(this_module.getLocalizedString(30965),this_module.getLocalizedString(30815) % _in)
 #----------------------------------------------------------------
 # TUTORIAL #
 def Fresh_Install():
@@ -588,7 +594,7 @@ if dialog.yesno('TOTAL WIPEOUT!','This will attempt give you a totally fresh ins
         return False
 #----------------------------------------------------------------
 # TUTORIAL #
-def Find_In_Text(content, start, end, show_errors = True):
+def Find_In_Text(content, start, end, show_errors = False):
     """
 Regex through some text and return a list of matches.
 Please note this will return a LIST so even if only one item is found
@@ -604,8 +610,8 @@ AVAILABLE PARAMS:
 
     (*) end      -  The end search string
 
-    show_errors  -  Default is True, the code will show help dialogs for bad code.
-    Set to False if you want to hide these messages
+    show_errors  -  Default is False, if set to True the code will show help
+    dialogs for bad code.
 
 EXAMPLE CODE:
 textsearch = 'This is some text so lets have a look and see if we can find the words "lets have a look"'
@@ -616,7 +622,7 @@ dialog.ok('SEARCH RESULT','You searched for the start string of "text so " and t
 # If we were expecting more than one return we would probably do something more useful and loop through in a for loop.
 ~"""
     import re
-    if content == None or content.startswith('This url could not be opened'):
+    if content == None or content == False:
         if show_errors:
             dialog.ok('ERROR WITH REGEX','No content sent through - there\'s nothing to scrape. Please check the website address is still active (details at bottom of log).')
             xbmc.log(content)
@@ -802,34 +808,46 @@ koding.Text_Box('ADDON FOLDERS','Below is a list of folders found in the addons 
     return final_list
 #----------------------------------------------------------------
 # TUTORIAL #
-def md5_check(src):
+def md5_check(src,string=False):
     """
-Return the md5 value of file or directory, this will return just one unique value.
+Return the md5 value of string/file/directory, this will return just one unique value.
 
-CODE: md5_check(src)
+CODE: md5_check(src,[string])
 
 AVAILABLE PARAMS:
 
-    (*) src  -  This is source directory/file you want the md5 value of.
+    (*) src  -  This is the source you want the md5 value of.
+    This can be a string, path of a file or path to a folder.
+
+    string  -  By default this is set to False but if you want to send
+    through a string rather than a path set this to True.
 
 EXAMPLE CODE:
 home = xbmc.translatePath('special://home')
 home_md5 = koding.md5_check(home)
-dialog.ok('md5 Check', 'The md5 of your home folder is:', home_md5)
+dialog.ok('md5 Check', 'The md5 of your home folder is:', '[COLOR=dodgerblue]%s[/COLOR]'%home_md5)
 
 guisettings = xbmc.translatePath('special://profile/guisettings.xml')
 guisettings_md5 = koding.md5_check(guisettings)
-dialog.ok('md5 Check', 'The md5 of your guisettings.xml:', guisettings_md5)
+dialog.ok('md5 Check', 'The md5 of your guisettings.xml:', '[COLOR=dodgerblue]%s[/COLOR]'%guisettings_md5)
+
+mystring = 'This is just a random text string we\'ll get the md5 value of'
+myvalue = koding.md5_check(src=mystring,string=True)
+dialog.ok('md5 String Check', 'String to get md5 value of:', '[COLOR=dodgerblue]%s[/COLOR]'%mystring)
+dialog.ok('md5 String Check', 'The md5 value of your string:', '[COLOR=dodgerblue]%s[/COLOR]'%myvalue)
 ~"""
     import hashlib
     import os
 
     SHAhash = hashlib.md5()
-    if not os.path.exists (src):
+    if not os.path.exists(src) and not string:
         return -1
 
 # If source is a file
-    if not os.path.isdir(src):
+    if string:
+        return hashlib.md5(src).hexdigest()
+# If source is a file
+    elif not os.path.isdir(src):
         return hashlib.md5(open(src,'rb').read()).hexdigest()
 
 # If source is a directory

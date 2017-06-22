@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.footballreplays" name="Football Replays" version="1.3.0" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="plugin.video.footballreplays" name="Football Replays" version="1.4.0" provider-name="catchup4kodi">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.urlresolver" version="0.0.1"/>
@@ -10,7 +10,7 @@
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Football Replays</summary>
     <description lang="en">Football Replays</description>
-    <disclaimer lang="en">By using This Plugin You will receive sometimes an advert which helps funds the developers developing.....we all thank you!!</disclaimer>
+    <disclaimer lang="en">Watch football replays from around the globe</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
