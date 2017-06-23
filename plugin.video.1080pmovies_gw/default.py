@@ -1,4 +1,4 @@
-import urllib2, urllib, xbmcgui, xbmcplugin, xbmc, re, sys, os, dandy
+import urllib2, urllib, xbmcgui, xbmcplugin, xbmc, re, sys, os,dandy
 import xbmcaddon
 from addon.common.addon import Addon
 import urlresolver
@@ -40,7 +40,7 @@ def Get_content(url):
             if '/tvshows/' in url:
                 addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,9,icon,FANART,desc)
             else:
-                addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'/play',100,icon,FANART,desc)
+                addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'/play',10,icon,FANART,desc)
     np = re.compile('<div class="pag_b"><a href="(.+?)"',re.DOTALL).findall(OPEN)
     for url in np:
         addDir('[B][COLOR red]Next Page>>>[/COLOR][/B]',url,5,ART + 'nextpage.jpg',FANART,'')
@@ -69,28 +69,28 @@ def Get_show_content(name,url):
     Regex = re.compile('<div class="numerando">(.+?)</div>.+?<a href="(.+?)"',re.DOTALL).findall(OPEN)
     for epis,url in Regex:
             name = show + '[B][COLOR white] - ' + epis +'[/B][/COLOR]'
-            addDir(name,url,100,iconimage,FANART,'')
+            addDir(name,url,10,iconimage,FANART,'')
     xbmc.executebuiltin('Container.SetViewMode(50)')
 
 
-# def Get_links(url):
-    # OPEN = Open_Url(url)
-    # Regex = re.compile('<iframe src="(.+?)"',re.DOTALL).findall(OPEN)[0]
-    # source = Open_Url(Regex)
-    # mainlinks = re.compile('"label":"(.+?)".+?"file":"(.+?)"',re.DOTALL).findall(source)
-    # for name2,url in mainlinks:
-        # if 'Indonesia' not in name2:
-            # url = url.replace('\/','/').replace(' ','%20')
-            # addDir('[B][COLOR white]Play in %s[/COLOR][/B]' %name2,url,100,iconimage,FANART,name)
-    # links = re.compile("Onclick=.+?'(.+?)'",re.DOTALL).findall(source)
-    # for url in links:
-        # if 'googleapis' not in url:
-            # name2 = url.split('//')[1].replace('www.','')
-            # name2 = name2.split('/')[0].split('.')[0].title()
-            # if urlresolver.HostedMediaFile(url).valid_url():
-                # name2 = name2.replace('Oload','Openload')
-                # addDir('[B][COLOR white]%s[/COLOR][/B]' %name2,url,100,iconimage,FANART,name)
-    # xbmc.executebuiltin('Container.SetViewMode(50)')
+def Get_links(url):
+    OPEN = Open_Url(url)
+    Regex = re.compile('<iframe src="(.+?)"',re.DOTALL).findall(OPEN)[0]
+    source = Open_Url(Regex)
+    mainlinks = re.compile('"label":"(.+?)".+?"file":"(.+?)"',re.DOTALL).findall(source)
+    for name2,url in mainlinks:
+        if 'Indonesia' not in name2:
+            url = url.replace('\/','/').replace(' ','%20')
+            addDir('[B][COLOR white]Play in %s[/COLOR][/B]' %name2,url,100,iconimage,FANART,name)
+    links = re.compile("Onclick=.+?'(.+?)'",re.DOTALL).findall(source)
+    for url in links:
+        if 'googleapis' not in url:
+            name2 = url.split('//')[1].replace('www.','')
+            name2 = name2.split('/')[0].split('.')[0].title()
+            if urlresolver.HostedMediaFile(url).valid_url():
+                name2 = name2.replace('Oload','Openload')
+                addDir('[B][COLOR white]%s[/COLOR][/B]' %name2,url,100,iconimage,FANART,name)
+    xbmc.executebuiltin('Container.SetViewMode(50)')
     
 def Search():
         keyb = xbmc.Keyboard('', 'Search')
@@ -155,30 +155,30 @@ def setView(content, viewType):
     xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_MPAA_RATING )
     
 def RESOLVE(url):
-    res_quality = []
-    stream_url = []
-    quality = ''
-    OPEN = Open_Url(url)
-    Regex = re.compile('<iframe src="(.+?)"',re.DOTALL).findall(OPEN)[0]
-    source = Open_Url(Regex)
-    match = re.compile('"label":"(.+?)".+?"file":"(.+?)"').findall(source)
-    for label,link in match:
-            quality = '[B][COLOR white]%s[/COLOR][/B]' %label
-            res_quality.append(quality)
-            stream_url.append(link)
-    if len(match) >1:
-            dialog = xbmcgui.Dialog()
-            ret = dialog.select('Please Select Quality',res_quality)
-            if ret == -1:
-                return
-            elif ret > -1:
-                    url = stream_url[ret]
-    else:
-        url = re.compile('"file":"(.+?)"').findall(OPEN)[0]
+    # res_quality = []
+    # stream_url = []
+    # quality = ''
+    # OPEN = Open_Url(url)
+    # Regex = re.compile('<iframe src="(.+?)"',re.DOTALL).findall(OPEN)[0]
+    # source = Open_Url(Regex)
+    # match = re.compile('"label":"(.+?)".+?"file":"(.+?)"').findall(source)
+    # for label,link in match:
+            # quality = '[B][COLOR white]%s[/COLOR][/B]' %label
+            # res_quality.append(quality)
+            # stream_url.append(link)
+    # if len(match) >1:
+            # dialog = xbmcgui.Dialog()
+            # ret = dialog.select('Please Select Quality',res_quality)
+            # if ret == -1:
+                # return
+            # elif ret > -1:
+                    # url = stream_url[ret]
+    # else:
+        # url = re.compile('"file":"(.+?)"').findall(OPEN)[0]
     url = url.replace('\/','/')
     stream=urlresolver.HostedMediaFile(url).resolve()
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-    liz.setInfo(type='Video', infoLabels={"Title": name})
+    liz.setInfo(type='Video', infoLabels={"Title": description})
     liz.setProperty("IsPlayable","true")
     liz.setPath(stream)
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)

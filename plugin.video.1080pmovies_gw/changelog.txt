@@ -26,3 +26,5 @@ v2.0.8
 Google added still not all
 v2.0.9
 Fix resolve
+v2.1.0
+Opened all links
