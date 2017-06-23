@@ -1,7 +1,0 @@
-CURRENT STATUS: [COLORylime]Good[/COLOR]
-
-Sorry about the recent downtime and messing about moving again to a new repo, TV Addons no longer wanted to host addons like mine so took a few days to sort a new home and server.  Special Thanks to Ares for allowing this addon.  
-
-Thanks for all your support and you can now enjoy using the addon again! 
-
-|===== ALWAYS CLEAR CACHE AND PURGE PACKAGES =====|

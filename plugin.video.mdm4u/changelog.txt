@@ -1,7 +1,0 @@
-v2.0.0
-
-- Addon recoded and now has a my favourites section
-
-v1.0.0
-Initial Release
-

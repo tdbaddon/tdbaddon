@@ -1,8 +1,0 @@
-item_info_name=pageUrl
-item_info_from=@PARAM1@
-item_info_convert=parseText('%s','.*livestream.com/accounts/(\d+)/events/(\d+)/','owner|id')
-item_info_build=%s
-
-item_info_name=url
-item_info_from=plugin://plugin.video.livestream/?url=%2Flive_now&mode=104&name=&icon=&event_id='+id+'&owner_id='+owner+'&video_id=LIVE
-item_info_build=%s

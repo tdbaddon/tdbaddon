@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-	<category label="TVPlayer Login">
-		<setting id="tvpusername" type="text" label="Username" default=""/>
- 		<setting id="tvppwd" type="text" label="Password" default=""/>
-	</category>
-</settings>

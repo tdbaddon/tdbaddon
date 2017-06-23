@@ -1,5 +1,0 @@
-
-def isvalid():
-    return False
-
-
