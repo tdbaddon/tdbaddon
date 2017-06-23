@@ -2063,7 +2063,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.KGROUP"
        name="KGROUP"
-       version="1002"
+       version="1003"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2081,8 +2081,8 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-
-
+	<import addon="repository.TDBREPO" />
+	<import addon="repository.TDBXXXREPO" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
