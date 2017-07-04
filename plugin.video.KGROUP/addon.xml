@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.KGROUP"
        name="KGROUP"
-       version="1003"
+       version="1013"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -19,9 +19,32 @@
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>    
     <import addon="script.common.plugin.cache" version="2.5.2"/>
+	
 	<import addon="repository.TDBREPO" />
-	<import addon="repository.TDBXXXREPO" />    
-  </requires>
+	<import addon="repository.TDBXXXREPO" />
+	<import addon="repository.dandymedia" />  
+	<import addon="repository.gujal" />  
+	<import addon="repository.jesusboxtv" />  
+	<import addon="repository.k3l3vra" />  
+	<import addon="repository.wolfpack" />  
+	<import addon="repository.smash" />  
+	<import addon="repository.thealpha" />  
+	<import addon="repository.merlin" />
+	<import addon="repository.duckpool" /> 
+	<import addon="repository.aj" /> 
+	<import addon="repository.Goliath" />
+	<import addon="repository.jesusboxtv" />	
+	<import addon="repository.coldkeys" />		
+	<import addon="repository.supremacy" />
+	<import addon="frenchdj.repository" />
+	<import addon="repository.mic" />
+	<import addon="repository.kodil" />
+	<import addon="repository.rd_eventz" />	
+	<import addon="repository.adryan" />
+	<import addon="repository.EliteTv" />
+	<import addon="repository.projectd" />
+	<import addon="repository.aftershock" />
+			  </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
